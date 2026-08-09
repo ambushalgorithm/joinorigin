@@ -1,0 +1,268 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "20"
+  ARTIFACTS_DIR: app/artifacts
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Run lint
+        working-directory: app
+        run: bash scripts/ci/lint-all.sh
+
+      - name: Archive lint results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-results
+          path: ${{ env.ARTIFACTS_DIR }}/lint/
+          retention-days: 7
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Run type check
+        working-directory: app
+        run: bash scripts/ci/typecheck-all.sh
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Run unit tests
+        working-directory: app
+        run: bash scripts/test/run-unit-tests.sh
+
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-results
+          path: ${{ env.ARTIFACTS_DIR }}/test-results/
+          retention-days: 7
+
+      - name: Archive coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-coverage
+          path: ${{ env.ARTIFACTS_DIR }}/coverage/
+          retention-days: 7
+
+  build:
+    name: Build
+    needs: [lint, typecheck, unit-tests]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Build all packages and apps
+        working-directory: app
+        run: bash scripts/build/build-all.sh
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: ${{ env.ARTIFACTS_DIR }}/build/
+          retention-days: 7
+
+  integration-tests:
+    name: Integration Tests
+    needs: [build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: uwp_test
+          POSTGRES_PASSWORD: uwp_test_password
+          POSTGRES_DB: uwp_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Build all packages and apps
+        working-directory: app
+        run: bash scripts/build/build-all.sh
+
+      - name: Run database migrations
+        working-directory: app
+        run: bash scripts/db/migrate.sh
+        env:
+          DATABASE_URL: postgresql://uwp_test:uwp_test_password@localhost:5432/uwp_test
+          REDIS_URL: redis://localhost:6379
+
+      - name: Run integration tests
+        working-directory: app
+        run: bash scripts/test/run-integration-tests.sh
+        env:
+          DATABASE_URL: postgresql://uwp_test:uwp_test_password@localhost:5432/uwp_test
+          REDIS_URL: redis://localhost:6379
+
+      - name: Archive integration test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-results
+          path: ${{ env.ARTIFACTS_DIR }}/test-results/
+          retention-days: 7
+
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Run dependency audit
+        working-directory: app
+        run: bash scripts/ci/security-scan.sh
+
+      - name: Archive security scan results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-scan-results
+          path: ${{ env.ARTIFACTS_DIR }}/security/
+          retention-days: 30
+
+  ci-gate:
+    name: CI Gate
+    needs: [lint, typecheck, unit-tests, build, integration-tests, security-audit]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Evaluate gate
+        run: |
+          echo "Checking all required jobs..."
+          REQUIRED_JOBS=("lint" "typecheck" "unit-tests" "build" "integration-tests" "security-audit")
+          FAILED=0
+          for JOB in "${REQUIRED_JOBS[@]}"; do
+            RESULT="${{ needs[format('{0}', job)].result }}"
+            echo "  $JOB: $RESULT"
+            if [[ "$RESULT" != "success" ]] && [[ "$RESULT" != "skipped" ]]; then
+              FAILED=1
+            fi
+          done
+          if [[ $FAILED -eq 1 ]]; then
+            echo "CI GATE: FAILED"
+            exit 1
+          fi
+          echo "CI GATE: PASSED"

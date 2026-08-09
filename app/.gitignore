@@ -1,0 +1,4 @@
+# Artifacts - keep directory structure, ignore generated content
+artifacts/*
+!artifacts/.gitkeep
+!artifacts/README.md
