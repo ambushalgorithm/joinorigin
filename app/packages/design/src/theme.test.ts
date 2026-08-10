@@ -1,12 +1,4 @@
-import {
-  theme,
-  colors,
-  spacing,
-  typography,
-  fontFamilies,
-  radius,
-  breakpoints,
-} from './index';
+import { theme, colors, spacing, typography, fontFamilies, radius, breakpoints } from './index';
 
 describe('design tokens', () => {
   it('exposes a theme with all token groups', () => {
