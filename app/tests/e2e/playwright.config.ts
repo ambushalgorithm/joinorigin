@@ -23,7 +23,7 @@ export default defineConfig({
   webServer: {
     // Start the Next.js dev server from the workspace context on a dedicated
     // port (default 3100) to avoid collisions with other dev servers.
-    command: `PORT=${WEB_PORT} pnpm --dir ../apps/web dev`,
+    command: `PORT=${WEB_PORT} pnpm --dir ../../apps/web dev`,
     url: `http://127.0.0.1:${WEB_PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

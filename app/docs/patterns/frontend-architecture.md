@@ -3,6 +3,13 @@
 > **Parent:** [architecture-patterns-index.md](architecture-patterns-index.md) — the combined pattern index
 > **Source:** Frontend architecture reference spec (Next.js Web/PWA + React Native, no Expo, shared packages)
 
+> **Monorepo root:** The JoinOrigin frontend monorepo lives inside `app/` per UWP
+> [ARCHITECTURE.md §7.1 Root Minimalism](../ARCHITECTURE.md). The repo root
+> contains only `AGENTS.md` + `.gitignore` + `app/`; all monorepo components
+> (`apps/`, `packages/`, `tests/e2e/`) and configuration (`package.json`,
+> `pnpm-workspace.yaml`, `turbo.json`, etc.) live under `app/`. Run all pnpm
+> commands from `app/`.
+
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -106,6 +113,16 @@ packages/
   ui/
   utils/
 ```
+
+### Monorepo Root: `app/` (UWP Root Minimalism)
+
+Per [UWP ARCHITECTURE.md §7.1 Root Minimalism](../ARCHITECTURE.md), the repo
+root contains only `AGENTS.md` + `.gitignore` + `app/`. **The JoinOrigin
+frontend monorepo lives inside `app/`**: `app/apps/web`, `app/apps/mobile`,
+`app/packages/` (`@joinorigin/design`, `@joinorigin/ui`), `app/tests/e2e`
+(Playwright), and all workspace config (`package.json`,
+`pnpm-workspace.yaml`, `turbo.json`, `tsconfig.base.json`, ESLint/Prettier,
+`.npmrc`). All pnpm/turbo commands run from `app/`.
 
 ---
 
