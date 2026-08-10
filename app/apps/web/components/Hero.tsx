@@ -21,7 +21,7 @@ import OrbitViz from './OrbitViz';
  *   viz on the right, stacking below 1024px.
  */
 
-const Hero = styled.section`
+const HeroSection = styled.section`
   position: relative;
   overflow: hidden;
   min-height: calc(100svh - 72px);
@@ -78,7 +78,7 @@ const RightColumn = styled.div`
 
 export function Hero() {
   return (
-    <Hero data-testid="hero">
+    <HeroSection data-testid="hero">
       <GlowTopRight aria-hidden="true" />
       <GlowBottomLeft aria-hidden="true" />
       <Vignette aria-hidden="true" />
@@ -88,7 +88,7 @@ export function Hero() {
           <OrbitViz />
         </RightColumn>
       </Content>
-    </Hero>
+    </HeroSection>
   );
 }
 
