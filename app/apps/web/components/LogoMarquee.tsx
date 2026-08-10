@@ -1,6 +1,6 @@
 'use client';
 
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import { DELAY, EASE, useEntrance } from './motion';
 
@@ -42,7 +42,11 @@ const marquee = keyframes`
 const Section = styled.section<{ $entered: boolean }>`
   padding: 64px 0;
   animation: ${({ $entered }) =>
-    $entered ? `${fadeUp} 0.7s ${EASE} ${DELAY.ticker} both` : 'none'};
+    $entered
+      ? css`
+          ${fadeUp} 0.7s ${EASE} ${DELAY.ticker} both
+        `
+      : 'none'};
 `;
 
 const Label = styled.p`
@@ -109,12 +113,7 @@ export function LogoMarquee() {
       <MarqueeWrap>
         <Track>
           {sequence.map((logo, index) => (
-            <Logo
-              key={`${logo.src}-${index}`}
-              src={logo.src}
-              alt={logo.alt}
-              loading="lazy"
-            />
+            <Logo key={`${logo.src}-${index}`} src={logo.src} alt={logo.alt} loading="lazy" />
           ))}
         </Track>
       </MarqueeWrap>

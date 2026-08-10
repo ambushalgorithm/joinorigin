@@ -50,7 +50,7 @@ export async function submitLead(input: SubmitLeadInput): Promise<void> {
     const error = payload?.error;
     throw new LeadSubmitError(
       error?.field ?? 'form',
-      error?.message ?? 'Something went wrong. Please try again.'
+      error?.message ?? 'Something went wrong. Please try again.',
     );
   }
 }

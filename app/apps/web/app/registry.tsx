@@ -39,8 +39,6 @@ export default function Registry({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
-      {children}
-    </StyleSheetManager>
+    <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>{children}</StyleSheetManager>
   );
 }

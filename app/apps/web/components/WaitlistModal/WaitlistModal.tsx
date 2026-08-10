@@ -123,8 +123,7 @@ const Input = styled.input<{ $invalid: boolean }>`
   padding: 0 16px;
   border-radius: ${({ theme }) => theme.radius.md}px;
   border: 1px solid
-    ${({ theme, $invalid }) =>
-      $invalid ? theme.colors.destructive : theme.colors.border};
+    ${({ theme, $invalid }) => ($invalid ? theme.colors.destructive : theme.colors.border)};
   background: ${({ theme }) => theme.colors.surfaceElevated};
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fontFamilies.sans};
@@ -300,7 +299,7 @@ export function WaitlistModal({ open, onClose }: WaitlistModalProps) {
         return;
       }
       const focusables = Array.from(
-        cardRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
+        cardRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
       ).filter((el) => el.offsetParent !== null || el === document.activeElement);
       if (focusables.length === 0) {
         return;
@@ -385,8 +384,8 @@ export function WaitlistModal({ open, onClose }: WaitlistModalProps) {
           <>
             <SuccessContent>
               {SuccessIcon}
-              <SuccessHeading>You're on the list!</SuccessHeading>
-              <SuccessCopy>We'll email you when your workspace is ready.</SuccessCopy>
+              <SuccessHeading>You&apos;re on the list!</SuccessHeading>
+              <SuccessCopy>We&apos;ll email you when your workspace is ready.</SuccessCopy>
             </SuccessContent>
             <DoneButton type="button" onClick={close} data-testid="waitlist-done">
               Done
@@ -396,8 +395,7 @@ export function WaitlistModal({ open, onClose }: WaitlistModalProps) {
           <>
             <Heading id="waitlist-modal-heading">Join the waitlist</Heading>
             <Subcopy>
-              Be first in line for early access. We'll email you when your workspace is
-              ready.
+              Be first in line for early access. We&apos;ll email you when your workspace is ready.
             </Subcopy>
 
             <Form onSubmit={submit} noValidate data-testid="waitlist-form">
@@ -446,11 +444,7 @@ export function WaitlistModal({ open, onClose }: WaitlistModalProps) {
               </Field>
 
               {topError ? (
-                <ErrorBanner
-                  role="alert"
-                  aria-live="assertive"
-                  data-testid="waitlist-top-error"
-                >
+                <ErrorBanner role="alert" aria-live="assertive" data-testid="waitlist-top-error">
                   {topError}
                 </ErrorBanner>
               ) : null}

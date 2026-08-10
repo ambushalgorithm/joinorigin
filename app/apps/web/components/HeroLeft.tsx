@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import { DELAY, EASE, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
@@ -68,7 +68,11 @@ const Column = styled.div<{ $entered: boolean }>`
   flex-direction: column;
   align-items: flex-start;
   animation: ${({ $entered }) =>
-    $entered ? `${fadeUp} 1s ${EASE} ${DELAY.heroLeft} both` : 'none'};
+    $entered
+      ? css`
+          ${fadeUp} 1s ${EASE} ${DELAY.heroLeft} both
+        `
+      : 'none'};
 
   @media (max-width: 1024px) {
     flex: 1 1 auto;
@@ -141,7 +145,11 @@ const CursorBadge = styled.div<{ $entered: boolean }>`
   gap: ${({ theme }) => theme.spacing.sm}px;
   color: ${({ theme }) => theme.colors.primary};
   animation: ${({ $entered }) =>
-    $entered ? `${badgeIn} 0.5s ${EASE} ${DELAY.cursorBadge} both` : 'none'};
+    $entered
+      ? css`
+          ${badgeIn} 0.5s ${EASE} ${DELAY.cursorBadge} both
+        `
+      : 'none'};
 
   @media (max-width: 480px) {
     display: none;
@@ -190,8 +198,8 @@ export function HeroLeft() {
       </CursorBadge>
 
       <Supporting>
-        JoinOrigin brings your community, projects, and conversations into one calm
-        workspace — so your best work finally has a home.
+        JoinOrigin brings your community, projects, and conversations into one calm workspace — so
+        your best work finally has a home.
       </Supporting>
 
       <Trust>

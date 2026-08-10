@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import { DELAY, EASE, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
@@ -45,7 +45,11 @@ const StyledHeader = styled.header<{ $entered: boolean }>`
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   animation: ${({ $entered }) =>
-    $entered ? `${fadeDown} 0.8s ${EASE} ${DELAY.header} both` : 'none'};
+    $entered
+      ? css`
+          ${fadeDown} 0.8s ${EASE} ${DELAY.header} both
+        `
+      : 'none'};
 `;
 
 const Inner = styled.div`

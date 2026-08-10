@@ -23,8 +23,7 @@ const MAX_SUBMISSIONS_PER_MINUTE = 10;
 const RATE_WINDOW_MS = 60_000;
 const CSV_HEADER = 'timestamp,name,email';
 
-const CSV_PATH =
-  process.env.LEADS_CSV_PATH ?? path.join(process.cwd(), 'data', 'leads.csv');
+const CSV_PATH = process.env.LEADS_CSV_PATH ?? path.join(process.cwd(), 'data', 'leads.csv');
 
 /** Serialized write queue so concurrent submissions never interleave rows. */
 let writeQueue: Promise<void> = Promise.resolve();
@@ -79,11 +78,7 @@ function appendRow(row: string): Promise<void> {
   return writeQueue;
 }
 
-function jsonError(
-  field: 'name' | 'email' | 'form',
-  message: string,
-  status: number
-) {
+function jsonError(field: 'name' | 'email' | 'form', message: string, status: number) {
   return NextResponse.json({ ok: false, error: { field, message } }, { status });
 }
 
@@ -115,10 +110,7 @@ export async function POST(request: NextRequest) {
     return jsonError('form', 'Invalid JSON body.', 400);
   }
 
-  const record = (typeof body === 'object' && body !== null ? body : {}) as Record<
-    string,
-    unknown
-  >;
+  const record = (typeof body === 'object' && body !== null ? body : {}) as Record<string, unknown>;
   const rawName = typeof record.name === 'string' ? record.name.trim() : '';
   const rawEmail = typeof record.email === 'string' ? record.email.trim() : '';
 
@@ -129,7 +121,7 @@ export async function POST(request: NextRequest) {
     return jsonError(
       'name',
       rawName ? 'Name must be 120 characters or fewer.' : 'Name is required.',
-      400
+      400,
     );
   }
   if (!EMAIL_REGEX.test(rawEmail)) {

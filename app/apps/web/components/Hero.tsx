@@ -2,11 +2,7 @@
 
 import styled from 'styled-components';
 
-import {
-  HERO_RADIAL_GLOW_1,
-  HERO_RADIAL_GLOW_2,
-  HERO_VIGNETTE,
-} from './landingTokens';
+import { HERO_RADIAL_GLOW_1, HERO_RADIAL_GLOW_2, HERO_VIGNETTE } from './landingTokens';
 import HeroLeft from './HeroLeft';
 import OrbitViz from './OrbitViz';
 

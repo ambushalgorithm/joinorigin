@@ -53,9 +53,13 @@ const Wrap = styled.div<{ $size: 'default' | 'large' }>`
     padding: 3px;
     border-radius: inherit;
     background: ${ROTATING_BORDER_GRADIENT};
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     mask-composite: exclude;
     animation: ${spinBorder} 3s linear infinite;
   }
@@ -90,7 +94,7 @@ const Body = styled.button<{ $size: 'default' | 'large' }>`
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   line-height: 1.2;
-  padding: ${({ $size, theme }) => ($size === 'large' ? '14px 28px' : `12px 26px`)};
+  padding: ${({ $size }) => ($size === 'large' ? '14px 28px' : `12px 26px`)};
   font-size: ${({ $size }) => ($size === 'large' ? 16 : 15)}px;
   transition: background-color 0.2s ease;
 `;

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import { DELAY, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
@@ -28,7 +28,11 @@ const StyledFooter = styled.footer<{ $entered: boolean }>`
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   padding: 32px 24px;
   animation: ${({ $entered }) =>
-    $entered ? `${fadeIn} 0.5s ease-out ${DELAY.footer} both` : 'none'};
+    $entered
+      ? css`
+          ${fadeIn} 0.5s ease-out ${DELAY.footer} both
+        `
+      : 'none'};
 `;
 
 const Inner = styled.div`

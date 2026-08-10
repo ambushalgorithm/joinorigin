@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import { ACCENT_GRADIENT } from './landingTokens';
 import { useReducedMotion } from './motion';
@@ -75,7 +75,12 @@ const Caret = styled.span<{ $reduced: boolean }>`
   margin-left: 2px;
   color: ${({ theme }) => theme.colors.primary};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
-  animation: ${({ $reduced }) => ($reduced ? 'none' : `${blink} 1s steps(1) infinite`)};
+  animation: ${({ $reduced }) =>
+    $reduced
+      ? 'none'
+      : css`
+          ${blink} 1s steps(1) infinite
+        `};
 `;
 
 function renderTyped(text: string) {

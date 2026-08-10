@@ -1,13 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-import {
-  ORBIT_BORDER_GRADIENT,
-  ORBIT_GLOWS,
-  ACCENT_GRADIENT,
-} from './landingTokens';
+import { ORBIT_BORDER_GRADIENT, ORBIT_GLOWS, ACCENT_GRADIENT } from './landingTokens';
 import { AVATAR_FLYIN_DELAYS, EASE, useEntrance, useReducedMotion } from './motion';
 import { formatCount, useCountUp } from './useCountUp';
 
@@ -52,15 +48,96 @@ interface ChipConfig {
 }
 
 const CHIPS: ChipConfig[] = [
-  { src: '/assets/avatars/avatar-01.png', alt: 'JoinOrigin member 1', orbit: 1, angle: 270, radius: 177, size: 58, glow: ORBIT_GLOWS.orbit1, delay: AVATAR_FLYIN_DELAYS[0] },
-  { src: '/assets/avatars/avatar-02.png', alt: 'JoinOrigin member 2', orbit: 2, angle: 60, radius: 251, size: 78, glow: ORBIT_GLOWS.orbit2Yellow, delay: AVATAR_FLYIN_DELAYS[1] },
-  { src: '/assets/avatars/avatar-03.png', alt: 'JoinOrigin member 3', orbit: 2, angle: 180, radius: 251, size: 78, glow: ORBIT_GLOWS.orbit2Pink, delay: AVATAR_FLYIN_DELAYS[2] },
-  { src: '/assets/avatars/avatar-04.png', alt: 'JoinOrigin member 4', orbit: 2, angle: 300, radius: 251, size: 78, glow: ORBIT_GLOWS.orbit4Blue, delay: AVATAR_FLYIN_DELAYS[3] },
-  { src: '/assets/avatars/avatar-05.png', alt: 'JoinOrigin member 5', orbit: 3, angle: 130, radius: 325, size: 88, glow: ORBIT_GLOWS.orbit3Pink, delay: AVATAR_FLYIN_DELAYS[4] },
-  { src: '/assets/avatars/avatar-06.png', alt: 'JoinOrigin member 6', orbit: 4, angle: 30, radius: 399, size: 88, glow: ORBIT_GLOWS.orbit4Blue, delay: AVATAR_FLYIN_DELAYS[5] },
-  { src: '/assets/avatars/avatar-07.png', alt: 'JoinOrigin member 7', orbit: 4, angle: 95, radius: 399, size: 88, glow: ORBIT_GLOWS.orbit4Orange, delay: AVATAR_FLYIN_DELAYS[6] },
-  { src: '/assets/avatars/avatar-08.png', alt: 'JoinOrigin member 8', orbit: 4, angle: 220, radius: 399, size: 88, glow: ORBIT_GLOWS.orbit2Pink, delay: AVATAR_FLYIN_DELAYS[7] },
-  { src: '/assets/avatars/avatar-09.png', alt: 'JoinOrigin member 9', orbit: 4, angle: 320, radius: 399, size: 88, glow: ORBIT_GLOWS.orbit4Blue, delay: AVATAR_FLYIN_DELAYS[8] },
+  {
+    src: '/assets/avatars/avatar-01.png',
+    alt: 'JoinOrigin member 1',
+    orbit: 1,
+    angle: 270,
+    radius: 177,
+    size: 58,
+    glow: ORBIT_GLOWS.orbit1,
+    delay: AVATAR_FLYIN_DELAYS[0],
+  },
+  {
+    src: '/assets/avatars/avatar-02.png',
+    alt: 'JoinOrigin member 2',
+    orbit: 2,
+    angle: 60,
+    radius: 251,
+    size: 78,
+    glow: ORBIT_GLOWS.orbit2Yellow,
+    delay: AVATAR_FLYIN_DELAYS[1],
+  },
+  {
+    src: '/assets/avatars/avatar-03.png',
+    alt: 'JoinOrigin member 3',
+    orbit: 2,
+    angle: 180,
+    radius: 251,
+    size: 78,
+    glow: ORBIT_GLOWS.orbit2Pink,
+    delay: AVATAR_FLYIN_DELAYS[2],
+  },
+  {
+    src: '/assets/avatars/avatar-04.png',
+    alt: 'JoinOrigin member 4',
+    orbit: 2,
+    angle: 300,
+    radius: 251,
+    size: 78,
+    glow: ORBIT_GLOWS.orbit4Blue,
+    delay: AVATAR_FLYIN_DELAYS[3],
+  },
+  {
+    src: '/assets/avatars/avatar-05.png',
+    alt: 'JoinOrigin member 5',
+    orbit: 3,
+    angle: 130,
+    radius: 325,
+    size: 88,
+    glow: ORBIT_GLOWS.orbit3Pink,
+    delay: AVATAR_FLYIN_DELAYS[4],
+  },
+  {
+    src: '/assets/avatars/avatar-06.png',
+    alt: 'JoinOrigin member 6',
+    orbit: 4,
+    angle: 30,
+    radius: 399,
+    size: 88,
+    glow: ORBIT_GLOWS.orbit4Blue,
+    delay: AVATAR_FLYIN_DELAYS[5],
+  },
+  {
+    src: '/assets/avatars/avatar-07.png',
+    alt: 'JoinOrigin member 7',
+    orbit: 4,
+    angle: 95,
+    radius: 399,
+    size: 88,
+    glow: ORBIT_GLOWS.orbit4Orange,
+    delay: AVATAR_FLYIN_DELAYS[6],
+  },
+  {
+    src: '/assets/avatars/avatar-08.png',
+    alt: 'JoinOrigin member 8',
+    orbit: 4,
+    angle: 220,
+    radius: 399,
+    size: 88,
+    glow: ORBIT_GLOWS.orbit2Pink,
+    delay: AVATAR_FLYIN_DELAYS[7],
+  },
+  {
+    src: '/assets/avatars/avatar-09.png',
+    alt: 'JoinOrigin member 9',
+    orbit: 4,
+    angle: 320,
+    radius: 399,
+    size: 88,
+    glow: ORBIT_GLOWS.orbit4Blue,
+    delay: AVATAR_FLYIN_DELAYS[8],
+  },
 ];
 
 const spinCw = keyframes`
@@ -111,7 +188,11 @@ const Outer = styled.div<{ $entered: boolean }>`
   height: ${CONTAINER_SIZE}px;
   flex-shrink: 0;
   animation: ${({ $entered }) =>
-    $entered ? `${heroScaleIn} 1.2s ${EASE} 0.3s both` : 'none'};
+    $entered
+      ? css`
+          ${heroScaleIn} 1.2s ${EASE} 0.3s both
+        `
+      : 'none'};
 
   @media (max-width: 1280px) {
     width: 612px;
@@ -171,15 +252,18 @@ const Orbit = styled.div<{
     inset: 0;
     border-radius: inherit;
     background: ${ORBIT_BORDER_GRADIENT};
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     mask-composite: exclude;
     padding: 1px;
   }
 
-  animation: ${({ $counterClockwise, $duration }) =>
-      $counterClockwise ? spinCcw : spinCw}
+  animation: ${({ $counterClockwise }) => ($counterClockwise ? spinCcw : spinCw)}
     ${({ $duration }) => $duration}s linear infinite;
 
   @media (prefers-reduced-motion: reduce) {
@@ -253,7 +337,11 @@ const Chip = styled.div<{ $size: number; $glow: string; $delay: number; $entered
   overflow: hidden;
   background: ${({ theme }) => theme.colors.surfaceElevated};
   animation: ${({ $entered, $delay }) =>
-    $entered ? `${flyIn} 0.8s ${EASE} ${$delay}s both` : 'none'};
+    $entered
+      ? css`
+          ${flyIn} 0.8s ${EASE} ${$delay}s both
+        `
+      : 'none'};
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
@@ -289,18 +377,8 @@ export function OrbitViz() {
             {orbit.orbit === 1 ? <OrbitHub /> : null}
             {CHIPS.filter((chip) => chip.orbit === orbit.orbit).map((chip) => (
               <ChipPositioner key={chip.src} $angle={chip.angle} $radius={chip.radius}>
-                <Chip
-                  $size={chip.size}
-                  $glow={chip.glow}
-                  $delay={chip.delay}
-                  $entered={entered}
-                >
-                  <AvatarImage
-                    src={chip.src}
-                    alt={chip.alt}
-                    width={chip.size}
-                    height={chip.size}
-                  />
+                <Chip $size={chip.size} $glow={chip.glow} $delay={chip.delay} $entered={entered}>
+                  <AvatarImage src={chip.src} alt={chip.alt} width={chip.size} height={chip.size} />
                 </Chip>
               </ChipPositioner>
             ))}

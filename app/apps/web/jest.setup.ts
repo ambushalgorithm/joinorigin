@@ -1,10 +1,17 @@
 import '@testing-library/jest-dom';
 
 import React from 'react';
+import { Headers, Request, Response } from 'undici';
 
 /**
  * JSDOM browser API polyfills + module mocks needed by the landing page tests.
  */
+
+// Node's web Request/Response/Headers are hidden by the jsdom environment;
+// the /api/leads route tests construct NextRequest against them.
+if (typeof globalThis.Request === 'undefined') {
+  Object.assign(globalThis, { Request, Response, Headers });
+}
 
 // matchMedia (used by useReducedMotion).
 if (typeof window !== 'undefined' && !window.matchMedia) {
