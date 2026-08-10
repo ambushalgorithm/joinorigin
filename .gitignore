@@ -9,3 +9,5 @@ Thumbs.db
 *.swo
 coverage/
 .nyc_output/
+agent-core
+.opencode/
