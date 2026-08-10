@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="JoinOrigin mark">
+  <defs>
+    <linearGradient id="jo-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4F7DF9"/>
+      <stop offset="100%" stop-color="#8AB4FF"/>
+    </linearGradient>
+  </defs>
+  <!-- Brand tile: rounded square with the JoinOrigin primary gradient -->
+  <rect x="2" y="2" width="92" height="92" rx="24" fill="url(#jo-gradient)"/>
+  <!-- Subtle inner glow ring -->
+  <circle cx="48" cy="48" r="34" fill="none" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="2"/>
+  <!-- Orbit ring (community) -->
+  <circle cx="48" cy="48" r="26" fill="none" stroke="#FFFFFF" stroke-opacity="0.92" stroke-width="4.5"/>
+  <!-- Origin point (the community hub) -->
+  <circle cx="48" cy="48" r="7.5" fill="#FFFFFF"/>
+  <!-- Orbiting member dot -->
+  <circle cx="66.4" cy="29.6" r="6" fill="#FFFFFF" stroke="#4F7DF9" stroke-width="1.5"/>
+</svg>
