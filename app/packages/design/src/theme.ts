@@ -1,6 +1,6 @@
 import { colors } from './colors';
 import { spacing } from './spacing';
-import { typography, fontWeights } from './typography';
+import { typography, fontFamilies, fontWeights } from './typography';
 import { radius } from './radius';
 import { breakpoints } from './breakpoints';
 
@@ -13,6 +13,7 @@ export const theme = {
   colors,
   spacing,
   typography,
+  fontFamilies,
   fontWeights,
   radius,
   breakpoints,

@@ -14,6 +14,8 @@ export interface TextProps extends RNTextProps {
   weight?: TextWeight;
   /** Color token name (default: text). */
   color?: TextColor;
+  /** Extra CSS class (web) — used by landing components for effect styles. */
+  className?: string;
 }
 
 const variantStyles: Record<TextVariant, TextStyle> = {
@@ -29,6 +31,7 @@ const StyledText = styled(RNText)<{
   $variant: TextVariant;
   $weight: TextWeight;
   $color: TextColor;
+  className?: string;
 }>`
   color: ${({ theme, $color }) => theme.colors[$color]};
   font-weight: ${({ theme, $weight }) => theme.fontWeights[$weight]};
