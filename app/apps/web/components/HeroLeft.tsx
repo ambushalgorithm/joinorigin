@@ -116,6 +116,11 @@ const TrustAvatars = styled.div`
   align-items: center;
 `;
 
+/**
+ * `next/image` is styled via `styled-components` for the trust-row avatars
+ * (TASK-209). The generated class name is made deterministic app-wide by the
+ * SWC `compiler.styledComponents` option in `next.config.mjs`.
+ */
 const TrustAvatar = styled(Image)`
   width: 48px;
   height: 48px;

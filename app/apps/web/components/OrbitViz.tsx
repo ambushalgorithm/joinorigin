@@ -349,6 +349,11 @@ const Chip = styled.div<{ $size: number; $glow: string; $delay: number; $entered
   }
 `;
 
+/**
+ * `next/image` is styled via `styled-components` for the orbit avatars
+ * (TASK-209). The generated class name is made deterministic app-wide by the
+ * SWC `compiler.styledComponents` option in `next.config.mjs`.
+ */
 const AvatarImage = styled(Image)`
   width: 100%;
   height: 100%;
