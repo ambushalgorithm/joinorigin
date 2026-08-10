@@ -4,8 +4,10 @@ export { colors, type ColorTokens } from './colors';
 export { spacing, type SpacingTokens } from './spacing';
 export {
   typography,
+  fontFamilies,
   fontWeights,
   type TypographyTokens,
+  type FontFamilyTokens,
   type FontWeightTokens,
 } from './typography';
 export { radius, type RadiusTokens } from './radius';
