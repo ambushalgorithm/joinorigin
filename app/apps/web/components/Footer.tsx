@@ -55,6 +55,11 @@ const Brand = styled.div`
   gap: ${({ theme }) => theme.spacing.sm}px;
 `;
 
+/**
+ * `next/image` is styled via `styled-components` for sizing (TASK-209). The
+ * generated class name is made deterministic app-wide by the SWC
+ * `compiler.styledComponents` option in `next.config.mjs`.
+ */
 const BrandMark = styled(Image)`
   width: 24px;
   height: 24px;

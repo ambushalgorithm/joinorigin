@@ -73,6 +73,13 @@ const Brand = styled.a`
   text-decoration: none;
 `;
 
+/**
+ * `next/image` is styled via `styled-components` for sizing (TASK-209). The
+ * generated class name is made deterministic app-wide by the SWC
+ * `compiler.styledComponents` option in `next.config.mjs` (stable
+ * `componentId` per file + variable), so server and client class names match
+ * during hydration.
+ */
 const BrandMark = styled(Image)`
   width: 32px;
   height: 32px;
