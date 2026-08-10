@@ -17,6 +17,7 @@ Every pattern in these documents traces back to the UWP skeleton (`app/docs/ARCH
 | Document | Phase | Theme |
 |---|---|---|
 | [architecture-patterns-index.md](architecture-patterns-index.md) | — | **This file** — combined index |
+| [frontend-architecture.md](frontend-architecture.md) | 1 — Community Foundation (MVP) | Cross-platform frontend architecture — Next.js Web/PWA + React Native (iOS/Android), shared packages, React Native Web, styled-components, design tokens, platform-specific `.web.tsx`/`.native.tsx`, Next.js boundary |
 | [phase-1-patterns.md](phase-1-patterns.md) | 1 — Community Foundation (MVP) | Six-layer architecture, provider registry, social-graph-is-the-product, Matrix, memory domains, governance, workspaces, self-documentation, aggregates, authN |
 | [phase-2-patterns.md](phase-2-patterns.md) | 2 — Collaboration Layer | Aggregate composition, search projections, outbox notifications, object storage, reputation read models, matching jobs, analytics stream |
 | [phase-3-patterns.md](phase-3-patterns.md) | 3 — Company Formation & Opportunity Network | Workflow orchestration (Temporal), versioned documents, ownership ledger, hierarchical RBAC, passkeys, talent marketplace, resource grants |
@@ -112,5 +113,5 @@ The stable patterns form a coherent system. Reading order matters: Phase 1 estab
 ## Navigation
 
 - **Up:** [docs/README.md](../README.md)
-- **Children:** [phase-1-patterns.md](phase-1-patterns.md), [phase-2-patterns.md](phase-2-patterns.md), [phase-3-patterns.md](phase-3-patterns.md), [phase-4-patterns.md](phase-4-patterns.md), [phase-5-patterns.md](phase-5-patterns.md)
+- **Children:** [frontend-architecture.md](frontend-architecture.md), [phase-1-patterns.md](phase-1-patterns.md), [phase-2-patterns.md](phase-2-patterns.md), [phase-3-patterns.md](phase-3-patterns.md), [phase-4-patterns.md](phase-4-patterns.md), [phase-5-patterns.md](phase-5-patterns.md)
 - **Related:** [ORIGIN-WHITEPAPER.md](../ORIGIN-WHITEPAPER.md), [ARCHITECTURE.md](../ARCHITECTURE.md), [WHITEPAPER.md](../WHITEPAPER.md)
