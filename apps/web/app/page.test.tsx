@@ -12,4 +12,14 @@ describe('home page', () => {
     render(<HomePage />);
     expect(screen.getByText('Your workspace is ready.')).toBeInTheDocument();
   });
+
+  it('renders the welcome badge', () => {
+    render(<HomePage />);
+    expect(screen.getByText('Welcome')).toBeInTheDocument();
+  });
+
+  it('renders the get-started action from the shared Button', () => {
+    render(<HomePage />);
+    expect(screen.getByText('Get started')).toBeInTheDocument();
+  });
 });
