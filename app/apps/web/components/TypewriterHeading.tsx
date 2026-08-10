@@ -5,6 +5,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { ACCENT_GRADIENT } from './landingTokens';
 import { useReducedMotion } from './motion';
+import { isVisible } from '@testing-library/user-event/dist/cjs/utils/index.js';
 
 /**
  * Typewriter hero heading (spec §5.3).
@@ -20,7 +21,7 @@ import { useReducedMotion } from './motion';
  */
 
 const FULL_TEXT = 'Where teams find their origin';
-const SPLIT_INDEX = 21;
+const SPLIT_INDEX = 23;
 const CHAR_DELAY_MS = 35;
 const START_DELAY_MS = 400;
 
@@ -58,16 +59,19 @@ const Heading = styled.h1`
   }
 `;
 
-const Body = styled.span`
+const Body = styled.span<{ $isBlock: boolean }>`
   color: ${({ theme }) => theme.colors.text};
+  display: ${({ $isBlock = false }) => $isBlock ? `block` : `inline`}
 `;
 
-const Accent = styled.span`
+const Accent = styled.span<{ $isVisible: boolean }>`
   background: ${ACCENT_GRADIENT};
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  text-transform: capitalize;
+  visibility: ${({ $isVisible = true }) => $isVisible ? `visible` : `hidden`}
 `;
 
 const Caret = styled.span<{ $reduced: boolean }>`
@@ -85,12 +89,17 @@ const Caret = styled.span<{ $reduced: boolean }>`
 
 function renderTyped(text: string) {
   if (text.length <= SPLIT_INDEX) {
-    return <Body>{text}</Body>;
+    return (
+      <>
+        <Body $isBlock={false}>{text}</Body>
+        <Accent $isVisible={false}>{text.slice(SPLIT_INDEX)}</Accent>
+      </>
+    );
   }
   return (
     <>
-      <Body>{text.slice(0, SPLIT_INDEX)}</Body>
-      <Accent>{text.slice(SPLIT_INDEX)}</Accent>
+      <Body $isBlock={true}>{text.slice(0, SPLIT_INDEX)}</Body>
+      <Accent $isVisible={true}>{text.slice(SPLIT_INDEX)}</Accent>
     </>
   );
 }

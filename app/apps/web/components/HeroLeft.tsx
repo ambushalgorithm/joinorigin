@@ -141,43 +141,6 @@ const TrustCopy = styled.span`
   color: ${({ theme }) => theme.colors.textMuted};
 `;
 
-const CursorBadge = styled.div<{ $entered: boolean }>`
-  position: relative;
-  margin-left: 290px;
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.sm}px;
-  color: ${({ theme }) => theme.colors.primary};
-  animation: ${({ $entered }) =>
-    $entered
-      ? css`
-          ${badgeIn} 0.5s ${EASE} ${DELAY.cursorBadge} both
-        `
-      : 'none'};
-
-  @media (max-width: 480px) {
-    display: none;
-  }
-
-  @media (max-width: 1024px) {
-    margin-left: 120px;
-  }
-`;
-
-const Badge = styled.span`
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 16px;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primaryContrast};
-  font-family: ${({ theme }) => theme.fontFamilies.sans};
-  font-size: 16px;
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  line-height: 1.2;
-`;
-
 export function HeroLeft() {
   const entered = useEntrance();
   const { openWaitlist } = useWaitlist();
@@ -196,11 +159,6 @@ export function HeroLeft() {
           testID="start-project-button"
         />
       </Actions>
-
-      <CursorBadge $entered={entered} data-testid="cursor-badge">
-        {CursorIcon}
-        <Badge>Maya</Badge>
-      </CursorBadge>
 
       <Supporting>
         JoinOrigin brings your community, projects, and conversations into one calm workspace — so
