@@ -187,7 +187,7 @@ export function HeroLeft() {
           size="large"
           fillDirection="right"
           icon={ChevronIcon}
-          onClick={openWaitlist}
+          onClick={(event) => openWaitlist(event.currentTarget)}
           testID="start-project-button"
         />
       </Actions>

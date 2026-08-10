@@ -21,6 +21,8 @@ type ModalStatus = 'idle' | 'submitting' | 'success';
 export interface WaitlistModalProps {
   open: boolean;
   onClose: () => void;
+  /** Element that opened the modal — focus is restored to it on close (spec §9.2). */
+  trigger?: HTMLElement | null;
 }
 
 const scaleIn = keyframes`
@@ -256,7 +258,7 @@ const DoneButton = styled.button`
 const FOCUSABLE_SELECTOR =
   'button:not([disabled]), [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
 
-export function WaitlistModal({ open, onClose }: WaitlistModalProps) {
+export function WaitlistModal({ open, onClose, trigger }: WaitlistModalProps) {
   const [status, setStatus] = useState<ModalStatus>('idle');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -264,6 +266,7 @@ export function WaitlistModal({ open, onClose }: WaitlistModalProps) {
   const [topError, setTopError] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
+  const wasOpenRef = useRef(false);
 
   // Reset content on every open.
   useEffect(() => {
@@ -284,6 +287,26 @@ export function WaitlistModal({ open, onClose }: WaitlistModalProps) {
     const frame = requestAnimationFrame(() => firstFieldRef.current?.focus());
     return () => cancelAnimationFrame(frame);
   }, [open]);
+
+  // Restore focus to the trigger on every close path (ESC, backdrop, ✕, Done).
+  // All close paths converge on `onClose` → `open=false`, so this single
+  // transition hook covers them (spec §9.2: "returns to trigger on close").
+  useEffect(() => {
+    if (!open) {
+      if (wasOpenRef.current) {
+        const frame = requestAnimationFrame(() => {
+          if (trigger && trigger.isConnected && typeof trigger.focus === 'function') {
+            trigger.focus();
+          }
+        });
+        wasOpenRef.current = false;
+        return () => cancelAnimationFrame(frame);
+      }
+      return undefined;
+    }
+    wasOpenRef.current = true;
+    return undefined;
+  }, [open, trigger]);
 
   // ESC + focus trap while open.
   useEffect(() => {

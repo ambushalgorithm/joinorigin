@@ -4,17 +4,18 @@ import { expect, test } from '@playwright/test';
  * Modal a11y — focus return on close (spec §9.2).
  *
  * Spec: "focus moves to modal on open, returns to trigger on close".
- * Verified 2026-08-10 (TASK-205): the implementation moves focus to the name
- * input on open and traps Tab within the dialog, but after closing via ESC /
- * ✕ / backdrop / Done, focus is NOT restored to the trigger button — the
- * active element falls back to the page BODY.
+ * Previously tracked as a KNOWN GAP via `test.fail()` (TASK-205): focus moved to
+ * the name input on open and Tab was trapped, but after closing via ESC / ✕ /
+ * backdrop / Done focus was NOT restored to the trigger — the active element
+ * fell back to the page BODY.
  *
- * Marked `test.fail()` so the e2e suite stays green while this acceptance
- * criterion is tracked as a KNOWN GAP. When the implementation restores focus
- * to the trigger, remove the marker and this assertion becomes the requirement.
+ * Fixed by TASK-207 (fe-fix-a11y-focus): `WaitlistModalProvider` records the
+ * trigger element on open and passes it to `WaitlistModal`, which restores
+ * focus to it on every close path. The `test.fail()` marker is removed — this
+ * assertion is now a required check.
  */
 
-test.fail('a11y: focus returns to the trigger when the waitlist modal closes', async ({ page }) => {
+test('a11y: focus returns to the trigger when the waitlist modal closes', async ({ page }) => {
   await page.goto('/');
   const trigger = page.getByTestId('start-project-button');
   await trigger.click();

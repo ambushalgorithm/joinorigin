@@ -115,6 +115,40 @@ describe('WaitlistModal', () => {
     expect(onClose).toHaveBeenCalledTimes(2);
   });
 
+  it('restores focus to the trigger when the modal closes (spec §9.2)', async () => {
+    const user = userEvent.setup();
+    const onClose = jest.fn();
+    const trigger = document.createElement('button');
+    trigger.textContent = 'Open waitlist';
+    document.body.appendChild(trigger);
+
+    const view = render(
+      <NativeThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <WaitlistModal open onClose={onClose} trigger={trigger} />
+        </ThemeProvider>
+      </NativeThemeProvider>,
+    );
+
+    // Closing via ESC reports the close...
+    await user.keyboard('{Escape}');
+    expect(onClose).toHaveBeenCalled();
+
+    // ...and once the modal transitions to closed, focus returns to the trigger.
+    view.rerender(
+      <NativeThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <WaitlistModal open={false} onClose={onClose} trigger={trigger} />
+        </ThemeProvider>
+      </NativeThemeProvider>,
+    );
+
+    await waitFor(() => {
+      expect(trigger).toHaveFocus();
+    });
+    trigger.remove();
+  });
+
   it('throws typed errors from the leads API', async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: false,

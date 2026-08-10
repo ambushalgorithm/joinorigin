@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
@@ -40,6 +40,21 @@ describe('Header', () => {
 
     expect(screen.getByRole('dialog')).toBeInTheDocument();
     expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
+  });
+
+  it('restores focus to the trigger button when the modal closes (spec §9.2)', async () => {
+    const user = userEvent.setup();
+    renderHeader();
+
+    const trigger = screen.getByTestId('get-started-button');
+    await user.click(trigger);
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    // ESC closes the modal; the provider restores focus to the recorded trigger.
+    await user.keyboard('{Escape}');
+    await waitFor(() => {
+      expect(trigger).toHaveFocus();
+    });
   });
 
   it('toggles the mobile menu and closes it on ESC', async () => {

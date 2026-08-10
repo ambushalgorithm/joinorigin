@@ -277,7 +277,7 @@ export function Header() {
           <LogInLink href="/#login">Log In</LogInLink>
           <RotatingBorderButton
             label="Get Started"
-            onClick={openWaitlist}
+            onClick={(event) => openWaitlist(event.currentTarget)}
             testID="get-started-button"
           />
           <Hamburger
@@ -320,9 +320,9 @@ export function Header() {
           </MobileLink>
           <RotatingBorderButton
             label="Get Started"
-            onClick={() => {
+            onClick={(event) => {
               closeMobile();
-              openWaitlist();
+              openWaitlist(event.currentTarget);
             }}
             testID="mobile-get-started-button"
           />
