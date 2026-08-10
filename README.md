@@ -16,12 +16,19 @@ This skeleton follows the cross-platform frontend architecture documented in
 .
 ├── apps/
 │   ├── web/                  # Next.js web app (App Router, React Native Web)
+│   │   ├── app/              #   layout.tsx, page.tsx (homepage), registry.tsx, page.test.tsx
+│   │   └── README.md         #   App-specific docs
 │   └── mobile/               # React Native app — JS-side structure (no ios/android)
+│       ├── index.js          #   AppRegistry entry point
+│       ├── App.tsx           #   Root component (ThemeProvider + HomeScreen)
+│       └── src/screens/      #   HomeScreen.tsx + unit test
 ├── packages/
 │   ├── design/               # Design tokens: colors, spacing, typography, radius,
 │   │                         #   breakpoints, theme (no React/styled-components deps)
 │   └── ui/                   # Base universal UI components (styled-components/native)
 ├── e2e/                      # Playwright end-to-end tests
+│   ├── playwright.config.ts  #   Web server on port 3100, chromium project
+│   └── tests/home.spec.ts    #   Homepage e2e assertions
 ├── package.json              # Workspace root — task orchestration scripts
 ├── pnpm-workspace.yaml       # pnpm workspaces definition
 ├── turbo.json                # Turborepo task pipeline
@@ -33,17 +40,17 @@ This skeleton follows the cross-platform frontend architecture documented in
 
 ### Apps
 
-| App | Stack | Notes |
-|---|---|---|
-| `apps/web` | Next.js 14 (App Router), React 18, React Native Web, styled-components | Homepage renders **Welcome to JoinOrigin** using shared tokens/components |
-| `apps/mobile` | React Native 0.74 (bare, no Expo), React 18, styled-components/native | JS-side shell: entry point, `App`, babel/metro/jest configs. Native `ios/`/`android/` scaffolds are deferred |
+| App           | Stack                                                                  | Notes                                                                                                        |
+| ------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `apps/web`    | Next.js 14 (App Router), React 18, React Native Web, styled-components | Homepage renders **Welcome to JoinOrigin** using shared tokens/components                                    |
+| `apps/mobile` | React Native 0.74 (bare, no Expo), React 18, styled-components/native  | JS-side shell: entry point, `App`, babel/metro/jest configs. Native `ios/`/`android/` scaffolds are deferred |
 
 ### Shared packages
 
-| Package | Contents |
-|---|---|
+| Package              | Contents                                                                                                                                                                                                       |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `@joinorigin/design` | Starter design tokens (`colors`, `spacing`, `typography`, `fontWeights`, `radius`, `breakpoints`) composed into a single `theme`, plus the `JoinOriginTheme` type wired into styled-components' `DefaultTheme` |
-| `@joinorigin/ui` | Base universal components: `Button`, `Card`, `Screen`, `Text`, `Badge`, `LoadingIndicator` — all styled with `styled-components/native` and theme tokens only |
+| `@joinorigin/ui`     | Base universal components: `Button`, `Card`, `Screen`, `Text`, `Badge`, `LoadingIndicator` — all styled with `styled-components/native` and theme tokens only                                                  |
 
 Shared packages are consumed **as TypeScript source** (their `main` points at
 `src/index.ts`) — there is no build step for them. Apps transpile them at
@@ -57,16 +64,16 @@ bundle/test time:
 
 ## Tooling Choices
 
-| Concern | Choice | Why |
-|---|---|---|
-| Workspaces | **pnpm workspaces** (`pnpm-workspace.yaml`) | Fast, disk-efficient installs, first-class workspace protocol (`workspace:*`) |
-| Task orchestration | **Turborepo** (`turbo.json`) | Parallel `dev`/`build`/`lint`/`typecheck`/`test` with caching |
-| Node module layout | **pnpm `node-linker=hoisted`** (`.npmrc`) | Flat `node_modules` keeps React Native's Metro bundler and Jest resolution simple with workspace symlinks |
-| Language | TypeScript 5 (`tsconfig.base.json`, `moduleResolution: bundler`) | Strict, shared compiler options across all packages |
-| Lint / format | ESLint 8 (root `.eslintrc.cjs`) + Prettier 3 | One root config lints every workspace package; `prettier/prettier` rule enforces formatting |
-| Unit tests | Jest 29 | One runner across apps and packages; web uses `next/jest`, mobile/ui use the `react-native` preset |
-| E2E tests | Playwright (`e2e/`) | Chromium against the Next.js dev server |
-| Styling | styled-components (+ `styled-components/native`) | Primary styling system per the frontend architecture (no Tailwind) |
+| Concern            | Choice                                                           | Why                                                                                                       |
+| ------------------ | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Workspaces         | **pnpm workspaces** (`pnpm-workspace.yaml`)                      | Fast, disk-efficient installs, first-class workspace protocol (`workspace:*`)                             |
+| Task orchestration | **Turborepo** (`turbo.json`)                                     | Parallel `dev`/`build`/`lint`/`typecheck`/`test` with caching                                             |
+| Node module layout | **pnpm `node-linker=hoisted`** (`.npmrc`)                        | Flat `node_modules` keeps React Native's Metro bundler and Jest resolution simple with workspace symlinks |
+| Language           | TypeScript 5 (`tsconfig.base.json`, `moduleResolution: bundler`) | Strict, shared compiler options across all packages                                                       |
+| Lint / format      | ESLint 8 (root `.eslintrc.cjs`) + Prettier 3                     | One root config lints every workspace package; `prettier/prettier` rule enforces formatting               |
+| Unit tests         | Jest 29                                                          | One runner across apps and packages; web uses `next/jest`, mobile/ui use the `react-native` preset        |
+| E2E tests          | Playwright (`e2e/`)                                              | Chromium against the Next.js dev server                                                                   |
+| Styling            | styled-components (+ `styled-components/native`)                 | Primary styling system per the frontend architecture (no Tailwind)                                        |
 
 ---
 
@@ -121,6 +128,37 @@ pnpm format           # Prettier write
 pnpm format:check     # Prettier check
 ```
 
+### Workspace start checklist (first-time team member)
+
+Run these in order — this is the exact flow every team member follows:
+
+```bash
+# 1. Install dependencies (creates node_modules + pnpm-lock.yaml)
+pnpm install
+
+# 2. Start the web app dev server (http://localhost:3000)
+pnpm --filter @joinorigin/web dev
+
+# 3. In a second terminal — run the mobile app's JS-side checks
+#    (no native runtime yet: typecheck + unit tests are the "start" signal)
+pnpm --filter @joinorigin/mobile dev
+pnpm --filter @joinorigin/mobile test
+
+# 4. Static checks across the whole workspace
+pnpm lint
+pnpm typecheck
+
+# 5. Unit tests across all packages (Jest)
+pnpm test
+
+# 6. End-to-end tests (Playwright; boots the web dev server on port 3100)
+pnpm test:e2e
+```
+
+Verify the homepage by opening `http://localhost:3000` — it should render
+**Welcome to JoinOrigin** with the shared design system (`Badge`, `Card`,
+`Text`, `Button` from `@joinorigin/ui`).
+
 ---
 
 ## Consuming Shared Packages
@@ -152,7 +190,7 @@ The theme is provided once at the app root:
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from '@joinorigin/design';
 
-<ThemeProvider theme={theme}>{/* app */}</ThemeProvider>
+<ThemeProvider theme={theme}>{/* app */}</ThemeProvider>;
 ```
 
 **Rules of thumb** (from the frontend architecture):
@@ -169,14 +207,15 @@ import { theme } from '@joinorigin/design';
 
 ### Unit tests (Jest)
 
-| Package | Config | What it covers |
-|---|---|---|
-| `apps/web` | `next/jest` + jsdom, `react-native` → `react-native-web` mapper | Homepage renders Welcome to JoinOrigin via shared components |
-| `apps/mobile` | `react-native` preset + `@testing-library/react-native` | `App` renders the welcome screen via shared components |
-| `packages/ui` | `react-native` preset + `@testing-library/react-native` | Component behaviour (labels, press handlers, disabled/loading states) |
-| `packages/design` | `ts-jest` (node) | Token structure and brand values |
+| Package           | Config                                                          | What it covers                                                        |
+| ----------------- | --------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `apps/web`        | `next/jest` + jsdom, `react-native` → `react-native-web` mapper | Homepage renders Welcome to JoinOrigin via shared components          |
+| `apps/mobile`     | `react-native` preset + `@testing-library/react-native`         | `App` renders the welcome screen via shared components                |
+| `packages/ui`     | `react-native` preset + `@testing-library/react-native`         | Component behaviour (labels, press handlers, disabled/loading states) |
+| `packages/design` | `ts-jest` (node)                                                | Token structure and brand values                                      |
 
-Run all unit tests: `pnpm test`
+Run all unit tests: `pnpm test` — currently **20 tests / 8 suites** across 4 packages:
+(design 4, ui 7, mobile 5, web 4).
 
 ### E2E tests (Playwright)
 
@@ -204,14 +243,17 @@ Playwright browsers: `pnpm --filter @joinorigin/e2e exec playwright install chro
 
 ## Definition of Done (Sprint 2 skeleton)
 
-- [ ] `apps/web` dev server starts and renders **Welcome to JoinOrigin**
-- [ ] `apps/mobile` JS-side structure exists and typechecks
-- [ ] Shared `packages/design` + `packages/ui` exist with starter tokens/base components
-- [ ] `pnpm lint` passes
-- [ ] `pnpm typecheck` passes
-- [ ] `pnpm test` (unit) passes
-- [ ] `pnpm test:e2e` (Playwright) passes
-- [ ] Root `README.md` documents layout, tooling, commands, and consumption pattern
+The skeleton is **complete** when every item below is green. The sprint-2
+implementation verified all of them:
+
+- [x] `apps/web` dev server starts and renders **Welcome to JoinOrigin**
+- [x] `apps/mobile` JS-side structure exists and typechecks
+- [x] Shared `packages/design` + `packages/ui` exist with starter tokens/base components
+- [x] `pnpm lint` passes
+- [x] `pnpm typecheck` passes
+- [x] `pnpm test` (unit) passes — 20 tests / 8 suites
+- [x] `pnpm test:e2e` (Playwright) passes — 2 tests (chromium)
+- [x] Root `README.md` documents layout, tooling, commands, and consumption pattern
 
 ---
 
