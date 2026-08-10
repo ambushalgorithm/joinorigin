@@ -10,6 +10,7 @@ This directory contains the Universal Worker Platform's core documentation suite
 
 | Path | Purpose |
 |------|---------|
+| `design/` | Build-ready design specs for product surfaces (e.g., Sprint 3 homescreen) — see `design/README.md` |
 | `ARCHITECTURE.md` | Canonical architecture reference — layer model, component topology, dependency flow, contracts, design decisions |
 | `VISION.md` | Project vision, problem statement, mission, audience, core principles, scope |
 | `DEVELOPMENT.md` | Development environment setup, build, test, contribution workflow, Docker Compose stack |
