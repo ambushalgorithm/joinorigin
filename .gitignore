@@ -10,4 +10,14 @@ Thumbs.db
 coverage/
 .nyc_output/
 agent-core
+.opencode
 .opencode/
+opencode.json
+
+# Monorepo tooling output
+.next/
+.turbo/
+*.tsbuildinfo
+playwright-report/
+test-results/
+.tmp-*/
