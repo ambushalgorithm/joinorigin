@@ -2,10 +2,12 @@
   "name": "@joinorigin/mobile",
   "version": "0.1.0",
   "private": true,
-  "description": "JoinOrigin mobile application (React Native, JS-side shell — no Expo)",
+  "description": "JoinOrigin mobile application (React Native + native Android project — no Expo)",
   "main": "index.js",
   "scripts": {
     "start": "react-native start",
+    "android": "react-native run-android",
+    "android:build": "cd android && ./gradlew assembleDebug",
     "dev": "tsc --noEmit --watch",
     "build": "tsc --noEmit",
     "lint": "eslint .",
