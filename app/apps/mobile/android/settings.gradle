@@ -1,0 +1,6 @@
+rootProject.name = 'JoinOrigin'
+// Monorepo: node_modules are hoisted to the workspace root (pnpm node-linker=hoisted),
+// so native_modules.gradle and the RN gradle plugin live 3 levels up from android/.
+apply from: file("../../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'
+includeBuild('../../../node_modules/@react-native/gradle-plugin')

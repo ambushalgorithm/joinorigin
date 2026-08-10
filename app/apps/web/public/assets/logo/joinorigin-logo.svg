@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232 48" width="232" height="48" role="img" aria-label="JoinOrigin">
+  <defs>
+    <linearGradient id="jo-logo-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4F7DF9"/>
+      <stop offset="100%" stop-color="#8AB4FF"/>
+    </linearGradient>
+  </defs>
+  <!-- Brand tile (mark) -->
+  <rect x="0" y="0" width="48" height="48" rx="12" fill="url(#jo-logo-gradient)"/>
+  <circle cx="24" cy="24" r="17" fill="none" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="1.2"/>
+  <circle cx="24" cy="24" r="13" fill="none" stroke="#FFFFFF" stroke-opacity="0.92" stroke-width="2.4"/>
+  <circle cx="24" cy="24" r="3.8" fill="#FFFFFF"/>
+  <circle cx="33.2" cy="14.8" r="3" fill="#FFFFFF" stroke="#4F7DF9" stroke-width="0.8"/>
+  <!-- Wordmark (Urbanist; falls back to sans-serif when rendered outside the browser) -->
+  <text x="58" y="32.5" font-family="Urbanist, 'Segoe UI', sans-serif" font-size="26" font-weight="700" letter-spacing="0.2" fill="#F5F7FA">JoinOrigin</text>
+</svg>
