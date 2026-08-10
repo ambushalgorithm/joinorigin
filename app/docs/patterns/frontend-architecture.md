@@ -114,6 +114,16 @@ packages/
   utils/
 ```
 
+### Monorepo Root: `app/` (UWP Root Minimalism)
+
+Per [UWP ARCHITECTURE.md §7.1 Root Minimalism](../ARCHITECTURE.md), the repo
+root contains only `AGENTS.md` + `.gitignore` + `app/`. **The JoinOrigin
+frontend monorepo lives inside `app/`**: `app/apps/web`, `app/apps/mobile`,
+`app/packages/` (`@joinorigin/design`, `@joinorigin/ui`), `app/tests/e2e`
+(Playwright), and all workspace config (`package.json`,
+`pnpm-workspace.yaml`, `turbo.json`, `tsconfig.base.json`, ESLint/Prettier,
+`.npmrc`). All pnpm/turbo commands run from `app/`.
+
 ---
 
 # React Native Web
