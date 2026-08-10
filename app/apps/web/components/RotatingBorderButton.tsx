@@ -20,7 +20,7 @@ import { ROTATING_BORDER_GRADIENT, ENTRANCE_EASING } from './landingTokens';
 
 export interface RotatingBorderButtonProps {
   label: string;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /** `large` = Start Project sizing (14px 28px, 16px label); default = 12px 26px, 15px. */
   size?: 'default' | 'large';
   /** Direction the accent fill slides in from on hover. */

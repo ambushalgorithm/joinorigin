@@ -136,7 +136,7 @@ export function Footer() {
         <Spacer />
         <RotatingBorderButton
           label="Join the waitlist"
-          onClick={openWaitlist}
+          onClick={(event) => openWaitlist(event.currentTarget)}
           testID="footer-waitlist-button"
         />
         <SmallLinks>
