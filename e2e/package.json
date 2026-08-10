@@ -1,0 +1,14 @@
+{
+  "name": "@joinorigin/e2e",
+  "version": "0.1.0",
+  "private": true,
+  "description": "JoinOrigin end-to-end tests (Playwright)",
+  "scripts": {
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.4"
+  }
+}
