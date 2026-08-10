@@ -50,4 +50,4 @@ apps/web/
 - Parent: [`../../README.md`](../../README.md)
 - Sibling app: [`../mobile`](../mobile)
 - Shared packages: [`../../packages/design`](../../packages/design) · [`../../packages/ui`](../../packages/ui)
-- E2E suite: [`../../e2e`](../../e2e)
+- E2E suite: [`../../tests/e2e`](../../tests/e2e)
