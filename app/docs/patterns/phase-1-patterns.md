@@ -21,7 +21,7 @@
 | Basic Feed | Posts, updates, discussions |
 | Community Discovery | Browse, search, join communities |
 
-**Tech stack (from ORIGIN-WHITEPAPER.md):** React + TypeScript + Tailwind + PWA (frontend); Node.js + NestJS + PostgreSQL + Redis (backend); Matrix Protocol + Matrix Homeserver + embedded Matrix client UI (communication); Docker + Docker Compose + Caddy + Hetzner (infrastructure).
+**Tech stack (from ORIGIN-WHITEPAPER.md):** Next.js (Web + PWA) + React Native (iOS/Android) with React Native Web and styled-components (frontend); Node.js + NestJS + PostgreSQL + Redis (backend); Matrix Protocol + Matrix Homeserver + embedded Matrix client UI (communication); Docker + Docker Compose + Caddy + Hetzner (infrastructure).
 
 ---
 
@@ -39,7 +39,8 @@ The patterns in this section are **binding for all five phases**. They are deriv
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  APPLICATION LAYER (L6)   React PWA, web UI, embedded client   │
+│  APPLICATION LAYER (L6)   Next.js Web/PWA + React Native       │
+│                           (shared packages)                    │
 │                           imports ONLY Platform Contracts      │
 ├──────────────────────────────────────────────────────────────┤
 │  WORKER PLATFORM (L5)    NestJS services, governance, memory,  │
@@ -231,13 +232,13 @@ Decision records are binding for the phase and long-term stable unless explicitl
 | **Rationale** | Relational integrity for memberships/follows; ACID transactions for the social graph; Redis is the UWP reference cache/queue provider. |
 | **Superseded by** | Phase 2 adds OpenSearch for search and S3 for objects; PostgreSQL remains the system of record. |
 
-### ADR-1.4 PWA-First Frontend on React + TypeScript + Tailwind
+### ADR-1.4 Next.js Web + PWA, React Native (No Expo) with Shared Code
 
 | | |
 |---|---|
-| **Decision** | Frontend is a Progressive Web App (React, TypeScript, Tailwind) with an embedded Matrix client UI; React Native planned for mobile later. |
-| **Alternatives** | Native mobile first; server-rendered pages only. |
-| **Rationale** | Single codebase for web+mobile reach; installable PWA maximizes day-one engagement; matches whitepaper stack. |
+| **Decision** | Frontend is a Next.js web application (Web + installable PWA) plus a React Native (iOS/Android) mobile app built without Expo. Web and mobile share a common TypeScript core in `packages/` — types, schemas, API clients, logic, state, hooks, and universal UI components built with React Native Web and styled-components. Platform-specific behavior uses `.web.tsx` / `.native.tsx` implementations behind consistent public interfaces. styled-components is the primary styling system; design tokens live in `packages/design`. |
+| **Alternatives** | Expo-based React Native (managed workflow) instead of bare React Native; native mobile first; server-rendered pages only; single PWA-only codebase without a native mobile app. |
+| **Rationale** | Next.js gives web/PWA SSR, server components, and installability; bare React Native (no Expo) keeps full native control for iOS/Android without managed-workflow constraints. React Native Web + styled-components maximize code sharing across all four targets (Web, PWA, iOS, Android) without forcing identical implementations where UX genuinely differs. Shared packages keep Next.js-specific/server functionality out of the cross-platform core (see [frontend-architecture.md](frontend-architecture.md)). |
 | **Superseded by** | Phase 5 multi-language and federation extend the same frontend; no rewrite. |
 
 ### ADR-1.5 Docker Compose + Caddy + Hetzner as the Deployment Target
