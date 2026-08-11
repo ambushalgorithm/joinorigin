@@ -5,12 +5,10 @@
       <stop offset="100%" stop-color="#8AB4FF"/>
     </linearGradient>
   </defs>
-  <!-- Brand tile (mark) -->
+  <!-- Brand tile (mark, derived from the social logo JO monogram) -->
   <rect x="0" y="0" width="48" height="48" rx="12" fill="url(#jo-logo-gradient)"/>
-  <circle cx="24" cy="24" r="17" fill="none" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="1.2"/>
-  <circle cx="24" cy="24" r="13" fill="none" stroke="#FFFFFF" stroke-opacity="0.92" stroke-width="2.4"/>
-  <circle cx="24" cy="24" r="3.8" fill="#FFFFFF"/>
-  <circle cx="33.2" cy="14.8" r="3" fill="#FFFFFF" stroke="#4F7DF9" stroke-width="0.8"/>
+  <path d="M12.5 18 H19.5 A2.5 2.5 0 0 1 22 20.5 V25 C22 30.5 18.5 33.5 14.5 33.5 C12.25 33.5 10.5 32 10.5 30 C10.5 28.75 11.25 27.75 12.5 27.75 C13.75 27.75 14.5 28.75 14.5 30" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="33.5" cy="24.5" r="5.75" fill="none" stroke="#FFFFFF" stroke-width="4"/>
   <!-- Wordmark (Urbanist; falls back to sans-serif when rendered outside the browser) -->
   <text x="58" y="32.5" font-family="Urbanist, 'Segoe UI', sans-serif" font-size="26" font-weight="700" letter-spacing="0.2" fill="#F5F7FA">JoinOrigin</text>
 </svg>
