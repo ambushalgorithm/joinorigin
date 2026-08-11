@@ -4,7 +4,8 @@
  * `sitemap.ts`, the header/footer nav (fe-menu-pages reads the same list),
  * and metadata builders all derive from `ROUTES` — a page added here is
  * automatically in the sitemap and canonical links. **No duplicated URL
- * lists.** The set reflects `sprint-4-discovery.md` §4 (9 HTML pages).
+ * lists.** The set reflects `sprint-4-discovery.md` §4 (8 HTML pages; the
+ * `/pricing` page was removed — money is never mentioned).
  *
  * `title`/`description` are the discovery §5 per-page values (used by
  * sitemap.xml and llms.txt). Per-page metadata itself lives in each page's
@@ -48,14 +49,6 @@ export const ROUTES: readonly SiteRoute[] = [
     title: 'Community — Find Your People & Build Together | JoinOrigin',
     description:
       'Join a growing social collaboration network of 2,400+ builders. Discover communities around AI, startups, trading, real estate, and local interests.',
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  },
-  {
-    path: '/pricing',
-    title: 'Pricing — Free During Early Access | JoinOrigin',
-    description:
-      'JoinOrigin is free during early access. Reserve your spot on the waitlist, then choose the plan that fits your community when we launch.',
     changeFrequency: 'monthly',
     priority: 0.8,
   },

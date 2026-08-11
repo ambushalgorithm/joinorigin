@@ -15,8 +15,9 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
  * - Sticky, blurred (`backdrop-filter: blur(16px)`), hairline bottom border.
  * - Brand mark + `JoinOrigin` wordmark, desktop nav with underline hovers.
  * - Nav links point to the real Sprint 4 pages: Features, Community,
- *   Pricing, Docs, About (anchor links `/#product` etc. were removed per
- *   discovery Assumption 6).
+ *   Docs, About (anchor links `/#product` etc. were removed per
+ *   discovery Assumption 6). Money is never mentioned — no Pricing page
+ *   or pricing link (Facebook approach).
  * - `Log In` link + rotating-border `Get Started` CTA on the right.
  * - Mobile: hamburger toggles a dropdown panel; closes on link click,
  *   outside click, or ESC.
@@ -25,7 +26,6 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 const NAV_LINKS = [
   { label: 'Features', href: '/features' },
   { label: 'Community', href: '/community' },
-  { label: 'Pricing', href: '/pricing' },
   { label: 'Docs', href: '/docs' },
   { label: 'About', href: '/about' },
 ];

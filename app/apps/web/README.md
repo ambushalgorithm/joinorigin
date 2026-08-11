@@ -11,10 +11,14 @@ homescreen** (Sprint 3 hero landing page per
 sticky blurred header, typewriter hero + orbit circles viz, partner logo
 ticker, slim footer, and the any-button waitlist modal backed by a CSV-capture
 API route — plus the **Sprint 4 menu pages** (`/about`, `/features`,
-`/community`, `/pricing`, `/docs`, `/contact`, `/privacy`, `/terms`) per
+`/community`, `/docs`, `/contact`, `/privacy`, `/terms`) per
 [`docs/design/sprint-4-discovery.md`](../../docs/design/sprint-4-discovery.md).
 Shared design tokens (`@joinorigin/design`) and base universal UI components
 (`@joinorigin/ui`) power every visual value.
+
+**Positioning**: money is never mentioned anywhere in the web copy or
+navigation. The site focuses on onboarding ("join via the waitlist", "what
+can I do once I am in?") the way social platforms introduce themselves.
 
 ## Directory Map
 
@@ -28,7 +32,6 @@ apps/web/
 │   ├── about/                  # /about — server wrapper + client view + JSON-LD (AboutPage)
 │   ├── features/               # /features — core objects, comparison table, FAQ (FAQPage)
 │   ├── community/              # /community — values, example communities, trust stat
-│   ├── pricing/                # /pricing — free early access + future plan outline (no prices)
 │   ├── docs/                   # /docs — concepts, roadmap, architecture, FAQ (LLM-first)
 │   ├── contact/                # /contact — mailto: contact form + support paths (ContactPage)
 │   ├── privacy/                # /privacy — plain-English privacy policy
@@ -86,7 +89,8 @@ apps/web/
   Per-page metadata follows `docs/design/sprint-4-seo-arch.md` §3.3
   (canonical, OG, Twitter, keywords). FAQ answers are visible in the HTML and
   mirrored 1:1 in `FAQPage` JSON-LD. `Product`/`Offer`/`AggregateRating`
-  structured data is never emitted (no invented prices/reviews).
+  structured data is never emitted — the platform presents no commercial
+  offers (discovery §7 policy).
 - **Consumes shared packages as TypeScript source** — no build step; Next.js
   transpiles them via `transpilePackages`.
 - **SSR**: `app/registry.tsx` collects react-native-web `StyleSheet` output and

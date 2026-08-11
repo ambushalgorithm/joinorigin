@@ -128,7 +128,6 @@ test.describe('mobile nav (≤768px)', () => {
     await expect(menu).toBeVisible();
     await expect(menu.getByText('Features')).toBeVisible();
     await expect(menu.getByText('Community')).toBeVisible();
-    await expect(menu.getByText('Pricing')).toBeVisible();
     await expect(menu.getByText('Docs')).toBeVisible();
     await expect(menu.getByText('About')).toBeVisible();
     await expect(menu.getByText('Log In')).toBeVisible();

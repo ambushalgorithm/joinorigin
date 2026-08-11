@@ -9,7 +9,7 @@ import { absoluteUrl } from './url';
  * ever interpolated. All data mirrors **visible** page content (Google
  * structured-data policies, `sprint-4-discovery.md` §7): `Product`,
  * `Offer`, `AggregateRating`, and `Review` are intentionally never emitted
- * in Sprint 4 (no fake prices/reviews).
+ * — the platform does not present commercial offers.
  *
  * Types follow `sprint-4-discovery.md` §7. The layout mounts `Organization`
  * + `WebSite` once site-wide; menu pages mount `BreadcrumbList` and
@@ -66,7 +66,7 @@ export function breadcrumbList(items: BreadcrumbItem[]) {
   };
 }
 
-/** FAQPage — pages with a visible FAQ block (Home, Features, Community, Pricing, Docs). */
+/** FAQPage — pages with a visible FAQ block (Home, Features, Community, Docs). */
 export function faqPage(entries: FaqEntry[]) {
   return {
     '@context': 'https://schema.org',

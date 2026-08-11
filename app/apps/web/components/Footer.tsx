@@ -22,7 +22,6 @@ const FOOTER_GROUPS = [
     links: [
       { label: 'Features', href: '/features' },
       { label: 'Community', href: '/community' },
-      { label: 'Pricing', href: '/pricing' },
       { label: 'Docs', href: '/docs' },
     ],
   },

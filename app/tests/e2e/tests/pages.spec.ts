@@ -29,7 +29,6 @@ export const MENU_PAGES = [
   { path: '/', h1: 'Where teams find their origin' },
   { path: '/features', h1: 'Everything a community needs, in one calm workspace' },
   { path: '/community', h1: 'Where people find each other' },
-  { path: '/pricing', h1: 'Simple pricing, free while we build' },
   { path: '/docs', h1: 'JoinOrigin docs' },
   { path: '/about', h1: 'The most valuable asset is your network' },
   { path: '/contact', h1: 'Talk to us' },
@@ -41,7 +40,6 @@ export const MENU_PAGES = [
 export const HEADER_NAV = [
   { label: 'Features', href: '/features' },
   { label: 'Community', href: '/community' },
-  { label: 'Pricing', href: '/pricing' },
   { label: 'Docs', href: '/docs' },
   { label: 'About', href: '/about' },
 ] as const;
@@ -50,7 +48,6 @@ export const HEADER_NAV = [
 export const FOOTER_NAV = [
   { label: 'Features', href: '/features' },
   { label: 'Community', href: '/community' },
-  { label: 'Pricing', href: '/pricing' },
   { label: 'Docs', href: '/docs' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
@@ -146,7 +143,7 @@ test.describe('navigation reaches every menu page', () => {
     expect(response?.status()).toBe(200);
     const xml = (await response?.text()) ?? '';
     const locs = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g)).map((m) => m[1]);
-    expect(locs.length).toBeGreaterThanOrEqual(9);
+    expect(locs.length).toBeGreaterThanOrEqual(8);
     for (const loc of locs) {
       const path = new URL(loc).pathname;
       const res = await page.request.get(path);
