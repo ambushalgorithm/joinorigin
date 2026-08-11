@@ -14,18 +14,18 @@ function renderScreen() {
 }
 
 describe('HomeScreen', () => {
-  it('renders the Welcome to JoinOrigin heading', () => {
-    const { getByText } = renderScreen();
+  it('renders the Welcome to JoinOrigin heading', async () => {
+    const { getByText } = await renderScreen();
     expect(getByText('Welcome to JoinOrigin')).toBeTruthy();
   });
 
-  it('renders the supporting copy', () => {
-    const { getByText } = renderScreen();
+  it('renders the supporting copy', async () => {
+    const { getByText } = await renderScreen();
     expect(getByText('Your workspace is ready.')).toBeTruthy();
   });
 
-  it('renders the Welcome badge', () => {
-    const { getByText } = renderScreen();
+  it('renders the Welcome badge', async () => {
+    const { getByText } = await renderScreen();
     expect(getByText('Welcome')).toBeTruthy();
   });
 });

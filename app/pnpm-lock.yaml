@@ -64,29 +64,32 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-native:
-        specifier: ^0.74.7
-        version: 0.74.7(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8)
+        specifier: 0.87.0
+        version: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8)
       styled-components:
         specifier: 6.5.2
-        version: 6.5.2(css-to-react-native@3.2.0)(react-dom@19.2.8(react@19.2.8))(react-native@0.74.7(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
+        version: 6.5.2(css-to-react-native@3.2.0)(react-dom@19.2.8(react@19.2.8))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
     devDependencies:
       '@babel/core':
-        specifier: ^7.24.7
+        specifier: ^7.25.2
         version: 7.29.7
       '@babel/runtime':
-        specifier: ^7.24.7
+        specifier: ^7.25.0
         version: 7.29.7
       '@react-native/babel-preset':
-        specifier: 0.74.89
-        version: 0.74.89(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))
+        specifier: 0.87.0
+        version: 0.87.0(@babel/core@7.29.7)
+      '@react-native/jest-preset':
+        specifier: 0.87.0
+        version: 0.87.0(@babel/core@7.29.7)(react@19.2.8)
       '@react-native/metro-config':
-        specifier: 0.74.89
-        version: 0.74.89(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))
+        specifier: 0.87.0
+        version: 0.87.0(@babel/core@7.29.7)
       '@testing-library/react-native':
-        specifier: ^12.9.0
-        version: 12.9.0(jest@29.7.0(@types/node@20.19.43))(react-native@0.74.7(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react-test-renderer@18.2.0(react@19.2.8))(react@19.2.8)
+        specifier: ^14.0.1
+        version: 14.0.1(jest@29.7.0(@types/node@20.19.43))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)(test-renderer@1.2.0(@types/react@19.2.18)(react@19.2.8))
       '@types/jest':
-        specifier: ^29.5.12
+        specifier: ^29.5.13
         version: 29.5.14
       '@types/react':
         specifier: 19.2.18
@@ -94,9 +97,9 @@ importers:
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.19.43)
-      react-test-renderer:
-        specifier: 18.2.0
-        version: 18.2.0(react@19.2.8)
+      test-renderer:
+        specifier: 1.2.0
+        version: 1.2.0(@types/react@19.2.18)(react@19.2.8)
       typescript:
         specifier: ^5.5.4
         version: 5.9.3
@@ -184,10 +187,10 @@ importers:
         version: 19.2.8
       react-native:
         specifier: 0.87.0
-        version: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8)
+        version: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8)
       styled-components:
         specifier: 6.5.2
-        version: 6.5.2(css-to-react-native@3.2.0)(react-dom@19.2.8(react@19.2.8))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
+        version: 6.5.2(css-to-react-native@3.2.0)(react-dom@19.2.8(react@19.2.8))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
       ts-jest:
         specifier: ^29.2.0
         version: 29.4.12(@babel/core@7.29.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.7))(jest-util@29.7.0)(jest@29.7.0(@types/node@20.19.43))(typescript@5.9.3)
@@ -208,10 +211,10 @@ importers:
         version: 19.2.8
       react-native:
         specifier: 0.87.0
-        version: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8)
+        version: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8)
       styled-components:
         specifier: 6.5.2
-        version: 6.5.2(css-to-react-native@3.2.0)(react-dom@19.2.8(react@19.2.8))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
+        version: 6.5.2(css-to-react-native@3.2.0)(react-dom@19.2.8(react@19.2.8))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
     devDependencies:
       '@babel/core':
         specifier: ^7.24.7
@@ -224,7 +227,7 @@ importers:
         version: 0.87.0(@babel/core@7.29.7)(react@19.2.8)
       '@testing-library/react-native':
         specifier: ^14.0.1
-        version: 14.0.1(jest@29.7.0(@types/node@20.19.43))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)(test-renderer@1.2.0(@types/react@19.2.18)(react@19.2.8))
+        version: 14.0.1(jest@29.7.0(@types/node@20.19.43))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)(test-renderer@1.2.0(@types/react@19.2.18)(react@19.2.8))
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.14
@@ -1533,9 +1536,15 @@ packages:
     peerDependencies:
       '@babel/core': '*'
 
-  '@react-native/metro-config@0.74.89':
-    resolution: {integrity: sha512-LgJXh/pjyh0+/wiJdAqI3eXjDG4PzHKHQeLNDHuFumOoULCjeNDqsVokzJva5ZXrbON/0LRsqf3PJgJljntrwg==}
-    engines: {node: '>=18'}
+  '@react-native/metro-babel-transformer@0.87.0':
+    resolution: {integrity: sha512-z57jsBX3q0fh2jTnrXisBo8A5qfkVFrnVJ0HMKRa8+cVsw/bz6MiEkXA/dsBK8eJfjawccxzXhAIzTzwbnxl4Q==}
+    engines: {node: ^22.13.0 || ^24.3.0 || >= 26.0.0}
+    peerDependencies:
+      '@babel/core': '*'
+
+  '@react-native/metro-config@0.87.0':
+    resolution: {integrity: sha512-Pg0DmsJ/DbLP8JuxnRSDmrIaQjKhpzd2uYAZRyB2A8fJQzJWpAFLr7TUAXhiGD5025F6+PVPAnJL3HXaeMfZqQ==}
+    engines: {node: ^22.13.0 || ^24.3.0 || >= 26.0.0}
 
   '@react-native/normalize-colors@0.74.89':
     resolution: {integrity: sha512-qoMMXddVKVhZ8PA1AbUCk83trpd6N+1nF2A6k1i6LsQObyS92fELuk8kU/lQs6M7BsMHwqyLCpQJ1uFgNvIQXg==}
@@ -1600,18 +1609,6 @@ packages:
   '@testing-library/jest-dom@6.4.8':
     resolution: {integrity: sha512-JD0G+Zc38f5MBHA4NgxQMR5XtO5Jx9g86jqturNTt2WUfRmLDIY7iKkWHDCCTiDuFMre6nxAD5wHw9W5kI4rGw==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
-
-  '@testing-library/react-native@12.9.0':
-    resolution: {integrity: sha512-wIn/lB1FjV2N4Q7i9PWVRck3Ehwq5pkhAef5X5/bmQ78J/NoOsGbVY2/DG5Y9Lxw+RfE+GvSEh/fe5Tz6sKSvw==}
-    deprecated: React Native Testing Library v12 is no longer maintained. Please upgrade to v13 or v14.
-    peerDependencies:
-      jest: '>=28.0.0'
-      react: 19.2.8
-      react-native: '>=0.59'
-      react-test-renderer: '>=16.8.0'
-    peerDependenciesMeta:
-      jest:
-        optional: true
 
   '@testing-library/react-native@14.0.1':
     resolution: {integrity: sha512-2r2e2y8SkUNRWKRXlUGqDYunB+AkbdXUPn49Bs5rpv9oxRb0K3USBVugbPbAKJjfj4w5Ba91NJ8LcQCZyopUZA==}
@@ -4048,11 +4045,6 @@ packages:
     peerDependencies:
       react: 19.2.8
 
-  react-test-renderer@18.2.0:
-    resolution: {integrity: sha512-JWD+aQ0lh2gvh4NM3bBM42Kx+XybOxCpgYK7F8ugAlpaTSnWsX+39Z4XkOykGZAHrjwwTZT3x3KxswVWxHPUqA==}
-    peerDependencies:
-      react: 19.2.8
-
   react@19.2.8:
     resolution: {integrity: sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==}
     engines: {node: '>=0.10.0'}
@@ -4189,9 +4181,6 @@ packages:
   saxes@6.0.0:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
-
-  scheduler@0.23.2:
-    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
 
   scheduler@0.24.0-canary-efb381bbf-20230505:
     resolution: {integrity: sha512-ABvovCDe/k9IluqSh4/ISoq8tIJnW8euVAWYt5j/bg6dRnqwQwiGO1F/V4AyK96NGF/FB04FhOUDuWj8IKfABA==}
@@ -6494,7 +6483,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@react-native/community-cli-plugin@0.87.0(@react-native-community/cli@13.6.9)':
+  '@react-native/community-cli-plugin@0.87.0(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))':
     dependencies:
       '@react-native/asset-utils': 0.87.0
       '@react-native/dev-middleware': 0.87.0
@@ -6504,6 +6493,7 @@ snapshots:
       semver: 7.8.5
     optionalDependencies:
       '@react-native-community/cli': 13.6.9
+      '@react-native/metro-config': 0.87.0(@babel/core@7.29.7)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -6591,15 +6581,23 @@ snapshots:
       - '@babel/preset-env'
       - supports-color
 
-  '@react-native/metro-config@0.74.89(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))':
+  '@react-native/metro-babel-transformer@0.87.0(@babel/core@7.29.7)':
     dependencies:
-      '@react-native/js-polyfills': 0.74.89
-      '@react-native/metro-babel-transformer': 0.74.89(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))
-      metro-config: 0.80.12
-      metro-runtime: 0.80.12
+      '@babel/core': 7.29.7
+      '@react-native/babel-preset': 0.87.0(@babel/core@7.29.7)
+      hermes-parser: 0.36.1
+      nullthrows: 1.1.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@react-native/metro-config@0.87.0(@babel/core@7.29.7)':
+    dependencies:
+      '@react-native/js-polyfills': 0.87.0
+      '@react-native/metro-babel-transformer': 0.87.0(@babel/core@7.29.7)
+      metro-config: 0.87.0
+      metro-runtime: 0.87.0
     transitivePeerDependencies:
       - '@babel/core'
-      - '@babel/preset-env'
       - bufferutil
       - supports-color
       - utf-8-validate
@@ -6617,12 +6615,12 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.18
 
-  '@react-native/virtualized-lists@0.87.0(@types/react@19.2.18)(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)':
+  '@react-native/virtualized-lists@0.87.0(@types/react@19.2.18)(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)':
     dependencies:
       invariant: 2.2.4
       nullthrows: 1.1.1
       react: 19.2.8
-      react-native: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8)
+      react-native: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8)
     optionalDependencies:
       '@types/react': 19.2.18
 
@@ -6683,24 +6681,13 @@ snapshots:
       lodash: 4.18.1
       redent: 3.0.0
 
-  '@testing-library/react-native@12.9.0(jest@29.7.0(@types/node@20.19.43))(react-native@0.74.7(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react-test-renderer@18.2.0(react@19.2.8))(react@19.2.8)':
-    dependencies:
-      jest-matcher-utils: 29.7.0
-      pretty-format: 29.7.0
-      react: 19.2.8
-      react-native: 0.74.7(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8)
-      react-test-renderer: 18.2.0(react@19.2.8)
-      redent: 3.0.0
-    optionalDependencies:
-      jest: 29.7.0(@types/node@20.19.43)
-
-  '@testing-library/react-native@14.0.1(jest@29.7.0(@types/node@20.19.43))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)(test-renderer@1.2.0(@types/react@19.2.18)(react@19.2.8))':
+  '@testing-library/react-native@14.0.1(jest@29.7.0(@types/node@20.19.43))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)(test-renderer@1.2.0(@types/react@19.2.18)(react@19.2.8))':
     dependencies:
       jest-matcher-utils: 30.4.1
       picocolors: 1.1.1
       pretty-format: 30.4.1
       react: 19.2.8
-      react-native: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8)
+      react-native: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8)
       redent: 3.0.0
       test-renderer: 1.2.0(@types/react@19.2.18)(react@19.2.8)
     optionalDependencies:
@@ -9792,14 +9779,14 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8):
+  react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       '@react-native/asset-utils': 0.87.0
       '@react-native/codegen': 0.87.0(@babel/core@7.29.7)
-      '@react-native/community-cli-plugin': 0.87.0(@react-native-community/cli@13.6.9)
+      '@react-native/community-cli-plugin': 0.87.0(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))
       '@react-native/gradle-plugin': 0.87.0
       '@react-native/normalize-colors': 0.87.0
-      '@react-native/virtualized-lists': 0.87.0(@types/react@19.2.18)(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
+      '@react-native/virtualized-lists': 0.87.0(@types/react@19.2.18)(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
       anser: 1.4.10
       ansi-regex: 5.0.1
       babel-plugin-syntax-hermes-parser: 0.36.1
@@ -9847,13 +9834,6 @@ snapshots:
       object-assign: 4.1.1
       react: 19.2.8
       react-is: 18.3.1
-
-  react-test-renderer@18.2.0(react@19.2.8):
-    dependencies:
-      react: 19.2.8
-      react-is: 18.3.1
-      react-shallow-renderer: 16.15.0(react@19.2.8)
-      scheduler: 0.23.2
 
   react@19.2.8: {}
 
@@ -10011,10 +9991,6 @@ snapshots:
   saxes@6.0.0:
     dependencies:
       xmlchars: 2.2.0
-
-  scheduler@0.23.2:
-    dependencies:
-      loose-envify: 1.4.0
 
   scheduler@0.24.0-canary-efb381bbf-20230505:
     dependencies:
@@ -10310,7 +10286,7 @@ snapshots:
       react-dom: 19.2.8(react@19.2.8)
       react-native: 0.74.7(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8)
 
-  styled-components@6.5.2(css-to-react-native@3.2.0)(react-dom@19.2.8(react@19.2.8))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8))(react@19.2.8):
+  styled-components@6.5.2(css-to-react-native@3.2.0)(react-dom@19.2.8(react@19.2.8))(react-native@0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8))(react@19.2.8):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
       csstype: 3.2.3
@@ -10319,7 +10295,7 @@ snapshots:
     optionalDependencies:
       css-to-react-native: 3.2.0
       react-dom: 19.2.8(react@19.2.8)
-      react-native: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@types/react@19.2.18)(react@19.2.8)
+      react-native: 0.87.0(@babel/core@7.29.7)(@react-native-community/cli@13.6.9)(@react-native/metro-config@0.87.0(@babel/core@7.29.7))(@types/react@19.2.18)(react@19.2.8)
 
   styled-jsx@5.1.6(@babel/core@7.29.7)(react@19.2.8):
     dependencies:
