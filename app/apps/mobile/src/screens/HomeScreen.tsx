@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import styled from 'styled-components/native';
 import { Badge, Card, Screen, Text } from '@joinorigin/ui';
 
-const SafeArea = styled.SafeAreaView`
+const SafeArea = styled.View`
   flex: 1;
 `;
 
