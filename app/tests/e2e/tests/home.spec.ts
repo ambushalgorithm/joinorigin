@@ -13,7 +13,7 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
   await page.goto('/');
 
   await expect(page.getByTestId('header')).toBeVisible();
-  await expect(page.getByText('Product')).toBeVisible();
+  await expect(page.getByTestId('header').getByText('Features')).toBeVisible();
   await expect(page.getByText('Log In')).toBeVisible();
   await expect(page.getByTestId('get-started-button')).toBeVisible();
 
@@ -34,9 +34,7 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
   await expect(page.getByText('© 2026 JoinOrigin')).toBeVisible();
 });
 
-test('any CTA opens the waitlist modal and submission reaches the CSV API', async ({
-  page,
-}) => {
+test('any CTA opens the waitlist modal and submission reaches the CSV API', async ({ page }) => {
   await page.goto('/');
 
   // Open from the hero Start Project button (any-button contract).
