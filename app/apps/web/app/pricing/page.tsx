@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { JsonLd } from '../../lib/seo/JsonLd';
+import { JsonLd } from '../../lib/seo/JsonLdScript';
 import { breadcrumbList, faqPage } from '../../lib/seo/jsonLd';
 import { createMetadata } from '../../lib/seo/metadata';
 import { PRICING_FAQ } from './pricing-data';
