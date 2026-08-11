@@ -282,10 +282,8 @@ test.describe('JSON-LD structured data (arch §3.6, discovery §7)', () => {
   test('FAQPage JSON-LD on home per discovery §5.1 (homepage FAQ)', async ({ page }) => {
     await page.goto('/');
     const types = await ldTypes(page);
-    // KNOWN GAP — home currently emits only Organization + WebSite (layout);
-    // discovery §5.1 requires a homepage FAQ block + FAQPage JSON-LD. Tracked;
-    // route to fe-menu-pages (visible FAQ) + fe-seo (FAQPage JSON-LD).
-    test.fail();
+    // Fixed by fe-fix-home (TASK-219): home server wrapper emits FAQPage
+    // JSON-LD mirroring the visible FAQ block 1:1 (discovery §5.1/§8.3).
     expect(types).toContain('FAQPage');
   });
 });
@@ -313,12 +311,9 @@ test.describe('LLM-crawler friendliness: single H1 + semantic structure (arch §
   }) => {
     await page.goto('/');
     const mainText = (await page.locator('main').innerText()).toLowerCase();
-    // KNOWN GAP — discovery §5.1 requires a visible definition paragraph
-    // ("JoinOrigin is a social collaboration network — …") directly under the
-    // hero for LLM entity clarity; the phrase currently exists only in the
-    // meta description, not in the visible main copy. Tracked; route to
-    // fe-menu-pages (home hero/definition copy).
-    test.fail();
+    // Fixed by fe-fix-home (TASK-219): the home <main> now renders the
+    // discovery §5.1 definition paragraph directly under the hero with the
+    // exact phrase "social collaboration network" (LLM entity clarity).
     expect(mainText).toContain('social collaboration network');
   });
 });
