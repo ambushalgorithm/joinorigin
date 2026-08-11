@@ -36,7 +36,12 @@ if (typeof globalThis.requestAnimationFrame !== 'function') {
     setTimeout(() => callback(performance.now()), 16) as unknown as number;
 }
 if (typeof globalThis.cancelAnimationFrame !== 'function') {
-  globalThis.cancelAnimationFrame = (id: number): void => clearTimeout(id);
+  // RN 0.87 global type: { (handle: number): void; (handle: number | null | undefined): void }
+  globalThis.cancelAnimationFrame = (id: number | null | undefined): void => {
+    if (id != null) {
+      clearTimeout(id);
+    }
+  };
 }
 
 // next/image renders a plain <img> in tests.
