@@ -5,15 +5,15 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { ACCENT_GRADIENT } from './landingTokens';
 import { useReducedMotion } from './motion';
-import { isVisible } from '@testing-library/user-event/dist/cjs/utils/index.js';
 
 /**
  * Typewriter hero heading (spec §5.3).
  *
- * Copy: `Where teams find their origin` — the first 21 characters render in
- * `theme.colors.text`, the remainder (` origin`) in the brand accent gradient.
- * Types char-by-char at 35ms/char after a 400ms delay, with a blinking caret
- * (`▍`) that persists after completion.
+ * Copy: `Where teams find their origin` — the first 23 characters
+ * (`Where teams find their `) render in `theme.colors.text` as a block line,
+ * the remainder (`origin`) in the brand accent gradient, capitalized and
+ * wrapped onto the next line. Types char-by-char at 35ms/char after a 400ms
+ * delay, with a blinking caret (`▍`) that persists after completion.
  *
  * Progressive enhancement: the full text is rendered by default (SSR / no-JS),
  * then cleared and re-typed on client mount. With `prefers-reduced-motion`,
@@ -61,7 +61,7 @@ const Heading = styled.h1`
 
 const Body = styled.span<{ $isBlock: boolean }>`
   color: ${({ theme }) => theme.colors.text};
-  display: ${({ $isBlock = false }) => $isBlock ? `block` : `inline`}
+  display: ${({ $isBlock = false }) => ($isBlock ? 'block' : 'inline')};
 `;
 
 const Accent = styled.span<{ $isVisible: boolean }>`
@@ -71,7 +71,7 @@ const Accent = styled.span<{ $isVisible: boolean }>`
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-transform: capitalize;
-  visibility: ${({ $isVisible = true }) => $isVisible ? `visible` : `hidden`}
+  visibility: ${({ $isVisible = true }) => ($isVisible ? 'visible' : 'hidden')};
 `;
 
 const Caret = styled.span<{ $reduced: boolean }>`

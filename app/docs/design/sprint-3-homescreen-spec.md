@@ -174,9 +174,9 @@ Page shell uses the shared `Screen` from `@joinorigin/ui`; the body background i
 
 | Element | Spec |
 |---|---|
-| Typewriter H1 | `TypewriterHeading` component. Urbanist 600, **64px, line-height 64px, letter-spacing -1.5px**, `theme.colors.text`. **Copy:** `Where teams find their origin` — two-tone: the first 21 characters (`Where teams find their`) `theme.colors.text`, the remainder (` origin`) in the accent gradient (`linear-gradient(135deg,#4F7DF9,#8AB4FF)`, `background-clip: text`). **Mechanics:** types char-by-char at **35ms/char** (prompt speed), starts after **400ms delay**; blinking caret (`▍`, accent `#4F7DF9`, `@keyframes blink` 1s steps) during typing, retains after completion; `prefers-reduced-motion: reduce` → render full text instantly (no typing) |
+| Typewriter H1 | `TypewriterHeading` component. Urbanist 600, **64px, line-height 64px, letter-spacing -1.5px**, `theme.colors.text`. **Copy:** `Where teams find their origin` — two-tone: the first 23 characters (`Where teams find their `) `theme.colors.text` as a **block line**, the remainder (`origin`) in the accent gradient (`linear-gradient(135deg,#4F7DF9,#8AB4FF)`, `background-clip: text`), **capitalized and wrapped onto the next line** (user tweak 058007e). **Mechanics:** types char-by-char at **35ms/char** (prompt speed), starts after **400ms delay**; blinking caret (`▍`, accent `#4F7DF9`, `@keyframes blink` 1s steps) during typing, retains after completion; `prefers-reduced-motion: reduce` → render full text instantly (no typing) |
 | Start Project button | `RotatingBorderButton` variant (prompt-style): pill, bg `theme.colors.surface`, padding `14px 28px`, 16px Inter 600 `theme.colors.text`, **right-arrow chevron SVG 18×18** after label, hover fill slides from right (accent), rotating conic border (§5.1). **Appears after typing finishes** (entrance delay ≈ 3.2s, see §7). Opens waitlist modal |
-| Cursor element | Purple-cursor equivalent: an SVG pointer arrow filled `theme.colors.primary` + a member badge pill: bg `theme.colors.primary`, white text (`theme.colors.primaryContrast`), Inter 500 16px, padding `8px 16px`, border-radius 20px, label `Maya`. Positioned floating inside the left column (`margin-left: 290px; margin-top: 40px` per prompt geometry, responsive: hidden below 480px). Appears with entrance delay ≈ 3.6s |
+| Cursor element | ~~Purple-cursor equivalent: an SVG pointer arrow filled `theme.colors.primary` + a member badge pill: bg `theme.colors.primary`, white text (`theme.colors.primaryContrast`), Inter 500 16px, padding `8px 16px`, border-radius 20px, label `Maya`. Positioned floating inside the left column (`margin-left: 290px; margin-top: 40px` per prompt geometry, responsive: hidden below 480px). Appears with entrance delay ≈ 3.6s~~ — **removed** by user tweak 058007e (kept in this spec for history; not implemented) |
 | Supporting line *(JoinOrigin addition)* | Inter 400 18px, line-height 1.6, `theme.colors.textMuted`, `max-width: 540px`. Copy: `JoinOrigin brings your community, projects, and conversations into one calm workspace — so your best work finally has a home.` |
 | Trust line *(JoinOrigin addition)* | Row of 9 overlapping avatar chips (48px circles, white ring 2px, `margin-left: -12px`, `object-fit: cover`) + `Join 2,400+ builders already collaborating` (Inter 500 14px `theme.colors.textMuted`). Uses the same 9 avatars as the orbit viz |
 
@@ -219,10 +219,10 @@ A web-local `OrbitViz` component (720×720 container). Pure CSS/JS; no animation
 | Nav | `Product` · `Community` · `Pricing` · `Docs` |
 | Header link | `Log In` |
 | Header CTA | `Get Started` |
-| H1 typed | `Where teams find their origin` (first 21 chars body color, remainder gradient) |
+| H1 typed | `Where teams find their origin` (first 23 chars body color, remainder gradient — capitalized on its own block line) |
 | Subcopy | `JoinOrigin brings your community, projects, and conversations into one calm workspace — so your best work finally has a home.` |
 | Primary CTA | `Start Project` (+ 18×18 chevron icon) |
-| Member badge | `Maya` |
+| ~~Member badge~~ | ~~`Maya`~~ — removed by user tweak 058007e |
 | Trust | `Join 2,400+ builders already collaborating` |
 | Count-up | `2,400+` `Members` |
 | Ticker label | `Trusted by teams at` |
@@ -382,7 +382,7 @@ apps/web/
 │   ├── Header.tsx                # sticky header, nav, Log In, hamburger, RotatingBorderButton
 │   ├── RotatingBorderButton.tsx  # conic-gradient border CTA + slide-in fill (§5.1)
 │   ├── Hero.tsx                  # hero flex layout + full-page bg + overlays (§5.2)
-│   ├── HeroLeft.tsx              # TypewriterHeading, Start Project, cursor+badge, subcopy, trust (§5.3)
+│   ├── HeroLeft.tsx              # TypewriterHeading, Start Project, subcopy, trust (§5.3)
 │   ├── TypewriterHeading.tsx     # JS typewriter + caret + two-tone coloring (§5.3)
 │   ├── OrbitViz.tsx              # 4 orbits, 9 avatar chips, center hub (§5.4)
 │   ├── useCountUp.ts             # rAF count-up hook (0→2400, 2s, easeOutCubic) (§5.4)
@@ -409,7 +409,7 @@ apps/web/
 
 ## 11. Definition of Done (for TASK-202)
 
-- [ ] Homepage renders per this spec: header (nav underline hovers, `Log In`, rotating-border `Get Started`), typewriter two-tone H1, `Start Project` with chevron + rotating border, cursor + member badge, orbit circles viz (4 orbits, 9 avatars, count-up `2,400+ Members`), logo ticker (5 marks ×4), entrance animations, responsive breakpoints.
+- [ ] Homepage renders per this spec: header (nav underline hovers, `Log In`, rotating-border `Get Started`), typewriter two-tone H1, `Start Project` with chevron + rotating border, orbit circles viz (4 orbits, 9 avatars, count-up `2,400+ Members`), logo ticker (5 marks ×4), entrance animations, responsive breakpoints. (The cursor + member badge from the original prompt is intentionally **not** rendered — removed by user tweak 058007e.)
 - [ ] All assets referenced by local `/assets/...` and `/fonts/...` paths; no external CDN URL in client runtime code or CSS.
 - [ ] Fonts load locally (Inter + Urbanist) and apply (body Inter, display Urbanist).
 - [ ] Any CTA button opens the waitlist modal; submitting name+email POSTs to `/api/leads`; CSV row appended (verified in unit + e2e).

@@ -54,4 +54,25 @@ describe('TypewriterHeading', () => {
       'Where teams find their origin'.length,
     );
   });
+
+  it('wraps the split in a block body and a capitalized accent span after completion', () => {
+    const { container } = renderHeading();
+
+    act(() => {
+      jest.advanceTimersByTime(2000);
+    });
+
+    const spans = container.querySelectorAll('h1 > span');
+    expect(spans).toHaveLength(3);
+
+    // Body carries the first 23 chars on its own block line…
+    const body = spans[0];
+    expect(body.textContent).toBe('Where teams find their ');
+    expect(getComputedStyle(body).display).toBe('block');
+
+    // …and the remainder renders in the accent span, capitalized (tweak 058007e).
+    const accent = spans[1];
+    expect(accent.textContent).toBe('origin');
+    expect(getComputedStyle(accent).textTransform).toBe('capitalize');
+  });
 });

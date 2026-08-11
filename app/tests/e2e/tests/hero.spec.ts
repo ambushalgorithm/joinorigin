@@ -3,11 +3,11 @@ import { expect, test } from '@playwright/test';
 /**
  * Hero rendering + animation coverage (spec §5.2–§5.4, §7).
  *
- * Verifies the typewriter heading (progressive typing, two-tone split,
- * persistent caret), the Start Project CTA, cursor + Maya badge, supporting
- * copy, trust row, the orbit circles visualization (4 rings, count-up hub,
- * 9 avatar chips), entrance animations, local font loading, and the
- * no-external-CDN rule.
+ * Verifies the typewriter heading (progressive typing, two-tone split with
+ * the accent remainder on its own block line, persistent caret), the Start
+ * Project CTA, supporting copy, trust row, the orbit circles visualization
+ * (4 rings, count-up hub, 9 avatar chips), entrance animations, local font
+ * loading, and the no-external-CDN rule.
  */
 
 const FULL_TEXT = 'Where teams find their origin';
@@ -33,7 +33,7 @@ test.describe('hero left — typewriter heading', () => {
       .poll(async () => page.locator('h1 span').count(), { timeout: 10_000 })
       .toBeGreaterThanOrEqual(3);
 
-    // The accent span carries the gradient remainder ("r origin").
+    // The accent span carries the gradient remainder on its own line ("origin").
     const accentText = await page.locator('h1 span').nth(1).textContent();
     expect(accentText).toContain('origin');
 
@@ -49,18 +49,14 @@ test.describe('hero left — typewriter heading', () => {
   });
 });
 
-test.describe('hero left — CTA, badge, copy, trust', () => {
-  test('shows Start Project with chevron, Maya badge, supporting copy and trust row', async ({
-    page,
-  }) => {
+test.describe('hero left — CTA, copy, trust', () => {
+  test('shows Start Project with chevron, supporting copy and trust row', async ({ page }) => {
     await page.goto('/');
 
     const startProject = page.getByTestId('start-project-button');
     await expect(startProject).toBeVisible();
     await expect(startProject).toContainText('Start Project');
 
-    await expect(page.getByTestId('cursor-badge')).toBeVisible();
-    await expect(page.getByText('Maya')).toBeVisible();
     await expect(page.getByText(/JoinOrigin brings your community/)).toBeVisible();
     await expect(page.getByText('Join 2,400+ builders already collaborating')).toBeVisible();
 
@@ -134,12 +130,6 @@ test.describe('entrance animations (spec §7)', () => {
         { timeout: 10_000 },
       )
       .not.toBe('none');
-
-    // Cursor badge entrance (delay ~3.6s) — must still be animating/applied.
-    const badgeDelay = await page
-      .getByTestId('cursor-badge')
-      .evaluate((el) => getComputedStyle(el).animationDelay);
-    expect(badgeDelay).toContain('3.6s');
   });
 });
 

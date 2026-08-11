@@ -30,7 +30,7 @@ apps/web/
 │   ├── Header.tsx              # Sticky blurred header, nav underline hovers, hamburger
 │   ├── RotatingBorderButton.tsx# Conic-gradient rotating-border CTA + hover fill
 │   ├── Hero.tsx                # Hero region (glows, vignette, two columns)
-│   ├── HeroLeft.tsx            # Typewriter H1, Start Project, cursor badge, trust row
+│   ├── HeroLeft.tsx            # Typewriter H1, Start Project, subcopy, trust row
 │   ├── TypewriterHeading.tsx   # Two-tone JS typewriter with caret
 │   ├── OrbitViz.tsx            # 4 orbit rings, 9 avatar chips, count-up hub
 │   ├── useCountUp.ts           # rAF count-up hook (0 → 2,400, easeOutCubic)

@@ -12,8 +12,9 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
  * Hero — left column (spec §5.3).
  *
  * Composes the typewriter heading, Start Project CTA (rotating border, right
- * chevron, hover fill from the right), the floating cursor + `Maya` member
- * badge, supporting copy, and the trust row of overlapping avatars.
+ * chevron, hover fill from the right), supporting copy, and the trust row of
+ * overlapping avatars. (The floating cursor + `Maya` member badge was removed
+ * by the user-pushed tweak 058007e.)
  */
 
 const TRUST_AVATARS = Array.from({ length: 9 }, (_, i) => ({
@@ -33,12 +34,6 @@ const ChevronIcon = (
   </svg>
 );
 
-const CursorIcon = (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M5 3l14 7-6 2-3 6-5-15z" fill="currentColor" />
-  </svg>
-);
-
 const fadeUp = keyframes`
   from {
     opacity: 0;
@@ -47,17 +42,6 @@ const fadeUp = keyframes`
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-`;
-
-const badgeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 `;
 

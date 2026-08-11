@@ -8,7 +8,7 @@ import { expect, test } from '@playwright/test';
  *   ≤1280px — two columns, heading 64px, orbit scale 0.85 (612px)
  *   ≤1024px — stacked layout, heading 48px, orbit scale 0.7 (504px)
  *   ≤768px  — nav hidden → hamburger, heading 36px, orbit scale 0.5 (360px)
- *   ≤480px  — heading 28px, orbit scale 0.4 (288px), cursor badge hidden
+ *   ≤480px  — heading 28px, orbit scale 0.4 (288px)
  */
 
 test.describe('responsive breakpoints', () => {
@@ -100,7 +100,7 @@ test.describe('responsive breakpoints', () => {
     expect(orbitWidth).toBe(360);
   });
 
-  test('≤480: heading 28px, orbit 288px, cursor badge hidden', async ({ page }) => {
+  test('≤480: heading 28px, orbit 288px', async ({ page }) => {
     await page.setViewportSize({ width: 400, height: 700 });
     await page.goto('/');
 
@@ -111,9 +111,6 @@ test.describe('responsive breakpoints', () => {
       .getByTestId('orbit-viz')
       .evaluate((el) => parseFloat(getComputedStyle(el).width));
     expect(orbitWidth).toBe(288);
-
-    // Cursor + Maya badge is hidden below 480px (spec §5.3).
-    await expect(page.getByTestId('cursor-badge')).toBeHidden();
   });
 });
 
