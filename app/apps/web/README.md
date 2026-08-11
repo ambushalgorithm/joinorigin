@@ -45,6 +45,9 @@ apps/web/
 │       └── leadsApi.ts                # Typed fetch wrapper for POST /api/leads
 ├── data/
 │   └── leads.csv               # Committed header-only CSV; runtime rows appended by API
+├── lib/
+│   └── analytics/              # Config-driven multi-tracker analytics (Plausible/Umami/GA4)
+│       └── README.md           # Config schema + mount contract (fe-seo mounts AnalyticsProvider)
 ├── public/
 │   └── assets/, fonts/         # Locally hosted logos, avatars, partners, hero, Inter+Urbanist
 ├── types/
