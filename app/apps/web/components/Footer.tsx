@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import styled, { css, keyframes } from 'styled-components';
 
 import { DELAY, useEntrance } from './motion';
@@ -8,12 +9,38 @@ import RotatingBorderButton from './RotatingBorderButton';
 import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 
 /**
- * Slim footer (spec §5.6).
+ * Slim footer (spec §5.6 + sprint-4-discovery §3.2).
  *
- * Brand mark + wordmark, tagline, spacer, `Join the waitlist` rotating-border
- * CTA, Privacy / Terms links, and the copyright line. Stacks vertically on
- * mobile.
+ * Brand mark + wordmark, tagline, grouped nav (Product / Company / Legal),
+ * `Join the waitlist` rotating-border CTA, and the copyright line. Stacks
+ * vertically on mobile.
  */
+
+const FOOTER_GROUPS = [
+  {
+    title: 'Product',
+    links: [
+      { label: 'Features', href: '/features' },
+      { label: 'Community', href: '/community' },
+      { label: 'Pricing', href: '/pricing' },
+      { label: 'Docs', href: '/docs' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms', href: '/terms' },
+    ],
+  },
+] as const;
 
 const fadeIn = keyframes`
   from {
@@ -39,7 +66,7 @@ const Inner = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: ${({ theme }) => theme.spacing.xl}px;
   flex-wrap: wrap;
 
@@ -84,13 +111,33 @@ const Spacer = styled.div`
   flex: 1;
 `;
 
-const SmallLinks = styled.div`
+const Groups = styled.nav`
   display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.lg}px;
+  gap: ${({ theme }) => theme.spacing.xxl}px;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: ${({ theme }) => theme.spacing.lg}px;
+  }
 `;
 
-const SmallLink = styled.a`
+const Group = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.sm}px;
+`;
+
+const GroupTitle = styled.span`
+  font-family: ${({ theme }) => theme.fontFamilies.display};
+  font-size: 13px;
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.textMuted};
+`;
+
+const FooterLink = styled(Link)`
   position: relative;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: 14px;
@@ -133,21 +180,31 @@ export function Footer() {
   return (
     <StyledFooter $entered={entered} data-testid="footer">
       <Inner>
-        <Brand>
-          <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={24} height={24} />
-          <Wordmark>JoinOrigin</Wordmark>
-        </Brand>
-        <Tagline>Where work finds its origin</Tagline>
+        <div>
+          <Brand>
+            <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={24} height={24} />
+            <Wordmark>JoinOrigin</Wordmark>
+          </Brand>
+          <Tagline>Where work finds its origin</Tagline>
+        </div>
         <Spacer />
         <RotatingBorderButton
           label="Join the waitlist"
           onClick={(event) => openWaitlist(event.currentTarget)}
           testID="footer-waitlist-button"
         />
-        <SmallLinks>
-          <SmallLink href="/#privacy">Privacy</SmallLink>
-          <SmallLink href="/#terms">Terms</SmallLink>
-        </SmallLinks>
+        <Groups aria-label="Footer">
+          {FOOTER_GROUPS.map((group) => (
+            <Group key={group.title}>
+              <GroupTitle>{group.title}</GroupTitle>
+              {group.links.map((link) => (
+                <FooterLink key={link.href} href={link.href}>
+                  {link.label}
+                </FooterLink>
+              ))}
+            </Group>
+          ))}
+        </Groups>
         <Copyright>© 2026 JoinOrigin</Copyright>
       </Inner>
     </StyledFooter>

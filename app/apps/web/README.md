@@ -10,8 +10,11 @@ homescreen** (Sprint 3 hero landing page per
 [`docs/design/sprint-3-homescreen-spec.md`](../../docs/design/sprint-3-homescreen-spec.md)) —
 sticky blurred header, typewriter hero + orbit circles viz, partner logo
 ticker, slim footer, and the any-button waitlist modal backed by a CSV-capture
-API route. Shared design tokens (`@joinorigin/design`) and base universal UI
-components (`@joinorigin/ui`) power every visual value.
+API route — plus the **Sprint 4 menu pages** (`/about`, `/features`,
+`/community`, `/pricing`, `/docs`, `/contact`, `/privacy`, `/terms`) per
+[`docs/design/sprint-4-discovery.md`](../../docs/design/sprint-4-discovery.md).
+Shared design tokens (`@joinorigin/design`) and base universal UI components
+(`@joinorigin/ui`) power every visual value.
 
 ## Directory Map
 
@@ -22,12 +25,20 @@ apps/web/
 │   ├── page.tsx                # Homescreen — composes all sections + waitlist provider
 │   ├── page.test.tsx           # Jest unit tests for the homepage
 │   ├── registry.tsx            # RNW + styled-components SSR style injection
+│   ├── about/                  # /about — server wrapper + client view + JSON-LD (AboutPage)
+│   ├── features/               # /features — core objects, comparison table, FAQ (FAQPage)
+│   ├── community/              # /community — values, example communities, trust stat
+│   ├── pricing/                # /pricing — free early access + future plan outline (no prices)
+│   ├── docs/                   # /docs — concepts, roadmap, architecture, FAQ (LLM-first)
+│   ├── contact/                # /contact — mailto: contact form + support paths (ContactPage)
+│   ├── privacy/                # /privacy — plain-English privacy policy
+│   ├── terms/                  # /terms — plain-English terms of service
 │   └── api/
 │       └── leads/
 │           ├── route.ts        # POST /api/leads → RFC 4180 CSV append (rate-limited)
 │           └── route.test.ts   # API route tests against a temp CSV
 ├── components/
-│   ├── Header.tsx              # Sticky blurred header, nav underline hovers, hamburger
+│   ├── Header.tsx              # Sticky blurred header, nav → real pages, hamburger
 │   ├── RotatingBorderButton.tsx# Conic-gradient rotating-border CTA + hover fill
 │   ├── Hero.tsx                # Hero region (glows, vignette, two columns)
 │   ├── HeroLeft.tsx            # Typewriter H1, Start Project, subcopy, trust row
@@ -36,7 +47,9 @@ apps/web/
 │   ├── useCountUp.ts           # rAF count-up hook (0 → 2,400, easeOutCubic)
 │   ├── motion.ts               # useReducedMotion hook
 │   ├── LogoMarquee.tsx         # Partner logo ticker (5 marks × 4, seamless)
-│   ├── Footer.tsx              # Slim footer with waitlist CTA
+│   ├── Footer.tsx              # Grouped footer (Product / Company / Legal) + waitlist CTA
+│   ├── MenuPageShell.tsx       # Shared shell for menu pages (providers + header/footer)
+│   ├── menuPagePrimitives.ts   # Semantic styled primitives for content pages
 │   ├── landingTokens.ts        # Raw accent/glow/orbit constants (single source)
 │   ├── landingStyles.ts        # Global CSS: keyframes, masks, breakpoints, reduced motion
 │   └── WaitlistModal/
@@ -46,8 +59,10 @@ apps/web/
 ├── data/
 │   └── leads.csv               # Committed header-only CSV; runtime rows appended by API
 ├── lib/
-│   └── analytics/              # Config-driven multi-tracker analytics (Plausible/Umami/GA4)
-│       └── README.md           # Config schema + mount contract (fe-seo mounts AnalyticsProvider)
+│   ├── analytics/              # Config-driven multi-tracker analytics (Plausible/Umami/GA4)
+│   │   └── README.md           # Config schema + mount contract (fe-seo mounts AnalyticsProvider)
+│   └── menuPages/              # Local SEO helpers: createMetadata + JSON-LD builders/JsonLd
+│                               # (fe-seo's lib/seo supersedes; imports switchable unchanged)
 ├── public/
 │   └── assets/, fonts/         # Locally hosted logos, avatars, partners, hero, Inter+Urbanist
 ├── types/
@@ -65,7 +80,14 @@ apps/web/
 - **Renders**: the homepage composes web-local landing components on the
   shared `Screen` shell; every color/spacing/radius/font-weight reads from
   `@joinorigin/design` tokens (`theme.colors`, `theme.spacing`, `theme.radius`,
-  `theme.fontWeights`, `theme.fontFamilies`).
+  `theme.fontWeights`, `theme.fontFamilies`). Menu pages reuse the same tokens
+  via `MenuPageShell` + `menuPagePrimitives`.
+- **Menu pages**: each page is a server wrapper (`page.tsx` exports `metadata`
+  + server-rendered JSON-LD) rendering a client view inside `MenuPageShell`.
+  Per-page metadata follows `docs/design/sprint-4-seo-arch.md` §3.3
+  (canonical, OG, Twitter, keywords). FAQ answers are visible in the HTML and
+  mirrored 1:1 in `FAQPage` JSON-LD. `Product`/`Offer`/`AggregateRating`
+  structured data is never emitted (no invented prices/reviews).
 - **Consumes shared packages as TypeScript source** — no build step; Next.js
   transpiles them via `transpilePackages`.
 - **SSR**: `app/registry.tsx` collects react-native-web `StyleSheet` output and

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
@@ -9,20 +10,24 @@ import RotatingBorderButton from './RotatingBorderButton';
 import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 
 /**
- * Sticky header (spec §5.1).
+ * Sticky header (spec §5.1 + sprint-4-discovery §3.1).
  *
  * - Sticky, blurred (`backdrop-filter: blur(16px)`), hairline bottom border.
  * - Brand mark + `JoinOrigin` wordmark, desktop nav with underline hovers.
+ * - Nav links point to the real Sprint 4 pages: Features, Community,
+ *   Pricing, Docs, About (anchor links `/#product` etc. were removed per
+ *   discovery Assumption 6).
  * - `Log In` link + rotating-border `Get Started` CTA on the right.
  * - Mobile: hamburger toggles a dropdown panel; closes on link click,
  *   outside click, or ESC.
  */
 
 const NAV_LINKS = [
-  { label: 'Product', href: '/#product' },
-  { label: 'Community', href: '/#community' },
-  { label: 'Pricing', href: '/#pricing' },
-  { label: 'Docs', href: '/#docs' },
+  { label: 'Features', href: '/features' },
+  { label: 'Community', href: '/community' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Docs', href: '/docs' },
+  { label: 'About', href: '/about' },
 ];
 
 const fadeDown = keyframes`
@@ -110,7 +115,7 @@ const Nav = styled.nav`
   }
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(Link)`
   position: relative;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: 15px;
@@ -152,7 +157,7 @@ const Right = styled.div`
   }
 `;
 
-const LogInLink = styled.a`
+const LogInLink = styled(Link)`
   position: relative;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: 15px;
@@ -216,7 +221,7 @@ const MobilePanel = styled.div`
   }
 `;
 
-const MobileLink = styled.a`
+const MobileLink = styled(Link)`
   display: flex;
   align-items: center;
   min-height: 44px;

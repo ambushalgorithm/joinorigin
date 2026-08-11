@@ -12,10 +12,12 @@ describe('home page', () => {
   it('renders the sticky header with nav links and Get Started CTA', () => {
     render(<HomePage />);
     expect(screen.getAllByText('JoinOrigin').length).toBeGreaterThan(0);
-    expect(screen.getByText('Product')).toBeInTheDocument();
-    expect(screen.getByText('Community')).toBeInTheDocument();
-    expect(screen.getByText('Pricing')).toBeInTheDocument();
-    expect(screen.getByText('Docs')).toBeInTheDocument();
+    // Nav labels appear in both the header nav and the grouped footer links.
+    expect(screen.getAllByText('Features').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Community').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Pricing').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Docs').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('About').length).toBeGreaterThan(0);
     expect(screen.getByText('Log In')).toBeInTheDocument();
     expect(screen.getByTestId('get-started-button')).toBeInTheDocument();
   });
