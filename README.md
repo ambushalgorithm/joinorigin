@@ -115,8 +115,8 @@ so your network becomes your operating system for collaboration.
 
 | Layer | Technology |
 |---|---|
-| **Web** | [Next.js 14](https://nextjs.org/) (App Router) · [React 18](https://react.dev/) · [React Native Web](https://necolas.github.io/react-native-web/) · [styled-components](https://styled-components.com/) |
-| **Mobile** | [React Native](https://reactnative.dev/) 0.74 (Android) |
+| **Web** | [Next.js 16](https://nextjs.org/) (App Router, Turbopack) · [React 19](https://react.dev/) · [React Native Web](https://necolas.github.io/react-native-web/) · [styled-components](https://styled-components.com/) |
+| **Mobile** | [React Native](https://reactnative.dev/) 0.87 (Android — native `android/` project generated) |
 | **Language** | [TypeScript](https://www.typescriptlang.org/) 5.5 |
 | **Monorepo** | [pnpm](https://pnpm.io/) workspaces · [Turborepo](https://turborepo.com/) |
 | **Design system** | `@joinorigin/design` tokens · `@joinorigin/ui` universal components |
@@ -230,8 +230,8 @@ upward.
 joinorigin/
 ├── app/                        # Monorepo (joinorigin monorepo root)
 │   ├── apps/
-│   │   ├── web/                # Next.js 14 web app (homescreen, menu pages, SEO)
-│   │   └── mobile/             # React Native Android app
+│   │   ├── web/                # Next.js 16 web app (homescreen, menu pages, SEO)
+│   │   └── mobile/             # React Native Android app (native android/ project)
 │   ├── packages/
 │   │   ├── design/             # Design tokens: colors, spacing, typography, theme
 │   │   └── ui/                 # Base universal UI components (styled-components/native)
@@ -249,8 +249,8 @@ joinorigin/
 | Path | Purpose |
 |---|---|
 | [`app/`](app/README.md) | The JoinOrigin monorepo — apps, packages, docs, tests, infra |
-| [`app/apps/web/`](app/apps/web/README.md) | Web application (Next.js, landing pages, SEO, waitlist API) |
-| [`app/apps/mobile/`](app/apps/mobile/) | Mobile application (React Native, Android) |
+| [`app/apps/web/`](app/apps/web/README.md) | Web application (Next.js 16, landing pages, SEO, waitlist API) |
+| [`app/apps/mobile/`](app/apps/mobile/) | Mobile application (React Native 0.87, Android — native project generated) |
 | [`app/packages/`](app/packages/README.md) | Shared libraries: design tokens and universal UI components |
 | [`app/docs/`](app/docs/README.md) | Architecture, vision, whitepaper, security, governance, deployment |
 | [`app/tests/`](app/tests/README.md) | Cross-cutting integration and end-to-end test suites |
