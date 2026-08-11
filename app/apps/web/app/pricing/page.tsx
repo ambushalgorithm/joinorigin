@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { JsonLd } from '../../lib/menuPages/JsonLd';
-import { breadcrumbList, faqPage } from '../../lib/menuPages/jsonLd';
-import { createMetadata } from '../../lib/menuPages/metadata';
+import { JsonLd } from '../../lib/seo/JsonLd';
+import { breadcrumbList, faqPage } from '../../lib/seo/jsonLd';
+import { createMetadata } from '../../lib/seo/metadata';
 import { PRICING_FAQ } from './pricing-data';
 import { PricingView } from './pricing-view';
 

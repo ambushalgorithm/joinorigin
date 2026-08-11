@@ -1,4 +1,4 @@
-import type { FaqEntry } from '../../lib/menuPages/jsonLd';
+import type { FaqEntry } from '../../lib/seo/jsonLd';
 
 /**
  * Pricing page FAQ (discovery §5.4) — shared by the visible FAQ block and the

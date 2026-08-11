@@ -1,4 +1,4 @@
-import type { FaqEntry } from '../../lib/menuPages/jsonLd';
+import type { FaqEntry } from '../../lib/seo/jsonLd';
 
 /**
  * Community page FAQ (discovery §5.3) — shared by the visible FAQ block and

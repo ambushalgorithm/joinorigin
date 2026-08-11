@@ -8,10 +8,10 @@ import { test, expect, type Page } from '@playwright/test';
  * the TASK-218 acceptance criteria per `app/docs/design/sprint-4-seo-arch.md`
  * §3–§5 and `app/docs/design/sprint-4-discovery.md` §5–§8.
  *
- * KNOWN GAPS are tracked with `test.fail()` markers (repo convention from
- * TASK-205/207): the test asserts the design criterion; the marker records
- * that the criterion is currently NOT met so the suite stays green while the
- * gap is flagged in test-report.md with routing to the owning fe role.
+ * KNOWN GAPS tracked with `test.fail()` markers (repo convention from
+ * TASK-205/207) were fixed and the markers removed by fe-fix-menu-seo
+ * (TASK-220): menu-page OG image (arch §3.5) and the 160-char description
+ * rule (discovery §6). The remaining assertions are required and must pass.
  */
 
 // These specs navigate many pages; run serially to avoid starving the shared
@@ -145,13 +145,9 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
       await page.goto(path);
       const ogImageUrl =
         (await page.locator('meta[property="og:image"]').getAttribute('content')) ?? '';
-      // KNOWN GAP — menu pages still emit `/assets/logo/joinorigin-logo.svg`
-      // from the `lib/menuPages` metadata stub; arch §3.5 requires the
-      // branded 1200×630 `/assets/og/og-default.png`. fe-menu-pages left the
-      // stub in place instead of switching to `lib/seo` (commit message said
-      // "after which the imports can be switched to lib/seo/metadata
-      // unchanged" — never done). Tracked; route to fe-menu-pages/fe-seo.
-      test.fail();
+      // Fixed by fe-fix-menu-seo (TASK-220): menu pages now build metadata
+      // through `lib/seo`, whose SITE.ogImage points at the branded 1200×630
+      // `/assets/og/og-default.png` (arch §3.5).
       expect(ogImageUrl).toContain('/assets/og/og-default.png');
     }
   });
@@ -161,10 +157,8 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
       await page.goto(path);
       const content =
         (await page.locator('meta[name="description"]').getAttribute('content')) ?? '';
-      // KNOWN GAP — several pages exceed the 160-char rule (verified:
-      // /about 180, /features 187, /community 193, /docs 169, /privacy 177,
-      // /terms 170). Tracked; route to fe-seo to tighten descriptions.
-      test.fail();
+      // Fixed by fe-fix-menu-seo (TASK-220): all 9 page descriptions now
+      // respect the 160-char discovery §6 keyword rule.
       expect(content.length, `description length on ${path}`).toBeLessThanOrEqual(160);
     }
   });

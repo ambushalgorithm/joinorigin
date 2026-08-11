@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { JsonLd } from '../../lib/menuPages/JsonLd';
-import { breadcrumbList, faqPage } from '../../lib/menuPages/jsonLd';
-import { createMetadata } from '../../lib/menuPages/metadata';
+import { JsonLd } from '../../lib/seo/JsonLd';
+import { breadcrumbList, faqPage } from '../../lib/seo/jsonLd';
+import { createMetadata } from '../../lib/seo/metadata';
 import { FEATURES_FAQ } from './features-data';
 import { FeaturesView } from './features-view';
 
@@ -14,7 +14,7 @@ import { FeaturesView } from './features-view';
 export const metadata: Metadata = createMetadata({
   title: 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
   description:
-    "Explore JoinOrigin's features: communities, real-time chat, feed, projects, companies, and opportunities — the social collaboration network built to turn relationships into outcomes.",
+    "Explore JoinOrigin's features: communities, chat, feed, projects, and opportunities — a social collaboration network built for real outcomes.",
   path: '/features',
   keywords: [
     'community platform features',

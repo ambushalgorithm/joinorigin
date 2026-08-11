@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { JsonLd } from '../../lib/menuPages/JsonLd';
-import { aboutPage, breadcrumbList } from '../../lib/menuPages/jsonLd';
-import { createMetadata } from '../../lib/menuPages/metadata';
+import { JsonLd } from '../../lib/seo/JsonLd';
+import { aboutPage, breadcrumbList } from '../../lib/seo/jsonLd';
+import { createMetadata } from '../../lib/seo/metadata';
 import { AboutView } from './about-view';
 
 /**
@@ -13,7 +13,7 @@ import { AboutView } from './about-view';
 export const metadata: Metadata = createMetadata({
   title: 'About — The Operating System for Human Collaboration | JoinOrigin',
   description:
-    "JoinOrigin's mission: a social collaboration network where people discover each other, form communities, and build projects and companies together. The network is the product.",
+    "JoinOrigin's mission: a social collaboration network where people form communities and start projects together. The network is the product.",
   path: '/about',
   keywords: [
     'about JoinOrigin',

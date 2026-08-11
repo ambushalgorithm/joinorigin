@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { JsonLd } from '../../lib/menuPages/JsonLd';
-import { breadcrumbList } from '../../lib/menuPages/jsonLd';
-import { createMetadata } from '../../lib/menuPages/metadata';
+import { JsonLd } from '../../lib/seo/JsonLd';
+import { breadcrumbList } from '../../lib/seo/jsonLd';
+import { createMetadata } from '../../lib/seo/metadata';
 import { TermsView } from './terms-view';
 
 /**
@@ -12,7 +12,7 @@ import { TermsView } from './terms-view';
 export const metadata: Metadata = createMetadata({
   title: 'Terms of Service | JoinOrigin',
   description:
-    "JoinOrigin's terms of service: acceptance, accounts, user content, acceptable use, intellectual property, disclaimers, changes, and contact. Plain-English and short.",
+    "JoinOrigin's terms of service: accounts, user content, acceptable use, intellectual property, disclaimers, and contact. Plain-English and short.",
   path: '/terms',
   keywords: ['JoinOrigin terms of service'],
 });

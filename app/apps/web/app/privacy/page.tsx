@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { JsonLd } from '../../lib/menuPages/JsonLd';
-import { breadcrumbList } from '../../lib/menuPages/jsonLd';
-import { createMetadata } from '../../lib/menuPages/metadata';
+import { JsonLd } from '../../lib/seo/JsonLd';
+import { breadcrumbList } from '../../lib/seo/jsonLd';
+import { createMetadata } from '../../lib/seo/metadata';
 import { PrivacyView } from './privacy-view';
 
 /**
@@ -12,7 +12,7 @@ import { PrivacyView } from './privacy-view';
 export const metadata: Metadata = createMetadata({
   title: 'Privacy Policy | JoinOrigin',
   description:
-    "JoinOrigin's privacy policy: what we collect (waitlist name and email), how config-driven analytics works, your data rights, and how to contact us. Short and plain-English.",
+    "JoinOrigin's privacy policy: what we collect, how analytics works, your data rights, and how to contact us. Short and plain-English.",
   path: '/privacy',
   keywords: ['JoinOrigin privacy policy'],
 });

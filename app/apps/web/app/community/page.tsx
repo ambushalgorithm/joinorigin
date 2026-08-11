@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { JsonLd } from '../../lib/menuPages/JsonLd';
-import { breadcrumbList, faqPage } from '../../lib/menuPages/jsonLd';
-import { createMetadata } from '../../lib/menuPages/metadata';
+import { JsonLd } from '../../lib/seo/JsonLd';
+import { breadcrumbList, faqPage } from '../../lib/seo/jsonLd';
+import { createMetadata } from '../../lib/seo/metadata';
 import { COMMUNITY_FAQ } from './community-data';
 import { CommunityView } from './community-view';
 
@@ -14,7 +14,7 @@ import { CommunityView } from './community-view';
 export const metadata: Metadata = createMetadata({
   title: 'Community — Find Your People & Build Together | JoinOrigin',
   description:
-    'Join a growing social collaboration network of 2,400+ builders. Discover communities around AI, startups, trading, real estate, and local interests — and build with people who share your goals.',
+    'Join a growing social collaboration network of 2,400+ builders. Discover communities around AI, startups, and local interests — build together.',
   path: '/community',
   keywords: [
     'online communities',
