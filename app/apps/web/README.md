@@ -4,9 +4,9 @@
 
 ## Purpose
 
-The **JoinOrigin web application**: a Next.js 14 (App Router) + React 18 +
-React Native Web + styled-components shell. It renders the **JoinOrigin
-homescreen** (Sprint 3 hero landing page per
+The **JoinOrigin web application**: a Next.js 16 (App Router, Turbopack) +
+React 19 + React Native Web + styled-components shell. It renders the
+**JoinOrigin homescreen** (Sprint 3 hero landing page per
 [`docs/design/sprint-3-homescreen-spec.md`](../../docs/design/sprint-3-homescreen-spec.md)) —
 sticky blurred header, typewriter hero + orbit circles viz, partner logo
 ticker, slim footer, and the any-button waitlist modal backed by a CSV-capture
@@ -72,7 +72,7 @@ apps/web/
 ├── jest.config.mjs            # next/jest configuration
 ├── jest.polyfills.ts          # Node web API polyfills (TextDecoder, streams, undici)
 ├── jest.setup.ts              # jest-dom matchers + matchMedia/rAF/next-image mocks
-├── next.config.mjs            # transpilePackages + RN→RNW webpack alias + allowedDevOrigins
+├── next.config.mjs            # transpilePackages + Turbopack RN→RNW alias/.web.* extensions + allowedDevOrigins
 ├── package.json
 └── tsconfig.json
 ```
@@ -85,17 +85,31 @@ apps/web/
   `theme.fontWeights`, `theme.fontFamilies`). Menu pages reuse the same tokens
   via `MenuPageShell` + `menuPagePrimitives`.
 - **Menu pages**: each page is a server wrapper (`page.tsx` exports `metadata`
-  + server-rendered JSON-LD) rendering a client view inside `MenuPageShell`.
-  Per-page metadata follows `docs/design/sprint-4-seo-arch.md` §3.3
-  (canonical, OG, Twitter, keywords). FAQ answers are visible in the HTML and
-  mirrored 1:1 in `FAQPage` JSON-LD. `Product`/`Offer`/`AggregateRating`
-  structured data is never emitted — the platform presents no commercial
-  offers (discovery §7 policy).
+  - server-rendered JSON-LD) rendering a client view inside `MenuPageShell`.
+    Per-page metadata follows `docs/design/sprint-4-seo-arch.md` §3.3
+    (canonical, OG, Twitter, keywords). FAQ answers are visible in the HTML and
+    mirrored 1:1 in `FAQPage` JSON-LD. `Product`/`Offer`/`AggregateRating`
+    structured data is never emitted — the platform presents no commercial
+    offers (discovery §7 policy).
 - **Consumes shared packages as TypeScript source** — no build step; Next.js
   transpiles them via `transpilePackages`.
 - **SSR**: `app/registry.tsx` collects react-native-web `StyleSheet` output and
   styled-components `ServerStyleSheet` output and injects them during server
   rendering for correct hydration.
+- **Next 16 + Turbopack** (TASK-226): Turbopack is the default bundler for
+  `next dev`/`next build`. The legacy `webpack()` hook is gone — the
+  react-native→react-native-web alias lives in `turbopack.resolveAlias`, and
+  `.web.*` platform-split extension preference in `turbopack.resolveExtensions`
+  (which **overwrites** the default extension list, so the standard extensions
+  are listed explicitly). styled-components class-name determinism (the
+  TASK-209 "Prop className did not match" fix) is preserved via
+  `compiler.styledComponents` (SWC port of babel-plugin-styled-components),
+  which is honored by both bundlers. The workspace root `package.json`
+  `pnpm.overrides` pins one React (19.2.8), one styled-components (6.5.2) and
+  one @types/react (19.x) monorepo-wide so the hoisted dependency tree has a
+  single styled-components/React module identity (no dual-instance
+  theme/hydration splits). Fallback if Turbopack cannot be satisfied:
+  `next build --webpack` / `next dev --webpack`.
 - **Fonts**: Inter + Urbanist are served locally from `public/fonts` via
   `<link>` tags — no Google Fonts network request at runtime.
 - **Waitlist capture**: any CTA opens `WaitlistModal`; submit POSTs
