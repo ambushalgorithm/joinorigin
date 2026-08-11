@@ -13,8 +13,8 @@ components and configuration live here.
 
 Welcome to the JoinOrigin frontend monorepo: a shared cross-platform codebase that
 powers the **web app** (Next.js + React Native Web) and the **mobile app**
-(React Native, JS-side shell — no Expo yet), backed by **shared packages**
-(design tokens + base universal UI components).
+(React Native — native Android `android/` project generated, no Expo), backed
+by **shared packages** (design tokens + base universal UI components).
 
 The cross-platform frontend architecture is documented in
 [`docs/patterns/frontend-architecture.md`](docs/patterns/frontend-architecture.md).
@@ -29,10 +29,11 @@ app/                      # Monorepo root (this directory)
 │   ├── web/                  # Next.js web app (App Router, React Native Web)
 │   │   ├── app/              #   layout.tsx, page.tsx (homepage), registry.tsx, page.test.tsx
 │   │   └── README.md         #   App-specific docs
-│   └── mobile/               # React Native app — JS-side structure (no ios/android)
+│   └── mobile/               # React Native app — JS shell + generated native android/
 │       ├── index.js          #   AppRegistry entry point
 │       ├── App.tsx           #   Root component (ThemeProvider + HomeScreen)
-│       └── src/screens/      #   HomeScreen.tsx + unit test
+│       ├── src/screens/      #   HomeScreen.tsx + unit test
+│       └── android/          #   Native Android project (RN 0.87, Gradle) — see android/README.md
 ├── packages/
 │   ├── design/               # Design tokens: colors, spacing, typography, radius,
 │   │                         #   breakpoints, theme (no React/styled-components deps)
@@ -54,8 +55,8 @@ app/                      # Monorepo root (this directory)
 
 | App           | Stack                                                                  | Notes                                                                                                        |
 | ------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `apps/web`    | Next.js 14 (App Router), React 18, React Native Web, styled-components | Landing page (hero, ticker, waitlist modal) + menu pages rendered with shared tokens/components               |
-| `apps/mobile` | React Native 0.74 (bare, no Expo), React 18, styled-components/native  | JS-side shell: entry point, `App`, babel/metro/jest configs. Native `ios/`/`android/` scaffolds are deferred |
+| `apps/web`    | Next.js 16 (App Router, Turbopack), React 19, React Native Web, styled-components | Landing page (hero, ticker, waitlist modal) + menu pages rendered with shared tokens/components               |
+| `apps/mobile` | React Native 0.87 (bare, no Expo), React 19, styled-components/native  | JS-side shell: entry point, `App`, babel/metro/jest configs. Native `android/` project generated (RN 0.87, Gradle); `ios/` remains deferred |
 
 ### Shared packages
 
@@ -118,10 +119,13 @@ To pick a specific port:
 PORT=3100 pnpm --filter @joinorigin/web dev
 ```
 
-### Start the mobile app (JS-side)
+### Start the mobile app
 
-There is no native runtime yet, so "starting" the mobile app means
-typechecking / running its unit tests:
+The native Android project is generated (see
+[`apps/mobile/android/README.md`](apps/mobile/android/README.md)) and builds
+with `./gradlew assembleDebug` from `apps/mobile/android/` (or
+`pnpm --filter @joinorigin/mobile run android:build`). For day-to-day JS-side
+work, typecheck / run the unit tests:
 
 ```bash
 pnpm --filter @joinorigin/mobile dev      # tsc --watch (placeholder dev command)
@@ -155,7 +159,8 @@ pnpm install
 pnpm --filter @joinorigin/web dev
 
 # 3. In a second terminal — run the mobile app's JS-side checks
-#    (no native runtime yet: typecheck + unit tests are the "start" signal)
+#    (the native android/ project is generated; typecheck + unit tests are the
+#    quick signal — full native builds use apps/mobile/android, see its README)
 pnpm --filter @joinorigin/mobile dev
 pnpm --filter @joinorigin/mobile test
 
@@ -262,7 +267,7 @@ Playwright browsers: `pnpm --filter @joinorigin/e2e exec playwright install chro
 A change to this monorepo is **done** when every item below is green:
 
 - [x] `apps/web` dev server starts and renders the homepage
-- [x] `apps/mobile` JS-side structure exists and typechecks
+- [x] `apps/mobile` JS-side structure exists and typechecks; native `android/` project generated
 - [x] Shared `packages/design` + `packages/ui` provide design tokens / base components
 - [x] `pnpm lint` passes
 - [x] `pnpm typecheck` passes
@@ -275,6 +280,7 @@ A change to this monorepo is **done** when every item below is green:
 ## Notes / Deferred (later sprints)
 
 - **PWA** (manifest/service worker) — deferred.
-- **Native iOS/Android build projects** for `apps/mobile` — deferred (JS-side only).
+- **Native iOS build project** for `apps/mobile` — deferred (JS-side only); the native
+  **Android** project is generated (see `apps/mobile/android/README.md`).
 - **CI/CD workflows** — deferred.
 - Backend/API/server features beyond Next.js app configuration — out of scope here.
