@@ -7,8 +7,8 @@ import { Screen } from '../Screen';
 import { Text } from '../Text';
 
 describe('Screen', () => {
-  it('renders children as the base layout root', () => {
-    const { getByText } = render(
+  it('renders children as the base layout root', async () => {
+    const { getByText } = await render(
       <ThemeProvider theme={theme}>
         <Screen>
           <Text>Screen content</Text>

@@ -5,8 +5,8 @@ import { theme } from '@joinorigin/design';
 
 import { Button } from '../Button';
 
-function renderButton(props: React.ComponentProps<typeof Button>) {
-  return render(
+async function renderButton(props: React.ComponentProps<typeof Button>) {
+  return await render(
     <ThemeProvider theme={theme}>
       <Button {...props} />
     </ThemeProvider>,
@@ -14,29 +14,29 @@ function renderButton(props: React.ComponentProps<typeof Button>) {
 }
 
 describe('Button', () => {
-  it('renders its label', () => {
-    const { getByText } = renderButton({ label: 'Save', onPress: jest.fn() });
+  it('renders its label', async () => {
+    const { getByText } = await renderButton({ label: 'Save', onPress: jest.fn() });
     expect(getByText('Save')).toBeTruthy();
   });
 
-  it('calls onPress when pressed', () => {
+  it('calls onPress when pressed', async () => {
     const onPress = jest.fn();
-    const { getByRole } = renderButton({ label: 'Save', onPress });
-    fireEvent.press(getByRole('button'));
+    const { getByRole } = await renderButton({ label: 'Save', onPress });
+    await fireEvent.press(getByRole('button'));
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 
-  it('does not fire when disabled', () => {
+  it('does not fire when disabled', async () => {
     const onPress = jest.fn();
-    const { getByRole } = renderButton({ label: 'Save', onPress, disabled: true });
-    fireEvent.press(getByRole('button'));
+    const { getByRole } = await renderButton({ label: 'Save', onPress, disabled: true });
+    await fireEvent.press(getByRole('button'));
     expect(onPress).not.toHaveBeenCalled();
   });
 
-  it('does not fire while loading', () => {
+  it('does not fire while loading', async () => {
     const onPress = jest.fn();
-    const { getByRole } = renderButton({ label: 'Save', onPress, loading: true });
-    fireEvent.press(getByRole('button'));
+    const { getByRole } = await renderButton({ label: 'Save', onPress, loading: true });
+    await fireEvent.press(getByRole('button'));
     expect(onPress).not.toHaveBeenCalled();
   });
 });
