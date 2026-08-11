@@ -163,11 +163,12 @@ test.describe('LLM-crawler readable copy (arch §5.2)', () => {
       const wordCount = mainText.trim().split(/\s+/).length;
 
       // Arch §5.2: total page copy ≥ 150 words (goal for LLM extractability).
-      // KNOWN GAP — home (40 words) and /contact (121 words) are below the
-      // design goal; tracked so the failing criterion is visible. Remove the
-      // marker when fe-menu-pages adds the missing copy (discovery §5.1
-      // definition paragraph + FAQ on home; richer /contact intro).
-      if (pageDef.path === '/' || pageDef.path === '/contact') {
+      // KNOWN GAP — /contact (121 words) is below the design goal; tracked so
+      // the failing criterion is visible. Home passed 150 words once
+      // fe-fix-home (TASK-219) added the discovery §5.1 definition paragraph
+      // + FAQ block, so the '/' marker was removed; /contact needs a richer
+      // intro (not in the TASK-219/TASK-220 fix scope).
+      if (pageDef.path === '/contact') {
         test.fail();
       }
       expect(wordCount, `word count on ${pageDef.path}`).toBeGreaterThanOrEqual(150);
