@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { JsonLd } from '../../lib/menuPages/JsonLd';
-import { breadcrumbList, contactPage } from '../../lib/menuPages/jsonLd';
-import { createMetadata } from '../../lib/menuPages/metadata';
+import { JsonLd } from '../../lib/seo/JsonLd';
+import { breadcrumbList, contactPage } from '../../lib/seo/jsonLd';
+import { createMetadata } from '../../lib/seo/metadata';
 import { ContactView } from './contact-view';
 
 /**
