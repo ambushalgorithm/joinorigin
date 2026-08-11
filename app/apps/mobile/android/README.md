@@ -1,33 +1,36 @@
 # JoinOrigin Mobile — Native Android Project
 
-React Native 0.74 native Android project for the `@joinorigin/mobile` app
+React Native 0.87 native Android project for the `@joinorigin/mobile` app
 (no Expo). It boots the JS shell (`apps/mobile/index.js` → `App.tsx` →
 `HomeScreen.tsx`), which renders **Welcome to JoinOrigin** using the shared
 `@joinorigin/ui` components and `@joinorigin/design` tokens.
 
-Generated from the official `react-native@0.74.7` template and adapted for
-this pnpm monorepo (dependencies are hoisted to the workspace root
-`node_modules/`, so all Gradle paths point 3–4 levels up from `android/`).
+Regenerated from the official `react-native@0.87.0` template (Gradle 9.4.1,
+AGP 9.2.1 via the RN gradle plugin, Kotlin 2.2.0, compileSdk/targetSdk 36,
+minSdk 24, New Architecture ON, Hermes-only) and adapted for this pnpm
+monorepo (dependencies are hoisted to the workspace root `node_modules/`, so
+all Gradle paths point 3–4 levels up from `android/`).
 
 ## Directory Map
 
 | Path | Purpose |
 |---|---|
-| `app/build.gradle` | App module: applicationId `com.joinorigin`, RN Gradle plugin react paths, debug/release signing, Hermes |
-| `app/src/main/AndroidManifest.xml` | Main manifest (INTERNET permission, MainActivity launcher) |
+| `app/build.gradle` | App module: applicationId `com.joinorigin`, RN Gradle plugin react paths, debug/release signing, Hermes-only, autolink |
+| `app/src/main/AndroidManifest.xml` | Main manifest (INTERNET permission, MainActivity launcher, usesCleartextTraffic placeholder) |
 | `app/src/main/java/com/joinorigin/MainActivity.kt` | Entry activity; registers `JoinOriginMobile` (matches `app.json` name) |
-| `app/src/main/java/com/joinorigin/MainApplication.kt` | Application class; autolinks packages, Hermes/New-Arch flags |
+| `app/src/main/java/com/joinorigin/MainApplication.kt` | Application class; RN 0.87 entry point (`loadReactNative`), autolinks packages |
 | `app/src/main/res/` | Launcher icons, `strings.xml` (app_name = JoinOrigin), theme styles |
-| `settings.gradle` | Root project `JoinOrigin`; wires RN CLI native_modules + gradle plugin from hoisted node_modules |
-| `build.gradle` | Root buildscript: buildTools 34, minSdk 23, compile/target SDK 34, NDK 26.1, Kotlin 1.9.22 |
-| `gradle.properties` | JVM args, AndroidX, New Arch disabled, Hermes enabled |
-| `gradlew` / `gradle/wrapper/` | Gradle 8.6 wrapper (no system Gradle required) |
+| `app/debug.keystore` | Checked-in debug signing key (git-ignored pattern `*.keystore` except `debug.keystore`) |
+| `settings.gradle` | Root project `JoinOrigin`; RN settings plugin + autolink command + gradle plugin includeBuild from hoisted node_modules |
+| `build.gradle` | Root buildscript: buildTools 37, minSdk 24, compile/target SDK 36, NDK 27.1, Kotlin 2.2.0 |
+| `gradle.properties` | JVM args, AndroidX, New Architecture ON, Hermes enabled, edge-to-edge, AGP 9 opt-outs |
+| `gradlew` / `gradle/wrapper/` | Gradle 9.4.1 wrapper (no system Gradle required) |
 
 ## Prerequisites
 
 - JDK 17+ (built/verified with OpenJDK 21)
-- Android SDK with `platforms;android-34`, `build-tools;34.0.0`,
-  `ndk;26.1.10909125`, `platform-tools`
+- Android SDK with `platforms;android-36`, `build-tools;37.0.0`,
+  `ndk;27.1.12297006`, `platform-tools`
 - Set `ANDROID_HOME` and create `android/local.properties` with
   `sdk.dir=/path/to/android-sdk` (local.properties is git-ignored)
 
@@ -62,6 +65,7 @@ monorepo `metro.config.js` watchFolders.
 ## Verification
 
 - `./gradlew assembleDebug` — BUILD SUCCESSFUL (verified on this host)
+- `./gradlew assembleRelease` — BUILD SUCCESSFUL (verified on this host)
 - `:app:createBundleReleaseJsAndAssets` — bundle contains `Welcome to
   JoinOrigin` and the `Screen`/`Card`/`Badge` components from `@joinorigin/ui`
 - `pnpm --filter @joinorigin/mobile test` — 5/5 unit tests pass (render
@@ -74,4 +78,4 @@ monorepo `metro.config.js` watchFolders.
   the bundle contents + Jest render tests rather than a live screenshot.
 - iOS native project is intentionally NOT generated (cannot be verified on
   Linux; see Sprint 3 plan).
-- Gradle 8.6 is downloaded by the wrapper on first build (network required).
+- Gradle 9.4.1 is downloaded by the wrapper on first build (network required).
