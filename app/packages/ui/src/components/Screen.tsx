@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from 'react';
-import { ViewProps } from 'react-native';
+import { View, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
 
 export type ScreenProps = ViewProps;
 
-const StyledScreen = styled.View`
+const StyledScreen = styled(View)`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
   padding: ${({ theme }) => theme.spacing.lg}px;

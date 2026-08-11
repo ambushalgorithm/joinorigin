@@ -6,8 +6,8 @@ import { theme } from '@joinorigin/design';
 import { Badge } from '../Badge';
 
 describe('Badge', () => {
-  it('renders its label', () => {
-    const { getByText } = render(
+  it('renders its label', async () => {
+    const { getByText } = await render(
       <ThemeProvider theme={theme}>
         <Badge label="New" tone="primary" />
       </ThemeProvider>,

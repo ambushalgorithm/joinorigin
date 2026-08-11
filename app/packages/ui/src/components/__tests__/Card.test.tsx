@@ -7,8 +7,8 @@ import { Card } from '../Card';
 import { Text } from '../Text';
 
 describe('Card', () => {
-  it('renders children', () => {
-    const { getByText } = render(
+  it('renders children', async () => {
+    const { getByText } = await render(
       <ThemeProvider theme={theme}>
         <Card>
           <Text>Card content</Text>

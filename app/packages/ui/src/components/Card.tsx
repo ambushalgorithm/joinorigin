@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { ViewProps } from 'react-native';
+import { View, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
 
 export interface CardProps extends ViewProps {
@@ -7,7 +7,7 @@ export interface CardProps extends ViewProps {
   elevated?: boolean;
 }
 
-const StyledCard = styled.View<{ $elevated: boolean }>`
+const StyledCard = styled(View)<{ $elevated: boolean }>`
   padding: ${({ theme }) => theme.spacing.lg}px;
   border-radius: ${({ theme }) => theme.radius.lg}px;
   border-width: 1px;
