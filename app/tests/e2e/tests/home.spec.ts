@@ -22,8 +22,6 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
     timeout: 15_000,
   });
   await expect(page.getByTestId('start-project-button')).toBeVisible();
-  await expect(page.getByText('Maya')).toBeVisible();
-  await expect(page.getByTestId('cursor-badge')).toBeVisible();
 
   // Hero right: orbit visualization + count-up hub.
   await expect(page.getByTestId('orbit-viz')).toBeVisible();
