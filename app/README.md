@@ -1,108 +1,22 @@
-# Universal Worker Platform (UWP)
-
-> **Parent:** [AGENTS.md](../AGENTS.md) — Project entry point and agent auto-discovery
-
-## Purpose
-
-The Universal Worker Platform is a reference implementation of an agent-orchestrated worker platform that runs knowledge workers, governance, and automation in a portable containerized environment. This `app/` directory contains the complete platform — all components, libraries, infrastructure definitions, tests, and documentation — in a self-contained, portable bundle.
-
-## Quick Start
-
-```sh
-# 1. Clone and navigate
-git clone <repo-url> && cd <repo>
-
-# 2. Read the architecture (agents start here)
-cat app/docs/ARCHITECTURE.md
-
-# 3. Build all packages
-cd app && npm install && npm run build
-
-# 4. Run the platform locally
-docker compose -f app/infra/docker-compose.dev.yml up
-
-# 5. Run tests
-cd app && npm test
-```
-
-## Architecture Summary
-
-The UWP organizes into six layers with strict dependency flow:
-
-| Layer | Position | Responsibility |
-|---|---|---|
-| **Application** | Top (Layer 6) | Worker assemblies, agent workflows, custom tool plugins |
-| **Worker Platform** | Core (Layer 5) | Runtime, workspace, memory, planning, evaluation, governance, contracts |
-| **Platform Services** | Provider (Layer 4) | Concrete service implementations (database, cache, queue, storage) |
-| **Automation & Delivery** | Build/CI (Layer 3) | CI pipelines, test harnesses, artifact management, release orchestration |
-| **Infrastructure** | Host (Layer 2) | Container runtime, networking, compute, volumes, observability |
-| **Deployment** | Operations (Layer 1) | Environment definitions, service discovery, scaling, secrets management |
-
-**Canonical architecture:** [app/docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — always start there.
-
-**Key architectural properties:**
-- Layers communicate through contracts (TypeScript interfaces), never direct imports
-- The Provider Registry in the Worker Platform resolves services to implementations at startup
-- Applications depend only on Platform Contracts — zero knowledge of providers or infrastructure
-- Context outlives models — all memory domains persist independently of worker or vendor
-- Governance is centralized in the Worker Platform with per-layer enforcement points
-
-## Directory Map
-
-| Path | Purpose |
-|---|---|
-| `docs/` | Core documentation: VISION.md, ARCHITECTURE.md, WHITEPAPER.md, DEVELOPMENT.md, DEPLOYMENT.md, SECURITY.md, GOVERNANCE.md, WORKER_GUIDE.md |
-| `apps/` | Runnable, independently deployable services |
-| `packages/` | Shared libraries, SDKs, reusable modules — including all Worker Platform components |
-| `infra/` | Dockerfiles, compose files, Kubernetes manifests, infrastructure configuration |
-| `scripts/` | Build, deploy, database migration, and utility automation scripts |
-| `tests/` | Cross-cutting integration tests, E2E tests, test fixtures, load tests |
-| `artifacts/` | Build outputs and generated assets (gitignored except `.gitkeep`) |
-| `.github/` | CI/CD workflows, PR/issue templates, CODEOWNERS, dependabot config |
-
-## Contracts
-
-### Implements
-- **Root Documentation Contract**: This README is the entry point for human and agent navigation into `app/`. It implements the [README.md contract](docs/ARCHITECTURE.md) defined in the self-documentation conventions.
-
-### Depends On
-- **Architecture Documentation** (`docs/ARCHITECTURE.md`): Canonical layer model, component map, dependency rules — all descriptions in this README defer to ARCHITECTURE.md as authority.
-- **AGENTS.md** (`../AGENTS.md`): The sole root-file entry point. Agents navigate from AGENTS.md → this README → docs/ARCHITECTURE.md.
-
-### Exposes
-- **Navigation tree**: From this README, any agent can reach every component README and platform document in ≤ 3 file reads.
-- **Quick Start commands**: Minimum steps to build, test, and run the platform locally.
-- **Component inventory**: Directory Map and Component Reference tables for O(1) lookups.
-
-## Concepts
-
-- **Worker**: A registered entity that implements the `IWorker` interface — accepts tasks, executes within a workspace, produces artifacts. Human and AI workers share the same interface.
-- **Platform Contract**: A TypeScript interface defining the boundary between layers. Applications import contracts, never implementations.
-- **Provider Registry**: The central runtime indirection that maps contracts to concrete service implementations at startup.
-- **Context Snapshot**: An immutable point-in-time copy of all relevant memory domains, created at task assignment to prevent context drift.
-- **Artifact**: The only persistent output of worker execution — source code, configuration, test results, documentation, reports. All workspace content is ephemeral.
-
-## Navigation
-
-- **Up:** [AGENTS.md](../AGENTS.md)
-- **Related:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/VISION.md](docs/VISION.md), [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)
-- **Children:** [docs/](docs/), [apps/](apps/), [packages/](packages/), [infra/](infra/), [scripts/](scripts/), [tests/](tests/)
-
----
-
 # JoinOrigin — Frontend Monorepo
 
-> The JoinOrigin monorepo lives **inside `app/`** per UWP Root Minimalism
-> (see [ARCHITECTURE.md §7.1](docs/ARCHITECTURE.md)). The repo root contains
-> only `AGENTS.md` + `.gitignore` + `app/`; all monorepo components and
-> configuration live here.
+> **Parent:** [../AGENTS.md](../AGENTS.md) — repository entry point and agent navigation
+>
+> **Public / community-facing README:** [../README.md](../README.md) — product intro,
+> features, getting started, contributing, and license for the open-source community.
+> This file is the **internal monorepo developer guide**: layout, tooling choices,
+> getting-started commands, shared-package consumption, test patterns, and definition of done.
+
+The JoinOrigin frontend monorepo lives **inside `app/`**. The repo root contains
+only `AGENTS.md`, `README.md`, `LICENSE`, `.gitignore`, and `app/`; all monorepo
+components and configuration live here.
 
 Welcome to the JoinOrigin frontend monorepo: a shared cross-platform codebase that
 powers the **web app** (Next.js + React Native Web) and the **mobile app**
 (React Native, JS-side shell — no Expo yet), backed by **shared packages**
 (design tokens + base universal UI components).
 
-This skeleton follows the cross-platform frontend architecture documented in
+The cross-platform frontend architecture is documented in
 [`docs/patterns/frontend-architecture.md`](docs/patterns/frontend-architecture.md).
 
 ---
@@ -126,7 +40,7 @@ app/                      # Monorepo root (this directory)
 ├── tests/
 │   └── e2e/                  # Playwright end-to-end tests
 │       ├── playwright.config.ts  #   Web server on port 3100, chromium project
-│       └── tests/home.spec.ts    #   Homepage e2e assertions
+│       └── tests/*.spec.ts       #   Home, hero, pages, SEO, a11y, waitlist, leads specs
 ├── package.json              # Workspace root — task orchestration scripts
 ├── pnpm-workspace.yaml       # pnpm workspaces definition
 ├── turbo.json                # Turborepo task pipeline
@@ -136,15 +50,11 @@ app/                      # Monorepo root (this directory)
 └── README.md                 # This file
 ```
 
-> Note: `apps/`, `packages/`, and `tests/` also contain the UWP platform
-> READMEs that document the platform's application/package/test conventions;
-> the JoinOrigin components above are additive.
-
 ### Apps
 
 | App           | Stack                                                                  | Notes                                                                                                        |
 | ------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `apps/web`    | Next.js 14 (App Router), React 18, React Native Web, styled-components | Homepage renders **Welcome to JoinOrigin** using shared tokens/components                                    |
+| `apps/web`    | Next.js 14 (App Router), React 18, React Native Web, styled-components | Landing page (hero, ticker, waitlist modal) + menu pages rendered with shared tokens/components               |
 | `apps/mobile` | React Native 0.74 (bare, no Expo), React 18, styled-components/native  | JS-side shell: entry point, `App`, babel/metro/jest configs. Native `ios/`/`android/` scaffolds are deferred |
 
 ### Shared packages
@@ -200,7 +110,7 @@ pnpm --filter @joinorigin/web dev
 # → http://localhost:3000  (or the next available port)
 ```
 
-The homepage renders **Welcome to JoinOrigin** using shared tokens/components.
+The homepage renders the landing page using shared tokens/components.
 
 To pick a specific port:
 
@@ -260,9 +170,9 @@ pnpm test
 pnpm test:e2e
 ```
 
-Verify the homepage by opening `http://localhost:3000` — it should render
-**Welcome to JoinOrigin** with the shared design system (`Badge`, `Card`,
-`Text`, `Button` from `@joinorigin/ui`).
+Verify the homepage by opening `http://localhost:3000` — it should render the
+landing page (hero, partner ticker, waitlist modal) built from the shared
+design system (`@joinorigin/ui` components + `@joinorigin/design` tokens).
 
 ---
 
@@ -312,21 +222,22 @@ import { theme } from '@joinorigin/design';
 
 ### Unit tests (Jest)
 
-| Package           | Config                                                          | What it covers                                                        |
-| ----------------- | --------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `apps/web`        | `next/jest` + jsdom, `react-native` → `react-native-web` mapper | Homepage renders Welcome to JoinOrigin via shared components          |
-| `apps/mobile`     | `react-native` preset + `@testing-library/react-native`         | `App` renders the welcome screen via shared components                |
-| `packages/ui`     | `react-native` preset + `@testing-library/react-native`         | Component behaviour (labels, press handlers, disabled/loading states) |
-| `packages/design` | `ts-jest` (node)                                                | Token structure and brand values                                      |
+| Package           | Config                                                          | What it covers                                                              |
+| ----------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `apps/web`        | `next/jest` + jsdom, `react-native` → `react-native-web` mapper | Landing + menu pages, layout, SEO/analytics libs, icons, leads API          |
+| `apps/mobile`     | `react-native` preset + `@testing-library/react-native`         | `App` renders the welcome screen via shared components                      |
+| `packages/ui`     | `react-native` preset + `@testing-library/react-native`         | Component behaviour (labels, press handlers, disabled/loading states)       |
+| `packages/design` | `ts-jest` (node)                                                | Token structure and brand values                                            |
 
-Run all unit tests: `pnpm test` — currently **20 tests / 8 suites** across 4 packages:
-(design 4, ui 7, mobile 5, web 4).
+Run all unit tests: `pnpm test` — currently **162 tests / 30 suites** across 4
+packages: (design 6, ui 7, mobile 5, web 144).
 
 ### E2E tests (Playwright)
 
-`tests/e2e/tests/home.spec.ts` boots the web dev server on a dedicated port
+`tests/e2e/tests/*.spec.ts` boots the web dev server on a dedicated port
 (default **3100**, override with `JOINORIGIN_WEB_PORT`), opens the homepage,
-and asserts **Welcome to JoinOrigin** is visible.
+and asserts the landing experience end to end: hero, waitlist modal, leads API,
+menu pages, SEO, a11y, and responsive behaviour.
 
 ```bash
 pnpm test:e2e
@@ -346,18 +257,17 @@ Playwright browsers: `pnpm --filter @joinorigin/e2e exec playwright install chro
 
 ---
 
-## Definition of Done (Sprint 2 skeleton)
+## Definition of Done
 
-The skeleton is **complete** when every item below is green. The sprint-2
-implementation verified all of them:
+A change to this monorepo is **done** when every item below is green:
 
-- [x] `apps/web` dev server starts and renders **Welcome to JoinOrigin**
+- [x] `apps/web` dev server starts and renders the homepage
 - [x] `apps/mobile` JS-side structure exists and typechecks
-- [x] Shared `packages/design` + `packages/ui` exist with starter tokens/base components
+- [x] Shared `packages/design` + `packages/ui` provide design tokens / base components
 - [x] `pnpm lint` passes
 - [x] `pnpm typecheck` passes
-- [x] `pnpm test` (unit) passes — 20 tests / 8 suites
-- [x] `pnpm test:e2e` (Playwright) passes — 2 tests (chromium)
+- [x] `pnpm test` (unit) passes — 162 tests / 30 suites
+- [x] `pnpm test:e2e` (Playwright) passes — 100 tests (chromium)
 - [x] `README.md` documents layout, tooling, commands, and consumption pattern
 
 ---
