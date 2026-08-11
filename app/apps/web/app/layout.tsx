@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 
 import { AnalyticsProvider } from '../lib/analytics';
-import { JsonLd } from '../lib/seo/JsonLd';
+import { JsonLd } from '../lib/seo/JsonLdScript';
 import { organization, website } from '../lib/seo/jsonLd';
 import { SITE } from '../lib/seo/site';
 import Registry from './registry';

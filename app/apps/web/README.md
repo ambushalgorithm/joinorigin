@@ -61,8 +61,7 @@ apps/web/
 ├── lib/
 │   ├── analytics/              # Config-driven multi-tracker analytics (Plausible/Umami/GA4)
 │   │   └── README.md           # Config schema + mount contract (fe-seo mounts AnalyticsProvider)
-│   └── menuPages/              # Local SEO helpers: createMetadata + JSON-LD builders/JsonLd
-│                               # (fe-seo's lib/seo supersedes; imports switchable unchanged)
+│   └── seo/                    # SEO helpers: createMetadata + JSON-LD builders/JsonLdScript
 ├── public/
 │   └── assets/, fonts/         # Locally hosted logos, avatars, partners, hero, Inter+Urbanist
 ├── types/
