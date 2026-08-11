@@ -25,7 +25,7 @@ describe('Header', () => {
     renderHeader();
 
     expect(screen.getByText('JoinOrigin')).toBeInTheDocument();
-    for (const label of ['Features', 'Community', 'Pricing', 'Docs', 'About']) {
+    for (const label of ['Features', 'Community', 'Docs', 'About']) {
       expect(screen.getByText(label)).toBeInTheDocument();
     }
     expect(screen.getByText('Log In')).toBeInTheDocument();

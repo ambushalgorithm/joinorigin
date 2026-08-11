@@ -18,12 +18,11 @@ import { test, expect, type Page } from '@playwright/test';
 // dev server (keeps the pre-existing mobile-nav/responsive suite stable).
 test.describe.configure({ mode: 'serial' });
 
-/** Absolute page paths under test (9 HTML pages, discovery §4). */
+/** Absolute page paths under test (8 HTML pages, discovery §4; /pricing removed). */
 const PATHS = [
   '/',
   '/features',
   '/community',
-  '/pricing',
   '/docs',
   '/about',
   '/contact',
@@ -36,7 +35,6 @@ const EXPECTED_TITLES: Record<string, string> = {
   '/': 'JoinOrigin — Social Collaboration Network & Community OS',
   '/features': 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
   '/community': 'Community — Find Your People & Build Together | JoinOrigin',
-  '/pricing': 'Pricing — Free During Early Access | JoinOrigin',
   '/docs': 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
   '/about': 'About — The Operating System for Human Collaboration | JoinOrigin',
   '/contact': 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
@@ -157,7 +155,7 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
       await page.goto(path);
       const content =
         (await page.locator('meta[name="description"]').getAttribute('content')) ?? '';
-      // Fixed by fe-fix-menu-seo (TASK-220): all 9 page descriptions now
+      // Fixed by fe-fix-menu-seo (TASK-220): all 8 page descriptions now
       // respect the 160-char discovery §6 keyword rule.
       expect(content.length, `description length on ${path}`).toBeLessThanOrEqual(160);
     }
@@ -165,7 +163,7 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
 });
 
 test.describe('crawler entry points (arch §3.7–§3.9)', () => {
-  test('/sitemap.xml returns 200 and lists all 9 HTML pages', async ({ page }) => {
+  test('/sitemap.xml returns 200 and lists all 8 HTML pages', async ({ page }) => {
     const response = await page.goto('/sitemap.xml');
     expect(response?.status()).toBe(200);
     const contentType = response?.headers()['content-type'] ?? '';
@@ -238,10 +236,10 @@ test.describe('JSON-LD structured data (arch §3.6, discovery §7)', () => {
     }
   });
 
-  test('FAQPage JSON-LD on pages with a visible FAQ (features/community/pricing/docs)', async ({
+  test('FAQPage JSON-LD on pages with a visible FAQ (features/community/docs)', async ({
     page,
   }) => {
-    for (const path of ['/features', '/community', '/pricing', '/docs']) {
+    for (const path of ['/features', '/community', '/docs']) {
       await page.goto(path);
       const types = await ldTypes(page);
       expect(types, `FAQPage on ${path}`).toContain('FAQPage');

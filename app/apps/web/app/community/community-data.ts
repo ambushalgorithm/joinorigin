@@ -23,8 +23,8 @@ export const COMMUNITY_FAQ: FaqEntry[] = [
       'Yes. Ownership and sovereignty are core principles: your identity and data are portable, and the architecture is open and self-hostable.',
   },
   {
-    question: 'Are communities free?',
+    question: 'How do I find my people?',
     answer:
-      'Joining communities is free during early access. Future community and organization plans are announced with the beta — no lock-in.',
+      'Browse communities by interest, industry, or goal — AI, startups, trading, real estate, and local groups — then join the ones that match what you want to build.',
   },
 ];

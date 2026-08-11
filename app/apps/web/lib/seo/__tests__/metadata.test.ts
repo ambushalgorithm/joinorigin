@@ -134,13 +134,16 @@ describe('lib/seo JSON-LD builders', () => {
 
   it('faqPage mirrors visible question/answer pairs', () => {
     const data = faqPage([
-      { question: 'Is JoinOrigin free?', answer: 'Yes, during early access.' },
+      {
+        question: 'What can I do once I am in?',
+        answer: 'Build your profile and join communities.',
+      },
     ]);
     const entity = (
       data.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>
     )[0];
-    expect(entity.name).toBe('Is JoinOrigin free?');
-    expect(entity.acceptedAnswer.text).toBe('Yes, during early access.');
+    expect(entity.name).toBe('What can I do once I am in?');
+    expect(entity.acceptedAnswer.text).toBe('Build your profile and join communities.');
   });
 
   it('aboutPage and contactPage mount at their page URLs', () => {

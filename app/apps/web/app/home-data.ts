@@ -21,9 +21,9 @@ export const HOME_FAQ: FaqEntry[] = [
       'Discord is a chat app, LinkedIn finds professionals, and Reddit is for discussion. JoinOrigin combines them around the social graph — profiles, communities, chat, feed, projects, and opportunities all live together, so relationships turn into real collaboration.',
   },
   {
-    question: 'Is JoinOrigin free?',
+    question: 'What can I do once I am in?',
     answer:
-      'Yes, JoinOrigin is free during early access. Joining the waitlist costs nothing, and early members keep free access when the community OS launches. Future plan details are announced with the beta.',
+      'Build your profile, join communities around your interests, start projects, and invite the people you want to work with. The waitlist reserves your spot so your community is ready when early access opens.',
   },
   {
     question: 'When does early access start?',

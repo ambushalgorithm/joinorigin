@@ -41,15 +41,6 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
     ],
   },
   {
-    heading: 'Pricing',
-    links: [
-      {
-        path: '/pricing',
-        description: 'Free during early access; future plan outline.',
-      },
-    ],
-  },
-  {
     heading: 'Docs',
     links: [
       {
@@ -97,7 +88,7 @@ export function buildLlmsText(): string {
     '  Quant Trading, Real Estate, Local Communities).',
     '- Communication runs on the open Matrix protocol; identity, profiles,',
     '  communities, and the social graph are owned by JoinOrigin.',
-    '- Currently in early access; joining is free via the waitlist.',
+    '- Currently in early access; join via the waitlist.',
     '',
   ];
 

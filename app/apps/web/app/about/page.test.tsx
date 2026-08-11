@@ -51,7 +51,6 @@ describe('about page', () => {
       'href',
       '/community',
     );
-    expect(screen.getAllByRole('link', { name: 'Pricing' })[0]).toHaveAttribute('href', '/pricing');
     expect(screen.getAllByRole('link', { name: 'Docs' })[0]).toHaveAttribute('href', '/docs');
     expect(screen.getAllByRole('link', { name: 'About' })[0]).toHaveAttribute('href', '/about');
   });

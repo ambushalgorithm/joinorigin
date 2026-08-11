@@ -214,7 +214,7 @@ export function ContactView() {
             <FaqItem>
               <FaqQuestion>Can I get early access?</FaqQuestion>
               <FaqAnswer>
-                Yes — join the waitlist from the home page. Early members get free access when the
+                Yes — join the waitlist from the home page. Early members are the first in when the
                 community OS launches.
               </FaqAnswer>
             </FaqItem>
