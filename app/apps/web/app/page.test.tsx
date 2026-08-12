@@ -27,7 +27,7 @@ describe('home page', () => {
     expect(screen.getByTestId('start-project-button')).toBeInTheDocument();
     expect(
       screen.getByText(
-        'JoinOrigin brings your community, projects, and conversations into one calm workspace — so your best work finally has a home.',
+        'Create a profile that works like your resume, post your idea as a page, and start or join a community around anything — a small business, an AI startup, a book club, a 10k run.',
       ),
     ).toBeInTheDocument();
   });
@@ -41,7 +41,7 @@ describe('home page', () => {
   it('renders the partner logo ticker and slim footer', () => {
     render(<HomePage />);
     expect(screen.getByText('Trusted by teams at')).toBeInTheDocument();
-    expect(screen.getByText('Where teams finds their origin')).toBeInTheDocument();
+    expect(screen.getByText('Where teams find their origin')).toBeInTheDocument();
     expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
     expect(screen.getByText('Privacy')).toBeInTheDocument();
     expect(screen.getByText('Terms')).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe('home page', () => {
     // Exact-match the definition paragraph (the same phrase is also the first
     // clause of FAQ answer #1, so a substring query would match both).
     const definition = screen.getByText(
-      'JoinOrigin is a social collaboration network — a community OS that brings your people, communities, projects, and conversations into one calm workspace.',
+      'Origin is a social collaboration network — the community OS where your ideas, projects, and communities come together in one organized space. JoinOrigin is the brand and the network behind it.',
     );
     expect(definition.tagName).toBe('P');
     // The exact lowercase phrase must appear in the visible <main> copy

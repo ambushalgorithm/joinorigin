@@ -66,6 +66,16 @@ export function PrivacyView() {
         </Section>
 
         <Section>
+          <SectionTitle>Identity &amp; flexibility</SectionTitle>
+          <BodyCopy>
+            You choose how you show up on Origin. You can participate with a named account or stay
+            anonymous, and communities, chats, and idea pages can be open to everyone or gated by
+            their organizers. These options roll out over time — the point is that you decide what
+            you share and with whom.
+          </BodyCopy>
+        </Section>
+
+        <Section>
           <SectionTitle>Your rights</SectionTitle>
           <BodyCopy>
             You can request access to, correction of, or deletion of your data at any time. Because

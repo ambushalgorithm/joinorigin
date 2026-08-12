@@ -4,7 +4,7 @@
 
 # JoinOrigin
 
-### A social collaboration network — the community OS that brings your people, communities, projects, and conversations into one calm workspace.
+### Origin is a social collaboration network — the community OS where your ideas, projects, and communities come together in one organized space. JoinOrigin is the brand and the network behind the product.
 
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 [![build](https://img.shields.io/badge/build-passing-brightgreen.svg)](app/.github/workflows/ci.yml)
@@ -35,8 +35,8 @@
 
 ## ✨ What is JoinOrigin?
 
-JoinOrigin is a **social collaboration network** — a community OS that brings your
-people, communities, projects, and conversations into one calm workspace. Instead
+Origin is a **social collaboration network** — the community OS where your
+ideas, projects, and communities come together in one organized space. Instead
 of juggling five separate tools, your relationships live in one place, so nothing
 gets lost between them.
 
@@ -44,22 +44,22 @@ JoinOrigin is built around one belief: the most valuable asset is not content,
 software, or AI — it is the **network of people and the relationships they form**.
 Most platforms solve only one slice of the puzzle:
 
-| Platform | Solves |
-|---|---|
-| LinkedIn | finding professionals |
-| Discord | communicating |
-| Reddit | discussing interests |
-| GitHub | collaborating on code |
+| Platform    | Solves                |
+| ----------- | --------------------- |
+| LinkedIn    | finding professionals |
+| Discord     | communicating         |
+| Reddit      | discussing interests  |
+| GitHub      | collaborating on code |
 | TradingView | sharing trading ideas |
 
-JoinOrigin combines these ideas into a single platform focused on turning
+Origin combines these ideas into a single platform focused on turning
 relationships into **real-world outcomes** — communities, projects, companies,
 and opportunities.
 
-> 💡 **The JoinOrigin promise:** you don't have to fit your community into a
-> chat app or a feed. Build your profile, join communities around your
-> interests, start projects, and invite the people you want to work with — all
-> connected through one social graph.
+> 💡 **The Origin promise:** you don't have to fit your idea into a chat app or
+> a feed. Create a profile that works like your resume, post your idea as an
+> idea page, and start or join a community around anything — a small business,
+> an AI startup, a book club, a 10k run — all connected through one social graph.
 
 **Onboarding-first by design.** JoinOrigin introduces itself the way social
 platforms should: join the waitlist, reserve your spot, and walk in when your
@@ -80,50 +80,52 @@ scattered conversations, and opportunities that slip through the cracks.
 
 ### The JoinOrigin approach
 
-| Principle | What it means |
-|---|---|
-| 👥 **People first** | People join because of shared interests, goals, skills, and opportunities. |
-| 🌱 **Communities drive growth** | Communities become the center of engagement — members communicate, learn, collaborate, and build relationships. |
-| 🤝 **Collaboration creates value** | Projects, companies, investment opportunities, events, and ventures emerge naturally from communities. |
-| 🔓 **Ownership and sovereignty** | Your identity, relationships, communities, and data are yours. The architecture is open and avoids unnecessary lock-in. |
-| 🌐 **Open by default** | Communication runs on the open Matrix protocol, and the platform is designed to be self-hostable. |
+| Principle                          | What it means                                                                                                                                                                 |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 👥 **People first**                | People join because of shared interests, goals, skills, and opportunities.                                                                                                    |
+| 🌱 **Communities drive growth**    | Communities become the center of engagement — members communicate, learn, collaborate, and build relationships.                                                               |
+| 🤝 **Collaboration creates value** | Projects, companies, investment opportunities, events, and ventures emerge naturally from communities.                                                                        |
+| 🔓 **Ownership and sovereignty**   | Your identity, relationships, communities, and data are yours. The architecture is open and your network graph persists via Matrix.                                           |
+| 🌐 **Open by default**             | Communication runs on the open Matrix protocol, and the network graph and connections persist forever via Matrix. Origin is a hosted product — there is nothing to self-host. |
 
-JoinOrigin is organized around the **social graph** — the web of relationships
-between members. Every profile, community, and project connects through people,
-so your network becomes your operating system for collaboration.
+Origin is organized around the **social graph** — the web of relationships
+between members. Every profile, idea, community, and project connects through
+people, so your network becomes your operating system for collaboration.
 
 ---
 
 ## 🚀 Feature Highlights
 
-- **👤 User Profiles** — a person's identity, experience, interests, skills, reputation, and contributions.
-- **🏘️ Communities** — groups organized around interests, industries, goals, locations, or missions. AI Builders, Startup Founders, Quant Trading, Real Estate, Local Communities — or start your own.
+- **👤 User Profiles** — a person's identity, experience, interests, skills, reputation, and contributions, like a living resume.
+- **💡 Ideas** — post an idea page for anything — a small business, an AI startup, a book club, a 10k run — and find the people who want to build it.
+- **🏘️ Communities** — groups organized around interests, industries, goals, locations, or missions. Startup Founders, Small Businesses, Book Clubs, Community Organizations, Anyone with an Idea — or start your own.
 - **💬 Communication** — real-time chat, direct messaging, group discussions, and community conversations, built on the open Matrix protocol.
 - **📰 Feed** — a feed that surfaces the people and projects that matter to you, driven by your relationships.
 - **📦 Projects** — start a project, invite collaborators, and turn conversations into shared work (Phase 2 — Collaboration).
 - **🏢 Companies** — organize teams and ventures that grow out of your communities (Phase 3 — Organization).
-- **🔑 Data sovereignty** — your identity and data are portable, and the platform is designed to be self-hostable.
+- **🔑 Data sovereignty** — your identity and data are portable, and your network graph and connections persist forever via the open Matrix protocol.
 - **📲 Cross-platform** — a Next.js web app and a React Native Android app share the same design system and UI components.
 
 > 📍 **Where we are:** the web homescreen, waitlist onboarding, and community
-> pages are live. Projects and companies arrive in later phases of the
-> [roadmap](app/ROADMAP.md). Early-access members get the full roadmap as it ships.
+> pages are live. Projects and companies develop naturally through the
+> connections people make as they post ideas, visions, and work — the roadmap
+> ships the tools that make that easier over time.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Web** | [Next.js 16](https://nextjs.org/) (App Router, Turbopack) · [React 19](https://react.dev/) · [React Native Web](https://necolas.github.io/react-native-web/) · [styled-components](https://styled-components.com/) |
-| **Mobile** | [React Native](https://reactnative.dev/) 0.87 (Android — native `android/` project generated) |
-| **Language** | [TypeScript](https://www.typescriptlang.org/) 5.5 |
-| **Monorepo** | [pnpm](https://pnpm.io/) workspaces · [Turborepo](https://turborepo.com/) |
-| **Design system** | `@joinorigin/design` tokens · `@joinorigin/ui` universal components |
-| **Testing** | [Jest](https://jestjs.io/) + [React Testing Library](https://testing-library.com/) · [Playwright](https://playwright.dev/) end-to-end |
-| **SEO / LLM** | `sitemap.ts` · `robots.ts` · `llms.txt` · JSON-LD (Organization, WebSite, FAQPage, AboutPage, ContactPage) |
-| **Analytics** | Config-driven multi-tracker — Plausible / Umami / GA4 adapters |
-| **Communication** | Open [Matrix](https://matrix.org/) protocol |
+| Layer             | Technology                                                                                                                                                                                                         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Web**           | [Next.js 16](https://nextjs.org/) (App Router, Turbopack) · [React 19](https://react.dev/) · [React Native Web](https://necolas.github.io/react-native-web/) · [styled-components](https://styled-components.com/) |
+| **Mobile**        | [React Native](https://reactnative.dev/) 0.87 (Android — native `android/` project generated)                                                                                                                      |
+| **Language**      | [TypeScript](https://www.typescriptlang.org/) 5.5                                                                                                                                                                  |
+| **Monorepo**      | [pnpm](https://pnpm.io/) workspaces · [Turborepo](https://turborepo.com/)                                                                                                                                          |
+| **Design system** | `@joinorigin/design` tokens · `@joinorigin/ui` universal components                                                                                                                                                |
+| **Testing**       | [Jest](https://jestjs.io/) + [React Testing Library](https://testing-library.com/) · [Playwright](https://playwright.dev/) end-to-end                                                                              |
+| **SEO / LLM**     | `sitemap.ts` · `robots.ts` · `llms.txt` · JSON-LD (Organization, WebSite, FAQPage, AboutPage, ContactPage)                                                                                                         |
+| **Analytics**     | Config-driven multi-tracker — Plausible / Umami / GA4 adapters                                                                                                                                                     |
+| **Communication** | Open [Matrix](https://matrix.org/) protocol                                                                                                                                                                        |
 
 ---
 
@@ -200,14 +202,14 @@ upward.
 └──────────────────────────────────────────────────────────────────┘
 ```
 
-| Layer | Position | Responsibility |
-|---|---|---|
-| **Application** | Top (Layer 6) | Worker assemblies, agent workflows, custom tool plugins |
-| **Worker Platform** | Core (Layer 5) | Runtime, workspace, memory, planning, evaluation, governance, contracts |
-| **Platform Services** | Provider (Layer 4) | Concrete service implementations (database, cache, queue, storage) |
-| **Automation & Delivery** | Build/CI (Layer 3) | CI pipelines, test harnesses, artifact management, release orchestration |
-| **Infrastructure** | Host (Layer 2) | Container runtime, networking, compute, volumes, observability |
-| **Deployment** | Operations (Layer 1) | Environment definitions, service discovery, scaling, secrets management |
+| Layer                     | Position             | Responsibility                                                           |
+| ------------------------- | -------------------- | ------------------------------------------------------------------------ |
+| **Application**           | Top (Layer 6)        | Worker assemblies, agent workflows, custom tool plugins                  |
+| **Worker Platform**       | Core (Layer 5)       | Runtime, workspace, memory, planning, evaluation, governance, contracts  |
+| **Platform Services**     | Provider (Layer 4)   | Concrete service implementations (database, cache, queue, storage)       |
+| **Automation & Delivery** | Build/CI (Layer 3)   | CI pipelines, test harnesses, artifact management, release orchestration |
+| **Infrastructure**        | Host (Layer 2)       | Container runtime, networking, compute, volumes, observability           |
+| **Deployment**            | Operations (Layer 1) | Environment definitions, service discovery, scaling, secrets management  |
 
 **Key architectural properties:**
 
@@ -246,16 +248,16 @@ joinorigin/
 └── LICENSE                     # AGPL-3.0 (JoinOrigin Contributors)
 ```
 
-| Path | Purpose |
-|---|---|
-| [`app/`](app/README.md) | The JoinOrigin monorepo — apps, packages, docs, tests, infra |
-| [`app/apps/web/`](app/apps/web/README.md) | Web application (Next.js 16, landing pages, SEO, waitlist API) |
-| [`app/apps/mobile/`](app/apps/mobile/) | Mobile application (React Native 0.87, Android — native project generated) |
-| [`app/packages/`](app/packages/README.md) | Shared libraries: design tokens and universal UI components |
-| [`app/docs/`](app/docs/README.md) | Architecture, vision, whitepaper, security, governance, deployment |
-| [`app/tests/`](app/tests/README.md) | Cross-cutting integration and end-to-end test suites |
-| [`app/infra/`](app/infra/README.md) | Container and infrastructure definitions |
-| [`app/scripts/`](app/scripts/README.md) | Build, deploy, and utility scripts |
+| Path                                      | Purpose                                                                    |
+| ----------------------------------------- | -------------------------------------------------------------------------- |
+| [`app/`](app/README.md)                   | The JoinOrigin monorepo — apps, packages, docs, tests, infra               |
+| [`app/apps/web/`](app/apps/web/README.md) | Web application (Next.js 16, landing pages, SEO, waitlist API)             |
+| [`app/apps/mobile/`](app/apps/mobile/)    | Mobile application (React Native 0.87, Android — native project generated) |
+| [`app/packages/`](app/packages/README.md) | Shared libraries: design tokens and universal UI components                |
+| [`app/docs/`](app/docs/README.md)         | Architecture, vision, whitepaper, security, governance, deployment         |
+| [`app/tests/`](app/tests/README.md)       | Cross-cutting integration and end-to-end test suites                       |
+| [`app/infra/`](app/infra/README.md)       | Container and infrastructure definitions                                   |
+| [`app/scripts/`](app/scripts/README.md)   | Build, deploy, and utility scripts                                         |
 
 ---
 
@@ -319,5 +321,9 @@ see [LICENSE](LICENSE) for the full text.
 > modify, and run the software, and if you offer it as a networked service,
 > you share your improvements back with the community. It's the license that
 > keeps the social graph open.
+
+> **Hosted product:** Origin is a hosted product — the source code is open under
+> AGPL-3.0, but the service is run by JoinOrigin and is not self-hostable. Your
+> network graph and connections persist forever via the open Matrix protocol.
 
 Copyright © 2026 JoinOrigin Contributors.

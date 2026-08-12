@@ -28,11 +28,15 @@ import { DOCS_FAQ } from './docs-data';
 const CONCEPTS = [
   {
     title: 'Profiles',
-    body: 'Profiles are the portable identity of every member. They carry reputation and relationships across communities, projects, and companies, so who you are travels with you.',
+    body: 'Profiles are the portable identity of every member — like a living resume. They carry experience, skills, ideas, reputation, and relationships across every community and project, so who you are travels with you.',
   },
   {
     title: 'Communities',
-    body: 'Communities are groups of people who share interests, industries, goals, and opportunities. They are the center of engagement on JoinOrigin and the way members find each other.',
+    body: 'Communities are groups of people who share interests, industries, goals, and opportunities — around any idea. They are the center of engagement on Origin and the way members find each other.',
+  },
+  {
+    title: 'Ideas',
+    body: 'Ideas are the starting point of everything on Origin. Post an idea page for any idea — a small business, an AI startup, a book club, a 10k run — and the people who want to build it find you.',
   },
   {
     title: 'Communication',
@@ -75,7 +79,7 @@ const ROADMAP = [
   },
   {
     title: 'Phase 5 — Global Network',
-    body: 'Federation and open standards so the network connects across platforms. Success metric: a portable, interoperable social graph.',
+    body: 'Open standards and portability so the network connects across platforms. Success metric: a portable, interoperable social graph.',
   },
 ];
 
@@ -86,9 +90,9 @@ export function DocsView() {
         <PageHeader>
           <PageTitle>JoinOrigin docs</PageTitle>
           <PageLead>
-            JoinOrigin is a social collaboration network — an operating system for human
-            collaboration. These docs explain the core objects, the roadmap, and the architecture
-            behind the platform.
+            Origin is the product: a social collaboration network and community OS. JoinOrigin is
+            the brand and the network behind it. These docs explain the core objects, the roadmap,
+            and the architecture.
           </PageLead>
         </PageHeader>
 
@@ -121,12 +125,12 @@ export function DocsView() {
           <BodyCopy>
             The social graph is the product: every object hangs off the network of people and their
             relationships. Communication uses the open Matrix protocol (decentralized, E2EE), and
-            identity is portable so members own their data.
+            your network graph and connections persist forever, so your relationships stay portable.
           </BodyCopy>
           <BodyCopy>
-            The platform is built with React, TypeScript, and Next.js on the web, NestJS,
-            PostgreSQL, Redis, and Docker in the backend — with open architecture as a first-class
-            principle.
+            Origin is a hosted product built with React, TypeScript, and Next.js on the web, and
+            NestJS, PostgreSQL, Redis, and Docker in the backend. What stays open is the protocol
+            (Matrix), your data, and the source code under AGPL-3.0 — there is nothing to self-host.
           </BodyCopy>
         </Section>
 

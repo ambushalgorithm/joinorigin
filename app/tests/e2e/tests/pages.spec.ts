@@ -26,7 +26,10 @@ import { test, expect } from '@playwright/test';
 test.describe.configure({ mode: 'serial' });
 
 export const MENU_PAGES = [
-  { path: '/', h1: 'Where teams find their origin' },
+  {
+    path: '/',
+    h1: 'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home',
+  },
   { path: '/features', h1: 'Everything a community needs, in one calm workspace' },
   { path: '/community', h1: 'Where people find each other' },
   { path: '/docs', h1: 'JoinOrigin docs' },

@@ -13,17 +13,17 @@ export const HOME_FAQ: FaqEntry[] = [
   {
     question: 'What is JoinOrigin?',
     answer:
-      'JoinOrigin is a social collaboration network — a community OS that brings your people, communities, projects, and conversations into one calm workspace. Instead of five separate tools, your relationships live in one place, so nothing gets lost between them.',
+      'Origin is a social collaboration network — a community OS that brings your ideas, projects, and communities into one organized space. JoinOrigin is the brand and network behind it. Instead of five separate tools, your relationships live in one place, so nothing gets lost between them.',
   },
   {
     question: 'How is JoinOrigin different from Discord/LinkedIn/Reddit?',
     answer:
-      'Discord is a chat app, LinkedIn finds professionals, and Reddit is for discussion. JoinOrigin combines them around the social graph — profiles, communities, chat, feed, projects, and opportunities all live together, so relationships turn into real collaboration.',
+      'Discord is a chat app, LinkedIn finds professionals, and Reddit is for discussion. Origin combines them around the social graph — profiles, communities, chat, feed, projects, and opportunities all live together, so relationships turn into real collaboration.',
   },
   {
     question: 'What can I do once I am in?',
     answer:
-      'Build your profile, join communities around your interests, start projects, and invite the people you want to work with. The waitlist reserves your spot so your community is ready when early access opens.',
+      'Create a profile that works like a resume, post your idea as an idea page, start or join communities around anything, and invite the people you want to work with. The waitlist reserves your spot so your community is ready when early access opens.',
   },
   {
     question: 'When does early access start?',

@@ -65,14 +65,17 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
 
       // meta description present + non-empty + contains the brand OR the
       // anchor category keyword (discovery §5 descriptions are unique per
-      // page and some omit the literal brand, e.g. /community).
+      // page and some omit the literal brand, e.g. /community). Sprint 8
+      // copy makes "Origin" the product brand ("Origin" / "Origin's").
       const description = page.locator('meta[name="description"]');
       await expect(description).toHaveCount(1);
       const descContent = (await description.getAttribute('content')) ?? '';
       expect(descContent).not.toBe('');
       const descLower = descContent.toLowerCase();
       expect(
-        descLower.includes('joinorigin') || descLower.includes('social collaboration network'),
+        descLower.includes('joinorigin') ||
+          descLower.includes('origin') ||
+          descLower.includes('social collaboration network'),
       ).toBe(true);
 
       // Open Graph core tags.

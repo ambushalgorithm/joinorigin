@@ -5,6 +5,9 @@ import { theme } from '@joinorigin/design';
 
 import TypewriterHeading from './TypewriterHeading';
 
+const FULL_TEXT =
+  'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home';
+
 function renderHeading() {
   return render(
     <ThemeProvider theme={theme}>
@@ -25,13 +28,13 @@ describe('TypewriterHeading', () => {
   it('renders the full two-tone heading after typing completes', () => {
     renderHeading();
 
-    // 400ms delay + 30 chars × 35ms ≈ 1.45s.
+    // 400ms delay + 131 chars × 20ms ≈ 3.0s.
     act(() => {
-      jest.advanceTimersByTime(2000);
+      jest.advanceTimersByTime(4000);
     });
 
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading.textContent).toContain('Where teams find their origin');
+    expect(heading.textContent).toContain(FULL_TEXT);
     expect(heading.textContent).toContain('|');
   });
 
@@ -39,7 +42,7 @@ describe('TypewriterHeading', () => {
     renderHeading();
 
     act(() => {
-      jest.advanceTimersByTime(2000);
+      jest.advanceTimersByTime(4000);
     });
 
     const heading = screen.getByRole('heading', { level: 1 });
@@ -51,7 +54,7 @@ describe('TypewriterHeading', () => {
 
     // Before the 400ms delay elapses, the heading is being cleared/re-typed.
     expect(screen.getByRole('heading', { level: 1 }).textContent?.length).toBeLessThan(
-      'Where teams find their origin'.length,
+      FULL_TEXT.length,
     );
   });
 
@@ -59,20 +62,20 @@ describe('TypewriterHeading', () => {
     const { container } = renderHeading();
 
     act(() => {
-      jest.advanceTimersByTime(2000);
+      jest.advanceTimersByTime(4000);
     });
 
     const spans = container.querySelectorAll('h1 > span');
     expect(spans).toHaveLength(3);
 
-    // Body carries the first 23 chars on its own block line…
+    // Body carries the first 127 chars on its own block line…
     const body = spans[0];
-    expect(body.textContent).toBe('Where teams find their ');
+    expect(body.textContent).toBe(FULL_TEXT.slice(0, 127));
     expect(getComputedStyle(body).display).toBe('block');
 
     // …and the remainder renders in the accent span, capitalized (tweak 058007e).
     const accent = spans[1];
-    expect(accent.textContent).toBe('origin');
+    expect(accent.textContent).toBe('home');
     expect(getComputedStyle(accent).textTransform).toBe('capitalize');
   });
 });

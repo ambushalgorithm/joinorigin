@@ -14,7 +14,7 @@ import { CommunityView } from './community-view';
 export const metadata: Metadata = createMetadata({
   title: 'Community — Find Your People & Build Together | JoinOrigin',
   description:
-    'Join a growing social collaboration network of 2,400+ builders. Discover communities around AI, startups, and local interests — build together.',
+    "Join Origin's social collaboration network of 2,400+ builders. Start or join a community around any idea — a small business, an AI startup, a book club.",
   path: '/community',
   keywords: [
     'online communities',

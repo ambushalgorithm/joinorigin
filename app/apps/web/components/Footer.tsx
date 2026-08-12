@@ -192,7 +192,7 @@ export function Footer() {
             <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={24} height={24} />
             <Wordmark>JoinOrigin</Wordmark>
           </Brand>
-          <Tagline>Where teams finds their origin</Tagline>
+          <Tagline>Where teams find their origin</Tagline>
         </div>
         <Spacer />
         <RotatingBorderButton

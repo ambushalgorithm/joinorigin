@@ -9,10 +9,8 @@ import { useReducedMotion } from './motion';
 /**
  * Typewriter hero heading (spec §5.3).
  *
- * Copy: `Where teams find their origin` — the first 23 characters
- * (`Where teams find their `) render in `theme.colors.text` as a block line,
- * the remainder (`origin`) in the brand accent gradient, capitalized and
- * wrapped onto the next line. Types char-by-char at 35ms/char after a 400ms
+ * Copy: `Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home` — first 127 characters as block line, remainder (`home`) in accent gradient
+ * — capitalized and wrapped onto the next line. Types char-by-char at 35ms/char after a 400ms
  * delay, with a blinking caret (`|`) that persists after completion.
  *
  * Progressive enhancement: the full text is rendered by default (SSR / no-JS),
@@ -20,9 +18,10 @@ import { useReducedMotion } from './motion';
  * the full text renders instantly with no caret animation.
  */
 
-const FULL_TEXT = 'Where teams find their origin';
-const SPLIT_INDEX = 23;
-const CHAR_DELAY_MS = 35;
+const FULL_TEXT =
+  'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home';
+const SPLIT_INDEX = 127;
+const CHAR_DELAY_MS = 20;
 const START_DELAY_MS = 400;
 
 const blink = keyframes`

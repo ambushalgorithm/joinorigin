@@ -44,7 +44,7 @@ const PRINCIPLES = [
   },
   {
     title: 'Open Architecture',
-    body: 'Communication runs on the open Matrix protocol, and identity, profiles, communities, and the social graph are portable and user-owned.',
+    body: 'Communication runs on the open Matrix protocol, and identity, profiles, communities, and the social graph are portable and user-owned. Origin is hosted, so there is nothing to self-host.',
   },
 ];
 
@@ -55,8 +55,8 @@ export function AboutView() {
         <PageHeader>
           <PageTitle>The most valuable asset is your network</PageTitle>
           <PageLead>
-            JoinOrigin is a social collaboration network built on one belief: the most valuable
-            asset on the internet is not content or software — it is the network of people and the
+            Origin is a social collaboration network built on one belief: the most valuable asset on
+            the internet is not content or software — it is the network of people and the
             relationships they form.
           </PageLead>
         </PageHeader>
@@ -64,11 +64,10 @@ export function AboutView() {
         <Section>
           <SectionTitle>Our mission</SectionTitle>
           <BodyCopy>
-            JoinOrigin is building the operating system for human collaboration. Instead of five
-            separate tools for chat, communities, projects, and companies, your relationships live
-            in one calm workspace. The social graph is the product: profiles, communities,
-            conversations, posts, projects, companies, and opportunities all hang off the same
-            network of people.
+            Origin is building the operating system for human collaboration. Instead of five
+            separate tools for chat, communities, and projects, your relationships live in one calm
+            workspace. The social graph is the product: profiles, ideas, communities, conversations,
+            posts, projects, companies, and opportunities all hang off the same network of people.
           </BodyCopy>
           <BodyCopy>
             We are in early access today, with 2,400+ builders on the waitlist. As the platform
@@ -126,8 +125,9 @@ export function AboutView() {
             <FaqItem>
               <FaqQuestion>What is JoinOrigin?</FaqQuestion>
               <FaqAnswer>
-                JoinOrigin is a social collaboration network — a community OS that brings your
-                people, communities, projects, and conversations into one calm workspace.
+                Origin is a social collaboration network — a community OS that brings your ideas,
+                projects, and communities into one organized space. JoinOrigin is the brand and
+                network behind it.
               </FaqAnswer>
             </FaqItem>
             <FaqItem>
@@ -141,8 +141,9 @@ export function AboutView() {
             <FaqItem>
               <FaqQuestion>Is JoinOrigin open source?</FaqQuestion>
               <FaqAnswer>
-                The architecture is open: communication runs on the open Matrix protocol, and the
-                platform is designed to be self-hostable. See the docs for details.
+                The code is open under AGPL-3.0, and communication runs on the open Matrix protocol.
+                Origin is a hosted product run by JoinOrigin — there is nothing to self-host — and
+                your network graph stays portable. See the docs for details.
               </FaqAnswer>
             </FaqItem>
           </FaqSection>

@@ -14,7 +14,7 @@ import { FeaturesView } from './features-view';
 export const metadata: Metadata = createMetadata({
   title: 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
   description:
-    "Explore JoinOrigin's features: communities, chat, feed, projects, and opportunities — a social collaboration network built for real outcomes.",
+    "Explore Origin's features: profiles, ideas, communities, chat, feed, projects, and opportunities — a social collaboration network for real outcomes.",
   path: '/features',
   keywords: [
     'community platform features',
