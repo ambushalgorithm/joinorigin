@@ -19,8 +19,8 @@ import { useReducedMotion } from './motion';
  */
 
 const FULL_TEXT =
-  'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home';
-const SPLIT_INDEX = 127;
+  'Ideas, projects and community collaboration space — where teams and the best projects find their Origin.';
+const SPLIT_INDEX = FULL_TEXT.length - 7;
 const CHAR_DELAY_MS = 20;
 const START_DELAY_MS = 400;
 
