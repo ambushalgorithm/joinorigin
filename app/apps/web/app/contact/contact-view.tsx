@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import { Trans, useI18n } from '@joinorigin/i18n';
+
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
 import {
@@ -17,6 +19,7 @@ import {
   Section,
   SectionTitle,
 } from '../../components/menuPagePrimitives';
+import { faqEntries, faqNamespace } from '../../lib/faq';
 
 /**
  * Contact view (discovery §5.7, redesign spec sprint-8 §8.5): a web-local
@@ -25,6 +28,10 @@ import {
  * paths and FAQ shortcut. One `<h1>` (rendered by `MenuHero`) and semantic
  * sections. The join CTA band is the default waitlist band (DoD §11: only
  * privacy/terms use the contact override).
+ *
+ * i18n (arch-i18n §7.3): the mailto subject/body templates are localized with
+ * `{{name}}` / `{{email}}` / `{{message}}` interpolation; inline links use
+ * `<Trans>` numbered tags.
  */
 
 const CONTACT_EMAIL = 'hello@joinorigin.com';
@@ -117,14 +124,18 @@ const FormHint = styled.p`
 `;
 
 export function ContactView() {
+  const { t, dictionary } = useI18n();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const faq = faqEntries(faqNamespace(dictionary, 'contact'));
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const subject = encodeURIComponent(`JoinOrigin contact — ${name || 'new message'}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    const subject = encodeURIComponent(
+      t('contact.mailtoSubject', { name: name || t('contact.newMessage') }),
+    );
+    const body = encodeURIComponent(t('contact.mailtoBody', { name, email, message }));
     // Lower-risk option (discovery Assumption 4): compose a mailto message
     // instead of adding a new backend endpoint in Sprint 4.
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
@@ -133,9 +144,9 @@ export function ContactView() {
   return (
     <MenuPageShell
       hero={{
-        eyebrow: 'Contact',
-        title: 'Talk to us',
-        lead: 'Have a question about Origin — the social collaboration network — early access, or starting a community? We\u2019d love to hear from you.',
+        eyebrow: t('contact.hero.eyebrow'),
+        title: t('contact.hero.title'),
+        lead: t('contact.hero.lead'),
         scene: '/assets/menu/scenes/contact-scene.svg',
         accent: 'contact',
       }}
@@ -143,46 +154,43 @@ export function ContactView() {
       <PageContainer>
         <Reveal>
           <Section>
-            <SectionTitle>Send a message</SectionTitle>
+            <SectionTitle>{t('contact.sectionForm')}</SectionTitle>
             <form onSubmit={handleSubmit} data-testid="contact-form" noValidate={false}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
                 <Field>
-                  Name
+                  {t('contact.form.nameLabel')}
                   <Input
                     type="text"
                     name="name"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
-                    placeholder="Your name"
+                    placeholder={t('contact.form.namePlaceholder')}
                     autoComplete="name"
                   />
                 </Field>
                 <Field>
-                  Email
+                  {t('contact.form.emailLabel')}
                   <Input
                     type="email"
                     name="email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
-                    placeholder="you@example.com"
+                    placeholder={t('contact.form.emailPlaceholder')}
                     autoComplete="email"
                     required
                   />
                 </Field>
                 <Field>
-                  Message
+                  {t('contact.form.messageLabel')}
                   <TextArea
                     name="message"
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
-                    placeholder="How can we help?"
+                    placeholder={t('contact.form.messagePlaceholder')}
                   />
                 </Field>
-                <SubmitButton type="submit">Send via email</SubmitButton>
-                <FormHint>
-                  This form opens your email app with the message pre-filled. We reply within 2
-                  business days.
-                </FormHint>
+                <SubmitButton type="submit">{t('contact.form.submit')}</SubmitButton>
+                <FormHint>{t('contact.form.hint')}</FormHint>
               </div>
             </form>
           </Section>
@@ -190,18 +198,26 @@ export function ContactView() {
 
         <Reveal>
           <Section>
-            <SectionTitle>Other ways to reach us</SectionTitle>
+            <SectionTitle>{t('contact.sectionOther')}</SectionTitle>
             <BulletList>
               <ListItem>
-                Email: <AccentLink href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</AccentLink>
+                <Trans
+                  i18nKey="contact.otherEmail"
+                  values={{ email: CONTACT_EMAIL }}
+                  components={[<AccentLink key="mail" href={`mailto:${CONTACT_EMAIL}`} />]}
+                />
               </ListItem>
               <ListItem>
-                Check the <AccentLink href="/docs">docs</AccentLink> for concepts, roadmap, and
-                architecture.
+                <Trans
+                  i18nKey="contact.otherDocs"
+                  components={[<AccentLink key="docs" href="/docs" />]}
+                />
               </ListItem>
               <ListItem>
-                Read the <AccentLink href="/about">about</AccentLink> page for our mission and
-                principles.
+                <Trans
+                  i18nKey="contact.otherAbout"
+                  components={[<AccentLink key="about" href="/about" />]}
+                />
               </ListItem>
             </BulletList>
           </Section>
@@ -209,21 +225,14 @@ export function ContactView() {
 
         <Reveal>
           <Section>
-            <SectionTitle>Frequently asked questions</SectionTitle>
+            <SectionTitle>{t('common.faqHeading')}</SectionTitle>
             <FaqSection>
-              <FaqItem>
-                <FaqQuestion>How quickly do you reply?</FaqQuestion>
-                <FaqAnswer>
-                  We reply within 2 business days. For the fastest answer, check the docs FAQ first.
-                </FaqAnswer>
-              </FaqItem>
-              <FaqItem>
-                <FaqQuestion>Can I get early access?</FaqQuestion>
-                <FaqAnswer>
-                  Yes — join the waitlist from the home page. Early members are the first in when
-                  the community OS launches.
-                </FaqAnswer>
-              </FaqItem>
+              {faq.map((entry) => (
+                <FaqItem key={entry.question}>
+                  <FaqQuestion>{entry.question}</FaqQuestion>
+                  <FaqAnswer>{entry.answer}</FaqAnswer>
+                </FaqItem>
+              ))}
             </FaqSection>
           </Section>
         </Reveal>

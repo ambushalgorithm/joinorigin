@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import PrivacyPage, { metadata } from './page';
+import { renderWithI18n } from '../../test-utils';
 
 /**
  * Unit tests for the /privacy page (discovery §5.8): metadata export per the
@@ -18,7 +19,7 @@ describe('privacy page', () => {
   });
 
   it('renders a single h1 and plain-English privacy sections', () => {
-    render(<PrivacyPage />);
+    renderWithI18n(<PrivacyPage />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Privacy Policy');
@@ -31,7 +32,7 @@ describe('privacy page', () => {
   });
 
   it('emits BreadcrumbList JSON-LD only', () => {
-    render(<PrivacyPage />);
+    renderWithI18n(<PrivacyPage />);
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     expect(payloads).toHaveLength(1);

@@ -1,5 +1,7 @@
 'use client';
 
+import { Trans, useI18n } from '@joinorigin/i18n';
+
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
 import {
@@ -18,48 +20,47 @@ import {
  * plain-English legal copy. One `<h1>` (rendered by `MenuHero`) and semantic
  * sections. The hero lead reuses the existing "What we collect" first
  * paragraph verbatim (spec §6 copy table).
+ *
+ * i18n: all copy reads from the active locale dictionary; the contact body
+ * uses `<Trans>` numbered tags (arch-i18n §4.1).
  */
 
+const CONTACT_EMAIL = 'hello@joinorigin.com';
+
 export function PrivacyView() {
+  const { t } = useI18n();
+
   return (
     <MenuPageShell
       hero={{
-        eyebrow: 'Legal',
-        title: 'Privacy Policy',
-        lead: 'When you join the waitlist we collect your name and email address through the waitlist form (POST /api/leads). That is the only personal information we ask for during early access.',
+        eyebrow: t('privacy.hero.eyebrow'),
+        title: t('privacy.hero.title'),
+        lead: t('privacy.hero.lead'),
         scene: '/assets/menu/scenes/privacy-scene.svg',
         accent: 'privacy',
       }}
       ctaOverride={{
-        headline: 'Questions about Origin?',
-        subline: 'Our team replies within 2 business days.',
-        ctaLabel: 'Contact us',
+        headline: t('common.questionsAboutOrigin'),
+        subline: t('common.teamRepliesWithin2Days'),
+        ctaLabel: t('common.contactUs'),
       }}
     >
       <PageContainer>
         <Reveal>
           <Section>
-            <SectionTitle>What we collect</SectionTitle>
+            <SectionTitle>{t('privacy.sectionCollect')}</SectionTitle>
             <BulletList>
               <ListItem>
-                <SubTitle>Waitlist data</SubTitle>
-                <BodyCopy>
-                  Name and email, used only to tell you when early access opens and to invite you
-                  in.
-                </BodyCopy>
+                <SubTitle>{t('privacy.collect.waitlistDataTitle')}</SubTitle>
+                <BodyCopy>{t('privacy.collect.waitlistDataBody')}</BodyCopy>
               </ListItem>
               <ListItem>
-                <SubTitle>Analytics</SubTitle>
-                <BodyCopy>
-                  We run config-driven analytics (self-hosted Plausible by default) to understand
-                  aggregate usage of the site. A consent banner is planned for a later sprint.
-                </BodyCopy>
+                <SubTitle>{t('privacy.collect.analyticsTitle')}</SubTitle>
+                <BodyCopy>{t('privacy.collect.analyticsBody')}</BodyCopy>
               </ListItem>
               <ListItem>
-                <SubTitle>Basic technical data</SubTitle>
-                <BodyCopy>
-                  Standard server logs and browser metadata that help us keep the site reliable.
-                </BodyCopy>
+                <SubTitle>{t('privacy.collect.technicalDataTitle')}</SubTitle>
+                <BodyCopy>{t('privacy.collect.technicalDataBody')}</BodyCopy>
               </ListItem>
             </BulletList>
           </Section>
@@ -67,44 +68,37 @@ export function PrivacyView() {
 
         <Reveal>
           <Section>
-            <SectionTitle>How we use it</SectionTitle>
-            <BodyCopy>
-              We use the information we collect to operate the site, deliver early-access invites,
-              and improve the product. We do not sell your personal information.
-            </BodyCopy>
+            <SectionTitle>{t('privacy.sectionUse')}</SectionTitle>
+            <BodyCopy>{t('privacy.useBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Identity &amp; flexibility</SectionTitle>
-            <BodyCopy>
-              You choose how you show up on Origin. You can participate with a named account or stay
-              anonymous, and communities, chats, and idea pages can be open to everyone or gated by
-              their organizers. These options roll out over time — the point is that you decide what
-              you share and with whom.
-            </BodyCopy>
+            <SectionTitle>{t('privacy.sectionIdentity')}</SectionTitle>
+            <BodyCopy>{t('privacy.identityBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Your rights</SectionTitle>
-            <BodyCopy>
-              You can request access to, correction of, or deletion of your data at any time.
-              Because identity and data ownership are core JoinOrigin principles, we make it easy to
-              export or remove what belongs to you.
-            </BodyCopy>
+            <SectionTitle>{t('privacy.sectionRights')}</SectionTitle>
+            <BodyCopy>{t('privacy.rightsBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Contact</SectionTitle>
+            <SectionTitle>{t('privacy.sectionContact')}</SectionTitle>
             <BodyCopy>
-              Questions about this policy? Email{' '}
-              <AccentLink href="mailto:hello@joinorigin.com">hello@joinorigin.com</AccentLink> or
-              use the <AccentLink href="/contact">contact page</AccentLink>.
+              <Trans
+                i18nKey="privacy.contactBody"
+                values={{ email: CONTACT_EMAIL }}
+                components={[
+                  <AccentLink key="mail" href={`mailto:${CONTACT_EMAIL}`} />,
+                  <AccentLink key="contact" href="/contact" />,
+                ]}
+              />
             </BodyCopy>
           </Section>
         </Reveal>

@@ -5,9 +5,12 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
+import { useI18n } from '@joinorigin/i18n';
+
 import { DELAY, EASE, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
 import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
+import LanguageSwitcher from './LanguageSwitcher';
 
 /**
  * Sticky header (spec §5.1 + sprint-4-discovery §3.1).
@@ -19,15 +22,17 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
  *   discovery Assumption 6). Money is never mentioned — no Pricing page
  *   or pricing link (Facebook approach).
  * - `Log In` link + rotating-border `Get Started` CTA on the right.
+ * - Language switcher (Sprint 9): desktop right cluster before `Log In`;
+ *   mobile-panel row between the nav links and `Log In`.
  * - Mobile: hamburger toggles a dropdown panel; closes on link click,
  *   outside click, or ESC.
  */
 
 const NAV_LINKS = [
-  { label: 'Features', href: '/features' },
-  { label: 'Community', href: '/community' },
-  { label: 'Docs', href: '/docs' },
-  { label: 'About', href: '/about' },
+  { key: 'common.nav.features', href: '/features' },
+  { key: 'common.nav.community', href: '/community' },
+  { key: 'common.nav.docs', href: '/docs' },
+  { key: 'common.nav.about', href: '/about' },
 ];
 
 const fadeDown = keyframes`
@@ -103,7 +108,7 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xl}px;
-  margin-left: ${({ theme }) => theme.spacing.xxl}px;
+  margin-inline-start: ${({ theme }) => theme.spacing.xxl}px;
 
   @media (max-width: 768px) {
     display: none;
@@ -111,7 +116,7 @@ const Nav = styled.nav`
 
   @media (max-width: 1024px) {
     gap: ${({ theme }) => theme.spacing.lg}px;
-    margin-left: ${({ theme }) => theme.spacing.xl}px;
+    margin-inline-start: ${({ theme }) => theme.spacing.xl}px;
   }
 `;
 
@@ -242,6 +247,7 @@ const MobileLink = styled(Link)`
 export function Header() {
   const entered = useEntrance();
   const { openWaitlist } = useWaitlist();
+  const { t } = useI18n();
   const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -272,29 +278,30 @@ export function Header() {
   return (
     <StyledHeader ref={headerRef} $entered={entered} data-testid="header">
       <Inner>
-        <Brand href="/" aria-label="JoinOrigin home">
+        <Brand href="/" aria-label={t('header.brandAlt')}>
           <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={32} height={32} />
-          <Wordmark>JoinOrigin</Wordmark>
+          <Wordmark>{t('common.brand')}</Wordmark>
         </Brand>
 
-        <Nav aria-label="Primary">
+        <Nav aria-label={t('header.navAria')}>
           {NAV_LINKS.map((link) => (
-            <NavLink key={link.label} href={link.href}>
-              {link.label}
+            <NavLink key={link.href} href={link.href}>
+              {t(link.key)}
             </NavLink>
           ))}
         </Nav>
 
         <Right>
-          <LogInLink href="/#login">Log In</LogInLink>
+          <LanguageSwitcher variant="header" />
+          <LogInLink href="/#login">{t('header.logIn')}</LogInLink>
           <RotatingBorderButton
-            label="Get Started"
+            label={t('header.getStarted')}
             onClick={(event) => openWaitlist(event.currentTarget)}
             testID="get-started-button"
           />
           <Hamburger
             type="button"
-            aria-label="Toggle navigation"
+            aria-label={t('header.mobileMenuToggle')}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((open) => !open)}
             data-testid="mobile-menu-toggle"
@@ -323,15 +330,16 @@ export function Header() {
       {mobileOpen ? (
         <MobilePanel data-testid="mobile-menu">
           {NAV_LINKS.map((link) => (
-            <MobileLink key={link.label} href={link.href} onClick={closeMobile}>
-              {link.label}
+            <MobileLink key={link.href} href={link.href} onClick={closeMobile}>
+              {t(link.key)}
             </MobileLink>
           ))}
+          <LanguageSwitcher variant="mobile-panel" />
           <MobileLink href="/#login" onClick={closeMobile}>
-            Log In
+            {t('header.logIn')}
           </MobileLink>
           <RotatingBorderButton
-            label="Get Started"
+            label={t('header.getStarted')}
             onClick={(event) => {
               closeMobile();
               openWaitlist(event.currentTarget);

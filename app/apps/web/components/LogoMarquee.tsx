@@ -2,6 +2,8 @@
 
 import styled, { css, keyframes } from 'styled-components';
 
+import { useI18n } from '@joinorigin/i18n';
+
 import { DELAY, EASE, useEntrance } from './motion';
 
 /**
@@ -12,10 +14,7 @@ import { DELAY, EASE, useEntrance } from './motion';
  * `Trusted by teams at` label above.
  */
 
-const PARTNER_LOGOS = Array.from({ length: 5 }, (_, i) => ({
-  src: `/assets/partners/partner-${String(i + 1).padStart(2, '0')}.svg`,
-  alt: `JoinOrigin partner ${i + 1}`,
-}));
+const PARTNER_COUNT = 5;
 
 const REPEAT = 4;
 
@@ -104,12 +103,18 @@ const Logo = styled.img`
 
 export function LogoMarquee() {
   const entered = useEntrance();
+  const { t } = useI18n();
 
-  const sequence = Array.from({ length: REPEAT }, () => PARTNER_LOGOS).flat();
+  const partnerLogos = Array.from({ length: PARTNER_COUNT }, (_, i) => ({
+    src: `/assets/partners/partner-${String(i + 1).padStart(2, '0')}.svg`,
+    alt: t('home.marquee.partnerAlt', { number: i + 1 }),
+  }));
+
+  const sequence = Array.from({ length: REPEAT }, () => partnerLogos).flat();
 
   return (
     <Section $entered={entered} data-testid="logo-marquee">
-      <Label>Trusted by teams at</Label>
+      <Label>{t('home.marquee.label')}</Label>
       <MarqueeWrap>
         <Track>
           {sequence.map((logo, index) => (

@@ -1,26 +1,34 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
+
+import { useI18n } from '@joinorigin/i18n';
 
 import { ACCENT_GRADIENT } from './landingTokens';
 import { useReducedMotion } from './motion';
 
 /**
- * Typewriter hero heading (spec §5.3).
+ * Typewriter hero heading (spec §5.3, arch-i18n §7.1).
  *
- * Copy: `Ideas, projects and community collaboration space — where teams and the best projects find their Origin.` — first 97 characters as block line, remainder (`Origin.`) in accent gradient
- * — capitalized and wrapped onto the next line. Types char-by-char at 20ms/char after a 400ms
- * delay, with a blinking caret (`|`) that persists after completion.
+ * Copy comes from the active locale dictionary: `home.hero.headline` (full
+ * text) + `home.hero.headlineAccent` (gradient-accent fragment). EN headline
+ * is `Ideas, projects and community collaboration space — where teams and the
+ * best projects find their Origin.` with accent `Origin.` — first 97
+ * characters as block line, remainder in accent gradient on the next line.
  *
- * Progressive enhancement: the full text is rendered by default (SSR / no-JS),
- * then cleared and re-typed on client mount. With `prefers-reduced-motion`,
- * the full text renders instantly with no caret animation.
+ * Locale-aware split: the component finds the translated accent inside the
+ * translated headline (case-insensitive `indexOf`) and splits there — no
+ * hardcoded `SPLIT_INDEX = length - 7`. If the accent is absent from the
+ * headline the whole text renders unstyled (no crash). Types char-by-char at
+ * 20ms/char after a 400ms delay, with a blinking caret (`|`) that persists.
+ *
+ * Progressive enhancement: the full text is rendered by default (SSR /
+ * no-JS), then cleared and re-typed on client mount. With
+ * `prefers-reduced-motion`, the full text renders instantly with no caret
+ * animation.
  */
 
-const FULL_TEXT =
-  'Ideas, projects and community collaboration space — where teams and the best projects find their Origin.';
-const SPLIT_INDEX = FULL_TEXT.length - 7;
 const CHAR_DELAY_MS = 20;
 const START_DELAY_MS = 400;
 
@@ -92,7 +100,7 @@ const Accent = styled.span<{ $isVisible: boolean }>`
 
 const Caret = styled.span<{ $reduced: boolean }>`
   display: inline-block;
-  margin-left: 2px;
+  margin-inline-start: 2px;
   color: ${({ theme }) => theme.colors.primary};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   animation: ${({ $reduced }) =>
@@ -103,31 +111,29 @@ const Caret = styled.span<{ $reduced: boolean }>`
         `};
 `;
 
-function renderTyped(text: string) {
-  if (text.length <= SPLIT_INDEX) {
-    return (
-      <>
-        <Body $isBlock={false}>{text}</Body>
-        <Accent $isVisible={false}>{text.slice(SPLIT_INDEX)}</Accent>
-      </>
-    );
-  }
-  return (
-    <>
-      <Body $isBlock={true}>{text.slice(0, SPLIT_INDEX)}</Body>
-      <Accent $isVisible={true}>{text.slice(SPLIT_INDEX)}</Accent>
-    </>
-  );
-}
-
 export function TypewriterHeading() {
   const reduced = useReducedMotion();
-  const [visible, setVisible] = useState(FULL_TEXT);
+  const { t } = useI18n();
+  const fullText = t('home.hero.headline');
+  const accentText = t('home.hero.headlineAccent');
+
+  // Locale-aware split point (arch-i18n §7.1): the position of the accent
+  // fragment inside the translated headline. When the accent is not found,
+  // `splitIndex` falls back to `length - accentLength`; when the accent is
+  // empty the whole headline renders unstyled (no crash).
+  const splitIndex = useMemo(() => {
+    const index = accentText
+      ? fullText.toLocaleLowerCase().indexOf(accentText.toLocaleLowerCase())
+      : -1;
+    return index >= 0 ? index : fullText.length - accentText.length;
+  }, [fullText, accentText]);
+
+  const [visible, setVisible] = useState(fullText);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (reduced) {
-      setVisible(FULL_TEXT);
+      setVisible(fullText);
       return undefined;
     }
 
@@ -136,8 +142,8 @@ export function TypewriterHeading() {
       let index = 0;
       const interval = setInterval(() => {
         index += 1;
-        setVisible(FULL_TEXT.slice(0, index));
-        if (index >= FULL_TEXT.length) {
+        setVisible(fullText.slice(0, index));
+        if (index >= fullText.length) {
           clearInterval(interval);
         }
       }, CHAR_DELAY_MS);
@@ -149,7 +155,24 @@ export function TypewriterHeading() {
         clearTimeout(timerRef.current);
       }
     };
-  }, [reduced]);
+  }, [reduced, fullText]);
+
+  const renderTyped = (text: string) => {
+    if (text.length <= splitIndex) {
+      return (
+        <>
+          <Body $isBlock={false}>{text}</Body>
+          <Accent $isVisible={false}>{text.slice(splitIndex)}</Accent>
+        </>
+      );
+    }
+    return (
+      <>
+        <Body $isBlock={true}>{text.slice(0, splitIndex)}</Body>
+        <Accent $isVisible={true}>{text.slice(splitIndex)}</Accent>
+      </>
+    );
+  };
 
   return (
     <Heading>

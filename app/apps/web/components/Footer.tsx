@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled, { css, keyframes } from 'styled-components';
 
+import { useI18n } from '@joinorigin/i18n';
+
+import LanguageSwitcher from './LanguageSwitcher';
 import { DELAY, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
 import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
@@ -12,31 +15,32 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
  * Slim footer (spec §5.6 + sprint-4-discovery §3.2).
  *
  * Brand mark + wordmark, tagline, grouped nav (Product / Company / Legal),
- * `Join the waitlist` rotating-border CTA, and the copyright line. Stacks
- * vertically on mobile.
+ * `Join the waitlist` rotating-border CTA, the copyright line, and the
+ * language switcher (Sprint 9, compact variant aligned to the inline end).
+ * Stacks vertically on mobile.
  */
 
 const FOOTER_GROUPS = [
   {
-    title: 'Product',
+    titleKey: 'footer.groupProduct',
     links: [
-      { label: 'Features', href: '/features' },
-      { label: 'Community', href: '/community' },
-      { label: 'Docs', href: '/docs' },
+      { labelKey: 'common.nav.features', href: '/features' },
+      { labelKey: 'common.nav.community', href: '/community' },
+      { labelKey: 'common.nav.docs', href: '/docs' },
     ],
   },
   {
-    title: 'Company',
+    titleKey: 'footer.groupCompany',
     links: [
-      { label: 'About', href: '/about' },
-      { label: 'Contact', href: '/contact' },
+      { labelKey: 'common.nav.about', href: '/about' },
+      { labelKey: 'common.nav.contact', href: '/contact' },
     ],
   },
   {
-    title: 'Legal',
+    titleKey: 'footer.groupLegal',
     links: [
-      { label: 'Privacy', href: '/privacy' },
-      { label: 'Terms', href: '/terms' },
+      { labelKey: 'common.nav.privacy', href: '/privacy' },
+      { labelKey: 'common.nav.terms', href: '/terms' },
     ],
   },
 ] as const;
@@ -173,6 +177,15 @@ const FooterLink = styled(Link)`
   }
 `;
 
+const UtilityRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: ${({ theme }) => theme.spacing.lg}px;
+  margin-top: ${({ theme }) => theme.spacing.xl}px;
+  flex-wrap: wrap;
+`;
+
 const Copyright = styled.span`
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: 13px;
@@ -183,6 +196,7 @@ const Copyright = styled.span`
 export function Footer() {
   const entered = useEntrance();
   const { openWaitlist } = useWaitlist();
+  const { t } = useI18n();
 
   return (
     <StyledFooter $entered={entered} data-testid="footer">
@@ -190,29 +204,32 @@ export function Footer() {
         <div>
           <Brand>
             <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={24} height={24} />
-            <Wordmark>JoinOrigin</Wordmark>
+            <Wordmark>{t('common.brand')}</Wordmark>
           </Brand>
-          <Tagline>Where teams find their origin</Tagline>
+          <Tagline>{t('footer.tagline')}</Tagline>
         </div>
         <Spacer />
         <RotatingBorderButton
-          label="Join the waitlist"
+          label={t('common.joinWaitlist')}
           onClick={(event) => openWaitlist(event.currentTarget)}
           testID="footer-waitlist-button"
         />
-        <Groups aria-label="Footer">
+        <Groups aria-label={t('footer.navAria')}>
           {FOOTER_GROUPS.map((group) => (
-            <Group key={group.title}>
-              <GroupTitle>{group.title}</GroupTitle>
+            <Group key={group.titleKey}>
+              <GroupTitle>{t(group.titleKey)}</GroupTitle>
               {group.links.map((link) => (
                 <FooterLink key={link.href} href={link.href}>
-                  {link.label}
+                  {t(link.labelKey)}
                 </FooterLink>
               ))}
             </Group>
           ))}
         </Groups>
-        <Copyright>© 2026 JoinOrigin</Copyright>
+        <UtilityRow>
+          <Copyright>{t('footer.copyright')}</Copyright>
+          <LanguageSwitcher variant="footer" />
+        </UtilityRow>
       </Inner>
     </StyledFooter>
   );

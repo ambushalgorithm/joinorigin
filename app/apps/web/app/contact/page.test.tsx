@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import ContactPage, { metadata } from './page';
+import { renderWithI18n } from '../../test-utils';
 
 /**
  * Unit tests for the /contact page (discovery §5.7): metadata export per the
@@ -21,7 +22,7 @@ describe('contact page', () => {
   });
 
   it('renders a single h1, the contact form, and alternate paths', () => {
-    render(<ContactPage />);
+    renderWithI18n(<ContactPage />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Talk to us');
@@ -49,7 +50,7 @@ describe('contact page', () => {
       },
     });
 
-    render(<ContactPage />);
+    renderWithI18n(<ContactPage />);
     await user.type(screen.getByPlaceholderText('Your name'), 'Ada Lovelace');
     await user.type(screen.getByPlaceholderText('you@example.com'), 'ada@example.com');
     await user.type(
@@ -74,7 +75,7 @@ describe('contact page', () => {
   });
 
   it('renders ContactPage + BreadcrumbList JSON-LD', () => {
-    render(<ContactPage />);
+    renderWithI18n(<ContactPage />);
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     const types = payloads.map((p) => p['@type']);

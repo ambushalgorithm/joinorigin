@@ -125,7 +125,7 @@ export const Section = styled.section`
 export const SectionTitle = styled.h2`
   position: relative;
   margin: 0 0 ${({ theme }) => theme.spacing.md}px;
-  padding-left: 12px;
+  padding-inline-start: 12px;
   font-family: ${({ theme }) => theme.fontFamilies.display};
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   font-size: ${({ theme }) => theme.typography.heading}px;
@@ -136,7 +136,7 @@ export const SectionTitle = styled.h2`
   &::before {
     content: '';
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 3px;
@@ -282,7 +282,7 @@ export const TableRow = styled.tr`
 
 export const TableHeader = styled.th`
   padding: ${({ theme }) => theme.spacing.md}px;
-  text-align: left;
+  text-align: start;
   font-family: ${({ theme }) => theme.fontFamilies.display};
   font-size: ${({ theme }) => theme.typography.bodyLarge}px;
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
@@ -301,7 +301,7 @@ export const TableCell = styled.td`
 
 export const BulletList = styled.ul`
   margin: 0 0 ${({ theme }) => theme.spacing.md}px;
-  padding-left: ${({ theme }) => theme.spacing.lg}px;
+  padding-inline-start: ${({ theme }) => theme.spacing.lg}px;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: ${({ theme }) => theme.typography.bodyLarge}px;
   line-height: 1.7;
@@ -330,7 +330,7 @@ export const Quote = styled.blockquote`
   margin: 0;
   padding: ${({ theme }) => theme.spacing.lg}px;
   border: 1px solid ${({ theme }) => theme.colors.border};
-  border-left: 3px solid ${({ theme }) => theme.colors.primary};
+  border-inline-start: 3px solid ${({ theme }) => theme.colors.primary};
   background: ${({ theme }) => theme.colors.surface};
   border-radius: ${({ theme }) => theme.radius.lg}px;
   font-family: ${({ theme }) => theme.fontFamilies.display};

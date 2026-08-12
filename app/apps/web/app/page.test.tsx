@@ -1,17 +1,27 @@
-import { render, screen, within } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
+
+import { getDictionary } from '@joinorigin/i18n';
 
 import HomePage, { metadata } from './page';
-import { HOME_FAQ } from './home-data';
+import { faqEntries, faqNamespace } from '../lib/faq';
+import { renderWithI18n } from '../test-utils';
 
 /**
  * Full-page smoke tests for the JoinOrigin homescreen. The typewriter
- * re-types on mount (400ms delay + 35ms/char), so advance timers to reach
- * the final heading state.
+ * re-types on mount (400ms delay + 20ms/char), so advance timers to reach
+ * the final heading state. FAQ content is read from the EN dictionary (the
+ * same source the server layout seeds in real requests).
  */
+
+const EN_FAQ = faqEntries(faqNamespace(getDictionary('en'), 'home'));
+
+function renderPage() {
+  return renderWithI18n(<HomePage />);
+}
 
 describe('home page', () => {
   it('renders the sticky header with nav links and Get Started CTA', () => {
-    render(<HomePage />);
+    renderPage();
     expect(screen.getAllByText('JoinOrigin').length).toBeGreaterThan(0);
     // Nav labels appear in both the header nav and the grouped footer links.
     expect(screen.getAllByText('Features').length).toBeGreaterThan(0);
@@ -23,7 +33,7 @@ describe('home page', () => {
   });
 
   it('renders the typewriter hero heading and Start Project CTA', () => {
-    render(<HomePage />);
+    renderPage();
     expect(screen.getByTestId('start-project-button')).toBeInTheDocument();
     expect(
       screen.getByText(
@@ -33,13 +43,13 @@ describe('home page', () => {
   });
 
   it('renders the orbit visualization and member trust copy', () => {
-    render(<HomePage />);
+    renderPage();
     expect(screen.getByTestId('orbit-viz')).toBeInTheDocument();
     expect(screen.getByText('Join 2,400+ builders already collaborating')).toBeInTheDocument();
   });
 
   it('renders the partner logo ticker and slim footer', () => {
-    render(<HomePage />);
+    renderPage();
     expect(screen.getByText('Trusted by teams at')).toBeInTheDocument();
     expect(screen.getByText('Where teams find their origin')).toBeInTheDocument();
     expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
@@ -49,7 +59,7 @@ describe('home page', () => {
   });
 
   it('renders the visible definition paragraph with the exact phrase "social collaboration network"', () => {
-    render(<HomePage />);
+    renderPage();
     // Exact-match the definition paragraph (the same phrase is also the first
     // clause of FAQ answer #1, so a substring query would match both).
     const definition = screen.getByText(
@@ -62,11 +72,11 @@ describe('home page', () => {
   });
 
   it('renders the visible FAQ block with one h2 per question and a p answer', () => {
-    render(<HomePage />);
+    renderPage();
     const faqSection = screen.getByLabelText('Frequently asked questions');
     expect(faqSection.tagName).toBe('SECTION');
 
-    for (const faq of HOME_FAQ) {
+    for (const faq of EN_FAQ) {
       const question = within(faqSection).getByRole('heading', { level: 2, name: faq.question });
       expect(question).toBeInTheDocument();
       const answer = within(faqSection).getByText(faq.answer);
@@ -75,14 +85,14 @@ describe('home page', () => {
   });
 
   it('mirrors the visible FAQ block 1:1 in the FAQPage JSON-LD', () => {
-    render(<HomePage />);
+    renderPage();
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     const faq = payloads.find((p) => p['@type'] === 'FAQPage');
-    expect(faq?.mainEntity).toHaveLength(HOME_FAQ.length);
-    for (let i = 0; i < HOME_FAQ.length; i += 1) {
-      expect(faq?.mainEntity[i].name).toBe(HOME_FAQ[i].question);
-      expect(faq?.mainEntity[i].acceptedAnswer.text).toBe(HOME_FAQ[i].answer);
+    expect(faq?.mainEntity).toHaveLength(EN_FAQ.length);
+    for (let i = 0; i < EN_FAQ.length; i += 1) {
+      expect(faq?.mainEntity[i].name).toBe(EN_FAQ[i].question);
+      expect(faq?.mainEntity[i].acceptedAnswer.text).toBe(EN_FAQ[i].answer);
     }
   });
 

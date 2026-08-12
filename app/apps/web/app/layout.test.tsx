@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import type { Icons } from 'next/dist/lib/metadata/types/metadata-types';
 import type { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 
@@ -24,6 +24,16 @@ jest.mock('next/navigation', () => ({
   },
 }));
 
+// The i18n layout reads the middleware-forwarded locale header (arch-i18n
+// §6.3). Default to English for the layout tests; the value can be overridden
+// per test via the mutable `mockLocaleHeader`.
+const mockLocaleHeader: { value: string | null } = { value: 'en' };
+jest.mock('next/headers', () => ({
+  headers: () => ({
+    get: (name: string) => (name === 'x-joinorigin-locale' ? mockLocaleHeader.value : null),
+  }),
+}));
+
 // Rendering the root layout in jsdom legitimately nests <html> inside the
 // test container — a DOM-nesting warning, not a product defect. Keep the
 // output clean while asserting the render contract.
@@ -38,6 +48,15 @@ beforeAll(() => {
 });
 afterAll(() => {
   console.error = originalError;
+});
+
+// React 19 renders <html> as a document singleton; unmount roots between
+// tests and reset its attributes so each test observes its own render.
+afterEach(() => {
+  cleanup();
+  document.documentElement.removeAttribute('lang');
+  document.documentElement.removeAttribute('dir');
+  document.documentElement.removeAttribute('data-dir');
 });
 
 describe('root layout', () => {
@@ -80,24 +99,40 @@ describe('root layout', () => {
     expect(viewport).toMatchObject({ themeColor: SITE.themeColor, colorScheme: 'dark' });
   });
 
-  it('mounts AnalyticsProvider around children (fe-analytics contract)', () => {
-    render(
-      <RootLayout>
-        <main>page content</main>
-      </RootLayout>,
-    );
+  it('mounts AnalyticsProvider around children (fe-analytics contract)', async () => {
+    const element = await RootLayout({ children: <main>page content</main> });
+    render(element);
     expect(screen.getByText('page content')).toBeInTheDocument();
   });
 
-  it('renders Organization + WebSite JSON-LD once, server-side', () => {
-    const { container } = render(
-      <RootLayout>
-        <main>page content</main>
-      </RootLayout>,
-    );
+  it('renders Organization + WebSite JSON-LD once, server-side', async () => {
+    const element = await RootLayout({ children: <main>page content</main> });
+    const { container } = render(element);
     const scripts = container.querySelectorAll('script[type="application/ld+json"]');
     expect(scripts.length).toBe(2);
     const types = Array.from(scripts).map((s) => JSON.parse(s.textContent ?? '{}')['@type']);
     expect(types).toEqual(expect.arrayContaining(['Organization', 'WebSite']));
+  });
+
+  it('renders <html lang dir> from the middleware-forwarded locale (en)', async () => {
+    const element = await RootLayout({ children: <main>page content</main> });
+    render(element);
+    // The layout resolves the locale from the middleware-forwarded header and
+    // renders <html lang={locale} dir={dir}> (React 19 renders the <html>
+    // singleton into the document; the element tree carries the attributes).
+    expect(element.props.lang).toBe('en');
+    expect(element.props.dir).toBe('ltr');
+  });
+
+  it('renders <html dir="rtl" lang="ar"> when the locale header is ar (RTL flip)', async () => {
+    mockLocaleHeader.value = 'ar';
+    try {
+      const element = await RootLayout({ children: <main>page content</main> });
+      render(element);
+      expect(element.props.lang).toBe('ar');
+      expect(element.props.dir).toBe('rtl');
+    } finally {
+      mockLocaleHeader.value = 'en';
+    }
   });
 });

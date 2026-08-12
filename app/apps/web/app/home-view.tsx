@@ -5,6 +5,7 @@ import styled, { ThemeProvider as DomThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
+import { useI18n } from '@joinorigin/i18n';
 import { Screen } from '@joinorigin/ui';
 
 import Footer from '../components/Footer';
@@ -12,7 +13,9 @@ import Header from '../components/Header';
 import Hero from '../components/Hero';
 import LogoMarquee from '../components/LogoMarquee';
 import { WaitlistModalProvider } from '../components/WaitlistModal/WaitlistModalProvider';
-import { HOME_FAQ } from './home-data';
+import { faqEntries, faqNamespace } from '../lib/faq';
+import { JsonLd } from '../lib/seo/JsonLdScript';
+import { faqPage } from '../lib/seo/jsonLd';
 
 /**
  * JoinOrigin homescreen view (spec `app/docs/design/sprint-3-homescreen-spec.md`,
@@ -21,9 +24,13 @@ import { HOME_FAQ } from './home-data';
  * partner logo ticker, FAQ block (section + h2 per question + p answer),
  * slim footer, and the any-button waitlist modal backed by `POST /api/leads`.
  *
+ * i18n (arch-i18n §7.4): the FAQ content and all visible copy come from the
+ * active locale dictionary; the server wrapper `app/page.tsx` mirrors the same
+ * localized FAQ into the FAQPage JSON-LD.
+ *
  * Rendered by the server wrapper `app/page.tsx` which also emits the FAQPage
- * JSON-LD (mirrored 1:1 from `HOME_FAQ`, discovery §8.3) so crawlers and LLMs
- * see the structured data in the initial HTML.
+ * JSON-LD (mirrored 1:1, discovery §8.3) so crawlers and LLMs see the
+ * structured data in the initial HTML.
  *
  * Two theme providers are needed: the shared `@joinorigin/ui` components read
  * the `styled-components/native` theme context, while web-local landing
@@ -135,6 +142,9 @@ const FaqAnswer = styled.p`
 `;
 
 export function HomeView() {
+  const { t, dictionary } = useI18n();
+  const homeFaq = faqEntries(faqNamespace(dictionary, 'home'));
+
   return (
     <NativeThemeProvider theme={theme}>
       <DomThemeProvider theme={theme}>
@@ -146,16 +156,12 @@ export function HomeView() {
                 <Hero />
                 {/* Visible definition paragraph — exact phrase for LLM entity
                     clarity (discovery §5.1, §6). */}
-                <Definition>
-                  Origin is a social collaboration network — the community OS where your ideas,
-                  projects, and communities come together in one organized space. JoinOrigin is the
-                  brand and the network behind it.
-                </Definition>
+                <Definition>{t('home.definition')}</Definition>
                 <LogoMarquee />
                 {/* Visible FAQ block, mirrored 1:1 in FAQPage JSON-LD (§8.3). */}
                 <FaqSection aria-labelledby="home-faq-heading">
-                  <FaqHeading id="home-faq-heading">Frequently asked questions</FaqHeading>
-                  {HOME_FAQ.map((faq) => (
+                  <FaqHeading id="home-faq-heading">{t('common.faqHeading')}</FaqHeading>
+                  {homeFaq.map((faq) => (
                     <FaqItem key={faq.question}>
                       <FaqQuestion>{faq.question}</FaqQuestion>
                       <FaqAnswer>{faq.answer}</FaqAnswer>
@@ -168,6 +174,9 @@ export function HomeView() {
           </PageRoot>
           <GlobalStyles />
         </WaitlistModalProvider>
+        {/* FAQPage JSON-LD — localized mirror of the visible FAQ block
+            (arch-i18n §7.4), rendered into the initial SSR HTML. */}
+        <JsonLd data={faqPage(homeFaq)} />
       </DomThemeProvider>
     </NativeThemeProvider>
   );

@@ -24,6 +24,7 @@ export {
   useDir,
   setDictionary,
   getRegisteredDictionary,
+  _resetI18nForTests,
   type I18nProviderProps,
   type I18nContextValue,
 } from './provider';

@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
+import { I18nProvider, getDictionary } from '@joinorigin/i18n';
 
 import WaitlistModal from './WaitlistModal';
 import { LeadSubmitError } from './leadsApi';
@@ -11,11 +12,13 @@ import { LeadSubmitError } from './leadsApi';
 function renderModal(open = true) {
   const onClose = jest.fn();
   const view = render(
-    <NativeThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <WaitlistModal open={open} onClose={onClose} />
-      </ThemeProvider>
-    </NativeThemeProvider>,
+    <I18nProvider locale="en" dictionary={getDictionary('en')}>
+      <NativeThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <WaitlistModal open={open} onClose={onClose} />
+        </ThemeProvider>
+      </NativeThemeProvider>
+    </I18nProvider>,
   );
   return { ...view, onClose };
 }
@@ -123,11 +126,13 @@ describe('WaitlistModal', () => {
     document.body.appendChild(trigger);
 
     const view = render(
-      <NativeThemeProvider theme={theme}>
-        <ThemeProvider theme={theme}>
-          <WaitlistModal open onClose={onClose} trigger={trigger} />
-        </ThemeProvider>
-      </NativeThemeProvider>,
+      <I18nProvider locale="en" dictionary={getDictionary('en')}>
+        <NativeThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
+            <WaitlistModal open onClose={onClose} trigger={trigger} />
+          </ThemeProvider>
+        </NativeThemeProvider>
+      </I18nProvider>,
     );
 
     // Closing via ESC reports the close...
@@ -136,11 +141,13 @@ describe('WaitlistModal', () => {
 
     // ...and once the modal transitions to closed, focus returns to the trigger.
     view.rerender(
-      <NativeThemeProvider theme={theme}>
-        <ThemeProvider theme={theme}>
-          <WaitlistModal open={false} onClose={onClose} trigger={trigger} />
-        </ThemeProvider>
-      </NativeThemeProvider>,
+      <I18nProvider locale="en" dictionary={getDictionary('en')}>
+        <NativeThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
+            <WaitlistModal open={false} onClose={onClose} trigger={trigger} />
+          </ThemeProvider>
+        </NativeThemeProvider>
+      </I18nProvider>,
     );
 
     await waitFor(() => {

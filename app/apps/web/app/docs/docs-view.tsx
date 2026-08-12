@@ -1,5 +1,7 @@
 'use client';
 
+import { useI18n } from '@joinorigin/i18n';
+
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
 import {
@@ -16,80 +18,42 @@ import {
   Section,
   SectionTitle,
 } from '../../components/menuPagePrimitives';
-import { DOCS_FAQ } from './docs-data';
+import { faqEntries, faqNamespace } from '../../lib/faq';
+import { JsonLd } from '../../lib/seo/JsonLdScript';
+import { faqPage } from '../../lib/seo/jsonLd';
 
 /**
  * Docs view (discovery §5.5, redesign spec sprint-8 §8.3): concepts (one
  * definitional paragraph per core object), roadmap cards, architecture &
  * standards, and FAQ. One `<h1>` (rendered by `MenuHero`); each core object
  * keeps an `<h3>` inside its card for LLM extraction.
+ *
+ * i18n: all copy reads from the active locale dictionary (arch-i18n §7.4).
  */
 
-const CONCEPTS = [
-  {
-    title: 'Profiles',
-    body: 'Profiles are the portable identity of every member — like a living resume. They carry experience, skills, ideas, reputation, and relationships across every community and project, so who you are travels with you.',
-  },
-  {
-    title: 'Communities',
-    body: 'Communities are groups of people who share interests, industries, goals, and opportunities — around any idea. They are the center of engagement on Origin and the way members find each other.',
-  },
-  {
-    title: 'Ideas',
-    body: 'Ideas are the starting point of everything on Origin. Post an idea page for any idea — a small business, an AI startup, a book club, a 10k run — and the people who want to build it find you.',
-  },
-  {
-    title: 'Communication',
-    body: 'Communication covers real-time chat, direct messages, and group discussions. It runs on the open Matrix protocol, so conversations are portable and can be end-to-end encrypted.',
-  },
-  {
-    title: 'Feed',
-    body: 'The feed shows posts, updates, and opportunities from the people and communities you follow. It is a calm stream of what matters in your network, not an engagement machine.',
-  },
-  {
-    title: 'Projects',
-    body: 'Projects are collaborative efforts where members work together toward a shared outcome. They connect the social graph to real work inside and across communities.',
-  },
-  {
-    title: 'Companies',
-    body: 'Companies are ventures formed by members of the network. They bring team management and opportunity sharing into the same workspace where the relationships live.',
-  },
-  {
-    title: 'Opportunities',
-    body: 'Opportunities are jobs, partnerships, and investments surfaced through the social graph. The network matches the right opportunity to the right person at the right time.',
-  },
-];
+const CONCEPT_KEYS = [
+  'profiles',
+  'communities',
+  'ideas',
+  'communication',
+  'feed',
+  'projects',
+  'companies',
+  'opportunities',
+] as const;
 
-const ROADMAP = [
-  {
-    title: 'Phase 1 — Community Foundation',
-    body: 'Profiles, communities, chat, and the social graph. Success metric: members forming durable communities.',
-  },
-  {
-    title: 'Phase 2 — Collaboration',
-    body: 'Projects, shared workspaces, and tools that turn conversations into joint work. Success metric: communities shipping outcomes together.',
-  },
-  {
-    title: 'Phase 3 — Organization',
-    body: 'Companies and ventures formed by members, with team management and governance. Success metric: companies founded inside the network.',
-  },
-  {
-    title: 'Phase 4 — AI Collaboration',
-    body: 'AI workers that help communities coordinate, summarize, and match opportunities. Success metric: members collaborating with AI as equals.',
-  },
-  {
-    title: 'Phase 5 — Global Network',
-    body: 'Open standards and portability so the network connects across platforms. Success metric: a portable, interoperable social graph.',
-  },
-];
+const ROADMAP_PHASE_KEYS = ['phase1', 'phase2', 'phase3', 'phase4', 'phase5'] as const;
 
 export function DocsView() {
+  const { t, dictionary } = useI18n();
+  const faq = faqEntries(faqNamespace(dictionary, 'docs'));
+
   return (
     <MenuPageShell
       hero={{
-        eyebrow: 'Documentation',
-        title: 'JoinOrigin docs',
-        lead: 'Origin is the product: a social collaboration network and community OS. JoinOrigin is the brand and the network behind it. These docs explain the core objects, the roadmap, and the architecture.',
+        eyebrow: t('docs.hero.eyebrow'),
+        title: t('docs.hero.title'),
+        lead: t('docs.hero.lead'),
         scene: '/assets/menu/scenes/docs-scene.svg',
         accent: 'docs',
       }}
@@ -97,13 +61,13 @@ export function DocsView() {
       <PageContainer>
         <Reveal>
           <Section>
-            <SectionTitle>Concepts</SectionTitle>
+            <SectionTitle>{t('docs.sectionConcepts')}</SectionTitle>
             <CardGrid>
-              {CONCEPTS.map((concept, index) => (
-                <Reveal key={concept.title} delay={`${index * 0.08}s`}>
+              {CONCEPT_KEYS.map((concept, index) => (
+                <Reveal key={concept} delay={`${index * 0.08}s`}>
                   <Card>
-                    <CardTitle>{concept.title}</CardTitle>
-                    <CardBody>{concept.body}</CardBody>
+                    <CardTitle>{t(`common.objects.${concept}`)}</CardTitle>
+                    <CardBody>{t(`docs.concepts.${concept}.body`)}</CardBody>
                   </Card>
                 </Reveal>
               ))}
@@ -113,13 +77,13 @@ export function DocsView() {
 
         <Reveal>
           <Section>
-            <SectionTitle>Roadmap</SectionTitle>
+            <SectionTitle>{t('docs.sectionRoadmap')}</SectionTitle>
             <CardGrid>
-              {ROADMAP.map((phase, index) => (
-                <Reveal key={phase.title} delay={`${index * 0.08}s`}>
+              {ROADMAP_PHASE_KEYS.map((phase, index) => (
+                <Reveal key={phase} delay={`${index * 0.08}s`}>
                   <Card>
-                    <CardTitle>{phase.title}</CardTitle>
-                    <CardBody>{phase.body}</CardBody>
+                    <CardTitle>{t(`common.roadmap.${phase}Title`)}</CardTitle>
+                    <CardBody>{t(`docs.roadmap.${phase}.body`)}</CardBody>
                   </Card>
                 </Reveal>
               ))}
@@ -129,36 +93,29 @@ export function DocsView() {
 
         <Reveal>
           <Section>
-            <SectionTitle>Architecture &amp; standards</SectionTitle>
-            <BodyCopy>
-              The social graph is the product: every object hangs off the network of people and
-              their relationships. Communication uses the open Matrix protocol (decentralized,
-              E2EE), and your network graph and connections persist forever, so your relationships
-              stay portable.
-            </BodyCopy>
-            <BodyCopy>
-              Origin is a hosted product built with React, TypeScript, and Next.js on the web, and
-              NestJS, PostgreSQL, Redis, and Docker in the backend. What stays open is the protocol
-              (Matrix), your data, and the source code under AGPL-3.0 — there is nothing to
-              self-host.
-            </BodyCopy>
+            <SectionTitle>{t('docs.sectionArchitecture')}</SectionTitle>
+            <BodyCopy>{t('docs.architectureParagraph1')}</BodyCopy>
+            <BodyCopy>{t('docs.architectureParagraph2')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Frequently asked questions</SectionTitle>
+            <SectionTitle>{t('common.faqHeading')}</SectionTitle>
             <FaqSection>
-              {DOCS_FAQ.map((faq) => (
-                <FaqItem key={faq.question}>
-                  <FaqQuestion>{faq.question}</FaqQuestion>
-                  <FaqAnswer>{faq.answer}</FaqAnswer>
+              {faq.map((entry) => (
+                <FaqItem key={entry.question}>
+                  <FaqQuestion>{entry.question}</FaqQuestion>
+                  <FaqAnswer>{entry.answer}</FaqAnswer>
                 </FaqItem>
               ))}
             </FaqSection>
           </Section>
         </Reveal>
       </PageContainer>
+      {/* FAQPage JSON-LD — localized mirror of the visible FAQ block
+          (arch-i18n §7.4), rendered into the initial SSR HTML. */}
+      <JsonLd data={faqPage(faq)} />
     </MenuPageShell>
   );
 }

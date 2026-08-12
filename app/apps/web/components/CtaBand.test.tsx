@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
+import { I18nProvider, getDictionary } from '@joinorigin/i18n';
 
 import CtaBand from './CtaBand';
 import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
@@ -18,13 +19,15 @@ import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
 function renderBand(props: React.ComponentProps<typeof CtaBand> = {}) {
   return render(
-    <NativeThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <WaitlistModalProvider>
-          <CtaBand {...props} />
-        </WaitlistModalProvider>
-      </ThemeProvider>
-    </NativeThemeProvider>,
+    <I18nProvider locale="en" dictionary={getDictionary('en')}>
+      <NativeThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <WaitlistModalProvider>
+            <CtaBand {...props} />
+          </WaitlistModalProvider>
+        </ThemeProvider>
+      </NativeThemeProvider>
+    </I18nProvider>,
   );
 }
 

@@ -2,17 +2,20 @@ import { act, render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
+import { I18nProvider, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import TypewriterHeading from './TypewriterHeading';
 
 const FULL_TEXT =
   'Ideas, projects and community collaboration space — where teams and the best projects find their Origin.';
 
-function renderHeading() {
+function renderHeading(locale: Locale = 'en') {
   return render(
-    <ThemeProvider theme={theme}>
-      <TypewriterHeading />
-    </ThemeProvider>,
+    <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
+      <ThemeProvider theme={theme}>
+        <TypewriterHeading />
+      </ThemeProvider>
+    </I18nProvider>,
   );
 }
 

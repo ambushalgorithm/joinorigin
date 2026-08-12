@@ -77,9 +77,10 @@ export function useCountUp(target: number, options: UseCountUpOptions = {}): num
   return value;
 }
 
-/** Formats the count with a thousands separator (e.g. `2,400`). */
-export function formatCount(value: number): string {
-  return value.toLocaleString('en-US');
+/** Formats the count with a thousands separator in the active locale
+ *  (arch-i18n §9.1 — e.g. `2,400` en, `2.400` de). Defaults to `en-US`. */
+export function formatCount(value: number, locale = 'en'): string {
+  return value.toLocaleString(locale);
 }
 
 export default useCountUp;

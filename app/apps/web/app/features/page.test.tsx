@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import FeaturesPage, { metadata } from './page';
+import { renderWithI18n } from '../../test-utils';
 
 /**
  * Unit tests for the /features page (discovery §5.2): metadata export per the
@@ -21,7 +22,7 @@ describe('features page', () => {
   });
 
   it('renders a single h1 and the definitional intro', () => {
-    render(<FeaturesPage />);
+    renderWithI18n(<FeaturesPage />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Everything a community needs, in one calm workspace');
@@ -31,7 +32,7 @@ describe('features page', () => {
   });
 
   it('renders core-object cards, the comparison table, and the roadmap', () => {
-    render(<FeaturesPage />);
+    renderWithI18n(<FeaturesPage />);
     // "Core objects" appears twice after the redesign: as the hero eyebrow
     // chip and as the section title (spec sprint-8 §6 eyebrow table).
     expect(screen.getAllByText('Core objects').length).toBeGreaterThanOrEqual(1);
@@ -54,7 +55,7 @@ describe('features page', () => {
   });
 
   it('renders the FAQ block and mirrors it in FAQPage JSON-LD', () => {
-    render(<FeaturesPage />);
+    renderWithI18n(<FeaturesPage />);
     expect(screen.getByText('How is JoinOrigin different from Discord?')).toBeInTheDocument();
 
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));

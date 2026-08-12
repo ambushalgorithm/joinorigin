@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import styled, { css, keyframes } from 'styled-components';
 
+import { useI18n } from '@joinorigin/i18n';
+
 import { DELAY, EASE, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
 import TypewriterHeading from './TypewriterHeading';
@@ -17,10 +19,7 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
  * by the user-pushed tweak 058007e.)
  */
 
-const TRUST_AVATARS = Array.from({ length: 9 }, (_, i) => ({
-  src: `/assets/avatars/avatar-${String(i + 1).padStart(2, '0')}.png`,
-  alt: `JoinOrigin member ${i + 1}`,
-}));
+const TRUST_AVATAR_COUNT = 9;
 
 const ChevronIcon = (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -111,10 +110,10 @@ const TrustAvatar = styled(Image)`
   border-radius: 50%;
   border: 2px solid ${({ theme }) => theme.colors.primaryContrast};
   object-fit: cover;
-  margin-left: -12px;
+  margin-inline-start: -12px;
 
   &:first-child {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
 `;
 
@@ -128,6 +127,12 @@ const TrustCopy = styled.span`
 export function HeroLeft() {
   const entered = useEntrance();
   const { openWaitlist } = useWaitlist();
+  const { t } = useI18n();
+
+  const trustAvatars = Array.from({ length: TRUST_AVATAR_COUNT }, (_, i) => ({
+    src: `/assets/avatars/avatar-${String(i + 1).padStart(2, '0')}.png`,
+    alt: t('home.hero.trustAvatarsAlt', { number: i + 1 }),
+  }));
 
   return (
     <Column $entered={entered}>
@@ -135,7 +140,7 @@ export function HeroLeft() {
 
       <Actions>
         <RotatingBorderButton
-          label="Start Project"
+          label={t('home.hero.startProject')}
           size="large"
           fillDirection="right"
           icon={ChevronIcon}
@@ -144,14 +149,11 @@ export function HeroLeft() {
         />
       </Actions>
 
-      <Supporting>
-        Create a profile that works like your resume, post your idea as a page, and start or join a
-        community around anything — a small business, an AI startup, a book club, a 10k run.
-      </Supporting>
+      <Supporting>{t('home.hero.supporting')}</Supporting>
 
       <Trust>
         <TrustAvatars>
-          {TRUST_AVATARS.map((avatar) => (
+          {trustAvatars.map((avatar) => (
             <TrustAvatar
               key={avatar.src}
               src={avatar.src}
@@ -161,7 +163,7 @@ export function HeroLeft() {
             />
           ))}
         </TrustAvatars>
-        <TrustCopy>Join 2,400+ builders already collaborating</TrustCopy>
+        <TrustCopy>{t('home.hero.trustCopy')}</TrustCopy>
       </Trust>
     </Column>
   );
