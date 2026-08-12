@@ -88,12 +88,33 @@ export interface I18nProviderProps {
 }
 
 function applyDocumentDirection(locale: Locale): void {
-  if (typeof document === 'undefined') {
+  if (typeof globalThis === 'undefined') {
     return;
   }
-  document.documentElement.lang = locale;
-  document.documentElement.dir = getDir(locale);
-  document.documentElement.dataset.dir = getDir(locale);
+  const doc = (globalThis as {
+    document?: {
+      documentElement?: { lang: string; dir: string; dataset: Record<string, string> };
+    };
+  }).document;
+  const html = doc?.documentElement;
+  if (!html) {
+    return;
+  }
+  html.lang = locale;
+  html.dir = getDir(locale);
+  html.dataset.dir = getDir(locale);
+}
+
+function getNavigatorLanguage(): string | undefined {
+  if (typeof globalThis === 'undefined') {
+    return undefined;
+  }
+  return (globalThis as { navigator?: { language?: string } }).navigator?.language;
+}
+
+/** True in a web DOM environment (document exists). */
+function hasDocument(): boolean {
+  return typeof globalThis !== 'undefined' && 'document' in globalThis;
 }
 
 export function I18nProvider({
@@ -146,12 +167,17 @@ export function I18nProvider({
     applyDocumentDirection(locale);
   }, [locale]);
 
-  // Post-hydration client check: cookie wins; else navigator.language may
-  // differ from the server's Accept-Language resolution (arch-i18n §6.3).
-  // Run once on mount; `locale` here is the initial server-resolved value.
+  // Post-hydration client check (web only — mobile resolves the OS locale at
+  // startup and passes it as the initial prop): cookie wins; else
+  // navigator.language may differ from the server's Accept-Language
+  // resolution (arch-i18n §6.3). Run once on mount; `locale` here is the
+  // initial server-resolved value.
   useEffect(() => {
+    if (!hasDocument()) {
+      return; // React Native / server — the locale comes from props.
+    }
     const stored = getStoredLocale();
-    const candidate = stored ? resolveLocale(stored) : resolveLocale(navigator?.language);
+    const candidate = stored ? resolveLocale(stored) : resolveLocale(getNavigatorLanguage());
     if (candidate !== locale) {
       void setLocale(candidate).catch(() => {
         // Best-effort client correction; EN fallback still applies.

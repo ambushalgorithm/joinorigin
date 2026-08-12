@@ -2,13 +2,16 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from '@joinorigin/design';
+import { I18nProvider, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import HomeScreen from './HomeScreen';
 
-function renderScreen() {
+function renderScreen(locale: Locale = 'en') {
   return render(
     <ThemeProvider theme={theme}>
-      <HomeScreen />
+      <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
+        <HomeScreen />
+      </I18nProvider>
     </ThemeProvider>,
   );
 }
@@ -27,5 +30,12 @@ describe('HomeScreen', () => {
   it('renders the Welcome badge', async () => {
     const { getByText } = await renderScreen();
     expect(getByText('Welcome')).toBeTruthy();
+  });
+
+  it('renders translated copy for a locale override (arch-i18n §10.2)', async () => {
+    const { getByText } = await renderScreen('es');
+    // Spanish mobile.home.title — verify the localized string renders.
+    expect(getByText('Bienvenido a JoinOrigin')).toBeTruthy();
+    expect(getByText('Bienvenido')).toBeTruthy();
   });
 });
