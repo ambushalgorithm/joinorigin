@@ -19,7 +19,7 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
   {
     heading: 'Overview',
     links: [
-      { path: '/', description: 'What JoinOrigin is and how to join the waitlist.' },
+      { path: '/', description: 'What Origin is and how to join the waitlist.' },
       {
         path: '/about',
         description: 'Mission and principles — "the operating system for human collaboration".',
@@ -36,7 +36,7 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
       {
         path: '/features',
         description:
-          'Core objects — profiles, communities, chat, feed, projects, companies, opportunities.',
+          'Core objects — profiles, ideas, communities, chat, feed, projects, companies, opportunities.',
       },
     ],
   },
@@ -75,19 +75,20 @@ export function buildLlmsText(): string {
   const lines: string[] = [
     '# JoinOrigin',
     '',
-    '> JoinOrigin is a social collaboration network — a community OS where people',
-    '> discover each other, form communities, start projects, and build companies',
-    '> together. It combines profiles, communities, chat, feed, projects,',
+    '> Origin is a social collaboration network — a community OS where people',
+    '> discover each other, post ideas, form communities, and build projects',
+    '> together. It combines profiles, ideas, communities, chat, feed, projects,',
     '> companies, and opportunities in one platform built around the social graph.',
     '',
     'Key facts:',
     '',
-    '- JoinOrigin is not a chat app, project manager, or social feed — it is a',
+    '- Origin is not a chat app, project manager, or social feed — it is a',
     '  relationship network that enables collaboration.',
-    '- The platform is organized around Communities (AI Builders, Startup Founders,',
-    '  Quant Trading, Real Estate, Local Communities).',
-    '- Communication runs on the open Matrix protocol; identity, profiles,',
-    '  communities, and the social graph are owned by JoinOrigin.',
+    '- The platform is organized around Communities (Startup Founders, Small',
+    '  Businesses, Book Clubs, Community Organizations, Anyone with an Idea).',
+    '- Communication runs on the open Matrix protocol; Origin is a hosted product',
+    '  (nothing to self-host), and the network graph and connections persist',
+    '  forever via Matrix.',
     '- Currently in early access; join via the waitlist.',
     '',
   ];

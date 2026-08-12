@@ -18,9 +18,12 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
   await expect(page.getByTestId('get-started-button')).toBeVisible();
 
   // Hero left: typewriter heading completes to the full two-tone copy.
-  await expect(page.locator('h1')).toContainText('Where teams find their origin', {
-    timeout: 15_000,
-  });
+  await expect(page.locator('h1')).toContainText(
+    'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home',
+    {
+      timeout: 15_000,
+    },
+  );
   await expect(page.getByTestId('start-project-button')).toBeVisible();
 
   // Hero right: orbit visualization + count-up hub.
@@ -29,7 +32,7 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
 
   // Logo ticker + footer.
   await expect(page.getByText('Trusted by teams at')).toBeVisible();
-  await expect(page.getByText('Where teams finds their origin')).toBeVisible();
+  await expect(page.getByText('Where teams find their origin')).toBeVisible();
   await expect(page.getByTestId('footer-waitlist-button')).toBeVisible();
   await expect(page.getByText('© 2026 JoinOrigin')).toBeVisible();
 });

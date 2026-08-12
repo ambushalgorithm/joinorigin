@@ -135,8 +135,8 @@ export function ContactView() {
         <PageHeader>
           <PageTitle>Talk to us</PageTitle>
           <PageLead>
-            Have a question about the social collaboration network, early access, or starting a
-            community on JoinOrigin? We&rsquo;d love to hear from you.
+            Have a question about Origin — the social collaboration network — early access, or
+            starting a community? We&rsquo;d love to hear from you.
           </PageLead>
         </PageHeader>
 

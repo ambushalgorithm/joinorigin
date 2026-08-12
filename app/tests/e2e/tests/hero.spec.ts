@@ -10,7 +10,8 @@ import { expect, test } from '@playwright/test';
  * loading, and the no-external-CDN rule.
  */
 
-const FULL_TEXT = 'Where teams find their origin';
+const FULL_TEXT =
+  'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home';
 const FULL_TEXT_LENGTH = FULL_TEXT.length;
 
 test.describe('hero left — typewriter heading', () => {
@@ -33,9 +34,9 @@ test.describe('hero left — typewriter heading', () => {
       .poll(async () => page.locator('h1 span').count(), { timeout: 10_000 })
       .toBeGreaterThanOrEqual(3);
 
-    // The accent span carries the gradient remainder on its own line ("origin").
+    // The accent span carries the gradient remainder on its own line ("home").
     const accentText = await page.locator('h1 span').nth(1).textContent();
-    expect(accentText).toContain('origin');
+    expect(accentText).toContain('home');
 
     // Caret persists after completion.
     await expect(page.locator('h1')).toContainText('|');
@@ -57,7 +58,7 @@ test.describe('hero left — CTA, copy, trust', () => {
     await expect(startProject).toBeVisible();
     await expect(startProject).toContainText('Start Project');
 
-    await expect(page.getByText(/JoinOrigin brings your community/)).toBeVisible();
+    await expect(page.getByText(/Create a profile that works like your resume/)).toBeVisible();
     await expect(page.getByText('Join 2,400+ builders already collaborating')).toBeVisible();
 
     // 9 overlapping trust avatars + 9 orbit chips = 18 member images.

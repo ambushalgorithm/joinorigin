@@ -14,12 +14,12 @@ export const DOCS_FAQ: FaqEntry[] = [
   {
     question: 'What is Matrix?',
     answer:
-      'Matrix is an open, decentralized communication protocol with end-to-end encryption. JoinOrigin uses it so conversations are portable and interoperable.',
+      'Matrix is an open, decentralized communication protocol with end-to-end encryption. Origin runs on it, so conversations — and the network graph behind them — are portable and persist forever.',
   },
   {
     question: 'Is JoinOrigin self-hostable?',
     answer:
-      'Yes. The architecture is open and the platform is designed so communities and organizations can self-host or federate.',
+      'No. Origin is a hosted product run by JoinOrigin, so there is nothing to self-host. Your network graph and connections persist forever via the open Matrix protocol, and your data stays portable.',
   },
   {
     question: 'When is the MVP launching?',

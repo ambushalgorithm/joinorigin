@@ -38,11 +38,15 @@ import { FEATURES_FAQ } from './features-data';
 const CORE_OBJECTS = [
   {
     title: 'Profiles',
-    body: 'Every member has a portable identity that carries their reputation and relationships across communities, projects, and companies.',
+    body: 'A profile works like a living resume: it carries your experience, skills, and ideas — plus your reputation and relationships — across every community and project you join.',
+  },
+  {
+    title: 'Ideas',
+    body: 'Every idea gets a home. Post an idea page for anything — a small business, an AI startup, helping the homeless, a 10k run, a book club, a pee-wee league — and find the people who want to build it with you.',
   },
   {
     title: 'Communities',
-    body: 'Groups around interests, industries, and goals — AI Builders, Startup Founders, Quant Trading, Real Estate, Local — where members find each other.',
+    body: 'Groups around interests, industries, and goals — Startup Founders, Small Businesses, Book Clubs, Community Organizations, Anyone with an Idea — where members find each other.',
   },
   {
     title: 'Communication',
@@ -108,7 +112,7 @@ const ROADMAP_PHASES = [
   },
   {
     title: 'Phase 5 — Global Network',
-    body: 'Federation and open standards so the network connects across platforms, not just inside one silo.',
+    body: 'Open standards and portability so the network connects across platforms, not just inside one silo.',
   },
 ];
 
@@ -119,9 +123,9 @@ export function FeaturesView() {
         <PageHeader>
           <PageTitle>Everything a community needs, in one calm workspace</PageTitle>
           <PageLead>
-            JoinOrigin is a social collaboration network built around seven core objects: profiles,
-            communities, conversations, posts, projects, companies, and opportunities. Instead of
-            five separate tools, your relationships live in one place.
+            Origin is a social collaboration network built around eight core objects: profiles,
+            ideas, communities, conversations, posts, projects, companies, and opportunities.
+            Instead of five separate tools, your relationships live in one place.
           </PageLead>
         </PageHeader>
 
@@ -138,9 +142,9 @@ export function FeaturesView() {
         </Section>
 
         <Section>
-          <SectionTitle>Why JoinOrigin instead of five tools</SectionTitle>
+          <SectionTitle>Why Origin instead of five tools</SectionTitle>
           <BodyCopy>
-            Most platforms solve only one part of collaboration. JoinOrigin combines them around the
+            Most platforms solve only one part of collaboration. Origin combines them around the
             social graph — the relationships between members — so nothing gets lost between tools.
           </BodyCopy>
           <CompareTable data-testid="features-comparison-table">

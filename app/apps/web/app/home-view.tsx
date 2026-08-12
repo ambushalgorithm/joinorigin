@@ -147,8 +147,9 @@ export function HomeView() {
                 {/* Visible definition paragraph — exact phrase for LLM entity
                     clarity (discovery §5.1, §6). */}
                 <Definition>
-                  JoinOrigin is a social collaboration network — a community OS that brings your
-                  people, communities, projects, and conversations into one calm workspace.
+                  Origin is a social collaboration network — the community OS where your ideas,
+                  projects, and communities come together in one organized space. JoinOrigin is the
+                  brand and the network behind it.
                 </Definition>
                 <LogoMarquee />
                 {/* Visible FAQ block, mirrored 1:1 in FAQPage JSON-LD (§8.3). */}

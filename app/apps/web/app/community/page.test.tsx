@@ -33,7 +33,7 @@ describe('community page', () => {
     expect(screen.getByText('How we run the network')).toBeInTheDocument();
     expect(screen.getByText('People First')).toBeInTheDocument();
     expect(screen.getByText('Example communities')).toBeInTheDocument();
-    expect(screen.getByText('AI Builders')).toBeInTheDocument();
+    expect(screen.getByText('Book Clubs')).toBeInTheDocument();
     expect(screen.getByText('Startup Founders')).toBeInTheDocument();
     expect(screen.getByTestId('community-members-stat')).toHaveTextContent('2,400+');
   });
@@ -45,7 +45,7 @@ describe('community page', () => {
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     const faq = payloads.find((p) => p['@type'] === 'FAQPage');
-    expect(faq?.mainEntity).toHaveLength(4);
+    expect(faq?.mainEntity).toHaveLength(5);
     expect(payloads.some((p) => p['@type'] === 'BreadcrumbList')).toBe(true);
   });
 });

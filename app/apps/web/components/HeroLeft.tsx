@@ -145,8 +145,8 @@ export function HeroLeft() {
       </Actions>
 
       <Supporting>
-        JoinOrigin brings your community, projects, and conversations into one calm workspace — so
-        your best work finally has a home.
+        Create a profile that works like your resume, post your idea as a page, and start or join a
+        community around anything — a small business, an AI startup, a book club, a 10k run.
       </Supporting>
 
       <Trust>

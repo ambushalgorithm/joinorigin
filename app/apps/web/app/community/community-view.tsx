@@ -49,13 +49,13 @@ const VALUES = [
 ];
 
 const EXAMPLE_COMMUNITIES = [
-  'AI Builders',
   'Startup Founders',
-  'Quant Trading',
-  'Real Estate',
-  'Local Communities',
-  'Digital Nomads',
-  'Open Source Developers',
+  'Small Businesses',
+  'Book Clubs',
+  'Community Organizations',
+  'Run Clubs',
+  'Pee-wee Leagues',
+  'Anyone with an Idea',
 ];
 
 export function CommunityView() {
@@ -65,9 +65,9 @@ export function CommunityView() {
         <PageHeader>
           <PageTitle>Where people find each other</PageTitle>
           <PageLead>
-            JoinOrigin is a social collaboration network organized around communities — groups of
-            people who share interests, industries, goals, and opportunities. Communities are the
-            center of engagement.
+            Origin is a social collaboration network organized around communities — groups of people
+            who share interests, industries, goals, and opportunities. Communities are the center of
+            engagement.
           </PageLead>
         </PageHeader>
 

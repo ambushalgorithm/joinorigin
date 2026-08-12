@@ -10,7 +10,7 @@ import DocsPage, { metadata } from './page';
 describe('docs page', () => {
   it('exports metadata per the arch pattern (title, description, canonical, keywords)', () => {
     expect(metadata.title).toBe('Docs — Concepts, Roadmap & Architecture | JoinOrigin');
-    expect(metadata.description).toContain('how JoinOrigin works');
+    expect(metadata.description).toContain('how Origin works');
     expect(metadata.alternates?.canonical).toBe('http://localhost:3100/docs');
     expect(metadata.openGraph?.url).toBe('http://localhost:3100/docs');
     expect(metadata.keywords).toEqual(
@@ -23,7 +23,9 @@ describe('docs page', () => {
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('JoinOrigin docs');
-    expect(screen.getByText(/an operating system for human collaboration/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/the product: a social collaboration network and community OS/i),
+    ).toBeInTheDocument();
   });
 
   it('renders concept definitions for every core object', () => {
@@ -32,6 +34,7 @@ describe('docs page', () => {
     for (const concept of [
       'Profiles',
       'Communities',
+      'Ideas',
       'Communication',
       'Feed',
       'Projects',

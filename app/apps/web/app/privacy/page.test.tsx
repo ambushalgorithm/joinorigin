@@ -24,6 +24,7 @@ describe('privacy page', () => {
     expect(headings[0]).toHaveTextContent('Privacy Policy');
     expect(screen.getByText('What we collect')).toBeInTheDocument();
     expect(screen.getByText('Waitlist data')).toBeInTheDocument();
+    expect(screen.getByText('Identity & flexibility')).toBeInTheDocument();
     expect(screen.getByText('Your rights')).toBeInTheDocument();
     // "Contact" appears both as the page section title and the footer link.
     expect(screen.getAllByText('Contact').length).toBeGreaterThan(0);

@@ -26,14 +26,21 @@ describe('features page', () => {
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Everything a community needs, in one calm workspace');
     expect(
-      screen.getByText(/built around seven core objects: profiles, communities/i),
+      screen.getByText(/built around eight core objects: profiles, ideas, communities/i),
     ).toBeInTheDocument();
   });
 
   it('renders core-object cards, the comparison table, and the roadmap', () => {
     render(<FeaturesPage />);
     expect(screen.getByText('Core objects')).toBeInTheDocument();
-    for (const object of ['Profiles', 'Communities', 'Communication', 'Feed', 'Projects']) {
+    for (const object of [
+      'Profiles',
+      'Ideas',
+      'Communities',
+      'Communication',
+      'Feed',
+      'Projects',
+    ]) {
       expect(screen.getByText(object)).toBeInTheDocument();
     }
     const table = screen.getByTestId('features-comparison-table');
