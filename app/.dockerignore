@@ -1,0 +1,56 @@
+# JoinOrigin — Docker build context exclusions (monorepo root).
+#
+# NOTE: the Dockerfile COPYs the root + workspace manifest files explicitly
+# (package.json, pnpm-lock.yaml, pnpm-workspace.yaml, apps/*/package.json,
+# packages/*/package.json, tests/e2e/package.json) — those MUST stay in the
+# context, so only generated/heavy/agent dirs are excluded here.
+
+# Version control + agent infrastructure (never ship)
+.git
+.gitignore
+.gitattributes
+agent-core
+working-directories
+.opencode
+opencode.json
+
+# Dependencies — installed inside the image, never copied in
+node_modules
+**/node_modules
+
+# Next.js / Turbo build output
+.next
+**/.next
+.turbo
+**/.turbo
+*.tsbuildinfo
+
+# Env files (see apps/web/.env.example for the documented variables)
+.env
+.env.*
+!.env.example
+
+# Test / coverage / E2E runtime dirs
+coverage
+**/coverage
+playwright-report
+**/playwright-report
+test-results
+**/test-results
+.tmp-*
+**/.tmp-*
+
+# Build artifacts + logs
+artifacts
+dist
+build
+*.log
+npm-debug.log*
+
+# Native mobile build output (not needed for the web image)
+apps/mobile/android
+apps/mobile/node_modules
+
+# OS cruft
+.DS_Store
+Thumbs.db

@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Standalone output: emits a self-contained `.next/standalone` folder with
+  // the server, traced node_modules and the app dir — used by the Docker
+  // multi-stage build (app/Dockerfile) to produce a minimal runtime image.
+  output: 'standalone',
   transpilePackages: ['@joinorigin/design', '@joinorigin/ui'],
   // Allow dev-server access from 127.0.0.1 (used by Playwright e2e webServer
   // and local checks) so Next.js doesn't warn about cross-origin /_next assets.
