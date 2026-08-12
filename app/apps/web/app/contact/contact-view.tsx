@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import MenuPageShell from '../../components/MenuPageShell';
+import Reveal from '../../components/Reveal';
 import {
   AccentLink,
   BulletList,
@@ -13,18 +14,17 @@ import {
   FaqSection,
   ListItem,
   PageContainer,
-  PageHeader,
-  PageLead,
-  PageTitle,
   Section,
   SectionTitle,
 } from '../../components/menuPagePrimitives';
 
 /**
- * Contact view (discovery §5.7): a web-local contact form that composes a
- * `mailto:` message (discovery Assumption 4 — the lower-risk option, no new
- * backend in Sprint 4), plus alternate support paths and FAQ shortcut. One
- * `<h1>` and semantic sections.
+ * Contact view (discovery §5.7, redesign spec sprint-8 §8.5): a web-local
+ * contact form that composes a `mailto:` message (discovery Assumption 4 —
+ * the lower-risk option, no new backend in Sprint 4), plus alternate support
+ * paths and FAQ shortcut. One `<h1>` (rendered by `MenuHero`) and semantic
+ * sections. The join CTA band is the default waitlist band (DoD §11: only
+ * privacy/terms use the contact override).
  */
 
 const CONTACT_EMAIL = 'hello@joinorigin.com';
@@ -83,6 +83,7 @@ const TextArea = styled.textarea`
   }
 `;
 
+/** Primary gradient pill submit (spec sprint-8 §8.5 form restyle). */
 const SubmitButton = styled.button`
   display: inline-flex;
   align-items: center;
@@ -130,96 +131,102 @@ export function ContactView() {
   };
 
   return (
-    <MenuPageShell>
+    <MenuPageShell
+      hero={{
+        eyebrow: 'Contact',
+        title: 'Talk to us',
+        lead: 'Have a question about Origin — the social collaboration network — early access, or starting a community? We\u2019d love to hear from you.',
+        scene: '/assets/menu/scenes/contact-scene.svg',
+        accent: 'contact',
+      }}
+    >
       <PageContainer>
-        <PageHeader>
-          <PageTitle>Talk to us</PageTitle>
-          <PageLead>
-            Have a question about Origin — the social collaboration network — early access, or
-            starting a community? We&rsquo;d love to hear from you.
-          </PageLead>
-        </PageHeader>
+        <Reveal>
+          <Section>
+            <SectionTitle>Send a message</SectionTitle>
+            <form onSubmit={handleSubmit} data-testid="contact-form" noValidate={false}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
+                <Field>
+                  Name
+                  <Input
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    placeholder="Your name"
+                    autoComplete="name"
+                  />
+                </Field>
+                <Field>
+                  Email
+                  <Input
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    placeholder="you@example.com"
+                    autoComplete="email"
+                    required
+                  />
+                </Field>
+                <Field>
+                  Message
+                  <TextArea
+                    name="message"
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
+                    placeholder="How can we help?"
+                  />
+                </Field>
+                <SubmitButton type="submit">Send via email</SubmitButton>
+                <FormHint>
+                  This form opens your email app with the message pre-filled. We reply within 2
+                  business days.
+                </FormHint>
+              </div>
+            </form>
+          </Section>
+        </Reveal>
 
-        <Section>
-          <SectionTitle>Send a message</SectionTitle>
-          <form onSubmit={handleSubmit} data-testid="contact-form" noValidate={false}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
-              <Field>
-                Name
-                <Input
-                  type="text"
-                  name="name"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  placeholder="Your name"
-                  autoComplete="name"
-                />
-              </Field>
-              <Field>
-                Email
-                <Input
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  placeholder="you@example.com"
-                  autoComplete="email"
-                  required
-                />
-              </Field>
-              <Field>
-                Message
-                <TextArea
-                  name="message"
-                  value={message}
-                  onChange={(event) => setMessage(event.target.value)}
-                  placeholder="How can we help?"
-                />
-              </Field>
-              <SubmitButton type="submit">Send via email</SubmitButton>
-              <FormHint>
-                This form opens your email app with the message pre-filled. We reply within 2
-                business days.
-              </FormHint>
-            </div>
-          </form>
-        </Section>
+        <Reveal>
+          <Section>
+            <SectionTitle>Other ways to reach us</SectionTitle>
+            <BulletList>
+              <ListItem>
+                Email: <AccentLink href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</AccentLink>
+              </ListItem>
+              <ListItem>
+                Check the <AccentLink href="/docs">docs</AccentLink> for concepts, roadmap, and
+                architecture.
+              </ListItem>
+              <ListItem>
+                Read the <AccentLink href="/about">about</AccentLink> page for our mission and
+                principles.
+              </ListItem>
+            </BulletList>
+          </Section>
+        </Reveal>
 
-        <Section>
-          <SectionTitle>Other ways to reach us</SectionTitle>
-          <BulletList>
-            <ListItem>
-              Email: <AccentLink href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</AccentLink>
-            </ListItem>
-            <ListItem>
-              Check the <AccentLink href="/docs">docs</AccentLink> for concepts, roadmap, and
-              architecture.
-            </ListItem>
-            <ListItem>
-              Read the <AccentLink href="/about">about</AccentLink> page for our mission and
-              principles.
-            </ListItem>
-          </BulletList>
-        </Section>
-
-        <Section>
-          <SectionTitle>Frequently asked questions</SectionTitle>
-          <FaqSection>
-            <FaqItem>
-              <FaqQuestion>How quickly do you reply?</FaqQuestion>
-              <FaqAnswer>
-                We reply within 2 business days. For the fastest answer, check the docs FAQ first.
-              </FaqAnswer>
-            </FaqItem>
-            <FaqItem>
-              <FaqQuestion>Can I get early access?</FaqQuestion>
-              <FaqAnswer>
-                Yes — join the waitlist from the home page. Early members are the first in when the
-                community OS launches.
-              </FaqAnswer>
-            </FaqItem>
-          </FaqSection>
-        </Section>
+        <Reveal>
+          <Section>
+            <SectionTitle>Frequently asked questions</SectionTitle>
+            <FaqSection>
+              <FaqItem>
+                <FaqQuestion>How quickly do you reply?</FaqQuestion>
+                <FaqAnswer>
+                  We reply within 2 business days. For the fastest answer, check the docs FAQ first.
+                </FaqAnswer>
+              </FaqItem>
+              <FaqItem>
+                <FaqQuestion>Can I get early access?</FaqQuestion>
+                <FaqAnswer>
+                  Yes — join the waitlist from the home page. Early members are the first in when
+                  the community OS launches.
+                </FaqAnswer>
+              </FaqItem>
+            </FaqSection>
+          </Section>
+        </Reveal>
       </PageContainer>
     </MenuPageShell>
   );

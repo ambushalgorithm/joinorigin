@@ -7,12 +7,15 @@ import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 import { theme } from '@joinorigin/design';
 import { Screen } from '@joinorigin/ui';
 
+import CtaBand, { type CtaBandProps } from './CtaBand';
 import Footer from './Footer';
 import Header from './Header';
+import MenuHero, { type MenuHeroProps } from './MenuHero';
 import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
 /**
- * Shared shell for the Sprint 4 menu pages (TASK-215).
+ * Shared shell for the Sprint 4 menu pages (TASK-215), extended for the
+ * Sprint 8 redesign (TASK-247, spec sprint-8-menu-redesign §3).
  *
  * Mirrors the home page (`app/page.tsx`) wrapper pattern: both theme
  * providers (DOM styled-components + styled-components/native for the shared
@@ -20,7 +23,26 @@ import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
  * sticky `Header` (with the real page nav), `<main>` content, and the slim
  * grouped `Footer`. Pages render their content inside `<main>` so crawlers
  * and LLMs get a single semantic `<main>` landmark per page (arch §5.1).
+ *
+ * Sprint 8 additions (backwards compatible — when the props are absent the
+ * shell behaves exactly as before):
+ *  - `hero` renders the two-column `MenuHero` as the FIRST child of `<main>`
+ *    (it owns the page's single `<h1>`; pages must NOT render a second one).
+ *  - `showCtaBand` (default `true`) renders the join CTA band as the LAST
+ *    child of `<main>`.
+ *  - `ctaOverride` tightens the CTA band for legal pages (privacy/terms)
+ *    to link to `/contact` instead of opening the waitlist modal.
  */
+
+export interface MenuPageShellProps {
+  children: React.ReactNode;
+  /** Renders the hero band as the FIRST child of <main> (exactly one h1). */
+  hero?: MenuHeroProps;
+  /** Renders the join CTA band as the LAST child of <main>. Default true. */
+  showCtaBand?: boolean;
+  /** Optional headline/subline override for the CTA band (privacy/terms). */
+  ctaOverride?: CtaBandProps;
+}
 
 const GlobalStyles = createGlobalStyle`
   @property --border-angle {
@@ -66,7 +88,12 @@ const PageRoot = styled.div`
   background-color: ${theme.colors.background};
 `;
 
-export function MenuPageShell({ children }: { children: React.ReactNode }) {
+export function MenuPageShell({
+  children,
+  hero,
+  showCtaBand = true,
+  ctaOverride,
+}: MenuPageShellProps) {
   return (
     <NativeThemeProvider theme={theme}>
       <DomThemeProvider theme={theme}>
@@ -74,7 +101,11 @@ export function MenuPageShell({ children }: { children: React.ReactNode }) {
           <PageRoot data-testid="menu-page">
             <Screen style={{ padding: 0, backgroundColor: 'transparent' }}>
               <Header />
-              <main>{children}</main>
+              <main>
+                {hero ? <MenuHero {...hero} /> : null}
+                {children}
+                {showCtaBand ? <CtaBand {...ctaOverride} /> : null}
+              </main>
               <Footer />
             </Screen>
           </PageRoot>

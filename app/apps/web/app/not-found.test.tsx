@@ -3,7 +3,9 @@ import { render, screen } from '@testing-library/react';
 import NotFound from './not-found';
 
 /**
- * Unit tests for the styled JoinOrigin 404 boundary (TASK-208).
+ * Unit tests for the styled JoinOrigin 404 boundary (TASK-208), extended for
+ * the Sprint 8 redesign (spec sprint-8 §9): local not-found scene, fade-up
+ * entrance, and a secondary "Explore communities" ghost link.
  *
  * The boundary renders a stable styled page for unknown routes (including the
  * well-known-path probes browsers/DevTools fire at page load) so 404s no
@@ -24,11 +26,25 @@ describe('not-found boundary', () => {
     expect(screen.getByTestId('not-found-page')).toBeInTheDocument();
   });
 
+  it('renders the decorative not-found scene above the brand', () => {
+    const { container } = renderNotFound();
+    const scene = container.querySelector('img[src*="not-found-scene"]');
+    expect(scene).not.toBeNull();
+    expect(scene).toHaveAttribute('src', '/assets/menu/scenes/not-found-scene.svg');
+    expect(scene).toHaveAttribute('alt', '');
+  });
+
   it('renders a clear heading, supporting copy, and home CTA', () => {
     renderNotFound();
     expect(screen.getByRole('heading', { level: 1, name: 'Page not found' })).toBeInTheDocument();
     expect(screen.getByText(/doesn.t exist or has moved/i)).toBeInTheDocument();
     const homeLink = screen.getByRole('link', { name: 'Back to home' });
     expect(homeLink).toHaveAttribute('href', '/');
+  });
+
+  it('renders the secondary Explore communities link', () => {
+    renderNotFound();
+    const exploreLink = screen.getByRole('link', { name: /Explore communities/ });
+    expect(exploreLink).toHaveAttribute('href', '/community');
   });
 });

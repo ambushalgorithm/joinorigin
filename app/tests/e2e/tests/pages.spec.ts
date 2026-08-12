@@ -163,11 +163,11 @@ test.describe('LLM-crawler readable copy (arch §5.2)', () => {
       const wordCount = mainText.trim().split(/\s+/).length;
 
       // Arch §5.2: total page copy ≥ 150 words (goal for LLM extractability).
-      // KNOWN GAP — /contact (121 words) is below the design goal; tracked so
-      // the failing criterion is visible. Home passed 150 words once
-      // fe-fix-home (TASK-219) added the discovery §5.1 definition paragraph
-      // + FAQ block, so the '/' marker was removed; /contact needs a richer
-      // intro (not in the TASK-219/TASK-220 fix scope).
+      // KNOWN GAP — /contact sits at 148 words after the Sprint 8 redesign
+      // (hero lead + join CTA band, spec sprint-8-menu-redesign §4.2, closed
+      // the original 121-word gap). The remaining 2-word shortfall cannot be
+      // closed without adding page copy beyond the Sprint 8 copy-change-log
+      // (copy ownership = fe-origin-copy / TASK-246), so the marker stays.
       if (pageDef.path === '/contact') {
         test.fail();
       }
