@@ -1,0 +1,508 @@
+{
+  "dir": "ltr",
+  "common": {
+    "brand": "JoinOrigin",
+    "faqHeading": "Pertanyaan yang sering diajukan",
+    "contactUs": "Hubungi kami",
+    "questionsAboutOrigin": "Punya pertanyaan tentang Origin?",
+    "teamRepliesWithin2Days": "Tim kami membalas dalam 2 hari kerja.",
+    "legal": "Legal",
+    "joinWaitlist": "Gabung daftar tunggu",
+    "nav": {
+      "features": "Fitur",
+      "community": "Komunitas",
+      "docs": "Dokumen",
+      "about": "Tentang",
+      "contact": "Kontak",
+      "privacy": "Privasi",
+      "terms": "Ketentuan"
+    },
+    "objects": {
+      "profiles": "Profil",
+      "ideas": "Ide",
+      "communities": "Komunitas",
+      "communication": "Komunikasi",
+      "feed": "Linimasa",
+      "projects": "Proyek",
+      "companies": "Perusahaan",
+      "opportunities": "Peluang"
+    },
+    "values": {
+      "peopleFirst": "Utamakan Manusia",
+      "communitiesDriveGrowth": "Komunitas Mendorong Pertumbuhan",
+      "collaborationCreatesValue": "Kolaborasi Menciptakan Nilai"
+    },
+    "roadmap": {
+      "phase1Title": "Fase 1 — Fondasi Komunitas",
+      "phase2Title": "Fase 2 — Kolaborasi",
+      "phase3Title": "Fase 3 — Organisasi",
+      "phase4Title": "Fase 4 — Kolaborasi AI",
+      "phase5Title": "Fase 5 — Jaringan Global"
+    }
+  },
+  "header": {
+    "brandAlt": "Beranda JoinOrigin",
+    "navAria": "Utama",
+    "logIn": "Masuk",
+    "getStarted": "Mulai",
+    "mobileMenuToggle": "Buka/tutup navigasi"
+  },
+  "footer": {
+    "tagline": "Tempat tim menemukan Origin mereka",
+    "groupProduct": "Produk",
+    "groupCompany": "Perusahaan",
+    "groupLegal": "Legal",
+    "navAria": "Footer",
+    "copyright": "© 2026 JoinOrigin"
+  },
+  "home": {
+    "hero": {
+      "headline": "Ruang kolaborasi ide, proyek, dan komunitas — tempat tim dan proyek terbaik menemukan Origin mereka.",
+      "headlineAccent": "Origin.",
+      "startProject": "Mulai Proyek",
+      "supporting": "Buat profil yang berfungsi seperti CV Anda, unggah ide Anda sebagai halaman, dan mulai atau ikuti komunitas untuk apa pun — bisnis kecil, startup AI, klub buku, lari 10k.",
+      "trustAvatarsAlt": "Anggota JoinOrigin {{number}}",
+      "trustCopy": "Gabung dengan 2.400+ pembangun yang sudah berkolaborasi"
+    },
+    "definition": "Origin adalah jaringan kolaborasi sosial — OS komunitas tempat ide, proyek, dan komunitas Anda berkumpul dalam satu ruang yang terorganisir. JoinOrigin adalah merek dan jaringan di baliknya.",
+    "marquee": {
+      "label": "Dipercaya oleh tim di",
+      "partnerAlt": "Mitra JoinOrigin {{number}}"
+    },
+    "faq": {
+      "q1": {
+        "question": "Apa itu JoinOrigin?",
+        "answer": "Origin adalah jaringan kolaborasi sosial — OS komunitas yang menyatukan ide, proyek, dan komunitas Anda dalam satu ruang yang terorganisir. JoinOrigin adalah merek dan jaringan di baliknya. Alih-alih lima alat terpisah, relasi Anda hidup dalam satu tempat, sehingga tidak ada yang hilang di antaranya."
+      },
+      "q2": {
+        "question": "Apa perbedaan JoinOrigin dengan Discord/LinkedIn/Reddit?",
+        "answer": "Discord adalah aplikasi obrolan, LinkedIn mencari profesional, dan Reddit untuk diskusi. Origin menggabungkan semuanya dalam social graph — profil, komunitas, obrolan, linimasa, proyek, dan peluang hidup bersama, sehingga relasi berubah menjadi kolaborasi nyata."
+      },
+      "q3": {
+        "question": "Apa yang bisa saya lakukan setelah masuk?",
+        "answer": "Buat profil yang berfungsi seperti CV, unggah ide Anda sebagai halaman ide, mulai atau ikuti komunitas untuk apa pun, dan undang orang yang ingin Anda ajak bekerja sama. Daftar tunggu mengamankan tempat Anda sehingga komunitas Anda siap saat akses awal dibuka."
+      },
+      "q4": {
+        "question": "Kapan akses awal dimulai?",
+        "answer": "Akses awal dibuka secara bertahap seiring platform berkembang menuju peluncuran. Bergabung dengan daftar tunggu sekarang mengamankan tempat Anda, dan Anda akan diundang begitu komunitas Anda siap."
+      },
+      "q5": {
+        "question": "Bagaimana cara saya bergabung?",
+        "answer": "Klik Mulai di mana saja di halaman ini, masukkan nama dan email Anda, maka Anda masuk daftar tunggu. Anda akan menerima undangan saat akses awal sampai ke giliran Anda."
+      }
+    }
+  },
+  "waitlist": {
+    "close": "Tutup",
+    "heading": "Gabung daftar tunggu",
+    "subcopy": "Jadilah yang pertama dalam antrean akses awal. Kami akan mengirim email saat ruang kerja Anda siap.",
+    "nameLabel": "Nama",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "Email",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Minta akses",
+    "submitting": "Mengirim",
+    "legalNote": "Tanpa spam. Berhenti berlangganan kapan saja.",
+    "successHeading": "Anda masuk daftar!",
+    "successCopy": "Kami akan mengirim email saat ruang kerja Anda siap.",
+    "done": "Selesai",
+    "errors": {
+      "generic": "Terjadi kesalahan. Silakan coba lagi.",
+      "nameEmailRequired": "Nama dan email wajib diisi.",
+      "nameRequired": "Nama wajib diisi.",
+      "nameTooLong": "Nama maksimal 120 karakter.",
+      "emailInvalid": "Masukkan alamat email yang valid.",
+      "rateLimited": "Terlalu banyak permintaan. Coba lagi dalam satu menit."
+    }
+  },
+  "ctaBand": {
+    "headline": "Temukan orang-orang Anda. Bangun bersama.",
+    "subline": "Gabung dengan 2.400+ pembangun di jaringan kolaborasi sosial Origin dan jadilah yang pertama saat akses awal dibuka.",
+    "joinLabel": "Gabung daftar tunggu",
+    "contactLabel": "Hubungi kami"
+  },
+  "features": {
+    "hero": {
+      "eyebrow": "Objek inti",
+      "title": "Semua yang dibutuhkan komunitas, dalam satu ruang kerja yang tenang",
+      "lead": "Origin adalah jaringan kolaborasi sosial yang dibangun di sekitar delapan objek inti: profil, ide, komunitas, percakapan, kiriman, proyek, perusahaan, dan peluang. Alih-alih lima alat terpisah, relasi Anda hidup dalam satu tempat."
+    },
+    "sectionCoreObjects": "Objek inti",
+    "coreObjects": {
+      "profiles": {
+        "body": "Profil berfungsi seperti CV yang hidup: profil membawa pengalaman, keterampilan, dan ide Anda — plus reputasi dan relasi — di setiap komunitas dan proyek yang Anda ikuti."
+      },
+      "ideas": {
+        "body": "Setiap ide mendapat rumah. Unggah halaman ide untuk apa pun — bisnis kecil, startup AI, membantu tuna wisma, lari 10k, klub buku, liga pee-wee — dan temukan orang yang ingin membangunnya bersama Anda."
+      },
+      "communities": {
+        "body": "Grup berdasarkan minat, industri, dan tujuan — Pendiri Startup, Bisnis Kecil, Klub Buku, Organisasi Komunitas, Siapa pun dengan Ide — tempat para anggota saling menemukan."
+      },
+      "communication": {
+        "body": "Obrolan real-time, pesan langsung, dan diskusi grup melalui protokol Matrix yang terbuka, terenkripsi ujung-ke-ujung secara default."
+      },
+      "feed": {
+        "body": "Kiriman, pembaruan, dan peluang dari orang dan komunitas yang Anda ikuti — aliran tenang tentang hal-hal penting di jaringan Anda."
+      },
+      "projects": {
+        "body": "Upaya kolaboratif tempat para anggota komunitas bekerja sama dan mengubah percakapan menjadi hasil nyata."
+      },
+      "companies": {
+        "body": "Ventura yang dibentuk oleh anggota di dalam jaringan, dengan manajemen tim dan berbagi peluang yang terintegrasi."
+      },
+      "opportunities": {
+        "body": "Pekerjaan, kemitraan, dan investasi yang ditemukan melalui social graph — jaringan menampilkan peluang yang tepat di waktu yang tepat."
+      }
+    },
+    "sectionComparison": "Mengapa Origin, bukan lima alat",
+    "comparisonIntro": "Sebagian besar platform hanya menyelesaikan satu bagian kolaborasi. Origin menggabungkannya dalam social graph — hubungan antar anggota — sehingga tidak ada yang hilang di antara alat-alat tersebut.",
+    "comparison": {
+      "toolHeader": "Alat",
+      "greatAtHeader": "Andal dalam",
+      "addsHeader": "Yang ditambahkan JoinOrigin",
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "menemukan profesional",
+        "gap": "tetapi tidak mendukung komunitas, obrolan, dan proyek yang mengubah koneksi menjadi kolaborasi."
+      },
+      "discord": {
+        "tool": "Discord",
+        "strength": "berkomunikasi",
+        "gap": "tetapi tidak terorganisir di sekitar profil, komunitas, proyek, dan peluang dalam satu social graph bersama."
+      },
+      "reddit": {
+        "tool": "Reddit",
+        "strength": "berdiskusi",
+        "gap": "tetapi anonim dan tidak membawa reputasi, relasi, atau proyek ke depan."
+      },
+      "github": {
+        "tool": "GitHub",
+        "strength": "menulis kode",
+        "gap": "tetapi dibangun untuk repositori, bukan untuk seluruh cakupan kolaborasi manusia."
+      }
+    },
+    "sectionRoadmap": "Peta jalan",
+    "roadmap": {
+      "phase1": {
+        "body": "Profil, komunitas, obrolan, dan social graph — lapisan dasar tempat orang saling menemukan."
+      },
+      "phase2": {
+        "body": "Proyek, ruang kerja bersama, dan alat yang mengubah percakapan komunitas menjadi kerja bersama."
+      },
+      "phase3": {
+        "body": "Perusahaan dan ventura yang dibentuk oleh anggota, dengan manajemen tim dan tata kelola."
+      },
+      "phase4": {
+        "body": "Pekerja AI yang membantu komunitas berkoordinasi, merangkum, dan mencocokkan peluang."
+      },
+      "phase5": {
+        "body": "Standar terbuka dan portabilitas sehingga jaringan terhubung lintas platform, tidak hanya di dalam satu silo."
+      }
+    },
+    "faq": {
+      "q1": {
+        "question": "Apa perbedaan JoinOrigin dengan Discord?",
+        "answer": "Discord adalah aplikasi obrolan. Origin adalah jaringan kolaborasi sosial — profil, ide, komunitas, obrolan, linimasa, proyek, dan perusahaan semuanya hidup dalam satu social graph."
+      },
+      "q2": {
+        "question": "Apakah JoinOrigin bersifat open source?",
+        "answer": "Kodenya terbuka di bawah lisensi AGPL-3.0, dan komunikasi berjalan di atas protokol Matrix yang terbuka. Origin sendiri adalah produk terkelola (hosted) yang dijalankan oleh JoinOrigin — tidak ada yang perlu di-host sendiri — dan data Anda tetap portabel."
+      },
+      "q3": {
+        "question": "Apa itu social graph?",
+        "answer": "Social graph adalah jaring hubungan antar anggota. Origin terorganisir di sekitarnya, sehingga setiap profil, komunitas, dan proyek terhubung melalui orang."
+      },
+      "q4": {
+        "question": "Kapan proyek dan perusahaan diluncurkan?",
+        "answer": "Keduanya berkembang secara alami. Saat orang mengunggah ide, visi, dan karya, mereka menemukan orang yang ingin membangun bersama — dan proyek serta perusahaan tumbuh dari koneksi tersebut alih-alih menunggu tanggal peluncuran."
+      }
+    }
+  },
+  "community": {
+    "hero": {
+      "eyebrow": "Jaringan",
+      "title": "Tempat orang saling menemukan",
+      "lead": "Origin adalah jaringan kolaborasi sosial yang terorganisir di sekitar komunitas — kelompok orang yang berbagi minat, industri, tujuan, dan peluang. Komunitas adalah pusat keterlibatan."
+    },
+    "sectionValues": "Cara kami menjalankan jaringan",
+    "values": {
+      "peopleFirst": {
+        "body": "Anggota adalah manusia, bukan sekadar profil dalam database. Setiap keputusan desain melindungi relasi yang membuat jaringan ini layak diikuti."
+      },
+      "communitiesDriveGrowth": {
+        "body": "Komunitas adalah pusat keterlibatan. Saat sebuah komunitas berkembang, orang-orang di dalamnya saling menemukan dan membangun bersama."
+      },
+      "collaborationCreatesValue": {
+        "body": "Kolaborasi adalah cara percakapan menjadi proyek dan proyek menjadi perusahaan. Origin dibangun agar kolaborasi punya tempat untuk bertumbuh."
+      },
+      "ownership": {
+        "title": "Kepemilikan & Kedaulatan",
+        "body": "Anda memiliki identitas, data, dan komunitas Anda. Arsitektur terbuka dan identitas portabel menjaga jaringan tetap bertanggung jawab kepada anggotanya."
+      }
+    },
+    "sectionExamples": "Contoh komunitas",
+    "examplesIntro": "Inilah jenis komunitas yang tumbuh di dalam JoinOrigin saat ini. Jika Anda memiliki salah satu tujuan ini, sudah ada tempat untuk Anda:",
+    "examples": {
+      "startupFounders": "Pendiri Startup",
+      "smallBusinesses": "Bisnis Kecil",
+      "bookClubs": "Klub Buku",
+      "communityOrganizations": "Organisasi Komunitas",
+      "runClubs": "Klub Lari",
+      "peeWeeLeagues": "Liga Pee-wee",
+      "anyoneWithAnIdea": "Siapa pun dengan Ide"
+    },
+    "sectionJoin": "Gabung ke jaringan",
+    "joinCopy": "Komunitas dibangun oleh orang-orang di dalamnya. Gabung daftar tunggu untuk menjadi bagian dari gelombang pertama pembangun yang membentuk cara orang saling menemukan secara online.",
+    "joinStatValue": "2,400+",
+    "joinStatLabel": "Anggota yang membangun bersama",
+    "faq": {
+      "q1": {
+        "question": "Komunitas apa saja yang bisa saya ikuti?",
+        "answer": "Siapa pun dapat memulai atau mengikuti komunitas untuk ide apa pun — bisnis kecil, startup AI, membantu tuna wisma, lari 10k, gerakan politik, liga pee-wee. Jika itu penting bagi Anda, ia punya tempat di Origin."
+      },
+      "q2": {
+        "question": "Bisakah saya memulai komunitas sendiri?",
+        "answer": "Bisa. Setiap anggota dapat membuat komunitas untuk ide apa pun dan mengundang orang yang ingin diajak membangun — baik itu bisnis, klub buku, atau klub lari."
+      },
+      "q3": {
+        "question": "Apakah data saya milik saya?",
+        "answer": "Ya. Anda memiliki identitas dan data Anda. Origin adalah produk terkelola, jadi tidak ada yang perlu di-host sendiri — tetapi data Anda portabel dan grafik jaringan Anda tetap tersimpan di protokol Matrix yang terbuka."
+      },
+      "q4": {
+        "question": "Bagaimana cara menemukan orang-orang saya?",
+        "answer": "Jelajahi komunitas berdasarkan minat, industri, atau tujuan — dari bisnis kecil dan klub buku hingga startup AI dan klub lari — lalu ikuti yang sesuai dengan yang ingin Anda bangun. Atau buat komunitas sendiri untuk ide apa pun."
+      },
+      "q5": {
+        "question": "Bisakah saya bergabung secara anonim atau dengan nama?",
+        "answer": "Terserah Anda. Anda dapat berpartisipasi dengan akun bernama atau tetap anonim, dan komunitas, obrolan, serta halaman ide dapat terbuka untuk semua orang atau dibatasi oleh penyelenggara. Opsi ini diluncurkan secara bertahap."
+      }
+    }
+  },
+  "docs": {
+    "hero": {
+      "eyebrow": "Dokumentasi",
+      "title": "Dokumen JoinOrigin",
+      "lead": "Origin adalah produknya: jaringan kolaborasi sosial dan OS komunitas. JoinOrigin adalah merek dan jaringan di baliknya. Dokumen ini menjelaskan objek inti, peta jalan, dan arsitektur."
+    },
+    "sectionConcepts": "Konsep",
+    "concepts": {
+      "profiles": {
+        "body": "Profil adalah identitas portabel setiap anggota — seperti CV yang hidup. Profil membawa pengalaman, keterampilan, ide, reputasi, dan relasi di setiap komunitas dan proyek, sehingga siapa diri Anda ikut berjalan bersama Anda."
+      },
+      "communities": {
+        "body": "Komunitas adalah kelompok orang yang berbagi minat, industri, tujuan, dan peluang — untuk ide apa pun. Komunitas adalah pusat keterlibatan di Origin dan cara anggota saling menemukan."
+      },
+      "ideas": {
+        "body": "Ide adalah titik awal dari segala sesuatu di Origin. Unggah halaman ide untuk ide apa pun — bisnis kecil, startup AI, klub buku, lari 10k — dan orang yang ingin membangunnya akan menemukan Anda."
+      },
+      "communication": {
+        "body": "Komunikasi mencakup obrolan real-time, pesan langsung, dan diskusi grup. Semuanya berjalan di atas protokol Matrix yang terbuka, sehingga percakapan portabel dan dapat dienkripsi ujung-ke-ujung."
+      },
+      "feed": {
+        "body": "Linimasa menampilkan kiriman, pembaruan, dan peluang dari orang serta komunitas yang Anda ikuti. Ini adalah aliran tenang tentang hal-hal penting di jaringan Anda, bukan mesin keterlibatan."
+      },
+      "projects": {
+        "body": "Proyek adalah upaya kolaboratif tempat anggota bekerja sama menuju hasil bersama. Proyek menghubungkan social graph dengan pekerjaan nyata di dalam dan lintas komunitas."
+      },
+      "companies": {
+        "body": "Perusahaan adalah ventura yang dibentuk oleh anggota jaringan. Perusahaan membawa manajemen tim dan berbagi peluang ke ruang kerja yang sama tempat relasi itu hidup."
+      },
+      "opportunities": {
+        "body": "Peluang adalah pekerjaan, kemitraan, dan investasi yang dimunculkan melalui social graph. Jaringan mencocokkan peluang yang tepat dengan orang yang tepat di waktu yang tepat."
+      }
+    },
+    "sectionRoadmap": "Peta jalan",
+    "roadmap": {
+      "phase1": {
+        "body": "Profil, komunitas, obrolan, dan social graph. Metrik keberhasilan: anggota membentuk komunitas yang bertahan lama."
+      },
+      "phase2": {
+        "body": "Proyek, ruang kerja bersama, dan alat yang mengubah percakapan menjadi kerja bersama. Metrik keberhasilan: komunitas menghasilkan hasil bersama-sama."
+      },
+      "phase3": {
+        "body": "Perusahaan dan ventura yang dibentuk oleh anggota, dengan manajemen tim dan tata kelola. Metrik keberhasilan: perusahaan yang didirikan di dalam jaringan."
+      },
+      "phase4": {
+        "body": "Pekerja AI yang membantu komunitas berkoordinasi, merangkum, dan mencocokkan peluang. Metrik keberhasilan: anggota berkolaborasi dengan AI setara."
+      },
+      "phase5": {
+        "body": "Standar terbuka dan portabilitas sehingga jaringan terhubung lintas platform. Metrik keberhasilan: social graph yang portabel dan interoperabel."
+      }
+    },
+    "sectionArchitecture": "Arsitektur & standar",
+    "architectureParagraph1": "Social graph adalah produknya: setiap objek menggantung pada jaringan orang dan relasi mereka. Komunikasi menggunakan protokol Matrix yang terbuka (terdesentralisasi, E2EE), dan grafik jaringan serta koneksi Anda tersimpan selamanya, sehingga relasi Anda tetap portabel.",
+    "architectureParagraph2": "Origin adalah produk terkelola yang dibangun dengan React, TypeScript, dan Next.js di web, serta NestJS, PostgreSQL, Redis, dan Docker di backend. Yang tetap terbuka adalah protokol (Matrix), data Anda, dan kode sumber di bawah lisensi AGPL-3.0 — tidak ada yang perlu di-host sendiri.",
+    "faq": {
+      "q1": {
+        "question": "Di atas apa JoinOrigin dibangun?",
+        "answer": "React, TypeScript, dan Next.js di web; NestJS, PostgreSQL, Redis, dan Docker di backend. Komunikasi berjalan di atas protokol Matrix yang terbuka."
+      },
+      "q2": {
+        "question": "Apa itu Matrix?",
+        "answer": "Matrix adalah protokol komunikasi yang terbuka dan terdesentralisasi dengan enkripsi ujung-ke-ujung. Origin berjalan di atasnya, sehingga percakapan — dan grafik jaringan di baliknya — portabel dan tersimpan selamanya."
+      },
+      "q3": {
+        "question": "Apakah JoinOrigin dapat di-host sendiri?",
+        "answer": "Tidak. Origin adalah produk terkelola yang dijalankan oleh JoinOrigin, jadi tidak ada yang perlu di-host sendiri. Grafik jaringan dan koneksi Anda tersimpan selamanya melalui protokol Matrix yang terbuka, dan data Anda tetap portabel."
+      },
+      "q4": {
+        "question": "Kapan MVP diluncurkan?",
+        "answer": "JoinOrigin sedang dalam akses awal. Fondasi Komunitas (Fase 1) adalah MVP dan diluncurkan pertama untuk anggota daftar tunggu."
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Misi kami",
+      "title": "Aset paling berharga adalah jaringan Anda",
+      "lead": "Origin adalah jaringan kolaborasi sosial yang dibangun di atas satu keyakinan: aset paling berharga di internet bukanlah konten atau perangkat lunak — melainkan jaringan manusia dan relasi yang mereka bentuk."
+    },
+    "sectionMission": "Misi kami",
+    "missionParagraph1": "Origin sedang membangun sistem operasi untuk kolaborasi manusia. Alih-alih lima alat terpisah untuk obrolan, komunitas, dan proyek, relasi Anda hidup dalam satu ruang kerja yang tenang. Social graph adalah produknya: profil, ide, komunitas, percakapan, kiriman, proyek, perusahaan, dan peluang semuanya menggantung pada jaringan manusia yang sama.",
+    "missionParagraph2": "Kami sedang dalam akses awal, dengan 2.400+ pembangun di daftar tunggu. Saat platform tumbuh melalui peta jalan — Fondasi Komunitas, Kolaborasi, Organisasi, Kolaborasi AI, dan Jaringan Global — misinya tetap sama: membantu orang saling menemukan dan membangun bersama.",
+    "sectionPrinciples": "Prinsip-prinsip panduan",
+    "principles": {
+      "peopleFirst": {
+        "body": "Jaringan terdiri dari manusia, bukan sekadar konten atau perangkat lunak. Keputusan produk berawal dari relasi yang ingin dibentuk para anggota."
+      },
+      "communitiesDriveGrowth": {
+        "body": "Komunitas adalah pusat keterlibatan — kelompok orang yang berbagi minat, industri, tujuan, dan peluang menghidupkan jaringan."
+      },
+      "collaborationCreatesValue": {
+        "body": "Percakapan berubah menjadi proyek, proyek berubah menjadi perusahaan. Origin dibangun agar kolaborasi punya tempat untuk bertumbuh."
+      },
+      "openArchitecture": {
+        "title": "Arsitektur Terbuka",
+        "body": "Komunikasi berjalan di atas protokol Matrix yang terbuka, dan identitas, profil, komunitas, serta social graph bersifat portabel dan dimiliki pengguna. Origin terkelola, jadi tidak ada yang perlu di-host sendiri."
+      }
+    },
+    "sectionFounder": "Panduan pendiri",
+    "founderQuote": "“Apakah ini membantu orang saling menemukan? Jika tidak, jangan dibangun.”",
+    "founderBody": "Setiap fitur di Origin diukur dengan pertanyaan itu. Jika tidak membantu orang saling menemukan, membentuk komunitas, atau memulai proyek bersama, fitur tersebut tidak layak ada di ruang kerja.",
+    "sectionReading": "Bacaan lebih lanjut",
+    "readingDocs": "Baca <1>dokumen</1> untuk objek inti, peta jalan, dan arsitektur.",
+    "readingCommunity": "Lihat halaman <1>komunitas</1> untuk nilai-nilai dan contoh komunitas di dalam jaringan.",
+    "readingContact": "Punya pertanyaan? <1>Hubungi tim</1> — kami membalas dalam 2 hari kerja.",
+    "faq": {
+      "q1": {
+        "question": "Apa itu JoinOrigin?",
+        "answer": "Origin adalah jaringan kolaborasi sosial — OS komunitas yang menyatukan ide, proyek, dan komunitas Anda dalam satu ruang yang terorganisir. JoinOrigin adalah merek dan jaringan di baliknya."
+      },
+      "q2": {
+        "question": "Apa maksud dari “jaringan adalah produknya”?",
+        "answer": "Alih-alih menjual fitur perangkat lunak secara terpisah, Origin memperlakukan relasi antar manusia — social graph — sebagai nilai inti yang diciptakan dan dilindunginya."
+      },
+      "q3": {
+        "question": "Apakah JoinOrigin bersifat open source?",
+        "answer": "Kodenya terbuka di bawah lisensi AGPL-3.0, dan komunikasi berjalan di atas protokol Matrix yang terbuka. Origin adalah produk terkelola yang dijalankan oleh JoinOrigin — tidak ada yang perlu di-host sendiri — dan grafik jaringan Anda tetap portabel. Lihat dokumen untuk detailnya."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Kontak",
+      "title": "Bicara dengan kami",
+      "lead": "Punya pertanyaan tentang Origin — jaringan kolaborasi sosial — akses awal, atau memulai komunitas? Kami senang mendengar dari Anda."
+    },
+    "sectionForm": "Kirim pesan",
+    "form": {
+      "nameLabel": "Nama",
+      "namePlaceholder": "Nama Anda",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "messageLabel": "Pesan",
+      "messagePlaceholder": "Apa yang bisa kami bantu?",
+      "submit": "Kirim melalui email",
+      "hint": "Formulir ini membuka aplikasi email Anda dengan pesan yang sudah terisi. Kami membalas dalam 2 hari kerja."
+    },
+    "sectionOther": "Cara lain menghubungi kami",
+    "otherEmail": "Email: <1>{{email}}</1>",
+    "otherDocs": "Periksa <1>dokumen</1> untuk konsep, peta jalan, dan arsitektur.",
+    "otherAbout": "Baca halaman <1>tentang</1> untuk misi dan prinsip kami.",
+    "mailtoSubject": "Kontak JoinOrigin — {{name}}",
+    "newMessage": "pesan baru",
+    "mailtoBody": "Nama: {{name}}\nEmail: {{email}}\n\n{{message}}",
+    "faq": {
+      "q1": {
+        "question": "Seberapa cepat Anda membalas?",
+        "answer": "Kami membalas dalam 2 hari kerja. Untuk jawaban tercepat, periksa FAQ dokumen terlebih dahulu."
+      },
+      "q2": {
+        "question": "Bisakah saya mendapatkan akses awal?",
+        "answer": "Bisa — gabung daftar tunggu dari halaman beranda. Anggota awal menjadi yang pertama masuk saat OS komunitas diluncurkan."
+      }
+    }
+  },
+  "privacy": {
+    "hero": {
+      "eyebrow": "Legal",
+      "title": "Kebijakan Privasi",
+      "lead": "Saat Anda bergabung dengan daftar tunggu, kami mengumpulkan nama dan alamat email Anda melalui formulir daftar tunggu (POST /api/leads). Itulah satu-satunya informasi pribadi yang kami minta selama akses awal."
+    },
+    "sectionCollect": "Apa yang kami kumpulkan",
+    "collect": {
+      "waitlistDataTitle": "Data daftar tunggu",
+      "waitlistDataBody": "Nama dan email, hanya digunakan untuk memberi tahu Anda kapan akses awal dibuka dan mengundang Anda masuk.",
+      "analyticsTitle": "Analitik",
+      "analyticsBody": "Kami menjalankan analitik berbasis konfigurasi (Plausible yang di-host sendiri secara default) untuk memahami penggunaan situs secara agregat. Spanduk persetujuan direncanakan pada sprint berikutnya.",
+      "technicalDataTitle": "Data teknis dasar",
+      "technicalDataBody": "Log server standar dan metadata browser yang membantu kami menjaga situs tetap andal."
+    },
+    "sectionUse": "Cara kami menggunakannya",
+    "useBody": "Kami menggunakan informasi yang kami kumpulkan untuk mengoperasikan situs, mengirim undangan akses awal, dan meningkatkan produk. Kami tidak menjual informasi pribadi Anda.",
+    "sectionIdentity": "Identitas & fleksibilitas",
+    "identityBody": "Anda memilih bagaimana Anda tampil di Origin. Anda dapat berpartisipasi dengan akun bernama atau tetap anonim, dan komunitas, obrolan, serta halaman ide dapat terbuka untuk semua orang atau dibatasi oleh penyelenggaranya. Opsi ini diluncurkan secara bertahap — intinya Anda yang memutuskan apa yang Anda bagikan dan kepada siapa.",
+    "sectionRights": "Hak Anda",
+    "rightsBody": "Anda dapat meminta akses, koreksi, atau penghapusan data Anda kapan saja. Karena identitas dan kepemilikan data adalah prinsip inti JoinOrigin, kami memudahkan Anda mengekspor atau menghapus apa yang menjadi milik Anda.",
+    "sectionContact": "Kontak",
+    "contactBody": "Pertanyaan tentang kebijakan ini? Email <1>{{email}}</1> atau gunakan <2>halaman kontak</2>."
+  },
+  "terms": {
+    "hero": {
+      "eyebrow": "Legal",
+      "title": "Ketentuan Layanan",
+      "lead": "Dengan menggunakan JoinOrigin (“Layanan”), Anda menyetujui Ketentuan Layanan ini. Jika Anda tidak setuju, mohon jangan gunakan Layanan ini."
+    },
+    "sectionAcceptance": "Penerimaan",
+    "acceptanceBody": "Dengan menggunakan JoinOrigin (“Layanan”), Anda menyetujui Ketentuan Layanan ini. Jika Anda tidak setuju, mohon jangan gunakan Layanan ini.",
+    "sectionAccounts": "Akun",
+    "accountsBody": "Anda bertanggung jawab menjaga kredensial akun Anda dan atas aktivitas yang terjadi di bawah akun Anda. Anda harus memberikan informasi yang akurat saat membuat akun atau bergabung dengan daftar tunggu.",
+    "sectionUserContent": "Konten pengguna",
+    "userContentBody": "Anda tetap memiliki konten yang Anda unggah. Anda memberikan lisensi terbatas kepada JoinOrigin untuk menyimpan, menampilkan, dan memproses konten tersebut agar Layanan dapat berfungsi. Anda tetap memiliki hak untuk mengekspor dan menghapus konten Anda.",
+    "sectionAcceptableUse": "Penggunaan yang dapat diterima",
+    "acceptableUse": {
+      "unlawful": "Jangan gunakan Layanan untuk aktivitas melanggar hukum.",
+      "harassment": "Jangan melecehkan, menyalahgunakan, atau merugikan anggota lain.",
+      "unauthorizedAccess": "Jangan mencoba mengganggu atau mendapatkan akses tidak sah ke Layanan.",
+      "scrape": "Jangan mengikis (scrape) atau mengumpulkan data anggota tanpa izin."
+    },
+    "sectionIntellectualProperty": "Kekayaan intelektual",
+    "intellectualPropertyBody": "Merek dagang, logo, dan materi situs JoinOrigin adalah milik JoinOrigin. Anda tidak boleh menggunakannya tanpa izin kami. Komponen open source tetap berada di bawah lisensi masing-masing.",
+    "sectionDisclaimers": "Pernyataan penyangkalan",
+    "disclaimersBody": "Layanan disediakan “sebagaimana adanya” selama akses awal. Kami berupaya menjaganya tetap andal tetapi tidak menjamin layanan tidak akan terputus atau bebas dari kesalahan.",
+    "sectionChanges": "Perubahan",
+    "changesBody": "Kami dapat memperbarui Ketentuan ini seiring perkembangan Layanan. Perubahan penting akan diumumkan di halaman ini, dan penggunaan berkelanjutan setelah perubahan berarti Anda menerima Ketentuan yang diperbarui.",
+    "sectionContact": "Kontak",
+    "contactBody": "Pertanyaan tentang Ketentuan ini? Email <1>{{email}}</1> atau gunakan <2>halaman kontak</2>."
+  },
+  "orbitViz": {
+    "ariaLabel": "Visualisasi orbit anggota JoinOrigin",
+    "memberAlt": "Anggota JoinOrigin {{number}}",
+    "members": "Anggota"
+  },
+  "notFound": {
+    "brand": "JoinOrigin",
+    "status": "404",
+    "heading": "Halaman tidak ditemukan",
+    "copy": "Halaman yang Anda cari tidak ada atau telah dipindahkan. Kembali ke beranda untuk menemukan tempat proyek tim Anda berikutnya dimulai.",
+    "backHome": "Kembali ke beranda",
+    "exploreCommunities": "Jelajahi komunitas →"
+  },
+  "mobile": {
+    "home": {
+      "badge": "Selamat datang",
+      "title": "Selamat datang di JoinOrigin",
+      "subtitle": "Ruang kerja Anda sudah siap."
+    }
+  }
+}
