@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 /**
  * JoinOrigin homescreen e2e coverage (Sprint 3).
  *
- * The typewriter re-types on mount (400ms delay + 35ms/char ≈ 1.5s total),
+ * The typewriter re-types on mount (400ms delay + 20ms/char ≈ 2.5s total),
  * so assertions on the final heading wait for it to complete. The waitlist
  * modal flow posts to the real dev server (`POST /api/leads`), which appends
  * to `apps/web/data/leads.csv` — acceptable for the sprint-scope CSV.
@@ -19,7 +19,7 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
 
   // Hero left: typewriter heading completes to the full two-tone copy.
   await expect(page.locator('h1')).toContainText(
-    'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home',
+    'Ideas, projects and community collaboration space — where teams and the best projects find their Origin.',
     {
       timeout: 15_000,
     },

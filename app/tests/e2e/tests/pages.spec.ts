@@ -28,7 +28,7 @@ test.describe.configure({ mode: 'serial' });
 export const MENU_PAGES = [
   {
     path: '/',
-    h1: 'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home',
+    h1: 'Ideas, projects and community collaboration space — where teams and the best projects find their Origin.',
   },
   { path: '/features', h1: 'Everything a community needs, in one calm workspace' },
   { path: '/community', h1: 'Where people find each other' },

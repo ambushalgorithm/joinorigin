@@ -11,7 +11,7 @@ import { expect, test } from '@playwright/test';
  */
 
 const FULL_TEXT =
-  'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home';
+  'Ideas, projects and community collaboration space — where teams and the best projects find their Origin.';
 const FULL_TEXT_LENGTH = FULL_TEXT.length;
 
 test.describe('hero left — typewriter heading', () => {
@@ -34,9 +34,9 @@ test.describe('hero left — typewriter heading', () => {
       .poll(async () => page.locator('h1 span').count(), { timeout: 10_000 })
       .toBeGreaterThanOrEqual(3);
 
-    // The accent span carries the gradient remainder on its own line ("home").
+    // The accent span carries the gradient remainder on its own line ("Origin.").
     const accentText = await page.locator('h1 span').nth(1).textContent();
-    expect(accentText).toContain('home');
+    expect(accentText).toContain('Origin.');
 
     // Caret persists after completion.
     await expect(page.locator('h1')).toContainText('|');
