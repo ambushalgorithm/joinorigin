@@ -41,7 +41,7 @@ describe('home page', () => {
   it('renders the partner logo ticker and slim footer', () => {
     render(<HomePage />);
     expect(screen.getByText('Trusted by teams at')).toBeInTheDocument();
-    expect(screen.getByText('Where work finds its origin')).toBeInTheDocument();
+    expect(screen.getByText('Where teams finds their origin')).toBeInTheDocument();
     expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
     expect(screen.getByText('Privacy')).toBeInTheDocument();
     expect(screen.getByText('Terms')).toBeInTheDocument();

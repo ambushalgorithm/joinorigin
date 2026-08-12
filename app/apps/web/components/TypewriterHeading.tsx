@@ -13,7 +13,7 @@ import { useReducedMotion } from './motion';
  * (`Where teams find their `) render in `theme.colors.text` as a block line,
  * the remainder (`origin`) in the brand accent gradient, capitalized and
  * wrapped onto the next line. Types char-by-char at 35ms/char after a 400ms
- * delay, with a blinking caret (`▍`) that persists after completion.
+ * delay, with a blinking caret (`|`) that persists after completion.
  *
  * Progressive enhancement: the full text is rendered by default (SSR / no-JS),
  * then cleared and re-typed on client mount. With `prefers-reduced-motion`,
