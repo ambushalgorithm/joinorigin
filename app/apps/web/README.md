@@ -72,7 +72,7 @@ apps/web/
 ├── jest.config.mjs            # next/jest configuration
 ├── jest.polyfills.ts          # Node web API polyfills (TextDecoder, streams, undici)
 ├── jest.setup.ts              # jest-dom matchers + matchMedia/rAF/next-image mocks
-├── next.config.mjs            # transpilePackages + Turbopack RN→RNW alias/.web.* extensions + allowedDevOrigins
+├── next.config.mjs            # standalone output + transpilePackages + Turbopack RN→RNW alias/.web.* extensions + allowedDevOrigins
 ├── package.json
 └── tsconfig.json
 ```
@@ -123,6 +123,76 @@ apps/web/
   pnpm --filter @joinorigin/web build
   pnpm --filter @joinorigin/e2e run test:e2e   # dev server on port 3100
   ```
+
+## Docker Local Launch
+
+The web app ships with a multi-stage Docker setup at the **monorepo root**
+(`app/Dockerfile` + `app/docker-compose.yml` + `app/.dockerignore`). It builds
+the Next.js **standalone** output (`output: 'standalone'` in `next.config.mjs`)
+and runs a minimal non-root `node:22-slim` image — zero host dependencies
+besides Docker itself.
+
+### Prerequisites
+
+- Docker Engine with BuildKit (Docker ≥ 23) and the Compose plugin.
+- Port `3100` free (override with `WEB_PORT`, see below).
+
+### Quick start
+
+```bash
+# from the monorepo root (the directory containing docker-compose.yml)
+docker compose up --build
+# open http://localhost:3100
+```
+
+- `docker compose up --build` — build + start (first build installs pnpm deps
+  with a frozen lockfile and runs `next build` inside the container).
+- `docker compose build` — build the image only.
+- `docker compose up -d` — start detached; logs via `docker compose logs -f web`.
+- `docker compose down` — stop + remove the container (keeps the leads volume).
+- `docker compose ps` — status; the container is `healthy` once it serves 200.
+
+### Verification
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost:3100/   # 200
+docker compose ps --format 'table {{.Name}}\t{{.Status}}'          # healthy
+```
+
+### Configuration
+
+All variables are documented in [`apps/web/.env.example`](./.env.example).
+`NEXT_PUBLIC_*` values are baked into the client bundle at **build** time, so
+they are passed as compose build args:
+
+```bash
+# optional: override from the shell or a root .env before building
+NEXT_PUBLIC_SITE_URL=http://localhost:3100 \
+NEXT_PUBLIC_SITE_DOMAIN=joinorigin.com \
+docker compose up --build
+```
+
+Runtime knobs (compose `environment`, no rebuild needed):
+
+- `WEB_PORT` — host port mapped to container `3100` (default `3100`).
+- `LEADS_CSV_PATH` — where `POST /api/leads` appends rows. Defaults to
+  `/app/apps/web/data/leads.csv`, persisted on the `joinorigin-web-leads`
+  named volume so waitlist submissions survive container restarts.
+- `NEXT_PUBLIC_UMAMI_WEBSITE_ID`, `NEXT_PUBLIC_UMAMI_HOST_URL`,
+  `NEXT_PUBLIC_GA4_MEASUREMENT_ID`, `NEXT_PUBLIC_ANALYTICS_JSON` — optional
+  analytics trackers (see `.env.example`).
+
+### Image details
+
+- Build context is the **monorepo root** — the Dockerfile copies the pnpm
+  manifests first, runs `pnpm install --frozen-lockfile` (honoring
+  `.npmrc`'s `node-linker=hoisted`), then `next build` in the builder stage.
+- The runner image contains only `.next/standalone`, `.next/static`, and
+  `public`; it runs as user `nextjs` (uid 1001) on `HOSTNAME=0.0.0.0` with
+  `PORT=3100` and a writable `data/` dir for the waitlist CSV.
+- `.dockerignore` keeps `node_modules`, `.next`, `.git`, `agent-core`,
+  `working-directories`, coverage/test dirs, and other generated files out of
+  the build context.
 
 ## Navigation Footer
 

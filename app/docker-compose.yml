@@ -1,0 +1,53 @@
+# JoinOrigin — local Docker launch for the web app.
+#
+# Run from the monorepo root (the directory containing this file):
+#   docker compose up --build      # build + start on http://localhost:3100
+#   docker compose build           # build only
+#   docker compose down            # stop
+#   docker compose logs -f web     # follow logs
+#
+# Environment: values are read from the shell or a root `.env` file
+# (see apps/web/.env.example for the full list). NEXT_PUBLIC_* variables
+# are baked into the client bundle at build time — changing them requires
+# `docker compose build --build-arg` or a full `up --build` rebuild.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Build-time (client-inlined) public configuration.
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3100}
+        NEXT_PUBLIC_SITE_DOMAIN: ${NEXT_PUBLIC_SITE_DOMAIN:-joinorigin.com}
+        NEXT_PUBLIC_PLAUSIBLE_API_HOST: ${NEXT_PUBLIC_PLAUSIBLE_API_HOST:-https://analytics.joinorigin.com}
+    image: joinorigin-web:local
+    container_name: joinorigin-web
+    ports:
+      - "${WEB_PORT:-3100}:3100"
+    environment:
+      NODE_ENV: production
+      PORT: "3100"
+      HOSTNAME: "0.0.0.0"
+      # Optional runtime analytics overrides (server-side reads; client-side
+      # values were baked at build time).
+      NEXT_PUBLIC_SITE_DOMAIN: ${NEXT_PUBLIC_SITE_DOMAIN:-joinorigin.com}
+      NEXT_PUBLIC_PLAUSIBLE_API_HOST: ${NEXT_PUBLIC_PLAUSIBLE_API_HOST:-https://analytics.joinorigin.com}
+      NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
+      NEXT_PUBLIC_UMAMI_HOST_URL: ${NEXT_PUBLIC_UMAMI_HOST_URL:-}
+      NEXT_PUBLIC_GA4_MEASUREMENT_ID: ${NEXT_PUBLIC_GA4_MEASUREMENT_ID:-}
+      NEXT_PUBLIC_ANALYTICS_JSON: ${NEXT_PUBLIC_ANALYTICS_JSON:-}
+      # Where the waitlist API appends CSV rows (persisted via volume).
+      LEADS_CSV_PATH: /app/apps/web/data/leads.csv
+    volumes:
+      - web-leads:/app/apps/web/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3100/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  web-leads:
+    name: joinorigin-web-leads
