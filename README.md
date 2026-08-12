@@ -66,7 +66,7 @@ platforms should: join the waitlist, reserve your spot, and walk in when your
 community is ready. Early access opens in waves as the platform builds toward
 launch, and your community is ready when you are.
 
-![JoinOrigin homescreen](app/apps/web/public/assets/og/og-default.png)
+<img width="1364" height="1020" alt="image" src="https://github.com/user-attachments/assets/a303159b-6144-4e2d-94b4-6ff26d977cbf" />
 
 ---
 
