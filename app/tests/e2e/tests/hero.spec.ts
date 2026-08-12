@@ -38,7 +38,7 @@ test.describe('hero left — typewriter heading', () => {
     expect(accentText).toContain('origin');
 
     // Caret persists after completion.
-    await expect(page.locator('h1')).toContainText('▍');
+    await expect(page.locator('h1')).toContainText('|');
   });
 
   test('renders the full heading instantly with reduced motion', async ({ page }) => {

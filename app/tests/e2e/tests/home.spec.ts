@@ -29,7 +29,7 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
 
   // Logo ticker + footer.
   await expect(page.getByText('Trusted by teams at')).toBeVisible();
-  await expect(page.getByText('Where work finds its origin')).toBeVisible();
+  await expect(page.getByText('Where teams finds their origin')).toBeVisible();
   await expect(page.getByTestId('footer-waitlist-button')).toBeVisible();
   await expect(page.getByText('© 2026 JoinOrigin')).toBeVisible();
 });

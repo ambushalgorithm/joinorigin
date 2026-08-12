@@ -32,7 +32,7 @@ describe('TypewriterHeading', () => {
 
     const heading = screen.getByRole('heading', { level: 1 });
     expect(heading.textContent).toContain('Where teams find their origin');
-    expect(heading.textContent).toContain('▍');
+    expect(heading.textContent).toContain('|');
   });
 
   it('keeps the caret visible after completion', () => {
@@ -43,7 +43,7 @@ describe('TypewriterHeading', () => {
     });
 
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading.textContent?.endsWith('▍')).toBe(true);
+    expect(heading.textContent?.endsWith('|')).toBe(true);
   });
 
   it('clears and re-types on mount', () => {
