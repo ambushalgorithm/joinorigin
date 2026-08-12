@@ -1,0 +1,508 @@
+{
+  "dir": "ltr",
+  "common": {
+    "brand": "JoinOrigin",
+    "faqHeading": "常見問題",
+    "contactUs": "聯絡我們",
+    "questionsAboutOrigin": "對 Origin 有疑問嗎？",
+    "teamRepliesWithin2Days": "我們的團隊會在 2 個工作天內回覆。",
+    "legal": "法律",
+    "joinWaitlist": "加入等候名單",
+    "nav": {
+      "features": "功能",
+      "community": "社群",
+      "docs": "文件",
+      "about": "關於",
+      "contact": "聯絡",
+      "privacy": "隱私權",
+      "terms": "條款"
+    },
+    "objects": {
+      "profiles": "個人檔案",
+      "ideas": "點子",
+      "communities": "社群",
+      "communication": "通訊",
+      "feed": "動態",
+      "projects": "專案",
+      "companies": "公司",
+      "opportunities": "機會"
+    },
+    "values": {
+      "peopleFirst": "以人為本",
+      "communitiesDriveGrowth": "社群驅動成長",
+      "collaborationCreatesValue": "協作創造價值"
+    },
+    "roadmap": {
+      "phase1Title": "第一階段 — 社群基礎",
+      "phase2Title": "第二階段 — 協作",
+      "phase3Title": "第三階段 — 組織",
+      "phase4Title": "第四階段 — AI 協作",
+      "phase5Title": "第五階段 — 全球網路"
+    }
+  },
+  "header": {
+    "brandAlt": "JoinOrigin 首頁",
+    "navAria": "主要",
+    "logIn": "登入",
+    "getStarted": "開始使用",
+    "mobileMenuToggle": "切換導覽"
+  },
+  "footer": {
+    "tagline": "讓團隊在此找到他們的 Origin",
+    "groupProduct": "產品",
+    "groupCompany": "公司",
+    "groupLegal": "法律",
+    "navAria": "頁尾",
+    "copyright": "© 2026 JoinOrigin"
+  },
+  "home": {
+    "hero": {
+      "headline": "點子、專案與社群協作空間——讓團隊與最棒的專案在這裡找到他們的 Origin.",
+      "headlineAccent": "Origin.",
+      "startProject": "開始專案",
+      "supporting": "建立一個像履歷一樣的個人檔案，把你的點子發布成頁面，然後圍繞任何事物開始或加入社群——一家小型企業、一個 AI 新創、一個讀書會、一場 10 公里路跑。",
+      "trustAvatarsAlt": "JoinOrigin 成員 {{number}}",
+      "trustCopy": "已有 2,400+ 位建設者在此協作"
+    },
+    "definition": "Origin 是一個社交協作網路——讓你的點子、專案與社群匯聚在同一個有組織空間的社群 OS。JoinOrigin 是它背後的品牌與網路。",
+    "marquee": {
+      "label": "深受這些團隊信賴",
+      "partnerAlt": "JoinOrigin 夥伴 {{number}}"
+    },
+    "faq": {
+      "q1": {
+        "question": "什麼是 JoinOrigin？",
+        "answer": "Origin 是一個社交協作網路——一個將你的點子、專案與社群帶入同一個有組織空間的社群 OS。JoinOrigin 是它背後的品牌與網路。你不必使用五套分開的工具，你的人際關係都生活在同一個地方，因此不會在工具之間遺失任何東西。"
+      },
+      "q2": {
+        "question": "JoinOrigin 與 Discord／LinkedIn／Reddit 有什麼不同？",
+        "answer": "Discord 是聊天應用程式，LinkedIn 用來尋找專業人士，Reddit 則是用於討論。Origin 圍繞著社交圖譜將它們結合在一起——個人檔案、社群、聊天、動態、專案與機會全都匯聚一堂，讓關係轉化為真正的協作。"
+      },
+      "q3": {
+        "question": "加入之後我可以做什麼？",
+        "answer": "建立一個像履歷一樣的個人檔案，把你的點子發布成點子頁面，圍繞任何事物開始或加入社群，並邀請你想一起合作的人。等候名單為你保留名額，讓你的社群在搶先體驗開放時準備就緒。"
+      },
+      "q4": {
+        "question": "搶先體驗何時開始？",
+        "answer": "隨著平台逐步邁向正式推出，搶先體驗會分批開放。現在加入等候名單即可保留名額，當你的社群準備就緒時，你就會收到邀請。"
+      },
+      "q5": {
+        "question": "我要如何加入？",
+        "answer": "點擊本頁任何地方的「開始使用」，輸入你的姓名與電子郵件，你就會在等候名單上。當搶先體驗輪到你的名額時，你就會收到邀請。"
+      }
+    }
+  },
+  "waitlist": {
+    "close": "關閉",
+    "heading": "加入等候名單",
+    "subcopy": "搶先體驗的第一順位。當你的工作空間準備就緒時，我們會以電子郵件通知你。",
+    "nameLabel": "姓名",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "電子郵件",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "申請加入",
+    "submitting": "提交中",
+    "legalNote": "絕不寄送垃圾郵件。隨時可以取消訂閱。",
+    "successHeading": "你已在名單上！",
+    "successCopy": "當你的工作空間準備就緒時，我們會以電子郵件通知你。",
+    "done": "完成",
+    "errors": {
+      "generic": "發生錯誤。請再試一次。",
+      "nameEmailRequired": "姓名與電子郵件為必填欄位。",
+      "nameRequired": "姓名為必填欄位。",
+      "nameTooLong": "姓名不得超過 120 個字元。",
+      "emailInvalid": "請輸入有效的電子郵件地址。",
+      "rateLimited": "請求過於頻繁。請一分鐘後再試。"
+    }
+  },
+  "ctaBand": {
+    "headline": "找到你的夥伴。一起建設。",
+    "subline": "加入 Origin 社交協作網路上 2,400+ 位建設者的行列，搶先體驗開放時第一個進場。",
+    "joinLabel": "加入等候名單",
+    "contactLabel": "聯絡我們"
+  },
+  "features": {
+    "hero": {
+      "eyebrow": "核心物件",
+      "title": "社群所需的一切，盡在一個安定的工作空間",
+      "lead": "Origin 是一個圍繞八種核心物件打造的社交協作網路：個人檔案、點子、社群、對話、貼文、專案、公司與機會。你不必使用五套分開的工具，你的人際關係都生活在同一個地方。"
+    },
+    "sectionCoreObjects": "核心物件",
+    "coreObjects": {
+      "profiles": {
+        "body": "個人檔案就像一份活的履歷：它帶著你的經歷、技能與點子——加上你的聲譽與人際關係——走過你加入的每個社群與專案。"
+      },
+      "ideas": {
+        "body": "每個點子都有一個家。為任何事物發布點子頁面——一家小型企業、一個 AI 新創、幫助街友、一場 10 公里路跑、一個讀書會、一個幼童棒球聯盟——然後找到想和你一起打造它的人。"
+      },
+      "communities": {
+        "body": "圍繞興趣、產業與目標組成的群組——新創創辦人、小型企業、讀書會、社群組織、任何有點子的人——成員在這裡找到彼此。"
+      },
+      "communication": {
+        "body": "透過開放的 Matrix 協定進行即時聊天、私訊與群組討論，預設端對端加密。"
+      },
+      "feed": {
+        "body": "來自你追蹤的人與社群的貼文、更新與機會——一條安靜地呈現你網路中重要事物的動態串流。"
+      },
+      "projects": {
+        "body": "社群成員共同合作的協力成果，將對話轉化為具體成果。"
+      },
+      "companies": {
+        "body": "由網路內成員組成的事業，內建團隊管理與機會分享。"
+      },
+      "opportunities": {
+        "body": "透過社交圖譜發現的工作、合作夥伴與投資機會——網路會在對的時機浮現對的機會。"
+      }
+    },
+    "sectionComparison": "為什麼選擇 Origin 而非五套工具",
+    "comparisonIntro": "大多數平台只解決協作的其中一部分。Origin 圍繞著社交圖譜——成員之間的關係——將它們結合起來，因此不會在工具之間遺失任何東西。",
+    "comparison": {
+      "toolHeader": "工具",
+      "greatAtHeader": "擅長",
+      "addsHeader": "JoinOrigin 補足了什麼",
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "尋找專業人士",
+        "gap": "但無法驅動把連結轉化為協作的社群、聊天與專案。"
+      },
+      "discord": {
+        "tool": "Discord",
+        "strength": "通訊",
+        "gap": "但並非圍繞著共享社交圖譜上的個人檔案、社群、專案與機會來組織。"
+      },
+      "reddit": {
+        "tool": "Reddit",
+        "strength": "討論",
+        "gap": "但它是匿名的，無法承載聲譽、人際關係或專案。"
+      },
+      "github": {
+        "tool": "GitHub",
+        "strength": "撰寫程式",
+        "gap": "但它是為程式庫而打造，不是為人類協作的完整範疇。"
+      }
+    },
+    "sectionRoadmap": "路線圖",
+    "roadmap": {
+      "phase1": {
+        "body": "個人檔案、社群、聊天與社交圖譜——人們找到彼此的基礎層。"
+      },
+      "phase2": {
+        "body": "將社群對話轉化為共同工作的專案、共享工作空間與工具。"
+      },
+      "phase3": {
+        "body": "由成員組成的公司與事業，具備團隊管理與治理。"
+      },
+      "phase4": {
+        "body": "幫助社群協調、摘要並媒合機會的 AI 工作者。"
+      },
+      "phase5": {
+        "body": "開放標準與可攜性，讓網路能跨平台連結，而不是封閉在單一孤島內。"
+      }
+    },
+    "faq": {
+      "q1": {
+        "question": "JoinOrigin 與 Discord 有什麼不同？",
+        "answer": "Discord 是聊天應用程式。Origin 是社交協作網路——個人檔案、點子、社群、聊天、動態、專案與公司全都存在於同一個社交圖譜上。"
+      },
+      "q2": {
+        "question": "JoinOrigin 是開源的嗎？",
+        "answer": "程式碼以 AGPL-3.0 授權開放，通訊則運行在開放的 Matrix 協定上。Origin 本身是由 JoinOrigin 營運的代管產品——沒有什麼需要自行架設——你的資料仍然保持可攜。"
+      },
+      "q3": {
+        "question": "什麼是社交圖譜？",
+        "answer": "社交圖譜是成員之間關係所組成的網絡。Origin 圍繞著它來組織，因此每個個人檔案、社群與專案都透過人與人之間的關係相互連結。"
+      },
+      "q4": {
+        "question": "專案與公司何時上線？",
+        "answer": "它們會自然發展。當人們發布點子、願景與成果時，他們會找到想一起建設的人——專案與公司便從這些連結中成長起來，而不是等待某個發布日期。"
+      }
+    }
+  },
+  "community": {
+    "hero": {
+      "eyebrow": "這個網路",
+      "title": "人們找到彼此的地方",
+      "lead": "Origin 是一個圍繞社群組織的社交協作網路——一群分享興趣、產業、目標與機會的人。社群是互動的核心。"
+    },
+    "sectionValues": "我們如何經營這個網路",
+    "values": {
+      "peopleFirst": {
+        "body": "成員是人，不是資料庫裡的個人檔案。每一項設計決策都保護著讓這個網路值得加入的人際關係。"
+      },
+      "communitiesDriveGrowth": {
+        "body": "社群是互動的核心。當一個社群蓬勃發展，其中的人們就會找到彼此並一起建設。"
+      },
+      "collaborationCreatesValue": {
+        "body": "協作是對話變成專案、專案變成公司的方式。Origin 的設計讓協作有地方可以落地。"
+      },
+      "ownership": {
+        "title": "所有權與自主權",
+        "body": "你擁有自己的身分、資料與社群。開放架構與可攜身分讓網路對其成員負責。"
+      }
+    },
+    "sectionExamples": "範例社群",
+    "examplesIntro": "這些是今日在 JoinOrigin 內成長茁壯的社群類型。如果你也有其中一個目標，這裡已經為你留了一個位置：",
+    "examples": {
+      "startupFounders": "新創創辦人",
+      "smallBusinesses": "小型企業",
+      "bookClubs": "讀書會",
+      "communityOrganizations": "社群組織",
+      "runClubs": "路跑社團",
+      "peeWeeLeagues": "幼童棒球聯盟",
+      "anyoneWithAnIdea": "任何有點子的人"
+    },
+    "sectionJoin": "加入這個網路",
+    "joinCopy": "社群由其中的人們共同建立。加入等候名單，成為塑造人們如何在網路上找到彼此的第一波建設者。",
+    "joinStatValue": "2,400+",
+    "joinStatLabel": "一起建設的成員",
+    "faq": {
+      "q1": {
+        "question": "我可以加入哪些社群？",
+        "answer": "任何人都可以圍繞任何點子開始或加入社群——一家小型企業、一個 AI 新創、幫助街友、一場 10 公里路跑、一場政治運動、一個幼童棒球聯盟。只要對你重要，它在 Origin 上就有一個位置。"
+      },
+      "q2": {
+        "question": "我可以建立自己的社群嗎？",
+        "answer": "可以。每位成員都能圍繞任何點子建立社群，並邀請他們想一起建設的人——無論是企業、讀書會還是路跑社團。"
+      },
+      "q3": {
+        "question": "我的資料是我的嗎？",
+        "answer": "是的。你擁有自己的身分與資料。Origin 是代管產品，沒有什麼需要自行架設——但你的資料可以隨時攜出，你的網路關係圖則持續保存在開放的 Matrix 協定上。"
+      },
+      "q4": {
+        "question": "我要如何找到同好？",
+        "answer": "依照興趣、產業或目標瀏覽社群——從小型企業、讀書會到 AI 新創與路跑社團——然後加入與你想建設的事物相符的社群。或者為任何點子建立你自己的社群。"
+      },
+      "q5": {
+        "question": "我可以匿名加入或以真實姓名加入嗎？",
+        "answer": "由你決定。你可以用實名帳號參與，也可以保持匿名；社群、聊天與點子頁面可以對所有人開放，也可以由主辦人設限。這些選項會逐步推出。"
+      }
+    }
+  },
+  "docs": {
+    "hero": {
+      "eyebrow": "文件",
+      "title": "JoinOrigin 文件",
+      "lead": "Origin 是產品本身：一個社交協作網路與社群 OS。JoinOrigin 是它背後的品牌與網路。這些文件說明核心物件、路線圖與架構。"
+    },
+    "sectionConcepts": "概念",
+    "concepts": {
+      "profiles": {
+        "body": "個人檔案是每位成員的可攜身分——就像一份活的履歷。它們帶著經歷、技能、點子、聲譽與人際關係走過每個社群與專案，讓「你是誰」跟著你一起移動。"
+      },
+      "communities": {
+        "body": "社群是一群分享興趣、產業、目標與機會的人——圍繞著任何點子。它們是 Origin 上互動的核心，也是成員找到彼此的方式。"
+      },
+      "ideas": {
+        "body": "點子是 Origin 上所有事物的起點。為任何點子發布一個點子頁面——一家小型企業、一個 AI 新創、一個讀書會、一場 10 公里路跑——想打造它的人就會找到你。"
+      },
+      "communication": {
+        "body": "通訊涵蓋即時聊天、私訊與群組討論。它運行在開放的 Matrix 協定上，因此對話可以攜出，也能進行端對端加密。"
+      },
+      "feed": {
+        "body": "動態顯示來自你追蹤的人與社群的貼文、更新與機會。它是一條安靜地呈現你網路中重要事物的動態串流，而不是一部互動機器。"
+      },
+      "projects": {
+        "body": "專案是成員為了共同成果而一起努力的協力工作。它們將社交圖譜與社群內部和跨社群的真實工作連結起來。"
+      },
+      "companies": {
+        "body": "公司是由網路成員組成的事業。它們把團隊管理與機會分享帶進人際關係所在的同一個工作空間。"
+      },
+      "opportunities": {
+        "body": "機會是透過社交圖譜浮現的工作、合作夥伴與投資。網路會在對的時機，把對的機會媒合給對的人。"
+      }
+    },
+    "sectionRoadmap": "路線圖",
+    "roadmap": {
+      "phase1": {
+        "body": "個人檔案、社群、聊天與社交圖譜。成功指標：成員建立起持久的社群。"
+      },
+      "phase2": {
+        "body": "將對話轉化為共同工作的專案、共享工作空間與工具。成功指標：社群一起交付成果。"
+      },
+      "phase3": {
+        "body": "由成員組成的公司與事業，具備團隊管理與治理。成功指標：在網路內創立的公司。"
+      },
+      "phase4": {
+        "body": "幫助社群協調、摘要並媒合機會的 AI 工作者。成功指標：成員與 AI 平等地協作。"
+      },
+      "phase5": {
+        "body": "開放標準與可攜性，讓網路能跨平台連結。成功指標：一個可攜、可互通的社交圖譜。"
+      }
+    },
+    "sectionArchitecture": "架構與標準",
+    "architectureParagraph1": "社交圖譜就是產品本身：每個物件都掛在由人與其關係組成的網路上。通訊使用開放的 Matrix 協定（去中心化、E2EE），你的網路關係圖與連結會永久保存，因此你的人際關係隨時可攜。",
+    "architectureParagraph2": "Origin 是代管產品，前端以 React、TypeScript 與 Next.js 打造，後端使用 NestJS、PostgreSQL、Redis 與 Docker。保持開放的是協定（Matrix）、你的資料，以及以 AGPL-3.0 授權的原始碼——沒有什麼需要自行架設。",
+    "faq": {
+      "q1": {
+        "question": "JoinOrigin 是建立在什麼之上？",
+        "answer": "前端使用 React、TypeScript 與 Next.js；後端使用 NestJS、PostgreSQL、Redis 與 Docker。通訊則運行在開放的 Matrix 協定上。"
+      },
+      "q2": {
+        "question": "什麼是 Matrix？",
+        "answer": "Matrix 是一個開放、去中心化且具備端對端加密的通訊協定。Origin 運行在它之上，因此對話——以及對話背後的網路關係圖——都可攜且永久保存。"
+      },
+      "q3": {
+        "question": "JoinOrigin 可以自行架設嗎？",
+        "answer": "不行。Origin 是由 JoinOrigin 營運的代管產品，沒有什麼需要自行架設。你的網路關係圖與連結會透過開放的 Matrix 協定永久保存，你的資料也保持可攜。"
+      },
+      "q4": {
+        "question": "MVP 何時推出？",
+        "answer": "JoinOrigin 目前處於搶先體驗階段。「社群基礎」（第一階段）就是 MVP，會優先提供給等候名單上的成員。"
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "我們的使命",
+      "title": "最有價值的資產是你的網路",
+      "lead": "Origin 是一個建立在一個信念之上的社交協作網路：網路上最有價值的資產不是內容或軟體——而是人組成的網路，以及他們之間形成的關係。"
+    },
+    "sectionMission": "我們的使命",
+    "missionParagraph1": "Origin 正在打造人類協作的作業系統。你不必為了聊天、社群與專案而使用五套分開的工具——你的人際關係生活在一個安定的工作空間裡。社交圖譜就是產品：個人檔案、點子、社群、對話、貼文、專案、公司與機會，全都掛在同一個人的網路上。",
+    "missionParagraph2": "我們目前處於搶先體驗階段，等候名單上已有 2,400+ 位建設者。隨著平台沿著路線圖成長——社群基礎、協作、組織、AI 協作與全球網路——使命始終不變：幫助人們找到彼此並一起建設。",
+    "sectionPrinciples": "指導原則",
+    "principles": {
+      "peopleFirst": {
+        "body": "網路是由人組成的，而不只是內容或軟體。產品決策從成員想要建立的關係出發。"
+      },
+      "communitiesDriveGrowth": {
+        "body": "社群是互動的核心——一群分享興趣、產業、目標與機會的人讓網路活起來。"
+      },
+      "collaborationCreatesValue": {
+        "body": "對話變成專案，專案變成公司。Origin 的設計讓協作有地方可以落地。"
+      },
+      "openArchitecture": {
+        "title": "開放架構",
+        "body": "通訊運行在開放的 Matrix 協定上，而身分、個人檔案、社群與社交圖譜都可攜且歸使用者所有。Origin 是代管服務，因此沒有什麼需要自行架設。"
+      }
+    },
+    "sectionFounder": "創辦人的指引",
+    "founderQuote": "「這能幫助人們找到彼此嗎？如果不能，就不要做。」",
+    "founderBody": "Origin 上的每個功能都用這個問題來衡量。如果它不能幫助人們發現彼此、組成社群或一起展開專案，它就不屬於這個工作空間。",
+    "sectionReading": "深入閱讀",
+    "readingDocs": "閱讀<1>文件</1>以了解核心物件、路線圖與架構。",
+    "readingCommunity": "前往<1>社群</1>頁面了解網路內的價值觀與範例社群。",
+    "readingContact": "有問題嗎？<1>聯絡團隊</1>——我們會在 2 個工作天內回覆。",
+    "faq": {
+      "q1": {
+        "question": "什麼是 JoinOrigin？",
+        "answer": "Origin 是一個社交協作網路——一個將你的點子、專案與社群帶入同一個有組織空間的社群 OS。JoinOrigin 是它背後的品牌與網路。"
+      },
+      "q2": {
+        "question": "「網路就是產品」是什麼意思？",
+        "answer": "Origin 不是孤立地販售軟體功能，而是把人與人之間的關係——社交圖譜——視為它所創造並保護的核心價值。"
+      },
+      "q3": {
+        "question": "JoinOrigin 是開源的嗎？",
+        "answer": "程式碼以 AGPL-3.0 授權開放，通訊則運行在開放的 Matrix 協定上。Origin 是由 JoinOrigin 營運的代管產品——沒有什麼需要自行架設——你的網路關係圖也保持可攜。詳情請參閱文件。"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "聯絡",
+      "title": "與我們聊聊",
+      "lead": "對 Origin——這個社交協作網路——、搶先體驗或建立社群有疑問嗎？我們很樂意聽聽你的想法。"
+    },
+    "sectionForm": "發送訊息",
+    "form": {
+      "nameLabel": "姓名",
+      "namePlaceholder": "你的姓名",
+      "emailLabel": "電子郵件",
+      "emailPlaceholder": "you@example.com",
+      "messageLabel": "訊息",
+      "messagePlaceholder": "我們能如何協助你？",
+      "submit": "透過電子郵件寄送",
+      "hint": "這個表單會開啟你的電子郵件應用程式並預先填好訊息。我們會在 2 個工作天內回覆。"
+    },
+    "sectionOther": "其他聯絡方式",
+    "otherEmail": "電子郵件：<1>{{email}}</1>",
+    "otherDocs": "查看<1>文件</1>以了解概念、路線圖與架構。",
+    "otherAbout": "閱讀<1>關於</1>頁面了解我們的使命與原則。",
+    "mailtoSubject": "JoinOrigin 聯絡 — {{name}}",
+    "newMessage": "新訊息",
+    "mailtoBody": "姓名：{{name}}\n電子郵件：{{email}}\n\n{{message}}",
+    "faq": {
+      "q1": {
+        "question": "你們回覆的速度有多快？",
+        "answer": "我們會在 2 個工作天內回覆。若想最快得到答案，請先查看文件中的常見問題。"
+      },
+      "q2": {
+        "question": "我可以獲得搶先體驗資格嗎？",
+        "answer": "可以——從首頁加入等候名單。早期成員會在社群 OS 推出時優先進場。"
+      }
+    }
+  },
+  "privacy": {
+    "hero": {
+      "eyebrow": "法律",
+      "title": "隱私權政策",
+      "lead": "當你加入等候名單時，我們會透過等候名單表單（POST /api/leads）收集你的姓名與電子郵件地址。這是我們在搶先體驗期間唯一會索取的個人資訊。"
+    },
+    "sectionCollect": "我們收集什麼",
+    "collect": {
+      "waitlistDataTitle": "等候名單資料",
+      "waitlistDataBody": "姓名與電子郵件，僅用於通知你搶先體驗何時開放並邀請你加入。",
+      "analyticsTitle": "分析",
+      "analyticsBody": "我們運行設定驅動的分析（預設使用自行架設的 Plausible），以了解網站的整體使用情況。同意橫幅預定在之後的衝刺中加入。",
+      "technicalDataTitle": "基本技術資料",
+      "technicalDataBody": "標準的伺服器日誌與瀏覽器中繼資料，幫助我們維持網站的可靠性。"
+    },
+    "sectionUse": "我們如何使用",
+    "useBody": "我們使用收集到的資訊來營運網站、寄送搶先體驗邀請並改善產品。我們不會出售你的個人資訊。",
+    "sectionIdentity": "身分與彈性",
+    "identityBody": "你可以選擇在 Origin 上如何出現。你可以用實名帳號參與，也可以保持匿名；社群、聊天與點子頁面可以對所有人開放，也可以由主辦人設限。這些選項會逐步推出——重點是，由你決定分享什麼、與誰分享。",
+    "sectionRights": "你的權利",
+    "rightsBody": "你隨時可以要求存取、更正或刪除你的資料。由於身分與資料所有權是 JoinOrigin 的核心原則，我們讓匯出或移除屬於你的資料變得容易。",
+    "sectionContact": "聯絡",
+    "contactBody": "對這份政策有疑問嗎？寄電子郵件到 <1>{{email}}</1>，或使用<2>聯絡頁面</2>。"
+  },
+  "terms": {
+    "hero": {
+      "eyebrow": "法律",
+      "title": "服務條款",
+      "lead": "使用 JoinOrigin（以下稱「本服務」）即表示你同意這些服務條款。若你不同意，請不要使用本服務。"
+    },
+    "sectionAcceptance": "接受條款",
+    "acceptanceBody": "使用 JoinOrigin（以下稱「本服務」）即表示你同意這些服務條款。若你不同意，請不要使用本服務。",
+    "sectionAccounts": "帳戶",
+    "accountsBody": "你有責任保護你的帳戶憑證，並對在你帳戶下發生的活動負責。當你建立帳戶或加入等候名單時，你必須提供正確的資訊。",
+    "sectionUserContent": "使用者內容",
+    "userContentBody": "你保有自己發布內容的所有權。你授予 JoinOrigin 有限授權來儲存、顯示與處理該內容，以便本服務正常運作。你保有匯出與刪除自己內容的權利。",
+    "sectionAcceptableUse": "可接受的使用",
+    "acceptableUse": {
+      "unlawful": "請勿將本服務用於違法活動。",
+      "harassment": "請勿騷擾、辱罵或傷害其他成員。",
+      "unauthorizedAccess": "請勿嘗試干擾本服務或未經授權存取本服務。",
+      "scrape": "未經許可，請勿爬取或收集成員資料。"
+    },
+    "sectionIntellectualProperty": "智慧財產權",
+    "intellectualPropertyBody": "JoinOrigin 的商標、標誌與網站素材屬於 JoinOrigin。未經我們許可，你不得使用它們。開源元件仍受其各自的授權條款規範。",
+    "sectionDisclaimers": "免責聲明",
+    "disclaimersBody": "在搶先體驗期間，本服務以「現況」提供。我們努力維持其可靠性，但不保證它不會中斷或完全沒有錯誤。",
+    "sectionChanges": "變更",
+    "changesBody": "隨著本服務的演進，我們可能會更新這些條款。重大變更會在本頁公布；在變更之後繼續使用，即表示你接受更新後的條款。",
+    "sectionContact": "聯絡",
+    "contactBody": "對這些條款有疑問嗎？寄電子郵件到 <1>{{email}}</1>，或使用<2>聯絡頁面</2>。"
+  },
+  "orbitViz": {
+    "ariaLabel": "JoinOrigin 成員軌道視覺化",
+    "memberAlt": "JoinOrigin 成員 {{number}}",
+    "members": "成員"
+  },
+  "notFound": {
+    "brand": "JoinOrigin",
+    "status": "404",
+    "heading": "找不到頁面",
+    "copy": "你尋找的頁面不存在或已移動。回到首頁，找到你的團隊下一個專案的起點。",
+    "backHome": "返回首頁",
+    "exploreCommunities": "探索社群 →"
+  },
+  "mobile": {
+    "home": {
+      "badge": "歡迎",
+      "title": "歡迎來到 JoinOrigin",
+      "subtitle": "你的工作空間已準備就緒。"
+    }
+  }
+}
