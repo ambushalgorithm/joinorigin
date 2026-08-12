@@ -1,0 +1,508 @@
+{
+  "dir": "ltr",
+  "common": {
+    "brand": "JoinOrigin",
+    "faqHeading": "Veelgestelde vragen",
+    "contactUs": "Neem contact op",
+    "questionsAboutOrigin": "Vragen over Origin?",
+    "teamRepliesWithin2Days": "Ons team reageert binnen 2 werkdagen.",
+    "legal": "Juridisch",
+    "joinWaitlist": "Op de wachtlijst",
+    "nav": {
+      "features": "Functies",
+      "community": "Community",
+      "docs": "Docs",
+      "about": "Over ons",
+      "contact": "Contact",
+      "privacy": "Privacy",
+      "terms": "Voorwaarden"
+    },
+    "objects": {
+      "profiles": "Profielen",
+      "ideas": "Ideeën",
+      "communities": "Community's",
+      "communication": "Communicatie",
+      "feed": "Feed",
+      "projects": "Projecten",
+      "companies": "Bedrijven",
+      "opportunities": "Kansen"
+    },
+    "values": {
+      "peopleFirst": "Mensen voorop",
+      "communitiesDriveGrowth": "Community's drijven groei",
+      "collaborationCreatesValue": "Samenwerking creëert waarde"
+    },
+    "roadmap": {
+      "phase1Title": "Fase 1 — Community Foundation",
+      "phase2Title": "Fase 2 — Samenwerking",
+      "phase3Title": "Fase 3 — Organisatie",
+      "phase4Title": "Fase 4 — AI-samenwerking",
+      "phase5Title": "Fase 5 — Mondiaal netwerk"
+    }
+  },
+  "header": {
+    "brandAlt": "JoinOrigin startpagina",
+    "navAria": "Primair",
+    "logIn": "Inloggen",
+    "getStarted": "Aan de slag",
+    "mobileMenuToggle": "Navigatie in- of uitklappen"
+  },
+  "footer": {
+    "tagline": "Waar teams hun oorsprong vinden",
+    "groupProduct": "Product",
+    "groupCompany": "Bedrijf",
+    "groupLegal": "Juridisch",
+    "navAria": "Footer",
+    "copyright": "© 2026 JoinOrigin"
+  },
+  "home": {
+    "hero": {
+      "headline": "Ideeën, projecten en community-samenwerking — hier vinden teams en de beste projecten hun Origin.",
+      "headlineAccent": "Origin.",
+      "startProject": "Start een project",
+      "supporting": "Maak een profiel dat werkt als je cv, plaats je idee als pagina en start of sluit je aan bij een community rondom alles — een klein bedrijf, een AI-startup, een boekenclub, een 10k-loop.",
+      "trustAvatarsAlt": "JoinOrigin-lid {{number}}",
+      "trustCopy": "Sluit je aan bij 2.400+ bouwers die al samenwerken"
+    },
+    "definition": "Origin is een sociaal samenwerkingsnetwerk — het community-besturingssysteem waarin je ideeën, projecten en community's samenkomen in één overzichtelijke ruimte. JoinOrigin is het merk en het netwerk erachter.",
+    "marquee": {
+      "label": "Vertrouwd door teams bij",
+      "partnerAlt": "JoinOrigin-partner {{number}}"
+    },
+    "faq": {
+      "q1": {
+        "question": "Wat is JoinOrigin?",
+        "answer": "Origin is een sociaal samenwerkingsnetwerk — een community-besturingssysteem dat je ideeën, projecten en community's samenbrengt in één overzichtelijke ruimte. JoinOrigin is het merk en het netwerk erachter. In plaats van vijf losse tools leven je relaties op één plek, zodat er niets verloren gaat."
+      },
+      "q2": {
+        "question": "Waarin verschilt JoinOrigin van Discord/LinkedIn/Reddit?",
+        "answer": "Discord is een chat-app, LinkedIn vindt professionals en Reddit is er voor discussies. Origin combineert ze rondom de sociale graaf — profielen, community's, chat, feed, projecten en kansen leven allemaal samen, zodat relaties veranderen in echte samenwerking."
+      },
+      "q3": {
+        "question": "Wat kan ik doen zodra ik binnen ben?",
+        "answer": "Maak een profiel dat werkt als een cv, plaats je idee als idee-pagina, start of sluit je aan bij community's rondom alles en nodig de mensen uit waarmee je wilt werken. De wachtlijst reserveert je plek, zodat je community klaar is wanneer de vroege toegang opent."
+      },
+      "q4": {
+        "question": "Wanneer begint de vroege toegang?",
+        "answer": "De vroege toegang opent in fases terwijl het platform zich voorbereidt op de lancering. Door je nu aan te melden voor de wachtlijst reserveer je je plek en word je uitgenodigd zodra je community klaar is."
+      },
+      "q5": {
+        "question": "Hoe doe ik mee?",
+        "answer": "Klik ergens op deze pagina op “Aan de slag”, vul je naam en e-mailadres in en je staat op de wachtlijst. Je ontvangt een uitnodiging wanneer de vroege toegang jouw plek bereikt."
+      }
+    }
+  },
+  "waitlist": {
+    "close": "Sluiten",
+    "heading": "Op de wachtlijst",
+    "subcopy": "Wees als eerste in de rij voor vroege toegang. We mailen je zodra je werkruimte klaar is.",
+    "nameLabel": "Naam",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "E-mailadres",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Toegang aanvragen",
+    "submitting": "Bezig met verzenden",
+    "legalNote": "Geen spam. Op elk moment uitschrijven.",
+    "successHeading": "Je staat op de lijst!",
+    "successCopy": "We mailen je zodra je werkruimte klaar is.",
+    "done": "Klaar",
+    "errors": {
+      "generic": "Er is iets misgegaan. Probeer het opnieuw.",
+      "nameEmailRequired": "Naam en e-mailadres zijn verplicht.",
+      "nameRequired": "Naam is verplicht.",
+      "nameTooLong": "Naam mag maximaal 120 tekens bevatten.",
+      "emailInvalid": "Voer een geldig e-mailadres in.",
+      "rateLimited": "Te veel verzoeken. Probeer het over een minuut opnieuw."
+    }
+  },
+  "ctaBand": {
+    "headline": "Vind je mensen. Bouw samen.",
+    "subline": "Sluit je aan bij 2.400+ bouwers op het sociale samenwerkingsnetwerk van Origin en wees als eerste binnen wanneer de vroege toegang opent.",
+    "joinLabel": "Op de wachtlijst",
+    "contactLabel": "Neem contact op"
+  },
+  "features": {
+    "hero": {
+      "eyebrow": "Kernobjecten",
+      "title": "Alles wat een community nodig heeft, in één rustige werkruimte",
+      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is opgebouwd rond acht kernobjecten: profielen, ideeën, community's, gesprekken, berichten, projecten, bedrijven en kansen. In plaats van vijf losse tools leven je relaties op één plek."
+    },
+    "sectionCoreObjects": "Kernobjecten",
+    "coreObjects": {
+      "profiles": {
+        "body": "Een profiel werkt als een levend cv: het draagt je ervaring, vaardigheden en ideeën — plus je reputatie en relaties — mee naar elke community en elk project waar je lid van wordt."
+      },
+      "ideas": {
+        "body": "Elk idee krijgt een thuis. Plaats een idee-pagina voor alles — een klein bedrijf, een AI-startup, hulp aan daklozen, een 10k-loop, een boekenclub, een jeugdsportcompetitie — en vind de mensen die het met jou willen bouwen."
+      },
+      "communities": {
+        "body": "Groepen rondom interesses, sectoren en doelen — Startup-oprichters, kleine bedrijven, boekenclubs, maatschappelijke organisaties, iedereen met een idee — waar leden elkaar vinden."
+      },
+      "communication": {
+        "body": "Realtime-chat, directe berichten en groepsdiscussies via het open Matrix-protocol, standaard end-to-end versleuteld."
+      },
+      "feed": {
+        "body": "Berichten, updates en kansen van de mensen en community's die je volgt — een rustige stroom van wat er in je netwerk toe doet."
+      },
+      "projects": {
+        "body": "Gezamenlijke inspanningen waarin communityleden samenwerken en gesprekken omzetten in resultaten."
+      },
+      "companies": {
+        "body": "Ondernemingen die leden binnen het netwerk oprichten, met ingebouwd teammanagement en het delen van kansen."
+      },
+      "opportunities": {
+        "body": "Banen, partnerschappen en investeringen die worden ontdekt via de sociale graaf — het netwerk brengt de juiste kansen op het juiste moment naar boven."
+      }
+    },
+    "sectionComparison": "Waarom Origin in plaats van vijf tools",
+    "comparisonIntro": "De meeste platforms lossen slechts één deel van de samenwerking op. Origin combineert ze rondom de sociale graaf — de relaties tussen leden — zodat er niets tussen tools verloren gaat.",
+    "comparison": {
+      "toolHeader": "Tool",
+      "greatAtHeader": "Sterk in",
+      "addsHeader": "Wat JoinOrigin toevoegt",
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "vindt professionals",
+        "gap": "maar drijft niet de community's, chats en projecten die connecties omzetten in samenwerking."
+      },
+      "discord": {
+        "tool": "Discord",
+        "strength": "communiceert",
+        "gap": "maar is niet georganiseerd rond profielen, community's, projecten en kansen op een gedeelde sociale graaf."
+      },
+      "reddit": {
+        "tool": "Reddit",
+        "strength": "discussieert",
+        "gap": "maar is anoniem en draagt reputatie, relaties of projecten niet mee."
+      },
+      "github": {
+        "tool": "GitHub",
+        "strength": "codeert",
+        "gap": "maar is gebouwd voor repositories, niet voor het volledige scala aan menselijke samenwerking."
+      }
+    },
+    "sectionRoadmap": "Roadmap",
+    "roadmap": {
+      "phase1": {
+        "body": "Profielen, community's, chat en de sociale graaf — de basislaag waar mensen elkaar vinden."
+      },
+      "phase2": {
+        "body": "Projecten, gedeelde werkruimtes en tools die communitygesprekken omzetten in gezamenlijk werk."
+      },
+      "phase3": {
+        "body": "Bedrijven en ondernemingen die leden oprichten, met teammanagement en bestuur."
+      },
+      "phase4": {
+        "body": "AI-werkers die community's helpen coördineren, samenvatten en kansen matchen."
+      },
+      "phase5": {
+        "body": "Open standaarden en overdraagbaarheid zodat het netwerk verbindt over platforms heen, niet alleen binnen één silo."
+      }
+    },
+    "faq": {
+      "q1": {
+        "question": "Waarin verschilt JoinOrigin van Discord?",
+        "answer": "Discord is een chat-app. Origin is een sociaal samenwerkingsnetwerk — profielen, ideeën, community's, chat, feed, projecten en bedrijven leven allemaal op één sociale graaf."
+      },
+      "q2": {
+        "question": "Is JoinOrigin open source?",
+        "answer": "De code is open onder AGPL-3.0 en communicatie verloopt via het open Matrix-protocol. Origin zelf is een gehost product dat door JoinOrigin wordt beheerd — er is niets om zelf te hosten — en je gegevens blijven overdraagbaar."
+      },
+      "q3": {
+        "question": "Wat is de sociale graaf?",
+        "answer": "De sociale graaf is het web van relaties tussen leden. Origin is eromheen georganiseerd, zodat elk profiel, elke community en elk project verbindt via mensen."
+      },
+      "q4": {
+        "question": "Wanneer worden projecten en bedrijven gelanceerd?",
+        "answer": "Ze ontwikkelen zich vanzelf. Terwijl mensen ideeën, visies en werk plaatsen, vinden ze de mensen die met hen willen bouwen — en uit die connecties groeien projecten en bedrijven voort, in plaats van te wachten op een lanceringsdatum."
+      }
+    }
+  },
+  "community": {
+    "hero": {
+      "eyebrow": "Het netwerk",
+      "title": "Waar mensen elkaar vinden",
+      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is georganiseerd rond community's — groepen mensen die interesses, sectoren, doelen en kansen delen. Community's vormen het middelpunt van betrokkenheid."
+    },
+    "sectionValues": "Hoe we het netwerk runnen",
+    "values": {
+      "peopleFirst": {
+        "body": "Leden zijn mensen, geen profielen in een database. Elke ontwerpbeslissing beschermt de relaties die het netwerk de moeite waard maken om aan mee te doen."
+      },
+      "communitiesDriveGrowth": {
+        "body": "Community's vormen het middelpunt van betrokkenheid. Wanneer een community bloeit, vinden de mensen erin elkaar en bouwen ze samen."
+      },
+      "collaborationCreatesValue": {
+        "body": "Samenwerking is hoe gesprekken projecten worden en projecten bedrijven. Origin is gebouwd zodat samenwerking een bestemming heeft."
+      },
+      "ownership": {
+        "title": "Eigendom & soevereiniteit",
+        "body": "Je bezit je identiteit, je gegevens en je community's. Open architectuur en een overdraagbare identiteit houden het netwerk verantwoordelijk tegenover zijn leden."
+      }
+    },
+    "sectionExamples": "Voorbeeld-community's",
+    "examplesIntro": "Dit zijn de soorten community's die vandaag de dag binnen JoinOrigin groeien. Deel jij één van deze doelen, dan is er al een plek voor jou:",
+    "examples": {
+      "startupFounders": "Startup-oprichters",
+      "smallBusinesses": "Kleine bedrijven",
+      "bookClubs": "Boekenclubs",
+      "communityOrganizations": "Maatschappelijke organisaties",
+      "runClubs": "Loopgroepen",
+      "peeWeeLeagues": "Jeugdsportcompetities",
+      "anyoneWithAnIdea": "Iedereen met een idee"
+    },
+    "sectionJoin": "Sluit je aan bij het netwerk",
+    "joinCopy": "De community wordt gebouwd door de mensen die erin zitten. Meld je aan voor de wachtlijst om deel uit te maken van de eerste golf bouwers die vormgeven aan hoe mensen elkaar online vinden.",
+    "joinStatValue": "2.400+",
+    "joinStatLabel": "Leden die samen bouwen",
+    "faq": {
+      "q1": {
+        "question": "Bij welke community's kan ik me aansluiten?",
+        "answer": "Iedereen kan een community starten of zich aansluiten rondom elk idee — een klein bedrijf, een AI-startup, hulp aan daklozen, een 10k-loop, een politieke beweging, een jeugdsportcompetitie. Als het jou iets doet, heeft het een plek op Origin."
+      },
+      "q2": {
+        "question": "Kan ik mijn eigen community starten?",
+        "answer": "Ja. Elk lid kan een community oprichten rondom elk idee en de mensen uitnodigen waarmee ze willen bouwen — of het nu een bedrijf, een boekenclub of een loopgroep is."
+      },
+      "q3": {
+        "question": "Is mijn data van mij?",
+        "answer": "Ja. Je bezit je identiteit en je gegevens. Origin is een gehost product, dus er is niets om zelf te hosten — maar je gegevens zijn overdraagbaar en je netwerkgraaf blijft behouden via het open Matrix-protocol."
+      },
+      "q4": {
+        "question": "Hoe vind ik mijn mensen?",
+        "answer": "Blader door community's op interesse, sector of doel — van kleine bedrijven en boekenclubs tot AI-startups en loopgroepen — en sluit je aan bij de community's die passen bij wat jij wilt bouwen. Of start je eigen community voor elk idee."
+      },
+      "q5": {
+        "question": "Kan ik anoniem of met naam meedoen?",
+        "answer": "Jij kiest. Je kunt meedoen met een account op naam of anoniem blijven, en community's, chats en idee-pagina's kunnen open zijn voor iedereen of beperkt worden door organisatoren. Deze opties worden geleidelijk uitgerold."
+      }
+    }
+  },
+  "docs": {
+    "hero": {
+      "eyebrow": "Documentatie",
+      "title": "JoinOrigin-docs",
+      "lead": "Origin is het product: een sociaal samenwerkingsnetwerk en community-besturingssysteem. JoinOrigin is het merk en het netwerk erachter. Deze docs leggen de kernobjecten, de roadmap en de architectuur uit."
+    },
+    "sectionConcepts": "Concepten",
+    "concepts": {
+      "profiles": {
+        "body": "Profielen zijn de overdraagbare identiteit van elk lid — als een levend cv. Ze dragen ervaring, vaardigheden, ideeën, reputatie en relaties mee naar elke community en elk project, zodat wie je bent met je meereist."
+      },
+      "communities": {
+        "body": "Community's zijn groepen mensen die interesses, sectoren, doelen en kansen delen — rondom elk idee. Ze vormen het middelpunt van betrokkenheid op Origin en de manier waarop leden elkaar vinden."
+      },
+      "ideas": {
+        "body": "Ideeën zijn het startpunt van alles op Origin. Plaats een idee-pagina voor elk idee — een klein bedrijf, een AI-startup, een boekenclub, een 10k-loop — en de mensen die het willen bouwen vinden jou."
+      },
+      "communication": {
+        "body": "Communicatie omvat realtime-chat, directe berichten en groepsdiscussies. Het draait op het open Matrix-protocol, zodat gesprekken overdraagbaar zijn en end-to-end versleuteld kunnen worden."
+      },
+      "feed": {
+        "body": "De feed toont berichten, updates en kansen van de mensen en community's die je volgt. Het is een rustige stroom van wat er in je netwerk toe doet, geen betrokkenheidsmachine."
+      },
+      "projects": {
+        "body": "Projecten zijn gezamenlijke inspanningen waarin leden naar een gedeeld resultaat toewerken. Ze verbinden de sociale graaf met echt werk binnen en tussen community's."
+      },
+      "companies": {
+        "body": "Bedrijven zijn ondernemingen die leden van het netwerk oprichten. Ze brengen teammanagement en het delen van kansen naar dezelfde werkruimte waar de relaties leven."
+      },
+      "opportunities": {
+        "body": "Kansen zijn banen, partnerschappen en investeringen die via de sociale graaf naar boven komen. Het netwerk koppelt de juiste kans aan de juiste persoon op het juiste moment."
+      }
+    },
+    "sectionRoadmap": "Roadmap",
+    "roadmap": {
+      "phase1": {
+        "body": "Profielen, community's, chat en de sociale graaf. Succesmetriek: leden die duurzame community's vormen."
+      },
+      "phase2": {
+        "body": "Projecten, gedeelde werkruimtes en tools die gesprekken omzetten in gezamenlijk werk. Succesmetriek: community's die samen resultaten opleveren."
+      },
+      "phase3": {
+        "body": "Bedrijven en ondernemingen die leden oprichten, met teammanagement en bestuur. Succesmetriek: bedrijven die binnen het netwerk worden opgericht."
+      },
+      "phase4": {
+        "body": "AI-werkers die community's helpen coördineren, samenvatten en kansen matchen. Succesmetriek: leden die als gelijken met AI samenwerken."
+      },
+      "phase5": {
+        "body": "Open standaarden en overdraagbaarheid zodat het netwerk verbindt over platforms heen. Succesmetriek: een overdraagbare, interoperabele sociale graaf."
+      }
+    },
+    "sectionArchitecture": "Architectuur & standaarden",
+    "architectureParagraph1": "De sociale graaf is het product: elk object hangt af van het netwerk van mensen en hun relaties. Communicatie gebruikt het open Matrix-protocol (gedecentraliseerd, E2EE), en je netwerkgraaf en connecties blijven voor altijd behouden, zodat je relaties overdraagbaar blijven.",
+    "architectureParagraph2": "Origin is een gehost product, op het web gebouwd met React, TypeScript en Next.js, en in de backend met NestJS, PostgreSQL, Redis en Docker. Open blijven het protocol (Matrix), je gegevens en de broncode onder AGPL-3.0 — er is niets om zelf te hosten.",
+    "faq": {
+      "q1": {
+        "question": "Waarop is JoinOrigin gebouwd?",
+        "answer": "React, TypeScript en Next.js op het web; NestJS, PostgreSQL, Redis en Docker in de backend. Communicatie verloopt via het open Matrix-protocol."
+      },
+      "q2": {
+        "question": "Wat is Matrix?",
+        "answer": "Matrix is een open, gedecentraliseerd communicatieprotocol met end-to-end-versleuteling. Origin draait erop, zodat gesprekken — en de netwerkgraaf erachter — overdraagbaar zijn en voor altijd blijven bestaan."
+      },
+      "q3": {
+        "question": "Is JoinOrigin zelf te hosten?",
+        "answer": "Nee. Origin is een gehost product dat door JoinOrigin wordt beheerd, dus er is niets om zelf te hosten. Je netwerkgraaf en connecties blijven voor altijd behouden via het open Matrix-protocol en je gegevens blijven overdraagbaar."
+      },
+      "q4": {
+        "question": "Wanneer lanceert de MVP?",
+        "answer": "JoinOrigin is in vroege toegang. De Community Foundation (Fase 1) is de MVP en wordt als eerste naar wachtlijstleden uitgerold."
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Onze missie",
+      "title": "Je netwerk is je meest waardevolle bezit",
+      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is gebouwd op één overtuiging: het meest waardevolle bezit op internet is niet content of software — het is het netwerk van mensen en de relaties die zij vormen."
+    },
+    "sectionMission": "Onze missie",
+    "missionParagraph1": "Origin bouwt het besturingssysteem voor menselijke samenwerking. In plaats van vijf losse tools voor chat, community's en projecten leven je relaties in één rustige werkruimte. De sociale graaf is het product: profielen, ideeën, community's, gesprekken, berichten, projecten, bedrijven en kansen hangen allemaal af van hetzelfde netwerk van mensen.",
+    "missionParagraph2": "We zijn vandaag in vroege toegang, met 2.400+ bouwers op de wachtlijst. Terwijl het platform groeit via de roadmap — Community Foundation, Samenwerking, Organisatie, AI-samenwerking en het mondiale netwerk — blijft de missie hetzelfde: mensen helpen elkaar te vinden en samen te bouwen.",
+    "sectionPrinciples": "Leidende principes",
+    "principles": {
+      "peopleFirst": {
+        "body": "Het netwerk bestaat uit mensen, niet alleen uit content of software. Productbeslissingen beginnen bij de relaties die leden willen aangaan."
+      },
+      "communitiesDriveGrowth": {
+        "body": "Community's vormen het middelpunt van betrokkenheid — groepen mensen die interesses, sectoren, doelen en kansen delen brengen het netwerk tot leven."
+      },
+      "collaborationCreatesValue": {
+        "body": "Gesprekken worden projecten, projecten worden bedrijven. Origin is gebouwd zodat samenwerking een bestemming heeft."
+      },
+      "openArchitecture": {
+        "title": "Open architectuur",
+        "body": "Communicatie verloopt via het open Matrix-protocol en identiteit, profielen, community's en de sociale graaf zijn overdraagbaar en eigendom van de gebruiker. Origin is gehost, dus er is niets om zelf te hosten."
+      }
+    },
+    "sectionFounder": "Advies van de oprichter",
+    "founderQuote": "“Helpt dit mensen elkaar te vinden? Zo niet, bouw het dan niet.”",
+    "founderBody": "Elke functie op Origin wordt afgemeten aan die vraag. Helpt het mensen niet om elkaar te ontdekken, community's te vormen of samen projecten te starten, dan hoort het niet thuis in de werkruimte.",
+    "sectionReading": "Verder lezen",
+    "readingDocs": "Lees de <1>docs</1> voor de kernobjecten, roadmap en architectuur.",
+    "readingCommunity": "Bekijk de <1>community</1>-pagina voor de waarden en voorbeeld-community's binnen het netwerk.",
+    "readingContact": "Heb je een vraag? <1>Neem contact op met het team</1> — we reageren binnen 2 werkdagen.",
+    "faq": {
+      "q1": {
+        "question": "Wat is JoinOrigin?",
+        "answer": "Origin is een sociaal samenwerkingsnetwerk — een community-besturingssysteem dat je ideeën, projecten en community's samenbrengt in één overzichtelijke ruimte. JoinOrigin is het merk en het netwerk erachter."
+      },
+      "q2": {
+        "question": "Wat betekent “het netwerk is het product”?",
+        "answer": "In plaats van softwarefuncties los te verkopen, behandelt Origin de relaties tussen mensen — de sociale graaf — als de kernwaarde die het creëert en beschermt."
+      },
+      "q3": {
+        "question": "Is JoinOrigin open source?",
+        "answer": "De code is open onder AGPL-3.0 en communicatie verloopt via het open Matrix-protocol. Origin is een gehost product dat door JoinOrigin wordt beheerd — er is niets om zelf te hosten — en je netwerkgraaf blijft overdraagbaar. Zie de docs voor details."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Praat met ons",
+      "lead": "Heb je een vraag over Origin — het sociale samenwerkingsnetwerk — over vroege toegang of het starten van een community? We horen graag van je."
+    },
+    "sectionForm": "Stuur een bericht",
+    "form": {
+      "nameLabel": "Naam",
+      "namePlaceholder": "Jouw naam",
+      "emailLabel": "E-mailadres",
+      "emailPlaceholder": "jij@voorbeeld.com",
+      "messageLabel": "Bericht",
+      "messagePlaceholder": "Hoe kunnen we helpen?",
+      "submit": "Versturen via e-mail",
+      "hint": "Dit formulier opent je e-mailapp met het bericht al ingevuld. We reageren binnen 2 werkdagen."
+    },
+    "sectionOther": "Andere manieren om ons te bereiken",
+    "otherEmail": "E-mail: <1>{{email}}</1>",
+    "otherDocs": "Bekijk de <1>docs</1> voor concepten, roadmap en architectuur.",
+    "otherAbout": "Lees de <1>over ons</1>-pagina voor onze missie en principes.",
+    "mailtoSubject": "JoinOrigin-contact — {{name}}",
+    "newMessage": "nieuw bericht",
+    "mailtoBody": "Naam: {{name}}\nE-mail: {{email}}\n\n{{message}}",
+    "faq": {
+      "q1": {
+        "question": "Hoe snel reageren jullie?",
+        "answer": "We reageren binnen 2 werkdagen. Voor het snelste antwoord kun je eerst de FAQ in de docs raadplegen."
+      },
+      "q2": {
+        "question": "Kan ik vroege toegang krijgen?",
+        "answer": "Ja — meld je via de startpagina aan voor de wachtlijst. Vroege leden zijn als eerste binnen wanneer het community-besturingssysteem lanceert."
+      }
+    }
+  },
+  "privacy": {
+    "hero": {
+      "eyebrow": "Juridisch",
+      "title": "Privacybeleid",
+      "lead": "Wanneer je je aanmeldt voor de wachtlijst verzamelen we je naam en e-mailadres via het wachtlijstformulier (POST /api/leads). Dat is de enige persoonlijke informatie die we tijdens de vroege toegang vragen."
+    },
+    "sectionCollect": "Wat we verzamelen",
+    "collect": {
+      "waitlistDataTitle": "Wachtlijstgegevens",
+      "waitlistDataBody": "Naam en e-mailadres, uitsluitend gebruikt om je te laten weten wanneer de vroege toegang opent en om je uit te nodigen.",
+      "analyticsTitle": "Analytics",
+      "analyticsBody": "We gebruiken config-gestuurde analytics (standaard zelf gehost Plausible) om het geaggregeerde gebruik van de site te begrijpen. Een toestemmingsbanner is gepland voor een latere sprint.",
+      "technicalDataTitle": "Basis technische gegevens",
+      "technicalDataBody": "Standaard serverlogs en browsermetadata die ons helpen de site betrouwbaar te houden."
+    },
+    "sectionUse": "Hoe we het gebruiken",
+    "useBody": "We gebruiken de verzamelde informatie om de site te beheren, uitnodigingen voor vroege toegang te versturen en het product te verbeteren. We verkopen je persoonlijke informatie niet.",
+    "sectionIdentity": "Identiteit & flexibiliteit",
+    "identityBody": "Jij kiest hoe je op Origin verschijnt. Je kunt meedoen met een account op naam of anoniem blijven, en community's, chats en idee-pagina's kunnen open zijn voor iedereen of beperkt worden door hun organisatoren. Deze opties worden geleidelijk uitgerold — het punt is dat jij bepaalt wat je deelt en met wie.",
+    "sectionRights": "Jouw rechten",
+    "rightsBody": "Je kunt op elk moment toegang tot, correctie van of verwijdering van je gegevens aanvragen. Omdat identiteit en data-eigendom kernprincipes van JoinOrigin zijn, maken we het makkelijk om te exporteren of te verwijderen wat van jou is.",
+    "sectionContact": "Contact",
+    "contactBody": "Vragen over dit beleid? E-mail <1>{{email}}</1> of gebruik de <2>contactpagina</2>."
+  },
+  "terms": {
+    "hero": {
+      "eyebrow": "Juridisch",
+      "title": "Servicevoorwaarden",
+      "lead": "Door gebruik te maken van JoinOrigin (de “Dienst”) ga je akkoord met deze Servicevoorwaarden. Ga je niet akkoord, gebruik de Dienst dan niet."
+    },
+    "sectionAcceptance": "Aanvaarding",
+    "acceptanceBody": "Door gebruik te maken van JoinOrigin (de “Dienst”) ga je akkoord met deze Servicevoorwaarden. Ga je niet akkoord, gebruik de Dienst dan niet.",
+    "sectionAccounts": "Accounts",
+    "accountsBody": "Je bent verantwoordelijk voor het beveiligen van je accountgegevens en voor activiteit die onder jouw account plaatsvindt. Je moet nauwkeurige informatie verstrekken wanneer je een account aanmaakt of je aanmeldt voor de wachtlijst.",
+    "sectionUserContent": "Gebruikerscontent",
+    "userContentBody": "Je behoudt het eigendom van de content die je plaatst. Je verleent JoinOrigin een beperkte licentie om die content op te slaan, weer te geven en te verwerken, zodat de Dienst kan functioneren. Je behoudt het recht om je content te exporteren en te verwijderen.",
+    "sectionAcceptableUse": "Aanvaardbaar gebruik",
+    "acceptableUse": {
+      "unlawful": "Gebruik de Dienst niet voor onrechtmatige activiteiten.",
+      "harassment": "Intimideer, misbruik of schaad andere leden niet.",
+      "unauthorizedAccess": "Probeer de Dienst niet te verstoren of er onbevoegd toegang toe te krijgen.",
+      "scrape": "Schraap of verzamel geen ledengegevens zonder toestemming."
+    },
+    "sectionIntellectualProperty": "Intellectueel eigendom",
+    "intellectualPropertyBody": "De handelsmerken, logo's en websitematerialen van JoinOrigin zijn van JoinOrigin. Je mag ze niet gebruiken zonder onze toestemming. Open-sourcecomponenten blijven onder hun respectievelijke licenties.",
+    "sectionDisclaimers": "Vrijwaringen",
+    "disclaimersBody": "De Dienst wordt tijdens de vroege toegang “as is” aangeboden. We werken eraan hem betrouwbaar te houden, maar garanderen niet dat hij ononderbroken of foutloos is.",
+    "sectionChanges": "Wijzigingen",
+    "changesBody": "We kunnen deze voorwaarden bijwerken naarmate de Dienst evolueert. Materiële wijzigingen worden op deze pagina aangekondigd en door de Dienst na wijzigingen te blijven gebruiken aanvaard je de bijgewerkte voorwaarden.",
+    "sectionContact": "Contact",
+    "contactBody": "Vragen over deze voorwaarden? E-mail <1>{{email}}</1> of gebruik de <2>contactpagina</2>."
+  },
+  "orbitViz": {
+    "ariaLabel": "Visualisatie van de ledenbaan van JoinOrigin",
+    "memberAlt": "JoinOrigin-lid {{number}}",
+    "members": "Leden"
+  },
+  "notFound": {
+    "brand": "JoinOrigin",
+    "status": "404",
+    "heading": "Pagina niet gevonden",
+    "copy": "De pagina die je zoekt bestaat niet of is verplaatst. Ga terug naar de startpagina om te ontdekken waar het volgende project van je team begint.",
+    "backHome": "Terug naar start",
+    "exploreCommunities": "Ontdek community's →"
+  },
+  "mobile": {
+    "home": {
+      "badge": "Welkom",
+      "title": "Welkom bij JoinOrigin",
+      "subtitle": "Je werkruimte is klaar."
+    }
+  }
+}
