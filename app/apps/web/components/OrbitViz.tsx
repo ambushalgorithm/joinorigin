@@ -214,9 +214,12 @@ const Outer = styled.div<{ $entered: boolean }>`
 
 const ScaleFrame = styled.div`
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
   width: ${CONTAINER_SIZE}px;
   height: ${CONTAINER_SIZE}px;
+  margin-left: -${CONTAINER_SIZE / 2}px;
+  margin-top: -${CONTAINER_SIZE / 2}px;
   transform-origin: center center;
   transform: scale(1);
 
