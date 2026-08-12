@@ -1,0 +1,508 @@
+{
+  "dir": "ltr",
+  "common": {
+    "brand": "JoinOrigin",
+    "faqHeading": "Sıkça sorulan sorular",
+    "contactUs": "Bize ulaşın",
+    "questionsAboutOrigin": "Origin hakkında sorularınız mı var?",
+    "teamRepliesWithin2Days": "Ekibimiz 2 iş günü içinde yanıt verir.",
+    "legal": "Yasal",
+    "joinWaitlist": "Bekleme listesine katılın",
+    "nav": {
+      "features": "Özellikler",
+      "community": "Topluluk",
+      "docs": "Dokümanlar",
+      "about": "Hakkımızda",
+      "contact": "İletişim",
+      "privacy": "Gizlilik",
+      "terms": "Koşullar"
+    },
+    "objects": {
+      "profiles": "Profiller",
+      "ideas": "Fikirler",
+      "communities": "Topluluklar",
+      "communication": "Mesajlaşma",
+      "feed": "Akış",
+      "projects": "Projeler",
+      "companies": "Şirketler",
+      "opportunities": "Fırsatlar"
+    },
+    "values": {
+      "peopleFirst": "Önce İnsan",
+      "communitiesDriveGrowth": "Topluluklar Büyümeyi Sağlar",
+      "collaborationCreatesValue": "İş Birliği Değer Yaratır"
+    },
+    "roadmap": {
+      "phase1Title": "Faz 1 — Topluluk Temeli",
+      "phase2Title": "Faz 2 — İş Birliği",
+      "phase3Title": "Faz 3 — Organizasyon",
+      "phase4Title": "Faz 4 — Yapay Zekâ ile İş Birliği",
+      "phase5Title": "Faz 5 — Küresel Ağ"
+    }
+  },
+  "header": {
+    "brandAlt": "JoinOrigin ana sayfa",
+    "navAria": "Ana",
+    "logIn": "Giriş Yap",
+    "getStarted": "Başlayın",
+    "mobileMenuToggle": "Menüyü aç/kapat"
+  },
+  "footer": {
+    "tagline": "Ekiplerin Origin'ini bulduğu yer",
+    "groupProduct": "Ürün",
+    "groupCompany": "Şirket",
+    "groupLegal": "Yasal",
+    "navAria": "Alt bilgi",
+    "copyright": "© 2026 JoinOrigin"
+  },
+  "home": {
+    "hero": {
+      "headline": "Fikirler, projeler ve topluluk iş birliği alanı — ekiplerin ve en iyi projelerin buluştuğu yer: Origin.",
+      "headlineAccent": "Origin.",
+      "startProject": "Proje Başlat",
+      "supporting": "Özgeçmişiniz gibi çalışan bir profil oluşturun, fikrinizi bir sayfa olarak yayınlayın ve her şeyin etrafında bir topluluk başlatın ya da katılın — küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü, bir 10K koşusu.",
+      "trustAvatarsAlt": "JoinOrigin üyesi {{number}}",
+      "trustCopy": "Hâlihazırda iş birliği yapan 2.400+ kurucuya katılın"
+    },
+    "definition": "Origin, sosyal iş birliği ağıdır — fikirlerinizin, projelerinizin ve topluluklarınızın tek bir düzenli alanda buluştuğu topluluk işletim sistemi. JoinOrigin, arkasındaki marka ve ağdır.",
+    "marquee": {
+      "label": "Ekiplerin güvendiği",
+      "partnerAlt": "JoinOrigin iş ortağı {{number}}"
+    },
+    "faq": {
+      "q1": {
+        "question": "JoinOrigin nedir?",
+        "answer": "Origin, sosyal iş birliği ağıdır — fikirlerinizi, projelerinizi ve topluluklarınızı tek bir düzenli alanda toplayan bir topluluk işletim sistemi. JoinOrigin, arkasındaki marka ve ağdır. Beş ayrı araç yerine ilişkileriniz tek bir yerde yaşar, böylece hiçbir şey arada kaybolmaz."
+      },
+      "q2": {
+        "question": "JoinOrigin'in Discord/LinkedIn/Reddit'ten farkı nedir?",
+        "answer": "Discord bir sohbet uygulamasıdır, LinkedIn profesyonelleri bulur, Reddit ise tartışma içindir. Origin, bunları sosyal grafik etrafında birleştirir — profiller, topluluklar, sohbet, akış, projeler ve fırsatlar bir arada yaşar; böylece ilişkiler gerçek iş birliğine dönüşür."
+      },
+      "q3": {
+        "question": "İçeri girdikten sonra neler yapabilirim?",
+        "answer": "Özgeçmiş gibi çalışan bir profil oluşturun, fikrinizi bir fikir sayfası olarak yayınlayın, her şeyin etrafında topluluklar başlatın ya da katılın ve birlikte çalışmak istediğiniz kişileri davet edin. Bekleme listesi yerinizi ayırtır; erken erişim açıldığında topluluğunuz hazır olur."
+      },
+      "q4": {
+        "question": "Erken erişim ne zaman başlıyor?",
+        "answer": "Platform lansmana doğru ilerlerken erken erişim dalgalar hâlinde açılır. Bekleme listesine şimdi katılmak yerinizi ayırtır ve topluluğunuz hazır olduğunda davet edilirsiniz."
+      },
+      "q5": {
+        "question": "Nasıl katılırım?",
+        "answer": "Bu sayfadaki herhangi bir Başlayın düğmesine tıklayın, adınızı ve e-postanızı girin; bekleme listesindesiniz. Erken erişim sırası size geldiğinde bir davetiye alacaksınız."
+      }
+    }
+  },
+  "waitlist": {
+    "close": "Kapat",
+    "heading": "Bekleme listesine katılın",
+    "subcopy": "Erken erişim için ilk sırada olun. Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
+    "nameLabel": "Ad",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "E-posta",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Erişim talep et",
+    "submitting": "Gönderiliyor",
+    "legalNote": "Spam yok. İstediğiniz zaman abonelikten çıkabilirsiniz.",
+    "successHeading": "Listedesiniz!",
+    "successCopy": "Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
+    "done": "Tamam",
+    "errors": {
+      "generic": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+      "nameEmailRequired": "Ad ve e-posta zorunludur.",
+      "nameRequired": "Ad zorunludur.",
+      "nameTooLong": "Ad en fazla 120 karakter olmalıdır.",
+      "emailInvalid": "Geçerli bir e-posta adresi girin.",
+      "rateLimited": "Çok fazla istek gönderildi. Bir dakika sonra tekrar deneyin."
+    }
+  },
+  "ctaBand": {
+    "headline": "İnsanlarını bul. Birlikte inşa et.",
+    "subline": "Origin'in sosyal iş birliği ağındaki 2.400+ kurucuya katılın ve erken erişim açıldığında ilk sırada olun.",
+    "joinLabel": "Bekleme listesine katılın",
+    "contactLabel": "Bize ulaşın"
+  },
+  "features": {
+    "hero": {
+      "eyebrow": "Temel nesneler",
+      "title": "Bir topluluğun ihtiyaç duyduğu her şey, tek bir sakin çalışma alanında",
+      "lead": "Origin, sekiz temel nesne etrafında kurulmuş bir sosyal iş birliği ağıdır: profiller, fikirler, topluluklar, sohbetler, gönderiler, projeler, şirketler ve fırsatlar. Beş ayrı araç yerine ilişkileriniz tek bir yerde yaşar."
+    },
+    "sectionCoreObjects": "Temel nesneler",
+    "coreObjects": {
+      "profiles": {
+        "body": "Bir profil, canlı bir özgeçmiş gibi çalışır: deneyiminizi, becerilerinizi ve fikirlerinizi — ayrıca itibarınızı ve ilişkilerinizi — katıldığınız her topluluğa ve projeye taşır."
+      },
+      "ideas": {
+        "body": "Her fikir bir yuva bulur. Her şey için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, evsizlere yardım, bir 10K koşusu, bir kitap kulübü, bir minikler ligi — ve onu sizinle birlikte inşa etmek isteyen insanları bulun."
+      },
+      "communities": {
+        "body": "İlgi alanları, sektörler ve hedefler etrafındaki gruplar — Girişim Kurucuları, Küçük İşletmeler, Kitap Kulüpleri, Topluluk Örgütleri, Fikri Olan Herkes — üyelerin birbirini bulduğu yer."
+      },
+      "communication": {
+        "body": "Açık Matrix protokolü üzerinden gerçek zamanlı sohbet, doğrudan mesajlar ve grup tartışmaları; varsayılan olarak uçtan uca şifreli."
+      },
+      "feed": {
+        "body": "Takip ettiğiniz kişilerden ve topluluklardan gönderiler, güncellemeler ve fırsatlar — ağınızda önemli olanların sakin bir akışı."
+      },
+      "projects": {
+        "body": "Topluluk üyelerinin birlikte çalıştığı ve sohbetleri sonuçlara dönüştürdüğü iş birliğine dayalı çabalar."
+      },
+      "companies": {
+        "body": "Ağ içinde üyeler tarafından kurulan girişimler; takım yönetimi ve fırsat paylaşımı dahildir."
+      },
+      "opportunities": {
+        "body": "Sosyal grafik üzerinden keşfedilen işler, ortaklıklar ve yatırımlar — ağ, doğru zamanda doğru fırsatları yüzeye çıkarır."
+      }
+    },
+    "sectionComparison": "Neden beş araç yerine Origin?",
+    "comparisonIntro": "Çoğu platform iş birliğinin yalnızca bir parçasını çözer. Origin, bunları sosyal grafik — üyeler arasındaki ilişkiler — etrafında birleştirir; böylece araçlar arasında hiçbir şey kaybolmaz.",
+    "comparison": {
+      "toolHeader": "Araç",
+      "greatAtHeader": "Güçlü olduğu",
+      "addsHeader": "JoinOrigin'in kattıkları",
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "profesyonelleri bulur",
+        "gap": "ancak bağlantıları iş birliğine dönüştüren toplulukları, sohbeti ve projeleri desteklemez."
+      },
+      "discord": {
+        "tool": "Discord",
+        "strength": "iletişim kurar",
+        "gap": "ancak ortak bir sosyal grafik üzerinde profiller, topluluklar, projeler ve fırsatlar etrafında organize edilmemiştir."
+      },
+      "reddit": {
+        "tool": "Reddit",
+        "strength": "tartışır",
+        "gap": "ancak anonimdir ve itibarı, ilişkileri ya da projeleri ileriye taşımaz."
+      },
+      "github": {
+        "tool": "GitHub",
+        "strength": "kod yazar",
+        "gap": "ancak insan iş birliğinin tüm yelpazesi için değil, depolar için kurulmuştur."
+      }
+    },
+    "sectionRoadmap": "Yol Haritası",
+    "roadmap": {
+      "phase1": {
+        "body": "Profiller, topluluklar, sohbet ve sosyal grafik — insanların birbirini bulduğu temel katman."
+      },
+      "phase2": {
+        "body": "Projeler, paylaşılan çalışma alanları ve topluluk sohbetlerini ortak çalışmaya dönüştüren araçlar."
+      },
+      "phase3": {
+        "body": "Üyeler tarafından kurulan şirketler ve girişimler; takım yönetimi ve yönetişim ile."
+      },
+      "phase4": {
+        "body": "Toplulukların koordine olmasına, özet çıkarmasına ve fırsatları eşleştirmesine yardımcı olan yapay zekâ çalışanları."
+      },
+      "phase5": {
+        "body": "Ağın yalnızca tek bir silonun içinde değil, platformlar arasında bağlanmasını sağlayan açık standartlar ve taşınabilirlik."
+      }
+    },
+    "faq": {
+      "q1": {
+        "question": "JoinOrigin'in Discord'dan farkı nedir?",
+        "answer": "Discord bir sohbet uygulamasıdır. Origin ise bir sosyal iş birliği ağıdır — profiller, fikirler, topluluklar, sohbet, akış, projeler ve şirketler tek bir sosyal grafik üzerinde yaşar."
+      },
+      "q2": {
+        "question": "JoinOrigin açık kaynak mı?",
+        "answer": "Kod, AGPL-3.0 lisansı altında açıktır ve iletişim açık Matrix protokolü üzerinde çalışır. Origin'in kendisi JoinOrigin tarafından yürütülen barındırılan bir üründür — kendi kendine barındırılacak bir şey yoktur — ve verileriniz taşınabilir kalır."
+      },
+      "q3": {
+        "question": "Sosyal grafik nedir?",
+        "answer": "Sosyal grafik, üyeler arasındaki ilişkiler ağıdır. Origin, bunun etrafında organize edilmiştir; böylece her profil, topluluk ve proje insanlar aracılığıyla bağlanır."
+      },
+      "q4": {
+        "question": "Projeler ve şirketler ne zaman kullanıma açılacak?",
+        "answer": "Doğal olarak gelişirler. İnsanlar fikirlerini, vizyonlarını ve çalışmalarını paylaştıkça kendileriyle birlikte inşa etmek isteyen insanları bulurlar; projeler ve şirketler, bir lansman tarihi beklemek yerine bu bağlantılardan doğar."
+      }
+    }
+  },
+  "community": {
+    "hero": {
+      "eyebrow": "Ağ",
+      "title": "İnsanların birbirini bulduğu yer",
+      "lead": "Origin, topluluklar etrafında organize edilmiş bir sosyal iş birliği ağıdır — ilgi alanlarını, sektörleri, hedefleri ve fırsatları paylaşan insan grupları. Topluluklar, etkileşimin merkezidir."
+    },
+    "sectionValues": "Ağı nasıl yönetiyoruz",
+    "values": {
+      "peopleFirst": {
+        "body": "Üyeler insandır, veritabanındaki profiller değil. Her tasarım kararı, ağı katılmaya değer kılan ilişkileri korur."
+      },
+      "communitiesDriveGrowth": {
+        "body": "Topluluklar, etkileşimin merkezidir. Bir topluluk geliştiğinde içindeki insanlar birbirini bulur ve birlikte inşa eder."
+      },
+      "collaborationCreatesValue": {
+        "body": "İş birliği, sohbetlerin projeye, projelerin şirkete dönüşme yoludur. Origin, iş birliğinin gidecek bir yeri olsun diye kuruldu."
+      },
+      "ownership": {
+        "title": "Sahiplik ve Egemenlik",
+        "body": "Kimliğinizin, verilerinizin ve topluluklarınızın sahibi sizsiniz. Açık mimari ve taşınabilir kimlik, ağı üyelerine karşı sorumlu tutar."
+      }
+    },
+    "sectionExamples": "Örnek topluluklar",
+    "examplesIntro": "Bunlar, bugün JoinOrigin içinde büyüyen topluluk türleridir. Bu hedeflerden birini paylaşıyorsanız sizin için zaten bir yer var:",
+    "examples": {
+      "startupFounders": "Girişim Kurucuları",
+      "smallBusinesses": "Küçük İşletmeler",
+      "bookClubs": "Kitap Kulüpleri",
+      "communityOrganizations": "Topluluk Örgütleri",
+      "runClubs": "Koşu Kulüpleri",
+      "peeWeeLeagues": "Minikler Ligleri",
+      "anyoneWithAnIdea": "Fikri Olan Herkes"
+    },
+    "sectionJoin": "Ağa katılın",
+    "joinCopy": "Topluluk, içindeki insanlar tarafından kurulur. İnsanların çevrimiçi ortamda birbirini bulma biçimini şekillendiren ilk kurucu dalgasının parçası olmak için bekleme listesine katılın.",
+    "joinStatValue": "2.400+",
+    "joinStatLabel": "Birlikte inşa eden üyeler",
+    "faq": {
+      "q1": {
+        "question": "Hangi topluluklara katılabilirim?",
+        "answer": "Herkes herhangi bir fikir etrafında bir topluluk başlatabilir veya katılabilir — küçük bir işletme, bir yapay zekâ girişimi, evsizlere yardım, bir 10K koşusu, bir siyasi hareket, bir minikler ligi. Sizin için önemliyse, Origin'de bir yeri vardır."
+      },
+      "q2": {
+        "question": "Kendi topluluğumu başlatabilir miyim?",
+        "answer": "Evet. Her üye herhangi bir fikir etrafında bir topluluk oluşturabilir ve birlikte inşa etmek istediği insanları davet edebilir — ister bir işletme, ister bir kitap kulübü, ister bir koşu kulübü olsun."
+      },
+      "q3": {
+        "question": "Verilerim bana mı ait?",
+        "answer": "Evet. Kimliğinizin ve verilerinizin sahibi sizsiniz. Origin barındırılan bir üründür, bu yüzden kendi kendine barındırılacak bir şey yoktur — ancak verileriniz taşınabilir ve ağ grafiğiniz açık Matrix protokolü üzerinde kalıcıdır."
+      },
+      "q4": {
+        "question": "Kendi insanlarımı nasıl bulurum?",
+        "answer": "Toplulukları ilgi alanına, sektöre veya hedefe göre inceleyin — küçük işletmelerden ve kitap kulüplerinden yapay zekâ girişimlerine ve koşu kulüplerine kadar — sonra inşa etmek istediklerinizle eşleşenlere katılın. Ya da herhangi bir fikir için kendinizinkini başlatın."
+      },
+      "q5": {
+        "question": "Anonim olarak mı yoksa adımla mı katılabilirim?",
+        "answer": "Siz seçersiniz. Adlı bir hesapla katılabilir veya anonim kalabilirsiniz; topluluklar, sohbetler ve fikir sayfaları herkese açık olabilir veya organizatörler tarafından sınırlandırılabilir. Bu seçenekler zamanla kullanıma sunulacaktır."
+      }
+    }
+  },
+  "docs": {
+    "hero": {
+      "eyebrow": "Dokümanlar",
+      "title": "JoinOrigin dokümanları",
+      "lead": "Origin üründür: bir sosyal iş birliği ağı ve topluluk işletim sistemi. JoinOrigin, arkasındaki marka ve ağdır. Bu dokümanlar temel nesneleri, yol haritasını ve mimariyi açıklar."
+    },
+    "sectionConcepts": "Kavramlar",
+    "concepts": {
+      "profiles": {
+        "body": "Profiller, her üyenin taşınabilir kimliğidir — canlı bir özgeçmiş gibi. Deneyimi, becerileri, fikirleri, itibarı ve ilişkileri her topluluğa ve projeye taşırlar; böylece kim olduğunuz sizinle birlikte seyahat eder."
+      },
+      "communities": {
+        "body": "Topluluklar, ilgi alanlarını, sektörleri, hedefleri ve fırsatları paylaşan insan gruplarıdır — herhangi bir fikir etrafında. Origin'de etkileşimin merkezi ve üyelerin birbirini bulma yoludur."
+      },
+      "ideas": {
+        "body": "Fikirler, Origin'deki her şeyin başlangıç noktasıdır. Herhangi bir fikir için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü, bir 10K koşusu — ve onu inşa etmek isteyen insanlar sizi bulur."
+      },
+      "communication": {
+        "body": "Mesajlaşma; gerçek zamanlı sohbeti, doğrudan mesajları ve grup tartışmalarını kapsar. Açık Matrix protokolü üzerinde çalışır; böylece sohbetler taşınabilirdir ve uçtan uca şifrelenebilir."
+      },
+      "feed": {
+        "body": "Akış, takip ettiğiniz kişilerden ve topluluklardan gönderileri, güncellemeleri ve fırsatları gösterir. Ağınızda önemli olanların sakin bir akışıdır, bir etkileşim makinesi değil."
+      },
+      "projects": {
+        "body": "Projeler, üyelerin ortak bir sonuca doğru birlikte çalıştığı iş birliğine dayalı çabalardır. Sosyal grafiği, toplulukların içindeki ve arasındaki gerçek işlere bağlarlar."
+      },
+      "companies": {
+        "body": "Şirketler, ağın üyeleri tarafından kurulan girişimlerdir. Takım yönetimini ve fırsat paylaşımını, ilişkilerin yaşadığı aynı çalışma alanına getirirler."
+      },
+      "opportunities": {
+        "body": "Fırsatlar; sosyal grafik aracılığıyla yüzeye çıkan işler, ortaklıklar ve yatırımlardır. Ağ, doğru fırsatı doğru zamanda doğru kişiyle eşleştirir."
+      }
+    },
+    "sectionRoadmap": "Yol Haritası",
+    "roadmap": {
+      "phase1": {
+        "body": "Profiller, topluluklar, sohbet ve sosyal grafik. Başarı ölçütü: üyelerin kalıcı topluluklar oluşturması."
+      },
+      "phase2": {
+        "body": "Projeler, paylaşılan çalışma alanları ve sohbetleri ortak çalışmaya dönüştüren araçlar. Başarı ölçütü: toplulukların birlikte sonuç üretmesi."
+      },
+      "phase3": {
+        "body": "Üyeler tarafından kurulan şirketler ve girişimler; takım yönetimi ve yönetişim ile. Başarı ölçütü: ağ içinde kurulan şirketler."
+      },
+      "phase4": {
+        "body": "Toplulukların koordine olmasına, özet çıkarmasına ve fırsatları eşleştirmesine yardımcı olan yapay zekâ çalışanları. Başarı ölçütü: üyelerin yapay zekâ ile eşit olarak iş birliği yapması."
+      },
+      "phase5": {
+        "body": "Ağın platformlar arasında bağlanmasını sağlayan açık standartlar ve taşınabilirlik. Başarı ölçütü: taşınabilir, birlikte çalışabilir bir sosyal grafik."
+      }
+    },
+    "sectionArchitecture": "Mimari ve standartlar",
+    "architectureParagraph1": "Sosyal grafik üründür: her nesne, insan ağına ve onların ilişkilerine bağlıdır. Mesajlaşma açık Matrix protokolünü kullanır (merkeziyetsiz, uçtan uca şifreli) ve ağ grafiğiniz ile bağlantılarınız sonsuza dek kalıcıdır; böylece ilişkileriniz taşınabilir kalır.",
+    "architectureParagraph2": "Origin, web tarafında React, TypeScript ve Next.js ile, arka uçta ise NestJS, PostgreSQL, Redis ve Docker ile kurulmuş barındırılan bir üründür. Açık kalan şeyler protokol (Matrix), verileriniz ve AGPL-3.0 altındaki kaynak kodudur — kendi kendine barındırılacak hiçbir şey yoktur.",
+    "faq": {
+      "q1": {
+        "question": "JoinOrigin hangi teknolojilerle kuruldu?",
+        "answer": "Web tarafında React, TypeScript ve Next.js; arka uçta NestJS, PostgreSQL, Redis ve Docker. İletişim, açık Matrix protokolü üzerinde çalışır."
+      },
+      "q2": {
+        "question": "Matrix nedir?",
+        "answer": "Matrix, uçtan uca şifrelemeye sahip açık, merkeziyetsiz bir iletişim protokolüdür. Origin bunun üzerinde çalışır; böylece sohbetler — ve arkalarındaki ağ grafiği — taşınabilirdir ve sonsuza dek kalıcıdır."
+      },
+      "q3": {
+        "question": "JoinOrigin kendi kendine barındırılabilir mi?",
+        "answer": "Hayır. Origin, JoinOrigin tarafından yürütülen barındırılan bir üründür; bu yüzden kendi kendine barındırılacak bir şey yoktur. Ağ grafiğiniz ve bağlantılarınız açık Matrix protokolü üzerinden sonsuza dek kalıcıdır ve verileriniz taşınabilir kalır."
+      },
+      "q4": {
+        "question": "MVP ne zaman kullanıma sunuluyor?",
+        "answer": "JoinOrigin erken erişimdedir. Topluluk Temeli (Faz 1) MVP'dir ve önce bekleme listesindeki üyelere sunulur."
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Misyonumuz",
+      "title": "En değerli varlığınız ağınızdır",
+      "lead": "Origin, tek bir inanç üzerine kurulmuş bir sosyal iş birliği ağıdır: internetteki en değerli varlık içerik ya da yazılım değil — insan ağı ve kurdukları ilişkilerdir."
+    },
+    "sectionMission": "Misyonumuz",
+    "missionParagraph1": "Origin, insan iş birliği için işletim sistemini kuruyor. Sohbet, topluluklar ve projeler için beş ayrı araç yerine ilişkileriniz tek bir sakin çalışma alanında yaşar. Sosyal grafik üründür: profiller, fikirler, topluluklar, sohbetler, gönderiler, projeler, şirketler ve fırsatların tümü aynı insan ağına bağlıdır.",
+    "missionParagraph2": "Bugün erken erişimdeyiz; bekleme listesinde 2.400+ kurucu var. Platform yol haritası boyunca büyürken — Topluluk Temeli, İş Birliği, Organizasyon, Yapay Zekâ ile İş Birliği ve Küresel Ağ — misyon aynı kalır: insanların birbirini bulmasına ve birlikte inşa etmesine yardımcı olmak.",
+    "sectionPrinciples": "Rehber ilkeler",
+    "principles": {
+      "peopleFirst": {
+        "body": "Ağ yalnızca içerikten ya da yazılımdan değil, insanlardan oluşur. Ürün kararları, üyelerin kurmak istediği ilişkilerden başlar."
+      },
+      "communitiesDriveGrowth": {
+        "body": "Topluluklar, etkileşimin merkezidir — ilgi alanlarını, sektörleri, hedefleri ve fırsatları paylaşan insan grupları ağı hayata geçirir."
+      },
+      "collaborationCreatesValue": {
+        "body": "Sohbetler projelere, projeler şirketlere dönüşür. Origin, iş birliğinin gidecek bir yeri olsun diye kuruldu."
+      },
+      "openArchitecture": {
+        "title": "Açık Mimari",
+        "body": "İletişim açık Matrix protokolü üzerinde çalışır; kimlik, profiller, topluluklar ve sosyal grafik taşınabilir ve kullanıcıya aittir. Origin barındırıldığı için kendi kendine barındırılacak bir şey yoktur."
+      }
+    },
+    "sectionFounder": "Kurucu rehberliği",
+    "founderQuote": "“Bu, insanların birbirini bulmasına yardımcı oluyor mu? Olmuyorsa, kurma.”",
+    "founderBody": "Origin'deki her özellik bu soruya göre değerlendirilir. İnsanların birbirini keşfetmesine, topluluklar kurmasına ya da birlikte projelere başlamasına yardımcı olmuyorsa, çalışma alanında yeri yoktur.",
+    "sectionReading": "Daha derin okuma",
+    "readingDocs": "Temel nesneler, yol haritası ve mimari için <1>dokümanları</1> okuyun.",
+    "readingCommunity": "Ağ içindeki değerler ve örnek topluluklar için <1>topluluk</1> sayfasına göz atın.",
+    "readingContact": "Bir sorunuz mu var? <1>Ekiple iletişime geçin</1> — 2 iş günü içinde yanıt veriyoruz.",
+    "faq": {
+      "q1": {
+        "question": "JoinOrigin nedir?",
+        "answer": "Origin, sosyal iş birliği ağıdır — fikirlerinizi, projelerinizi ve topluluklarınızı tek bir düzenli alanda toplayan bir topluluk işletim sistemi. JoinOrigin, arkasındaki marka ve ağdır."
+      },
+      "q2": {
+        "question": "“Ağ üründür” ne anlama geliyor?",
+        "answer": "Origin, yazılım özelliklerini tek tek satmak yerine insanlar arasındaki ilişkileri — sosyal grafiği — yarattığı ve koruduğu temel değer olarak görür."
+      },
+      "q3": {
+        "question": "JoinOrigin açık kaynak mı?",
+        "answer": "Kod, AGPL-3.0 lisansı altında açıktır ve iletişim açık Matrix protokolü üzerinde çalışır. Origin, JoinOrigin tarafından yürütülen barındırılan bir üründür — kendi kendine barındırılacak bir şey yoktur — ve ağ grafiğiniz taşınabilir kalır. Ayrıntılar için dokümanlara bakın."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "İletişim",
+      "title": "Bizimle konuşun",
+      "lead": "Origin — sosyal iş birliği ağı —, erken erişim ya da bir topluluk başlatma hakkında sorunuz mu var? Sizden haber almayı çok isteriz."
+    },
+    "sectionForm": "Mesaj gönderin",
+    "form": {
+      "nameLabel": "Ad",
+      "namePlaceholder": "Adınız",
+      "emailLabel": "E-posta",
+      "emailPlaceholder": "you@example.com",
+      "messageLabel": "Mesaj",
+      "messagePlaceholder": "Size nasıl yardımcı olabiliriz?",
+      "submit": "E-posta ile gönder",
+      "hint": "Bu form, mesaj önceden doldurulmuş şekilde e-posta uygulamanızı açar. 2 iş günü içinde yanıt veriyoruz."
+    },
+    "sectionOther": "Bize ulaşmanın diğer yolları",
+    "otherEmail": "E-posta: <1>{{email}}</1>",
+    "otherDocs": "Kavramlar, yol haritası ve mimari için <1>dokümanlara</1> göz atın.",
+    "otherAbout": "Misyonumuz ve ilkelerimiz için <1>hakkımızda</1> sayfasını okuyun.",
+    "mailtoSubject": "JoinOrigin iletişim — {{name}}",
+    "newMessage": "yeni mesaj",
+    "mailtoBody": "Ad: {{name}}\nE-posta: {{email}}\n\n{{message}}",
+    "faq": {
+      "q1": {
+        "question": "Ne kadar hızlı yanıt veriyorsunuz?",
+        "answer": "2 iş günü içinde yanıt veriyoruz. En hızlı yanıt için önce dokümanlardaki SSS bölümüne bakın."
+      },
+      "q2": {
+        "question": "Erken erişim alabilir miyim?",
+        "answer": "Evet — ana sayfadan bekleme listesine katılın. Topluluk işletim sistemi kullanıma sunulduğunda erken üyeler ilk sırada olur."
+      }
+    }
+  },
+  "privacy": {
+    "hero": {
+      "eyebrow": "Yasal",
+      "title": "Gizlilik Politikası",
+      "lead": "Bekleme listesine katıldığınızda, bekleme listesi formu aracılığıyla (POST /api/leads) adınızı ve e-posta adresinizi toplarız. Erken erişim sırasında talep ettiğimiz tek kişisel bilgi budur."
+    },
+    "sectionCollect": "Neleri topluyoruz",
+    "collect": {
+      "waitlistDataTitle": "Bekleme listesi verileri",
+      "waitlistDataBody": "Ad ve e-posta; yalnızca erken erişimin ne zaman açıldığını bildirmek ve sizi davet etmek için kullanılır.",
+      "analyticsTitle": "Analitik",
+      "analyticsBody": "Sitenin toplu kullanımını anlamak için yapılandırma tabanlı analitik çalıştırıyoruz (varsayılan olarak kendi sunucumuzda barındırılan Plausible). Bir onay (consent) bildirimi sonraki bir sprintte planlanmaktadır.",
+      "technicalDataTitle": "Temel teknik veriler",
+      "technicalDataBody": "Sitenin güvenilir kalmasına yardımcı olan standart sunucu günlükleri ve tarayıcı meta verileri."
+    },
+    "sectionUse": "Bunları nasıl kullanıyoruz",
+    "useBody": "Topladığımız bilgileri siteyi işletmek, erken erişim davetiyelerini iletmek ve ürünü geliştirmek için kullanıyoruz. Kişisel bilgilerinizi satmıyoruz.",
+    "sectionIdentity": "Kimlik ve esneklik",
+    "identityBody": "Origin'de nasıl görüneceğinizi siz seçersiniz. Adlı bir hesapla katılabilir veya anonim kalabilirsiniz; topluluklar, sohbetler ve fikir sayfaları herkese açık olabilir veya organizatörleri tarafından sınırlandırılabilir. Bu seçenekler zamanla kullanıma sunulur — önemli olan neyi ve kiminle paylaşacağınıza sizin karar vermenizdir.",
+    "sectionRights": "Haklarınız",
+    "rightsBody": "Verilerinize erişim, düzeltme veya silme talebinde istediğiniz zaman bulunabilirsiniz. Kimlik ve veri sahipliği JoinOrigin'in temel ilkeleri olduğundan, size ait olanı dışa aktarmayı veya kaldırmayı kolaylaştırıyoruz.",
+    "sectionContact": "İletişim",
+    "contactBody": "Bu politika hakkında sorularınız mı var? <1>{{email}}</1> adresine e-posta gönderin veya <2>iletişim sayfasını</2> kullanın."
+  },
+  "terms": {
+    "hero": {
+      "eyebrow": "Yasal",
+      "title": "Hizmet Koşulları",
+      "lead": "JoinOrigin'i (“Hizmet”) kullanarak bu Hizmet Koşulları'nı kabul etmiş olursunuz. Kabul etmiyorsanız lütfen Hizmet'i kullanmayın."
+    },
+    "sectionAcceptance": "Kabul",
+    "acceptanceBody": "JoinOrigin'i (“Hizmet”) kullanarak bu Hizmet Koşulları'nı kabul etmiş olursunuz. Kabul etmiyorsanız lütfen Hizmet'i kullanmayın.",
+    "sectionAccounts": "Hesaplar",
+    "accountsBody": "Hesap kimlik bilgilerinizi korumaktan ve hesabınız altında gerçekleşen etkinliklerden siz sorumlusunuz. Hesap oluştururken veya bekleme listesine katılırken doğru bilgi vermelisiniz.",
+    "sectionUserContent": "Kullanıcı içeriği",
+    "userContentBody": "Yayınladığınız içeriğin sahipliğini korursunuz. Hizmet'in çalışabilmesi için JoinOrigin'e bu içeriği saklama, görüntüleme ve işleme konusunda sınırlı bir lisans verirsiniz. İçeriğinizi dışa aktarma ve silme haklarını saklı tutarsınız.",
+    "sectionAcceptableUse": "Kabul edilebilir kullanım",
+    "acceptableUse": {
+      "unlawful": "Hizmet'i yasa dışı etkinlikler için kullanmayın.",
+      "harassment": "Diğer üyeleri taciz etmeyin, kötüye kullanmayın veya zarar vermeyin.",
+      "unauthorizedAccess": "Hizmet'i kesintiye uğratmaya veya yetkisiz erişim sağlamaya çalışmayın.",
+      "scrape": "İzin almadan üye verilerini kazımayın (scrape) veya toplamayın."
+    },
+    "sectionIntellectualProperty": "Fikri mülkiyet",
+    "intellectualPropertyBody": "JoinOrigin'in ticari markaları, logoları ve site materyalleri JoinOrigin'e aittir. İzinsiz kullanamazsınız. Açık kaynak bileşenler, kendi lisansları altında kalır.",
+    "sectionDisclaimers": "Sorumluluk reddi",
+    "disclaimersBody": "Hizmet, erken erişim süresince “olduğu gibi” sunulmaktadır. Güvenilir kalması için çalışıyoruz ancak kesintisiz veya hatasız olacağını garanti etmiyoruz.",
+    "sectionChanges": "Değişiklikler",
+    "changesBody": "Hizmet geliştikçe bu Koşulları güncelleyebiliriz. Önemli değişiklikler bu sayfada duyurulacaktır ve değişikliklerden sonra kullanmaya devam etmeniz, güncellenmiş Koşulları kabul ettiğiniz anlamına gelir.",
+    "sectionContact": "İletişim",
+    "contactBody": "Bu Koşullar hakkında sorularınız mı var? <1>{{email}}</1> adresine e-posta gönderin veya <2>iletişim sayfasını</2> kullanın."
+  },
+  "orbitViz": {
+    "ariaLabel": "JoinOrigin üye yörünge görselleştirmesi",
+    "memberAlt": "JoinOrigin üyesi {{number}}",
+    "members": "Üyeler"
+  },
+  "notFound": {
+    "brand": "JoinOrigin",
+    "status": "404",
+    "heading": "Sayfa bulunamadı",
+    "copy": "Aradığınız sayfa mevcut değil veya taşınmış. Ekibinizin bir sonraki projesinin başladığı yeri bulmak için ana sayfaya dönün.",
+    "backHome": "Ana sayfaya dön",
+    "exploreCommunities": "Toplulukları keşfedin →"
+  },
+  "mobile": {
+    "home": {
+      "badge": "Hoş geldiniz",
+      "title": "JoinOrigin'e hoş geldiniz",
+      "subtitle": "Çalışma alanınız hazır."
+    }
+  }
+}
