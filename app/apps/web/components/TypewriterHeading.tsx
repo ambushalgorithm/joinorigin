@@ -9,8 +9,8 @@ import { useReducedMotion } from './motion';
 /**
  * Typewriter hero heading (spec §5.3).
  *
- * Copy: `Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home` — first 127 characters as block line, remainder (`home`) in accent gradient
- * — capitalized and wrapped onto the next line. Types char-by-char at 35ms/char after a 400ms
+ * Copy: `Ideas, projects and community collaboration space — where teams and the best projects find their Origin.` — first 97 characters as block line, remainder (`Origin.`) in accent gradient
+ * — capitalized and wrapped onto the next line. Types char-by-char at 20ms/char after a 400ms
  * delay, with a blinking caret (`|`) that persists after completion.
  *
  * Progressive enhancement: the full text is rendered by default (SSR / no-JS),

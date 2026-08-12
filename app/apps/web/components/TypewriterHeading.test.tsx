@@ -6,7 +6,7 @@ import { theme } from '@joinorigin/design';
 import TypewriterHeading from './TypewriterHeading';
 
 const FULL_TEXT =
-  'Origin brings your ideas, projects and communities into an organized collaboration space — so the best projects finally have a home';
+  'Ideas, projects and community collaboration space — where teams and the best projects find their Origin.';
 
 function renderHeading() {
   return render(
@@ -28,7 +28,7 @@ describe('TypewriterHeading', () => {
   it('renders the full two-tone heading after typing completes', () => {
     renderHeading();
 
-    // 400ms delay + 131 chars × 20ms ≈ 3.0s.
+    // 400ms delay + 104 chars × 20ms ≈ 2.5s.
     act(() => {
       jest.advanceTimersByTime(4000);
     });
@@ -68,14 +68,14 @@ describe('TypewriterHeading', () => {
     const spans = container.querySelectorAll('h1 > span');
     expect(spans).toHaveLength(3);
 
-    // Body carries the first 127 chars on its own block line…
+    // Body carries the first 97 chars on its own block line…
     const body = spans[0];
-    expect(body.textContent).toBe(FULL_TEXT.slice(0, 127));
+    expect(body.textContent).toBe(FULL_TEXT.slice(0, 97));
     expect(getComputedStyle(body).display).toBe('block');
 
     // …and the remainder renders in the accent span, capitalized (tweak 058007e).
     const accent = spans[1];
-    expect(accent.textContent).toBe('home');
+    expect(accent.textContent).toBe('Origin.');
     expect(getComputedStyle(accent).textTransform).toBe('capitalize');
   });
 });
