@@ -2,26 +2,39 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { css, keyframes, ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
 
 import { ACCENT_GRADIENT } from '../components/landingTokens';
+import { EASE } from '../components/motion';
 
 /**
- * JoinOrigin styled 404 boundary (TASK-208).
+ * JoinOrigin styled 404 boundary (TASK-208), redesigned per spec sprint-8 §9.
  *
  * A stable, self-contained not-found page so unknown routes (including the
  * well-known-path probes browsers/DevTools fire at page load) render this
  * styled boundary instead of racing the main page stream through the default
  * `_not-found` machinery. The visual language mirrors the landing page:
- * dark background, brand mark + wordmark, gradient-accent heading, and a
- * gradient CTA back home — no modal, no CSV, no API involvement.
+ * dark background, local not-found scene, brand mark + wordmark,
+ * gradient-accent status, and a gradient CTA back home — no modal, no CSV,
+ * no API involvement.
  *
  * The root layout wraps every route in `Registry` (style collection) but the
  * `ThemeProvider`s live in `page.tsx`, which is not rendered for unknown
  * routes — so this boundary provides its own theme context.
  */
+
+const fadeUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const PageRoot = styled.main`
   min-height: 100svh;
@@ -33,6 +46,26 @@ const PageRoot = styled.main`
   padding: ${({ theme }) => theme.spacing.xxl}px;
   background-color: ${({ theme }) => theme.colors.background};
   text-align: center;
+  animation: ${css`
+    ${fadeUp} 0.6s ${EASE} both
+  `};
+`;
+
+const Scene = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: ${({ theme }) => theme.spacing.xs}px;
+`;
+
+/**
+ * `next/image` is styled via `styled-components` for sizing (TASK-209). The
+ * generated class name is made deterministic app-wide by the SWC
+ * `compiler.styledComponents` option in `next.config.mjs`.
+ */
+const SceneImage = styled(Image)`
+  width: 240px;
+  height: 180px;
+  object-fit: contain;
 `;
 
 const Brand = styled.span`
@@ -42,11 +75,6 @@ const Brand = styled.span`
   margin-bottom: ${({ theme }) => theme.spacing.md}px;
 `;
 
-/**
- * `next/image` is styled via `styled-components` for sizing (TASK-209). The
- * generated class name is made deterministic app-wide by the SWC
- * `compiler.styledComponents` option in `next.config.mjs`.
- */
 const BrandMark = styled(Image)`
   width: 32px;
   height: 32px;
@@ -90,6 +118,14 @@ const Copy = styled.p`
   color: ${({ theme }) => theme.colors.textMuted};
 `;
 
+const Actions = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.md}px;
+  margin-top: ${({ theme }) => theme.spacing.sm}px;
+`;
+
 const HomeLink = styled(Link)`
   display: inline-flex;
   align-items: center;
@@ -114,10 +150,34 @@ const HomeLink = styled(Link)`
   }
 `;
 
+/** Secondary ghost link (spec sprint-8 §9) — muted, underlines on hover. */
+const ExploreLink = styled(Link)`
+  font-family: ${({ theme }) => theme.fontFamilies.sans};
+  font-size: ${({ theme }) => theme.typography.body}px;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  color: ${({ theme }) => theme.colors.textMuted};
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: ${({ theme }) => theme.colors.text};
+    text-decoration: underline;
+  }
+`;
+
 export default function NotFound() {
   return (
     <ThemeProvider theme={theme}>
       <PageRoot data-testid="not-found-page">
+        <Scene aria-hidden="true">
+          <SceneImage
+            src="/assets/menu/scenes/not-found-scene.svg"
+            alt=""
+            width={240}
+            height={180}
+          />
+        </Scene>
         <Brand>
           <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={32} height={32} />
           <Wordmark>JoinOrigin</Wordmark>
@@ -128,7 +188,10 @@ export default function NotFound() {
           The page you&rsquo;re looking for doesn&rsquo;t exist or has moved. Head back home to find
           where your team&rsquo;s next project begins.
         </Copy>
-        <HomeLink href="/">Back to home</HomeLink>
+        <Actions>
+          <HomeLink href="/">Back to home</HomeLink>
+          <ExploreLink href="/community">Explore communities &rarr;</ExploreLink>
+        </Actions>
       </PageRoot>
     </ThemeProvider>
   );

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ACCENT_GRADIENT } from './landingTokens';
+import { ACCENT_GRADIENT, ENTRANCE_EASING } from './landingTokens';
 
 /**
  * Shared styled primitives for the Sprint 4 menu pages (TASK-215).
@@ -10,6 +10,10 @@ import { ACCENT_GRADIENT } from './landingTokens';
  * while keeping the content pages semantic: every page renders exactly one
  * `<h1>` inside `<PageHeader>`, `<section>` blocks with `<h2>` headings, and
  * FAQ blocks as `<section>` + `<h2>` per question (arch §5.1, discovery §8.4).
+ *
+ * Sprint 8 redesign additions (spec sprint-8-menu-redesign §5): `Eyebrow`,
+ * `HeroScene`, hover lift/glow on `Card`, framed `Quote`, and the gradient
+ * tick on `SectionTitle` — all purely visual, no semantics changed.
  */
 
 export const PageContainer = styled.div`
@@ -57,17 +61,89 @@ export const PageLead = styled.p`
   color: ${({ theme }) => theme.colors.textMuted};
 `;
 
+/**
+ * Small uppercase brand tag above the H1 (spec sprint-8 §4.1). Inter 500
+ * 12px, `0.14em` letter-spacing, primary blue, subtle chip surface.
+ */
+export const Eyebrow = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.xs}px;
+  margin-bottom: ${({ theme }) => theme.spacing.sm}px;
+  padding: 6px 12px;
+  border: 1px solid rgba(79, 125, 249, 0.35);
+  border-radius: ${({ theme }) => theme.radius.pill}px;
+  background: rgba(79, 125, 249, 0.08);
+  font-family: ${({ theme }) => theme.fontFamilies.sans};
+  font-size: 12px;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+/**
+ * Hero scene wrapper (spec sprint-8 §4.1). Positions the local SVG scene and
+ * paints the per-page glow as a `::before` (pointer-events: none) behind it.
+ * The scene image itself is decorative (`alt=""` + `aria-hidden`).
+ */
+export const HeroScene = styled.div<{ $glow?: string }>`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: ${({ $glow }) => $glow ?? 'none'};
+    pointer-events: none;
+  }
+
+  img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  @media (max-width: 480px) {
+    img {
+      max-width: 320px;
+    }
+  }
+`;
+
 export const Section = styled.section`
   margin: 0 0 ${({ theme }) => theme.spacing.xxl}px;
 `;
 
 export const SectionTitle = styled.h2`
+  position: relative;
   margin: 0 0 ${({ theme }) => theme.spacing.md}px;
+  padding-left: 12px;
   font-family: ${({ theme }) => theme.fontFamilies.display};
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   font-size: ${({ theme }) => theme.typography.heading}px;
   letter-spacing: -0.3px;
   color: ${({ theme }) => theme.colors.text};
+
+  /* Small gradient tick for wayfinding (spec sprint-8 §5). */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: 2px;
+    background: ${ACCENT_GRADIENT};
+  }
 `;
 
 export const SubTitle = styled.h3`
@@ -97,6 +173,20 @@ export const Card = styled.article`
   background: ${({ theme }) => theme.colors.surface};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radius.lg}px;
+  transition:
+    transform 0.25s ${ENTRANCE_EASING},
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  /* Hover/focus lift + glow (spec sprint-8 §5) — purely visual, no content change. */
+  &:hover,
+  &:focus-within {
+    transform: translateY(-4px);
+    border-color: rgba(79, 125, 249, 0.55);
+    box-shadow:
+      0 12px 32px rgba(15, 17, 21, 0.6),
+      0 0 0 1px rgba(79, 125, 249, 0.18);
+  }
 `;
 
 export const CardTitle = styled.h3`
@@ -239,9 +329,10 @@ export const AccentLink = styled.a`
 export const Quote = styled.blockquote`
   margin: 0;
   padding: ${({ theme }) => theme.spacing.lg}px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-left: 3px solid ${({ theme }) => theme.colors.primary};
   background: ${({ theme }) => theme.colors.surface};
-  border-radius: 0 ${({ theme }) => theme.radius.lg}px ${({ theme }) => theme.radius.lg}px 0;
+  border-radius: ${({ theme }) => theme.radius.lg}px;
   font-family: ${({ theme }) => theme.fontFamilies.display};
   font-size: ${({ theme }) => theme.typography.title}px;
   line-height: 1.5;

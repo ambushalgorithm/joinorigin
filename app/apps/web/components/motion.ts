@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 
 import { ENTRANCE_EASING } from './landingTokens';
 
@@ -57,6 +57,57 @@ export function useEntrance(): boolean {
 
 /** Staggered per-chip fly-in delays used by the orbit avatars (spec §5.4). */
 export const AVATAR_FLYIN_DELAYS = [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.3];
+
+/**
+ * IntersectionObserver-based `useInView` hook (design spec sprint-8
+ * §4.3) for scroll-reveal animations.
+ *
+ * - Returns `{ ref, inView, mounted }`.
+ * - Observes with `threshold: 0.15` and `rootMargin: 0px 0px -40px`.
+ * - Fires once: `disconnect()` after the first intersecting observation.
+ * - SSR-safe: `mounted` is `false` on the server and first client paint;
+ *   `inView` becomes `true` on client mount if the element already
+ *   intersects.
+ * - Progressive enhancement: falls back to `inView === true` when
+ *   `IntersectionObserver` is unavailable.
+ */
+export function useInView<T extends HTMLElement = HTMLDivElement>(options?: {
+  threshold?: number;
+  rootMargin?: string;
+}): { ref: RefObject<T | null>; inView: boolean; mounted: boolean } {
+  const ref = useRef<T | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const element = ref.current;
+    if (!element || typeof IntersectionObserver === 'undefined') {
+      // Progressive enhancement: content is never hidden when the observer
+      // is unavailable (older browsers, jsdom tests).
+      setInView(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setInView(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: options?.threshold ?? 0.15, rootMargin: options?.rootMargin ?? '0px 0px -40px' },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [options?.threshold, options?.rootMargin]);
+
+  return { ref, inView, mounted };
+}
 
 export const EASE = ENTRANCE_EASING;
 

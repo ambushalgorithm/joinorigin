@@ -32,7 +32,9 @@ describe('features page', () => {
 
   it('renders core-object cards, the comparison table, and the roadmap', () => {
     render(<FeaturesPage />);
-    expect(screen.getByText('Core objects')).toBeInTheDocument();
+    // "Core objects" appears twice after the redesign: as the hero eyebrow
+    // chip and as the section title (spec sprint-8 §6 eyebrow table).
+    expect(screen.getAllByText('Core objects').length).toBeGreaterThanOrEqual(1);
     for (const object of [
       'Profiles',
       'Ideas',

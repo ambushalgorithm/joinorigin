@@ -1,9 +1,9 @@
 'use client';
 
 import MenuPageShell from '../../components/MenuPageShell';
+import Reveal from '../../components/Reveal';
 import {
   BodyCopy,
-  BulletList,
   Card,
   CardBody,
   CardGrid,
@@ -13,14 +13,9 @@ import {
   FaqItem,
   FaqQuestion,
   FaqSection,
-  ListItem,
   PageContainer,
-  PageHeader,
-  PageLead,
-  PageTitle,
   Section,
   SectionTitle,
-  SubTitle,
   TableBody,
   TableCell,
   TableHead,
@@ -30,9 +25,10 @@ import {
 import { FEATURES_FAQ } from './features-data';
 
 /**
- * Features view (discovery §5.2): Core Objects cards, comparison table,
- * roadmap phases, and FAQ. One `<h1>`, real `<table>` semantics for the
- * comparison, and the "social collaboration network" definition in the intro.
+ * Features view (discovery §5.2, redesign spec sprint-8 §8.1): Core Objects
+ * cards, comparison table, roadmap cards, and FAQ. One `<h1>` (rendered by
+ * `MenuHero`), real `<table>` semantics for the comparison, and the "social
+ * collaboration network" definition in the intro.
  */
 
 const CORE_OBJECTS = [
@@ -118,78 +114,89 @@ const ROADMAP_PHASES = [
 
 export function FeaturesView() {
   return (
-    <MenuPageShell>
+    <MenuPageShell
+      hero={{
+        eyebrow: 'Core objects',
+        title: 'Everything a community needs, in one calm workspace',
+        lead: 'Origin is a social collaboration network built around eight core objects: profiles, ideas, communities, conversations, posts, projects, companies, and opportunities. Instead of five separate tools, your relationships live in one place.',
+        scene: '/assets/menu/scenes/features-scene.svg',
+        accent: 'features',
+      }}
+    >
       <PageContainer>
-        <PageHeader>
-          <PageTitle>Everything a community needs, in one calm workspace</PageTitle>
-          <PageLead>
-            Origin is a social collaboration network built around eight core objects: profiles,
-            ideas, communities, conversations, posts, projects, companies, and opportunities.
-            Instead of five separate tools, your relationships live in one place.
-          </PageLead>
-        </PageHeader>
-
-        <Section>
-          <SectionTitle>Core objects</SectionTitle>
-          <CardGrid>
-            {CORE_OBJECTS.map((object) => (
-              <Card key={object.title}>
-                <CardTitle>{object.title}</CardTitle>
-                <CardBody>{object.body}</CardBody>
-              </Card>
-            ))}
-          </CardGrid>
-        </Section>
-
-        <Section>
-          <SectionTitle>Why Origin instead of five tools</SectionTitle>
-          <BodyCopy>
-            Most platforms solve only one part of collaboration. Origin combines them around the
-            social graph — the relationships between members — so nothing gets lost between tools.
-          </BodyCopy>
-          <CompareTable data-testid="features-comparison-table">
-            <TableHead>
-              <TableRow>
-                <TableHeader scope="col">Tool</TableHeader>
-                <TableHeader scope="col">Great at</TableHeader>
-                <TableHeader scope="col">What JoinOrigin adds</TableHeader>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {COMPARISON_ROWS.map((row) => (
-                <TableRow key={row.tool}>
-                  <TableCell>{row.tool}</TableCell>
-                  <TableCell>{row.strength}</TableCell>
-                  <TableCell>{row.gap}</TableCell>
-                </TableRow>
+        <Reveal>
+          <Section>
+            <SectionTitle>Core objects</SectionTitle>
+            <CardGrid>
+              {CORE_OBJECTS.map((object, index) => (
+                <Reveal key={object.title} delay={`${index * 0.08}s`}>
+                  <Card>
+                    <CardTitle>{object.title}</CardTitle>
+                    <CardBody>{object.body}</CardBody>
+                  </Card>
+                </Reveal>
               ))}
-            </TableBody>
-          </CompareTable>
-        </Section>
+            </CardGrid>
+          </Section>
+        </Reveal>
 
-        <Section>
-          <SectionTitle>Roadmap</SectionTitle>
-          <BulletList>
-            {ROADMAP_PHASES.map((phase) => (
-              <ListItem key={phase.title}>
-                <SubTitle>{phase.title}</SubTitle>
-                <BodyCopy>{phase.body}</BodyCopy>
-              </ListItem>
-            ))}
-          </BulletList>
-        </Section>
+        <Reveal>
+          <Section>
+            <SectionTitle>Why Origin instead of five tools</SectionTitle>
+            <BodyCopy>
+              Most platforms solve only one part of collaboration. Origin combines them around the
+              social graph — the relationships between members — so nothing gets lost between tools.
+            </BodyCopy>
+            <CompareTable data-testid="features-comparison-table">
+              <TableHead>
+                <TableRow>
+                  <TableHeader scope="col">Tool</TableHeader>
+                  <TableHeader scope="col">Great at</TableHeader>
+                  <TableHeader scope="col">What JoinOrigin adds</TableHeader>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {COMPARISON_ROWS.map((row) => (
+                  <TableRow key={row.tool}>
+                    <TableCell>{row.tool}</TableCell>
+                    <TableCell>{row.strength}</TableCell>
+                    <TableCell>{row.gap}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </CompareTable>
+          </Section>
+        </Reveal>
 
-        <Section>
-          <SectionTitle>Frequently asked questions</SectionTitle>
-          <FaqSection>
-            {FEATURES_FAQ.map((faq) => (
-              <FaqItem key={faq.question}>
-                <FaqQuestion>{faq.question}</FaqQuestion>
-                <FaqAnswer>{faq.answer}</FaqAnswer>
-              </FaqItem>
-            ))}
-          </FaqSection>
-        </Section>
+        <Reveal>
+          <Section>
+            <SectionTitle>Roadmap</SectionTitle>
+            <CardGrid>
+              {ROADMAP_PHASES.map((phase, index) => (
+                <Reveal key={phase.title} delay={`${index * 0.08}s`}>
+                  <Card>
+                    <CardTitle>{phase.title}</CardTitle>
+                    <CardBody>{phase.body}</CardBody>
+                  </Card>
+                </Reveal>
+              ))}
+            </CardGrid>
+          </Section>
+        </Reveal>
+
+        <Reveal>
+          <Section>
+            <SectionTitle>Frequently asked questions</SectionTitle>
+            <FaqSection>
+              {FEATURES_FAQ.map((faq) => (
+                <FaqItem key={faq.question}>
+                  <FaqQuestion>{faq.question}</FaqQuestion>
+                  <FaqAnswer>{faq.answer}</FaqAnswer>
+                </FaqItem>
+              ))}
+            </FaqSection>
+          </Section>
+        </Reveal>
       </PageContainer>
     </MenuPageShell>
   );

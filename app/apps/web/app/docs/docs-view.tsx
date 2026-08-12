@@ -1,28 +1,28 @@
 'use client';
 
 import MenuPageShell from '../../components/MenuPageShell';
+import Reveal from '../../components/Reveal';
 import {
   BodyCopy,
-  BulletList,
+  Card,
+  CardBody,
+  CardGrid,
+  CardTitle,
   FaqAnswer,
   FaqItem,
   FaqQuestion,
   FaqSection,
-  ListItem,
   PageContainer,
-  PageHeader,
-  PageLead,
-  PageTitle,
   Section,
   SectionTitle,
-  SubTitle,
 } from '../../components/menuPagePrimitives';
 import { DOCS_FAQ } from './docs-data';
 
 /**
- * Docs view (discovery §5.5): concepts (one definitional paragraph per core
- * object), roadmap, architecture & standards, and FAQ. One `<h1>`; each core
- * object gets an `<h3>` with a definitional paragraph for LLM extraction.
+ * Docs view (discovery §5.5, redesign spec sprint-8 §8.3): concepts (one
+ * definitional paragraph per core object), roadmap cards, architecture &
+ * standards, and FAQ. One `<h1>` (rendered by `MenuHero`); each core object
+ * keeps an `<h3>` inside its card for LLM extraction.
  */
 
 const CONCEPTS = [
@@ -85,66 +85,79 @@ const ROADMAP = [
 
 export function DocsView() {
   return (
-    <MenuPageShell>
+    <MenuPageShell
+      hero={{
+        eyebrow: 'Documentation',
+        title: 'JoinOrigin docs',
+        lead: 'Origin is the product: a social collaboration network and community OS. JoinOrigin is the brand and the network behind it. These docs explain the core objects, the roadmap, and the architecture.',
+        scene: '/assets/menu/scenes/docs-scene.svg',
+        accent: 'docs',
+      }}
+    >
       <PageContainer>
-        <PageHeader>
-          <PageTitle>JoinOrigin docs</PageTitle>
-          <PageLead>
-            Origin is the product: a social collaboration network and community OS. JoinOrigin is
-            the brand and the network behind it. These docs explain the core objects, the roadmap,
-            and the architecture.
-          </PageLead>
-        </PageHeader>
+        <Reveal>
+          <Section>
+            <SectionTitle>Concepts</SectionTitle>
+            <CardGrid>
+              {CONCEPTS.map((concept, index) => (
+                <Reveal key={concept.title} delay={`${index * 0.08}s`}>
+                  <Card>
+                    <CardTitle>{concept.title}</CardTitle>
+                    <CardBody>{concept.body}</CardBody>
+                  </Card>
+                </Reveal>
+              ))}
+            </CardGrid>
+          </Section>
+        </Reveal>
 
-        <Section>
-          <SectionTitle>Concepts</SectionTitle>
-          <BulletList>
-            {CONCEPTS.map((concept) => (
-              <ListItem key={concept.title}>
-                <SubTitle>{concept.title}</SubTitle>
-                <BodyCopy>{concept.body}</BodyCopy>
-              </ListItem>
-            ))}
-          </BulletList>
-        </Section>
+        <Reveal>
+          <Section>
+            <SectionTitle>Roadmap</SectionTitle>
+            <CardGrid>
+              {ROADMAP.map((phase, index) => (
+                <Reveal key={phase.title} delay={`${index * 0.08}s`}>
+                  <Card>
+                    <CardTitle>{phase.title}</CardTitle>
+                    <CardBody>{phase.body}</CardBody>
+                  </Card>
+                </Reveal>
+              ))}
+            </CardGrid>
+          </Section>
+        </Reveal>
 
-        <Section>
-          <SectionTitle>Roadmap</SectionTitle>
-          <BulletList>
-            {ROADMAP.map((phase) => (
-              <ListItem key={phase.title}>
-                <SubTitle>{phase.title}</SubTitle>
-                <BodyCopy>{phase.body}</BodyCopy>
-              </ListItem>
-            ))}
-          </BulletList>
-        </Section>
+        <Reveal>
+          <Section>
+            <SectionTitle>Architecture &amp; standards</SectionTitle>
+            <BodyCopy>
+              The social graph is the product: every object hangs off the network of people and
+              their relationships. Communication uses the open Matrix protocol (decentralized,
+              E2EE), and your network graph and connections persist forever, so your relationships
+              stay portable.
+            </BodyCopy>
+            <BodyCopy>
+              Origin is a hosted product built with React, TypeScript, and Next.js on the web, and
+              NestJS, PostgreSQL, Redis, and Docker in the backend. What stays open is the protocol
+              (Matrix), your data, and the source code under AGPL-3.0 — there is nothing to
+              self-host.
+            </BodyCopy>
+          </Section>
+        </Reveal>
 
-        <Section>
-          <SectionTitle>Architecture &amp; standards</SectionTitle>
-          <BodyCopy>
-            The social graph is the product: every object hangs off the network of people and their
-            relationships. Communication uses the open Matrix protocol (decentralized, E2EE), and
-            your network graph and connections persist forever, so your relationships stay portable.
-          </BodyCopy>
-          <BodyCopy>
-            Origin is a hosted product built with React, TypeScript, and Next.js on the web, and
-            NestJS, PostgreSQL, Redis, and Docker in the backend. What stays open is the protocol
-            (Matrix), your data, and the source code under AGPL-3.0 — there is nothing to self-host.
-          </BodyCopy>
-        </Section>
-
-        <Section>
-          <SectionTitle>Frequently asked questions</SectionTitle>
-          <FaqSection>
-            {DOCS_FAQ.map((faq) => (
-              <FaqItem key={faq.question}>
-                <FaqQuestion>{faq.question}</FaqQuestion>
-                <FaqAnswer>{faq.answer}</FaqAnswer>
-              </FaqItem>
-            ))}
-          </FaqSection>
-        </Section>
+        <Reveal>
+          <Section>
+            <SectionTitle>Frequently asked questions</SectionTitle>
+            <FaqSection>
+              {DOCS_FAQ.map((faq) => (
+                <FaqItem key={faq.question}>
+                  <FaqQuestion>{faq.question}</FaqQuestion>
+                  <FaqAnswer>{faq.answer}</FaqAnswer>
+                </FaqItem>
+              ))}
+            </FaqSection>
+          </Section>
+        </Reveal>
       </PageContainer>
     </MenuPageShell>
   );
