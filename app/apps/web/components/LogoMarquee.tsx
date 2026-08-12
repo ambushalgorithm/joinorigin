@@ -89,7 +89,7 @@ const Logo = styled.img`
   width: 137px;
   height: 40px;
   object-fit: contain;
-  opacity: 0.55;
+  opacity: 1;
   transition: opacity 0.2s ease;
   flex-shrink: 0;
 

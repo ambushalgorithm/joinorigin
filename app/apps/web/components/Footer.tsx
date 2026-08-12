@@ -104,6 +104,14 @@ const Tagline = styled.span`
   font-size: 14px;
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   color: ${({ theme }) => theme.colors.textMuted};
+  margin: 0 auto;
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.xl}px;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Spacer = styled.div`
@@ -184,7 +192,7 @@ export function Footer() {
             <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={24} height={24} />
             <Wordmark>JoinOrigin</Wordmark>
           </Brand>
-          <Tagline>Where work finds its origin</Tagline>
+          <Tagline>Where teams finds their origin</Tagline>
         </div>
         <Spacer />
         <RotatingBorderButton

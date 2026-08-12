@@ -120,7 +120,7 @@ const NavLink = styled(Link)`
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: 15px;
   font-weight: ${({ theme }) => theme.fontWeights.regular};
-  color: ${({ theme }) => theme.colors.textMuted};
+  color: ${({ theme }) => theme.colors.text};
   text-decoration: none;
   transition: color 0.2s ease;
 

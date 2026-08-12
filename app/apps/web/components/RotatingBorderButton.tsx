@@ -89,8 +89,8 @@ const Body = styled.button<{ $size: 'default' | 'large' }>`
   border: 0;
   cursor: pointer;
   border-radius: ${({ theme }) => theme.radius.pill}px;
-  background-color: ${({ theme }) => theme.colors.surface};
-  color: ${({ theme }) => theme.colors.text};
+  background-color: ${({ theme }) => theme.colors.primaryContrast};
+  color: ${({ theme }) => theme.colors.surface};
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   line-height: 1.2;

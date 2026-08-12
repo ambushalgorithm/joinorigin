@@ -80,7 +80,7 @@ const Supporting = styled.p`
   font-size: 18px;
   line-height: 1.6;
   font-weight: ${({ theme }) => theme.fontWeights.regular};
-  color: ${({ theme }) => theme.colors.textMuted};
+  color: ${({ theme }) => theme.colors.text};
 
   @media (max-width: 480px) {
     font-size: 16px;

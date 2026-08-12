@@ -72,6 +72,23 @@ const Accent = styled.span<{ $isVisible: boolean }>`
   color: transparent;
   text-transform: capitalize;
   visibility: ${({ $isVisible = true }) => ($isVisible ? 'visible' : 'hidden')};
+  font-size: 68px;
+  line-height: 86px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    font-size: 68px;
+    line-height: 86px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    font-size: 56px;
+    line-height: 64px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    font-size: 48px;
+    line-height: 56px;
+  }
 `;
 
 const Caret = styled.span<{ $reduced: boolean }>`
@@ -139,7 +156,7 @@ export function TypewriterHeading() {
     <Heading>
       {renderTyped(visible)}
       <Caret $reduced={reduced} aria-hidden="true">
-        ▍
+        |
       </Caret>
     </Heading>
   );
