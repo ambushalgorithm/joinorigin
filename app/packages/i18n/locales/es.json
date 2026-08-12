@@ -1,0 +1,508 @@
+{
+  "dir": "ltr",
+  "common": {
+    "brand": "JoinOrigin",
+    "faqHeading": "Preguntas frecuentes",
+    "contactUs": "Contáctanos",
+    "questionsAboutOrigin": "¿Preguntas sobre Origin?",
+    "teamRepliesWithin2Days": "Nuestro equipo responde en un plazo de 2 días hábiles.",
+    "legal": "Legal",
+    "joinWaitlist": "Únete a la lista de espera",
+    "nav": {
+      "features": "Funciones",
+      "community": "Comunidad",
+      "docs": "Documentación",
+      "about": "Nosotros",
+      "contact": "Contacto",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    },
+    "objects": {
+      "profiles": "Perfiles",
+      "ideas": "Ideas",
+      "communities": "Comunidades",
+      "communication": "Comunicación",
+      "feed": "Feed",
+      "projects": "Proyectos",
+      "companies": "Empresas",
+      "opportunities": "Oportunidades"
+    },
+    "values": {
+      "peopleFirst": "Las personas primero",
+      "communitiesDriveGrowth": "Las comunidades impulsan el crecimiento",
+      "collaborationCreatesValue": "La colaboración crea valor"
+    },
+    "roadmap": {
+      "phase1Title": "Fase 1 — Fundación de la comunidad",
+      "phase2Title": "Fase 2 — Colaboración",
+      "phase3Title": "Fase 3 — Organización",
+      "phase4Title": "Fase 4 — Colaboración con IA",
+      "phase5Title": "Fase 5 — Red global"
+    }
+  },
+  "header": {
+    "brandAlt": "Inicio de JoinOrigin",
+    "navAria": "Principal",
+    "logIn": "Iniciar sesión",
+    "getStarted": "Comenzar",
+    "mobileMenuToggle": "Alternar navegación"
+  },
+  "footer": {
+    "tagline": "Donde los equipos encuentran su origen",
+    "groupProduct": "Producto",
+    "groupCompany": "Empresa",
+    "groupLegal": "Legal",
+    "navAria": "Pie de página",
+    "copyright": "© 2026 JoinOrigin"
+  },
+  "home": {
+    "hero": {
+      "headline": "Un espacio de colaboración para ideas, proyectos y comunidades — donde los equipos y los mejores proyectos encuentran su Origin.",
+      "headlineAccent": "Origin.",
+      "startProject": "Iniciar proyecto",
+      "supporting": "Crea un perfil que funcione como tu currículum, publica tu idea como página y crea o únete a una comunidad sobre cualquier tema: una pequeña empresa, una startup de IA, un club de lectura, una carrera de 10 km.",
+      "trustAvatarsAlt": "Miembro de JoinOrigin {{number}}",
+      "trustCopy": "Únete a más de 2.400 creadores que ya colaboran"
+    },
+    "definition": "Origin es una red social de colaboración: el sistema operativo comunitario donde tus ideas, proyectos y comunidades se reúnen en un espacio organizado. JoinOrigin es la marca y la red detrás de todo esto.",
+    "marquee": {
+      "label": "Con la confianza de equipos de",
+      "partnerAlt": "Socio de JoinOrigin {{number}}"
+    },
+    "faq": {
+      "q1": {
+        "question": "¿Qué es JoinOrigin?",
+        "answer": "Origin es una red social de colaboración: un sistema operativo comunitario que reúne tus ideas, proyectos y comunidades en un espacio organizado. JoinOrigin es la marca y la red detrás de todo esto. En lugar de cinco herramientas separadas, tus relaciones viven en un solo lugar, para que nada se pierda entre ellas."
+      },
+      "q2": {
+        "question": "¿En qué se diferencia JoinOrigin de Discord/LinkedIn/Reddit?",
+        "answer": "Discord es una app de chat, LinkedIn encuentra profesionales y Reddit es para debatir. Origin los combina en torno al grafo social: perfiles, comunidades, chat, feed, proyectos y oportunidades conviven juntos, para que las relaciones se conviertan en colaboración real."
+      },
+      "q3": {
+        "question": "¿Qué puedo hacer una vez que esté dentro?",
+        "answer": "Crea un perfil que funcione como un currículum, publica tu idea como página, crea o únete a comunidades sobre cualquier tema e invita a las personas con las que quieras trabajar. La lista de espera reserva tu lugar para que tu comunidad esté lista cuando se abra el acceso anticipado."
+      },
+      "q4": {
+        "question": "¿Cuándo comienza el acceso anticipado?",
+        "answer": "El acceso anticipado se abre por oleadas mientras la plataforma avanza hacia el lanzamiento. Unirte a la lista de espera ahora reserva tu lugar y recibirás una invitación en cuanto tu comunidad esté lista."
+      },
+      "q5": {
+        "question": "¿Cómo me uno?",
+        "answer": "Haz clic en Comenzar en cualquier parte de esta página, introduce tu nombre y correo electrónico y estarás en la lista de espera. Recibirás una invitación cuando el acceso anticipado llegue a tu lugar."
+      }
+    }
+  },
+  "waitlist": {
+    "close": "Cerrar",
+    "heading": "Únete a la lista de espera",
+    "subcopy": "Sé el primero en la fila para el acceso anticipado. Te enviaremos un correo cuando tu espacio de trabajo esté listo.",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Solicitar acceso",
+    "submitting": "Enviando",
+    "legalNote": "Sin spam. Date de baja cuando quieras.",
+    "successHeading": "¡Ya estás en la lista!",
+    "successCopy": "Te enviaremos un correo cuando tu espacio de trabajo esté listo.",
+    "done": "Listo",
+    "errors": {
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "nameEmailRequired": "El nombre y el correo electrónico son obligatorios.",
+      "nameRequired": "El nombre es obligatorio.",
+      "nameTooLong": "El nombre debe tener 120 caracteres o menos.",
+      "emailInvalid": "Introduce una dirección de correo electrónico válida.",
+      "rateLimited": "Demasiadas solicitudes. Inténtalo de nuevo en un minuto."
+    }
+  },
+  "ctaBand": {
+    "headline": "Encuentra a tu gente. Construye con ellos.",
+    "subline": "Únete a más de 2.400 creadores en la red social de colaboración de Origin y sé el primero cuando se abra el acceso anticipado.",
+    "joinLabel": "Únete a la lista de espera",
+    "contactLabel": "Contáctanos"
+  },
+  "features": {
+    "hero": {
+      "eyebrow": "Objetos centrales",
+      "title": "Todo lo que una comunidad necesita, en un solo espacio de trabajo tranquilo",
+      "lead": "Origin es una red social de colaboración construida en torno a ocho objetos centrales: perfiles, ideas, comunidades, conversaciones, publicaciones, proyectos, empresas y oportunidades. En lugar de cinco herramientas separadas, tus relaciones viven en un solo lugar."
+    },
+    "sectionCoreObjects": "Objetos centrales",
+    "coreObjects": {
+      "profiles": {
+        "body": "Un perfil funciona como un currículum vivo: lleva tu experiencia, tus habilidades y tus ideas, además de tu reputación y tus relaciones, a través de cada comunidad y proyecto al que te unas."
+      },
+      "ideas": {
+        "body": "Toda idea tiene un lugar. Publica una página de idea para cualquier cosa: una pequeña empresa, una startup de IA, ayudar a las personas sin hogar, una carrera de 10 km, un club de lectura, una liga infantil — y encuentra a las personas que quieran construirla contigo."
+      },
+      "communities": {
+        "body": "Grupos en torno a intereses, industrias y objetivos: fundadores de startups, pequeñas empresas, clubes de lectura, organizaciones comunitarias, cualquiera con una idea — donde los miembros se encuentran."
+      },
+      "communication": {
+        "body": "Chat en tiempo real, mensajes directos y debates de grupo a través del protocolo abierto Matrix, con cifrado de extremo a extremo por defecto."
+      },
+      "feed": {
+        "body": "Publicaciones, novedades y oportunidades de las personas y comunidades que sigues: un flujo tranquilo de lo que importa en tu red."
+      },
+      "projects": {
+        "body": "Esfuerzos colaborativos donde los miembros de la comunidad trabajan juntos y convierten las conversaciones en resultados."
+      },
+      "companies": {
+        "body": "Proyectos empresariales creados por miembros dentro de la red, con gestión de equipos y compartición de oportunidades integradas."
+      },
+      "opportunities": {
+        "body": "Empleos, alianzas e inversiones descubiertos a través del grafo social: la red muestra las oportunidades adecuadas en el momento adecuado."
+      }
+    },
+    "sectionComparison": "Por qué Origin en lugar de cinco herramientas",
+    "comparisonIntro": "La mayoría de las plataformas resuelven solo una parte de la colaboración. Origin las combina en torno al grafo social, las relaciones entre los miembros, para que nada se pierda entre las herramientas.",
+    "comparison": {
+      "toolHeader": "Herramienta",
+      "greatAtHeader": "Destaca en",
+      "addsHeader": "Lo que aporta JoinOrigin",
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "encuentra profesionales",
+        "gap": "pero no impulsa las comunidades, el chat y los proyectos que convierten las conexiones en colaboración."
+      },
+      "discord": {
+        "tool": "Discord",
+        "strength": "comunica",
+        "gap": "pero no está organizado en torno a perfiles, comunidades, proyectos y oportunidades en un grafo social compartido."
+      },
+      "reddit": {
+        "tool": "Reddit",
+        "strength": "debate",
+        "gap": "pero es anónimo y no hace avanzar la reputación, las relaciones ni los proyectos."
+      },
+      "github": {
+        "tool": "GitHub",
+        "strength": "programa",
+        "gap": "pero está construido para repositorios, no para todo el abanico de la colaboración humana."
+      }
+    },
+    "sectionRoadmap": "Hoja de ruta",
+    "roadmap": {
+      "phase1": {
+        "body": "Perfiles, comunidades, chat y el grafo social: la capa base donde las personas se encuentran."
+      },
+      "phase2": {
+        "body": "Proyectos, espacios de trabajo compartidos y herramientas que convierten las conversaciones de la comunidad en trabajo conjunto."
+      },
+      "phase3": {
+        "body": "Empresas y proyectos empresariales creados por los miembros, con gestión de equipos y gobernanza."
+      },
+      "phase4": {
+        "body": "Trabajadores de IA que ayudan a las comunidades a coordinarse, resumir y conectar oportunidades."
+      },
+      "phase5": {
+        "body": "Estándares abiertos y portabilidad para que la red se conecte entre plataformas, no solo dentro de un silo."
+      }
+    },
+    "faq": {
+      "q1": {
+        "question": "¿En qué se diferencia JoinOrigin de Discord?",
+        "answer": "Discord es una app de chat. Origin es una red social de colaboración: perfiles, ideas, comunidades, chat, feed, proyectos y empresas conviven en un solo grafo social."
+      },
+      "q2": {
+        "question": "¿JoinOrigin es de código abierto?",
+        "answer": "El código es abierto bajo AGPL-3.0 y la comunicación funciona con el protocolo abierto Matrix. Origin en sí es un producto alojado operado por JoinOrigin: no hay nada que autoalojar, y tus datos siguen siendo portables."
+      },
+      "q3": {
+        "question": "¿Qué es el grafo social?",
+        "answer": "El grafo social es la red de relaciones entre los miembros. Origin está organizado en torno a él, de modo que cada perfil, comunidad y proyecto se conecta a través de las personas."
+      },
+      "q4": {
+        "question": "¿Cuándo se lanzarán los proyectos y las empresas?",
+        "answer": "Se desarrollan de forma natural. A medida que las personas publican ideas, visiones y trabajo, encuentran a quienes quieren construir con ellas, y los proyectos y las empresas crecen a partir de esas conexiones en lugar de esperar una fecha de lanzamiento."
+      }
+    }
+  },
+  "community": {
+    "hero": {
+      "eyebrow": "La red",
+      "title": "Donde las personas se encuentran",
+      "lead": "Origin es una red social de colaboración organizada en torno a las comunidades: grupos de personas que comparten intereses, industrias, objetivos y oportunidades. Las comunidades son el centro de la interacción."
+    },
+    "sectionValues": "Cómo gestionamos la red",
+    "values": {
+      "peopleFirst": {
+        "body": "Los miembros son personas, no perfiles en una base de datos. Cada decisión de diseño protege las relaciones que hacen que valga la pena unirse a la red."
+      },
+      "communitiesDriveGrowth": {
+        "body": "Las comunidades son el centro de la interacción. Cuando una comunidad prospera, las personas que la integran se encuentran y construyen juntas."
+      },
+      "collaborationCreatesValue": {
+        "body": "La colaboración es la forma en que las conversaciones se convierten en proyectos y los proyectos en empresas. Origin está construido para que la colaboración tenga a dónde ir."
+      },
+      "ownership": {
+        "title": "Propiedad y soberanía",
+        "body": "Eres dueño de tu identidad, tus datos y tus comunidades. La arquitectura abierta y la identidad portable mantienen a la red responsable ante sus miembros."
+      }
+    },
+    "sectionExamples": "Ejemplos de comunidades",
+    "examplesIntro": "Estos son los tipos de comunidades que crecen hoy dentro de JoinOrigin. Si compartes uno de estos objetivos, ya hay un lugar para ti:",
+    "examples": {
+      "startupFounders": "Fundadores de startups",
+      "smallBusinesses": "Pequeñas empresas",
+      "bookClubs": "Clubes de lectura",
+      "communityOrganizations": "Organizaciones comunitarias",
+      "runClubs": "Clubes de running",
+      "peeWeeLeagues": "Ligas infantiles",
+      "anyoneWithAnIdea": "Cualquiera con una idea"
+    },
+    "sectionJoin": "Únete a la red",
+    "joinCopy": "La comunidad la construyen las personas que la integran. Únete a la lista de espera para ser parte de la primera ola de creadores que están dando forma a cómo las personas se encuentran en línea.",
+    "joinStatValue": "2.400+",
+    "joinStatLabel": "Miembros construyendo juntos",
+    "faq": {
+      "q1": {
+        "question": "¿A qué comunidades puedo unirme?",
+        "answer": "Cualquiera puede crear o unirse a una comunidad en torno a cualquier idea: una pequeña empresa, una startup de IA, ayudar a las personas sin hogar, una carrera de 10 km, un movimiento político, una liga infantil. Si te importa, tiene un lugar en Origin."
+      },
+      "q2": {
+        "question": "¿Puedo crear mi propia comunidad?",
+        "answer": "Sí. Cada miembro puede crear una comunidad en torno a cualquier idea e invitar a las personas con las que quiera construir, ya sea un negocio, un club de lectura o un club de running."
+      },
+      "q3": {
+        "question": "¿Mis datos son míos?",
+        "answer": "Sí. Eres dueño de tu identidad y de tus datos. Origin es un producto alojado, así que no hay nada que autoalojar, pero tus datos son portables y tu grafo de red persiste en el protocolo abierto Matrix."
+      },
+      "q4": {
+        "question": "¿Cómo encuentro a mi gente?",
+        "answer": "Explora comunidades por interés, industria u objetivo: desde pequeñas empresas y clubes de lectura hasta startups de IA y clubes de running. Luego únete a las que coincidan con lo que quieres construir o crea la tuya propia para cualquier idea."
+      },
+      "q5": {
+        "question": "¿Puedo unirme de forma anónima o con mi nombre?",
+        "answer": "Tú eliges. Puedes participar con una cuenta con tu nombre o permanecer anónimo, y las comunidades, los chats y las páginas de ideas pueden estar abiertos a todos o restringidos por sus organizadores. Estas opciones se implementarán gradualmente."
+      }
+    }
+  },
+  "docs": {
+    "hero": {
+      "eyebrow": "Documentación",
+      "title": "Documentación de JoinOrigin",
+      "lead": "Origin es el producto: una red social de colaboración y un sistema operativo comunitario. JoinOrigin es la marca y la red detrás de todo esto. Esta documentación explica los objetos centrales, la hoja de ruta y la arquitectura."
+    },
+    "sectionConcepts": "Conceptos",
+    "concepts": {
+      "profiles": {
+        "body": "Los perfiles son la identidad portable de cada miembro, como un currículum vivo. Llevan experiencia, habilidades, ideas, reputación y relaciones a través de cada comunidad y proyecto, para que quien eres viaje contigo."
+      },
+      "communities": {
+        "body": "Las comunidades son grupos de personas que comparten intereses, industrias, objetivos y oportunidades, en torno a cualquier idea. Son el centro de la interacción en Origin y la forma en que los miembros se encuentran."
+      },
+      "ideas": {
+        "body": "Las ideas son el punto de partida de todo en Origin. Publica una página de idea para cualquier idea: una pequeña empresa, una startup de IA, un club de lectura, una carrera de 10 km — y las personas que quieren construirla te encuentran."
+      },
+      "communication": {
+        "body": "La comunicación abarca el chat en tiempo real, los mensajes directos y los debates de grupo. Funciona con el protocolo abierto Matrix, por lo que las conversaciones son portables y pueden cifrarse de extremo a extremo."
+      },
+      "feed": {
+        "body": "El feed muestra las publicaciones, novedades y oportunidades de las personas y comunidades que sigues. Es un flujo tranquilo de lo que importa en tu red, no una máquina de interacción."
+      },
+      "projects": {
+        "body": "Los proyectos son esfuerzos colaborativos donde los miembros trabajan juntos hacia un resultado compartido. Conectan el grafo social con el trabajo real dentro de las comunidades y entre ellas."
+      },
+      "companies": {
+        "body": "Las empresas son proyectos empresariales creados por miembros de la red. Llevan la gestión de equipos y la compartición de oportunidades al mismo espacio de trabajo donde viven las relaciones."
+      },
+      "opportunities": {
+        "body": "Las oportunidades son empleos, alianzas e inversiones que surgen a través del grafo social. La red conecta la oportunidad adecuada con la persona adecuada en el momento adecuado."
+      }
+    },
+    "sectionRoadmap": "Hoja de ruta",
+    "roadmap": {
+      "phase1": {
+        "body": "Perfiles, comunidades, chat y el grafo social. Métrica de éxito: miembros que forman comunidades duraderas."
+      },
+      "phase2": {
+        "body": "Proyectos, espacios de trabajo compartidos y herramientas que convierten las conversaciones en trabajo conjunto. Métrica de éxito: comunidades que entregan resultados juntas."
+      },
+      "phase3": {
+        "body": "Empresas y proyectos empresariales creados por los miembros, con gestión de equipos y gobernanza. Métrica de éxito: empresas fundadas dentro de la red."
+      },
+      "phase4": {
+        "body": "Trabajadores de IA que ayudan a las comunidades a coordinarse, resumir y conectar oportunidades. Métrica de éxito: miembros que colaboran con la IA como iguales."
+      },
+      "phase5": {
+        "body": "Estándares abiertos y portabilidad para que la red se conecte entre plataformas. Métrica de éxito: un grafo social portable e interoperable."
+      }
+    },
+    "sectionArchitecture": "Arquitectura y estándares",
+    "architectureParagraph1": "El grafo social es el producto: cada objeto cuelga de la red de personas y sus relaciones. La comunicación utiliza el protocolo abierto Matrix (descentralizado, con cifrado de extremo a extremo), y tu grafo de red y tus conexiones persisten para siempre, de modo que tus relaciones siguen siendo portables.",
+    "architectureParagraph2": "Origin es un producto alojado construido con React, TypeScript y Next.js en la web, y con NestJS, PostgreSQL, Redis y Docker en el backend. Lo que permanece abierto es el protocolo (Matrix), tus datos y el código fuente bajo AGPL-3.0: no hay nada que autoalojar.",
+    "faq": {
+      "q1": {
+        "question": "¿Sobre qué está construido JoinOrigin?",
+        "answer": "React, TypeScript y Next.js en la web; NestJS, PostgreSQL, Redis y Docker en el backend. La comunicación funciona con el protocolo abierto Matrix."
+      },
+      "q2": {
+        "question": "¿Qué es Matrix?",
+        "answer": "Matrix es un protocolo de comunicación abierto y descentralizado con cifrado de extremo a extremo. Origin funciona sobre él, por lo que las conversaciones — y el grafo de red que hay detrás — son portables y persisten para siempre."
+      },
+      "q3": {
+        "question": "¿JoinOrigin se puede autoalojar?",
+        "answer": "No. Origin es un producto alojado operado por JoinOrigin, por lo que no hay nada que autoalojar. Tu grafo de red y tus conexiones persisten para siempre a través del protocolo abierto Matrix, y tus datos siguen siendo portables."
+      },
+      "q4": {
+        "question": "¿Cuándo se lanza el MVP?",
+        "answer": "JoinOrigin está en acceso anticipado. La Fundación de la comunidad (Fase 1) es el MVP y se entrega primero a los miembros de la lista de espera."
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Nuestra misión",
+      "title": "El activo más valioso es tu red",
+      "lead": "Origin es una red social de colaboración construida sobre una convicción: el activo más valioso de internet no es el contenido ni el software, sino la red de personas y las relaciones que forman."
+    },
+    "sectionMission": "Nuestra misión",
+    "missionParagraph1": "Origin está construyendo el sistema operativo de la colaboración humana. En lugar de cinco herramientas separadas para el chat, las comunidades y los proyectos, tus relaciones viven en un solo espacio de trabajo tranquilo. El grafo social es el producto: perfiles, ideas, comunidades, conversaciones, publicaciones, proyectos, empresas y oportunidades cuelgan todos de la misma red de personas.",
+    "missionParagraph2": "Hoy estamos en acceso anticipado, con más de 2.400 creadores en la lista de espera. A medida que la plataforma crece a través de la hoja de ruta — Fundación de la comunidad, Colaboración, Organización, Colaboración con IA y Red global — la misión sigue siendo la misma: ayudar a las personas a encontrarse y construir juntas.",
+    "sectionPrinciples": "Principios rectores",
+    "principles": {
+      "peopleFirst": {
+        "body": "La red está hecha de personas, no solo de contenido o software. Las decisiones de producto parten de las relaciones que los miembros quieren formar."
+      },
+      "communitiesDriveGrowth": {
+        "body": "Las comunidades son el centro de la interacción: los grupos de personas que comparten intereses, industrias, objetivos y oportunidades dan vida a la red."
+      },
+      "collaborationCreatesValue": {
+        "body": "Las conversaciones se convierten en proyectos y los proyectos en empresas. Origin está construido para que la colaboración tenga a dónde ir."
+      },
+      "openArchitecture": {
+        "title": "Arquitectura abierta",
+        "body": "La comunicación funciona con el protocolo abierto Matrix, y la identidad, los perfiles, las comunidades y el grafo social son portables y pertenecen al usuario. Origin está alojado, así que no hay nada que autoalojar."
+      }
+    },
+    "sectionFounder": "Orientación del fundador",
+    "founderQuote": "«¿Esto ayuda a las personas a encontrarse? Si no, no lo construyas.»",
+    "founderBody": "Cada función de Origin se mide con esa pregunta. Si no ayuda a las personas a descubrirse, formar comunidades o iniciar proyectos juntos, no pertenece al espacio de trabajo.",
+    "sectionReading": "Lecturas complementarias",
+    "readingDocs": "Lee la <1>documentación</1> para conocer los objetos centrales, la hoja de ruta y la arquitectura.",
+    "readingCommunity": "Consulta la página de <1>comunidad</1> para ver los valores y los ejemplos de comunidades dentro de la red.",
+    "readingContact": "¿Tienes una pregunta? <1>Contacta con el equipo</1> — respondemos en un plazo de 2 días hábiles.",
+    "faq": {
+      "q1": {
+        "question": "¿Qué es JoinOrigin?",
+        "answer": "Origin es una red social de colaboración: un sistema operativo comunitario que reúne tus ideas, proyectos y comunidades en un espacio organizado. JoinOrigin es la marca y la red detrás de todo esto."
+      },
+      "q2": {
+        "question": "¿Qué significa que «la red es el producto»?",
+        "answer": "En lugar de vender funciones de software de forma aislada, Origin trata las relaciones entre las personas — el grafo social — como el valor central que crea y protege."
+      },
+      "q3": {
+        "question": "¿JoinOrigin es de código abierto?",
+        "answer": "El código es abierto bajo AGPL-3.0 y la comunicación funciona con el protocolo abierto Matrix. Origin es un producto alojado operado por JoinOrigin: no hay nada que autoalojar, y tu grafo de red sigue siendo portable. Consulta la documentación para más detalles."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contacto",
+      "title": "Háblanos",
+      "lead": "¿Tienes una pregunta sobre Origin — la red social de colaboración —, el acceso anticipado o cómo crear una comunidad? Nos encantaría saber de ti."
+    },
+    "sectionForm": "Envíanos un mensaje",
+    "form": {
+      "nameLabel": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "you@example.com",
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "¿En qué podemos ayudarte?",
+      "submit": "Enviar por correo",
+      "hint": "Este formulario abre tu aplicación de correo con el mensaje ya redactado. Respondemos en un plazo de 2 días hábiles."
+    },
+    "sectionOther": "Otras formas de contactarnos",
+    "otherEmail": "Correo electrónico: <1>{{email}}</1>",
+    "otherDocs": "Consulta la <1>documentación</1> para conocer los conceptos, la hoja de ruta y la arquitectura.",
+    "otherAbout": "Lee la página de <1>nosotros</1> para conocer nuestra misión y principios.",
+    "mailtoSubject": "Contacto con JoinOrigin — {{name}}",
+    "newMessage": "nuevo mensaje",
+    "mailtoBody": "Nombre: {{name}}\nCorreo electrónico: {{email}}\n\n{{message}}",
+    "faq": {
+      "q1": {
+        "question": "¿Con qué rapidez responden?",
+        "answer": "Respondemos en un plazo de 2 días hábiles. Para obtener la respuesta más rápida, consulta primero las preguntas frecuentes de la documentación."
+      },
+      "q2": {
+        "question": "¿Puedo obtener acceso anticipado?",
+        "answer": "Sí: únete a la lista de espera desde la página de inicio. Los primeros miembros serán los primeros en entrar cuando se lance el sistema operativo comunitario."
+      }
+    }
+  },
+  "privacy": {
+    "hero": {
+      "eyebrow": "Legal",
+      "title": "Política de privacidad",
+      "lead": "Cuando te unes a la lista de espera, recopilamos tu nombre y tu dirección de correo electrónico a través del formulario de la lista de espera (POST /api/leads). Esa es la única información personal que solicitamos durante el acceso anticipado."
+    },
+    "sectionCollect": "Qué recopilamos",
+    "collect": {
+      "waitlistDataTitle": "Datos de la lista de espera",
+      "waitlistDataBody": "Nombre y correo electrónico, utilizados únicamente para avisarte cuando se abra el acceso anticipado e invitarte a entrar.",
+      "analyticsTitle": "Analítica",
+      "analyticsBody": "Utilizamos analítica basada en configuración (Plausible autoalojado por defecto) para comprender el uso agregado del sitio. Se prevé un banner de consentimiento para un sprint posterior.",
+      "technicalDataTitle": "Datos técnicos básicos",
+      "technicalDataBody": "Registros estándar del servidor y metadatos del navegador que nos ayudan a mantener el sitio fiable."
+    },
+    "sectionUse": "Cómo los utilizamos",
+    "useBody": "Utilizamos la información que recopilamos para operar el sitio, enviar invitaciones de acceso anticipado y mejorar el producto. No vendemos tu información personal.",
+    "sectionIdentity": "Identidad y flexibilidad",
+    "identityBody": "Tú eliges cómo te presentas en Origin. Puedes participar con una cuenta con tu nombre o permanecer anónimo, y las comunidades, los chats y las páginas de ideas pueden estar abiertos a todos o restringidos por sus organizadores. Estas opciones se implementarán gradualmente: la idea es que tú decidas qué compartes y con quién.",
+    "sectionRights": "Tus derechos",
+    "rightsBody": "Puedes solicitar el acceso, la corrección o la eliminación de tus datos en cualquier momento. Dado que la identidad y la propiedad de los datos son principios centrales de JoinOrigin, facilitamos la exportación o eliminación de lo que te pertenece.",
+    "sectionContact": "Contacto",
+    "contactBody": "¿Preguntas sobre esta política? Envía un correo a <1>{{email}}</1> o usa la <2>página de contacto</2>."
+  },
+  "terms": {
+    "hero": {
+      "eyebrow": "Legal",
+      "title": "Términos del servicio",
+      "lead": "Al utilizar JoinOrigin (el «Servicio»), aceptas estos Términos del servicio. Si no estás de acuerdo, no utilices el Servicio."
+    },
+    "sectionAcceptance": "Aceptación",
+    "acceptanceBody": "Al utilizar JoinOrigin (el «Servicio»), aceptas estos Términos del servicio. Si no estás de acuerdo, no utilices el Servicio.",
+    "sectionAccounts": "Cuentas",
+    "accountsBody": "Eres responsable de proteger las credenciales de tu cuenta y de la actividad que ocurra en ella. Debes proporcionar información precisa cuando crees una cuenta o te unas a la lista de espera.",
+    "sectionUserContent": "Contenido del usuario",
+    "userContentBody": "Conservas la propiedad del contenido que publicas. Otorgas a JoinOrigin una licencia limitada para almacenar, mostrar y procesar ese contenido para que el Servicio pueda funcionar. Conservas los derechos de exportar y eliminar tu contenido.",
+    "sectionAcceptableUse": "Uso aceptable",
+    "acceptableUse": {
+      "unlawful": "No utilices el Servicio para actividades ilegales.",
+      "harassment": "No acoses, abuses ni perjudiques a otros miembros.",
+      "unauthorizedAccess": "No intentes interrumpir ni acceder sin autorización al Servicio.",
+      "scrape": "No extraigas ni recopiles datos de los miembros sin permiso."
+    },
+    "sectionIntellectualProperty": "Propiedad intelectual",
+    "intellectualPropertyBody": "Las marcas comerciales, los logotipos y los materiales del sitio de JoinOrigin pertenecen a JoinOrigin. No puedes utilizarlos sin nuestro permiso. Los componentes de código abierto permanecen bajo sus respectivas licencias.",
+    "sectionDisclaimers": "Exención de responsabilidad",
+    "disclaimersBody": "El Servicio se proporciona «tal cual» durante el acceso anticipado. Trabajamos para mantenerlo fiable, pero no garantizamos que esté libre de interrupciones o errores.",
+    "sectionChanges": "Cambios",
+    "changesBody": "Podemos actualizar estos Términos a medida que el Servicio evolucione. Los cambios importantes se anunciarán en esta página, y el uso continuado después de los cambios implica que aceptas los Términos actualizados.",
+    "sectionContact": "Contacto",
+    "contactBody": "¿Preguntas sobre estos Términos? Envía un correo a <1>{{email}}</1> o usa la <2>página de contacto</2>."
+  },
+  "orbitViz": {
+    "ariaLabel": "Visualización de la órbita de miembros de JoinOrigin",
+    "memberAlt": "Miembro de JoinOrigin {{number}}",
+    "members": "Miembros"
+  },
+  "notFound": {
+    "brand": "JoinOrigin",
+    "status": "404",
+    "heading": "Página no encontrada",
+    "copy": "La página que buscas no existe o se ha movido. Vuelve al inicio para descubrir dónde comienza el próximo proyecto de tu equipo.",
+    "backHome": "Volver al inicio",
+    "exploreCommunities": "Explorar comunidades →"
+  },
+  "mobile": {
+    "home": {
+      "badge": "Bienvenido",
+      "title": "Bienvenido a JoinOrigin",
+      "subtitle": "Tu espacio de trabajo está listo."
+    }
+  }
+}
