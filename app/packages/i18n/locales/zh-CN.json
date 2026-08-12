@@ -1,0 +1,508 @@
+{
+  "dir": "ltr",
+  "common": {
+    "brand": "JoinOrigin",
+    "faqHeading": "常见问题",
+    "contactUs": "联系我们",
+    "questionsAboutOrigin": "对 Origin 有疑问？",
+    "teamRepliesWithin2Days": "我们的团队会在 2 个工作日内回复。",
+    "legal": "法律",
+    "joinWaitlist": "加入候补名单",
+    "nav": {
+      "features": "功能特性",
+      "community": "社区",
+      "docs": "文档",
+      "about": "关于我们",
+      "contact": "联系我们",
+      "privacy": "隐私政策",
+      "terms": "服务条款"
+    },
+    "objects": {
+      "profiles": "个人主页",
+      "ideas": "创意",
+      "communities": "社区",
+      "communication": "沟通",
+      "feed": "动态",
+      "projects": "项目",
+      "companies": "公司",
+      "opportunities": "机会"
+    },
+    "values": {
+      "peopleFirst": "以人为本",
+      "communitiesDriveGrowth": "社区驱动增长",
+      "collaborationCreatesValue": "协作创造价值"
+    },
+    "roadmap": {
+      "phase1Title": "第一阶段 — 社区基础",
+      "phase2Title": "第二阶段 — 协作",
+      "phase3Title": "第三阶段 — 组织",
+      "phase4Title": "第四阶段 — AI 协作",
+      "phase5Title": "第五阶段 — 全球网络"
+    }
+  },
+  "header": {
+    "brandAlt": "JoinOrigin 首页",
+    "navAria": "主导航",
+    "logIn": "登录",
+    "getStarted": "开始使用",
+    "mobileMenuToggle": "切换导航菜单"
+  },
+  "footer": {
+    "tagline": "团队在此找到他们的起点",
+    "groupProduct": "产品",
+    "groupCompany": "公司",
+    "groupLegal": "法律",
+    "navAria": "页脚",
+    "copyright": "© 2026 JoinOrigin"
+  },
+  "home": {
+    "hero": {
+      "headline": "创意、项目和社区协作空间 —— 团队和优秀项目在这里找到他们的 Origin。",
+      "headlineAccent": "Origin。",
+      "startProject": "开始项目",
+      "supporting": "创建一份如同简历的个人主页，把你的创意发布成页面，然后围绕任何事物开始或加入一个社区 —— 一家小企业、一个 AI 初创公司、一个读书俱乐部、一场 10 公里跑步。",
+      "trustAvatarsAlt": "JoinOrigin 成员 {{number}}",
+      "trustCopy": "已有 2,400+ 位建设者加入协作"
+    },
+    "definition": "Origin 是一个社交协作网络 —— 一个社区操作系统，让你的创意、项目和社区汇聚在同一个井然有序的空间中。JoinOrigin 是它背后的品牌与网络。",
+    "marquee": {
+      "label": "深受以下团队信赖",
+      "partnerAlt": "JoinOrigin 合作伙伴 {{number}}"
+    },
+    "faq": {
+      "q1": {
+        "question": "什么是 JoinOrigin？",
+        "answer": "Origin 是一个社交协作网络 —— 一个社区操作系统，将你的创意、项目和社区汇集到一个井然有序的空间中。JoinOrigin 是它背后的品牌与网络。无需五个分散的工具，你的人际关系就存在于同一个地方，彼此之间不会丢失任何东西。"
+      },
+      "q2": {
+        "question": "JoinOrigin 与 Discord/LinkedIn/Reddit 有何不同？",
+        "answer": "Discord 是聊天应用，LinkedIn 用来寻找专业人士，Reddit 则用于讨论。Origin 将它们围绕社交图谱整合在一起 —— 个人主页、社区、聊天、动态、项目和机会共同存在，让人际关系转化为真正的协作。"
+      },
+      "q3": {
+        "question": "加入后我可以做什么？",
+        "answer": "创建一份如同简历的个人主页，把创意发布成创意页面，围绕任何事物开始或加入社区，并邀请你想要共事的人。候补名单为你预留位置，这样早期访问开放时，你的社区就能准备就绪。"
+      },
+      "q4": {
+        "question": "早期访问何时开始？",
+        "answer": "随着平台逐步走向发布，早期访问将分批开放。现在加入候补名单即可预订你的位置，当你的社区准备就绪时，你会收到邀请。"
+      },
+      "q5": {
+        "question": "我该如何加入？",
+        "answer": "点击本页任意位置的“开始使用”，输入你的姓名和邮箱，你就进入了候补名单。当早期访问轮到你的位置时，你会收到邀请。"
+      }
+    }
+  },
+  "waitlist": {
+    "close": "关闭",
+    "heading": "加入候补名单",
+    "subcopy": "抢先进入早期访问名单。你的工作空间准备好后，我们会通过邮件通知你。",
+    "nameLabel": "姓名",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "申请访问",
+    "submitting": "提交中",
+    "legalNote": "绝无垃圾邮件。可随时退订。",
+    "successHeading": "你已经在名单上了！",
+    "successCopy": "你的工作空间准备好后，我们会通过邮件通知你。",
+    "done": "完成",
+    "errors": {
+      "generic": "出了点问题，请重试。",
+      "nameEmailRequired": "姓名和邮箱均为必填项。",
+      "nameRequired": "姓名是必填项。",
+      "nameTooLong": "姓名不能超过 120 个字符。",
+      "emailInvalid": "请输入有效的邮箱地址。",
+      "rateLimited": "请求过于频繁，请一分钟后重试。"
+    }
+  },
+  "ctaBand": {
+    "headline": "找到你的伙伴，一起建设。",
+    "subline": "加入 Origin 社交协作网络上的 2,400+ 位建设者，在早期访问开放时抢先体验。",
+    "joinLabel": "加入候补名单",
+    "contactLabel": "联系我们"
+  },
+  "features": {
+    "hero": {
+      "eyebrow": "核心对象",
+      "title": "社区所需的一切，汇聚在一个宁静的工作空间",
+      "lead": "Origin 是一个围绕八大核心对象构建的社交协作网络：个人主页、创意、社区、对话、帖子、项目、公司和机会。无需五个分散的工具，你的人际关系就存在于同一个地方。"
+    },
+    "sectionCoreObjects": "核心对象",
+    "coreObjects": {
+      "profiles": {
+        "body": "个人主页如同一份动态简历：它承载着你的经验、技能和创意 —— 还有你的声誉与人际关系 —— 伴随你进入加入的每一个社区和项目。"
+      },
+      "ideas": {
+        "body": "每个创意都有安身之处。为任何事物发布创意页面 —— 一家小企业、一个 AI 初创公司、帮助无家可归者、一场 10 公里跑步、一个读书俱乐部、一个少儿联赛 —— 并找到愿意与你一同实现它的人。"
+      },
+      "communities": {
+        "body": "围绕兴趣、行业和目标形成的群体 —— 创业创始人、小企业、读书俱乐部、社区组织、任何有创意的人 —— 成员在这里找到彼此。"
+      },
+      "communication": {
+        "body": "基于开放的 Matrix 协议提供实时聊天、私信和群组讨论，默认端到端加密。"
+      },
+      "feed": {
+        "body": "来自你关注的人和社区的帖子、更新与机会 —— 一条宁静的信息流，呈现你网络中真正重要的事情。"
+      },
+      "projects": {
+        "body": "社区成员共同协作、把对话变成成果的合作项目。"
+      },
+      "companies": {
+        "body": "由网络内成员创办的企业，内置团队管理与机会共享。"
+      },
+      "opportunities": {
+        "body": "通过社交图谱发现的工作、合作与投资机会 —— 网络在恰当的时机呈现恰当的机会。"
+      }
+    },
+    "sectionComparison": "为什么选择 Origin 而不是五个工具",
+    "comparisonIntro": "大多数平台只解决协作的某一方面。Origin 将它们围绕社交图谱 —— 成员之间的关系 —— 整合在一起，使工具之间不会丢失任何东西。",
+    "comparison": {
+      "toolHeader": "工具",
+      "greatAtHeader": "擅长",
+      "addsHeader": "JoinOrigin 带来的增量",
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "寻找专业人士",
+        "gap": "但不支撑那些把联系转化为协作的社区、聊天和项目。"
+      },
+      "discord": {
+        "tool": "Discord",
+        "strength": "沟通交流",
+        "gap": "但没有围绕共享社交图谱上的个人主页、社区、项目和机会来组织。"
+      },
+      "reddit": {
+        "tool": "Reddit",
+        "strength": "讨论话题",
+        "gap": "但它是匿名的，无法延续声誉、人际关系或项目。"
+      },
+      "github": {
+        "tool": "GitHub",
+        "strength": "编写代码",
+        "gap": "但它是为代码仓库而生的，而不是为人类协作的全方位场景。"
+      }
+    },
+    "sectionRoadmap": "路线图",
+    "roadmap": {
+      "phase1": {
+        "body": "个人主页、社区、聊天和社交图谱 —— 人们互相找到彼此的基础层。"
+      },
+      "phase2": {
+        "body": "项目、共享工作空间，以及把社区对话转化为共同工作的工具。"
+      },
+      "phase3": {
+        "body": "由成员创办的公司和企业，配有团队管理与治理机制。"
+      },
+      "phase4": {
+        "body": "帮助社区协调、总结和匹配机会的 AI 工作者。"
+      },
+      "phase5": {
+        "body": "开放标准与可移植性，让网络跨越平台连接，而不只是困在单一孤岛中。"
+      }
+    },
+    "faq": {
+      "q1": {
+        "question": "JoinOrigin 与 Discord 有何不同？",
+        "answer": "Discord 是聊天应用。Origin 是一个社交协作网络 —— 个人主页、创意、社区、聊天、动态、项目和公司都生活在同一个社交图谱上。"
+      },
+      "q2": {
+        "question": "JoinOrigin 是开源的吗？",
+        "answer": "代码在 AGPL-3.0 许可下开放，沟通基于开放的 Matrix 协议。Origin 本身是 JoinOrigin 运营的托管产品 —— 无需自行托管 —— 而且你的数据保持可移植。"
+      },
+      "q3": {
+        "question": "什么是社交图谱？",
+        "answer": "社交图谱是成员之间的关系网络。Origin 围绕它组织起来，因此每个个人主页、社区和项目都通过人与人之间的联系而相连。"
+      },
+      "q4": {
+        "question": "项目和公司何时上线？",
+        "answer": "它们会自然成长。当人们发布创意、愿景和成果时，他们会找到想要一起建设的人 —— 项目和公司从这些联系中生长出来，而不是等待某个发布日期。"
+      }
+    }
+  },
+  "community": {
+    "hero": {
+      "eyebrow": "网络",
+      "title": "人们在这里找到彼此",
+      "lead": "Origin 是一个围绕社区组织的社交协作网络 —— 由分享兴趣、行业、目标和机会的人们组成群体。社区是参与的核心。"
+    },
+    "sectionValues": "我们如何运营网络",
+    "values": {
+      "peopleFirst": {
+        "body": "成员是人，而不是数据库中的档案。每一个设计决策都在保护那些让网络值得加入的人际关系。"
+      },
+      "communitiesDriveGrowth": {
+        "body": "社区是参与的核心。当一个社区蓬勃发展时，其中的人会找到彼此并一起建设。"
+      },
+      "collaborationCreatesValue": {
+        "body": "协作让对话变成项目，让项目变成公司。Origin 的构建让协作有处可去。"
+      },
+      "ownership": {
+        "title": "所有权与主权",
+        "body": "你拥有自己的身份、数据和社区。开放的架构和可移植的身份让网络对成员负责。"
+      }
+    },
+    "sectionExamples": "社区示例",
+    "examplesIntro": "这些是今天 JoinOrigin 内部正在成长的社区类型。如果你也怀抱其中一个目标，这里已经有你的位置：",
+    "examples": {
+      "startupFounders": "创业创始人",
+      "smallBusinesses": "小企业",
+      "bookClubs": "读书俱乐部",
+      "communityOrganizations": "社区组织",
+      "runClubs": "跑步俱乐部",
+      "peeWeeLeagues": "少儿联赛",
+      "anyoneWithAnIdea": "任何有创意的人"
+    },
+    "sectionJoin": "加入网络",
+    "joinCopy": "社区由其中的人共同缔造。加入候补名单，成为塑造人们如何在线上找到彼此的第一批建设者。",
+    "joinStatValue": "2,400+",
+    "joinStatLabel": "共同建设的成员",
+    "faq": {
+      "q1": {
+        "question": "我可以加入哪些社区？",
+        "answer": "任何人都可以围绕任何创意开始或加入社区 —— 一家小企业、一个 AI 初创公司、帮助无家可归者、一场 10 公里跑步、一场政治运动、一个少儿联赛。只要它对你重要，它在 Origin 上就有位置。"
+      },
+      "q2": {
+        "question": "我可以创建自己的社区吗？",
+        "answer": "可以。每个成员都可以围绕任何创意创建社区，并邀请他们想要一起建设的人 —— 无论是企业、读书俱乐部还是跑步俱乐部。"
+      },
+      "q3": {
+        "question": "我的数据归我所有吗？",
+        "answer": "是的。你拥有自己的身份和数据。Origin 是托管产品，因此无需自行托管 —— 但你的数据是可移植的，你的网络图谱会通过开放的 Matrix 协议持续保留。"
+      },
+      "q4": {
+        "question": "我如何找到自己的伙伴？",
+        "answer": "按兴趣、行业或目标浏览社区 —— 从小企业和读书俱乐部到 AI 初创公司和跑步俱乐部 —— 然后加入与你想要建设的事物相符的社区。或者为任何创意创建你自己的社区。"
+      },
+      "q5": {
+        "question": "我可以匿名加入还是实名加入？",
+        "answer": "由你选择。你可以用实名账户参与，也可以保持匿名；社区、聊天和创意页面可以对所有人开放，也可以由组织者设置门槛。这些选项会逐步推出。"
+      }
+    }
+  },
+  "docs": {
+    "hero": {
+      "eyebrow": "文档",
+      "title": "JoinOrigin 文档",
+      "lead": "Origin 是产品：一个社交协作网络和社区操作系统。JoinOrigin 是它背后的品牌与网络。这些文档阐释了核心对象、路线图和架构。"
+    },
+    "sectionConcepts": "概念",
+    "concepts": {
+      "profiles": {
+        "body": "个人主页是每个成员的可移植身份 —— 如同一份动态简历。它们承载着经验、技能、创意、声誉和人际关系，伴随你进入每一个社区和项目，让“你是谁”始终与你同行。"
+      },
+      "communities": {
+        "body": "社区是由分享兴趣、行业、目标和机会的人们组成的群体 —— 围绕任何创意。它们是 Origin 上参与的核心，也是成员找到彼此的方式。"
+      },
+      "ideas": {
+        "body": "创意是 Origin 上一切事物的起点。为任何创意发布创意页面 —— 一家小企业、一个 AI 初创公司、一个读书俱乐部、一场 10 公里跑步 —— 想要实现它的人就会找到你。"
+      },
+      "communication": {
+        "body": "沟通涵盖实时聊天、私信和群组讨论。它运行在开放的 Matrix 协议上，因此对话是可移植的，并且可以端到端加密。"
+      },
+      "feed": {
+        "body": "动态展示来自你关注的人和社区的帖子、更新与机会。它是一条宁静的信息流，呈现你网络中真正重要的事情，而不是一台参与度机器。"
+      },
+      "projects": {
+        "body": "项目是成员们朝着共同成果一起努力的协作。它们把社交图谱连接到社区内部和跨社区的真实工作中。"
+      },
+      "companies": {
+        "body": "公司是网络成员创办的企业。它们把团队管理和机会共享带进人际关系所在的同一个工作空间。"
+      },
+      "opportunities": {
+        "body": "机会是通过社交图谱浮现的工作、合作与投资。网络在恰当的时机把恰当的机会匹配给恰当的人。"
+      }
+    },
+    "sectionRoadmap": "路线图",
+    "roadmap": {
+      "phase1": {
+        "body": "个人主页、社区、聊天和社交图谱。成功指标：成员结成持久稳固的社区。"
+      },
+      "phase2": {
+        "body": "项目、共享工作空间，以及把对话转化为共同工作的工具。成功指标：社区一起交付成果。"
+      },
+      "phase3": {
+        "body": "由成员创办的公司和企业，配有团队管理与治理机制。成功指标：网络内部创立公司。"
+      },
+      "phase4": {
+        "body": "帮助社区协调、总结和匹配机会的 AI 工作者。成功指标：成员与 AI 平起平坐地协作。"
+      },
+      "phase5": {
+        "body": "开放标准与可移植性，让网络跨越平台连接。成功指标：一个可移植、可互操作的社交图谱。"
+      }
+    },
+    "sectionArchitecture": "架构与标准",
+    "architectureParagraph1": "社交图谱就是产品：每个对象都挂靠在人与人的关系网络上。沟通使用开放的 Matrix 协议（去中心化、端到端加密），你的网络图谱和连接会永久保留，因此你的人际关系始终可移植。",
+    "architectureParagraph2": "Origin 是托管产品，Web 端使用 React、TypeScript 和 Next.js 构建，后端使用 NestJS、PostgreSQL、Redis 和 Docker。保持开放的是协议（Matrix）、你的数据，以及 AGPL-3.0 许可下的源代码 —— 无需自行托管。",
+    "faq": {
+      "q1": {
+        "question": "JoinOrigin 基于什么构建？",
+        "answer": "Web 端使用 React、TypeScript 和 Next.js；后端使用 NestJS、PostgreSQL、Redis 和 Docker。沟通基于开放的 Matrix 协议。"
+      },
+      "q2": {
+        "question": "什么是 Matrix？",
+        "answer": "Matrix 是一种开放、去中心化的沟通协议，支持端到端加密。Origin 运行在它之上，因此对话 —— 以及对话背后的网络图谱 —— 是可移植的，并永久保留。"
+      },
+      "q3": {
+        "question": "JoinOrigin 可以自行托管吗？",
+        "answer": "不可以。Origin 是 JoinOrigin 运营的托管产品，因此无需自行托管。你的网络图谱和连接会通过开放的 Matrix 协议永久保留，你的数据保持可移植。"
+      },
+      "q4": {
+        "question": "MVP 何时上线？",
+        "answer": "JoinOrigin 正处于早期访问阶段。社区基础（第一阶段）就是 MVP，会率先提供给候补名单上的成员。"
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "我们的使命",
+      "title": "最有价值的资产是你的网络",
+      "lead": "Origin 是一个社交协作网络，建立在这样一个信念之上：互联网上最有价值的资产不是内容或软件 —— 而是人的网络以及他们之间形成的人际关系。"
+    },
+    "sectionMission": "我们的使命",
+    "missionParagraph1": "Origin 正在构建人类协作的操作系统。无需为聊天、社区和项目使用五个分散的工具，你的人际关系就生活在一个宁静的工作空间中。社交图谱就是产品：个人主页、创意、社区、对话、帖子、项目、公司和机会都挂靠在同一个人的网络上。",
+    "missionParagraph2": "我们目前正处于早期访问阶段，候补名单上有 2,400+ 位建设者。随着平台沿路线图成长 —— 社区基础、协作、组织、AI 协作和全球网络 —— 使命始终如一：帮助人们找到彼此并一起建设。",
+    "sectionPrinciples": "指导原则",
+    "principles": {
+      "peopleFirst": {
+        "body": "网络是由人构成的，而不只是内容或软件。产品决策从成员想要形成的人际关系出发。"
+      },
+      "communitiesDriveGrowth": {
+        "body": "社区是参与的核心 —— 分享兴趣、行业、目标和机会的人们组成的群体，让网络焕发生机。"
+      },
+      "collaborationCreatesValue": {
+        "body": "对话变成项目，项目变成公司。Origin 的构建让协作有处可去。"
+      },
+      "openArchitecture": {
+        "title": "开放架构",
+        "body": "沟通基于开放的 Matrix 协议，身份、个人主页、社区和社交图谱都是可移植的、归用户所有。Origin 是托管产品，因此无需自行托管。"
+      }
+    },
+    "sectionFounder": "创始人的指引",
+    "founderQuote": "“这能帮助人们找到彼此吗？如果不能，就不要构建它。”",
+    "founderBody": "Origin 上的每个功能都用这个问题来度量。如果它不能帮助人们发现彼此、结成社区或一起启动项目，它就不属于这个工作空间。",
+    "sectionReading": "延伸阅读",
+    "readingDocs": "阅读<1>文档</1>，了解核心对象、路线图和架构。",
+    "readingCommunity": "查看<1>社区</1>页面，了解网络内的价值观和社区示例。",
+    "readingContact": "有疑问？<1>联系团队</1> —— 我们会在 2 个工作日内回复。",
+    "faq": {
+      "q1": {
+        "question": "什么是 JoinOrigin？",
+        "answer": "Origin 是一个社交协作网络 —— 一个社区操作系统，将你的创意、项目和社区汇集到一个井然有序的空间中。JoinOrigin 是它背后的品牌与网络。"
+      },
+      "q2": {
+        "question": "“网络即产品”是什么意思？",
+        "answer": "Origin 不是孤立地售卖软件功能，而是把人之间的关系 —— 社交图谱 —— 视为它创造并保护的核心价值。"
+      },
+      "q3": {
+        "question": "JoinOrigin 是开源的吗？",
+        "answer": "代码在 AGPL-3.0 许可下开放，沟通基于开放的 Matrix 协议。Origin 是 JoinOrigin 运营的托管产品 —— 无需自行托管 —— 你的网络图谱保持可移植。详情请参阅文档。"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "联系我们",
+      "title": "与我们交流",
+      "lead": "对 Origin —— 这个社交协作网络 —— 早期访问或创建社区有疑问？我们很乐意倾听你的想法。"
+    },
+    "sectionForm": "发送消息",
+    "form": {
+      "nameLabel": "姓名",
+      "namePlaceholder": "你的姓名",
+      "emailLabel": "邮箱",
+      "emailPlaceholder": "you@example.com",
+      "messageLabel": "消息",
+      "messagePlaceholder": "我们能帮到你什么？",
+      "submit": "通过邮件发送",
+      "hint": "此表单会打开你的邮件应用，并预填好消息内容。我们会在 2 个工作日内回复。"
+    },
+    "sectionOther": "其他联系方式",
+    "otherEmail": "邮箱：<1>{{email}}</1>",
+    "otherDocs": "查看<1>文档</1>，了解概念、路线图和架构。",
+    "otherAbout": "阅读<1>关于我们</1>页面，了解我们的使命与原则。",
+    "mailtoSubject": "JoinOrigin 联系 —— {{name}}",
+    "newMessage": "新消息",
+    "mailtoBody": "姓名：{{name}}\n邮箱：{{email}}\n\n{{message}}",
+    "faq": {
+      "q1": {
+        "question": "你们多久回复一次？",
+        "answer": "我们会在 2 个工作日内回复。想最快得到答案，请先查看文档 FAQ。"
+      },
+      "q2": {
+        "question": "我能获得早期访问吗？",
+        "answer": "可以 —— 从首页加入候补名单。社区操作系统上线时，早期成员将率先体验。"
+      }
+    }
+  },
+  "privacy": {
+    "hero": {
+      "eyebrow": "法律",
+      "title": "隐私政策",
+      "lead": "当你加入候补名单时，我们会通过候补名单表单（POST /api/leads）收集你的姓名和邮箱地址。这是早期访问期间我们唯一要求提供的个人信息。"
+    },
+    "sectionCollect": "我们收集什么",
+    "collect": {
+      "waitlistDataTitle": "候补名单数据",
+      "waitlistDataBody": "姓名和邮箱，仅用于通知你早期访问开放并邀请你加入。",
+      "analyticsTitle": "分析数据",
+      "analyticsBody": "我们运行配置驱动的分析（默认使用自托管的 Plausible），以了解网站的总体使用情况。同意横幅计划在后续迭代中推出。",
+      "technicalDataTitle": "基础技术数据",
+      "technicalDataBody": "帮助我们保持网站可靠运行的标准服务器日志和浏览器元数据。"
+    },
+    "sectionUse": "我们如何使用这些信息",
+    "useBody": "我们使用收集到的信息来运营网站、发送早期访问邀请并改进产品。我们不会出售你的个人信息。",
+    "sectionIdentity": "身份与灵活性",
+    "identityBody": "由你决定在 Origin 上如何呈现自己。你可以用实名账户参与，也可以保持匿名；社区、聊天和创意页面可以对所有人开放，也可以由组织者设置门槛。这些选项会逐步推出 —— 关键在于，由你决定分享什么、与谁分享。",
+    "sectionRights": "你的权利",
+    "rightsBody": "你可以随时请求访问、更正或删除你的数据。由于身份和数据所有权是 JoinOrigin 的核心原则，我们会让你轻松导出或移除属于你的东西。",
+    "sectionContact": "联系方式",
+    "contactBody": "对本政策有疑问？请发送邮件至 <1>{{email}}</1>，或使用<2>联系页面</2>。"
+  },
+  "terms": {
+    "hero": {
+      "eyebrow": "法律",
+      "title": "服务条款",
+      "lead": "使用 JoinOrigin（“本服务”）即表示你同意这些服务条款。如果你不同意，请勿使用本服务。"
+    },
+    "sectionAcceptance": "接受条款",
+    "acceptanceBody": "使用 JoinOrigin（“本服务”）即表示你同意这些服务条款。如果你不同意，请勿使用本服务。",
+    "sectionAccounts": "账户",
+    "accountsBody": "你有责任保护自己的账户凭据，并对账户下发生的活动负责。当你创建账户或加入候补名单时，必须提供准确的信息。",
+    "sectionUserContent": "用户内容",
+    "userContentBody": "你保留所发布内容的所有权。你授予 JoinOrigin 有限的许可，用于存储、展示和处理这些内容，以便本服务正常运行。你保留导出和删除自己内容的权利。",
+    "sectionAcceptableUse": "可接受的使用",
+    "acceptableUse": {
+      "unlawful": "请勿将本服务用于非法活动。",
+      "harassment": "请勿骚扰、辱骂或伤害其他成员。",
+      "unauthorizedAccess": "请勿试图干扰本服务或未经授权访问本服务。",
+      "scrape": "未经许可，请勿抓取或采集成员数据。"
+    },
+    "sectionIntellectualProperty": "知识产权",
+    "intellectualPropertyBody": "JoinOrigin 的商标、标志和网站素材归 JoinOrigin 所有。未经我们许可，你不得使用它们。开源组件仍遵循其各自的许可协议。",
+    "sectionDisclaimers": "免责声明",
+    "disclaimersBody": "在早期访问期间，本服务按“现状”提供。我们会尽力保持其可靠，但不保证服务不会中断或无错误。",
+    "sectionChanges": "条款变更",
+    "changesBody": "随着本服务的发展，我们可能会更新这些条款。重大变更会在此页面公布，变更后继续使用即表示你接受更新后的条款。",
+    "sectionContact": "联系方式",
+    "contactBody": "对这些条款有疑问？请发送邮件至 <1>{{email}}</1>，或使用<2>联系页面</2>。"
+  },
+  "orbitViz": {
+    "ariaLabel": "JoinOrigin 成员轨道可视化",
+    "memberAlt": "JoinOrigin 成员 {{number}}",
+    "members": "成员"
+  },
+  "notFound": {
+    "brand": "JoinOrigin",
+    "status": "404",
+    "heading": "页面未找到",
+    "copy": "你要找的页面不存在或已被移动。回到首页，看看你团队的下一个项目将从哪里开始。",
+    "backHome": "返回首页",
+    "exploreCommunities": "探索社区 →"
+  },
+  "mobile": {
+    "home": {
+      "badge": "欢迎",
+      "title": "欢迎来到 JoinOrigin",
+      "subtitle": "你的工作空间已准备就绪。"
+    }
+  }
+}
