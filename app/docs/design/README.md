@@ -15,6 +15,9 @@ consumed verbatim by the implementing role.
 | `sprint-3-homescreen-spec.md` | Sprint 3 JoinOrigin homescreen spec — header, hero left/right, orbit circles viz, logo ticker, entrance animations, responsive breakpoints, any-button modal + CSV capture contract; local asset inventory |
 | `sprint-4-discovery.md` | Sprint 4 discovery — recommended menu structure, page hierarchy + URLs, per-page purpose/content outline, SEO keyword strategy, JSON-LD plan, and LLM-crawler (GEO) plan (llms.txt, markdown, FAQ, semantic HTML) anchored on the "social collaboration network / community OS" intent |
 | `sprint-4-seo-arch.md` | Sprint 4 SEO & analytics architecture — config-driven multi-tracker analytics (Plausible/Umami/GA4 adapters, config schema, mount contract), full-stack SEO (metadata/OG/Twitter, sitemap, robots, JSON-LD, canonical, llms.txt), Core Web Vitals budgets, LLM-crawler rules |
+| `sprint-8-menu-redesign.md` | Sprint 8 menu-screen redesign spec — per-page visual layout, dark-theme colors, locally-hosted imagery, entrance/scroll animation, join CTAs, MenuPageShell structure (design precedent for the Sprint 9 switcher) |
+| `sprint-8-origin-copy.md` | Sprint 8 approved copy-change-log — Origin-as-product / JoinOrigin-as-brand copy verbatim + per-file copy table (owned by fe-origin-copy; not consumed by the switcher) |
+| `sprint-9-i18n-switcher.md` | Sprint 9 language switcher spec — web header/footer + mobile placement, globe icon + native-language labels, dropdown interaction with immediate switch, cookie persistence, RTL states for ar/fa, a11y, ASCII wireframes, component file list for fe-i18n-integration |
 | `README.md` | This file — navigation index |
 
 ## Navigation Footer
