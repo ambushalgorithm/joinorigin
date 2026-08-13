@@ -91,11 +91,13 @@ function applyDocumentDirection(locale: Locale): void {
   if (typeof globalThis === 'undefined') {
     return;
   }
-  const doc = (globalThis as {
-    document?: {
-      documentElement?: { lang: string; dir: string; dataset: Record<string, string> };
-    };
-  }).document;
+  const doc = (
+    globalThis as {
+      document?: {
+        documentElement?: { lang: string; dir: string; dataset: Record<string, string> };
+      };
+    }
+  ).document;
   const html = doc?.documentElement;
   if (!html) {
     return;
