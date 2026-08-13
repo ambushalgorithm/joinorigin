@@ -71,9 +71,9 @@ export const Eyebrow = styled.span`
   gap: ${({ theme }) => theme.spacing.xs}px;
   margin-bottom: ${({ theme }) => theme.spacing.sm}px;
   padding: 6px 12px;
-  border: 1px solid rgba(79, 125, 249, 0.35);
+  border: 1px solid ${({ theme }) => theme.colors.primary}59;
   border-radius: ${({ theme }) => theme.radius.pill}px;
-  background: rgba(79, 125, 249, 0.08);
+  background: ${({ theme }) => theme.colors.primary}14;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: 12px;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
@@ -83,9 +83,11 @@ export const Eyebrow = styled.span`
 `;
 
 /**
- * Hero scene wrapper (spec sprint-8 §4.1). Positions the local SVG scene and
- * paints the per-page glow as a `::before` (pointer-events: none) behind it.
- * The scene image itself is decorative (`alt=""` + `aria-hidden`).
+ * Hero scene wrapper (spec sprint-8 §4.1, sprint-10-menu-anim §5.5). Positions
+ * the INLINE scene SVG (replaces the old `<img>` — GSAP owns all scene motion
+ * in one document) and paints the per-page glow as a `::before`
+ * (pointer-events: none) behind it. The scene art itself is decorative
+ * (`alt=""` + `aria-hidden`).
  */
 export const HeroScene = styled.div<{ $glow?: string }>`
   position: relative;
@@ -102,17 +104,24 @@ export const HeroScene = styled.div<{ $glow?: string }>`
     pointer-events: none;
   }
 
-  img {
+  /* GSAP rotates SVG groups around their fill-box center (spec §5.3). */
+  .scene-orbit-group,
+  .scene-main-group,
+  .scene-node {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  svg {
     position: relative;
     z-index: 1;
     width: 100%;
     max-width: 560px;
     height: auto;
-    object-fit: contain;
   }
 
   @media (max-width: 480px) {
-    img {
+    svg {
       max-width: 320px;
     }
   }
@@ -182,10 +191,10 @@ export const Card = styled.article`
   &:hover,
   &:focus-within {
     transform: translateY(-4px);
-    border-color: rgba(79, 125, 249, 0.55);
+    border-color: ${({ theme }) => theme.colors.primary};
     box-shadow:
-      0 12px 32px rgba(15, 17, 21, 0.6),
-      0 0 0 1px rgba(79, 125, 249, 0.18);
+      0 12px 32px rgba(10, 16, 34, 0.6),
+      0 0 0 1px ${({ theme }) => theme.colors.primary}2E;
   }
 `;
 
@@ -232,10 +241,10 @@ export const FaqCard = styled.div`
   &:hover,
   &:focus-within {
     transform: translateY(-3px);
-    border-color: rgba(79, 125, 249, 0.55);
+    border-color: ${({ theme }) => theme.colors.primary};
     box-shadow:
-      0 12px 32px rgba(15, 17, 21, 0.6),
-      0 0 0 1px rgba(79, 125, 249, 0.18);
+      0 12px 32px rgba(10, 16, 34, 0.6),
+      0 0 0 1px ${({ theme }) => theme.colors.primary}2E;
   }
 `;
 
@@ -308,8 +317,8 @@ export const StatPill = styled.div`
   align-items: baseline;
   gap: ${({ theme }) => theme.spacing.sm}px;
   padding: 10px 18px;
-  border: 1px solid rgba(79, 125, 249, 0.35);
-  background: rgba(24, 27, 33, 0.7);
+  border: 1px solid ${({ theme }) => theme.colors.primary}59;
+  background: rgba(20, 29, 60, 0.7);
   border-radius: ${({ theme }) => theme.radius.pill}px;
 `;
 
@@ -341,7 +350,7 @@ export const TableRow = styled.tr`
 
   /* Row hover (spec sprint-10 §8.1) */
   &:hover {
-    background: rgba(24, 27, 33, 0.6);
+    background: rgba(20, 29, 60, 0.6);
   }
 `;
 

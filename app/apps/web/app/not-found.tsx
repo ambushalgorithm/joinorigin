@@ -2,27 +2,29 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef } from 'react';
 import styled, { css, keyframes, ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
 import { useI18n } from '@joinorigin/i18n';
 
 import { ACCENT_GRADIENT } from '../components/landingTokens';
-import { EASE } from '../components/motion';
-import { MENU_AMBIENT_URL, MENU_GRID_URL, PAGE_ACCENTS } from '../components/menuTokens';
+import { EASE, useSceneMotion } from '../components/motion';
+import { MENU_AMBIENT_URL, MENU_GRID_URL, PAGE_SCHEMES } from '../components/menuTokens';
+import { SCENE_MAP } from '../components/scenes/sceneTypes';
 
 /**
- * JoinOrigin styled 404 boundary (TASK-208), redesigned per spec sprint-8 §9
- * and elevated sprint-10 §8.8.
+ * JoinOrigin styled 404 boundary (TASK-208), redesigned per spec sprint-8 §9,
+ * elevated sprint-10 §8.8, GSAP scene sprint-10-menu-anim §5.8.
  *
  * A stable, self-contained not-found page so unknown routes (including the
  * well-known-path probes browsers/DevTools fire at page load) render this
  * styled boundary instead of racing the main page stream through the default
  * `_not-found` machinery. The visual language mirrors the landing page and
- * the menu-page heroes: ambient webp + dot grid + notFound glow, the local
- * not-found scene (with its SVG-internal float loop), brand mark + wordmark,
- * gradient-accent status, and a gradient CTA back home — no modal, no CSV,
- * no API involvement.
+ * the menu-page heroes: ambient webp + dot grid + rose notFound glow/mesh,
+ * the INLINE not-found scene (GSAP float/orbit in one document — was an
+ * `<img>`-loaded SVG), brand mark + wordmark, gradient-accent status, and a
+ * gradient CTA back home — no modal, no CSV, no API involvement.
  *
  * i18n: all copy reads from the active locale dictionary via the root
  * layout's `I18nProvider` (the provider wraps the boundary — it is inside
@@ -71,14 +73,12 @@ const PageRoot = styled.main`
     pointer-events: none;
   }
 
-  /* Ambient layer 3: notFound glow + cool bottom-left glow */
+  /* Ambient layer 3: rose notFound glow mesh (spec §5.8) */
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      ${PAGE_ACCENTS.notFound.glow},
-      radial-gradient(500px at 12% 88%, rgba(138, 180, 255, 0.1), transparent 70%);
+    background: ${PAGE_SCHEMES.notFound.glow}, ${PAGE_SCHEMES.notFound.mesh};
     pointer-events: none;
   }
 `;
@@ -107,17 +107,19 @@ const Scene = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: ${({ theme }) => theme.spacing.xs}px;
-`;
 
-/**
- * `next/image` is styled via `styled-components` for sizing (TASK-209). The
- * generated class name is made deterministic app-wide by the SWC
- * `compiler.styledComponents` option in `next.config.mjs`.
- */
-const SceneImage = styled(Image)`
-  width: 240px;
-  height: 180px;
-  object-fit: contain;
+  /* GSAP rotates the inline scene groups around their fill-box center. */
+  .scene-orbit-group,
+  .scene-main-group,
+  .scene-node {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  svg {
+    width: 240px;
+    height: 180px;
+  }
 `;
 
 const Brand = styled.span`
@@ -198,7 +200,7 @@ const HomeLink = styled(Link)`
   &:hover,
   &:focus-visible {
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(79, 125, 249, 0.35);
+    box-shadow: 0 8px 24px rgba(93, 124, 255, 0.35);
   }
 `;
 
@@ -220,17 +222,21 @@ const ExploreLink = styled(Link)`
 
 export default function NotFound() {
   const { t } = useI18n();
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const NotFoundScene = SCENE_MAP.notFound;
+
+  useSceneMotion(sceneRef);
+
   return (
     <ThemeProvider theme={theme}>
       <PageRoot data-testid="not-found-page">
         <GridLayer aria-hidden="true" />
         <Content>
-          <Scene aria-hidden="true">
-            <SceneImage
-              src="/assets/menu/scenes/not-found-scene.svg"
-              alt=""
-              width={240}
-              height={180}
+          <Scene aria-hidden="true" ref={sceneRef}>
+            <NotFoundScene
+              primary={PAGE_SCHEMES.notFound.primary}
+              secondary={PAGE_SCHEMES.notFound.secondary}
+              gradient={PAGE_SCHEMES.notFound.gradient}
             />
           </Scene>
           <Brand>

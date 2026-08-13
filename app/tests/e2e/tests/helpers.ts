@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import type { Page } from '@playwright/test';
+
 /**
  * Shared helpers for the JoinOrigin homescreen e2e suite (TASK-205).
  *
@@ -18,4 +20,22 @@ export function readLeadsCsv(): string {
 /** True when the CSV file contains a row with the given email (lowercased). */
 export function leadsCsvHasEmail(email: string): boolean {
   return readLeadsCsv().includes(email.trim().toLowerCase());
+}
+
+/**
+ * Waits for the client bundle to hydrate before clicking a CTA.
+ *
+ * The Sprint 10 follow-up adds GSAP to the landing bundle; GSAP entrance
+ * tweens (which set inline `opacity` on `[data-hero]` wrappers) run only
+ * AFTER React hydration. A click that lands before hydration is a no-op
+ * (React's event delegation is not attached yet), so tests that click a CTA
+ * as their FIRST action after `goto` must wait for this marker. The
+ * `[data-hero="actions"]` wrapper receiving its GSAP inline style is a
+ * reliable "React is running" signal (SSR markup has no inline opacity).
+ */
+export async function waitForHydration(page: Page): Promise<void> {
+  await page.waitForFunction(() => {
+    const marker = document.querySelector('[data-hero="actions"]');
+    return marker instanceof HTMLElement && marker.style.opacity !== '';
+  });
 }

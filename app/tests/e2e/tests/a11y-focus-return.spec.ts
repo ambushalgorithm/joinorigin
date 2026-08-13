@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+import { waitForHydration } from './helpers';
+
 /**
  * Modal a11y — focus return on close (spec §9.2).
  *
@@ -17,6 +19,7 @@ import { expect, test } from '@playwright/test';
 
 test('a11y: focus returns to the trigger when the waitlist modal closes', async ({ page }) => {
   await page.goto('/');
+  await waitForHydration(page);
   const trigger = page.getByTestId('start-project-button');
   await trigger.click();
   const modal = page.getByRole('dialog');

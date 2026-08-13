@@ -55,12 +55,12 @@ describe('MenuHero', () => {
     expect(container.querySelector('main')).toBeNull();
   });
 
-  it('renders the local scene SVG as decorative content', () => {
-    renderHero({ scene: '/assets/menu/scenes/features-scene.svg' });
+  it('renders the local scene SVG as decorative content (inline, aria-hidden)', () => {
+    renderHero({ scene: 'features' });
     const scene = screen.getByTestId('menu-hero-scene');
-    expect(scene).toHaveAttribute('src', '/assets/menu/scenes/features-scene.svg');
-    expect(scene).toHaveAttribute('alt', '');
+    expect(scene.tagName).toBe('svg');
     expect(scene).toHaveAttribute('aria-hidden', 'true');
+    expect(scene).not.toHaveAttribute('src');
   });
 
   it('omits eyebrow and scene when not provided', () => {

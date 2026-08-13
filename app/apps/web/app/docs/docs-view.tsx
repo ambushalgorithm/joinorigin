@@ -57,7 +57,7 @@ export function DocsView() {
         eyebrow: t('docs.hero.eyebrow'),
         title: t('docs.hero.title'),
         lead: t('docs.hero.lead'),
-        scene: '/assets/menu/scenes/docs-scene.svg',
+        scene: 'docs',
         accent: 'docs',
         cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
       }}

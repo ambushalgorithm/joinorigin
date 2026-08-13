@@ -1,22 +1,28 @@
 'use client';
 
 import Image from 'next/image';
-import styled, { css, keyframes } from 'styled-components';
+import { useRef } from 'react';
+import styled from 'styled-components';
+
+import { useGSAP } from '@gsap/react';
+import { gsap } from '../lib/gsap';
 
 import { useI18n } from '@joinorigin/i18n';
 
-import { DELAY, EASE, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
 import TypewriterHeading from './TypewriterHeading';
 import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 
 /**
- * Hero — left column (spec §5.3).
+ * Hero — left column (spec §5.3, GSAP entrance sprint-10-menu-anim §5.8).
  *
  * Composes the typewriter heading, Start Project CTA (rotating border, right
  * chevron, hover fill from the right), supporting copy, and the trust row of
- * overlapping avatars. (The floating cursor + `Maya` member badge was removed
- * by the user-pushed tweak 058007e.)
+ * overlapping avatars. GSAP staggers the Actions / Supporting / Trust
+ * entrances via `data-hero` hooks inside `gsap.matchMedia()` under
+ * `(prefers-reduced-motion: no-preference)`. The `TypewriterHeading`
+ * component is user-kept code — its internals stay byte-identical; it is NOT
+ * animated by GSAP.
  */
 
 const TRUST_AVATAR_COUNT = 9;
@@ -33,29 +39,12 @@ const ChevronIcon = (
   </svg>
 );
 
-const fadeUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const Column = styled.div<{ $entered: boolean }>`
+const Column = styled.div`
   flex: 0 1 600px;
   min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  animation: ${({ $entered }) =>
-    $entered
-      ? css`
-          ${fadeUp} 1s ${EASE} ${DELAY.heroLeft} both
-        `
-      : 'none'};
 
   @media (max-width: 1024px) {
     flex: 1 1 auto;
@@ -125,9 +114,34 @@ const TrustCopy = styled.span`
 `;
 
 export function HeroLeft() {
-  const entered = useEntrance();
+  const columnRef = useRef<HTMLDivElement>(null);
   const { openWaitlist } = useWaitlist();
   const { t } = useI18n();
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const q = gsap.utils.selector(columnRef);
+        gsap.fromTo(
+          q('[data-hero="actions"]'),
+          { autoAlpha: 0, y: 32 },
+          { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out' },
+        );
+        gsap.fromTo(
+          q('[data-hero="supporting"]'),
+          { autoAlpha: 0, y: 28 },
+          { autoAlpha: 1, y: 0, duration: 0.7, delay: 0.08, ease: 'power3.out' },
+        );
+        gsap.fromTo(
+          q('[data-hero="trust"]'),
+          { autoAlpha: 0, y: 24 },
+          { autoAlpha: 1, y: 0, duration: 0.7, delay: 0.16, ease: 'power3.out' },
+        );
+      });
+    },
+    { scope: columnRef },
+  );
 
   const trustAvatars = Array.from({ length: TRUST_AVATAR_COUNT }, (_, i) => ({
     src: `/assets/avatars/avatar-${String(i + 1).padStart(2, '0')}.png`,
@@ -135,36 +149,42 @@ export function HeroLeft() {
   }));
 
   return (
-    <Column $entered={entered}>
+    <Column ref={columnRef}>
       <TypewriterHeading />
 
-      <Actions>
-        <RotatingBorderButton
-          label={t('home.hero.startProject')}
-          size="large"
-          fillDirection="right"
-          icon={ChevronIcon}
-          onClick={(event) => openWaitlist(event.currentTarget)}
-          testID="start-project-button"
-        />
-      </Actions>
+      <div data-hero="actions">
+        <Actions>
+          <RotatingBorderButton
+            label={t('home.hero.startProject')}
+            size="large"
+            fillDirection="right"
+            icon={ChevronIcon}
+            onClick={(event) => openWaitlist(event.currentTarget)}
+            testID="start-project-button"
+          />
+        </Actions>
+      </div>
 
-      <Supporting>{t('home.hero.supporting')}</Supporting>
+      <div data-hero="supporting">
+        <Supporting>{t('home.hero.supporting')}</Supporting>
+      </div>
 
-      <Trust>
-        <TrustAvatars>
-          {trustAvatars.map((avatar) => (
-            <TrustAvatar
-              key={avatar.src}
-              src={avatar.src}
-              alt={avatar.alt}
-              width={48}
-              height={48}
-            />
-          ))}
-        </TrustAvatars>
-        <TrustCopy>{t('home.hero.trustCopy')}</TrustCopy>
-      </Trust>
+      <div data-hero="trust">
+        <Trust>
+          <TrustAvatars>
+            {trustAvatars.map((avatar) => (
+              <TrustAvatar
+                key={avatar.src}
+                src={avatar.src}
+                alt={avatar.alt}
+                width={48}
+                height={48}
+              />
+            ))}
+          </TrustAvatars>
+          <TrustCopy>{t('home.hero.trustCopy')}</TrustCopy>
+        </Trust>
+      </div>
     </Column>
   );
 }

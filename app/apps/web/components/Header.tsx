@@ -50,7 +50,7 @@ const StyledHeader = styled.header<{ $entered: boolean }>`
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(15, 17, 21, 0.72);
+  background: ${({ theme }) => theme.colors.scrim};
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
@@ -110,13 +110,16 @@ const Wordmark = styled.span`
 `;
 
 const Nav = styled.nav`
-  display: none;
+  display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xl}px;
   margin-inline-start: ${({ theme }) => theme.spacing.xxl}px;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.wide}px) {
-    display: flex;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    display: none;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
     margin-inline-start: ${({ theme }) => theme.spacing.xl}px;
   }
 `;
@@ -193,7 +196,7 @@ const LogInLink = styled(Link)`
 `;
 
 const Hamburger = styled.button`
-  display: inline-flex;
+  display: none;
   width: 44px;
   height: 44px;
   align-items: center;
@@ -203,8 +206,8 @@ const Hamburger = styled.button`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.wide}px) {
-    display: none;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    display: inline-flex;
   }
 `;
 
@@ -217,6 +220,10 @@ const MobilePanel = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radius.lg}px;
   margin: 0 20px 16px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    display: none;
+  }
 `;
 
 const MobileLink = styled(Link)`

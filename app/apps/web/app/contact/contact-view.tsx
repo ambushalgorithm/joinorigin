@@ -170,7 +170,7 @@ export function ContactView() {
         eyebrow: t('contact.hero.eyebrow'),
         title: t('contact.hero.title'),
         lead: t('contact.hero.lead'),
-        scene: '/assets/menu/scenes/contact-scene.svg',
+        scene: 'contact',
         accent: 'contact',
       }}
     >

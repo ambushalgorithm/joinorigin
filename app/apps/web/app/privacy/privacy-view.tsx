@@ -39,7 +39,7 @@ export function PrivacyView() {
         eyebrow: t('privacy.hero.eyebrow'),
         title: t('privacy.hero.title'),
         lead: t('privacy.hero.lead'),
-        scene: '/assets/menu/scenes/privacy-scene.svg',
+        scene: 'privacy',
         accent: 'privacy',
         cta: { variant: 'contact', label: t('common.contactUs'), href: '/contact' },
       }}

@@ -54,7 +54,7 @@ export function AboutView() {
         eyebrow: t('about.hero.eyebrow'),
         title: t('about.hero.title'),
         lead: t('about.hero.lead'),
-        scene: '/assets/menu/scenes/about-scene.svg',
+        scene: 'about',
         accent: 'about',
         cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
         meta: { avatars: true },

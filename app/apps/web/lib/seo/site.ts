@@ -19,5 +19,5 @@ export const SITE = {
   /** Local OG image (1200×630, branded) — no external image hosts (repo rule). */
   ogImage: '/assets/og/og-default.png',
   /** Brand background (`@joinorigin/design` colors.background) — used for theme-color. */
-  themeColor: '#0F1115',
+  themeColor: '#0A1022',
 } as const;

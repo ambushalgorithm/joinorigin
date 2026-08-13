@@ -1,15 +1,20 @@
 import { useEffect, useRef, useState, type RefObject } from 'react';
 
+import { useGSAP } from '@gsap/react';
+import { gsap } from '../lib/gsap';
+
 import { ENTRANCE_EASING } from './landingTokens';
 
 /**
  * Web-only motion utilities for the landing page: reduced-motion detection,
- * mount-gated entrance animation classes, and shared keyframe durations.
+ * mount-gated entrance animation classes, shared keyframe durations, and the
+ * GSAP timing tokens + scene-motion hook (design spec sprint-10-menu-anim §5.3).
  *
  * Entrance animations follow the spec's progressive-enhancement rule (§7):
  * content is never hidden by CSS alone. Animated elements start visible in
- * SSR/static markup; the `useEntrance` hook returns `true` after the client
- * mounts, at which point components apply their animation classes.
+ * SSR/static markup; GSAP uses `fromTo()` (never `from()`) inside
+ * `gsap.matchMedia()` under `(prefers-reduced-motion: no-preference)` so the
+ * final static state is always rendered first.
  */
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
@@ -131,3 +136,66 @@ export const DELAY = {
   ticker: '0.6s',
   footer: '1.1s',
 } as const;
+
+/* ---------------------------------------------------------------------------
+ * GSAP motion tokens (design spec sprint-10-menu-anim §5.3)
+ * ------------------------------------------------------------------------- */
+
+/** Shared GSAP entrance easing. */
+export const GSAP_EASE = { ease: 'power3.out' } as const;
+
+/** Scene orbit/float/ring timings in seconds. */
+export const SCENE_TIMINGS = {
+  /** s per revolution (icons travel the ring). */
+  orbit: 24,
+  /** s up, yoyo down (hub float). */
+  float: 4.5,
+  /** s per counter-revolution (background ring). */
+  ring: 60,
+  /** matches orbit so glyphs stay upright. */
+  nodeOrbit: 24,
+} as const;
+
+/** Menu hero staggered entrance offsets (seconds). */
+export const HERO_STAGGER = {
+  eyebrow: 0,
+  title: 0.08,
+  lead: 0.16,
+  actions: 0.26,
+  meta: 0.34,
+  scene: 0.2,
+} as const;
+
+/**
+ * Shared GSAP scene timeline (design spec sprint-10-menu-anim §5.5) — drives
+ * the inline scene SVG motion in ONE document: orbit-group rotation, node
+ * counter-rotation (glyphs stay upright), hub float, and background ring
+ * counter-spin. Reduced-motion users get the final static state instantly
+ * (no tweens registered).
+ */
+export function useSceneMotion(scopeRef: RefObject<HTMLElement | null>): void {
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const q = gsap.utils.selector(scopeRef);
+        const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
+        tl.to(q('.scene-orbit-group'), { rotation: 360, duration: SCENE_TIMINGS.orbit }, 0)
+          .to(q('.scene-node'), { rotation: -360, duration: SCENE_TIMINGS.nodeOrbit }, 0)
+          .to(
+            q('.scene-main-group'),
+            {
+              y: -10,
+              duration: SCENE_TIMINGS.float,
+              yoyo: true,
+              repeat: 1,
+              ease: 'sine.inOut',
+            },
+            0,
+          )
+          .to(q('.scene-ring'), { rotation: -360, duration: SCENE_TIMINGS.ring }, 0);
+      });
+    },
+    { scope: scopeRef },
+  );
+}
