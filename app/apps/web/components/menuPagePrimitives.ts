@@ -208,16 +208,58 @@ export const CardBody = styled.p`
 /** Visible FAQ block — `<section>` with `<h2>` per question + `<p>` answer. */
 export const FaqSection = styled.section``;
 
+/** FAQ item (kept exported — existing tests reference it; views use FaqCard). */
 export const FaqItem = styled.div`
   margin: 0 0 ${({ theme }) => theme.spacing.lg}px;
 `;
 
+/**
+ * FAQ item as a card (spec sprint-10 §4.8): surface card, hover lift + primary
+ * border tint + soft shadow. Semantics unchanged — children keep the `h3`
+ * question and `p` answer so the FAQ JSON-LD mirror stays 1:1.
+ */
+export const FaqCard = styled.div`
+  margin: 0 0 ${({ theme }) => theme.spacing.lg}px;
+  padding: ${({ theme }) => theme.spacing.lg}px;
+  background: ${({ theme }) => theme.colors.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radius.lg}px;
+  transition:
+    transform 0.25s ${ENTRANCE_EASING},
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-3px);
+    border-color: rgba(79, 125, 249, 0.55);
+    box-shadow:
+      0 12px 32px rgba(15, 17, 21, 0.6),
+      0 0 0 1px rgba(79, 125, 249, 0.18);
+  }
+`;
+
 export const FaqQuestion = styled.h3`
+  position: relative;
   margin: 0 0 ${({ theme }) => theme.spacing.xs}px;
+  padding-inline-start: 12px;
   font-family: ${({ theme }) => theme.fontFamilies.display};
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   font-size: ${({ theme }) => theme.typography.title}px;
   color: ${({ theme }) => theme.colors.text};
+
+  /* Small gradient tick for wayfinding (spec sprint-10 §4.8, same as SectionTitle). */
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: 2px;
+    background: ${ACCENT_GRADIENT};
+  }
 `;
 
 export const FaqAnswer = styled.p`
@@ -257,6 +299,20 @@ export const StatLabel = styled.span`
   color: ${({ theme }) => theme.colors.text};
 `;
 
+/**
+ * Stat pill host for the count-up hero meta (spec sprint-10 §5.2): bordered,
+ * blurred pill that hosts `CountUpStat` in hero action rows.
+ */
+export const StatPill = styled.div`
+  display: inline-flex;
+  align-items: baseline;
+  gap: ${({ theme }) => theme.spacing.sm}px;
+  padding: 10px 18px;
+  border: 1px solid rgba(79, 125, 249, 0.35);
+  background: rgba(24, 27, 33, 0.7);
+  border-radius: ${({ theme }) => theme.radius.pill}px;
+`;
+
 /** Real `<table>` semantics for the /features comparison table (discovery §8.4). */
 export const CompareTable = styled.table`
   width: 100%;
@@ -268,15 +324,24 @@ export const CompareTable = styled.table`
   overflow: hidden;
 `;
 
-export const TableHead = styled.thead``;
+export const TableHead = styled.thead`
+  border-top: 2px solid transparent;
+  border-image: ${ACCENT_GRADIENT} 1;
+`;
 
 export const TableBody = styled.tbody``;
 
 export const TableRow = styled.tr`
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  transition: background-color 0.2s ease;
 
   &:last-of-type {
     border-bottom: 0;
+  }
+
+  /* Row hover (spec sprint-10 §8.1) */
+  &:hover {
+    background: rgba(24, 27, 33, 0.6);
   }
 `;
 

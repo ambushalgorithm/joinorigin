@@ -16,9 +16,12 @@ import {
 } from '../../components/menuPagePrimitives';
 
 /**
- * Privacy policy view (discovery §5.8, redesign spec sprint-8 §8.6): short,
- * plain-English legal copy. One `<h1>` (rendered by `MenuHero`) and semantic
- * sections. The hero lead reuses the existing "What we collect" first
+ * Privacy policy view (discovery §5.8, redesign spec sprint-8 §8.6, elevated
+ * sprint-10 §8.6): short, plain-English legal copy on a plain canvas
+ * (`banded={false}`) with a sticky in-page `AnchorNav` and a ghost
+ * "Contact us" hero CTA (never the waitlist modal on legal pages). One
+ * `<h1>` (rendered by `MenuHero`) and semantic sections with `id`s for the
+ * anchor nav. The hero lead reuses the existing "What we collect" first
  * paragraph verbatim (spec §6 copy table).
  *
  * i18n: all copy reads from the active locale dictionary; the contact body
@@ -38,7 +41,19 @@ export function PrivacyView() {
         lead: t('privacy.hero.lead'),
         scene: '/assets/menu/scenes/privacy-scene.svg',
         accent: 'privacy',
+        cta: { variant: 'contact', label: t('common.contactUs'), href: '/contact' },
       }}
+      subnav={{
+        label: t('privacy.hero.eyebrow'),
+        links: [
+          { id: 'collect', label: t('privacy.sectionCollect') },
+          { id: 'use', label: t('privacy.sectionUse') },
+          { id: 'identity', label: t('privacy.sectionIdentity') },
+          { id: 'rights', label: t('privacy.sectionRights') },
+          { id: 'contact', label: t('privacy.sectionContact') },
+        ],
+      }}
+      banded={false}
       ctaOverride={{
         headline: t('common.questionsAboutOrigin'),
         subline: t('common.teamRepliesWithin2Days'),
@@ -48,7 +63,7 @@ export function PrivacyView() {
       <PageContainer>
         <Reveal>
           <Section>
-            <SectionTitle>{t('privacy.sectionCollect')}</SectionTitle>
+            <SectionTitle id="collect">{t('privacy.sectionCollect')}</SectionTitle>
             <BulletList>
               <ListItem>
                 <SubTitle>{t('privacy.collect.waitlistDataTitle')}</SubTitle>
@@ -68,28 +83,28 @@ export function PrivacyView() {
 
         <Reveal>
           <Section>
-            <SectionTitle>{t('privacy.sectionUse')}</SectionTitle>
+            <SectionTitle id="use">{t('privacy.sectionUse')}</SectionTitle>
             <BodyCopy>{t('privacy.useBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>{t('privacy.sectionIdentity')}</SectionTitle>
+            <SectionTitle id="identity">{t('privacy.sectionIdentity')}</SectionTitle>
             <BodyCopy>{t('privacy.identityBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>{t('privacy.sectionRights')}</SectionTitle>
+            <SectionTitle id="rights">{t('privacy.sectionRights')}</SectionTitle>
             <BodyCopy>{t('privacy.rightsBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>{t('privacy.sectionContact')}</SectionTitle>
+            <SectionTitle id="contact">{t('privacy.sectionContact')}</SectionTitle>
             <BodyCopy>
               <Trans
                 i18nKey="privacy.contactBody"

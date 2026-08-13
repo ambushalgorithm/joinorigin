@@ -9,15 +9,18 @@ import { useI18n } from '@joinorigin/i18n';
 
 import { ACCENT_GRADIENT } from '../components/landingTokens';
 import { EASE } from '../components/motion';
+import { MENU_AMBIENT_URL, MENU_GRID_URL, PAGE_ACCENTS } from '../components/menuTokens';
 
 /**
- * JoinOrigin styled 404 boundary (TASK-208), redesigned per spec sprint-8 §9.
+ * JoinOrigin styled 404 boundary (TASK-208), redesigned per spec sprint-8 §9
+ * and elevated sprint-10 §8.8.
  *
  * A stable, self-contained not-found page so unknown routes (including the
  * well-known-path probes browsers/DevTools fire at page load) render this
  * styled boundary instead of racing the main page stream through the default
- * `_not-found` machinery. The visual language mirrors the landing page:
- * dark background, local not-found scene, brand mark + wordmark,
+ * `_not-found` machinery. The visual language mirrors the landing page and
+ * the menu-page heroes: ambient webp + dot grid + notFound glow, the local
+ * not-found scene (with its SVG-internal float loop), brand mark + wordmark,
  * gradient-accent status, and a gradient CTA back home — no modal, no CSV,
  * no API involvement.
  *
@@ -42,6 +45,7 @@ const fadeUp = keyframes`
 `;
 
 const PageRoot = styled.main`
+  position: relative;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -51,9 +55,52 @@ const PageRoot = styled.main`
   padding: ${({ theme }) => theme.spacing.xxl}px;
   background-color: ${({ theme }) => theme.colors.background};
   text-align: center;
+  overflow: hidden;
   animation: ${css`
     ${fadeUp} 0.6s ${EASE} both
   `};
+
+  /* Ambient layer 1: menu texture (spec sprint-10 §8.8) */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: ${MENU_AMBIENT_URL} center / cover no-repeat;
+    opacity: 0.5;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  /* Ambient layer 3: notFound glow + cool bottom-left glow */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      ${PAGE_ACCENTS.notFound.glow},
+      radial-gradient(500px at 12% 88%, rgba(138, 180, 255, 0.1), transparent 70%);
+    pointer-events: none;
+  }
+`;
+
+/** Ambient layer 2: tiled dot grid (§8.8). */
+const GridLayer = styled.div`
+  position: absolute;
+  inset: 0;
+  background-image: ${MENU_GRID_URL};
+  background-size: 88px 88px;
+  opacity: 0.5;
+  pointer-events: none;
+`;
+
+/** Content above the ambient layers. */
+const Content = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.lg}px;
 `;
 
 const Scene = styled.div`
@@ -176,25 +223,28 @@ export default function NotFound() {
   return (
     <ThemeProvider theme={theme}>
       <PageRoot data-testid="not-found-page">
-        <Scene aria-hidden="true">
-          <SceneImage
-            src="/assets/menu/scenes/not-found-scene.svg"
-            alt=""
-            width={240}
-            height={180}
-          />
-        </Scene>
-        <Brand>
-          <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={32} height={32} />
-          <Wordmark>{t('notFound.brand')}</Wordmark>
-        </Brand>
-        <Status>{t('notFound.status')}</Status>
-        <Heading>{t('notFound.heading')}</Heading>
-        <Copy>{t('notFound.copy')}</Copy>
-        <Actions>
-          <HomeLink href="/">{t('notFound.backHome')}</HomeLink>
-          <ExploreLink href="/community">{t('notFound.exploreCommunities')}</ExploreLink>
-        </Actions>
+        <GridLayer aria-hidden="true" />
+        <Content>
+          <Scene aria-hidden="true">
+            <SceneImage
+              src="/assets/menu/scenes/not-found-scene.svg"
+              alt=""
+              width={240}
+              height={180}
+            />
+          </Scene>
+          <Brand>
+            <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={32} height={32} />
+            <Wordmark>{t('notFound.brand')}</Wordmark>
+          </Brand>
+          <Status>{t('notFound.status')}</Status>
+          <Heading>{t('notFound.heading')}</Heading>
+          <Copy>{t('notFound.copy')}</Copy>
+          <Actions>
+            <HomeLink href="/">{t('notFound.backHome')}</HomeLink>
+            <ExploreLink href="/community">{t('notFound.exploreCommunities')}</ExploreLink>
+          </Actions>
+        </Content>
       </PageRoot>
     </ThemeProvider>
   );

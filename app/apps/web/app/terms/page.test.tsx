@@ -22,13 +22,19 @@ describe('terms page', () => {
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Terms of Service');
-    expect(screen.getByText('Acceptance')).toBeInTheDocument();
-    expect(screen.getByText('Accounts')).toBeInTheDocument();
-    expect(screen.getByText('User content')).toBeInTheDocument();
-    expect(screen.getByText('Acceptable use')).toBeInTheDocument();
-    expect(screen.getByText('Intellectual property')).toBeInTheDocument();
-    expect(screen.getByText('Disclaimers')).toBeInTheDocument();
-    expect(screen.getByText('Changes')).toBeInTheDocument();
+    // Section titles also appear in the sticky anchor nav (Sprint 10) —
+    // assert at least one render of each.
+    for (const title of [
+      'Acceptance',
+      'Accounts',
+      'User content',
+      'Acceptable use',
+      'Intellectual property',
+      'Disclaimers',
+      'Changes',
+    ]) {
+      expect(screen.getAllByText(title).length).toBeGreaterThanOrEqual(1);
+    }
   });
 
   it('emits BreadcrumbList JSON-LD only', () => {

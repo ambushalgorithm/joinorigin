@@ -4,35 +4,36 @@ import styled from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
 
+import ChipMarquee from '../../components/ChipMarquee';
+import CountUpStat from '../../components/CountUpStat';
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
-import { ENTRANCE_EASING } from '../../components/landingTokens';
+import SectionBand from '../../components/SectionBand';
 import {
+  AccentLink,
   BodyCopy,
   Card,
   CardBody,
   CardGrid,
   CardTitle,
   FaqAnswer,
-  FaqItem,
+  FaqCard,
   FaqQuestion,
   FaqSection,
   PageContainer,
   Section,
   SectionTitle,
-  Stat,
-  StatLabel,
-  StatValue,
 } from '../../components/menuPagePrimitives';
 import { faqEntries, faqNamespace } from '../../lib/faq';
 import { JsonLd } from '../../lib/seo/JsonLdScript';
 import { faqPage } from '../../lib/seo/jsonLd';
 
 /**
- * Community view (discovery §5.3, redesign spec sprint-8 §8.2): values,
- * example communities as gradient-border chips, and trust (2,400+ members).
- * One `<h1>` (rendered by `MenuHero`) and semantic sections; the intro
- * defines the "social collaboration network" category for LLM-crawler
+ * Community view (discovery §5.3, redesign spec sprint-8 §8.2, elevated
+ * sprint-10 §8.2): values, example communities as a scrolling `ChipMarquee`,
+ * and trust (2,400+ members) as a count-up stat in the hero meta and the
+ * join band. One `<h1>` (rendered by `MenuHero`) and semantic sections; the
+ * intro defines the "social collaboration network" category for LLM-crawler
  * entity clarity.
  *
  * i18n: all copy reads from the active locale dictionary (arch-i18n §7.4).
@@ -40,57 +41,10 @@ import { faqPage } from '../../lib/seo/jsonLd';
 
 const VALUE_KEYS = ['peopleFirst', 'communitiesDriveGrowth', 'collaborationCreatesValue'] as const;
 
-const EXAMPLE_COMMUNITY_KEYS = [
-  'startupFounders',
-  'smallBusinesses',
-  'bookClubs',
-  'communityOrganizations',
-  'runClubs',
-  'peeWeeLeagues',
-  'anyoneWithAnIdea',
-] as const;
-
-/**
- * Example-community chip (spec sprint-8 §8.2): pill `span`, gradient-border
- * tint, Urbanist label, hover accent fill slide (EASE 0.4s).
- */
-const Chip = styled.span`
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  overflow: hidden;
-  border: 1px solid rgba(79, 125, 249, 0.4);
-  border-radius: ${({ theme }) => theme.radius.pill}px;
-  padding: 10px 18px;
-  font-family: ${({ theme }) => theme.fontFamilies.display};
-  font-weight: ${({ theme }) => theme.fontWeights.semibold};
-  font-size: 15px;
-  color: ${({ theme }) => theme.colors.text};
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background: rgba(79, 125, 249, 0.9);
-    transform: translateY(100%);
-    transition: transform 0.4s ${ENTRANCE_EASING};
-  }
-
-  &:hover::before {
-    transform: translateY(0);
-  }
-`;
-
-const ChipLabel = styled.span`
-  position: relative;
-  z-index: 1;
-`;
-
-const ChipGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.md}px;
+/** Inline CTA in the join band (spec §8.2 — AccentLink to the home waitlist). */
+const JoinLink = styled(AccentLink)`
+  display: inline-block;
+  margin-top: ${({ theme }) => theme.spacing.md}px;
 `;
 
 export function CommunityView() {
@@ -105,70 +59,82 @@ export function CommunityView() {
         lead: t('community.hero.lead'),
         scene: '/assets/menu/scenes/community-scene.svg',
         accent: 'community',
+        cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
+        meta: { stat: true },
       }}
     >
-      <PageContainer>
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('community.sectionValues')}</SectionTitle>
-            <CardGrid>
-              {VALUE_KEYS.map((value, index) => (
-                <Reveal key={value} delay={`${index * 0.08}s`}>
+      <SectionBand variant="glass" accent="community" glow>
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('community.sectionValues')}</SectionTitle>
+              <CardGrid>
+                {VALUE_KEYS.map((value, index) => (
+                  <Reveal key={value} delay={`${index * 0.08}s`}>
+                    <Card>
+                      <CardTitle>{t(`common.values.${value}`)}</CardTitle>
+                      <CardBody>{t(`community.values.${value}.body`)}</CardBody>
+                    </Card>
+                  </Reveal>
+                ))}
+                <Reveal delay={`${VALUE_KEYS.length * 0.08}s`}>
                   <Card>
-                    <CardTitle>{t(`common.values.${value}`)}</CardTitle>
-                    <CardBody>{t(`community.values.${value}.body`)}</CardBody>
+                    <CardTitle>{t('community.values.ownership.title')}</CardTitle>
+                    <CardBody>{t('community.values.ownership.body')}</CardBody>
                   </Card>
                 </Reveal>
-              ))}
-              <Reveal delay={`${VALUE_KEYS.length * 0.08}s`}>
-                <Card>
-                  <CardTitle>{t('community.values.ownership.title')}</CardTitle>
-                  <CardBody>{t('community.values.ownership.body')}</CardBody>
-                </Card>
-              </Reveal>
-            </CardGrid>
-          </Section>
-        </Reveal>
+              </CardGrid>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
 
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('community.sectionExamples')}</SectionTitle>
-            <BodyCopy>{t('community.examplesIntro')}</BodyCopy>
-            <ChipGrid>
-              {EXAMPLE_COMMUNITY_KEYS.map((community) => (
-                <Chip key={community}>
-                  <ChipLabel>{t(`community.examples.${community}`)}</ChipLabel>
-                </Chip>
-              ))}
-            </ChipGrid>
-          </Section>
-        </Reveal>
+      <SectionBand variant="plain">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('community.sectionExamples')}</SectionTitle>
+              <BodyCopy>{t('community.examplesIntro')}</BodyCopy>
+              <ChipMarquee intro={t('community.examplesIntro')} />
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
 
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('community.sectionJoin')}</SectionTitle>
-            <BodyCopy>{t('community.joinCopy')}</BodyCopy>
-            <Stat data-testid="community-members-stat">
-              <StatValue>{t('community.joinStatValue')}</StatValue>
-              <StatLabel>{t('community.joinStatLabel')}</StatLabel>
-            </Stat>
-          </Section>
-        </Reveal>
+      <SectionBand variant="glass" accent="community">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('community.sectionJoin')}</SectionTitle>
+              <CountUpStat
+                valueText={t('community.joinStatValue')}
+                label={t('community.joinStatLabel')}
+                testID="community-members-stat"
+              />
+              <BodyCopy>{t('community.joinCopy')}</BodyCopy>
+              <JoinLink href="/">{t('common.joinWaitlist')}</JoinLink>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
 
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('common.faqHeading')}</SectionTitle>
-            <FaqSection>
-              {faq.map((entry) => (
-                <FaqItem key={entry.question}>
-                  <FaqQuestion>{entry.question}</FaqQuestion>
-                  <FaqAnswer>{entry.answer}</FaqAnswer>
-                </FaqItem>
-              ))}
-            </FaqSection>
-          </Section>
-        </Reveal>
-      </PageContainer>
+      <SectionBand variant="plain">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('common.faqHeading')}</SectionTitle>
+              <FaqSection>
+                {faq.map((entry) => (
+                  <FaqCard key={entry.question}>
+                    <FaqQuestion>{entry.question}</FaqQuestion>
+                    <FaqAnswer>{entry.answer}</FaqAnswer>
+                  </FaqCard>
+                ))}
+              </FaqSection>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
       {/* FAQPage JSON-LD — localized mirror of the visible FAQ block
           (arch-i18n §7.4), rendered into the initial SSR HTML. */}
       <JsonLd data={faqPage(faq)} />

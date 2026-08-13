@@ -34,8 +34,10 @@ describe('community page', () => {
     expect(screen.getByText('How we run the network')).toBeInTheDocument();
     expect(screen.getByText('People First')).toBeInTheDocument();
     expect(screen.getByText('Example communities')).toBeInTheDocument();
-    expect(screen.getByText('Book Clubs')).toBeInTheDocument();
-    expect(screen.getByText('Startup Founders')).toBeInTheDocument();
+    // Chip labels appear in the scrolling marquee (2× duplicate track, both
+    // aria-hidden) and the visually-hidden static list — assert >= 1.
+    expect(screen.getAllByText('Book Clubs').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Startup Founders').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByTestId('community-members-stat')).toHaveTextContent('2,400+');
   });
 

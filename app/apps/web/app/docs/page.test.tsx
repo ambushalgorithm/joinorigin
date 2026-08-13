@@ -31,7 +31,9 @@ describe('docs page', () => {
 
   it('renders concept definitions for every core object', () => {
     renderWithI18n(<DocsPage />);
-    expect(screen.getByText('Concepts')).toBeInTheDocument();
+    // "Concepts" appears twice after the Sprint 10 redesign: as the sticky
+    // anchor-nav link and as the section title.
+    expect(screen.getAllByText('Concepts').length).toBeGreaterThanOrEqual(1);
     for (const concept of [
       'Profiles',
       'Communities',
@@ -44,8 +46,8 @@ describe('docs page', () => {
     ]) {
       expect(screen.getByText(concept)).toBeInTheDocument();
     }
-    expect(screen.getByText('Roadmap')).toBeInTheDocument();
-    expect(screen.getByText('Architecture & standards')).toBeInTheDocument();
+    expect(screen.getAllByText('Roadmap').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Architecture & standards').length).toBeGreaterThanOrEqual(1);
     // "Matrix protocol" appears in both the Communication concept and the
     // Architecture section — assert at least one render.
     expect(screen.getAllByText(/open Matrix protocol/i).length).toBeGreaterThan(0);

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="88" height="88" viewBox="0 0 88 88">
+  <!-- Menu hero dot-grid tile (spec sprint-10 §6.1): 1px rgba(138,180,255,0.28)
+       dots at ~24px pitch on transparent. Tiled via CSS background-size 88px. -->
+  <defs>
+    <pattern id="dot-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="0.5" cy="0.5" r="0.5" fill="rgba(138, 180, 255, 0.28)"/>
+    </pattern>
+  </defs>
+  <rect width="88" height="88" fill="url(#dot-grid)"/>
+</svg>
