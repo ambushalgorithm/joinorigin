@@ -12,6 +12,14 @@ Default tracker: **self-hosted Plausible** (privacy-lean, no external
 dependency). Consent/consent-banner handling is **out of scope** (deferred to a
 later sprint); the adapter interface isolates a future consent gate.
 
+**ACTIVATION (Sprint 10, TASK-279):** the shipped default points the Plausible
+adapter at the **local self-hosted Plausible** stack provisioned by
+infra-plausible (TASK-277) — `docker-compose.yml` runs the Plausible
+Community Edition collector on `http://localhost:8000`, and `config.ts` +
+`adapters/plausible.ts` default `apiHost` to that endpoint (matching
+`apps/web/.env.example`). Production deployments MUST override
+`NEXT_PUBLIC_PLAUSIBLE_API_HOST` with the public analytics origin.
+
 ## Directory Map
 
 ```text
@@ -42,9 +50,11 @@ Resolution order (lowest → highest precedence):
 1. **Built-in defaults** — the shipped default config:
    - `plausible` — **enabled**, domain from `NEXT_PUBLIC_SITE_DOMAIN` (or
      `localhost` in dev), apiHost from `NEXT_PUBLIC_PLAUSIBLE_API_HOST`
-     (default `https://analytics.joinorigin.com`).
+     (default `http://localhost:8000` — the local self-hosted Plausible
+     endpoint from `docker-compose.yml`, infra-plausible TASK-277).
    - `umami` — **disabled** by default, configured only if
-     `NEXT_PUBLIC_UMAMI_WEBSITE_ID` is set.
+     `NEXT_PUBLIC_UMAMI_WEBSITE_ID` is set (hostUrl defaults to
+     `https://analytics.joinorigin.com` when only the id is given).
    - `ga4` — **disabled** by default, configured only if
      `NEXT_PUBLIC_GA4_MEASUREMENT_ID` is set.
 2. **`NEXT_PUBLIC_ANALYTICS_JSON`** — optional full JSON config

@@ -6,6 +6,10 @@
  * - `trackPageView(path)`: `window.plausible?.('pageview', { u: absoluteUrl(path) })`.
  * - `trackEvent({name, props})`: `window.plausible?.(name, { props })`.
  *
+ * ACTIVATION (Sprint 10, TASK-279): the fallback API host is the local
+ * self-hosted Plausible stack (`http://localhost:8000`, infra-plausible
+ * TASK-277) — same default as `config.ts` + `docker-compose.yml`.
+ *
  * Design source: `app/docs/design/sprint-4-seo-arch.md` §2.6.
  */
 
@@ -22,7 +26,8 @@ declare global {
   }
 }
 
-const DEFAULT_API_HOST = 'https://analytics.joinorigin.com';
+/** Local self-hosted Plausible endpoint (infra-plausible TASK-277). */
+const DEFAULT_API_HOST = 'http://localhost:8000';
 
 export class PlausibleAdapter implements TrackerAdapter {
   readonly id = 'plausible';

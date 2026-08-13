@@ -72,7 +72,7 @@ describe('createAdapters', () => {
 });
 
 describe('script injection contracts', () => {
-  it('plausible injects script.js with data-domain and defer', async () => {
+  it('ACTIVATION: plausible defaults to the local self-hosted endpoint (http://localhost:8000)', async () => {
     const adapter = new PlausibleAdapter();
     await adapter.init({
       id: 'plausible',
@@ -83,23 +83,40 @@ describe('script injection contracts', () => {
 
     expect(mockedLoadScript).toHaveBeenCalledTimes(1);
     expect(mockedLoadScript).toHaveBeenCalledWith(
-      'https://analytics.joinorigin.com/js/script.js',
+      'http://localhost:8000/js/script.js',
       expect.objectContaining({ 'data-domain': 'joinorigin.com', defer: '' }),
     );
   });
 
-  it('plausible honors a custom apiHost', async () => {
+  it('plausible injects script.js with data-domain and defer', async () => {
     const adapter = new PlausibleAdapter();
     await adapter.init({
       id: 'plausible',
       kind: 'plausible',
       enabled: true,
       domain: 'joinorigin.com',
-      apiHost: 'https://stats.example.com',
+      apiHost: 'https://analytics.joinorigin.com',
+    });
+
+    expect(mockedLoadScript).toHaveBeenCalledTimes(1);
+    expect(mockedLoadScript).toHaveBeenCalledWith(
+      'https://analytics.joinorigin.com/js/script.js',
+      expect.objectContaining({ 'data-domain': 'joinorigin.com', defer: '' }),
+    );
+  });
+
+  it('plausible honors a custom apiHost (local collector)', async () => {
+    const adapter = new PlausibleAdapter();
+    await adapter.init({
+      id: 'plausible',
+      kind: 'plausible',
+      enabled: true,
+      domain: 'joinorigin.com',
+      apiHost: 'http://localhost:8000',
     });
 
     expect(mockedLoadScript).toHaveBeenCalledWith(
-      'https://stats.example.com/js/script.js',
+      'http://localhost:8000/js/script.js',
       expect.anything(),
     );
   });
