@@ -27,7 +27,7 @@ export function NotFoundScene({
         </linearGradient>
       </defs>
 
-      {/* Orbit group: dashed missing-link arc + faint node + orbiting nodes (rotates). */}
+      {/* Orbit group: dashed missing-link arc + faint node (static — TASK-291). */}
       <g className="scene-orbit-group">
         {/* Dashed "missing link" arc from the main node toward the faint node */}
         <path

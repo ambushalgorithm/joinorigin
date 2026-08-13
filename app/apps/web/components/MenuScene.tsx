@@ -13,9 +13,11 @@ import { SCENE_MAP, type SceneKey } from './scenes/sceneTypes';
  * §5.5, the TASK-283 icon-spin fix).
  *
  * The 8 scene SVGs are inlined into the DOM as React components so GSAP
- * drives orbit rotation / node counter-rotation / hub float / background ring
- * in ONE document (the old `<img>`-loaded SVG was a sandboxed document the
- * page could not reach — the ring spun but the icons stayed stagnant).
+ * drives the scene motion in ONE document (the old `<img>`-loaded SVG was a
+ * sandboxed document the page could not reach — the ring spun but the icons
+ * stayed stagnant). The `.scene-orbit-group` rotation and `.scene-node`
+ * counter-rotation were removed in TASK-291 (the orbit cluster kept drifting
+ * off-center); the hub float + background ring spin remain.
  *
  * The background ring is now a real `.scene-ring` element (was a CSS `::after`)
  * so GSAP rotates it; no CSS spin keyframes remain.

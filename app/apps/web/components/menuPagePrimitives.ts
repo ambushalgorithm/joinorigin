@@ -104,7 +104,7 @@ export const HeroScene = styled.div<{ $glow?: string }>`
     pointer-events: none;
   }
 
-  /* GSAP rotates SVG groups around their fill-box center (spec §5.3). */
+  /* GSAP transforms SVG groups around their fill-box center (spec §5.3). */
   .scene-orbit-group,
   .scene-main-group,
   .scene-node {

@@ -144,16 +144,12 @@ export const DELAY = {
 /** Shared GSAP entrance easing. */
 export const GSAP_EASE = { ease: 'power3.out' } as const;
 
-/** Scene orbit/float/ring timings in seconds. */
+/** Scene float/ring timings in seconds. */
 export const SCENE_TIMINGS = {
-  /** s per revolution (icons travel the ring). */
-  orbit: 24,
   /** s up, yoyo down (hub float). */
   float: 4.5,
   /** s per counter-revolution (background ring). */
   ring: 60,
-  /** matches orbit so glyphs stay upright. */
-  nodeOrbit: 24,
 } as const;
 
 /** Menu hero staggered entrance offsets (seconds). */
@@ -168,10 +164,14 @@ export const HERO_STAGGER = {
 
 /**
  * Shared GSAP scene timeline (design spec sprint-10-menu-anim §5.5) — drives
- * the inline scene SVG motion in ONE document: orbit-group rotation, node
- * counter-rotation (glyphs stay upright), hub float, and background ring
- * counter-spin. Reduced-motion users get the final static state instantly
- * (no tweens registered).
+ * the inline scene SVG motion in ONE document: hub float and background ring
+ * counter-spin. The `.scene-orbit-group` rotation and its coupled
+ * `.scene-node` counter-rotation (which existed only to keep glyphs upright
+ * during the orbit spin) were REMOVED (TASK-291) — GSAP 3.15's SVG
+ * transform-origin handling made the orbit cluster drift off-center despite
+ * the TASK-290 pivot pin, so the orbit cluster now stays static and centered.
+ * Reduced-motion users get the final static state instantly (no tweens
+ * registered).
  */
 export function useSceneMotion(scopeRef: RefObject<HTMLElement | null>): void {
   useGSAP(
@@ -183,13 +183,12 @@ export function useSceneMotion(scopeRef: RefObject<HTMLElement | null>): void {
         // GSAP-native SVG pivot (TASK-290). GSAP rewrites transform-origin
         // for SVG elements in viewBox units, so the CSS-only
         // `transform-box: fill-box; transform-origin: center` rule on the
-        // scene primitives is NOT honored when a rotation tween starts — the
-        // orbit cluster would pivot around the viewBox origin and drift
+        // scene primitives is NOT honored when a transform tween starts — the
+        // floating hub group would pivot around the viewBox origin and drift
         // off-center. Pinning the transform-box/origin per target via
-        // gsap.set() keeps every group rotating around its own fill-box
-        // center (the hub) over all rotation phases. Only set targets that
-        // exist (not every scene ships every group — avoids GSAP "target not
-        // found" console noise).
+        // gsap.set() keeps the float tween positioned correctly. Only set
+        // targets that exist (not every scene ships every group — avoids GSAP
+        // "target not found" console noise).
         const pinPivot = (selector: string): void => {
           if (q(selector).length > 0) {
             gsap.set(q(selector), {
@@ -198,20 +197,11 @@ export function useSceneMotion(scopeRef: RefObject<HTMLElement | null>): void {
             });
           }
         };
-        pinPivot('.scene-orbit-group');
-        pinPivot('.scene-node');
         pinPivot('.scene-main-group');
 
         const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
         // Only add tween steps for groups the scene actually ships — GSAP
-        // warns on empty targets (e.g. CommunityScene has no `.scene-node`,
-        // the 404 page has no `.scene-ring`).
-        if (q('.scene-orbit-group').length > 0) {
-          tl.to(q('.scene-orbit-group'), { rotation: 360, duration: SCENE_TIMINGS.orbit }, 0);
-        }
-        if (q('.scene-node').length > 0) {
-          tl.to(q('.scene-node'), { rotation: -360, duration: SCENE_TIMINGS.nodeOrbit }, 0);
-        }
+        // warns on empty targets (e.g. the 404 page has no `.scene-ring`).
         if (q('.scene-main-group').length > 0) {
           tl.to(
             q('.scene-main-group'),

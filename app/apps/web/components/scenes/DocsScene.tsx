@@ -69,7 +69,7 @@ export function DocsScene({
         />
       </g>
 
-      {/* Orbit group: Matrix node line + lock glyph (rotates). */}
+      {/* Orbit group: Matrix node line + lock glyph (static — orbit rotation removed TASK-291). */}
       <g className="scene-orbit-group">
         <g stroke={theme.colors.border} strokeWidth={2} opacity={0.9}>
           <line x1="120" y1="300" x2="440" y2="300" />

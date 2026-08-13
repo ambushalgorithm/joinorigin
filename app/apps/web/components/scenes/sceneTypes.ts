@@ -45,9 +45,11 @@ export const SCENE_MAP: Record<SceneKey, ComponentType<SceneProps>> = {
 };
 
 /**
- * GSAP motion hook targets (spec §5.3):
- * - `.scene-orbit-group` rotates (orbit spin, 24s)
- * - `.scene-node` counter-rotates (keeps icon glyphs upright)
+ * GSAP motion hook targets (spec §5.3, TASK-291):
+ * - `.scene-orbit-group` is STATIC + centered (orbit rotation removed — the
+ *   cluster kept drifting off-center despite the TASK-290 pivot pin)
  * - `.scene-main-group` floats (yoyo)
  * - `.scene-ring` counter-spins (60s, rendered by `MenuScene`)
+ * The `.scene-node` counter-rotation was removed together with the orbit spin
+ * (it existed only to keep icon glyphs upright while the orbit group rotated).
  */
