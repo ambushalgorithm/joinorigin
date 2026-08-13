@@ -194,6 +194,73 @@ Runtime knobs (compose `environment`, no rebuild needed):
   `working-directories`, coverage/test dirs, and other generated files out of
   the build context.
 
+## Self-Hosted Plausible Analytics (Local)
+
+The same `docker-compose.yml` also runs a **self-hosted Plausible** stack
+(Plausible Community Edition) so analytics can be verified locally with zero
+external dependency:
+
+| Service              | Image                                    | Role                                  |
+| -------------------- | ---------------------------------------- | ------------------------------------- |
+| `plausible`          | `ghcr.io/plausible/community-edition`    | Dashboard + tracking API (`:8000`)    |
+| `plausible_db`       | `postgres:16-alpine`                     | Users / site config (Postgres)        |
+| `plausible_events_db` | `clickhouse/clickhouse-server:24.12-alpine` | Analytics event store (ClickHouse) |
+
+Event data persists in named volumes (`plausible-data` is also the server's
+event-cache buffer dir via `TMPDIR`); `docker compose down` keeps them.
+
+### Start analytics
+
+The stack starts automatically with `docker compose up --build`. To start only
+analytics (leave the web app for later):
+
+```bash
+docker compose up -d plausible_db plausible_events_db plausible
+docker compose ps --format 'table {{.Name}}\t{{.Status}}'   # all three healthy
+```
+
+Plausible is then available at `http://localhost:8000` (override the host port
+with `PLAUSIBLE_PORT`, e.g. `PLAUSIBLE_PORT=8001 docker compose up -d plausible`).
+
+### First-run setup
+
+1. Open `http://localhost:8000/register` and create the first user account.
+2. In the dashboard, add the site with the **same domain** the web app reports:
+   the default is `joinorigin.com` (`NEXT_PUBLIC_SITE_DOMAIN`, see
+   `apps/web/.env.example`). Use a custom domain such as `localhost` if you set
+   `NEXT_PUBLIC_SITE_DOMAIN=localhost` and restart with a rebuild.
+3. The tracking script is already pointed at the local instance:
+   `NEXT_PUBLIC_PLAUSIBLE_API_HOST` defaults to `http://localhost:8000` in the
+   compose build args. Changing it requires a rebuild:
+   `NEXT_PUBLIC_PLAUSIBLE_API_HOST=http://localhost:8000 docker compose up --build`.
+
+### Verify events
+
+```bash
+# Tracker script + dashboard respond
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost:8000/js/script.js   # 200
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost:8000/register        # 200
+
+# Send a pageview like the browser would (202 = accepted)
+curl -s -o /dev/null -w '%{http_code}\n' -X POST http://localhost:8000/api/event \
+  -H 'Content-Type: application/json' \
+  -d '{"domain":"joinorigin.com","name":"pageview","url":"http://localhost:3100/"}'
+```
+
+Then open `http://localhost:3100` in a browser and watch the realtime view in
+the Plausible dashboard. The analytics config contract (env vars, JSON
+override) is documented in `apps/web/lib/analytics/README.md`.
+
+### Production notes
+
+- `PLAUSIBLE_SECRET_KEY_BASE` ships a **dev-only default** so `docker compose
+  up` works out of the box. Override it for anything non-local:
+  `openssl rand -base64 48` (>= 64 bytes).
+- Set `PLAUSIBLE_BASE_URL` to the public origin and `PLAUSIBLE_DISABLE_REGISTRATION`
+  to `true`/`invite_only` before exposing analytics beyond localhost.
+- All `PLAUSIBLE_*` variables are documented in `apps/web/.env.example`; put
+  them in a root `.env` next to `docker-compose.yml`.
+
 ## Navigation Footer
 
 - Parent: [`../../README.md`](../../README.md)
