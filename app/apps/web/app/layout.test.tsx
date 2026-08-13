@@ -34,21 +34,15 @@ jest.mock('next/headers', () => ({
   }),
 }));
 
-// Rendering the root layout in jsdom legitimately nests <html> inside the
-// test container — a DOM-nesting warning, not a product defect. Keep the
-// output clean while asserting the render contract.
-const originalError = console.error;
-beforeAll(() => {
-  console.error = (message?: unknown, ...args: unknown[]) => {
-    if (typeof message === 'string' && message.includes('validateDOMNesting')) {
-      return;
-    }
-    originalError(message, ...args);
-  };
-});
-afterAll(() => {
-  console.error = originalError;
-});
+// Rendering the root layout in jsdom: React 19 resolves the returned <html>
+// as a document singleton. Rendering into the `document` container (instead
+// of RTL's default <div>) lets React mount <html>/<head>/<body> onto the real
+// documentElement — no `<html> inside a <div>` nesting, no DOM-nesting
+// console.error (TASK-290). `screen` queries still work because baseElement
+// defaults to document.body.
+function renderLayout(element: React.ReactElement) {
+  return render(element, { container: document });
+}
 
 // React 19 renders <html> as a document singleton; unmount roots between
 // tests and reset its attributes so each test observes its own render.
@@ -101,13 +95,13 @@ describe('root layout', () => {
 
   it('mounts AnalyticsProvider around children (fe-analytics contract)', async () => {
     const element = await RootLayout({ children: <main>page content</main> });
-    render(element);
+    renderLayout(element);
     expect(screen.getByText('page content')).toBeInTheDocument();
   });
 
   it('renders Organization + WebSite JSON-LD once, server-side', async () => {
     const element = await RootLayout({ children: <main>page content</main> });
-    const { container } = render(element);
+    const { container } = renderLayout(element);
     const scripts = container.querySelectorAll('script[type="application/ld+json"]');
     expect(scripts.length).toBe(2);
     const types = Array.from(scripts).map((s) => JSON.parse(s.textContent ?? '{}')['@type']);
@@ -116,7 +110,7 @@ describe('root layout', () => {
 
   it('renders <html lang dir> from the proxy-forwarded locale (en)', async () => {
     const element = await RootLayout({ children: <main>page content</main> });
-    render(element);
+    renderLayout(element);
     // The layout resolves the locale from the proxy-forwarded header and
     // renders <html lang={locale} dir={dir}> (React 19 renders the <html>
     // singleton into the document; the element tree carries the attributes).
@@ -128,7 +122,7 @@ describe('root layout', () => {
     mockLocaleHeader.value = 'ar';
     try {
       const element = await RootLayout({ children: <main>page content</main> });
-      render(element);
+      renderLayout(element);
       expect(element.props.lang).toBe('ar');
       expect(element.props.dir).toBe('rtl');
     } finally {

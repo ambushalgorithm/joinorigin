@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { getDictionary } from '../loader';
@@ -49,18 +49,38 @@ function renderProvider(locale: Locale = 'en') {
   );
 }
 
+/**
+ * Flushes the provider's async post-mount effects (client locale correction
+ * via `setLocale` when cookie/navigator differ from the prop, and the EN
+ * fallback dictionary load). Wrapped in `act` so the state updates they
+ * trigger are observed by React and no "not wrapped in act(...)" console
+ * noise is emitted (TASK-290).
+ */
+async function flushI18nEffects(): Promise<void> {
+  await act(async () => {});
+}
+
+/** Sets navigator.language before a render (affects the post-mount check). */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
+
 describe('I18nProvider', () => {
   beforeEach(() => {
     _resetI18nForTests();
     document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
-    Object.defineProperty(window.navigator, 'language', {
-      value: 'en-US',
-      configurable: true,
-    });
+    setNavigatorLanguage('en-US');
   });
 
-  it('renders translated text for the initial locale override', () => {
+  it('renders translated text for the initial locale override', async () => {
+    // The post-mount auto-detect only corrects when cookie/navigator differ
+    // from the prop; align navigator so the initial override is preserved.
+    setNavigatorLanguage('es-ES');
     renderProvider('es');
+    await flushI18nEffects();
     expect(screen.getByTestId('probe-locale').textContent).toBe('es');
     expect(screen.getByTestId('probe-dir').textContent).toBe('ltr');
     expect(screen.getByTestId('probe-headline').textContent).toBe('Origin.');
@@ -70,9 +90,13 @@ describe('I18nProvider', () => {
   it('switches locale immediately and writes the cookie (no reload)', async () => {
     const user = userEvent.setup();
     renderProvider('en');
+    await flushI18nEffects();
     expect(screen.getByTestId('probe-locale').textContent).toBe('en');
 
-    await user.click(screen.getByTestId('switch-es'));
+    await act(async () => {
+      await user.click(screen.getByTestId('switch-es'));
+    });
+    await flushI18nEffects();
 
     await waitFor(() => {
       expect(screen.getByTestId('probe-locale').textContent).toBe('es');
@@ -83,9 +107,13 @@ describe('I18nProvider', () => {
   it('sets document.documentElement dir=rtl when switching to ar', async () => {
     const user = userEvent.setup();
     renderProvider('en');
+    await flushI18nEffects();
     expect(document.documentElement.dir).toBe('ltr');
 
-    await user.click(screen.getByTestId('switch-ar'));
+    await act(async () => {
+      await user.click(screen.getByTestId('switch-ar'));
+    });
+    await flushI18nEffects();
 
     await waitFor(() => {
       expect(screen.getByTestId('probe-dir').textContent).toBe('rtl');
@@ -95,8 +123,13 @@ describe('I18nProvider', () => {
     expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=ar`);
   });
 
-  it('does not write a cookie for auto-detected locale on first paint', () => {
+  it('does not write a cookie for auto-detected locale on first paint', async () => {
+    // The initial locale comes from props (server/OS resolution); when the
+    // post-mount auto-detect agrees with the prop, no setLocale runs and no
+    // cookie is written.
+    setNavigatorLanguage('de-DE');
     renderProvider('de');
+    await flushI18nEffects();
     expect(screen.getByTestId('probe-locale').textContent).toBe('de');
     expect(document.cookie).not.toContain(LOCALE_COOKIE_NAME);
   });

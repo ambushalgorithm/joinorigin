@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet, ThemeProvider } from 'styled-components';
@@ -37,6 +37,20 @@ function renderSwitcher(
   );
 }
 
+/**
+ * Flushes the provider's async post-mount effects + in-flight `setLocale`
+ * work (client locale correction, the EN fallback dictionary load, and the
+ * real dynamic-import dictionary loads) inside `act` so no "not wrapped in
+ * act(...)" console noise is emitted. Dynamic `import()` resolves on a
+ * macrotask, so one `setTimeout(0)` turn is needed in addition to the
+ * microtask queue (TASK-290).
+ */
+async function flushI18nEffects(): Promise<void> {
+  await act(async () => {
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+  });
+}
+
 /** Renders a single variant in isolation and returns its generated CSS.
  *  ServerStyleSheet gives a clean per-render stylesheet (jsdom style tags
  *  accumulate across tests and jsdom does not apply `@media` to layout). */
@@ -58,14 +72,19 @@ function cssForVariant(variant: 'header' | 'footer' | 'mobile-panel'): string {
   }
 }
 
+/** Sets navigator.language before a render (affects the post-mount check). */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
+
 describe('LanguageSwitcher', () => {
   beforeEach(() => {
     _resetI18nForTests();
     document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
-    Object.defineProperty(window.navigator, 'language', {
-      value: 'en-US',
-      configurable: true,
-    });
+    setNavigatorLanguage('en-US');
   });
 
   it('renders the current locale autonym on the trigger', () => {
@@ -73,8 +92,13 @@ describe('LanguageSwitcher', () => {
     expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('English');
   });
 
-  it('renders the native autonym for a non-English locale', () => {
+  it('renders the native autonym for a non-English locale', async () => {
+    // Align the post-mount auto-detect with the prop so the provider stays on
+    // 'es' (no async setLocale → no act() noise; the trigger shows the native
+    // autonym as the initial override).
+    setNavigatorLanguage('es-ES');
     renderSwitcher('es');
+    await flushI18nEffects();
     expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('Español');
   });
 
@@ -101,7 +125,10 @@ describe('LanguageSwitcher', () => {
     renderSwitcher('en');
 
     await user.click(screen.getByRole('button', { name: 'Change language' }));
-    await user.click(screen.getByRole('option', { name: /Deutsch/ }));
+    await act(async () => {
+      await user.click(screen.getByRole('option', { name: /Deutsch/ }));
+    });
+    await flushI18nEffects();
 
     await waitFor(() => {
       expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=de`);
@@ -115,7 +142,10 @@ describe('LanguageSwitcher', () => {
     renderSwitcher('en');
 
     await user.click(screen.getByRole('button', { name: 'Change language' }));
-    await user.click(screen.getByRole('option', { name: /العربية/ }));
+    await act(async () => {
+      await user.click(screen.getByRole('option', { name: /العربية/ }));
+    });
+    await flushI18nEffects();
 
     await waitFor(() => {
       expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=ar`);
@@ -132,7 +162,10 @@ describe('LanguageSwitcher', () => {
     await user.click(trigger); // focus the trigger
     // Move down to the next option (Español at index 1) and select it.
     await user.keyboard('{ArrowDown}');
-    await user.keyboard('{Enter}');
+    await act(async () => {
+      await user.keyboard('{Enter}');
+    });
+    await flushI18nEffects();
 
     await waitFor(() => {
       expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=es`);
@@ -216,6 +249,8 @@ describe('LanguageSwitcher', () => {
     expect(getComputedStyle(listbox).bottom).not.toBe('auto');
 
     await user.click(screen.getByRole('option', { name: /Français/ }));
+    await act(async () => {});
+    await flushI18nEffects();
     await waitFor(() => {
       expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=fr`);
     });

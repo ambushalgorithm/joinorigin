@@ -179,10 +179,41 @@ export function useSceneMotion(scopeRef: RefObject<HTMLElement | null>): void {
       const mm = gsap.matchMedia();
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         const q = gsap.utils.selector(scopeRef);
+
+        // GSAP-native SVG pivot (TASK-290). GSAP rewrites transform-origin
+        // for SVG elements in viewBox units, so the CSS-only
+        // `transform-box: fill-box; transform-origin: center` rule on the
+        // scene primitives is NOT honored when a rotation tween starts — the
+        // orbit cluster would pivot around the viewBox origin and drift
+        // off-center. Pinning the transform-box/origin per target via
+        // gsap.set() keeps every group rotating around its own fill-box
+        // center (the hub) over all rotation phases. Only set targets that
+        // exist (not every scene ships every group — avoids GSAP "target not
+        // found" console noise).
+        const pinPivot = (selector: string): void => {
+          if (q(selector).length > 0) {
+            gsap.set(q(selector), {
+              transformBox: 'fill-box',
+              transformOrigin: 'center center',
+            });
+          }
+        };
+        pinPivot('.scene-orbit-group');
+        pinPivot('.scene-node');
+        pinPivot('.scene-main-group');
+
         const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
-        tl.to(q('.scene-orbit-group'), { rotation: 360, duration: SCENE_TIMINGS.orbit }, 0)
-          .to(q('.scene-node'), { rotation: -360, duration: SCENE_TIMINGS.nodeOrbit }, 0)
-          .to(
+        // Only add tween steps for groups the scene actually ships — GSAP
+        // warns on empty targets (e.g. CommunityScene has no `.scene-node`,
+        // the 404 page has no `.scene-ring`).
+        if (q('.scene-orbit-group').length > 0) {
+          tl.to(q('.scene-orbit-group'), { rotation: 360, duration: SCENE_TIMINGS.orbit }, 0);
+        }
+        if (q('.scene-node').length > 0) {
+          tl.to(q('.scene-node'), { rotation: -360, duration: SCENE_TIMINGS.nodeOrbit }, 0);
+        }
+        if (q('.scene-main-group').length > 0) {
+          tl.to(
             q('.scene-main-group'),
             {
               y: -10,
@@ -192,8 +223,11 @@ export function useSceneMotion(scopeRef: RefObject<HTMLElement | null>): void {
               ease: 'sine.inOut',
             },
             0,
-          )
-          .to(q('.scene-ring'), { rotation: -360, duration: SCENE_TIMINGS.ring }, 0);
+          );
+        }
+        if (q('.scene-ring').length > 0) {
+          tl.to(q('.scene-ring'), { rotation: -360, duration: SCENE_TIMINGS.ring }, 0);
+        }
       });
     },
     { scope: scopeRef },

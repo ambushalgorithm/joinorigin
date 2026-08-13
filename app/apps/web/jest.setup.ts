@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
 
 import React from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Headers, Request, Response } from 'undici';
 
 /**
@@ -13,7 +15,8 @@ if (typeof globalThis.Request === 'undefined') {
   Object.assign(globalThis, { Request, Response, Headers });
 }
 
-// matchMedia (used by useReducedMotion).
+// matchMedia (used by useReducedMotion; also required by ScrollTrigger's
+// plugin registration below).
 if (typeof window !== 'undefined' && !window.matchMedia) {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
@@ -28,6 +31,13 @@ if (typeof window !== 'undefined' && !window.matchMedia) {
       dispatchEvent: () => false,
     }),
   });
+}
+
+// GSAP plugin registration for tests (same single-registration point as
+// lib/gsap.ts; SSR-safe via the window guard). Runs after the matchMedia
+// polyfill so ScrollTrigger's enable() can read window.matchMedia.
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 // requestAnimationFrame / cancelAnimationFrame (used by useCountUp, useEntrance).
@@ -72,4 +82,55 @@ jest.mock('next/image', () => {
       ...rest,
     });
   return { __esModule: true, default: NextImage };
+});
+
+/**
+ * GSAP teardown (TASK-290) — unit tests exit cleanly.
+ *
+ * The scene/hero motion hooks register infinite `repeat: -1` timelines
+ * (OrbitViz, motion.ts useSceneMotion, MenuHero) inside `gsap.matchMedia()`
+ * contexts. In jsdom the mock matchMedia reports `(prefers-reduced-motion:
+ * no-preference)` as false so the timeline callbacks never fire, but any test
+ * that runs with motion enabled leaves its timelines on GSAP's global
+ * timeline and keeps the ticker alive. These afterEach/afterAll hooks:
+ *
+ *  1. clear the global timeline (kills every tween, including repeat:-1);
+ *  2. kill any tween targeting `*` that was created outside the timeline;
+ *  3. kill every ScrollTrigger instance (also clears the refresh ticker);
+ *  4. revert all matchMedia contexts (kills context tweens + matchMedia
+ *     change listeners), matching what gsap.context().revert() does on
+ *     unmount for any context that leaked past React cleanup.
+ */
+
+// Track every gsap.matchMedia() context created during a test so teardown
+// can revert them deterministically (GSAP exposes no public registry for
+// matchMedia instances). The wrapper delegates to the original and returns
+// the same instance, so runtime behavior is unchanged.
+const matchMediaContexts: Array<{ revert: () => void }> = [];
+const originalMatchMedia = gsap.matchMedia.bind(gsap);
+gsap.matchMedia = ((scope?: Element | string | object) => {
+  const mm = originalMatchMedia(scope);
+  matchMediaContexts.push(mm);
+  return mm;
+}) as typeof gsap.matchMedia;
+
+function teardownGtween(): void {
+  try {
+    gsap.globalTimeline.clear();
+    gsap.killTweensOf('*');
+    ScrollTrigger.killAll();
+    while (matchMediaContexts.length > 0) {
+      matchMediaContexts.pop()?.revert();
+    }
+  } catch {
+    // GSAP may not be initialized in suites that never import it.
+  }
+}
+
+afterEach(() => {
+  teardownGtween();
+});
+
+afterAll(() => {
+  teardownGtween();
 });

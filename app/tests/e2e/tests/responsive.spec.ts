@@ -6,8 +6,10 @@ import { expect, test, type Locator, type Page } from '@playwright/test';
  * Viewport buckets (max-width semantics per spec):
  *   >1280px — two columns, heading 64px, orbit scale 1.0 (720px), full nav
  *   ≤1280px — two columns, heading 64px, orbit scale 0.85 (612px)
- *   ≤1024px — stacked layout, heading 48px, orbit scale 0.7 (504px)
- *   ≤768px  — nav hidden → hamburger, heading 36px, orbit scale 0.5 (360px)
+ *   ≤1024px — stacked layout, heading 48px, orbit scale 0.7 (504px),
+ *             nav collapses → hamburger (Header breakpoint moved to 1024 in
+ *             the Sprint 10 styling pass; d570244)
+ *   ≤768px  — heading 36px, orbit scale 0.5 (360px)
  *   ≤480px  — heading 28px, orbit scale 0.4 (288px)
  *
  * In addition to the orbit container's computed width, every breakpoint
@@ -144,12 +146,16 @@ test.describe('responsive breakpoints', () => {
     expect(orbitBox!.x).toBeGreaterThan(h1Box!.x);
   });
 
-  test('≤1024: hero stacks, heading 48px, orbit 504px, nav still visible', async ({ page }) => {
+  test('≤1024: hero stacks, heading 48px, orbit 504px, nav collapses to hamburger', async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 900, height: 800 });
     await page.goto('/');
 
-    await expect(page.getByRole('navigation', { name: 'Primary' })).toBeVisible();
-    await expect(page.getByTestId('mobile-menu-toggle')).toBeHidden();
+    // The header nav collapses below the desktop breakpoint (1024px): the
+    // hamburger replaces the primary nav (Header.tsx, d570244 styling).
+    await expect(page.getByRole('navigation', { name: 'Primary' })).toBeHidden();
+    await expect(page.getByTestId('mobile-menu-toggle')).toBeVisible();
 
     const h1FontSize = await page.locator('h1').evaluate((el) => getComputedStyle(el).fontSize);
     expect(h1FontSize).toBe('48px');
