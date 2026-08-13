@@ -59,11 +59,12 @@ const Content = styled.div`
   display: flex;
   align-items: center;
   gap: 48px;
+  padding: 64px 32px;
+
 
   @media (max-width: 1024px) {
     flex-direction: column;
     gap: ${({ theme }) => theme.spacing.xxl}px;
-    padding: 64px 32px;
   }
 
   @media (max-width: 480px) {
