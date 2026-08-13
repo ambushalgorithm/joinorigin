@@ -2,3 +2,12 @@ packages:
   - 'apps/*'
   - 'packages/*'
   - 'tests/e2e'
+
+# pnpm 10+ home for workspace settings. Moved from the deprecated
+# "pnpm": { "overrides": ... } field in package.json (TASK-287).
+overrides:
+  react: 19.2.8
+  react-dom: 19.2.8
+  styled-components: 6.5.2
+  '@types/react': 19.2.18
+  '@types/react-dom': 19.2.4
