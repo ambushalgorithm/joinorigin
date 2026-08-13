@@ -8,10 +8,17 @@
  * instantiates the enabled adapters.
  *
  * Resolution order (lowest → highest precedence):
- *  1. Built-in defaults (Plausible enabled, self-hosted; Umami/GA4 opt-in via
- *     env vars).
+ *  1. Built-in defaults (Plausible enabled, self-hosted at the LOCAL endpoint
+ *     provisioned by infra-plausible TASK-277; Umami/GA4 opt-in via env vars).
  *  2. `NEXT_PUBLIC_ANALYTICS_JSON` — when present it replaces the tracker
  *     list entirely (explicit operator override).
+ *
+ * ACTIVATION (Sprint 10, TASK-279): the default Plausible API host points at
+ * the self-hosted Plausible stack in `docker-compose.yml`
+ * (`http://localhost:8000`, override with `PLAUSIBLE_PORT`). Production
+ * deployments MUST set `NEXT_PUBLIC_PLAUSIBLE_API_HOST` to the public
+ * analytics origin (e.g. `https://analytics.joinorigin.com`) — the client
+ * bundle inlines this value at build time.
  *
  * Design source: `app/docs/design/sprint-4-seo-arch.md` §2.4.
  */
@@ -27,7 +34,18 @@ const REQUIRED_FIELDS: Record<TrackerKind, ReadonlyArray<keyof AnalyticsTrackerC
   ga4: ['measurementId'],
 };
 
-const DEFAULT_API_HOST = 'https://analytics.joinorigin.com';
+/**
+ * Default Plausible endpoint — the local self-hosted stack provisioned by
+ * infra-plausible (TASK-277). Matches the `NEXT_PUBLIC_PLAUSIBLE_API_HOST`
+ * default in `docker-compose.yml` + `apps/web/.env.example`.
+ */
+const DEFAULT_PLAUSIBLE_API_HOST = 'http://localhost:8000';
+
+/**
+ * Umami fallback when only a website id is set. Umami is opt-in; an operator
+ * enabling it without a host keeps the production analytics origin.
+ */
+const DEFAULT_UMAMI_HOST_URL = 'https://analytics.joinorigin.com';
 
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.length > 0;
@@ -131,7 +149,7 @@ export function resolveAnalyticsConfig(): AnalyticsConfig {
       kind: 'plausible',
       enabled: true,
       domain,
-      apiHost: process.env.NEXT_PUBLIC_PLAUSIBLE_API_HOST ?? DEFAULT_API_HOST,
+      apiHost: process.env.NEXT_PUBLIC_PLAUSIBLE_API_HOST ?? DEFAULT_PLAUSIBLE_API_HOST,
     },
   ];
 
@@ -141,7 +159,7 @@ export function resolveAnalyticsConfig(): AnalyticsConfig {
       kind: 'umami',
       enabled: true,
       websiteId: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
-      hostUrl: process.env.NEXT_PUBLIC_UMAMI_HOST_URL ?? DEFAULT_API_HOST,
+      hostUrl: process.env.NEXT_PUBLIC_UMAMI_HOST_URL ?? DEFAULT_UMAMI_HOST_URL,
     });
   }
 

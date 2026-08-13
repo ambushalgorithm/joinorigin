@@ -5,11 +5,19 @@
  * override replaces the tracker list; malformed JSON throws; unknown kind
  * throws; missing required field throws; duplicate id throws; empty list is a
  * valid no-op; trackPageViews override honored.
+ *
+ * ACTIVATION (Sprint 10, TASK-279): the default Plausible API host must point
+ * at the LOCAL self-hosted Plausible endpoint provisioned by infra-plausible
+ * (TASK-277) — `http://localhost:8000`, matching `docker-compose.yml` +
+ * `apps/web/.env.example`.
  */
 
 import { parseAndValidate, resolveAnalyticsConfig } from '../config';
 
-const DEFAULT_API_HOST = 'https://analytics.joinorigin.com';
+/** Local self-hosted Plausible endpoint (infra-plausible TASK-277). */
+const LOCAL_PLAUSIBLE_API_HOST = 'http://localhost:8000';
+/** Umami fallback host when only a website id is set (production analytics host). */
+const DEFAULT_UMAMI_HOST_URL = 'https://analytics.joinorigin.com';
 
 const originalEnv = process.env;
 
@@ -34,7 +42,20 @@ describe('resolveAnalyticsConfig defaults', () => {
       kind: 'plausible',
       enabled: true,
       domain: 'localhost',
-      apiHost: DEFAULT_API_HOST,
+      apiHost: LOCAL_PLAUSIBLE_API_HOST,
+    });
+  });
+
+  it('ACTIVATION: defaults plausible apiHost to the local self-hosted Plausible endpoint', () => {
+    setEnv({});
+
+    const config = resolveAnalyticsConfig();
+
+    expect(config.trackers[0]).toMatchObject({
+      id: 'plausible',
+      kind: 'plausible',
+      enabled: true,
+      apiHost: 'http://localhost:8000',
     });
   });
 
@@ -75,7 +96,7 @@ describe('resolveAnalyticsConfig defaults', () => {
     const config = resolveAnalyticsConfig();
 
     expect(config.trackers[1]).toMatchObject({
-      hostUrl: DEFAULT_API_HOST,
+      hostUrl: DEFAULT_UMAMI_HOST_URL,
     });
   });
 
@@ -105,6 +126,34 @@ describe('resolveAnalyticsConfig defaults', () => {
 });
 
 describe('resolveAnalyticsConfig JSON override', () => {
+  it('ACTIVATION: NEXT_PUBLIC_ANALYTICS_JSON pointing at the local Plausible resolves', () => {
+    setEnv({
+      NEXT_PUBLIC_ANALYTICS_JSON: JSON.stringify({
+        trackers: [
+          {
+            id: 'plausible',
+            kind: 'plausible',
+            domain: 'joinorigin.com',
+            apiHost: 'http://localhost:8000',
+          },
+        ],
+        trackPageViews: true,
+      }),
+    });
+
+    const config = resolveAnalyticsConfig();
+
+    expect(config.trackers).toHaveLength(1);
+    expect(config.trackers[0]).toMatchObject({
+      id: 'plausible',
+      kind: 'plausible',
+      enabled: true,
+      domain: 'joinorigin.com',
+      apiHost: 'http://localhost:8000',
+    });
+    expect(config.trackPageViews).toBe(true);
+  });
+
   it('replaces the tracker list entirely when NEXT_PUBLIC_ANALYTICS_JSON is set', () => {
     setEnv({
       NEXT_PUBLIC_ANALYTICS_JSON: JSON.stringify({
