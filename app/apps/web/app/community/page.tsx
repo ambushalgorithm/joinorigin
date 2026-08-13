@@ -1,15 +1,15 @@
 import type { Metadata } from 'next';
 
 import { JsonLd } from '../../lib/seo/JsonLdScript';
-import { breadcrumbList, faqPage } from '../../lib/seo/jsonLd';
+import { breadcrumbList } from '../../lib/seo/jsonLd';
 import { createMetadata } from '../../lib/seo/metadata';
-import { COMMUNITY_FAQ } from './community-data';
 import { CommunityView } from './community-view';
 
 /**
  * Community page (discovery §5.3) — server wrapper exporting page metadata +
- * server-rendered JSON-LD (`BreadcrumbList` + `FAQPage`). FAQ answers are
- * defined in the view module and mirrored 1:1 in the JSON-LD.
+ * server-rendered `BreadcrumbList` JSON-LD. The FAQPage JSON-LD is rendered
+ * by the view from the active locale dictionary (arch-i18n §7.4), mirrored
+ * 1:1 with the visible FAQ block in the initial SSR HTML.
  */
 export const metadata: Metadata = createMetadata({
   title: 'Community — Find Your People & Build Together | JoinOrigin',
@@ -36,7 +36,6 @@ export default function CommunityPage() {
           { name: 'Community', path: '/community' },
         ])}
       />
-      <JsonLd data={faqPage(COMMUNITY_FAQ)} />
     </>
   );
 }

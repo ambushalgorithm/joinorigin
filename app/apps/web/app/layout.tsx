@@ -1,4 +1,8 @@
 import type { Metadata, Viewport } from 'next';
+import { headers } from 'next/headers';
+
+import { getDictionary, getDir, resolveLocale } from '@joinorigin/i18n';
+import { I18nProvider } from '@joinorigin/i18n';
 
 import { AnalyticsProvider } from '../lib/analytics';
 import { JsonLd } from '../lib/seo/JsonLdScript';
@@ -7,7 +11,8 @@ import { SITE } from '../lib/seo/site';
 import Registry from './registry';
 
 /**
- * Site-wide metadata + structured data + analytics mount (arch §3.3, §3.6).
+ * Site-wide metadata + structured data + analytics + i18n mount
+ * (arch §3.3, §3.6; i18n arch §6.3).
  *
  * - `metadataBase` resolves relative metadata URLs (canonical/OG/Twitter)
  *   against the single `SITE.url` origin.
@@ -24,6 +29,11 @@ import Registry from './registry';
  *   and LLMs see the structured data in the initial HTML.
  * - `AnalyticsProvider` mounts per the fe-analytics contract (§2.7) — zero
  *   visual output; adapters own script injection.
+ * - i18n: the middleware resolves the locale (cookie → Accept-Language → en)
+ *   and forwards it as `x-joinorigin-locale`; this layout renders
+ *   `<html lang dir>` and seeds the client `I18nProvider` with the active
+ *   dictionary so the first paint is already translated (no flash). SEO
+ *   metadata stays hardcoded English per arch-i18n §1.2.
  */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -78,9 +88,14 @@ export const viewport: Viewport = {
   colorScheme: 'dark',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headerStore = await headers();
+  const locale = resolveLocale(headerStore.get('x-joinorigin-locale') ?? undefined);
+  const dir = getDir(locale);
+  const dictionary = getDictionary(locale);
+
   return (
-    <html lang="en">
+    <html lang={locale} dir={dir}>
       <head>
         {/* Hosted fonts — no Google Fonts network request at runtime (spec §2.3). */}
         <link rel="stylesheet" href="/fonts/inter.css" />
@@ -88,9 +103,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <Registry>
-          {/* fe-analytics mount contract (arch §2.7) — client provider,
-              renders children unchanged; adapters inject their own scripts. */}
-          <AnalyticsProvider>{children}</AnalyticsProvider>
+          {/* i18n mount — client provider seeded with the server-resolved
+              locale + dictionary (arch-i18n §6.3); wraps analytics + pages. */}
+          <I18nProvider locale={locale} dictionary={dictionary}>
+            {/* fe-analytics mount contract (arch §2.7) — client provider,
+                renders children unchanged; adapters inject their own scripts. */}
+            <AnalyticsProvider>{children}</AnalyticsProvider>
+          </I18nProvider>
         </Registry>
         {/* Site-wide JSON-LD (arch §3.6) — server-rendered, once. */}
         <JsonLd data={organization()} />

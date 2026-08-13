@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+import { useI18n } from '@joinorigin/i18n';
 import { LoadingIndicator } from '@joinorigin/ui';
 
-import { LeadErrorField, submitLead } from './leadsApi';
+import { LeadErrorField, localizedErrorKey, submitLead } from './leadsApi';
 
 /**
  * Waitlist modal (spec §9.2).
@@ -14,6 +15,9 @@ import { LeadErrorField, submitLead } from './leadsApi';
  * Idle → Submitting → Success, with inline field errors and a top-level error
  * banner on failure. Supports ESC / backdrop / ✕ close, focus trap, focus
  * return to the trigger, and a11y attributes.
+ *
+ * i18n (arch-i18n §7.2): all copy is localized; server error messages are
+ * mapped to locale keys via `localizedErrorKey`.
  */
 
 type ModalStatus = 'idle' | 'submitting' | 'success';
@@ -64,7 +68,7 @@ const Card = styled.div`
 const CloseButton = styled.button`
   position: absolute;
   top: 16px;
-  right: 16px;
+  inset-inline-end: 16px;
   width: 36px;
   height: 36px;
   display: inline-flex;
@@ -259,6 +263,7 @@ const FOCUSABLE_SELECTOR =
   'button:not([disabled]), [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
 
 export function WaitlistModal({ open, onClose, trigger }: WaitlistModalProps) {
+  const { t } = useI18n();
   const [status, setStatus] = useState<ModalStatus>('idle');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -359,13 +364,14 @@ export function WaitlistModal({ open, onClose, trigger }: WaitlistModalProps) {
       setStatus('idle');
       if (error instanceof Error && 'field' in error) {
         const leadError = error as { field: LeadErrorField; message: string };
+        const message = t(localizedErrorKey(leadError.message));
         if (leadError.field === 'form') {
-          setTopError(leadError.message);
+          setTopError(message);
         } else {
-          setFieldErrors((prev) => ({ ...prev, [leadError.field]: leadError.message }));
+          setFieldErrors((prev) => ({ ...prev, [leadError.field]: message }));
         }
       } else {
-        setTopError('Something went wrong. Please try again.');
+        setTopError(t('waitlist.errors.generic'));
       }
     }
   };
@@ -389,7 +395,7 @@ export function WaitlistModal({ open, onClose, trigger }: WaitlistModalProps) {
       >
         <CloseButton
           type="button"
-          aria-label="Close"
+          aria-label={t('waitlist.close')}
           onClick={close}
           data-testid="waitlist-modal-close"
         >
@@ -407,30 +413,28 @@ export function WaitlistModal({ open, onClose, trigger }: WaitlistModalProps) {
           <>
             <SuccessContent>
               {SuccessIcon}
-              <SuccessHeading>You&apos;re on the list!</SuccessHeading>
-              <SuccessCopy>We&apos;ll email you when your workspace is ready.</SuccessCopy>
+              <SuccessHeading>{t('waitlist.successHeading')}</SuccessHeading>
+              <SuccessCopy>{t('waitlist.successCopy')}</SuccessCopy>
             </SuccessContent>
             <DoneButton type="button" onClick={close} data-testid="waitlist-done">
-              Done
+              {t('waitlist.done')}
             </DoneButton>
           </>
         ) : (
           <>
-            <Heading id="waitlist-modal-heading">Join the waitlist</Heading>
-            <Subcopy>
-              Be first in line for early access. We&apos;ll email you when your workspace is ready.
-            </Subcopy>
+            <Heading id="waitlist-modal-heading">{t('waitlist.heading')}</Heading>
+            <Subcopy>{t('waitlist.subcopy')}</Subcopy>
 
             <Form onSubmit={submit} noValidate data-testid="waitlist-form">
               <Field>
-                <FieldLabel htmlFor="waitlist-name">Name</FieldLabel>
+                <FieldLabel htmlFor="waitlist-name">{t('waitlist.nameLabel')}</FieldLabel>
                 <Input
                   id="waitlist-name"
                   ref={firstFieldRef}
                   type="text"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
-                  placeholder="Ada Lovelace"
+                  placeholder={t('waitlist.namePlaceholder')}
                   autoComplete="name"
                   aria-invalid={Boolean(fieldErrors.name)}
                   aria-describedby={fieldErrors.name ? 'waitlist-name-error' : undefined}
@@ -445,7 +449,7 @@ export function WaitlistModal({ open, onClose, trigger }: WaitlistModalProps) {
               </Field>
 
               <Field>
-                <FieldLabel htmlFor="waitlist-email">Email</FieldLabel>
+                <FieldLabel htmlFor="waitlist-email">{t('waitlist.emailLabel')}</FieldLabel>
                 <Input
                   id="waitlist-email"
                   type="email"
@@ -453,7 +457,7 @@ export function WaitlistModal({ open, onClose, trigger }: WaitlistModalProps) {
                   autoComplete="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  placeholder="ada@example.com"
+                  placeholder={t('waitlist.emailPlaceholder')}
                   aria-invalid={Boolean(fieldErrors.email)}
                   aria-describedby={fieldErrors.email ? 'waitlist-email-error' : undefined}
                   $invalid={Boolean(fieldErrors.email)}
@@ -478,14 +482,14 @@ export function WaitlistModal({ open, onClose, trigger }: WaitlistModalProps) {
                 data-testid="waitlist-submit"
               >
                 {status === 'submitting' ? (
-                  <LoadingIndicator label="Submitting" />
+                  <LoadingIndicator label={t('waitlist.submitting')} />
                 ) : (
-                  'Request access'
+                  t('waitlist.submit')
                 )}
               </SubmitButton>
             </Form>
 
-            <LegalNote>No spam. Unsubscribe anytime.</LegalNote>
+            <LegalNote>{t('waitlist.legalNote')}</LegalNote>
           </>
         )}
       </Card>

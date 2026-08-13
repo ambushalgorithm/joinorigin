@@ -5,6 +5,7 @@ import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
+import { I18nProvider, getDictionary } from '@joinorigin/i18n';
 
 import LogoMarquee from './LogoMarquee';
 
@@ -16,13 +17,19 @@ const PARTNER_ASSETS = [
   '../public/assets/partners/partner-05.svg',
 ];
 
-describe('LogoMarquee', () => {
-  it('renders the ticker label and 5 partner logos repeated 4 times', () => {
-    render(
+function renderMarquee() {
+  return render(
+    <I18nProvider locale="en" dictionary={getDictionary('en')}>
       <ThemeProvider theme={theme}>
         <LogoMarquee />
-      </ThemeProvider>,
-    );
+      </ThemeProvider>
+    </I18nProvider>,
+  );
+}
+
+describe('LogoMarquee', () => {
+  it('renders the ticker label and 5 partner logos repeated 4 times', () => {
+    renderMarquee();
 
     expect(screen.getByText('Trusted by teams at')).toBeInTheDocument();
     const logos = screen.getAllByRole('img');

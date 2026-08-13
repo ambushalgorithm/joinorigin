@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import AboutPage, { metadata } from './page';
+import { renderWithI18n } from '../../test-utils';
 
 /**
  * Unit tests for the /about page (discovery §5.6): server-wrapper metadata
@@ -22,7 +23,7 @@ describe('about page', () => {
   });
 
   it('renders a single h1 and the mission intro paragraph', () => {
-    render(<AboutPage />);
+    renderWithI18n(<AboutPage />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('The most valuable asset is your network');
@@ -32,7 +33,7 @@ describe('about page', () => {
   });
 
   it('renders the principles, founder guidance, and FAQ sections', () => {
-    render(<AboutPage />);
+    renderWithI18n(<AboutPage />);
     expect(screen.getByText('Guiding principles')).toBeInTheDocument();
     expect(screen.getByText('People First')).toBeInTheDocument();
     expect(screen.getByText('Founder guidance')).toBeInTheDocument();
@@ -42,7 +43,7 @@ describe('about page', () => {
   });
 
   it('links to the real pages via the nav and footer', () => {
-    render(<AboutPage />);
+    renderWithI18n(<AboutPage />);
     // Header nav + footer both link the real pages; assert hrefs on the links.
     const featuresLinks = screen.getAllByRole('link', { name: 'Features' });
     expect(featuresLinks.length).toBeGreaterThan(0);
@@ -56,7 +57,7 @@ describe('about page', () => {
   });
 
   it('renders server-side JSON-LD: AboutPage + BreadcrumbList', () => {
-    render(<AboutPage />);
+    renderWithI18n(<AboutPage />);
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     expect(payloads.some((p) => p['@type'] === 'AboutPage')).toBe(true);

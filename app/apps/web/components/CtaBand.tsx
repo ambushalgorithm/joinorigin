@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import { useI18n } from '@joinorigin/i18n';
+
 import { ACCENT_GRADIENT } from './landingTokens';
 import Reveal from './Reveal';
 import RotatingBorderButton from './RotatingBorderButton';
@@ -30,12 +32,6 @@ export interface CtaBandProps {
   ctaLabel?: string;
 }
 
-const DEFAULT_HEADLINE = 'Find your people. Build together.';
-const DEFAULT_SUBLINE =
-  "Join 2,400+ builders on Origin's social collaboration network and be first in when early access opens.";
-const DEFAULT_CTA_LABEL = 'Join the waitlist';
-
-const OVERRIDE_CTA_LABEL = 'Contact us';
 const OVERRIDE_CTA_HREF = '/contact';
 
 const Band = styled.section`
@@ -118,10 +114,11 @@ const ContactLink = styled(Link)`
 
 export function CtaBand({ headline, subline, ctaLabel }: CtaBandProps) {
   const { openWaitlist } = useWaitlist();
+  const { t } = useI18n();
   const isOverride = Boolean(headline || subline || ctaLabel);
 
-  const bandHeadline = headline ?? DEFAULT_HEADLINE;
-  const bandSubline = subline ?? DEFAULT_SUBLINE;
+  const bandHeadline = headline ?? t('ctaBand.headline');
+  const bandSubline = subline ?? t('ctaBand.subline');
 
   return (
     <Band data-testid="cta-band">
@@ -131,11 +128,11 @@ export function CtaBand({ headline, subline, ctaLabel }: CtaBandProps) {
           <Subline>{bandSubline}</Subline>
           {isOverride ? (
             <ContactLink href={OVERRIDE_CTA_HREF} data-testid="cta-band-contact-link">
-              {ctaLabel ?? OVERRIDE_CTA_LABEL}
+              {ctaLabel ?? t('ctaBand.contactLabel')}
             </ContactLink>
           ) : (
             <RotatingBorderButton
-              label={ctaLabel ?? DEFAULT_CTA_LABEL}
+              label={ctaLabel ?? t('ctaBand.joinLabel')}
               fillDirection="left"
               onClick={(event) => openWaitlist(event.currentTarget)}
               testID="cta-band-join-button"

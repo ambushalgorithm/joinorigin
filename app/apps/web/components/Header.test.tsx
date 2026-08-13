@@ -4,19 +4,22 @@ import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
+import { I18nProvider, getDictionary } from '@joinorigin/i18n';
 
 import Header from './Header';
 import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
 function renderHeader() {
   return render(
-    <NativeThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <WaitlistModalProvider>
-          <Header />
-        </WaitlistModalProvider>
-      </ThemeProvider>
-    </NativeThemeProvider>,
+    <I18nProvider locale="en" dictionary={getDictionary('en')}>
+      <NativeThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <WaitlistModalProvider>
+            <Header />
+          </WaitlistModalProvider>
+        </ThemeProvider>
+      </NativeThemeProvider>
+    </I18nProvider>,
   );
 }
 

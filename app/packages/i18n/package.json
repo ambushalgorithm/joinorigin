@@ -1,0 +1,36 @@
+{
+  "name": "@joinorigin/i18n",
+  "version": "0.1.0",
+  "private": true,
+  "description": "JoinOrigin shared i18n engine: locale resolution, dictionary loading, provider + hooks (i18next wrapped)",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "check-keys": "tsx scripts/check-keys.ts"
+  },
+  "dependencies": {
+    "i18next": "^24.2.0",
+    "react-i18next": "^15.4.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "6.4.8",
+    "@testing-library/react": "^16.3.2",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "ts-jest": "^29.2.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  }
+}

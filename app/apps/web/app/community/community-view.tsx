@@ -2,6 +2,8 @@
 
 import styled from 'styled-components';
 
+import { useI18n } from '@joinorigin/i18n';
+
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
 import { ENTRANCE_EASING } from '../../components/landingTokens';
@@ -22,7 +24,9 @@ import {
   StatLabel,
   StatValue,
 } from '../../components/menuPagePrimitives';
-import { COMMUNITY_FAQ } from './community-data';
+import { faqEntries, faqNamespace } from '../../lib/faq';
+import { JsonLd } from '../../lib/seo/JsonLdScript';
+import { faqPage } from '../../lib/seo/jsonLd';
 
 /**
  * Community view (discovery §5.3, redesign spec sprint-8 §8.2): values,
@@ -30,36 +34,21 @@ import { COMMUNITY_FAQ } from './community-data';
  * One `<h1>` (rendered by `MenuHero`) and semantic sections; the intro
  * defines the "social collaboration network" category for LLM-crawler
  * entity clarity.
+ *
+ * i18n: all copy reads from the active locale dictionary (arch-i18n §7.4).
  */
 
-const VALUES = [
-  {
-    title: 'People First',
-    body: 'Members are people, not profiles in a database. Every design decision protects the relationships that make the network worth joining.',
-  },
-  {
-    title: 'Communities Drive Growth',
-    body: 'Communities are the center of engagement. When a community thrives, the people in it find each other and build together.',
-  },
-  {
-    title: 'Collaboration Creates Value',
-    body: 'Collaboration is how conversations become projects and projects become companies. Origin is built so collaboration has somewhere to go.',
-  },
-  {
-    title: 'Ownership & Sovereignty',
-    body: 'You own your identity, your data, and your communities. Open architecture and portable identity keep the network accountable to its members.',
-  },
-];
+const VALUE_KEYS = ['peopleFirst', 'communitiesDriveGrowth', 'collaborationCreatesValue'] as const;
 
-const EXAMPLE_COMMUNITIES = [
-  'Startup Founders',
-  'Small Businesses',
-  'Book Clubs',
-  'Community Organizations',
-  'Run Clubs',
-  'Pee-wee Leagues',
-  'Anyone with an Idea',
-];
+const EXAMPLE_COMMUNITY_KEYS = [
+  'startupFounders',
+  'smallBusinesses',
+  'bookClubs',
+  'communityOrganizations',
+  'runClubs',
+  'peeWeeLeagues',
+  'anyoneWithAnIdea',
+] as const;
 
 /**
  * Example-community chip (spec sprint-8 §8.2): pill `span`, gradient-border
@@ -105,12 +94,15 @@ const ChipGrid = styled.div`
 `;
 
 export function CommunityView() {
+  const { t, dictionary } = useI18n();
+  const faq = faqEntries(faqNamespace(dictionary, 'community'));
+
   return (
     <MenuPageShell
       hero={{
-        eyebrow: 'The network',
-        title: 'Where people find each other',
-        lead: 'Origin is a social collaboration network organized around communities — groups of people who share interests, industries, goals, and opportunities. Communities are the center of engagement.',
+        eyebrow: t('community.hero.eyebrow'),
+        title: t('community.hero.title'),
+        lead: t('community.hero.lead'),
         scene: '/assets/menu/scenes/community-scene.svg',
         accent: 'community',
       }}
@@ -118,31 +110,34 @@ export function CommunityView() {
       <PageContainer>
         <Reveal>
           <Section>
-            <SectionTitle>How we run the network</SectionTitle>
+            <SectionTitle>{t('community.sectionValues')}</SectionTitle>
             <CardGrid>
-              {VALUES.map((value, index) => (
-                <Reveal key={value.title} delay={`${index * 0.08}s`}>
+              {VALUE_KEYS.map((value, index) => (
+                <Reveal key={value} delay={`${index * 0.08}s`}>
                   <Card>
-                    <CardTitle>{value.title}</CardTitle>
-                    <CardBody>{value.body}</CardBody>
+                    <CardTitle>{t(`common.values.${value}`)}</CardTitle>
+                    <CardBody>{t(`community.values.${value}.body`)}</CardBody>
                   </Card>
                 </Reveal>
               ))}
+              <Reveal delay={`${VALUE_KEYS.length * 0.08}s`}>
+                <Card>
+                  <CardTitle>{t('community.values.ownership.title')}</CardTitle>
+                  <CardBody>{t('community.values.ownership.body')}</CardBody>
+                </Card>
+              </Reveal>
             </CardGrid>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Example communities</SectionTitle>
-            <BodyCopy>
-              These are the kinds of communities growing inside JoinOrigin today. If you share one
-              of these goals, there&rsquo;s already a place for you:
-            </BodyCopy>
+            <SectionTitle>{t('community.sectionExamples')}</SectionTitle>
+            <BodyCopy>{t('community.examplesIntro')}</BodyCopy>
             <ChipGrid>
-              {EXAMPLE_COMMUNITIES.map((community) => (
+              {EXAMPLE_COMMUNITY_KEYS.map((community) => (
                 <Chip key={community}>
-                  <ChipLabel>{community}</ChipLabel>
+                  <ChipLabel>{t(`community.examples.${community}`)}</ChipLabel>
                 </Chip>
               ))}
             </ChipGrid>
@@ -151,32 +146,32 @@ export function CommunityView() {
 
         <Reveal>
           <Section>
-            <SectionTitle>Join the network</SectionTitle>
-            <BodyCopy>
-              The community is built by the people in it. Join the waitlist to be part of the first
-              wave of builders shaping how people find each other online.
-            </BodyCopy>
+            <SectionTitle>{t('community.sectionJoin')}</SectionTitle>
+            <BodyCopy>{t('community.joinCopy')}</BodyCopy>
             <Stat data-testid="community-members-stat">
-              <StatValue>2,400+</StatValue>
-              <StatLabel>Members building together</StatLabel>
+              <StatValue>{t('community.joinStatValue')}</StatValue>
+              <StatLabel>{t('community.joinStatLabel')}</StatLabel>
             </Stat>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Frequently asked questions</SectionTitle>
+            <SectionTitle>{t('common.faqHeading')}</SectionTitle>
             <FaqSection>
-              {COMMUNITY_FAQ.map((faq) => (
-                <FaqItem key={faq.question}>
-                  <FaqQuestion>{faq.question}</FaqQuestion>
-                  <FaqAnswer>{faq.answer}</FaqAnswer>
+              {faq.map((entry) => (
+                <FaqItem key={entry.question}>
+                  <FaqQuestion>{entry.question}</FaqQuestion>
+                  <FaqAnswer>{entry.answer}</FaqAnswer>
                 </FaqItem>
               ))}
             </FaqSection>
           </Section>
         </Reveal>
       </PageContainer>
+      {/* FAQPage JSON-LD — localized mirror of the visible FAQ block
+          (arch-i18n §7.4), rendered into the initial SSR HTML. */}
+      <JsonLd data={faqPage(faq)} />
     </MenuPageShell>
   );
 }

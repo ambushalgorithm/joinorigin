@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import styled, { css, keyframes } from 'styled-components';
 
+import { useI18n } from '@joinorigin/i18n';
+
 import { ORBIT_BORDER_GRADIENT, ORBIT_GLOWS, ACCENT_GRADIENT } from './landingTokens';
 import { AVATAR_FLYIN_DELAYS, EASE, useEntrance, useReducedMotion } from './motion';
 import { formatCount, useCountUp } from './useCountUp';
@@ -18,9 +20,31 @@ import { formatCount, useCountUp } from './useCountUp';
  * `translate(-50%,-50%) rotate(Xdeg) translate(radius) rotate(-Xdeg)` inside a
  * spinning orbit, so they travel around the ring. Each chip fly-in is
  * staggered (0.6s → 2.3s). Everything respects prefers-reduced-motion.
+ *
+ * i18n (arch-i18n §9.1): member alts + "Members" label come from the active
+ * locale; `formatCount` groups with the active locale.
  */
 
 const CONTAINER_SIZE = 720;
+
+const CHIP_AVATAR_COUNT = 9;
+
+/** Static orbit geometry (kept 1:1 from the pre-i18n config — no design change). */
+const ORBIT_CHIP_ORBITS = [1, 2, 2, 2, 3, 4, 4, 4, 4] as const;
+const ORBIT_CHIP_ANGLES = [270, 60, 180, 300, 130, 30, 95, 220, 320] as const;
+const ORBIT_CHIP_RADII = [177, 251, 251, 251, 325, 399, 399, 399, 399] as const;
+const ORBIT_CHIP_SIZES = [58, 78, 78, 78, 88, 88, 88, 88, 88] as const;
+const ORBIT_CHIP_GLOWS = [
+  ORBIT_GLOWS.orbit1,
+  ORBIT_GLOWS.orbit2Yellow,
+  ORBIT_GLOWS.orbit2Pink,
+  ORBIT_GLOWS.orbit4Blue,
+  ORBIT_GLOWS.orbit3Pink,
+  ORBIT_GLOWS.orbit4Blue,
+  ORBIT_GLOWS.orbit4Orange,
+  ORBIT_GLOWS.orbit2Pink,
+  ORBIT_GLOWS.orbit4Blue,
+] as const;
 
 interface OrbitConfig {
   orbit: 1 | 2 | 3 | 4;
@@ -34,110 +58,6 @@ const ORBITS: OrbitConfig[] = [
   { orbit: 2, diameter: 501, durationSeconds: 40, counterClockwise: false },
   { orbit: 3, diameter: 649, durationSeconds: 50, counterClockwise: false },
   { orbit: 4, diameter: 797, durationSeconds: 60, counterClockwise: true },
-];
-
-interface ChipConfig {
-  src: string;
-  alt: string;
-  orbit: 1 | 2 | 3 | 4;
-  angle: number;
-  radius: number;
-  size: number;
-  glow: string;
-  delay: number;
-}
-
-const CHIPS: ChipConfig[] = [
-  {
-    src: '/assets/avatars/avatar-01.png',
-    alt: 'JoinOrigin member 1',
-    orbit: 1,
-    angle: 270,
-    radius: 177,
-    size: 58,
-    glow: ORBIT_GLOWS.orbit1,
-    delay: AVATAR_FLYIN_DELAYS[0],
-  },
-  {
-    src: '/assets/avatars/avatar-02.png',
-    alt: 'JoinOrigin member 2',
-    orbit: 2,
-    angle: 60,
-    radius: 251,
-    size: 78,
-    glow: ORBIT_GLOWS.orbit2Yellow,
-    delay: AVATAR_FLYIN_DELAYS[1],
-  },
-  {
-    src: '/assets/avatars/avatar-03.png',
-    alt: 'JoinOrigin member 3',
-    orbit: 2,
-    angle: 180,
-    radius: 251,
-    size: 78,
-    glow: ORBIT_GLOWS.orbit2Pink,
-    delay: AVATAR_FLYIN_DELAYS[2],
-  },
-  {
-    src: '/assets/avatars/avatar-04.png',
-    alt: 'JoinOrigin member 4',
-    orbit: 2,
-    angle: 300,
-    radius: 251,
-    size: 78,
-    glow: ORBIT_GLOWS.orbit4Blue,
-    delay: AVATAR_FLYIN_DELAYS[3],
-  },
-  {
-    src: '/assets/avatars/avatar-05.png',
-    alt: 'JoinOrigin member 5',
-    orbit: 3,
-    angle: 130,
-    radius: 325,
-    size: 88,
-    glow: ORBIT_GLOWS.orbit3Pink,
-    delay: AVATAR_FLYIN_DELAYS[4],
-  },
-  {
-    src: '/assets/avatars/avatar-06.png',
-    alt: 'JoinOrigin member 6',
-    orbit: 4,
-    angle: 30,
-    radius: 399,
-    size: 88,
-    glow: ORBIT_GLOWS.orbit4Blue,
-    delay: AVATAR_FLYIN_DELAYS[5],
-  },
-  {
-    src: '/assets/avatars/avatar-07.png',
-    alt: 'JoinOrigin member 7',
-    orbit: 4,
-    angle: 95,
-    radius: 399,
-    size: 88,
-    glow: ORBIT_GLOWS.orbit4Orange,
-    delay: AVATAR_FLYIN_DELAYS[6],
-  },
-  {
-    src: '/assets/avatars/avatar-08.png',
-    alt: 'JoinOrigin member 8',
-    orbit: 4,
-    angle: 220,
-    radius: 399,
-    size: 88,
-    glow: ORBIT_GLOWS.orbit2Pink,
-    delay: AVATAR_FLYIN_DELAYS[7],
-  },
-  {
-    src: '/assets/avatars/avatar-09.png',
-    alt: 'JoinOrigin member 9',
-    orbit: 4,
-    angle: 320,
-    radius: 399,
-    size: 88,
-    glow: ORBIT_GLOWS.orbit4Blue,
-    delay: AVATAR_FLYIN_DELAYS[8],
-  },
 ];
 
 const spinCw = keyframes`
@@ -366,13 +286,24 @@ const AvatarImage = styled(Image)`
 
 export function OrbitViz() {
   const entered = useEntrance();
+  const { t, locale } = useI18n();
+
+  const chips = Array.from({ length: CHIP_AVATAR_COUNT }, (_, i) => {
+    const number = i + 1;
+    return {
+      src: `/assets/avatars/avatar-${String(number).padStart(2, '0')}.png`,
+      alt: t('orbitViz.memberAlt', { number }),
+      orbit: ORBIT_CHIP_ORBITS[i] as 1 | 2 | 3 | 4,
+      angle: ORBIT_CHIP_ANGLES[i],
+      radius: ORBIT_CHIP_RADII[i],
+      size: ORBIT_CHIP_SIZES[i],
+      glow: ORBIT_CHIP_GLOWS[i],
+      delay: AVATAR_FLYIN_DELAYS[i],
+    };
+  });
 
   return (
-    <Outer
-      $entered={entered}
-      data-testid="orbit-viz"
-      aria-label="JoinOrigin member orbit visualization"
-    >
+    <Outer $entered={entered} data-testid="orbit-viz" aria-label={t('orbitViz.ariaLabel')}>
       <ScaleFrame>
         {ORBITS.map((orbit) => (
           <Orbit
@@ -382,14 +313,21 @@ export function OrbitViz() {
             $counterClockwise={orbit.counterClockwise}
             data-testid={`orbit-${orbit.orbit}`}
           >
-            {orbit.orbit === 1 ? <OrbitHub /> : null}
-            {CHIPS.filter((chip) => chip.orbit === orbit.orbit).map((chip) => (
-              <ChipPositioner key={chip.src} $angle={chip.angle} $radius={chip.radius}>
-                <Chip $size={chip.size} $glow={chip.glow} $delay={chip.delay} $entered={entered}>
-                  <AvatarImage src={chip.src} alt={chip.alt} width={chip.size} height={chip.size} />
-                </Chip>
-              </ChipPositioner>
-            ))}
+            {orbit.orbit === 1 ? <OrbitHub locale={locale} /> : null}
+            {chips
+              .filter((chip) => chip.orbit === orbit.orbit)
+              .map((chip) => (
+                <ChipPositioner key={chip.src} $angle={chip.angle} $radius={chip.radius}>
+                  <Chip $size={chip.size} $glow={chip.glow} $delay={chip.delay} $entered={entered}>
+                    <AvatarImage
+                      src={chip.src}
+                      alt={chip.alt}
+                      width={chip.size}
+                      height={chip.size}
+                    />
+                  </Chip>
+                </ChipPositioner>
+              ))}
           </Orbit>
         ))}
       </ScaleFrame>
@@ -397,14 +335,15 @@ export function OrbitViz() {
   );
 }
 
-function OrbitHub() {
+function OrbitHub({ locale }: { locale: string }) {
   const reduced = useReducedMotion();
   const count = useCountUp(2400, { disabled: reduced });
+  const { t } = useI18n();
 
   return (
     <Hub data-testid="orbit-hub">
-      <CountValue>{formatCount(count)}+</CountValue>
-      <CountLabel>Members</CountLabel>
+      <CountValue>{formatCount(count, locale)}+</CountValue>
+      <CountLabel>{t('orbitViz.members')}</CountLabel>
     </Hub>
   );
 }

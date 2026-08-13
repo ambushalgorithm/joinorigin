@@ -1,5 +1,7 @@
 'use client';
 
+import { Trans, useI18n } from '@joinorigin/i18n';
+
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
 import {
@@ -20,40 +22,34 @@ import {
   Section,
   SectionTitle,
 } from '../../components/menuPagePrimitives';
+import { faqEntries, faqNamespace } from '../../lib/faq';
 
 /**
  * About view (discovery §5.6, redesign spec sprint-8 §8.4): mission +
  * principles + founder guidance. One `<h1>` (rendered by `MenuHero`),
  * semantic sections, and the "social collaboration network" definition in
  * the intro for LLM-crawler entity clarity.
+ *
+ * i18n: all copy reads from the active locale dictionary; inline-link
+ * sentences use `<Trans>` numbered tags (arch-i18n §4.1).
  */
 
-const PRINCIPLES = [
-  {
-    title: 'People First',
-    body: 'The network is made of people, not just content or software. Product decisions start from the relationships members want to form.',
-  },
-  {
-    title: 'Communities Drive Growth',
-    body: 'Communities are the center of engagement — groups of people who share interests, industries, goals, and opportunities bring the network to life.',
-  },
-  {
-    title: 'Collaboration Creates Value',
-    body: 'Conversations turn into projects, projects turn into companies. Origin is built so collaboration has a place to go.',
-  },
-  {
-    title: 'Open Architecture',
-    body: 'Communication runs on the open Matrix protocol, and identity, profiles, communities, and the social graph are portable and user-owned. Origin is hosted, so there is nothing to self-host.',
-  },
-];
+const PRINCIPLE_KEYS = [
+  'peopleFirst',
+  'communitiesDriveGrowth',
+  'collaborationCreatesValue',
+] as const;
 
 export function AboutView() {
+  const { t, dictionary } = useI18n();
+  const faq = faqEntries(faqNamespace(dictionary, 'about'));
+
   return (
     <MenuPageShell
       hero={{
-        eyebrow: 'Our mission',
-        title: 'The most valuable asset is your network',
-        lead: 'Origin is a social collaboration network built on one belief: the most valuable asset on the internet is not content or software — it is the network of people and the relationships they form.',
+        eyebrow: t('about.hero.eyebrow'),
+        title: t('about.hero.title'),
+        lead: t('about.hero.lead'),
         scene: '/assets/menu/scenes/about-scene.svg',
         accent: 'about',
       }}
@@ -61,68 +57,63 @@ export function AboutView() {
       <PageContainer>
         <Reveal>
           <Section>
-            <SectionTitle>Our mission</SectionTitle>
-            <BodyCopy>
-              Origin is building the operating system for human collaboration. Instead of five
-              separate tools for chat, communities, and projects, your relationships live in one
-              calm workspace. The social graph is the product: profiles, ideas, communities,
-              conversations, posts, projects, companies, and opportunities all hang off the same
-              network of people.
-            </BodyCopy>
-            <BodyCopy>
-              We are in early access today, with 2,400+ builders on the waitlist. As the platform
-              grows through the roadmap — Community Foundation, Collaboration, Organization, AI
-              Collaboration, and the Global Network — the mission stays the same: help people find
-              each other and build together.
-            </BodyCopy>
+            <SectionTitle>{t('about.sectionMission')}</SectionTitle>
+            <BodyCopy>{t('about.missionParagraph1')}</BodyCopy>
+            <BodyCopy>{t('about.missionParagraph2')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Guiding principles</SectionTitle>
+            <SectionTitle>{t('about.sectionPrinciples')}</SectionTitle>
             <CardGrid>
-              {PRINCIPLES.map((principle, index) => (
-                <Reveal key={principle.title} delay={`${index * 0.08}s`}>
+              {PRINCIPLE_KEYS.map((principle, index) => (
+                <Reveal key={principle} delay={`${index * 0.08}s`}>
                   <Card>
-                    <CardTitle>{principle.title}</CardTitle>
-                    <CardBody>{principle.body}</CardBody>
+                    <CardTitle>{t(`common.values.${principle}`)}</CardTitle>
+                    <CardBody>{t(`about.principles.${principle}.body`)}</CardBody>
                   </Card>
                 </Reveal>
               ))}
+              <Reveal delay={`${PRINCIPLE_KEYS.length * 0.08}s`}>
+                <Card>
+                  <CardTitle>{t('about.principles.openArchitecture.title')}</CardTitle>
+                  <CardBody>{t('about.principles.openArchitecture.body')}</CardBody>
+                </Card>
+              </Reveal>
             </CardGrid>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Founder guidance</SectionTitle>
-            <Quote>
-              &ldquo;Does this help people find each other? If no, do not build it.&rdquo;
-            </Quote>
-            <BodyCopy>
-              Every feature on Origin is measured against that question. If it does not help people
-              discover each other, form communities, or start projects together, it does not belong
-              in the workspace.
-            </BodyCopy>
+            <SectionTitle>{t('about.sectionFounder')}</SectionTitle>
+            <Quote>{t('about.founderQuote')}</Quote>
+            <BodyCopy>{t('about.founderBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Deeper reading</SectionTitle>
+            <SectionTitle>{t('about.sectionReading')}</SectionTitle>
             <BulletList>
               <ListItem>
-                Read the <AccentLink href="/docs">docs</AccentLink> for the core objects, roadmap,
-                and architecture.
+                <Trans
+                  i18nKey="about.readingDocs"
+                  components={[<AccentLink key="docs" href="/docs" />]}
+                />
               </ListItem>
               <ListItem>
-                See the <AccentLink href="/community">community</AccentLink> page for the values and
-                example communities inside the network.
+                <Trans
+                  i18nKey="about.readingCommunity"
+                  components={[<AccentLink key="community" href="/community" />]}
+                />
               </ListItem>
               <ListItem>
-                Have a question? <AccentLink href="/contact">Contact the team</AccentLink> — we
-                reply within 2 business days.
+                <Trans
+                  i18nKey="about.readingContact"
+                  components={[<AccentLink key="contact" href="/contact" />]}
+                />
               </ListItem>
             </BulletList>
           </Section>
@@ -130,31 +121,14 @@ export function AboutView() {
 
         <Reveal>
           <Section>
-            <SectionTitle>Frequently asked questions</SectionTitle>
+            <SectionTitle>{t('common.faqHeading')}</SectionTitle>
             <FaqSection>
-              <FaqItem>
-                <FaqQuestion>What is JoinOrigin?</FaqQuestion>
-                <FaqAnswer>
-                  Origin is a social collaboration network — a community OS that brings your ideas,
-                  projects, and communities into one organized space. JoinOrigin is the brand and
-                  network behind it.
-                </FaqAnswer>
-              </FaqItem>
-              <FaqItem>
-                <FaqQuestion>What does &ldquo;the network is the product&rdquo; mean?</FaqQuestion>
-                <FaqAnswer>
-                  Instead of selling software features in isolation, Origin treats the relationships
-                  between people — the social graph — as the core value it creates and protects.
-                </FaqAnswer>
-              </FaqItem>
-              <FaqItem>
-                <FaqQuestion>Is JoinOrigin open source?</FaqQuestion>
-                <FaqAnswer>
-                  The code is open under AGPL-3.0, and communication runs on the open Matrix
-                  protocol. Origin is a hosted product run by JoinOrigin — there is nothing to
-                  self-host — and your network graph stays portable. See the docs for details.
-                </FaqAnswer>
-              </FaqItem>
+              {faq.map((entry) => (
+                <FaqItem key={entry.question}>
+                  <FaqQuestion>{entry.question}</FaqQuestion>
+                  <FaqAnswer>{entry.answer}</FaqAnswer>
+                </FaqItem>
+              ))}
             </FaqSection>
           </Section>
         </Reveal>

@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
+import { I18nProvider, getDictionary } from '@joinorigin/i18n';
+
 import NotFound from './not-found';
 
 /**
@@ -11,11 +13,16 @@ import NotFound from './not-found';
  * well-known-path probes browsers/DevTools fire at page load) so 404s no
  * longer race the main page stream through the default `_not-found` machinery.
  * The component provides its own theme context (the root layout's
- * ThemeProviders live in page.tsx, which is not rendered for 404s).
+ * ThemeProviders live in page.tsx, which is not rendered for 404s) and reads
+ * its copy from the i18n provider mounted by the root layout.
  */
 
 function renderNotFound() {
-  return render(<NotFound />);
+  return render(
+    <I18nProvider locale="en" dictionary={getDictionary('en')}>
+      <NotFound />
+    </I18nProvider>,
+  );
 }
 
 describe('not-found boundary', () => {

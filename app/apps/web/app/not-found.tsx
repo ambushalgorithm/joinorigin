@@ -5,6 +5,7 @@ import Link from 'next/link';
 import styled, { css, keyframes, ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
+import { useI18n } from '@joinorigin/i18n';
 
 import { ACCENT_GRADIENT } from '../components/landingTokens';
 import { EASE } from '../components/motion';
@@ -19,6 +20,10 @@ import { EASE } from '../components/motion';
  * dark background, local not-found scene, brand mark + wordmark,
  * gradient-accent status, and a gradient CTA back home — no modal, no CSV,
  * no API involvement.
+ *
+ * i18n: all copy reads from the active locale dictionary via the root
+ * layout's `I18nProvider` (the provider wraps the boundary — it is inside
+ * `{children}`).
  *
  * The root layout wraps every route in `Registry` (style collection) but the
  * `ThemeProvider`s live in `page.tsx`, which is not rendered for unknown
@@ -167,6 +172,7 @@ const ExploreLink = styled(Link)`
 `;
 
 export default function NotFound() {
+  const { t } = useI18n();
   return (
     <ThemeProvider theme={theme}>
       <PageRoot data-testid="not-found-page">
@@ -180,17 +186,14 @@ export default function NotFound() {
         </Scene>
         <Brand>
           <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={32} height={32} />
-          <Wordmark>JoinOrigin</Wordmark>
+          <Wordmark>{t('notFound.brand')}</Wordmark>
         </Brand>
-        <Status>404</Status>
-        <Heading>Page not found</Heading>
-        <Copy>
-          The page you&rsquo;re looking for doesn&rsquo;t exist or has moved. Head back home to find
-          where your team&rsquo;s next project begins.
-        </Copy>
+        <Status>{t('notFound.status')}</Status>
+        <Heading>{t('notFound.heading')}</Heading>
+        <Copy>{t('notFound.copy')}</Copy>
         <Actions>
-          <HomeLink href="/">Back to home</HomeLink>
-          <ExploreLink href="/community">Explore communities &rarr;</ExploreLink>
+          <HomeLink href="/">{t('notFound.backHome')}</HomeLink>
+          <ExploreLink href="/community">{t('notFound.exploreCommunities')}</ExploreLink>
         </Actions>
       </PageRoot>
     </ThemeProvider>

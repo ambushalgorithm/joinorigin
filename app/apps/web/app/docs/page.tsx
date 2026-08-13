@@ -1,15 +1,17 @@
 import type { Metadata } from 'next';
 
 import { JsonLd } from '../../lib/seo/JsonLdScript';
-import { breadcrumbList, faqPage } from '../../lib/seo/jsonLd';
+import { breadcrumbList } from '../../lib/seo/jsonLd';
 import { createMetadata } from '../../lib/seo/metadata';
-import { DOCS_FAQ } from './docs-data';
 import { DocsView } from './docs-view';
 
 /**
  * Docs page (discovery §5.5) — server wrapper exporting page metadata +
- * server-rendered JSON-LD (`BreadcrumbList` + `FAQPage`). This is the
- * LLM-first documentation hub: concepts, roadmap, architecture, and FAQ.
+ * server-rendered `BreadcrumbList` JSON-LD. This is the LLM-first
+ * documentation hub: concepts, roadmap, architecture, and FAQ. The FAQPage
+ * JSON-LD is rendered by the view from the active locale dictionary
+ * (arch-i18n §7.4), mirrored 1:1 with the visible FAQ block in the initial
+ * SSR HTML.
  */
 export const metadata: Metadata = createMetadata({
   title: 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
@@ -37,7 +39,6 @@ export default function DocsPage() {
           { name: 'Docs', path: '/docs' },
         ])}
       />
-      <JsonLd data={faqPage(DOCS_FAQ)} />
     </>
   );
 }

@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import TermsPage, { metadata } from './page';
+import { renderWithI18n } from '../../test-utils';
 
 /**
  * Unit tests for the /terms page (discovery §5.9): metadata export per the
@@ -17,7 +18,7 @@ describe('terms page', () => {
   });
 
   it('renders a single h1 and plain-English terms sections', () => {
-    render(<TermsPage />);
+    renderWithI18n(<TermsPage />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Terms of Service');
@@ -31,7 +32,7 @@ describe('terms page', () => {
   });
 
   it('emits BreadcrumbList JSON-LD only', () => {
-    render(<TermsPage />);
+    renderWithI18n(<TermsPage />);
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     expect(payloads).toHaveLength(1);

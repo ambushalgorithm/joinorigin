@@ -1,5 +1,7 @@
 'use client';
 
+import { Trans, useI18n } from '@joinorigin/i18n';
+
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
 import {
@@ -17,109 +19,98 @@ import {
  * plain-English legal copy. One `<h1>` (rendered by `MenuHero`) and semantic
  * sections. The hero lead reuses the existing Acceptance paragraph verbatim
  * (spec §6 copy table).
+ *
+ * i18n: all copy reads from the active locale dictionary; the contact body
+ * uses `<Trans>` numbered tags (arch-i18n §4.1).
  */
 
+const CONTACT_EMAIL = 'hello@joinorigin.com';
+
 export function TermsView() {
+  const { t } = useI18n();
+
   return (
     <MenuPageShell
       hero={{
-        eyebrow: 'Legal',
-        title: 'Terms of Service',
-        lead: 'By using JoinOrigin (the \u201cService\u201d), you agree to these Terms of Service. If you do not agree, please do not use the Service.',
+        eyebrow: t('terms.hero.eyebrow'),
+        title: t('terms.hero.title'),
+        lead: t('terms.hero.lead'),
         scene: '/assets/menu/scenes/terms-scene.svg',
         accent: 'terms',
       }}
       ctaOverride={{
-        headline: 'Questions about Origin?',
-        subline: 'Our team replies within 2 business days.',
-        ctaLabel: 'Contact us',
+        headline: t('common.questionsAboutOrigin'),
+        subline: t('common.teamRepliesWithin2Days'),
+        ctaLabel: t('common.contactUs'),
       }}
     >
       <PageContainer>
         <Reveal>
           <Section>
-            <SectionTitle>Acceptance</SectionTitle>
-            <BodyCopy>
-              By using JoinOrigin (the &ldquo;Service&rdquo;), you agree to these Terms of Service.
-              If you do not agree, please do not use the Service.
-            </BodyCopy>
+            <SectionTitle>{t('terms.sectionAcceptance')}</SectionTitle>
+            <BodyCopy>{t('terms.acceptanceBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Accounts</SectionTitle>
-            <BodyCopy>
-              You are responsible for safeguarding your account credentials and for activity that
-              happens under your account. You must provide accurate information when you create an
-              account or join the waitlist.
-            </BodyCopy>
+            <SectionTitle>{t('terms.sectionAccounts')}</SectionTitle>
+            <BodyCopy>{t('terms.accountsBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>User content</SectionTitle>
-            <BodyCopy>
-              You retain ownership of the content you post. You grant JoinOrigin a limited license
-              to store, display, and process that content so the Service can function. You keep the
-              rights to export and delete your content.
-            </BodyCopy>
+            <SectionTitle>{t('terms.sectionUserContent')}</SectionTitle>
+            <BodyCopy>{t('terms.userContentBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Acceptable use</SectionTitle>
+            <SectionTitle>{t('terms.sectionAcceptableUse')}</SectionTitle>
             <BulletList>
-              <ListItem>Do not use the Service for unlawful activity.</ListItem>
-              <ListItem>Do not harass, abuse, or harm other members.</ListItem>
-              <ListItem>
-                Do not attempt to disrupt or gain unauthorized access to the Service.
-              </ListItem>
-              <ListItem>Do not scrape or harvest member data without permission.</ListItem>
+              <ListItem>{t('terms.acceptableUse.unlawful')}</ListItem>
+              <ListItem>{t('terms.acceptableUse.harassment')}</ListItem>
+              <ListItem>{t('terms.acceptableUse.unauthorizedAccess')}</ListItem>
+              <ListItem>{t('terms.acceptableUse.scrape')}</ListItem>
             </BulletList>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Intellectual property</SectionTitle>
-            <BodyCopy>
-              JoinOrigin&rsquo;s trademarks, logos, and site materials belong to JoinOrigin. You may
-              not use them without our permission. Open-source components remain under their
-              respective licenses.
-            </BodyCopy>
+            <SectionTitle>{t('terms.sectionIntellectualProperty')}</SectionTitle>
+            <BodyCopy>{t('terms.intellectualPropertyBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Disclaimers</SectionTitle>
-            <BodyCopy>
-              The Service is provided &ldquo;as is&rdquo; during early access. We work to keep it
-              reliable but do not guarantee that it will be uninterrupted or error-free.
-            </BodyCopy>
+            <SectionTitle>{t('terms.sectionDisclaimers')}</SectionTitle>
+            <BodyCopy>{t('terms.disclaimersBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Changes</SectionTitle>
-            <BodyCopy>
-              We may update these Terms as the Service evolves. Material changes will be announced
-              on this page, and continued use after changes means you accept the updated Terms.
-            </BodyCopy>
+            <SectionTitle>{t('terms.sectionChanges')}</SectionTitle>
+            <BodyCopy>{t('terms.changesBody')}</BodyCopy>
           </Section>
         </Reveal>
 
         <Reveal>
           <Section>
-            <SectionTitle>Contact</SectionTitle>
+            <SectionTitle>{t('terms.sectionContact')}</SectionTitle>
             <BodyCopy>
-              Questions about these Terms? Email{' '}
-              <AccentLink href="mailto:hello@joinorigin.com">hello@joinorigin.com</AccentLink> or
-              use the <AccentLink href="/contact">contact page</AccentLink>.
+              <Trans
+                i18nKey="terms.contactBody"
+                values={{ email: CONTACT_EMAIL }}
+                components={[
+                  <AccentLink key="mail" href={`mailto:${CONTACT_EMAIL}`} />,
+                  <AccentLink key="contact" href="/contact" />,
+                ]}
+              />
             </BodyCopy>
           </Section>
         </Reveal>
