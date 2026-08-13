@@ -149,7 +149,7 @@ export const SectionTitle = styled.h2`
     top: 50%;
     transform: translateY(-50%);
     width: 3px;
-    height: 20px;
+    height: 100%;
     border-radius: 2px;
     background: ${ACCENT_GRADIENT};
   }
@@ -265,7 +265,7 @@ export const FaqQuestion = styled.h3`
     top: 50%;
     transform: translateY(-50%);
     width: 3px;
-    height: 20px;
+    height: 100%;
     border-radius: 2px;
     background: ${ACCENT_GRADIENT};
   }
@@ -299,6 +299,7 @@ export const StatValue = styled.span`
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  padding-bottom: ${({ theme }) => theme.spacing.xs}px;
 `;
 
 export const StatLabel = styled.span`
@@ -314,12 +315,13 @@ export const StatLabel = styled.span`
  */
 export const StatPill = styled.div`
   display: inline-flex;
-  align-items: baseline;
-  gap: ${({ theme }) => theme.spacing.sm}px;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.lg}px;
   padding: 10px 18px;
   border: 1px solid ${({ theme }) => theme.colors.primary}59;
   background: rgba(20, 29, 60, 0.7);
   border-radius: ${({ theme }) => theme.radius.pill}px;
+  margin-bottom: ${({ theme }) => theme.typography.caption}px;
 `;
 
 /** Real `<table>` semantics for the /features comparison table (discovery §8.4). */
@@ -355,22 +357,30 @@ export const TableRow = styled.tr`
 `;
 
 export const TableHeader = styled.th`
-  padding: ${({ theme }) => theme.spacing.md}px;
+  padding: ${({ theme }) => theme.spacing.sm}px;
   text-align: start;
   font-family: ${({ theme }) => theme.fontFamilies.display};
   font-size: ${({ theme }) => theme.typography.bodyLarge}px;
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   color: ${({ theme }) => theme.colors.text};
   background: ${({ theme }) => theme.colors.surfaceElevated};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    padding: ${({ theme }) => theme.spacing.md}px;
+  }
 `;
 
 export const TableCell = styled.td`
-  padding: ${({ theme }) => theme.spacing.md}px;
+  padding: ${({ theme }) => theme.spacing.sm}px;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: ${({ theme }) => theme.typography.body}px;
   line-height: 1.6;
   color: ${({ theme }) => theme.colors.textMuted};
   vertical-align: top;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    padding: ${({ theme }) => theme.spacing.md}px;
+  }
 `;
 
 export const BulletList = styled.ul`
@@ -401,7 +411,7 @@ export const AccentLink = styled.a`
 `;
 
 export const Quote = styled.blockquote`
-  margin: 0;
+  margin: ${({ theme }) => theme.typography.caption}px 0;
   padding: ${({ theme }) => theme.spacing.lg}px;
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-inline-start: 3px solid ${({ theme }) => theme.colors.primary};

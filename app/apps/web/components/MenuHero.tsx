@@ -152,10 +152,11 @@ const HeroLead = styled(PageLead)`
 /** Hero CTA + optional stat meta. */
 const Actions = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: ${({ theme }) => theme.spacing.lg}px;
   margin-top: ${({ theme }) => theme.spacing.xl}px;
   flex-wrap: wrap;
+  flex-direction: column;
 `;
 
 const SceneColumn = styled.div`

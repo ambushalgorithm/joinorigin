@@ -70,11 +70,6 @@ const Inner = styled.div`
   justify-content: space-between;
   gap: ${({ theme }) => theme.spacing.sm}px;
   padding: ${({ theme }) => theme.spacing.md}px ${({ theme }) => theme.spacing.xl}px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
-    padding: ${({ theme }) => theme.spacing.sm}px ${({ theme }) => theme.spacing.sm}px;
-    gap: ${({ theme }) => theme.spacing.lg}px;
-  }
 `;
 
 const Brand = styled.a`
@@ -110,16 +105,13 @@ const Wordmark = styled.span`
 `;
 
 const Nav = styled.nav`
-  display: flex;
+  display: none;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xl}px;
   margin-inline-start: ${({ theme }) => theme.spacing.xxl}px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
-    display: none;
-  }
-
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    display: flex;
     margin-inline-start: ${({ theme }) => theme.spacing.xl}px;
   }
 `;
@@ -196,7 +188,7 @@ const LogInLink = styled(Link)`
 `;
 
 const Hamburger = styled.button`
-  display: none;
+  display: inline-flex;
   width: 44px;
   height: 44px;
   align-items: center;
@@ -206,8 +198,8 @@ const Hamburger = styled.button`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
-    display: inline-flex;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    display: none;
   }
 `;
 

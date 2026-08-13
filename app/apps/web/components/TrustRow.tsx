@@ -26,6 +26,7 @@ const Trust = styled.div`
   gap: ${({ theme }) => theme.spacing.md}px;
   margin-top: ${({ theme }) => theme.spacing.xl}px;
   flex-wrap: wrap;
+  overflow: hidden;
 `;
 
 const TrustAvatars = styled.div`

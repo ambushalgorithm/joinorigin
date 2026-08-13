@@ -59,7 +59,6 @@ const Content = styled.div`
   display: flex;
   align-items: center;
   gap: 48px;
-  padding: 96px 64px 64px;
 
   @media (max-width: 1024px) {
     flex-direction: column;
