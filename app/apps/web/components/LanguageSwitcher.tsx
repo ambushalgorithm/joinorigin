@@ -24,6 +24,13 @@ import {
  * the `joinorigin_locale` cookie), closes the list, and returns focus to the
  * trigger.
  *
+ * Responsive contract (TASK-278): the `header` variant is hidden below 768px
+ * (the mobile menu carries its own `mobile-panel` switcher); the `mobile-panel`
+ * variant stacks the listbox BELOW its full-width trigger (column layout) so
+ * it expands downward without floating right or overflowing the viewport, and
+ * omits the EN hints to save space on small screens. The `footer` variant is
+ * unchanged.
+ *
  * Behavior contract (spec §6/§8): ARIA listbox pattern, full keyboard nav
  * (Enter/Space/Arrows/Home/End/Escape/Tab), focus return on close, and RTL
  * mirroring via logical properties (panel aligned to the trigger's inline
@@ -79,6 +86,21 @@ const Wrap = styled.div<{ $variant: NonNullable<LanguageSwitcherProps['variant']
     $variant === 'mobile-panel'
       ? css`
           width: 100%;
+          /* Stack the listbox BELOW the trigger inside the mobile menu so it
+             expands downward instead of floating right / overflowing the
+             screen width (TASK-278). */
+          flex-direction: column;
+        `
+      : null}
+
+  ${({ $variant }) =>
+    $variant === 'header'
+      ? css`
+          /* The mobile menu (≤768px) carries its own switcher; hide the
+             header one below the breakpoint (TASK-278). */
+          @media (max-width: 768px) {
+            display: none;
+          }
         `
       : null}
 `;
@@ -162,6 +184,10 @@ const Panel = styled.div<{
           box-shadow: none;
           margin-top: ${({ theme }) => theme.spacing.xs}px;
           max-height: 40vh;
+          /* Fill the full-width mobile row without overflowing narrow
+             viewports (TASK-278). */
+          width: 100%;
+          min-width: 0;
         `
       : null}
 `;
@@ -350,7 +376,7 @@ export function LanguageSwitcher({ variant = 'header' }: LanguageSwitcherProps) 
                 {selected ? <OptionCheck>{CheckIcon}</OptionCheck> : null}
                 {LANGUAGE_LABELS[option].native}
               </OptionLabel>
-              {LANGUAGE_LABELS[option].hint ? (
+              {variant !== 'mobile-panel' && LANGUAGE_LABELS[option].hint ? (
                 <OptionHint>{LANGUAGE_LABELS[option].hint}</OptionHint>
               ) : null}
             </OptionRow>

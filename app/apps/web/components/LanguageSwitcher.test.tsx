@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
+import { renderToString } from 'react-dom/server';
+import { ServerStyleSheet, ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
 import {
@@ -16,7 +17,11 @@ import LanguageSwitcher from './LanguageSwitcher';
 /**
  * Language switcher unit tests (design spec sprint-9-i18n-switcher §10.1):
  * renders the current autonym, opens the listbox, selects → `setLocale` +
- * cookie write, keyboard navigation, and RTL dir application.
+ * cookie write, keyboard navigation, RTL dir application, and the responsive
+ * contract (TASK-278): the header variant is hidden below 768px via a
+ * `max-width: 768px` media rule, the mobile-panel variant stacks the listbox
+ * below the trigger (column layout, static panel, no min-width overflow) and
+ * omits EN hints, and the footer variant keeps its upward-opening dropdown.
  */
 
 function renderSwitcher(
@@ -30,6 +35,27 @@ function renderSwitcher(
       </ThemeProvider>
     </I18nProvider>,
   );
+}
+
+/** Renders a single variant in isolation and returns its generated CSS.
+ *  ServerStyleSheet gives a clean per-render stylesheet (jsdom style tags
+ *  accumulate across tests and jsdom does not apply `@media` to layout). */
+function cssForVariant(variant: 'header' | 'footer' | 'mobile-panel'): string {
+  const sheet = new ServerStyleSheet();
+  try {
+    renderToString(
+      sheet.collectStyles(
+        <I18nProvider locale="en" dictionary={getDictionary('en')}>
+          <ThemeProvider theme={theme}>
+            <LanguageSwitcher variant={variant} />
+          </ThemeProvider>
+        </I18nProvider>,
+      ),
+    );
+    return sheet.getStyleTags();
+  } finally {
+    sheet.seal();
+  }
 }
 
 describe('LanguageSwitcher', () => {
@@ -123,6 +149,76 @@ describe('LanguageSwitcher', () => {
     expect(screen.getByRole('listbox')).toBeVisible();
 
     await user.keyboard('{Escape}');
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    expect(trigger).toHaveFocus();
+  });
+
+  it('hides the header variant below 768px via a max-width media rule', () => {
+    const css = cssForVariant('header');
+
+    // styled-components emits the media rule into the stylesheet; jsdom does
+    // not apply `@media` to layout, so the e2e suite verifies the actual
+    // visibility at each viewport (jsdom normalizes the condition text by
+    // stripping the space after the colon).
+    expect(css).toContain('@media (max-width:768px)');
+    expect(css).toContain('display:none');
+  });
+
+  it('does not emit the mobile-hiding media rule for footer or mobile-panel variants', () => {
+    expect(cssForVariant('footer')).not.toContain('@media (max-width:768px)');
+    expect(cssForVariant('mobile-panel')).not.toContain('@media (max-width:768px)');
+  });
+
+  it('mobile-panel variant stacks the listbox below the trigger (column layout)', async () => {
+    const user = userEvent.setup();
+    const { container } = renderSwitcher('en', 'mobile-panel');
+
+    const wrap = container.querySelector('[data-testid="language-switcher-mobile-panel"]');
+    expect(wrap).not.toBeNull();
+    expect(getComputedStyle(wrap as HTMLElement).flexDirection).toBe('column');
+
+    await user.click(screen.getByRole('button', { name: 'Change language' }));
+    const listbox = screen.getByRole('listbox');
+    expect(listbox).toBeVisible();
+
+    // The panel is in normal flow (static) — it expands downward in the
+    // column layout instead of being absolutely positioned beside/right of
+    // the trigger (which previously floated right / overflowed the screen).
+    expect(getComputedStyle(listbox).position).toBe('static');
+    // It fills the full-width row without a fixed min-width that could
+    // overflow narrow viewports (jsdom returns `0` for the zero length).
+    expect(getComputedStyle(listbox).width).toBe('100%');
+    expect(getComputedStyle(listbox).minWidth).toBe('0');
+  });
+
+  it('mobile-panel variant omits EN hints on the option rows', async () => {
+    const user = userEvent.setup();
+    renderSwitcher('en', 'mobile-panel');
+
+    await user.click(screen.getByRole('button', { name: 'Change language' }));
+
+    // All 21 options still render with native autonyms.
+    expect(screen.getByRole('option', { name: /Deutsch/ })).toBeInTheDocument();
+    // The muted EN hint ("German") is omitted to save space on mobile.
+    expect(screen.queryByText('German')).not.toBeInTheDocument();
+  });
+
+  it('footer variant still opens its upward listbox and selects a locale', async () => {
+    const user = userEvent.setup();
+    renderSwitcher('en', 'footer');
+
+    const trigger = screen.getByRole('button', { name: 'Change language' });
+    await user.click(trigger);
+
+    const listbox = screen.getByRole('listbox');
+    expect(listbox).toBeVisible();
+    // Footer opens upward: the panel is absolutely positioned above the trigger.
+    expect(getComputedStyle(listbox).bottom).not.toBe('auto');
+
+    await user.click(screen.getByRole('option', { name: /Français/ }));
+    await waitFor(() => {
+      expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=fr`);
+    });
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     expect(trigger).toHaveFocus();
   });
