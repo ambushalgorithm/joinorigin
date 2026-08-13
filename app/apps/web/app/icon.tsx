@@ -27,7 +27,9 @@ const markDataUri = `data:image/svg+xml,${encodeURIComponent(MARK_SVG)}`;
 
 export const size = { width: 32, height: 32 };
 export const contentType = 'image/png';
-export const runtime = 'edge';
+// Node.js runtime: the deprecated Edge Runtime is gone (Next.js 16.3) while
+// `next/og` ImageResponse keeps rendering byte-equivalent PNG output.
+export const runtime = 'nodejs';
 
 export default function Icon() {
   return new ImageResponse(

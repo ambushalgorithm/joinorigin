@@ -29,7 +29,7 @@ import Registry from './registry';
  *   and LLMs see the structured data in the initial HTML.
  * - `AnalyticsProvider` mounts per the fe-analytics contract (§2.7) — zero
  *   visual output; adapters own script injection.
- * - i18n: the middleware resolves the locale (cookie → Accept-Language → en)
+ * - i18n: the proxy resolves the locale (cookie → Accept-Language → en)
  *   and forwards it as `x-joinorigin-locale`; this layout renders
  *   `<html lang dir>` and seeds the client `I18nProvider` with the active
  *   dictionary so the first paint is already translated (no flash). SEO
