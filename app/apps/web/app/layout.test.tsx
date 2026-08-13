@@ -24,7 +24,7 @@ jest.mock('next/navigation', () => ({
   },
 }));
 
-// The i18n layout reads the middleware-forwarded locale header (arch-i18n
+// The i18n layout reads the proxy-forwarded locale header (arch-i18n
 // §6.3). Default to English for the layout tests; the value can be overridden
 // per test via the mutable `mockLocaleHeader`.
 const mockLocaleHeader: { value: string | null } = { value: 'en' };
@@ -114,10 +114,10 @@ describe('root layout', () => {
     expect(types).toEqual(expect.arrayContaining(['Organization', 'WebSite']));
   });
 
-  it('renders <html lang dir> from the middleware-forwarded locale (en)', async () => {
+  it('renders <html lang dir> from the proxy-forwarded locale (en)', async () => {
     const element = await RootLayout({ children: <main>page content</main> });
     render(element);
-    // The layout resolves the locale from the middleware-forwarded header and
+    // The layout resolves the locale from the proxy-forwarded header and
     // renders <html lang={locale} dir={dir}> (React 19 renders the <html>
     // singleton into the document; the element tree carries the attributes).
     expect(element.props.lang).toBe('en');

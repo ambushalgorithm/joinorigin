@@ -3,7 +3,9 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { resolveLocale } from '@joinorigin/i18n';
 
 /**
- * Locale resolution middleware (arch-i18n §6.3).
+ * Locale resolution proxy (arch-i18n §6.3) — Next.js 16 `proxy.ts`
+ * convention (renamed from `middleware.ts` by the `middleware-to-proxy`
+ * codemod). Proxy defaults to the Node.js runtime.
  *
  * Precedence: cookie `joinorigin_locale` wins → Accept-Language header →
  * `DEFAULT_LOCALE` (`en`). The resolved locale is forwarded as the
@@ -14,7 +16,7 @@ import { resolveLocale } from '@joinorigin/i18n';
 
 export const LOCALE_COOKIE = 'joinorigin_locale';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
   const acceptLanguage = request.headers.get('accept-language') ?? undefined;
   const locale = cookieLocale ? resolveLocale(cookieLocale) : resolveLocale(acceptLanguage);

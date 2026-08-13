@@ -6,7 +6,7 @@ import { getDictionary, resolveLocale, type Locale } from '@joinorigin/i18n';
  * Server-side i18n helpers (arch-i18n §6.3, §7.4).
  *
  * The root layout and page wrappers read the locale forwarded by the
- * middleware (`x-joinorigin-locale`) so server-rendered HTML — `<html
+ * proxy (`x-joinorigin-locale`) so server-rendered HTML — `<html
  * lang dir>` and the FAQPage JSON-LD mirror — uses the same resolved locale
  * as the client provider. SEO metadata internals stay hardcoded English per
  * the arch scope boundary (§1.2).
