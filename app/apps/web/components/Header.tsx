@@ -68,11 +68,12 @@ const Inner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: ${({ theme }) => theme.spacing.lg}px;
-  padding: ${({ theme }) => theme.spacing.lg}px 64px;
+  gap: ${({ theme }) => theme.spacing.sm}px;
+  padding: ${({ theme }) => theme.spacing.md}px ${({ theme }) => theme.spacing.xl}px;
 
-  @media (max-width: 768px) {
-    padding: 16px 20px;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    padding: ${({ theme }) => theme.spacing.sm}px ${({ theme }) => theme.spacing.sm}px;
+    gap: ${({ theme }) => theme.spacing.lg}px;
   }
 `;
 
@@ -102,20 +103,20 @@ const Wordmark = styled.span`
   font-size: 20px;
   letter-spacing: -0.3px;
   color: ${({ theme }) => theme.colors.text};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    display: none;
+  }
 `;
 
 const Nav = styled.nav`
-  display: flex;
+  display: none;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xl}px;
   margin-inline-start: ${({ theme }) => theme.spacing.xxl}px;
 
-  @media (max-width: 768px) {
-    display: none;
-  }
-
-  @media (max-width: 1024px) {
-    gap: ${({ theme }) => theme.spacing.lg}px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.wide}px) {
+    display: flex;
     margin-inline-start: ${({ theme }) => theme.spacing.xl}px;
   }
 `;
@@ -155,11 +156,7 @@ const NavLink = styled(Link)`
 const Right = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.xl}px;
-
-  @media (max-width: 1024px) {
-    gap: ${({ theme }) => theme.spacing.lg}px;
-  }
+  gap: ${({ theme }) => theme.spacing.lg}px;
 `;
 
 const LogInLink = styled(Link)`
@@ -196,7 +193,7 @@ const LogInLink = styled(Link)`
 `;
 
 const Hamburger = styled.button`
-  display: none;
+  display: inline-flex;
   width: 44px;
   height: 44px;
   align-items: center;
@@ -206,8 +203,8 @@ const Hamburger = styled.button`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text};
 
-  @media (max-width: 768px) {
-    display: inline-flex;
+  @media (min-width: ${({ theme }) => theme.breakpoints.wide}px) {
+    display: none;
   }
 `;
 
@@ -220,10 +217,6 @@ const MobilePanel = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radius.lg}px;
   margin: 0 20px 16px;
-
-  @media (min-width: 769px) {
-    display: none;
-  }
 `;
 
 const MobileLink = styled(Link)`
