@@ -12,6 +12,8 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import LogoMarquee from '../components/LogoMarquee';
+import Reveal from '../components/Reveal';
+import { BRAND_MESH } from '../components/landingTokens';
 import { WaitlistModalProvider } from '../components/WaitlistModal/WaitlistModalProvider';
 import { faqEntries, faqNamespace } from '../lib/faq';
 import { JsonLd } from '../lib/seo/JsonLdScript';
@@ -77,11 +79,15 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-/** Full-page hero background with the dark fallback beneath (spec §3, §5.2). */
+/**
+ * Full-page hero background with the dark fallback beneath and the Origin
+ * Spectrum brand mesh layered over the webp (spec §3, §5.2, sprint-10-menu-anim
+ * §3.4 `BRAND_MESH`).
+ */
 const PageRoot = styled.div`
   min-height: 100svh;
   background-color: ${theme.colors.background};
-  background-image: url(/assets/hero/hero-background.webp);
+  background-image: ${BRAND_MESH}, url(/assets/hero/hero-background.webp);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -155,19 +161,26 @@ export function HomeView() {
               <main>
                 <Hero />
                 {/* Visible definition paragraph — exact phrase for LLM entity
-                    clarity (discovery §5.1, §6). */}
-                <Definition>{t('home.definition')}</Definition>
-                <LogoMarquee />
+                    clarity (discovery §5.1, §6). ScrollTrigger reveal (spec
+                    sprint-10-menu-anim §5.8). */}
+                <Reveal>
+                  <Definition>{t('home.definition')}</Definition>
+                </Reveal>
+                <Reveal>
+                  <LogoMarquee />
+                </Reveal>
                 {/* Visible FAQ block, mirrored 1:1 in FAQPage JSON-LD (§8.3). */}
-                <FaqSection aria-labelledby="home-faq-heading">
-                  <FaqHeading id="home-faq-heading">{t('common.faqHeading')}</FaqHeading>
-                  {homeFaq.map((faq) => (
-                    <FaqItem key={faq.question}>
-                      <FaqQuestion>{faq.question}</FaqQuestion>
-                      <FaqAnswer>{faq.answer}</FaqAnswer>
-                    </FaqItem>
-                  ))}
-                </FaqSection>
+                <Reveal>
+                  <FaqSection aria-labelledby="home-faq-heading">
+                    <FaqHeading id="home-faq-heading">{t('common.faqHeading')}</FaqHeading>
+                    {homeFaq.map((faq) => (
+                      <FaqItem key={faq.question}>
+                        <FaqQuestion>{faq.question}</FaqQuestion>
+                        <FaqAnswer>{faq.answer}</FaqAnswer>
+                      </FaqItem>
+                    ))}
+                  </FaqSection>
+                </Reveal>
               </main>
               <Footer />
             </Screen>

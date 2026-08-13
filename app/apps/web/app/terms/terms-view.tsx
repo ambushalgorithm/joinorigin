@@ -38,7 +38,7 @@ export function TermsView() {
         eyebrow: t('terms.hero.eyebrow'),
         title: t('terms.hero.title'),
         lead: t('terms.hero.lead'),
-        scene: '/assets/menu/scenes/terms-scene.svg',
+        scene: 'terms',
         accent: 'terms',
         cta: { variant: 'contact', label: t('common.contactUs'), href: '/contact' },
       }}

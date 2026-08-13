@@ -1,70 +1,65 @@
 'use client';
 
-import styled, { keyframes } from 'styled-components';
+import { useRef } from 'react';
+import styled from 'styled-components';
 
+import { PAGE_SCHEMES } from './menuTokens';
 import { HeroScene } from './menuPagePrimitives';
+import { useSceneMotion } from './motion';
+import { SCENE_MAP, type SceneKey } from './scenes/sceneTypes';
 
 /**
- * Upgraded menu-page scene art (spec sprint-10-menu-redesign §4.2).
+ * Menu-page scene art — inline SVG + GSAP (design spec sprint-10-menu-anim
+ * §5.5, the TASK-283 icon-spin fix).
  *
- * Keeps the Sprint 8 loading mechanism — a plain `<img>` of the local SVG
- * (`next/image` is not used for SVGs) — and adds:
- *  - the per-page glow painted behind the art (`::before`, unchanged
- *    `HeroScene` behavior),
- *  - a faint decorative orbit ring (`::after`, 1px border, 60s
- *    counter-rotating spin) for ambient life.
+ * The 8 scene SVGs are inlined into the DOM as React components so GSAP
+ * drives orbit rotation / node counter-rotation / hub float / background ring
+ * in ONE document (the old `<img>`-loaded SVG was a sandboxed document the
+ * page could not reach — the ring spun but the icons stayed stagnant).
  *
- * The float/orbit animation itself lives INSIDE the SVG files (an `<img>`
- * SVG is a separate document, so page CSS cannot reach its groups; the SVG's
- * own embedded `<style>` animates `[data-scene]` groups and honors
- * `prefers-reduced-motion`). The global reduced-motion kill-switch in
- * `MenuPageShell` also collapses the wrapper ring.
+ * The background ring is now a real `.scene-ring` element (was a CSS `::after`)
+ * so GSAP rotates it; no CSS spin keyframes remain.
  */
 
-const ringSpin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-`;
-
-/** Hero scene wrapper — glow `::before` + orbit ring `::after` (§4.2). */
+/** Hero scene wrapper — glow `::before` + GSAP-driven `.scene-ring` element. */
 const Scene = styled(HeroScene)`
-  &::after {
-    content: '';
+  .scene-ring {
     position: absolute;
     inset: 12%;
     border-radius: 50%;
-    border: 1px solid rgba(79, 125, 249, 0.18);
+    border: 1px solid rgba(93, 124, 255, 0.18);
     box-shadow:
-      0 0 0 34px rgba(79, 125, 249, 0.04),
-      0 0 0 35px rgba(79, 125, 249, 0.1);
+      0 0 0 34px rgba(93, 124, 255, 0.04),
+      0 0 0 35px rgba(93, 124, 255, 0.1);
     pointer-events: none;
-    animation: ${ringSpin} 60s linear infinite;
   }
 `;
 
 export interface MenuSceneProps {
-  /** Local SVG scene path, e.g. '/assets/menu/scenes/features-scene.svg'. */
-  src: string;
-  /** Per-page radial glow (PAGE_ACCENTS[key].glow) painted behind the art. */
+  /** Scene key — inline React scene component (replaces the old img src). */
+  scene: SceneKey;
+  /** Per-page glow mesh (PAGE_SCHEMES[key].glow) painted behind the art. */
   glow?: string;
   /** Accessible name for the decorative scene (usually empty string). */
   alt?: string;
 }
 
-export function MenuScene({ src, glow, alt = '' }: MenuSceneProps) {
+export function MenuScene({ scene, glow, alt = '' }: MenuSceneProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const SceneArt = SCENE_MAP[scene];
+  const scheme = PAGE_SCHEMES[scene];
+
+  useSceneMotion(rootRef);
+
   return (
-    <Scene $glow={glow}>
-      <img
-        src={src}
+    <Scene $glow={glow} ref={rootRef}>
+      {/* background ring becomes a real element (GSAP target; was ::after) */}
+      <span className="scene-ring" aria-hidden="true" data-testid="scene-ring" />
+      <SceneArt
         alt={alt}
-        aria-hidden="true"
-        width={560}
-        height={420}
-        data-testid="menu-hero-scene"
+        primary={scheme.primary}
+        secondary={scheme.secondary}
+        gradient={scheme.gradient}
       />
     </Scene>
   );

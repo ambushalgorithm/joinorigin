@@ -1,6 +1,10 @@
 'use client';
 
-import styled, { css, keyframes } from 'styled-components';
+import { useRef } from 'react';
+import styled from 'styled-components';
+
+import { useGSAP } from '@gsap/react';
+import { gsap } from '../lib/gsap';
 
 import { useI18n } from '@joinorigin/i18n';
 
@@ -12,31 +16,34 @@ import {
   HERO_BAND_MIN_HEIGHT,
   MENU_AMBIENT_URL,
   MENU_GRID_URL,
-  PAGE_ACCENTS,
+  PAGE_SCHEMES,
   type PageAccentKey,
 } from './menuTokens';
 import { Eyebrow, PageLead, PageTitle } from './menuPagePrimitives';
-import { EASE, useEntrance } from './motion';
+import { HERO_STAGGER } from './motion';
 import TrustRow from './TrustRow';
+import type { SceneKey } from './scenes/sceneTypes';
 
 /**
- * Menu-page hero band (spec sprint-8 §4.1, extended sprint-10 §4.1).
+ * Menu-page hero band (spec sprint-8 §4.1, extended sprint-10 §4.1,
+ * GSAP elevation sprint-10-menu-anim §5.4).
  *
  * Homepage-atmosphere hero: full-width band with the ambient webp texture
  * (mix-blend screen at 0.5), a tiled dot grid, the per-page radial glow plus
  * a fixed cool bottom-left glow, and a bottom vignette melting into the page
  * body. Two columns on desktop: eyebrow + H1 + lead + hero CTA (+ optional
- * social-proof meta) on the left; the upgraded scene art on the right.
+ * social-proof meta) on the left; the upgraded inline scene art on the right.
  *
- * The H1 reuses the existing `PageTitle` visual style so every menu page
- * still renders exactly one `<h1>` (pages pass their current PageHeader block
- * content through the `hero` prop of `MenuPageShell`). `HeroCta` renders a
- * `<button>` (opens the shared waitlist modal) or an `<a href="/contact">`
- * on legal pages; `TrustRow` / stat meta add no headings.
+ * GSAP staggered entrance: `data-hero` hooks on each column piece (eyebrow /
+ * title wrapper / lead / actions / meta / scene) animate via a single
+ * timeline inside `gsap.matchMedia()` under
+ * `(prefers-reduced-motion: no-preference)` — reduced-motion users and
+ * no-JS/SSR see the final static state (progressive enhancement). The `<h1>`
+ * (PageTitle) is animated through its wrapper, never the tag.
  *
  * Semantics: a `section` (NOT a `header` — the sticky top nav `Header` is the
  * only `header` landmark per arch §5.1). The scene is decorative
- * (`alt=""` + `aria-hidden="true"`).
+ * (`aria-hidden`).
  */
 
 export interface MenuHeroProps {
@@ -46,8 +53,8 @@ export interface MenuHeroProps {
   title: string;
   /** Lead paragraph (verbatim page-lead copy). */
   lead?: React.ReactNode;
-  /** Local SVG scene path, e.g. '/assets/menu/scenes/features-scene.svg'. */
-  scene?: string;
+  /** Scene key — inline React scene component (was a local SVG path). */
+  scene?: SceneKey;
   /** Accessible name for the decorative scene (usually empty string). */
   sceneAlt?: string;
   /** Page accent key from menuTokens (glow color). */
@@ -66,28 +73,6 @@ export interface MenuHeroProps {
   /** Ambient hero atmosphere. Default true (§4.1). */
   ambient?: boolean;
 }
-
-const fadeUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const scaleIn = keyframes`
-  from {
-    opacity: 0;
-    transform: scale(0.94);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-`;
 
 const Hero = styled.section<{ $ambient: boolean; $glow: string }>`
   position: relative;
@@ -112,8 +97,8 @@ const Hero = styled.section<{ $ambient: boolean; $glow: string }>`
     inset: 0;
     background:
       ${({ $glow }) => $glow},
-      radial-gradient(500px at 12% 88%, rgba(138, 180, 255, 0.1), transparent 70%),
-      linear-gradient(180deg, transparent, rgba(15, 17, 21, 0.85));
+      radial-gradient(500px at 12% 88%, rgba(139, 92, 246, 0.1), transparent 70%),
+      linear-gradient(180deg, transparent, rgba(10, 16, 34, 0.85));
     pointer-events: none;
   }
 
@@ -155,14 +140,8 @@ const Content = styled.div`
   }
 `;
 
-const TextColumn = styled.div<{ $entered: boolean }>`
+const TextColumn = styled.div`
   min-width: 0;
-  animation: ${({ $entered }) =>
-    $entered
-      ? css`
-          ${fadeUp} 0.8s ${EASE} both
-        `
-      : 'none'};
 `;
 
 /** Lead is max-width 640px inside the hero (spec §4.1), vs 720px elsewhere. */
@@ -170,31 +149,19 @@ const HeroLead = styled(PageLead)`
   max-width: 640px;
 `;
 
-/** Hero CTA + optional stat meta — delayed +0.15s (spec §7). */
-const Actions = styled.div<{ $entered: boolean }>`
+/** Hero CTA + optional stat meta. */
+const Actions = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.lg}px;
   margin-top: ${({ theme }) => theme.spacing.xl}px;
   flex-wrap: wrap;
-  animation: ${({ $entered }) =>
-    $entered
-      ? css`
-          ${fadeUp} 0.8s ${EASE} 0.15s both
-        `
-      : 'none'};
 `;
 
-const SceneColumn = styled.div<{ $entered: boolean }>`
+const SceneColumn = styled.div`
   display: flex;
   justify-content: flex-end;
   min-width: 0;
-  animation: ${({ $entered }) =>
-    $entered
-      ? css`
-          ${scaleIn} 1.1s ${EASE} both
-        `
-      : 'none'};
 
   @media (max-width: 1024px) {
     justify-content: center;
@@ -214,35 +181,115 @@ export function MenuHero({
   meta,
   ambient = true,
 }: MenuHeroProps) {
-  const entered = useEntrance();
+  const heroRef = useRef<HTMLElement>(null);
   const { t } = useI18n();
-  const pageAccent = PAGE_ACCENTS[accent];
+  const pageScheme = PAGE_SCHEMES[accent];
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const q = gsap.utils.selector(heroRef);
+        // Only animate elements that exist — GSAP warns on empty targets
+        // (e.g. no scene / no meta), which would spam the console.
+        const has = (attr: string) => q(`[data-hero="${attr}"]`).length > 0;
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        if (has('eyebrow')) {
+          tl.fromTo(
+            q('[data-hero="eyebrow"]'),
+            { autoAlpha: 0, y: 24 },
+            { autoAlpha: 1, y: 0, duration: 0.6 },
+            HERO_STAGGER.eyebrow,
+          );
+        }
+        if (has('title')) {
+          tl.fromTo(
+            q('[data-hero="title"]'),
+            { autoAlpha: 0, y: 32 },
+            { autoAlpha: 1, y: 0, duration: 0.7 },
+            HERO_STAGGER.title,
+          );
+        }
+        if (has('lead')) {
+          tl.fromTo(
+            q('[data-hero="lead"]'),
+            { autoAlpha: 0, y: 28 },
+            { autoAlpha: 1, y: 0, duration: 0.7 },
+            HERO_STAGGER.lead,
+          );
+        }
+        if (has('actions')) {
+          tl.fromTo(
+            q('[data-hero="actions"]'),
+            { autoAlpha: 0, y: 24 },
+            { autoAlpha: 1, y: 0, duration: 0.6 },
+            HERO_STAGGER.actions,
+          );
+        }
+        if (has('meta')) {
+          tl.fromTo(
+            q('[data-hero="meta"]'),
+            { autoAlpha: 0, y: 20 },
+            { autoAlpha: 1, y: 0, duration: 0.6 },
+            HERO_STAGGER.meta,
+          );
+        }
+        if (has('scene')) {
+          tl.fromTo(
+            q('[data-hero="scene"]'),
+            { autoAlpha: 0, scale: 0.94 },
+            { autoAlpha: 1, scale: 1, duration: 0.9, ease: 'power2.out' },
+            HERO_STAGGER.scene,
+          );
+        }
+      });
+    },
+    { scope: heroRef },
+  );
 
   return (
-    <Hero $ambient={ambient} $glow={pageAccent.glow} data-testid="menu-hero">
+    <Hero $ambient={ambient} $glow={pageScheme.glow} data-testid="menu-hero" ref={heroRef}>
       <GridLayer $ambient={ambient} aria-hidden="true" />
       <Content>
-        <TextColumn $entered={entered}>
-          {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-          <PageTitle>{title}</PageTitle>
-          {lead ? <HeroLead>{lead}</HeroLead> : null}
-          {cta || meta?.stat ? (
-            <Actions $entered={entered}>
-              {cta ? <HeroCta variant={cta.variant} label={cta.label} href={cta.href} /> : null}
-              {meta?.stat ? (
-                <CountUpStat
-                  valueText={t('community.joinStatValue')}
-                  label={t('community.joinStatLabel')}
-                />
-              ) : null}
-            </Actions>
+        <TextColumn>
+          {eyebrow ? (
+            <div data-hero="eyebrow">
+              <Eyebrow>{eyebrow}</Eyebrow>
+            </div>
           ) : null}
-          {meta?.avatars ? <TrustRow /> : null}
+          <div data-hero="title">
+            <PageTitle>{title}</PageTitle>
+          </div>
+          {lead ? (
+            <div data-hero="lead">
+              <HeroLead>{lead}</HeroLead>
+            </div>
+          ) : null}
+          {cta || meta?.stat ? (
+            <div data-hero="actions">
+              <Actions>
+                {cta ? <HeroCta variant={cta.variant} label={cta.label} href={cta.href} /> : null}
+                {meta?.stat ? (
+                  <CountUpStat
+                    valueText={t('community.joinStatValue')}
+                    label={t('community.joinStatLabel')}
+                  />
+                ) : null}
+              </Actions>
+            </div>
+          ) : null}
+          {meta?.avatars ? (
+            <div data-hero="meta">
+              <TrustRow />
+            </div>
+          ) : null}
         </TextColumn>
         {scene ? (
-          <SceneColumn $entered={entered}>
-            <MenuScene src={scene} glow={pageAccent.glow} alt={sceneAlt} />
-          </SceneColumn>
+          <div data-hero="scene">
+            <SceneColumn>
+              <MenuScene scene={scene} glow={pageScheme.glow} alt={sceneAlt} />
+            </SceneColumn>
+          </div>
         ) : null}
       </Content>
     </Hero>

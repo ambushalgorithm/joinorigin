@@ -1,7 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import { useRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
+
+import { useGSAP } from '@gsap/react';
+import { gsap } from '../lib/gsap';
 
 import { useI18n } from '@joinorigin/i18n';
 
@@ -10,16 +14,20 @@ import { AVATAR_FLYIN_DELAYS, EASE, useEntrance, useReducedMotion } from './moti
 import { formatCount, useCountUp } from './useCountUp';
 
 /**
- * Hero right — orbit circles visualization (spec §5.4).
+ * Hero right — orbit circles visualization (spec §5.4, GSAP elevation
+ * sprint-10-menu-anim §5.7).
  *
  * 720×720 container with 4 concentric rings that spin (1px gradient border via
  * the mask technique), 9 avatar chips orbiting on the rings, and a center hub
  * that count-up animates `0 → 2,400+ Members`.
  *
- * Chips are positioned with the prompt's transform pattern
- * `translate(-50%,-50%) rotate(Xdeg) translate(radius) rotate(-Xdeg)` inside a
- * spinning orbit, so they travel around the ring. Each chip fly-in is
- * staggered (0.6s → 2.3s). Everything respects prefers-reduced-motion.
+ * Ring spins + chip fly-ins are GSAP-driven (`orbit-1..4` / `orbit-chip`
+ * class hooks, testids unchanged); the container entrance stays a CSS
+ * scale-in. Chips keep the `rotate(angle) translate(radius) rotate(-angle)`
+ * positioning inside the spinning ring container — GSAP rotation on the ring
+ * element moves them (DOM transform, verifiable in e2e). Reduced-motion users
+ * get final states instantly (no ring tweens; count-up honors the
+ * `useReducedMotion` hook).
  *
  * i18n (arch-i18n §9.1): member alts + "Members" label come from the active
  * locale; `formatCount` groups with the active locale.
@@ -49,47 +57,14 @@ const ORBIT_CHIP_GLOWS = [
 interface OrbitConfig {
   orbit: 1 | 2 | 3 | 4;
   diameter: number;
-  durationSeconds: number;
-  counterClockwise: boolean;
 }
 
 const ORBITS: OrbitConfig[] = [
-  { orbit: 1, diameter: 353, durationSeconds: 30, counterClockwise: true },
-  { orbit: 2, diameter: 501, durationSeconds: 40, counterClockwise: false },
-  { orbit: 3, diameter: 649, durationSeconds: 50, counterClockwise: false },
-  { orbit: 4, diameter: 797, durationSeconds: 60, counterClockwise: true },
+  { orbit: 1, diameter: 353 },
+  { orbit: 2, diameter: 501 },
+  { orbit: 3, diameter: 649 },
+  { orbit: 4, diameter: 797 },
 ];
-
-const spinCw = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const spinCcw = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-`;
-
-const flyIn = keyframes`
-  0% {
-    transform: scale(0.3) rotate(-180deg);
-    filter: blur(8px);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    filter: blur(0px);
-    opacity: 1;
-  }
-`;
 
 const heroScaleIn = keyframes`
   from {
@@ -157,11 +132,8 @@ const ScaleFrame = styled.div`
   }
 `;
 
-const Orbit = styled.div<{
-  $diameter: number;
-  $duration: number;
-  $counterClockwise: boolean;
-}>`
+/** Ring shell — GSAP rotates it (class hook `orbit-{n}`), no CSS keyframes. */
+const Orbit = styled.div<{ $diameter: number }>`
   position: absolute;
   left: ${({ $diameter }) => (CONTAINER_SIZE - $diameter) / 2}px;
   top: ${({ $diameter }) => (CONTAINER_SIZE - $diameter) / 2}px;
@@ -185,13 +157,6 @@ const Orbit = styled.div<{
     mask-composite: exclude;
     padding: 1px;
   }
-
-  animation: ${({ $counterClockwise }) => ($counterClockwise ? spinCcw : spinCw)}
-    ${({ $duration }) => $duration}s linear infinite;
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
 `;
 
 const Hub = styled.div`
@@ -209,12 +174,7 @@ const Hub = styled.div`
   justify-content: center;
   gap: ${({ theme }) => theme.spacing.xs}px;
   text-align: center;
-  background: radial-gradient(circle, rgba(79, 125, 249, 0.12), transparent 70%);
-  animation: ${spinCw} 30s linear infinite;
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
+  background: radial-gradient(circle, rgba(93, 124, 255, 0.12), transparent 70%);
 `;
 
 const CountValue = styled.span`
@@ -248,7 +208,8 @@ const ChipPositioner = styled.div<{ $angle: number; $radius: number }>`
     translate(${({ $radius }) => $radius}px) rotate(${({ $angle }) => -$angle}deg);
 `;
 
-const Chip = styled.div<{ $size: number; $glow: string; $delay: number; $entered: boolean }>`
+/** Avatar chip — GSAP fly-in via class hook `orbit-chip` (no CSS keyframes). */
+const Chip = styled.div<{ $size: number; $glow: string }>`
   position: absolute;
   left: ${({ $size }) => -$size / 2}px;
   top: ${({ $size }) => -$size / 2}px;
@@ -259,17 +220,6 @@ const Chip = styled.div<{ $size: number; $glow: string; $delay: number; $entered
   box-shadow: 0 0 20px ${({ $glow }) => $glow};
   overflow: hidden;
   background: ${({ theme }) => theme.colors.surfaceElevated};
-  animation: ${({ $entered, $delay }) =>
-    $entered
-      ? css`
-          ${flyIn} 0.8s ${EASE} ${$delay}s both
-        `
-      : 'none'};
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-    opacity: 1;
-  }
 `;
 
 /**
@@ -286,7 +236,31 @@ const AvatarImage = styled(Image)`
 
 export function OrbitViz() {
   const entered = useEntrance();
+  const rootRef = useRef<HTMLDivElement>(null);
   const { t, locale } = useI18n();
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const q = gsap.utils.selector(rootRef);
+        const rings = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
+        rings
+          .to(q('.orbit-1'), { rotation: -360, duration: 30 }, 0)
+          .to(q('.orbit-2'), { rotation: 360, duration: 40 }, 0)
+          .to(q('.orbit-3'), { rotation: 360, duration: 50 }, 0)
+          .to(q('.orbit-4'), { rotation: -360, duration: 60 }, 0)
+          // The hub sits inside orbit-1; counter-rotate so the count-up stays upright.
+          .to(q('.orbit-hub'), { rotation: 360, duration: 30 }, 0);
+        gsap.fromTo(
+          q('.orbit-chip'),
+          { autoAlpha: 0, scale: 0.3 },
+          { autoAlpha: 1, scale: 1, duration: 0.8, stagger: 0.2, ease: 'back.out(1.6)' },
+        );
+      });
+    },
+    { scope: rootRef },
+  );
 
   const chips = Array.from({ length: CHIP_AVATAR_COUNT }, (_, i) => {
     const number = i + 1;
@@ -303,14 +277,18 @@ export function OrbitViz() {
   });
 
   return (
-    <Outer $entered={entered} data-testid="orbit-viz" aria-label={t('orbitViz.ariaLabel')}>
+    <Outer
+      $entered={entered}
+      ref={rootRef}
+      data-testid="orbit-viz"
+      aria-label={t('orbitViz.ariaLabel')}
+    >
       <ScaleFrame>
         {ORBITS.map((orbit) => (
           <Orbit
             key={orbit.orbit}
+            className={`orbit-${orbit.orbit}`}
             $diameter={orbit.diameter}
-            $duration={orbit.durationSeconds}
-            $counterClockwise={orbit.counterClockwise}
             data-testid={`orbit-${orbit.orbit}`}
           >
             {orbit.orbit === 1 ? <OrbitHub locale={locale} /> : null}
@@ -318,7 +296,7 @@ export function OrbitViz() {
               .filter((chip) => chip.orbit === orbit.orbit)
               .map((chip) => (
                 <ChipPositioner key={chip.src} $angle={chip.angle} $radius={chip.radius}>
-                  <Chip $size={chip.size} $glow={chip.glow} $delay={chip.delay} $entered={entered}>
+                  <Chip className="orbit-chip" $size={chip.size} $glow={chip.glow}>
                     <AvatarImage
                       src={chip.src}
                       alt={chip.alt}
@@ -341,7 +319,7 @@ function OrbitHub({ locale }: { locale: string }) {
   const { t } = useI18n();
 
   return (
-    <Hub data-testid="orbit-hub">
+    <Hub className="orbit-hub" data-testid="orbit-hub">
       <CountValue>{formatCount(count, locale)}+</CountValue>
       <CountLabel>{t('orbitViz.members')}</CountLabel>
     </Hub>

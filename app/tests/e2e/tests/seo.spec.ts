@@ -287,6 +287,7 @@ test.describe('LLM-crawler friendliness: single H1 + semantic structure (arch §
   for (const path of PATHS) {
     test(`${path} has exactly one H1 and no empty visible text`, async ({ page }) => {
       await page.goto(path);
+      await page.waitForLoadState('networkidle');
       await expect(page.locator('h1')).toHaveCount(1);
       const h1Text = (await page.locator('h1').innerText()).trim();
       expect(h1Text.length).toBeGreaterThan(0);

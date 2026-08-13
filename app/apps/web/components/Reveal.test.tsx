@@ -6,11 +6,14 @@ import { theme } from '@joinorigin/design';
 import Reveal from './Reveal';
 
 /**
- * Unit tests for the scroll-reveal wrapper (spec sprint-8 §4.3).
+ * Unit tests for the scroll-reveal wrapper (spec sprint-8 §4.3, GSAP
+ * elevation sprint-10-menu-anim §5.6).
  *
- * Reveal is purely visual: children stay in the DOM and readable regardless
- * of visibility state, and in jsdom `IntersectionObserver` is unavailable so
- * `useInView` falls back to visible (progressive enhancement).
+ * Reveal is now GSAP ScrollTrigger-driven (`once: true`, reduced-motion-safe)
+ * and purely visual: children stay in the DOM and readable regardless of
+ * visibility state. In jsdom there is no real scroll, so we assert the
+ * progressive-enhancement contract — content is always present and never
+ * hidden by markup (GSAP `fromTo` only tweens styles client-side).
  */
 
 function renderReveal(props: Partial<React.ComponentProps<typeof Reveal>> = {}) {
@@ -37,10 +40,11 @@ describe('Reveal', () => {
     expect(wrap?.tagName).toBe('SECTION');
   });
 
-  it('applies a delay to the reveal transition', () => {
+  it('keeps children readable (final-visible content, progressive enhancement)', () => {
     const { container } = renderReveal({ delay: '0.16s' });
     const wrap = container.querySelector('[data-testid="reveal"]') as HTMLElement;
-    const transition = getComputedStyle(wrap).transition;
-    expect(transition).toContain('0.16s');
+    // Content is in the DOM and the wrapper never hides it via markup.
+    expect(wrap).not.toBeNull();
+    expect(wrap?.textContent).toContain('Reveal content stays in the DOM.');
   });
 });

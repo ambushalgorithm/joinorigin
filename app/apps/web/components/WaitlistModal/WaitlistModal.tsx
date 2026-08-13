@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
+import { colors } from '@joinorigin/design';
 import { LoadingIndicator } from '@joinorigin/ui';
 
 import { LeadErrorField, localizedErrorKey, submitLead } from './leadsApi';
@@ -48,7 +49,7 @@ const Backdrop = styled.div`
   align-items: center;
   justify-content: center;
   padding: ${({ theme }) => theme.spacing.lg}px;
-  background: rgba(15, 17, 21, 0.72);
+  background: ${({ theme }) => theme.colors.scrim};
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 `;
@@ -158,7 +159,7 @@ const ErrorBanner = styled.div`
   padding: ${({ theme }) => theme.spacing.sm}px ${({ theme }) => theme.spacing.md}px;
   border-radius: ${({ theme }) => theme.radius.md}px;
   border: 1px solid ${({ theme }) => theme.colors.destructive};
-  background: rgba(229, 72, 77, 0.12);
+  background: ${({ theme }) => theme.colors.destructiveSoft};
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: 14px;
   color: ${({ theme }) => theme.colors.text};
@@ -186,7 +187,7 @@ const SubmitButton = styled.button`
 
   &:hover:not(:disabled),
   &:focus-visible {
-    background: #3d66d6;
+    background: ${({ theme }) => theme.colors.primaryHover};
   }
 `;
 
@@ -200,10 +201,10 @@ const LegalNote = styled.p`
 
 const SuccessIcon = (
   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-    <circle cx="24" cy="24" r="22" stroke="#30A46C" strokeWidth="2" />
+    <circle cx="24" cy="24" r="22" stroke={colors.success} strokeWidth="2" />
     <path
       d="M14 24.5l7 7 13-14"
-      stroke="#30A46C"
+      stroke={colors.success}
       strokeWidth="3"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -255,7 +256,7 @@ const DoneButton = styled.button`
 
   &:hover,
   &:focus-visible {
-    background: #3d66d6;
+    background: ${({ theme }) => theme.colors.primaryHover};
   }
 `;
 

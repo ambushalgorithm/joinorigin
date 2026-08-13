@@ -46,7 +46,7 @@ const Panel = styled.div`
   border-radius: ${({ theme }) => theme.radius.lg}px;
   padding: 40px 32px;
   text-align: center;
-  background: rgba(24, 27, 33, 0.9);
+  background: rgba(20, 29, 60, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 
@@ -108,7 +108,7 @@ const ContactLink = styled(Link)`
   &:hover,
   &:focus-visible {
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(79, 125, 249, 0.35);
+    box-shadow: 0 8px 24px rgba(93, 124, 255, 0.35);
   }
 `;
 

@@ -57,7 +57,7 @@ export function CommunityView() {
         eyebrow: t('community.hero.eyebrow'),
         title: t('community.hero.title'),
         lead: t('community.hero.lead'),
-        scene: '/assets/menu/scenes/community-scene.svg',
+        scene: 'community',
         accent: 'community',
         cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
         meta: { stat: true },

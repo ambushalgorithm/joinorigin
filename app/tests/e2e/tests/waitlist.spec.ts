@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { leadsCsvHasEmail } from './helpers';
+import { leadsCsvHasEmail, waitForHydration } from './helpers';
 
 /**
  * Any-button waitlist modal coverage (spec §9).
@@ -52,6 +52,7 @@ test.describe('any-button modal trigger contract (§9.1)', () => {
 test.describe('modal a11y & behaviors (§9.2)', () => {
   test('moves focus to the first field and traps Tab within the dialog', async ({ page }) => {
     await page.goto('/');
+    await waitForHydration(page);
     await page.getByTestId('start-project-button').click();
 
     const modal = page.getByRole('dialog');
@@ -93,6 +94,7 @@ test.describe('modal a11y & behaviors (§9.2)', () => {
 
   test('resets the form to idle on every open', async ({ page }) => {
     await page.goto('/');
+    await waitForHydration(page);
     await page.getByTestId('start-project-button').click();
     const modal = page.getByRole('dialog');
 
@@ -111,6 +113,7 @@ test.describe('CSV capture flow (§9.3)', () => {
     const email = `e2e.${Date.now()}@example.com`;
 
     await page.goto('/');
+    await waitForHydration(page);
     await page.getByTestId('start-project-button').click();
     const modal = page.getByRole('dialog');
 

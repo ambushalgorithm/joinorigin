@@ -65,7 +65,7 @@ export function FeaturesView() {
         eyebrow: t('features.hero.eyebrow'),
         title: t('features.hero.title'),
         lead: t('features.hero.lead'),
-        scene: '/assets/menu/scenes/features-scene.svg',
+        scene: 'features',
         accent: 'features',
         cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
         meta: { avatars: true },

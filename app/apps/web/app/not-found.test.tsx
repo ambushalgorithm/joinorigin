@@ -33,12 +33,13 @@ describe('not-found boundary', () => {
     expect(screen.getByTestId('not-found-page')).toBeInTheDocument();
   });
 
-  it('renders the decorative not-found scene above the brand', () => {
+  it('renders the decorative not-found scene inline above the brand', () => {
     const { container } = renderNotFound();
-    const scene = container.querySelector('img[src*="not-found-scene"]');
+    const scene = container.querySelector('svg[data-testid="menu-hero-scene"]');
     expect(scene).not.toBeNull();
-    expect(scene).toHaveAttribute('src', '/assets/menu/scenes/not-found-scene.svg');
-    expect(scene).toHaveAttribute('alt', '');
+    // No sandboxed <img>-loaded scene SVG (the icon-spin fix).
+    expect(container.querySelector('img[src*="not-found-scene"]')).toBeNull();
+    expect(scene).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('renders a clear heading, supporting copy, and home CTA', () => {

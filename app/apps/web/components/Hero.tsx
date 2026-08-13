@@ -1,18 +1,25 @@
 'use client';
 
+import { useRef } from 'react';
 import styled from 'styled-components';
+
+import { useGSAP } from '@gsap/react';
+import { gsap } from '../lib/gsap';
 
 import { HERO_RADIAL_GLOW_1, HERO_RADIAL_GLOW_2, HERO_VIGNETTE } from './landingTokens';
 import HeroLeft from './HeroLeft';
 import OrbitViz from './OrbitViz';
 
 /**
- * Hero region (spec §5.2).
+ * Hero region (spec §5.2, GSAP parallax sprint-10-menu-anim §5.6).
  *
  * - Region: `min-height: calc(100svh - 72px)`, relative, overflow hidden.
  * - The full-page hero background image is applied on the root page container
  *   (see `app/page.tsx`); this region layers the two radial glows and the
  *   bottom vignette above it.
+ * - GSAP ScrollTrigger parallax: the glow/vignette overlays carry
+ *   `data-gsap-parallax` and drift -12% yPercent scrubbed against the hero
+ *   section (reduced-motion users get no tween).
  * - Layout: flex row with the left column (`flex: 0 1 600px`) and the orbit
  *   viz on the right, stacking below 1024px.
  */
@@ -73,11 +80,35 @@ const RightColumn = styled.div`
 `;
 
 export function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const q = gsap.utils.selector(heroRef);
+        q('[data-gsap-parallax]').forEach((el: HTMLElement) => {
+          gsap.to(el, {
+            yPercent: -12,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 0.6,
+            },
+          });
+        });
+      });
+    },
+    { scope: heroRef },
+  );
+
   return (
-    <HeroSection data-testid="hero">
-      <GlowTopRight aria-hidden="true" />
-      <GlowBottomLeft aria-hidden="true" />
-      <Vignette aria-hidden="true" />
+    <HeroSection ref={heroRef} data-testid="hero">
+      <GlowTopRight data-gsap-parallax aria-hidden="true" />
+      <GlowBottomLeft data-gsap-parallax aria-hidden="true" />
+      <Vignette data-gsap-parallax aria-hidden="true" />
       <Content>
         <HeroLeft />
         <RightColumn>

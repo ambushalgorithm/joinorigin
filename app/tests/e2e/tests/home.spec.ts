@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+import { waitForHydration } from './helpers';
+
 /**
  * JoinOrigin homescreen e2e coverage (Sprint 3).
  *
@@ -39,6 +41,7 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
 
 test('any CTA opens the waitlist modal and submission reaches the CSV API', async ({ page }) => {
   await page.goto('/');
+  await waitForHydration(page);
 
   // Open from the hero Start Project button (any-button contract).
   await page.getByTestId('start-project-button').click();
