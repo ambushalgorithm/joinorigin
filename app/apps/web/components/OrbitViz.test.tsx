@@ -49,4 +49,20 @@ describe('OrbitViz', () => {
     }
     expect(container.querySelector('.orbit-hub')).not.toBeNull();
   });
+
+  it('renders the hub OUTSIDE the rotating rings (sibling, TASK-292)', () => {
+    const { container } = renderOrbit();
+    const hub = container.querySelector('.orbit-hub');
+    expect(hub).not.toBeNull();
+    // The hub must not be a descendant of any rotating ring — it inherits
+    // ZERO rotation, so no counter-rotation tween is needed (fixes the
+    // sub-pixel trembling of the count-up under ScaleFrame's scale()).
+    for (let i = 1; i <= 4; i += 1) {
+      expect(hub?.closest(`.orbit-${i}`)).toBeNull();
+    }
+    // It sits directly inside the centered ScaleFrame (visual position kept).
+    const parent = hub?.parentElement;
+    expect(parent).not.toBeNull();
+    expect(parent?.getAttribute('data-testid') ?? '').not.toMatch(/^orbit-[1-4]$/);
+  });
 });

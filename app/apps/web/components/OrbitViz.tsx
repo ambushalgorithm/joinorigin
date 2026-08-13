@@ -29,6 +29,14 @@ import { formatCount, useCountUp } from './useCountUp';
  * get final states instantly (no ring tweens; count-up honors the
  * `useReducedMotion` hook).
  *
+ * The hub is rendered as a SIBLING of the rings inside ScaleFrame (still
+ * absolutely centered via the `Hub` component's `left/top: 50%` + negative
+ * margins — visual position identical), so it inherits ZERO rotation from the
+ * spinning rings and no counter-rotation tween is needed (TASK-292 — fixes
+ * the sub-pixel trembling/shaking of the "2,400+ Members" count-up that
+ * happened when two GSAP inline transforms cancelled each other under
+ * ScaleFrame's `scale()`).
+ *
  * i18n (arch-i18n §9.1): member alts + "Members" label come from the active
  * locale; `formatCount` groups with the active locale.
  */
@@ -249,9 +257,7 @@ export function OrbitViz() {
           .to(q('.orbit-1'), { rotation: -360, duration: 30 }, 0)
           .to(q('.orbit-2'), { rotation: 360, duration: 40 }, 0)
           .to(q('.orbit-3'), { rotation: 360, duration: 50 }, 0)
-          .to(q('.orbit-4'), { rotation: -360, duration: 60 }, 0)
-          // The hub sits inside orbit-1; counter-rotate so the count-up stays upright.
-          .to(q('.orbit-hub'), { rotation: 360, duration: 30 }, 0);
+          .to(q('.orbit-4'), { rotation: -360, duration: 60 }, 0);
         gsap.fromTo(
           q('.orbit-chip'),
           { autoAlpha: 0, scale: 0.3 },
@@ -291,7 +297,6 @@ export function OrbitViz() {
             $diameter={orbit.diameter}
             data-testid={`orbit-${orbit.orbit}`}
           >
-            {orbit.orbit === 1 ? <OrbitHub locale={locale} /> : null}
             {chips
               .filter((chip) => chip.orbit === orbit.orbit)
               .map((chip) => (
@@ -308,6 +313,9 @@ export function OrbitViz() {
               ))}
           </Orbit>
         ))}
+        {/* The hub is a SIBLING of the rotating rings (TASK-292) — it
+            inherits ZERO rotation, so no counter-rotation tween is needed. */}
+        <OrbitHub locale={locale} />
       </ScaleFrame>
     </Outer>
   );
