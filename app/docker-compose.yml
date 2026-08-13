@@ -1,10 +1,23 @@
-# JoinOrigin — local Docker launch for the web app.
+# JoinOrigin — local Docker launch for the web app + self-hosted analytics.
 #
 # Run from the monorepo root (the directory containing this file):
-#   docker compose up --build      # build + start on http://localhost:3100
+#   docker compose up --build      # build + start web on http://localhost:3100
+#                                  # (also starts the Plausible analytics stack)
 #   docker compose build           # build only
-#   docker compose down            # stop
-#   docker compose logs -f web     # follow logs
+#   docker compose down            # stop (keeps named volumes)
+#   docker compose logs -f web     # follow web logs
+#
+# Services:
+#   web              — the Next.js web app (see Dockerfile)
+#   plausible        — self-hosted Plausible Community Edition dashboard/API
+#                      on http://localhost:8000 (override with PLAUSIBLE_PORT)
+#   plausible_db     — Postgres (Plausible users/config)
+#   plausible_events_db — ClickHouse (Plausible analytics event store)
+#
+# The `plausible` service writes its event-cache buffer to the `plausible-data`
+# named volume (TMPDIR) and event data to the ClickHouse volumes, so analytics
+# survive container restarts. The web app's NEXT_PUBLIC_PLAUSIBLE_API_HOST
+# points at the local Plausible endpoint by default.
 #
 # Environment: values are read from the shell or a root `.env` file
 # (see apps/web/.env.example for the full list). NEXT_PUBLIC_* variables
@@ -19,7 +32,10 @@ services:
         # Build-time (client-inlined) public configuration.
         NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3100}
         NEXT_PUBLIC_SITE_DOMAIN: ${NEXT_PUBLIC_SITE_DOMAIN:-joinorigin.com}
-        NEXT_PUBLIC_PLAUSIBLE_API_HOST: ${NEXT_PUBLIC_PLAUSIBLE_API_HOST:-https://analytics.joinorigin.com}
+        # Local self-hosted Plausible (see the `plausible` service below).
+        # If you change PLAUSIBLE_PORT you must also set
+        # NEXT_PUBLIC_PLAUSIBLE_API_HOST to match, e.g. http://localhost:8001.
+        NEXT_PUBLIC_PLAUSIBLE_API_HOST: ${NEXT_PUBLIC_PLAUSIBLE_API_HOST:-http://localhost:8000}
     image: joinorigin-web:local
     container_name: joinorigin-web
     ports:
@@ -29,9 +45,10 @@ services:
       PORT: "3100"
       HOSTNAME: "0.0.0.0"
       # Optional runtime analytics overrides (server-side reads; client-side
-      # values were baked at build time).
+      # values were baked at build time). Default points at the local
+      # self-hosted Plausible service.
       NEXT_PUBLIC_SITE_DOMAIN: ${NEXT_PUBLIC_SITE_DOMAIN:-joinorigin.com}
-      NEXT_PUBLIC_PLAUSIBLE_API_HOST: ${NEXT_PUBLIC_PLAUSIBLE_API_HOST:-https://analytics.joinorigin.com}
+      NEXT_PUBLIC_PLAUSIBLE_API_HOST: ${NEXT_PUBLIC_PLAUSIBLE_API_HOST:-http://localhost:8000}
       NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
       NEXT_PUBLIC_UMAMI_HOST_URL: ${NEXT_PUBLIC_UMAMI_HOST_URL:-}
       NEXT_PUBLIC_GA4_MEASUREMENT_ID: ${NEXT_PUBLIC_GA4_MEASUREMENT_ID:-}
@@ -48,6 +65,91 @@ services:
       retries: 5
       start_period: 10s
 
+  # ── Self-hosted Plausible analytics (Sprint 10, TASK-277) ─────────────────
+  # Official Plausible Community Edition stack: the Plausible server backed by
+  # Postgres (users/config) + ClickHouse (analytics events). The server's
+  # `plausible-data` volume doubles as the event-cache buffer dir (TMPDIR) and
+  # receives the temporary files ClickHouse buffers while ingesting events.
+  # See https://github.com/plausible/community-edition for upstream docs.
+  plausible_db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${PLAUSIBLE_DB_PASSWORD:-postgres}
+    volumes:
+      - plausible-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  plausible_events_db:
+    image: clickhouse/clickhouse-server:24.12-alpine
+    restart: unless-stopped
+    environment:
+      # No extra users/db — Plausible creates its schema via the URL below.
+      CLICKHOUSE_SKIP_USER_SETUP: "1"
+    volumes:
+      - plausible-event-data:/var/lib/clickhouse
+      - plausible-event-logs:/var/log/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 -O - http://127.0.0.1:8123/ping || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  plausible:
+    image: ghcr.io/plausible/community-edition:v3.2.1
+    restart: unless-stopped
+    command: sh -c "/entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
+    depends_on:
+      plausible_db:
+        condition: service_healthy
+      plausible_events_db:
+        condition: service_healthy
+    ports:
+      - "${PLAUSIBLE_PORT:-8000}:8000"
+    environment:
+      # Local dashboard/API origin. Change to your public URL in production.
+      BASE_URL: ${PLAUSIBLE_BASE_URL:-http://localhost:8000}
+      # Dev-only default so `docker compose up` works out of the box. MUST be
+      # overridden for any non-local deployment (openssl rand -base64 48).
+      SECRET_KEY_BASE: ${PLAUSIBLE_SECRET_KEY_BASE:-AgATEOwcChkd0bLhvv8bv2rVH54woxuCO4t4VluBQQpntZ2oaT4UhMmzxVIRXlZU}
+      # Keep local registration open so the first dashboard user can be created.
+      DISABLE_REGISTRATION: ${PLAUSIBLE_DISABLE_REGISTRATION:-false}
+      HTTP_PORT: "8000"
+      DATABASE_URL: postgres://postgres:${PLAUSIBLE_DB_PASSWORD:-postgres}@plausible_db:5432/plausible_db
+      CLICKHOUSE_DATABASE_URL: http://plausible_events_db:8123/plausible_events_db
+      # Event-cache buffer directory (persisted on the plausible-data volume).
+      TMPDIR: /var/lib/plausible/tmp
+    volumes:
+      - plausible-data:/var/lib/plausible
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 -O - http://127.0.0.1:8000/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
 volumes:
   web-leads:
     name: joinorigin-web-leads
+  plausible-db-data:
+    name: joinorigin-plausible-db-data
+  plausible-event-data:
+    name: joinorigin-plausible-event-data
+  plausible-event-logs:
+    name: joinorigin-plausible-event-logs
+  plausible-data:
+    name: joinorigin-plausible-data
