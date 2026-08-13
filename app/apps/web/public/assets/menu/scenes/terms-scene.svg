@@ -1,5 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" role="img" aria-hidden="true">
   <!-- Terms scene: balanced document/scroll outline with 5 horizontal rule lines, muted blue gradient. -->
+  <style>
+    [data-scene="main"] {
+      animation: sceneFloat 9s ease-in-out infinite alternate;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    [data-scene="orbit"] {
+      animation: sceneOrbit 24s linear infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    @keyframes sceneFloat {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-10px); }
+    }
+    @keyframes sceneOrbit {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-scene="main"], [data-scene="orbit"] { animation: none !important; }
+    }
+  </style>
   <defs>
     <linearGradient id="terms-grad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#8AB4FF"/>
@@ -7,36 +30,41 @@
     </linearGradient>
   </defs>
 
-  <!-- Soft radial glow behind the focal motif -->
-  <circle cx="280" cy="205" r="150" fill="#8AB4FF" opacity="0.1"/>
+  <!-- Main group: soft glow + document/scroll + 5 rule lines (floats). -->
+  <g data-scene="main">
+    <circle cx="280" cy="205" r="150" fill="#8AB4FF" opacity="0.1"/>
 
-  <!-- Scroll/document outline -->
-  <path
-    d="M170 120 C 150 105, 135 115, 140 140 L 150 280 C 152 300, 170 305, 185 295 L 180 165 C 178 145, 190 130, 210 132 L 395 145 C 415 147, 430 165, 428 185 L 418 320 C 416 340, 398 345, 383 335 L 388 205 C 390 185, 378 170, 358 168 L 178 152"
-    fill="#181B21"
-    stroke="url(#terms-grad)"
-    stroke-width="3"
-    stroke-linejoin="round"
-  />
+    <!-- Scroll/document outline -->
+    <path
+      d="M170 120 C 150 105, 135 115, 140 140 L 150 280 C 152 300, 170 305, 185 295 L 180 165 C 178 145, 190 130, 210 132 L 395 145 C 415 147, 430 165, 428 185 L 418 320 C 416 340, 398 345, 383 335 L 388 205 C 390 185, 378 170, 358 168 L 178 152"
+      fill="#181B21"
+      stroke="url(#terms-grad)"
+      stroke-width="3"
+      stroke-linejoin="round"
+    />
 
-  <!-- 5 horizontal rule lines -->
-  <g stroke="#9AA3B2" stroke-width="3" stroke-linecap="round" opacity="0.75">
-    <line x1="190" y1="180" x2="330" y2="190"/>
-    <line x1="195" y1="205" x2="350" y2="215"/>
-    <line x1="200" y1="230" x2="340" y2="238"/>
-    <line x1="205" y1="255" x2="330" y2="262"/>
-    <line x1="210" y1="280" x2="360" y2="288"/>
+    <!-- 5 horizontal rule lines -->
+    <g stroke="#9AA3B2" stroke-width="3" stroke-linecap="round" opacity="0.75">
+      <line x1="190" y1="180" x2="330" y2="190"/>
+      <line x1="195" y1="205" x2="350" y2="215"/>
+      <line x1="200" y1="230" x2="340" y2="238"/>
+      <line x1="205" y1="255" x2="330" y2="262"/>
+      <line x1="210" y1="280" x2="360" y2="288"/>
+    </g>
   </g>
 
-  <!-- Seal node bottom-right -->
-  <circle cx="398" cy="300" r="18" fill="#181B21" stroke="#8AB4FF" stroke-width="2.5"/>
-  <circle cx="398" cy="300" r="8" fill="url(#terms-grad)" opacity="0.8"/>
+  <!-- Orbit group: outer balance ring + seal node (rotates slowly). -->
+  <g data-scene="orbit">
+    <!-- Seal node bottom-right -->
+    <circle cx="398" cy="300" r="18" fill="#181B21" stroke="#8AB4FF" stroke-width="2.5"/>
+    <circle cx="398" cy="300" r="8" fill="url(#terms-grad)" opacity="0.8"/>
 
-  <!-- Small balance accent: tiny scale node top-left -->
-  <g transform="translate(150 150)" opacity="0.85">
-    <line x1="0" y1="0" x2="0" y2="14" stroke="#8AB4FF" stroke-width="2"/>
-    <line x1="-14" y1="-6" x2="14" y2="-6" stroke="#8AB4FF" stroke-width="2" stroke-linecap="round"/>
-    <path d="M-14-6l-6 10" stroke="#8AB4FF" stroke-width="2" stroke-linecap="round"/>
-    <path d="M14-6l6 10" stroke="#8AB4FF" stroke-width="2" stroke-linecap="round"/>
+    <!-- Small balance accent: tiny scale node top-left -->
+    <g transform="translate(150 150)" opacity="0.85">
+      <line x1="0" y1="0" x2="0" y2="14" stroke="#8AB4FF" stroke-width="2"/>
+      <line x1="-14" y1="-6" x2="14" y2="-6" stroke="#8AB4FF" stroke-width="2" stroke-linecap="round"/>
+      <path d="M-14-6l-6 10" stroke="#8AB4FF" stroke-width="2" stroke-linecap="round"/>
+      <path d="M14-6l6 10" stroke="#8AB4FF" stroke-width="2" stroke-linecap="round"/>
+    </g>
   </g>
 </svg>

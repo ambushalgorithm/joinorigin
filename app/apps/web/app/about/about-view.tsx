@@ -2,8 +2,10 @@
 
 import { Trans, useI18n } from '@joinorigin/i18n';
 
+import CountUpStat from '../../components/CountUpStat';
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
+import SectionBand from '../../components/SectionBand';
 import {
   AccentLink,
   BodyCopy,
@@ -13,7 +15,7 @@ import {
   CardGrid,
   CardTitle,
   FaqAnswer,
-  FaqItem,
+  FaqCard,
   FaqQuestion,
   FaqSection,
   ListItem,
@@ -25,10 +27,12 @@ import {
 import { faqEntries, faqNamespace } from '../../lib/faq';
 
 /**
- * About view (discovery §5.6, redesign spec sprint-8 §8.4): mission +
- * principles + founder guidance. One `<h1>` (rendered by `MenuHero`),
- * semantic sections, and the "social collaboration network" definition in
- * the intro for LLM-crawler entity clarity.
+ * About view (discovery §5.6, redesign spec sprint-8 §8.4, elevated
+ * sprint-10 §8.4): mission + principles + founder guidance, wrapped in
+ * alternating glass/plain `SectionBand`s with the waitlist count-up stat
+ * inside the mission band. One `<h1>` (rendered by `MenuHero`), semantic
+ * sections, and the "social collaboration network" definition in the intro
+ * for LLM-crawler entity clarity.
  *
  * i18n: all copy reads from the active locale dictionary; inline-link
  * sentences use `<Trans>` numbered tags (arch-i18n §4.1).
@@ -52,87 +56,111 @@ export function AboutView() {
         lead: t('about.hero.lead'),
         scene: '/assets/menu/scenes/about-scene.svg',
         accent: 'about',
+        cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
+        meta: { avatars: true },
       }}
     >
-      <PageContainer>
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('about.sectionMission')}</SectionTitle>
-            <BodyCopy>{t('about.missionParagraph1')}</BodyCopy>
-            <BodyCopy>{t('about.missionParagraph2')}</BodyCopy>
-          </Section>
-        </Reveal>
+      <SectionBand variant="glass" accent="about" glow>
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('about.sectionMission')}</SectionTitle>
+              <BodyCopy>{t('about.missionParagraph1')}</BodyCopy>
+              <CountUpStat
+                valueText={t('community.joinStatValue')}
+                label={t('community.joinStatLabel')}
+              />
+              <BodyCopy>{t('about.missionParagraph2')}</BodyCopy>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
 
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('about.sectionPrinciples')}</SectionTitle>
-            <CardGrid>
-              {PRINCIPLE_KEYS.map((principle, index) => (
-                <Reveal key={principle} delay={`${index * 0.08}s`}>
+      <SectionBand variant="plain">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('about.sectionPrinciples')}</SectionTitle>
+              <CardGrid>
+                {PRINCIPLE_KEYS.map((principle, index) => (
+                  <Reveal key={principle} delay={`${index * 0.08}s`}>
+                    <Card>
+                      <CardTitle>{t(`common.values.${principle}`)}</CardTitle>
+                      <CardBody>{t(`about.principles.${principle}.body`)}</CardBody>
+                    </Card>
+                  </Reveal>
+                ))}
+                <Reveal delay={`${PRINCIPLE_KEYS.length * 0.08}s`}>
                   <Card>
-                    <CardTitle>{t(`common.values.${principle}`)}</CardTitle>
-                    <CardBody>{t(`about.principles.${principle}.body`)}</CardBody>
+                    <CardTitle>{t('about.principles.openArchitecture.title')}</CardTitle>
+                    <CardBody>{t('about.principles.openArchitecture.body')}</CardBody>
                   </Card>
                 </Reveal>
-              ))}
-              <Reveal delay={`${PRINCIPLE_KEYS.length * 0.08}s`}>
-                <Card>
-                  <CardTitle>{t('about.principles.openArchitecture.title')}</CardTitle>
-                  <CardBody>{t('about.principles.openArchitecture.body')}</CardBody>
-                </Card>
-              </Reveal>
-            </CardGrid>
-          </Section>
-        </Reveal>
+              </CardGrid>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
 
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('about.sectionFounder')}</SectionTitle>
-            <Quote>{t('about.founderQuote')}</Quote>
-            <BodyCopy>{t('about.founderBody')}</BodyCopy>
-          </Section>
-        </Reveal>
+      <SectionBand variant="glass" accent="about">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('about.sectionFounder')}</SectionTitle>
+              <Quote>{t('about.founderQuote')}</Quote>
+              <BodyCopy>{t('about.founderBody')}</BodyCopy>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
 
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('about.sectionReading')}</SectionTitle>
-            <BulletList>
-              <ListItem>
-                <Trans
-                  i18nKey="about.readingDocs"
-                  components={[<AccentLink key="docs" href="/docs" />]}
-                />
-              </ListItem>
-              <ListItem>
-                <Trans
-                  i18nKey="about.readingCommunity"
-                  components={[<AccentLink key="community" href="/community" />]}
-                />
-              </ListItem>
-              <ListItem>
-                <Trans
-                  i18nKey="about.readingContact"
-                  components={[<AccentLink key="contact" href="/contact" />]}
-                />
-              </ListItem>
-            </BulletList>
-          </Section>
-        </Reveal>
+      <SectionBand variant="plain">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('about.sectionReading')}</SectionTitle>
+              <BulletList>
+                <ListItem>
+                  <Trans
+                    i18nKey="about.readingDocs"
+                    components={[<AccentLink key="docs" href="/docs" />]}
+                  />
+                </ListItem>
+                <ListItem>
+                  <Trans
+                    i18nKey="about.readingCommunity"
+                    components={[<AccentLink key="community" href="/community" />]}
+                  />
+                </ListItem>
+                <ListItem>
+                  <Trans
+                    i18nKey="about.readingContact"
+                    components={[<AccentLink key="contact" href="/contact" />]}
+                  />
+                </ListItem>
+              </BulletList>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
 
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('common.faqHeading')}</SectionTitle>
-            <FaqSection>
-              {faq.map((entry) => (
-                <FaqItem key={entry.question}>
-                  <FaqQuestion>{entry.question}</FaqQuestion>
-                  <FaqAnswer>{entry.answer}</FaqAnswer>
-                </FaqItem>
-              ))}
-            </FaqSection>
-          </Section>
-        </Reveal>
-      </PageContainer>
+      <SectionBand variant="glass" accent="about">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('common.faqHeading')}</SectionTitle>
+              <FaqSection>
+                {faq.map((entry) => (
+                  <FaqCard key={entry.question}>
+                    <FaqQuestion>{entry.question}</FaqQuestion>
+                    <FaqAnswer>{entry.answer}</FaqAnswer>
+                  </FaqCard>
+                ))}
+              </FaqSection>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
     </MenuPageShell>
   );
 }

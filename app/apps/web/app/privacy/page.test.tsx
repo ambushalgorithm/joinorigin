@@ -23,11 +23,14 @@ describe('privacy page', () => {
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Privacy Policy');
-    expect(screen.getByText('What we collect')).toBeInTheDocument();
+    // Section titles also appear in the sticky anchor nav (Sprint 10) —
+    // assert at least one render of each.
+    expect(screen.getAllByText('What we collect').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('Waitlist data')).toBeInTheDocument();
-    expect(screen.getByText('Identity & flexibility')).toBeInTheDocument();
-    expect(screen.getByText('Your rights')).toBeInTheDocument();
-    // "Contact" appears both as the page section title and the footer link.
+    expect(screen.getAllByText('Identity & flexibility').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Your rights').length).toBeGreaterThanOrEqual(1);
+    // "Contact" appears as the page section title, the footer link, and the
+    // anchor-nav link.
     expect(screen.getAllByText('Contact').length).toBeGreaterThan(0);
   });
 

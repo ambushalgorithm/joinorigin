@@ -7,15 +7,19 @@ import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 import { theme } from '@joinorigin/design';
 import { Screen } from '@joinorigin/ui';
 
+import AnchorNav, { type MenuSubnavProps } from './AnchorNav';
 import CtaBand, { type CtaBandProps } from './CtaBand';
 import Footer from './Footer';
 import Header from './Header';
 import MenuHero, { type MenuHeroProps } from './MenuHero';
+import { SECTION_BAND_GLASS } from './menuTokens';
 import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * Shared shell for the Sprint 4 menu pages (TASK-215), extended for the
- * Sprint 8 redesign (TASK-247, spec sprint-8-menu-redesign §3).
+ * Sprint 8 redesign (TASK-247, spec sprint-8-menu-redesign §3) and the
+ * Sprint 10 homepage-standard elevation (TASK-282, spec
+ * sprint-10-menu-redesign §3).
  *
  * Mirrors the home page (`app/page.tsx`) wrapper pattern: both theme
  * providers (DOM styled-components + styled-components/native for the shared
@@ -32,6 +36,12 @@ import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
  *    child of `<main>`.
  *  - `ctaOverride` tightens the CTA band for legal pages (privacy/terms)
  *    to link to `/contact` instead of opening the waitlist modal.
+ * Sprint 10 additions (backwards compatible):
+ *  - `subnav` renders the sticky in-page `AnchorNav` as the first child of
+ *    `<main>` after the hero (docs/privacy/terms; a `nav` inside `<main>`).
+ *  - `banded` (default true) gives the children a glassy backdrop; legal
+ *    pages pass false for a plain canvas (views still render explicit
+ *    `SectionBand`s for the per-section rhythm on content pages).
  */
 
 export interface MenuPageShellProps {
@@ -42,6 +52,12 @@ export interface MenuPageShellProps {
   showCtaBand?: boolean;
   /** Optional headline/subline override for the CTA band (privacy/terms). */
   ctaOverride?: CtaBandProps;
+  /** Sticky in-page anchor nav rendered as the first child of <main> after
+   *  the hero (docs/privacy/terms). */
+  subnav?: MenuSubnavProps;
+  /** Alternate glass section bands behind the children (default true).
+   *  Legal pages (privacy/terms) pass false to keep a plain canvas. */
+  banded?: boolean;
 }
 
 const GlobalStyles = createGlobalStyle`
@@ -88,11 +104,22 @@ const PageRoot = styled.div`
   background-color: ${theme.colors.background};
 `;
 
+/**
+ * Glassy content backdrop behind the children (spec sprint-10 §3.2 `banded`).
+ * The views layer explicit `SectionBand`s on top for per-section rhythm;
+ * legal pages keep the plain canvas by passing `banded={false}`.
+ */
+const ContentArea = styled.div<{ $banded: boolean }>`
+  background: ${({ $banded }) => ($banded ? SECTION_BAND_GLASS : 'transparent')};
+`;
+
 export function MenuPageShell({
   children,
   hero,
   showCtaBand = true,
   ctaOverride,
+  subnav,
+  banded = true,
 }: MenuPageShellProps) {
   return (
     <NativeThemeProvider theme={theme}>
@@ -103,7 +130,8 @@ export function MenuPageShell({
               <Header />
               <main>
                 {hero ? <MenuHero {...hero} /> : null}
-                {children}
+                {subnav ? <AnchorNav {...subnav} /> : null}
+                <ContentArea $banded={banded}>{children}</ContentArea>
                 {showCtaBand ? <CtaBand {...ctaOverride} /> : null}
               </main>
               <Footer />

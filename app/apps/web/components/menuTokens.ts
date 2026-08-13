@@ -65,3 +65,32 @@ export const PAGE_ACCENTS: Record<PageAccentKey, PageAccent> = {
 
 /** Default accent used when a page does not declare one. */
 export const DEFAULT_ACCENT: PageAccentKey = 'features';
+
+/* ---------------------------------------------------------------------------
+ * Sprint 10 — homepage-atmosphere tokens (spec sprint-10-menu-redesign §5.1).
+ * Additive only: `PAGE_ACCENTS` stays the single glow source.
+ * ------------------------------------------------------------------------- */
+
+/** Full-page ambient texture behind every menu-page hero band (§4.1 layer 1). */
+export const MENU_AMBIENT_URL = 'url(/assets/menu/menu-ambient.webp)';
+
+/** Dot-grid tile layered over the hero band (§4.1 layer 2). */
+export const MENU_GRID_URL = 'url(/assets/menu/hero-grid.svg)';
+
+/** Minimum hero band height (desktop, spec §4.1). */
+export const HERO_BAND_MIN_HEIGHT = '560px';
+
+/** SVG-internal scene float loop (reference token, §4.2). */
+export const SCENE_FLOAT = '9s ease-in-out infinite alternate';
+
+/** SVG-internal scene orbit loop (reference token, §4.2). */
+export const SCENE_ORBIT = '24s linear infinite';
+
+/** Glass section band background (§4.7). */
+export const SECTION_BAND_GLASS = 'rgba(24, 27, 33, 0.55)';
+
+/** Glass section band border (§4.7). */
+export const SECTION_BAND_BORDER = 'rgba(44, 49, 58, 0.5)';
+
+/** Chip marquee loop duration (§4.6). */
+export const CHIP_MARQUEE_DURATION = '28s';

@@ -7,11 +7,12 @@ import { Trans, useI18n } from '@joinorigin/i18n';
 
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
+import SectionBand from '../../components/SectionBand';
 import {
   AccentLink,
   BulletList,
   FaqAnswer,
-  FaqItem,
+  FaqCard,
   FaqQuestion,
   FaqSection,
   ListItem,
@@ -22,12 +23,14 @@ import {
 import { faqEntries, faqNamespace } from '../../lib/faq';
 
 /**
- * Contact view (discovery §5.7, redesign spec sprint-8 §8.5): a web-local
- * contact form that composes a `mailto:` message (discovery Assumption 4 —
- * the lower-risk option, no new backend in Sprint 4), plus alternate support
- * paths and FAQ shortcut. One `<h1>` (rendered by `MenuHero`) and semantic
- * sections. The join CTA band is the default waitlist band (DoD §11: only
- * privacy/terms use the contact override).
+ * Contact view (discovery §5.7, redesign spec sprint-8 §8.5, elevated
+ * sprint-10 §8.5): a web-local contact form that composes a `mailto:`
+ * message (discovery Assumption 4 — the lower-risk option, no new backend in
+ * Sprint 4), wrapped in a glass card, plus alternate support paths and FAQ
+ * shortcut. One `<h1>` (rendered by `MenuHero`) and semantic sections. The
+ * hero carries NO CTA (the form is the CTA); the join CTA band below is the
+ * default waitlist band (DoD §11: only privacy/terms use the contact
+ * override).
  *
  * i18n (arch-i18n §7.3): the mailto subject/body templates are localized with
  * `{{name}}` / `{{email}}` / `{{message}}` interpolation; inline links use
@@ -48,7 +51,6 @@ const Field = styled.label`
 
 const Input = styled.input`
   width: 100%;
-  max-width: 480px;
   padding: ${({ theme }) => theme.spacing.md}px;
   background: ${({ theme }) => theme.colors.surface};
   border: 1px solid ${({ theme }) => theme.colors.border};
@@ -69,7 +71,6 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   width: 100%;
-  max-width: 480px;
   min-height: 140px;
   padding: ${({ theme }) => theme.spacing.md}px;
   background: ${({ theme }) => theme.colors.surface};
@@ -123,6 +124,28 @@ const FormHint = styled.p`
   color: ${({ theme }) => theme.colors.textMuted};
 `;
 
+/** Glass form card (spec §8.5 — max-width 560px content container). */
+const FormCard = styled.div`
+  max-width: 560px;
+  padding: ${({ theme }) => theme.spacing.lg}px;
+  background: rgba(24, 27, 33, 0.7);
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radius.lg}px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+`;
+
+/** Two-column Name | Email row on desktop (spec §8.5). */
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: ${({ theme }) => theme.spacing.md}px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 export function ContactView() {
   const { t, dictionary } = useI18n();
   const [name, setName] = useState('');
@@ -151,92 +174,106 @@ export function ContactView() {
         accent: 'contact',
       }}
     >
-      <PageContainer>
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('contact.sectionForm')}</SectionTitle>
-            <form onSubmit={handleSubmit} data-testid="contact-form" noValidate={false}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
-                <Field>
-                  {t('contact.form.nameLabel')}
-                  <Input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={(event) => setName(event.target.value)}
-                    placeholder={t('contact.form.namePlaceholder')}
-                    autoComplete="name"
-                  />
-                </Field>
-                <Field>
-                  {t('contact.form.emailLabel')}
-                  <Input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    placeholder={t('contact.form.emailPlaceholder')}
-                    autoComplete="email"
-                    required
-                  />
-                </Field>
-                <Field>
-                  {t('contact.form.messageLabel')}
-                  <TextArea
-                    name="message"
-                    value={message}
-                    onChange={(event) => setMessage(event.target.value)}
-                    placeholder={t('contact.form.messagePlaceholder')}
-                  />
-                </Field>
-                <SubmitButton type="submit">{t('contact.form.submit')}</SubmitButton>
-                <FormHint>{t('contact.form.hint')}</FormHint>
-              </div>
-            </form>
-          </Section>
-        </Reveal>
+      <SectionBand variant="glass" accent="contact" glow>
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('contact.sectionForm')}</SectionTitle>
+              <FormCard>
+                <form onSubmit={handleSubmit} data-testid="contact-form" noValidate={false}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                    <Row>
+                      <Field>
+                        {t('contact.form.nameLabel')}
+                        <Input
+                          type="text"
+                          name="name"
+                          value={name}
+                          onChange={(event) => setName(event.target.value)}
+                          placeholder={t('contact.form.namePlaceholder')}
+                          autoComplete="name"
+                        />
+                      </Field>
+                      <Field>
+                        {t('contact.form.emailLabel')}
+                        <Input
+                          type="email"
+                          name="email"
+                          value={email}
+                          onChange={(event) => setEmail(event.target.value)}
+                          placeholder={t('contact.form.emailPlaceholder')}
+                          autoComplete="email"
+                          required
+                        />
+                      </Field>
+                    </Row>
+                    <Field>
+                      {t('contact.form.messageLabel')}
+                      <TextArea
+                        name="message"
+                        value={message}
+                        onChange={(event) => setMessage(event.target.value)}
+                        placeholder={t('contact.form.messagePlaceholder')}
+                      />
+                    </Field>
+                    <SubmitButton type="submit">{t('contact.form.submit')}</SubmitButton>
+                    <FormHint>{t('contact.form.hint')}</FormHint>
+                  </div>
+                </form>
+              </FormCard>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
 
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('contact.sectionOther')}</SectionTitle>
-            <BulletList>
-              <ListItem>
-                <Trans
-                  i18nKey="contact.otherEmail"
-                  values={{ email: CONTACT_EMAIL }}
-                  components={[<AccentLink key="mail" href={`mailto:${CONTACT_EMAIL}`} />]}
-                />
-              </ListItem>
-              <ListItem>
-                <Trans
-                  i18nKey="contact.otherDocs"
-                  components={[<AccentLink key="docs" href="/docs" />]}
-                />
-              </ListItem>
-              <ListItem>
-                <Trans
-                  i18nKey="contact.otherAbout"
-                  components={[<AccentLink key="about" href="/about" />]}
-                />
-              </ListItem>
-            </BulletList>
-          </Section>
-        </Reveal>
+      <SectionBand variant="plain">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('contact.sectionOther')}</SectionTitle>
+              <BulletList>
+                <ListItem>
+                  <Trans
+                    i18nKey="contact.otherEmail"
+                    values={{ email: CONTACT_EMAIL }}
+                    components={[<AccentLink key="mail" href={`mailto:${CONTACT_EMAIL}`} />]}
+                  />
+                </ListItem>
+                <ListItem>
+                  <Trans
+                    i18nKey="contact.otherDocs"
+                    components={[<AccentLink key="docs" href="/docs" />]}
+                  />
+                </ListItem>
+                <ListItem>
+                  <Trans
+                    i18nKey="contact.otherAbout"
+                    components={[<AccentLink key="about" href="/about" />]}
+                  />
+                </ListItem>
+              </BulletList>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
 
-        <Reveal>
-          <Section>
-            <SectionTitle>{t('common.faqHeading')}</SectionTitle>
-            <FaqSection>
-              {faq.map((entry) => (
-                <FaqItem key={entry.question}>
-                  <FaqQuestion>{entry.question}</FaqQuestion>
-                  <FaqAnswer>{entry.answer}</FaqAnswer>
-                </FaqItem>
-              ))}
-            </FaqSection>
-          </Section>
-        </Reveal>
-      </PageContainer>
+      <SectionBand variant="glass" accent="contact">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('common.faqHeading')}</SectionTitle>
+              <FaqSection>
+                {faq.map((entry) => (
+                  <FaqCard key={entry.question}>
+                    <FaqQuestion>{entry.question}</FaqQuestion>
+                    <FaqAnswer>{entry.answer}</FaqAnswer>
+                  </FaqCard>
+                ))}
+              </FaqSection>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
     </MenuPageShell>
   );
 }

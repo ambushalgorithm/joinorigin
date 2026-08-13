@@ -1,5 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" role="img" aria-hidden="true">
   <!-- Privacy scene: shield outline (gradient stroke) with 3 small data nodes inside; green accent core. -->
+  <style>
+    [data-scene="main"] {
+      animation: sceneFloat 9s ease-in-out infinite alternate;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    [data-scene="orbit"] {
+      animation: sceneOrbit 24s linear infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    @keyframes sceneFloat {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-10px); }
+    }
+    @keyframes sceneOrbit {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-scene="main"], [data-scene="orbit"] { animation: none !important; }
+    }
+  </style>
   <defs>
     <linearGradient id="privacy-grad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#4F7DF9"/>
@@ -7,45 +30,49 @@
     </linearGradient>
   </defs>
 
-  <!-- Soft radial glow behind the focal motif (green accent) -->
-  <circle cx="280" cy="210" r="160" fill="#30A46C" opacity="0.11"/>
-
-  <!-- Shield outline (gradient stroke) -->
-  <path
-    d="M280 70 L 420 120 L 420 210 C 420 300, 360 345, 280 370 C 200 345, 140 300, 140 210 L 140 120 Z"
-    fill="#181B21"
-    stroke="url(#privacy-grad)"
-    stroke-width="3.5"
-    stroke-linejoin="round"
-  />
-
-  <!-- Shield core accent -->
-  <path
-    d="M280 100 L 385 140 L 385 212 C 385 286, 335 322, 280 344 C 225 322, 175 286, 175 212 L 175 140 Z"
-    fill="none"
-    stroke="#30A46C"
-    stroke-width="1.5"
-    opacity="0.55"
-    stroke-linejoin="round"
-  />
-
-  <!-- Data nodes inside the shield -->
-  <g stroke="#8AB4FF" stroke-width="2" opacity="0.9">
-    <line x1="280" y1="190" x2="225" y2="240"/>
-    <line x1="280" y1="190" x2="335" y2="240"/>
-    <line x1="225" y1="240" x2="335" y2="240"/>
-  </g>
-  <circle cx="280" cy="190" r="16" fill="url(#privacy-grad)"/>
-  <circle cx="225" cy="240" r="11" fill="#181B21" stroke="#8AB4FF" stroke-width="2.5"/>
-  <circle cx="335" cy="240" r="11" fill="#181B21" stroke="#8AB4FF" stroke-width="2.5"/>
-
-  <!-- Small lock glyph on the shield center -->
-  <g transform="translate(280 190)">
-    <rect x="-7" y="-2" width="14" height="10" rx="2" fill="#0F1115" opacity="0.85"/>
-    <path d="M-4-2v-3a4 4 0 0 1 8 0v3" fill="none" stroke="#FFFFFF" stroke-width="1.8" opacity="0.85"/>
+  <!-- Orbit group: shield outline ring (rotates slowly). -->
+  <g data-scene="orbit">
+    <path
+      d="M280 70 L 420 120 L 420 210 C 420 300, 360 345, 280 370 C 200 345, 140 300, 140 210 L 140 120 Z"
+      fill="#181B21"
+      stroke="url(#privacy-grad)"
+      stroke-width="3.5"
+      stroke-linejoin="round"
+    />
   </g>
 
-  <!-- Green accent data dots -->
-  <circle cx="225" cy="236" r="3" fill="#30A46C"/>
-  <circle cx="335" cy="236" r="3" fill="#30A46C"/>
+  <!-- Main group: soft glow + shield core + 3 data nodes (floats). -->
+  <g data-scene="main">
+    <circle cx="280" cy="210" r="160" fill="#30A46C" opacity="0.11"/>
+
+    <!-- Shield core accent -->
+    <path
+      d="M280 100 L 385 140 L 385 212 C 385 286, 335 322, 280 344 C 225 322, 175 286, 175 212 L 175 140 Z"
+      fill="none"
+      stroke="#30A46C"
+      stroke-width="1.5"
+      opacity="0.55"
+      stroke-linejoin="round"
+    />
+
+    <!-- Data nodes inside the shield -->
+    <g stroke="#8AB4FF" stroke-width="2" opacity="0.9">
+      <line x1="280" y1="190" x2="225" y2="240"/>
+      <line x1="280" y1="190" x2="335" y2="240"/>
+      <line x1="225" y1="240" x2="335" y2="240"/>
+    </g>
+    <circle cx="280" cy="190" r="16" fill="url(#privacy-grad)"/>
+    <circle cx="225" cy="240" r="11" fill="#181B21" stroke="#8AB4FF" stroke-width="2.5"/>
+    <circle cx="335" cy="240" r="11" fill="#181B21" stroke="#8AB4FF" stroke-width="2.5"/>
+
+    <!-- Small lock glyph on the shield center -->
+    <g transform="translate(280 190)">
+      <rect x="-7" y="-2" width="14" height="10" rx="2" fill="#0F1115" opacity="0.85"/>
+      <path d="M-4-2v-3a4 4 0 0 1 8 0v3" fill="none" stroke="#FFFFFF" stroke-width="1.8" opacity="0.85"/>
+    </g>
+
+    <!-- Green accent data dots -->
+    <circle cx="225" cy="236" r="3" fill="#30A46C"/>
+    <circle cx="335" cy="236" r="3" fill="#30A46C"/>
+  </g>
 </svg>
