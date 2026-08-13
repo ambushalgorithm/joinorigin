@@ -31,7 +31,7 @@ export function CommunityScene({
       <circle cx="280" cy="210" r="160" fill={primary} opacity="0.09" />
       <circle cx="280" cy="210" r="120" fill={secondary} opacity="0.1" />
 
-      {/* Orbit group: faint outer connection arcs between clusters (rotates). */}
+      {/* Orbit group: faint outer arcs between clusters (static — TASK-291). */}
       <g className="scene-orbit-group">
         <g stroke={theme.colors.border} strokeWidth={2} fill="none" opacity={0.9}>
           {/* top-left cluster internal links */}

@@ -28,7 +28,7 @@ export function PrivacyScene({
         </linearGradient>
       </defs>
 
-      {/* Orbit group: shield outline ring (rotates slowly). */}
+      {/* Orbit group: shield outline ring (static — orbit rotation removed TASK-291). */}
       <g className="scene-orbit-group">
         <path
           d="M280 70 L 420 120 L 420 210 C 420 300, 360 345, 280 370 C 200 345, 140 300, 140 210 L 140 120 Z"

@@ -8,7 +8,7 @@ import type { SceneProps } from './sceneTypes';
  * `data-testid="menu-hero-scene"` so unit/e2e selectors that targeted the old
  * `<img>` keep working. The GSAP animation classes (`scene-orbit-group`,
  * `scene-main-group`, `scene-node`) get their SVG transform-box/origin CSS
- * here so GSAP rotation pivots around each group's center.
+ * here so GSAP transforms pivot around each group's center.
  */
 export function SceneSvg({ children, width = 560, height = 420, ...rest }: SceneProps) {
   return (

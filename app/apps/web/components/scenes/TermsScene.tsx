@@ -50,7 +50,7 @@ export function TermsScene({
         </g>
       </g>
 
-      {/* Orbit group: outer balance ring + seal node (rotates slowly). */}
+      {/* Orbit group: outer balance ring + seal node (static — TASK-291). */}
       <g className="scene-orbit-group">
         {/* Seal node bottom-right */}
         <circle

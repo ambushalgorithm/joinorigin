@@ -22,8 +22,9 @@ import { SCENE_MAP } from '../components/scenes/sceneTypes';
  * styled boundary instead of racing the main page stream through the default
  * `_not-found` machinery. The visual language mirrors the landing page and
  * the menu-page heroes: ambient webp + dot grid + rose notFound glow/mesh,
- * the INLINE not-found scene (GSAP float/orbit in one document — was an
- * `<img>`-loaded SVG), brand mark + wordmark, gradient-accent status, and a
+ * the INLINE not-found scene (GSAP float in one document — was an
+ * `<img>`-loaded SVG; orbit rotation removed in TASK-291), brand mark +
+ * wordmark, gradient-accent status, and a
  * gradient CTA back home — no modal, no CSV, no API involvement.
  *
  * i18n: all copy reads from the active locale dictionary via the root

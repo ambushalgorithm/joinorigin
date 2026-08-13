@@ -71,7 +71,7 @@ export function AboutScene({
         />
       </g>
 
-      {/* Orbit group: small outer nodes on the heart arcs (rotates). */}
+      {/* Orbit group: small outer nodes on the heart arcs (static — TASK-291). */}
       <g className="scene-orbit-group">
         {/* Heart-left arc nodes */}
         <g fill={theme.colors.surface} stroke={secondary} strokeWidth={2}>

@@ -8,8 +8,9 @@ import type { SceneProps } from './sceneTypes';
  * (Core Objects). Inlined from `public/assets/menu/scenes/features-scene.svg`
  * per design spec sprint-10-menu-anim §5.2: the embedded `<style>` is removed
  * (GSAP owns motion), colors retargeted to the page scheme + theme tokens,
- * and satellite groups carry the `scene-node` counter-rotation class so icon
- * glyphs stay upright while the orbit group spins.
+ * and satellite groups carry the `scene-node` class (kept for CSS
+ * transform-box parity; the counter-rotation tween was removed with the orbit
+ * spin in TASK-291).
  */
 export function FeaturesScene({
   primary = '#5D7CFF',
@@ -29,7 +30,7 @@ export function FeaturesScene({
         </linearGradient>
       </defs>
 
-      {/* Orbit group: hub link lines + 8 satellite nodes (rotates slowly). */}
+      {/* Orbit group: hub link lines + 8 satellite nodes (static — TASK-291). */}
       <g className="scene-orbit-group">
         {/* Hub links to satellites */}
         <g stroke={theme.colors.border} strokeWidth={2} fill="none" opacity={0.9}>

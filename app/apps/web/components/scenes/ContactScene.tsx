@@ -90,7 +90,7 @@ export function ContactScene({
         </g>
       </g>
 
-      {/* Orbit group: node link line + dot trail (rotates). */}
+      {/* Orbit group: node link line + dot trail (static — orbit rotation removed TASK-291). */}
       <g className="scene-orbit-group">
         <g stroke={theme.colors.border} strokeWidth={2} opacity={0.9}>
           <line x1="130" y1="210" x2="210" y2="180" />
