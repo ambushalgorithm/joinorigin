@@ -1,0 +1,34 @@
+JoinOrigin Location Dataset — Attribution Notice
+================================================
+
+This directory contains a committed snapshot of geographic data
+(`locations.json`) used by JoinOrigin's SEO location pages.
+
+Sources (design §5.1, sprint-11-seo-content-engine.md):
+
+1. GeoNames free dump — `cities500`, `countryInfo`, `admin1CodesASCII`,
+   `alternateNamesV2`, `timeZones` (https://download.geonames.org/export/dump/)
+   Licensed under Creative Commons Attribution 4.0 (CC BY 4.0):
+   https://creativecommons.org/licenses/by/4.0/
+   Copyright GeoNames contributors. Commercial use is permitted with
+   attribution. No changes to the underlying geographic facts were made.
+
+2. SimpleMaps World Cities Basic (https://simplemaps.com/data/world-cities)
+   Licensed under Creative Commons Attribution 4.0 (CC BY 4.0):
+   https://creativecommons.org/licenses/by/4.0/
+   Copyright Pareto Software, LLC (SimpleMaps). Overlay fields (cleaner city
+   names, capital tier) are merged into the GeoNames-backed snapshot.
+
+3. Wikidata (https://www.wikidata.org/) — structured data is CC0 / public
+   domain. Used for localized labels joined via GeoNames `wkdt` alternate
+   names. No attribution required; courtesy credit included above.
+
+Derived dataset license: CC BY 4.0 (attribution applies to the GeoNames and
+SimpleMaps portions). See `apps/web/lib/seo/data/types.ts` for the schema and
+`apps/web/scripts/geodata/README.md` for pipeline + refresh instructions.
+
+Required footer credit on location pages:
+  "Location data © GeoNames contributors, CC BY 4.0; city data © SimpleMaps
+   (worldcities basic), CC BY 4.0."
+
+Regenerated via: pnpm --filter @joinorigin/web geo:sync
