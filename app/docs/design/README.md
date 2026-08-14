@@ -12,6 +12,7 @@ consumed verbatim by the implementing role.
 
 | File | Purpose |
 |------|---------|
+| `research/` | Sprint 11 SEO Content Engine research findings (7 specialist best-opinion reports, research-only, no implementation) — see `research/README.md` |
 | `sprint-3-homescreen-spec.md` | Sprint 3 JoinOrigin homescreen spec — header, hero left/right, orbit circles viz, logo ticker, entrance animations, responsive breakpoints, any-button modal + CSV capture contract; local asset inventory |
 | `sprint-4-discovery.md` | Sprint 4 discovery — recommended menu structure, page hierarchy + URLs, per-page purpose/content outline, SEO keyword strategy, JSON-LD plan, and LLM-crawler (GEO) plan (llms.txt, markdown, FAQ, semantic HTML) anchored on the "social collaboration network / community OS" intent |
 | `sprint-4-seo-arch.md` | Sprint 4 SEO & analytics architecture — config-driven multi-tracker analytics (Plausible/Umami/GA4 adapters, config schema, mount contract), full-stack SEO (metadata/OG/Twitter, sitemap, robots, JSON-LD, canonical, llms.txt), Core Web Vitals budgets, LLM-crawler rules |
