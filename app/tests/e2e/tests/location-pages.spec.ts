@@ -80,7 +80,9 @@ test.describe('location internal-link mesh navigation', () => {
     await countryLink.click();
     await page.waitForURL('**/location/germany');
 
-    const hubLink = page.locator('a[href="/location"]').first();
+    const hubLink = page
+      .locator('[data-testid="location-breadcrumbs"] a[href="/location"]')
+      .first();
     await expect(hubLink).toBeVisible();
     await hubLink.click();
     await page.waitForURL('**/location');

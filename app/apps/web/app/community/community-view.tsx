@@ -47,6 +47,15 @@ const JoinLink = styled(AccentLink)`
   margin-top: ${({ theme }) => theme.spacing.md}px;
 `;
 
+/** Explore hub cross-links row (TASK-316) — additive, keeps copy intact. */
+const ExploreLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.lg}px;
+  margin-top: ${({ theme }) => theme.spacing.md}px;
+  flex-wrap: wrap;
+`;
+
 export function CommunityView() {
   const { t, dictionary } = useI18n();
   const faq = faqEntries(faqNamespace(dictionary, 'community'));
@@ -113,6 +122,11 @@ export function CommunityView() {
               />
               <BodyCopy>{t('community.joinCopy')}</BodyCopy>
               <JoinLink href="/">{t('common.joinWaitlist')}</JoinLink>
+              <ExploreLinks>
+                <AccentLink href="/location">{t('common.nav.locations')}</AccentLink>
+                <AccentLink href="/guides">{t('common.nav.guides')}</AccentLink>
+                <AccentLink href="/glossary">{t('common.nav.glossary')}</AccentLink>
+              </ExploreLinks>
             </Section>
           </Reveal>
         </PageContainer>

@@ -47,8 +47,18 @@ export const HEADER_NAV = [
   { label: 'About', href: '/about' },
 ] as const;
 
-/** Footer grouped links (discovery §3.2). */
+/** Explore submenu labels → href (TASK-316). */
+export const EXPLORE_NAV = [
+  { label: 'Locations', href: '/location' },
+  { label: 'Guides', href: '/guides' },
+  { label: 'Glossary', href: '/glossary' },
+] as const;
+
+/** Footer grouped links (discovery §3.2 + Explore group TASK-316). */
 export const FOOTER_NAV = [
+  { label: 'Locations', href: '/location' },
+  { label: 'Guides', href: '/guides' },
+  { label: 'Glossary', href: '/glossary' },
   { label: 'Features', href: '/features' },
   { label: 'Community', href: '/community' },
   { label: 'Docs', href: '/docs' },
@@ -123,6 +133,33 @@ test.describe('navigation reaches every menu page', () => {
       // Return home for the next nav check.
       await page.goto('/');
     }
+  });
+
+  test('Explore submenu links reach the SEO hubs (TASK-316)', async ({ page }) => {
+    await page.goto('/');
+    const header = page.getByTestId('header');
+
+    // The Explore dropdown opens on hover; the submenu is desktop-only.
+    const dropdown = header.getByTestId('explore-dropdown');
+    await expect(dropdown).toBeVisible();
+    await dropdown.hover();
+    await expect(header.getByTestId('explore-menu')).toBeVisible();
+
+    for (const link of EXPLORE_NAV) {
+      const submenuLink = header.getByRole('link', { name: link.label });
+      await expect(submenuLink).toBeVisible();
+      await submenuLink.click();
+      await expect(page).toHaveURL(new RegExp(`${link.href.replace('/', '\\/')}/?$`));
+      await expect(page.locator('h1')).toBeVisible({ timeout: 15_000 });
+      await page.goto('/');
+      await header.getByTestId('explore-dropdown').hover();
+    }
+
+    // Retained nav links still present next to the Explore dropdown.
+    await expect(header.getByRole('link', { name: 'Features' })).toBeVisible();
+    await expect(header.getByRole('link', { name: 'Community' })).toBeVisible();
+    await expect(header.getByRole('link', { name: 'Docs' })).toBeVisible();
+    await expect(header.getByRole('link', { name: 'About' })).toBeVisible();
   });
 
   test('footer grouped links reach every page', async ({ page }) => {

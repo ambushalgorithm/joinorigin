@@ -15,7 +15,11 @@
       "about": "من نحن",
       "contact": "تواصل",
       "privacy": "الخصوصية",
-      "terms": "الشروط"
+      "terms": "الشروط",
+      "explore": "استكشف",
+      "locations": "المواقع",
+      "guides": "الأدلة",
+      "glossary": "المسرد"
     },
     "objects": {
       "profiles": "الملفات الشخصية",

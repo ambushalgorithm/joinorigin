@@ -15,7 +15,11 @@
       "about": "關於",
       "contact": "聯絡",
       "privacy": "隱私權",
-      "terms": "條款"
+      "terms": "條款",
+      "explore": "探索",
+      "locations": "地點",
+      "guides": "指南",
+      "glossary": "詞彙表"
     },
     "objects": {
       "profiles": "個人檔案",

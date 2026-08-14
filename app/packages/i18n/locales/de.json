@@ -15,7 +15,11 @@
       "about": "Über uns",
       "contact": "Kontakt",
       "privacy": "Datenschutz",
-      "terms": "Nutzungsbedingungen"
+      "terms": "Nutzungsbedingungen",
+      "explore": "Entdecken",
+      "locations": "Standorte",
+      "guides": "Anleitungen",
+      "glossary": "Glossar"
     },
     "objects": {
       "profiles": "Profile",

@@ -15,7 +15,11 @@
       "about": "소개",
       "contact": "문의",
       "privacy": "개인정보 처리방침",
-      "terms": "이용약관"
+      "terms": "이용약관",
+      "explore": "살펴보기",
+      "locations": "위치",
+      "guides": "가이드",
+      "glossary": "용어집"
     },
     "objects": {
       "profiles": "프로필",

@@ -15,7 +15,11 @@
       "about": "Hakkımızda",
       "contact": "İletişim",
       "privacy": "Gizlilik",
-      "terms": "Koşullar"
+      "terms": "Koşullar",
+      "explore": "Keşfet",
+      "locations": "Konumlar",
+      "guides": "Rehberler",
+      "glossary": "Sözlük"
     },
     "objects": {
       "profiles": "Profiller",

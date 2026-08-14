@@ -15,7 +15,11 @@
       "about": "Sobre",
       "contact": "Contato",
       "privacy": "Privacidade",
-      "terms": "Termos"
+      "terms": "Termos",
+      "explore": "Explorar",
+      "locations": "Locais",
+      "guides": "Guias",
+      "glossary": "Glossário"
     },
     "objects": {
       "profiles": "Perfis",
