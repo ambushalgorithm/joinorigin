@@ -123,6 +123,13 @@ export interface GuideStep {
   title: string;
   /** Step body — 1–3 honest, evergreen paragraphs. */
   body: string;
+  /**
+   * Concrete "how JoinOrigin helps here" note mapped to this step (TASK-320).
+   * Every step must carry one so each guide leads with how JoinOrigin solves
+   * the connecting-people problem. Honest early-access framing only — no
+   * fabricated features, no local-event claims.
+   */
+  joinOriginNote: string;
 }
 
 /** L1 how-to guide content (authored by fe-guides-pages, TASK-309). */
@@ -132,8 +139,9 @@ export interface GuideContent extends BaseContent {
   sections: string[];
   /**
    * Structured steps for richer rendering — the page wrapper renders each
-   * step as an `<h2>` + body (kept in lockstep with `sections` which stays
-   * the flat source for word-count/quality gates).
+   * step as an `<h2>` + body + per-step JoinOrigin note (TASK-320), kept
+   * in lockstep with `sections` which stays the flat source for
+   * word-count/quality gates.
    */
   steps: GuideStep[];
 }

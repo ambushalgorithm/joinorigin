@@ -63,6 +63,29 @@ const StepNumber = styled.span`
   color: ${({ theme }) => theme.colors.primary};
 `;
 
+/** Per-step "How JoinOrigin helps here" note (TASK-320) — rendered under each
+ *  step body so every guide visibly leads with how JoinOrigin solves the
+ *  connecting-people problem. Honest early-access framing only. */
+const JoinOriginNote = styled.div`
+  margin-top: ${({ theme }) => theme.spacing.sm}px;
+  padding: ${({ theme }) => theme.spacing.sm}px ${({ theme }) => theme.spacing.md}px;
+  border-inline-start: 3px solid ${({ theme }) => theme.colors.primary};
+  border-radius: ${({ theme }) => theme.radius.sm}px;
+  background: ${({ theme }) => theme.colors.surface};
+  color: ${({ theme }) => theme.colors.textMuted};
+  font-size: ${({ theme }) => theme.typography.body}px;
+  line-height: 1.7;
+`;
+
+const JoinOriginNoteLabel = styled.strong`
+  display: block;
+  margin-bottom: ${({ theme }) => theme.spacing.xs}px;
+  color: ${({ theme }) => theme.colors.primary};
+  font-family: ${({ theme }) => theme.fontFamilies.display};
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
+  font-size: ${({ theme }) => theme.typography.body}px;
+`;
+
 const RelatedLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
@@ -167,6 +190,12 @@ export function GuideView({ entry, content }: GuideViewProps) {
                     {step.title}
                   </StepHeading>
                   <BodyCopy>{step.body}</BodyCopy>
+                  <JoinOriginNote>
+                    <JoinOriginNoteLabel>
+                      {t('seoContent.guides.howJoinOriginHelps')}
+                    </JoinOriginNoteLabel>
+                    {step.joinOriginNote}
+                  </JoinOriginNote>
                 </StepSection>
               ))}
             </Section>

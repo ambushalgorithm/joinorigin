@@ -7,11 +7,12 @@ import { guidePageEntry } from '../../../lib/seo/guides';
 import { GuideView } from './guide-view';
 
 /**
- * Unit tests for the /guides/[slug] guide page (design §6.2, TASK-309):
- * generateStaticParams emits exactly the 7 guide slugs, generateMetadata
- * derives per-guide title/description/canonical, and the page renders a
- * single H1 + visible FAQ block mirrored in FAQPage JSON-LD with the
- * cross-link mesh (hub, sibling guides, city pages) and honest CTA.
+ * Unit tests for the /guides/[slug] guide page (design §6.2, TASK-309 +
+ * TASK-320): generateStaticParams emits exactly the 7 guide slugs,
+ * generateMetadata derives per-guide title/description/canonical, and the
+ * page renders a single H1 + visible FAQ block mirrored in FAQPage JSON-LD
+ * with the cross-link mesh (hub, sibling guides, city pages), honest CTA,
+ * and the JoinOrigin-led structure (intro + per-step JoinOrigin notes).
  */
 
 describe('guides/[slug] page — static params + metadata', () => {
@@ -69,6 +70,18 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
     );
   });
 
+  it('leads with JoinOrigin — intro + every step renders a JoinOrigin note (TASK-320)', () => {
+    renderWithI18n(<GuideView entry={entry} content={content} />);
+    expect(content.intro).toContain('JoinOrigin');
+    // The "How JoinOrigin can help" label renders once per step.
+    expect(screen.getAllByText('How JoinOrigin can help').length).toBeGreaterThanOrEqual(
+      content.steps.length,
+    );
+    const firstStep = content.steps[0];
+    if (!firstStep) throw new Error('guide must have steps');
+    expect(screen.getByText(firstStep.joinOriginNote)).toBeInTheDocument();
+  });
+
   it('renders the FAQ block (JSON-LD mirror is asserted on the server wrapper)', () => {
     renderWithI18n(<GuideView entry={entry} content={content} />);
     const faqQ = content.faq[0];
@@ -81,7 +94,11 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
   it('cross-links to the guides hub + sibling guides + flagship cities + waitlist CTA', () => {
     renderWithI18n(<GuideView entry={entry} content={content} />);
     expect(screen.getByText('Related guides')).toBeInTheDocument();
-    expect(screen.getByText('How JoinOrigin can help')).toBeInTheDocument();
+    // JoinOrigin-led: the "How JoinOrigin can help" label appears once per
+    // step plus once in the closing CTA band.
+    expect(screen.getAllByText('How JoinOrigin can help').length).toBeGreaterThanOrEqual(
+      content.steps.length + 1,
+    );
     expect(screen.getByTestId('guide-join-button')).toBeInTheDocument();
     // Sibling guide link.
     expect(screen.getByText(entry.related[0]?.replace(/-/g, ' ') ?? '')).toBeInTheDocument();
