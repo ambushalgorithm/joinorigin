@@ -522,6 +522,7 @@
       "presenceClaim": "ค้นหาหรือเริ่มชุมชนใน {{city}}",
       "communitiesIn": "ชุมชนใน {{city}}",
       "cityFacts": "ข้อเท็จจริงเกี่ยวกับเมือง",
+      "exploreCommunities": "สำรวจชุมชน",
       "exploreGroupTypes": "สำรวจประเภทชุมชน",
       "groupTypesInCity": "ประเภทชุมชนในเมือง",
       "flagshipCities": "เมืองหลัก",

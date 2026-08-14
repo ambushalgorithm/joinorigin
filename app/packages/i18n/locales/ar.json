@@ -522,6 +522,7 @@
       "presenceClaim": "ابحث عن مجتمع أو أنشئه في {{city}}",
       "communitiesIn": "مجتمعات في {{city}}",
       "cityFacts": "حقائق عن المدينة",
+      "exploreCommunities": "استكشف المجتمعات",
       "exploreGroupTypes": "استكشف أنواع المجتمعات",
       "groupTypesInCity": "أنواع المجتمعات في المدينة",
       "flagshipCities": "مدن رئيسية",

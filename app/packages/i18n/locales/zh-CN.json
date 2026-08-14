@@ -522,6 +522,7 @@
       "presenceClaim": "在{{city}}找到或创建社区",
       "communitiesIn": "{{city}}的社区",
       "cityFacts": "城市数据",
+      "exploreCommunities": "探索社区",
       "exploreGroupTypes": "探索社区类型",
       "groupTypesInCity": "这个城市的社区类型",
       "flagshipCities": "重点城市",
