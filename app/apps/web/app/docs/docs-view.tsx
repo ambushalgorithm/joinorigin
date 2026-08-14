@@ -1,11 +1,14 @@
 'use client';
 
+import styled from 'styled-components';
+
 import { useI18n } from '@joinorigin/i18n';
 
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
 import SectionBand from '../../components/SectionBand';
 import {
+  AccentLink,
   BodyCopy,
   Card,
   CardBody,
@@ -46,6 +49,15 @@ const CONCEPT_KEYS = [
 ] as const;
 
 const ROADMAP_PHASE_KEYS = ['phase1', 'phase2', 'phase3', 'phase4', 'phase5'] as const;
+
+/** Explore hub cross-links row (TASK-316) — additive, keeps copy intact. */
+const ExploreLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.lg}px;
+  margin-top: ${({ theme }) => theme.spacing.md}px;
+  flex-wrap: wrap;
+`;
 
 export function DocsView() {
   const { t, dictionary } = useI18n();
@@ -118,6 +130,11 @@ export function DocsView() {
               <SectionTitle id="architecture">{t('docs.sectionArchitecture')}</SectionTitle>
               <BodyCopy>{t('docs.architectureParagraph1')}</BodyCopy>
               <BodyCopy>{t('docs.architectureParagraph2')}</BodyCopy>
+              <ExploreLinks>
+                <AccentLink href="/location">{t('common.nav.locations')}</AccentLink>
+                <AccentLink href="/guides">{t('common.nav.guides')}</AccentLink>
+                <AccentLink href="/glossary">{t('common.nav.glossary')}</AccentLink>
+              </ExploreLinks>
             </Section>
           </Reveal>
         </PageContainer>

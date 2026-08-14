@@ -225,6 +225,11 @@ test.describe('mobile nav (≤768px)', () => {
     await toggle.click();
     const menu = page.getByTestId('mobile-menu');
     await expect(menu).toBeVisible();
+    // Explore group (TASK-316) + retained top-level links.
+    await expect(menu.getByText('Explore')).toBeVisible();
+    await expect(menu.getByText('Locations')).toBeVisible();
+    await expect(menu.getByText('Guides')).toBeVisible();
+    await expect(menu.getByText('Glossary')).toBeVisible();
     await expect(menu.getByText('Features')).toBeVisible();
     await expect(menu.getByText('Community')).toBeVisible();
     await expect(menu.getByText('Docs')).toBeVisible();

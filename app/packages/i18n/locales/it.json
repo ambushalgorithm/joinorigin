@@ -15,7 +15,11 @@
       "about": "Chi siamo",
       "contact": "Contatti",
       "privacy": "Privacy",
-      "terms": "Termini"
+      "terms": "Termini",
+      "explore": "Esplora",
+      "locations": "Luoghi",
+      "guides": "Guide",
+      "glossary": "Glossario"
     },
     "objects": {
       "profiles": "Profili",

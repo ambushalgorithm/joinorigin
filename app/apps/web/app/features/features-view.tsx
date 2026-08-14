@@ -1,11 +1,14 @@
 'use client';
 
+import styled from 'styled-components';
+
 import { useI18n } from '@joinorigin/i18n';
 
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
 import SectionBand from '../../components/SectionBand';
 import {
+  AccentLink,
   BodyCopy,
   Card,
   CardBody,
@@ -55,6 +58,15 @@ const COMPARISON_KEYS = ['linkedin', 'discord', 'reddit', 'github'] as const;
 
 const ROADMAP_PHASE_KEYS = ['phase1', 'phase2', 'phase3', 'phase4', 'phase5'] as const;
 
+/** Explore hub cross-links row (TASK-316) — additive, keeps copy intact. */
+const ExploreLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.lg}px;
+  margin-top: ${({ theme }) => theme.spacing.md}px;
+  flex-wrap: wrap;
+`;
+
 export function FeaturesView() {
   const { t, dictionary } = useI18n();
   const faq = faqEntries(faqNamespace(dictionary, 'features'));
@@ -97,6 +109,11 @@ export function FeaturesView() {
             <Section>
               <SectionTitle>{t('features.sectionComparison')}</SectionTitle>
               <BodyCopy>{t('features.comparisonIntro')}</BodyCopy>
+              <ExploreLinks>
+                <AccentLink href="/location">{t('common.nav.locations')}</AccentLink>
+                <AccentLink href="/guides">{t('common.nav.guides')}</AccentLink>
+                <AccentLink href="/glossary">{t('common.nav.glossary')}</AccentLink>
+              </ExploreLinks>
               <CompareTable data-testid="features-comparison-table">
                 <TableHead>
                   <TableRow>

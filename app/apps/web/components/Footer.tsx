@@ -14,13 +14,21 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 /**
  * Slim footer (spec §5.6 + sprint-4-discovery §3.2).
  *
- * Brand mark + wordmark, tagline, grouped nav (Product / Company / Legal),
- * `Join the waitlist` rotating-border CTA, the copyright line, and the
+ * Brand mark + wordmark, tagline, grouped nav (Explore / Product / Company /
+ * Legal), `Join the waitlist` rotating-border CTA, the copyright line, and the
  * language switcher (Sprint 9, compact variant aligned to the inline end).
  * Stacks vertically on mobile.
  */
 
 const FOOTER_GROUPS = [
+  {
+    titleKey: 'common.nav.explore',
+    links: [
+      { labelKey: 'common.nav.locations', href: '/location' },
+      { labelKey: 'common.nav.guides', href: '/guides' },
+      { labelKey: 'common.nav.glossary', href: '/glossary' },
+    ],
+  },
   {
     titleKey: 'footer.groupProduct',
     links: [

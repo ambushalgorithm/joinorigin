@@ -15,7 +15,11 @@
       "about": "درباره ما",
       "contact": "تماس",
       "privacy": "حریم خصوصی",
-      "terms": "قوانین"
+      "terms": "قوانین",
+      "explore": "کاوش",
+      "locations": "مکانها",
+      "guides": "راهنماها",
+      "glossary": "واژهنامه"
     },
     "objects": {
       "profiles": "پروفایل‌ها",

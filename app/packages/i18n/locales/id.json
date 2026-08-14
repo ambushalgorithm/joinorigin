@@ -15,7 +15,11 @@
       "about": "Tentang",
       "contact": "Kontak",
       "privacy": "Privasi",
-      "terms": "Ketentuan"
+      "terms": "Ketentuan",
+      "explore": "Jelajahi",
+      "locations": "Lokasi",
+      "guides": "Panduan",
+      "glossary": "Glosarium"
     },
     "objects": {
       "profiles": "Profil",

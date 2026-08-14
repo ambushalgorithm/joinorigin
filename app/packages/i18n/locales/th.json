@@ -15,7 +15,11 @@
       "about": "เกี่ยวกับ",
       "contact": "ติดต่อ",
       "privacy": "ความเป็นส่วนตัว",
-      "terms": "ข้อกำหนด"
+      "terms": "ข้อกำหนด",
+      "explore": "สำรวจ",
+      "locations": "สถานที่",
+      "guides": "คู่มือ",
+      "glossary": "อภิธานศัพท์"
     },
     "objects": {
       "profiles": "โปรไฟล์",

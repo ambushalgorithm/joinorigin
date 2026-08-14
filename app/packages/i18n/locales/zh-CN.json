@@ -15,7 +15,11 @@
       "about": "关于我们",
       "contact": "联系我们",
       "privacy": "隐私政策",
-      "terms": "服务条款"
+      "terms": "服务条款",
+      "explore": "探索",
+      "locations": "地点",
+      "guides": "指南",
+      "glossary": "术语表"
     },
     "objects": {
       "profiles": "个人主页",

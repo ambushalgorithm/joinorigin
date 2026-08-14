@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
@@ -24,15 +24,50 @@ function renderHeader() {
 }
 
 describe('Header', () => {
-  it('renders the brand, desktop nav, Log In and Get Started CTA', () => {
+  it('renders the brand, desktop nav, Explore submenu, Log In and Get Started CTA', () => {
     renderHeader();
 
     expect(screen.getByText('JoinOrigin')).toBeInTheDocument();
+    // Explore dropdown (TASK-316) + retained top-level links.
+    expect(screen.getByTestId('explore-menu-toggle')).toBeInTheDocument();
+    expect(screen.getByText('Explore')).toBeInTheDocument();
+    for (const label of ['Locations', 'Guides', 'Glossary']) {
+      expect(screen.getByText(label)).toBeInTheDocument();
+    }
     for (const label of ['Features', 'Community', 'Docs', 'About']) {
       expect(screen.getByText(label)).toBeInTheDocument();
     }
     expect(screen.getByText('Log In')).toBeInTheDocument();
     expect(screen.getByTestId('get-started-button')).toBeInTheDocument();
+  });
+
+  it('opens the Explore submenu and links to the SEO hubs', async () => {
+    const user = userEvent.setup();
+    renderHeader();
+
+    const toggle = screen.getByTestId('explore-menu-toggle');
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+
+    // jsdom's matchMedia reports desktop media queries as inactive, so the
+    // desktop `<nav>` is `display:none` here; `hidden: true` scopes the role
+    // query to the rendered anchors (real visibility is covered by e2e).
+    const menu = screen.getByTestId('explore-menu');
+    expect(within(menu).getByRole('link', { name: 'Locations', hidden: true })).toHaveAttribute(
+      'href',
+      '/location',
+    );
+    expect(within(menu).getByRole('link', { name: 'Guides', hidden: true })).toHaveAttribute(
+      'href',
+      '/guides',
+    );
+    expect(within(menu).getByRole('link', { name: 'Glossary', hidden: true })).toHaveAttribute(
+      'href',
+      '/glossary',
+    );
+    // ESC closes the dropdown.
+    await user.keyboard('{Escape}');
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
   });
 
   it('opens the waitlist modal from the Get Started CTA', async () => {
@@ -69,5 +104,28 @@ describe('Header', () => {
 
     await user.keyboard('{Escape}');
     expect(screen.queryByTestId('mobile-menu')).not.toBeInTheDocument();
+  });
+
+  it('lists the Explore links in the mobile panel (TASK-316)', async () => {
+    const user = userEvent.setup();
+    renderHeader();
+
+    await user.click(screen.getByTestId('mobile-menu-toggle'));
+    const menu = screen.getByTestId('mobile-menu');
+
+    // The Explore group label + links come first, then the retained links.
+    expect(within(menu).getByText('Explore')).toBeInTheDocument();
+    expect(within(menu).getByRole('link', { name: 'Locations' })).toHaveAttribute(
+      'href',
+      '/location',
+    );
+    expect(within(menu).getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/guides');
+    expect(within(menu).getByRole('link', { name: 'Glossary' })).toHaveAttribute(
+      'href',
+      '/glossary',
+    );
+    for (const label of ['Features', 'Community', 'Docs', 'About']) {
+      expect(within(menu).getByText(label)).toBeInTheDocument();
+    }
   });
 });
