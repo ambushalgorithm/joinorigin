@@ -52,6 +52,7 @@ import {
 import type { PageKind } from './locationGates';
 import {
   LOCATION_HUB_PATH,
+  indexableLocationEntries,
   isWarmSetEntry,
   locationPageEntries,
   type LocationPageEntry,
@@ -181,6 +182,34 @@ export function locationMetadata(entry: LocationPageEntry): Metadata {
       languages,
     },
   };
+}
+
+/* ------------------------------------------------------------------ *
+ * Hub directory (TASK-317 — /location hub search/filter)
+ * ------------------------------------------------------------------ */
+
+/** One browsable entry in the `/location` hub directory. */
+export interface HubDirectoryEntry {
+  /** Display name (registry title without the brand suffix). */
+  name: string;
+  path: string;
+  kind: PageKind;
+}
+
+/**
+ * The complete browsable directory for the `/location` hub — every
+ * indexable location page (countries, regions, cities, group-type variants,
+ * ideas) derived from the registry. The hub view filters this client-side
+ * by keyword; no separate index is invented (design §8.4).
+ */
+export function hubDirectoryEntries(): HubDirectoryEntry[] {
+  return indexableLocationEntries()
+    .filter((entry) => entry.kind !== 'hub')
+    .map((entry) => ({
+      name: entry.title.replace(/\s*\|\s*JoinOrigin\s*$/, ''),
+      path: entry.path,
+      kind: entry.kind,
+    }));
 }
 
 /* ------------------------------------------------------------------ *
@@ -345,6 +374,8 @@ export interface LocationViewData {
   groupTypeLinks: GroupTypeLink[];
   siblingCities: SiblingCityLink[];
   guideLinks: GuideLink[];
+  /** Browsable directory for the hub (TASK-317) — populated for `hub` only. */
+  hubDirectory?: HubDirectoryEntry[];
   /** Idea listicle (ideas pages only). */
   ideaCategories?: IdeaCategory[];
   waitlistSource: string;
@@ -439,6 +470,7 @@ export function buildLocationViewData(
           ? siblingCitiesFor(cityEntity)
           : [],
     guideLinks: guideLinksFor(entry.kind),
+    hubDirectory: entry.kind === 'hub' ? hubDirectoryEntries() : undefined,
     ideaCategories:
       entry.kind === 'ideas' && content?.kind === 'city' ? content.ideaPage.categories : undefined,
     waitlistSource: waitlistSource(entry),

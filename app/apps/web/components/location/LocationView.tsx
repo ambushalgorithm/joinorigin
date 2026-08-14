@@ -1,13 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
 
+import HubSearchInput from '../HubSearchInput';
 import MenuPageShell from '../MenuPageShell';
 import Reveal from '../Reveal';
 import SectionBand from '../SectionBand';
+import { filterByKeyword } from '../../lib/search/hubFilter';
+import { useDebouncedValue } from '../../lib/search/useDebouncedValue';
 import {
   BodyCopy,
   BulletList,
@@ -202,6 +206,24 @@ const Attribution = styled.p`
   }
 `;
 
+/** Human label for a hub-directory entry kind (TASK-317 card body). */
+function hubDirectoryKindLabel(kind: string): string {
+  switch (kind) {
+    case 'country':
+      return 'Country';
+    case 'region':
+      return 'Region';
+    case 'city':
+      return 'City';
+    case 'variant':
+      return 'Community type';
+    case 'ideas':
+      return 'Community event ideas';
+    default:
+      return 'Location';
+  }
+}
+
 export function LocationView({ data }: { data: LocationViewData }) {
   const { t } = useI18n();
   const heroTitle = data.heading;
@@ -210,6 +232,18 @@ export function LocationView({ data }: { data: LocationViewData }) {
   const hasGroupLinks = data.groupTypeLinks.length > 0;
   const hasSiblings = data.siblingCities.length > 0;
   const hasFaq = data.faq.length > 0;
+
+  // TASK-317 — the `/location` hub search/filter: a browsable directory of
+  // every indexable location page (country/region/city/group-type/ideas),
+  // filtered client-side by keyword with a debounced input (~180ms). No new
+  // route, no server round-trip, no separate index — the registry already
+  // carries the entries (`hubDirectory` is populated for the hub only).
+  const isHub = data.kind === 'hub';
+  const hubDirectory = data.hubDirectory ?? [];
+  const [hubQuery, setHubQuery] = useState('');
+  const debouncedHubQuery = useDebouncedValue(hubQuery);
+  const filteredDirectory = filterByKeyword(hubDirectory, debouncedHubQuery, (entry) => entry.name);
+  const hasDirectoryMatches = filteredDirectory.length > 0;
 
   // Hero eyebrow + breadcrumb chrome follow the active cookie locale via the
   // `seoContent` namespace (TASK-310); the server view model still carries
@@ -314,6 +348,47 @@ export function LocationView({ data }: { data: LocationViewData }) {
           ) : null}
         </PageContainer>
       </SectionBand>
+
+      {isHub && hubDirectory.length > 0 ? (
+        <SectionBand variant="plain">
+          <PageContainer>
+            <Section>
+              <SectionTitle data-testid="location-hub-directory-title">
+                Browse locations
+              </SectionTitle>
+              <HubSearchInput
+                id="location-hub-search"
+                label="Search locations"
+                placeholder="Search by city, country, or community type"
+                value={hubQuery}
+                onChange={setHubQuery}
+                data-testid="location-hub-search"
+              />
+              {hasDirectoryMatches ? (
+                <CardGrid data-testid="location-hub-directory">
+                  {filteredDirectory.map((entry) => (
+                    <Card key={entry.path}>
+                      <CardTitle>
+                        <Link
+                          href={entry.path}
+                          style={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                          {entry.name}
+                        </Link>
+                      </CardTitle>
+                      <CardBody>{hubDirectoryKindLabel(entry.kind)}</CardBody>
+                    </Card>
+                  ))}
+                </CardGrid>
+              ) : (
+                <BodyCopy data-testid="location-hub-empty" role="status">
+                  No locations match “{debouncedHubQuery}”.
+                </BodyCopy>
+              )}
+            </Section>
+          </PageContainer>
+        </SectionBand>
+      ) : null}
 
       {isIdeas && data.ideaCategories ? (
         <SectionBand variant="plain">
