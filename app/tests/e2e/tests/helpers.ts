@@ -22,6 +22,19 @@ export function leadsCsvHasEmail(email: string): boolean {
   return readLeadsCsv().includes(email.trim().toLowerCase());
 }
 
+/** The CSV header row (first line) or '' when the file is empty. */
+export function leadsCsvHeader(): string {
+  return readLeadsCsv().split('\n')[0] ?? '';
+}
+
+/** The first CSV row containing the given email (lowercased), or undefined. */
+export function leadsCsvRow(email: string): string | undefined {
+  const needle = email.trim().toLowerCase();
+  return readLeadsCsv()
+    .split('\n')
+    .find((line) => line.toLowerCase().includes(needle));
+}
+
 /**
  * Waits for the client bundle to hydrate before clicking a CTA.
  *

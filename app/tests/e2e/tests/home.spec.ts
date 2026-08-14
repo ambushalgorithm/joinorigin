@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { waitForHydration } from './helpers';
+import { leadsCsvRow, waitForHydration } from './helpers';
 
 /**
  * JoinOrigin homescreen e2e coverage (Sprint 3).
@@ -9,6 +9,10 @@ import { waitForHydration } from './helpers';
  * so assertions on the final heading wait for it to complete. The waitlist
  * modal flow posts to the real dev server (`POST /api/leads`), which appends
  * to `apps/web/data/leads.csv` — acceptable for the sprint-scope CSV.
+ *
+ * Story 3 (Expanded Signup): the browser-driven submission is asserted to
+ * produce an expanded-schema CSV row carrying the passive server-side capture
+ * fields (timestamp, ip, locale, userAgent, referrer) alongside name/email.
  */
 
 test('homepage renders the header, hero, ticker and footer', async ({ page }) => {
@@ -43,6 +47,8 @@ test('any CTA opens the waitlist modal and submission reaches the CSV API', asyn
   await page.goto('/');
   await waitForHydration(page);
 
+  const email = `home.${Date.now()}@example.com`;
+
   // Open from the hero Start Project button (any-button contract).
   await page.getByTestId('start-project-button').click();
   const modal = page.getByRole('dialog');
@@ -51,12 +57,21 @@ test('any CTA opens the waitlist modal and submission reaches the CSV API', asyn
 
   // Submit name + email → success state.
   await modal.getByTestId('waitlist-name-input').fill('Ada Lovelace');
-  await modal.getByTestId('waitlist-email-input').fill('ada.e2e@example.com');
+  await modal.getByTestId('waitlist-email-input').fill(email);
   await modal.getByTestId('waitlist-submit').click();
 
   await expect(modal).toContainText("You're on the list!", { timeout: 15_000 });
   await modal.getByTestId('waitlist-done').click();
   await expect(modal).not.toBeVisible();
+
+  // Story 3: the row is captured with the expanded schema and passive fields.
+  const row = leadsCsvRow(email);
+  expect(row).toBeDefined();
+  expect(row).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z,Ada Lovelace,/);
+  expect(row).toContain(email.toLowerCase());
+  // Browser-supplied passive fields are present (raw IP, resolved locale,
+  // user agent, referrer = the home page URL).
+  expect(row).toContain('http://127.0.0.1:3100/');
 });
 
 test('waitlist modal validates bad input with inline field errors', async ({ page }) => {

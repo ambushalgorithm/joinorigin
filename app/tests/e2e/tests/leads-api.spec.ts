@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { leadsCsvHasEmail } from './helpers';
+import { leadsCsvHasEmail, leadsCsvHeader, leadsCsvRow } from './helpers';
 
 /**
  * `POST /api/leads` contract coverage (spec §9.3), exercised directly against
@@ -9,6 +9,10 @@ import { leadsCsvHasEmail } from './helpers';
  * Each test uses a unique `x-forwarded-for` IP so the route's per-IP rate
  * limiter (10/min) is isolated per test — the browser-driven modal tests share
  * a different bucket, so this suite never trips the browser flow.
+ *
+ * Story 3 (Expanded Signup): the route passively captures ip / locale /
+ * userAgent / referrer / timestamp server-side, so these specs also assert the
+ * expanded CSV schema and that a posted row contains the passive fields.
  */
 
 let ipCounter = 10;
@@ -24,11 +28,18 @@ function uniqueIp(): string {
   return `203.0.113.${run}.${ipCounter}`;
 }
 
+const PASSIVE_HEADERS = {
+  'accept-language': 'fr-FR,fr;q=0.9,en;q=0.8',
+  'user-agent': 'JoinOrigin-E2E/1.0 (passive capture check)',
+  referer: 'https://joinorigin.example/waitlist',
+};
+
 function postValid(email: string) {
   return {
     headers: {
       'x-forwarded-for': uniqueIp(),
       'content-type': 'application/json',
+      ...PASSIVE_HEADERS,
     },
     data: { name: 'Ada Lovelace', email },
   };
@@ -44,6 +55,36 @@ test.describe('POST /api/leads', () => {
     expect(response.status()).toBe(200);
     await expect(response.json()).resolves.toEqual({ ok: true });
     expect(leadsCsvHasEmail(email)).toBe(true);
+
+    // Story 3 expanded schema: header + row carry the passive capture fields.
+    expect(leadsCsvHeader()).toBe('timestamp,name,email,ip,locale,userAgent,referrer');
+    const row = leadsCsvRow(email);
+    expect(row).toBeDefined();
+    expect(row).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z,/);
+    expect(row).toContain('Ada Lovelace');
+    expect(row).toContain(email.toLowerCase());
+    expect(row).toContain('fr');
+    expect(row).toContain('JoinOrigin-E2E/1.0');
+    expect(row).toContain('https://joinorigin.example/waitlist');
+  });
+
+  test('passively captures a raw client IP on the CSV row', async ({ request }) => {
+    const ip = '198.51.100.42';
+    const email = `api.ip.${Date.now()}@example.com`;
+    const response = await request.post('/api/leads', {
+      headers: {
+        'x-forwarded-for': ip,
+        'content-type': 'application/json',
+        ...PASSIVE_HEADERS,
+      },
+      data: { name: 'Ada Lovelace', email },
+    });
+
+    expect(response.status()).toBe(200);
+    const row = leadsCsvRow(email);
+    expect(row).toBeDefined();
+    expect(row).toContain(email.toLowerCase()); // lowercased email matches needle
+    expect(row).toContain(ip);
   });
 
   test('rejects a missing name with a field error', async ({ request }) => {
