@@ -19,6 +19,7 @@ consumed verbatim by the implementing role.
 | `sprint-8-origin-copy.md` | Sprint 8 approved copy-change-log — Origin-as-product / JoinOrigin-as-brand copy verbatim + per-file copy table (owned by fe-origin-copy; not consumed by the switcher) |
 | `sprint-9-i18n-switcher.md` | Sprint 9 language switcher spec — web header/footer + mobile placement, globe icon + native-language labels, dropdown interaction with immediate switch, cookie persistence, RTL states for ar/fa, a11y, ASCII wireframes, component file list for fe-i18n-integration |
 | `sprint-10-menu-redesign.md` | Sprint 10 menu-screen redesign spec (homepage-standard elevation) — per-page visual layout at minimum the homepage standard, ambient hero atmosphere, animated scene SVGs, hero join CTAs, trust rows + count-up stats + chip marquee, sticky anchor navs, glass section bands, local asset manifest (zero CDN), MenuPageShell structure extensions, SEO/JSON-LD preservation rules |
+| `research/` | Sprint 11 research findings — best-opinion reports from 7 specialist roles (market-competitor, programmatic-seo, geodata, content-strategy, localization, tech-feasibility, translation-services) consumed by `arch-seo-content-engine` to produce `sprint-11-seo-content-engine.md`; see `research/README.md` |
 | `README.md` | This file — navigation index |
 
 ## Navigation Footer
