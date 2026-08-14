@@ -27,3 +27,4 @@ ALL seven and produces the solution design at `../sprint-11-seo-content-engine.m
 
 - **Up:** [`../README.md`](../README.md) (design docs index)
 - **Consumer:** `arch-seo-content-engine` (TASK-303) → `../sprint-11-seo-content-engine.md`
+- **Verifiers:** paired review roles (`review-research-*`)

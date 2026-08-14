@@ -20,6 +20,7 @@ consumed verbatim by the implementing role.
 | `sprint-9-i18n-switcher.md` | Sprint 9 language switcher spec — web header/footer + mobile placement, globe icon + native-language labels, dropdown interaction with immediate switch, cookie persistence, RTL states for ar/fa, a11y, ASCII wireframes, component file list for fe-i18n-integration |
 | `sprint-10-menu-redesign.md` | Sprint 10 menu-screen redesign spec (homepage-standard elevation) — per-page visual layout at minimum the homepage standard, ambient hero atmosphere, animated scene SVGs, hero join CTAs, trust rows + count-up stats + chip marquee, sticky anchor navs, glass section bands, local asset manifest (zero CDN), MenuPageShell structure extensions, SEO/JSON-LD preservation rules |
 | `research/` | Sprint 11 SEO Content Engine research findings — seven specialist best-opinion reports (market-competitor, programmatic-seo, geodata, content-strategy, localization, tech-feasibility, translation-services) consumed by `arch-seo-content-engine` (TASK-303) — see `research/README.md` |
+| `research/sprint-11-content-strategy.md` | Sprint 11 SEO Content Engine research (content-strategy) — evergreen content types for community platforms, content hierarchy (how-to guides, idea pages, topic hubs/glossary), flagship-city manual-vs-auto recommendation with criteria, quality thresholds for auto-generated pages |
 | `README.md` | This file — navigation index |
 
 ## Navigation Footer
