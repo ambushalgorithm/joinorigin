@@ -191,6 +191,21 @@ test.describe('Berlin de pages + hreflang', () => {
     );
   });
 
+  test('/de/location/germany/berlin/berlin serves <html lang="de"> without a de cookie or header (TASK-315)', async ({
+    page,
+  }) => {
+    // No German cookie or Accept-Language header: the /de/* prefix alone must
+    // force the server-side locale so crawlers see `<html lang="de">`. Assert
+    // the RAW served HTML (the HTTP response body) — the client
+    // I18nProvider re-resolves navigator.language after hydration, so the
+    // DOM alone would not prove server-side forcing.
+    await page.context().clearCookies();
+    const response = await page.goto('/de/location/germany/berlin/berlin');
+    expect(response?.status()).toBe(200);
+    const servedHtml = (await response?.text()) ?? '';
+    expect(servedHtml).toContain('<html lang="de" dir="ltr">');
+  });
+
   for (const path of EN_ONLY) {
     test(`${path} (EN-only) emits NO hreflang alternates`, async ({ page }) => {
       await page.goto(path);

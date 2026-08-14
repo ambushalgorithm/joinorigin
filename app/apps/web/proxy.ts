@@ -17,9 +17,21 @@ import { resolveLocale } from '@joinorigin/i18n';
 export const LOCALE_COOKIE = 'joinorigin_locale';
 
 export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
   const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
   const acceptLanguage = request.headers.get('accept-language') ?? undefined;
-  const locale = cookieLocale ? resolveLocale(cookieLocale) : resolveLocale(acceptLanguage);
+
+  // `/de/*` is the German locale surface (Sprint 12, TASK-315): the locale
+  // MUST be `de` regardless of the cookie or Accept-Language so
+  // `<html lang="de">` renders server-side for crawlers and users with no
+  // German preference. All other routes keep the cookie → Accept-Language →
+  // en precedence.
+  const isGermanPath = pathname === '/de' || pathname.startsWith('/de/');
+  const locale = isGermanPath
+    ? 'de'
+    : cookieLocale
+      ? resolveLocale(cookieLocale)
+      : resolveLocale(acceptLanguage);
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-joinorigin-locale', locale);
