@@ -504,5 +504,67 @@
       "title": "مرحبًا بك في JoinOrigin",
       "subtitle": "مساحة عملك جاهزة."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "مجتمعات حسب المدينة",
+      "country": "مجتمعات في هذا البلد",
+      "region": "مجتمعات في هذه المنطقة",
+      "city": "مجتمعات في هذه المدينة",
+      "variant": "نوع المجتمع",
+      "ideas": "أفكار الفعاليات المجتمعية"
+    },
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "hub": "المجتمعات حسب المدينة"
+    },
+    "location": {
+      "presenceClaim": "ابحث عن مجتمع أو أنشئه في {{city}}",
+      "communitiesIn": "مجتمعات في {{city}}",
+      "cityFacts": "حقائق عن المدينة",
+      "exploreGroupTypes": "استكشف أنواع المجتمعات",
+      "groupTypesInCity": "أنواع المجتمعات في المدينة",
+      "flagshipCities": "مدن رئيسية",
+      "nearbyCities": "مجتمعات في المدن القريبة",
+      "guidesTitle": "أدلة لبدء مجتمع",
+      "stepByStepGuide": "دليل خطوة بخطوة",
+      "ideasLink": "30 فكرة لفعاليات مجتمعية",
+      "faqHeading": "الأسئلة الشائعة"
+    },
+    "groupTypes": {
+      "startup": "مجتمعات الشركات الناشئة",
+      "creative": "مجتمعات الإبداع والتصميم",
+      "political": "المجتمعات السياسية والمدنية",
+      "meetup": "لقاءات وفعاليات المجتمع",
+      "smallBusiness": "مجتمعات الأعمال الصغيرة"
+    },
+    "guides": {
+      "eyebrow": "دليل إرشادي",
+      "hubEyebrow": "بناء المجتمع",
+      "hubTitle": "أدلة بناء المجتمع",
+      "allGuides": "كل الأدلة",
+      "glossarySection": "مسرد نظام المجتمع",
+      "startLocal": "ابدأ محليًا",
+      "cityCardBody": "استكشف أماكن ومجموعات وأدلة حقيقية في {{city}}.",
+      "overview": "نظرة عامة",
+      "stepByStep": "خطوة بخطوة",
+      "stepNumber": "الخطوة {{number}}.",
+      "relatedGuides": "أدلة ذات صلة",
+      "exploreCommunities": "استكشف المجتمعات",
+      "howJoinOriginHelps": "كيف يمكن لـ JoinOrigin المساعدة",
+      "keepLearning": "واصل التعلم"
+    },
+    "glossary": {
+      "eyebrow": "نظام المجتمع",
+      "title": "مسرد نظام المجتمع",
+      "intro": "المفردات الأساسية لبناء المجتمع — تعريفات واضحة للمصطلحات التي يستخدمها المنظمون والمشرفون والمؤسسون يوميًا.",
+      "whyTitle": "لماذا مسرد؟",
+      "termsTitle": "مصطلحات سنعرّفها",
+      "goDeeper": "تعمق أكثر",
+      "comingSoon": "التعريف قريبًا."
+    },
+    "cta": {
+      "joinWaitlist": "انضم إلى قائمة الانتظار"
+    }
   }
 }

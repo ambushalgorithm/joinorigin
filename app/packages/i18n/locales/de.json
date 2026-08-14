@@ -504,5 +504,67 @@
       "title": "Willkommen bei JoinOrigin",
       "subtitle": "Dein Workspace ist bereit."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "Communities nach Stadt",
+      "country": "Communities im Land",
+      "region": "Communities in der Region",
+      "city": "Communities in der Stadt",
+      "variant": "Community-Typ",
+      "ideas": "Event-Ideen"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "hub": "Communities nach Stadt"
+    },
+    "location": {
+      "presenceClaim": "Community in {{city}} finden oder gründen",
+      "communitiesIn": "Communities in {{city}}",
+      "cityFacts": "Stadt-Fakten",
+      "exploreGroupTypes": "Community-Typen entdecken",
+      "groupTypesInCity": "Community-Typen in der Stadt",
+      "flagshipCities": "Flagship-Städte",
+      "nearbyCities": "Communities in nahegelegenen Städten",
+      "guidesTitle": "Anleitungen zum Community-Aufbau",
+      "stepByStepGuide": "Schritt-für-Schritt-Anleitung",
+      "ideasLink": "30 Ideen für Community-Events",
+      "faqHeading": "Häufig gestellte Fragen"
+    },
+    "groupTypes": {
+      "startup": "Startup-Communities",
+      "creative": "Kreativ- & Design-Communities",
+      "political": "Politische & bürgerschaftliche Communities",
+      "meetup": "Community-Meetups & Veranstaltungen",
+      "smallBusiness": "Kleinunternehmer-Communities"
+    },
+    "guides": {
+      "eyebrow": "How-to-Anleitung",
+      "hubEyebrow": "Community-Aufbau",
+      "hubTitle": "Anleitungen zum Community-Aufbau",
+      "allGuides": "Alle Anleitungen",
+      "glossarySection": "Community-OS-Glossar",
+      "startLocal": "Lokal starten",
+      "cityCardBody": "Entdecke echte Orte, Gruppen und Anleitungen in {{city}}.",
+      "overview": "Überblick",
+      "stepByStep": "Schritt für Schritt",
+      "stepNumber": "Schritt {{number}}.",
+      "relatedGuides": "Verwandte Anleitungen",
+      "exploreCommunities": "Communities entdecken",
+      "howJoinOriginHelps": "Wie JoinOrigin helfen kann",
+      "keepLearning": "Weiterlernen"
+    },
+    "glossary": {
+      "eyebrow": "Community-OS",
+      "title": "Community-OS-Glossar",
+      "intro": "Das wesentliche Vokabular des Community-Aufbaus – klare Definitionen für die Begriffe, die Organisatoren, Moderatoren und Gründer täglich verwenden.",
+      "whyTitle": "Warum ein Glossar",
+      "termsTitle": "Begriffe, die wir definieren werden",
+      "goDeeper": "Tiefer eintauchen",
+      "comingSoon": "Definition folgt in Kürze."
+    },
+    "cta": {
+      "joinWaitlist": "Auf die Warteliste"
+    }
   }
 }

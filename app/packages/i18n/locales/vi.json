@@ -504,5 +504,67 @@
       "title": "Chào mừng đến với JoinOrigin",
       "subtitle": "Không gian làm việc của bạn đã sẵn sàng."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "Cộng đồng theo thành phố",
+      "country": "Cộng đồng tại quốc gia này",
+      "region": "Cộng đồng tại khu vực này",
+      "city": "Cộng đồng tại thành phố này",
+      "variant": "Loại cộng đồng",
+      "ideas": "Ý tưởng sự kiện cộng đồng"
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "hub": "Cộng đồng theo Thành phố"
+    },
+    "location": {
+      "presenceClaim": "Tìm hoặc bắt đầu một cộng đồng tại {{city}}",
+      "communitiesIn": "Cộng đồng tại {{city}}",
+      "cityFacts": "Sự thật về thành phố",
+      "exploreGroupTypes": "Khám phá các loại cộng đồng",
+      "groupTypesInCity": "Các loại cộng đồng trong thành phố",
+      "flagshipCities": "Các thành phố tiêu biểu",
+      "nearbyCities": "Cộng đồng ở các thành phố lân cận",
+      "guidesTitle": "Hướng dẫn bắt đầu một cộng đồng",
+      "stepByStepGuide": "Hướng dẫn từng bước",
+      "ideasLink": "30 ý tưởng sự kiện cộng đồng",
+      "faqHeading": "Câu hỏi thường gặp"
+    },
+    "groupTypes": {
+      "startup": "Cộng đồng khởi nghiệp",
+      "creative": "Cộng đồng sáng tạo & thiết kế",
+      "political": "Cộng đồng chính trị & công dân",
+      "meetup": "Buổi gặp gỡ & sự kiện cộng đồng",
+      "smallBusiness": "Cộng đồng doanh nghiệp nhỏ"
+    },
+    "guides": {
+      "eyebrow": "Hướng dẫn cách làm",
+      "hubEyebrow": "Xây dựng cộng đồng",
+      "hubTitle": "Hướng dẫn xây dựng cộng đồng",
+      "allGuides": "Tất cả hướng dẫn",
+      "glossarySection": "Bảng thuật ngữ Hệ điều hành Cộng đồng",
+      "startLocal": "Bắt đầu tại địa phương",
+      "cityCardBody": "Khám phá địa điểm, nhóm và hướng dẫn thực tế tại {{city}}.",
+      "overview": "Tổng quan",
+      "stepByStep": "Từng bước",
+      "stepNumber": "Bước {{number}}.",
+      "relatedGuides": "Hướng dẫn liên quan",
+      "exploreCommunities": "Khám phá cộng đồng",
+      "howJoinOriginHelps": "JoinOrigin có thể giúp như thế nào",
+      "keepLearning": "Tiếp tục học hỏi"
+    },
+    "glossary": {
+      "eyebrow": "Hệ điều hành Cộng đồng",
+      "title": "Bảng thuật ngữ Hệ điều hành Cộng đồng",
+      "intro": "Từ vựng thiết yếu của việc xây dựng cộng đồng — định nghĩa rõ ràng cho các thuật ngữ mà người tổ chức, người điều hành và người sáng lập sử dụng mỗi ngày.",
+      "whyTitle": "Vì sao có bảng thuật ngữ",
+      "termsTitle": "Các thuật ngữ chúng tôi sẽ định nghĩa",
+      "goDeeper": "Tìm hiểu sâu hơn",
+      "comingSoon": "Định nghĩa sắp ra mắt."
+    },
+    "cta": {
+      "joinWaitlist": "Tham gia danh sách chờ"
+    }
   }
 }

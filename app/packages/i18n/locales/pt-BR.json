@@ -504,5 +504,67 @@
       "title": "Bem-vindo à JoinOrigin",
       "subtitle": "Seu espaço de trabalho está pronto."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "Comunidades por cidade",
+      "country": "Comunidades neste país",
+      "region": "Comunidades nesta região",
+      "city": "Comunidades nesta cidade",
+      "variant": "Tipo de comunidade",
+      "ideas": "Ideias de eventos comunitários"
+    },
+    "breadcrumb": {
+      "home": "Início",
+      "hub": "Comunidades por Cidade"
+    },
+    "location": {
+      "presenceClaim": "Encontre ou crie uma comunidade em {{city}}",
+      "communitiesIn": "Comunidades em {{city}}",
+      "cityFacts": "Dados da cidade",
+      "exploreGroupTypes": "Explore tipos de comunidade",
+      "groupTypesInCity": "Tipos de comunidade na cidade",
+      "flagshipCities": "Cidades principais",
+      "nearbyCities": "Comunidades em cidades próximas",
+      "guidesTitle": "Guias para criar uma comunidade",
+      "stepByStepGuide": "Guia passo a passo",
+      "ideasLink": "30 ideias de eventos comunitários",
+      "faqHeading": "Perguntas frequentes"
+    },
+    "groupTypes": {
+      "startup": "Comunidades de startups",
+      "creative": "Comunidades criativas e de design",
+      "political": "Comunidades políticas e cívicas",
+      "meetup": "Encontros e eventos comunitários",
+      "smallBusiness": "Comunidades de pequenas empresas"
+    },
+    "guides": {
+      "eyebrow": "Guia prático",
+      "hubEyebrow": "Construção de comunidade",
+      "hubTitle": "Guias de construção de comunidade",
+      "allGuides": "Todos os guias",
+      "glossarySection": "Glossário do sistema comunitário",
+      "startLocal": "Comece localmente",
+      "cityCardBody": "Explore lugares, grupos e guias reais em {{city}}.",
+      "overview": "Visão geral",
+      "stepByStep": "Passo a passo",
+      "stepNumber": "Passo {{number}}.",
+      "relatedGuides": "Guias relacionados",
+      "exploreCommunities": "Explore comunidades",
+      "howJoinOriginHelps": "Como o JoinOrigin pode ajudar",
+      "keepLearning": "Continue aprendendo"
+    },
+    "glossary": {
+      "eyebrow": "Sistema comunitário",
+      "title": "Glossário do sistema comunitário",
+      "intro": "O vocabulário essencial da construção de comunidade — definições claras dos termos que organizadores, moderadores e fundadores usam diariamente.",
+      "whyTitle": "Por que um glossário",
+      "termsTitle": "Termos que definiremos",
+      "goDeeper": "Aprofunde-se",
+      "comingSoon": "Definição em breve."
+    },
+    "cta": {
+      "joinWaitlist": "Entrar na lista de espera"
+    }
   }
 }

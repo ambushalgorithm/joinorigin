@@ -504,5 +504,67 @@
       "title": "Welcome to JoinOrigin",
       "subtitle": "Your workspace is ready."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "Communities by city",
+      "country": "Communities in this country",
+      "region": "Communities in this region",
+      "city": "Communities in this city",
+      "variant": "Community type",
+      "ideas": "Community event ideas"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "hub": "Communities by City"
+    },
+    "location": {
+      "presenceClaim": "Find or start a community in {{city}}",
+      "communitiesIn": "Communities in {{city}}",
+      "cityFacts": "City facts",
+      "exploreGroupTypes": "Explore community types",
+      "groupTypesInCity": "Community types in the city",
+      "flagshipCities": "Flagship cities",
+      "nearbyCities": "Communities in nearby cities",
+      "guidesTitle": "Guides for starting a community",
+      "stepByStepGuide": "Step-by-step guide",
+      "ideasLink": "30 community event ideas",
+      "faqHeading": "Frequently asked questions"
+    },
+    "groupTypes": {
+      "startup": "Startup communities",
+      "creative": "Creative & design communities",
+      "political": "Political & civic communities",
+      "meetup": "Community meetups & events",
+      "smallBusiness": "Small business communities"
+    },
+    "guides": {
+      "eyebrow": "How-to guide",
+      "hubEyebrow": "Community building",
+      "hubTitle": "Community Building Guides",
+      "allGuides": "All guides",
+      "glossarySection": "Community OS glossary",
+      "startLocal": "Start local",
+      "cityCardBody": "Explore real venues, groups, and how-tos in {{city}}.",
+      "overview": "Overview",
+      "stepByStep": "Step-by-step",
+      "stepNumber": "Step {{number}}.",
+      "relatedGuides": "Related guides",
+      "exploreCommunities": "Explore communities",
+      "howJoinOriginHelps": "How JoinOrigin can help",
+      "keepLearning": "Keep learning"
+    },
+    "glossary": {
+      "eyebrow": "Community OS",
+      "title": "Community OS Glossary",
+      "intro": "The essential vocabulary of community building — clear definitions for the terms organizers, moderators, and founders use every day.",
+      "whyTitle": "Why a glossary",
+      "termsTitle": "Terms we will define",
+      "goDeeper": "Go deeper",
+      "comingSoon": "Definition coming soon."
+    },
+    "cta": {
+      "joinWaitlist": "Join the waitlist"
+    }
   }
 }

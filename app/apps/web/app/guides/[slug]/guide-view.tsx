@@ -85,7 +85,7 @@ function GuideJoinCta({ slug }: { slug: string }) {
   const { openWaitlist } = useWaitlist();
   return (
     <RotatingBorderButton
-      label={t('common.joinWaitlist')}
+      label={t('seoContent.cta.joinWaitlist')}
       fillDirection="left"
       onClick={(event) => {
         trackEvent({ name: 'signup_click', props: { source: `guide-${slug}` } });
@@ -109,19 +109,19 @@ export function GuideView({ entry, content }: GuideViewProps) {
   return (
     <MenuPageShell
       hero={{
-        eyebrow: 'How-to guide',
+        eyebrow: t('seoContent.guides.eyebrow'),
         title: content.title ?? entry.title,
         lead: content.description ?? entry.description,
         scene: 'docs',
         accent: 'docs',
-        cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
+        cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },
       }}
     >
       <SectionBand variant="glass" accent="docs" glow>
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>Overview</SectionTitle>
+              <SectionTitle>{t('seoContent.guides.overview')}</SectionTitle>
               <BodyCopy>{content.intro}</BodyCopy>
             </Section>
           </Reveal>
@@ -132,11 +132,13 @@ export function GuideView({ entry, content }: GuideViewProps) {
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>Step-by-step</SectionTitle>
+              <SectionTitle>{t('seoContent.guides.stepByStep')}</SectionTitle>
               {content.steps.map((step, index) => (
                 <StepSection key={step.title}>
                   <StepHeading>
-                    <StepNumber>Step {index + 1}.</StepNumber>
+                    <StepNumber>
+                      {t('seoContent.guides.stepNumber', { number: index + 1 })}
+                    </StepNumber>
                     {step.title}
                   </StepHeading>
                   <BodyCopy>{step.body}</BodyCopy>
@@ -151,7 +153,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>Related guides</SectionTitle>
+              <SectionTitle>{t('seoContent.guides.relatedGuides')}</SectionTitle>
               <CardGrid>
                 {relatedEntries.map((related) => (
                   <Card key={related.slug}>
@@ -173,7 +175,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>Explore communities</SectionTitle>
+              <SectionTitle>{t('seoContent.guides.exploreCommunities')}</SectionTitle>
               <BodyCopy>Put these steps into practice in a real city.</BodyCopy>
               <CityLinks>
                 {entry.cities.map((city) => (
@@ -191,7 +193,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>How JoinOrigin can help</SectionTitle>
+              <SectionTitle>{t('seoContent.guides.howJoinOriginHelps')}</SectionTitle>
               <BodyCopy>
                 JoinOrigin is building a community OS to help you find or start communities — the
                 steps above work today with tools you already have. When early access opens, the
@@ -226,7 +228,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>Keep learning</SectionTitle>
+              <SectionTitle>{t('seoContent.guides.keepLearning')}</SectionTitle>
               <BulletList>
                 <ListItem>
                   Browse all guides on the{' '}

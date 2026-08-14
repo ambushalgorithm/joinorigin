@@ -22,7 +22,7 @@
  * (TASK-303) §5.2/§4.4/§6.4; Sprint 12 MVP scope (tasks.md).
  */
 
-import type { Locale } from '@joinorigin/i18n';
+import { getDictionary, getT, type Locale } from '@joinorigin/i18n';
 
 import data from './data/locations.json';
 import type { LocationCity, LocationCountry, LocationRegion, LocationSnapshot } from './data/types';
@@ -165,9 +165,22 @@ export function groupTypeLabel(key: GroupTypeKey): string {
   return getGroupType(key).label;
 }
 
-/** Per-locale display label (MVP: de registry titles). */
+/** Map a group-type key to its `seoContent.groupTypes.*` dictionary key. */
+function groupTypeChromeKey(key: GroupTypeKey): string {
+  return key === 'small-business' ? 'smallBusiness' : key;
+}
+
+/**
+ * Per-locale display label for a group-type key — reads the `seoContent`
+ * chrome namespace (TASK-310) with a fallback to the EN/de config labels so
+ * registry titles + view links stay deterministic even if a key drifts.
+ */
 export function groupTypeLabelForLocale(key: GroupTypeKey, locale: Locale): string {
   const type = getGroupType(key);
+  const chrome = getT(getDictionary(locale))(`seoContent.groupTypes.${groupTypeChromeKey(key)}`);
+  if (chrome !== `seoContent.groupTypes.${groupTypeChromeKey(key)}`) {
+    return chrome;
+  }
   if (locale === 'de') return type.labelDe;
   return type.label;
 }

@@ -54,6 +54,15 @@ function main(): void {
   const enKeys = en.keys;
   let failures = 0;
 
+  // TASK-310: the SEO chrome namespace must exist in the EN source of truth.
+  // The exact-parity loop below propagates it to every locale automatically,
+  // but this guard makes an accidental wholesale removal impossible.
+  const enRaw = JSON.parse(readFileSync(enFile, 'utf8')) as Record<string, unknown>;
+  if (!enRaw.seoContent || typeof enRaw.seoContent !== 'object') {
+    console.error('✗ en.json: missing "seoContent" namespace (SEO chrome — TASK-310)');
+    failures += 1;
+  }
+
   for (const file of files) {
     const localeName = file.replace(/\.json$/, '');
     let result: FlattenResult;

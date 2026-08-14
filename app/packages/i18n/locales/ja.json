@@ -504,5 +504,67 @@
       "title": "JoinOriginへようこそ",
       "subtitle": "ワークスペースの準備ができました。"
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "都市別コミュニティ",
+      "country": "この国のコミュニティ",
+      "region": "この地域のコミュニティ",
+      "city": "この都市のコミュニティ",
+      "variant": "コミュニティの種類",
+      "ideas": "コミュニティイベントのアイデア"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "hub": "都市別コミュニティ"
+    },
+    "location": {
+      "presenceClaim": "{{city}}でコミュニティを見つけるか始める",
+      "communitiesIn": "{{city}}のコミュニティ",
+      "cityFacts": "都市データ",
+      "exploreGroupTypes": "コミュニティの種類を探す",
+      "groupTypesInCity": "この都市のコミュニティの種類",
+      "flagshipCities": "主要都市",
+      "nearbyCities": "近隣都市のコミュニティ",
+      "guidesTitle": "コミュニティを始めるためのガイド",
+      "stepByStepGuide": "ステップバイステップガイド",
+      "ideasLink": "コミュニティイベントのアイデア30選",
+      "faqHeading": "よくある質問"
+    },
+    "groupTypes": {
+      "startup": "スタートアップコミュニティ",
+      "creative": "クリエイティブ＆デザインコミュニティ",
+      "political": "政治・市民コミュニティ",
+      "meetup": "コミュニティミートアップ＆イベント",
+      "smallBusiness": "小規模ビジネスコミュニティ"
+    },
+    "guides": {
+      "eyebrow": "ハウツーガイド",
+      "hubEyebrow": "コミュニティ構築",
+      "hubTitle": "コミュニティ構築ガイド",
+      "allGuides": "すべてのガイド",
+      "glossarySection": "コミュニティOS用語集",
+      "startLocal": "地元で始める",
+      "cityCardBody": "{{city}}の実際の会場、グループ、ガイドを探す。",
+      "overview": "概要",
+      "stepByStep": "ステップバイステップ",
+      "stepNumber": "ステップ{{number}}。",
+      "relatedGuides": "関連ガイド",
+      "exploreCommunities": "コミュニティを探す",
+      "howJoinOriginHelps": "JoinOriginがどのように役立つか",
+      "keepLearning": "学び続ける"
+    },
+    "glossary": {
+      "eyebrow": "コミュニティOS",
+      "title": "コミュニティOS用語集",
+      "intro": "コミュニティ構築に欠かせない語彙 — 運営者、モデレーター、創業者が毎日使う用語の明確な定義。",
+      "whyTitle": "用語集が必要な理由",
+      "termsTitle": "今後定義する用語",
+      "goDeeper": "さらに深く",
+      "comingSoon": "定義は近日公開。"
+    },
+    "cta": {
+      "joinWaitlist": "ウェイトリストに参加"
+    }
   }
 }
