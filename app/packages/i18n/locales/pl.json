@@ -504,5 +504,67 @@
       "title": "Witaj w JoinOrigin",
       "subtitle": "Twoje miejsce pracy jest gotowe."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "Społeczności według miasta",
+      "country": "Społeczności w tym kraju",
+      "region": "Społeczności w tym regionie",
+      "city": "Społeczności w tym mieście",
+      "variant": "Typ społeczności",
+      "ideas": "Pomysły na wydarzenia społecznościowe"
+    },
+    "breadcrumb": {
+      "home": "Strona główna",
+      "hub": "Społeczności według miasta"
+    },
+    "location": {
+      "presenceClaim": "Znajdź lub załóż społeczność w {{city}}",
+      "communitiesIn": "Społeczności w {{city}}",
+      "cityFacts": "Fakty o mieście",
+      "exploreGroupTypes": "Poznaj typy społeczności",
+      "groupTypesInCity": "Typy społeczności w mieście",
+      "flagshipCities": "Miasta flagowe",
+      "nearbyCities": "Społeczności w pobliskich miastach",
+      "guidesTitle": "Przewodniki zakładania społeczności",
+      "stepByStepGuide": "Przewodnik krok po kroku",
+      "ideasLink": "30 pomysłów na wydarzenia społecznościowe",
+      "faqHeading": "Często zadawane pytania"
+    },
+    "groupTypes": {
+      "startup": "Społeczności startupowe",
+      "creative": "Społeczności kreatywne i projektowe",
+      "political": "Społeczności polityczne i obywatelskie",
+      "meetup": "Spotkania i wydarzenia społeczności",
+      "smallBusiness": "Społeczności małych firm"
+    },
+    "guides": {
+      "eyebrow": "Poradnik praktyczny",
+      "hubEyebrow": "Budowanie społeczności",
+      "hubTitle": "Przewodniki budowania społeczności",
+      "allGuides": "Wszystkie przewodniki",
+      "glossarySection": "Słownik systemu społecznościowego",
+      "startLocal": "Zacznij lokalnie",
+      "cityCardBody": "Poznaj prawdziwe miejsca, grupy i przewodniki w {{city}}.",
+      "overview": "Przegląd",
+      "stepByStep": "Krok po kroku",
+      "stepNumber": "Krok {{number}}.",
+      "relatedGuides": "Powiązane przewodniki",
+      "exploreCommunities": "Poznaj społeczności",
+      "howJoinOriginHelps": "Jak JoinOrigin może pomóc",
+      "keepLearning": "Ucz się dalej"
+    },
+    "glossary": {
+      "eyebrow": "System społecznościowy",
+      "title": "Słownik systemu społecznościowego",
+      "intro": "Niezbędne słownictwo budowania społeczności — jasne definicje terminów używanych codziennie przez organizatorów, moderatorów i założycieli.",
+      "whyTitle": "Po co słownik",
+      "termsTitle": "Terminy, które zdefiniujemy",
+      "goDeeper": "Zagłęb się",
+      "comingSoon": "Definicja wkrótce."
+    },
+    "cta": {
+      "joinWaitlist": "Dołącz do listy oczekujących"
+    }
   }
 }

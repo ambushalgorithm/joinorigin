@@ -59,19 +59,19 @@ export function GlossaryHubView() {
   return (
     <MenuPageShell
       hero={{
-        eyebrow: 'Community OS',
-        title: 'Community OS Glossary',
-        lead: 'The essential vocabulary of community building — clear definitions for the terms organizers, moderators, and founders use every day.',
+        eyebrow: t('seoContent.glossary.eyebrow'),
+        title: t('seoContent.glossary.title'),
+        lead: t('seoContent.glossary.intro'),
         scene: 'docs',
         accent: 'docs',
-        cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
+        cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },
       }}
     >
       <SectionBand variant="glass" accent="docs" glow>
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>Why a glossary</SectionTitle>
+              <SectionTitle>{t('seoContent.glossary.whyTitle')}</SectionTitle>
               <BodyCopy>
                 Community building has its own language, and the terms are often used loosely. A
                 community OS glossary gives organizers, moderators, and founders shared definitions
@@ -87,7 +87,7 @@ export function GlossaryHubView() {
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>Terms we will define</SectionTitle>
+              <SectionTitle>{t('seoContent.glossary.termsTitle')}</SectionTitle>
               <BodyCopy>
                 The glossary term pages are coming soon. In the meantime, here are the terms we are
                 planning to define:
@@ -96,7 +96,7 @@ export function GlossaryHubView() {
                 {SEEDED_TERMS.map((term) => (
                   <Card key={term}>
                     <CardTitle>{term}</CardTitle>
-                    <CardBody>Definition coming soon.</CardBody>
+                    <CardBody>{t('seoContent.glossary.comingSoon')}</CardBody>
                   </Card>
                 ))}
               </CardGrid>
@@ -109,7 +109,7 @@ export function GlossaryHubView() {
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>Go deeper</SectionTitle>
+              <SectionTitle>{t('seoContent.glossary.goDeeper')}</SectionTitle>
               <BulletList>
                 <ListItem>
                   Work through the{' '}

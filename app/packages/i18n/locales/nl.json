@@ -504,5 +504,67 @@
       "title": "Welkom bij JoinOrigin",
       "subtitle": "Je werkruimte is klaar."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "Gemeenschappen per stad",
+      "country": "Gemeenschappen in dit land",
+      "region": "Gemeenschappen in deze regio",
+      "city": "Gemeenschappen in deze stad",
+      "variant": "Type gemeenschap",
+      "ideas": "Ideeën voor gemeenschapsevenementen"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "hub": "Gemeenschappen per stad"
+    },
+    "location": {
+      "presenceClaim": "Vind of start een gemeenschap in {{city}}",
+      "communitiesIn": "Gemeenschappen in {{city}}",
+      "cityFacts": "Stadsfeiten",
+      "exploreGroupTypes": "Ontdek soorten gemeenschappen",
+      "groupTypesInCity": "Soorten gemeenschappen in de stad",
+      "flagshipCities": "Kernsteden",
+      "nearbyCities": "Gemeenschappen in nabijgelegen steden",
+      "guidesTitle": "Handleidingen voor het starten van een gemeenschap",
+      "stepByStepGuide": "Stap-voor-stap handleiding",
+      "ideasLink": "30 ideeën voor gemeenschapsevenementen",
+      "faqHeading": "Veelgestelde vragen"
+    },
+    "groupTypes": {
+      "startup": "Startup-gemeenschappen",
+      "creative": "Creatieve & design-gemeenschappen",
+      "political": "Politieke & burgerlijke gemeenschappen",
+      "meetup": "Gemeenschapsmeetups & evenementen",
+      "smallBusiness": "Gemeenschappen van kleine bedrijven"
+    },
+    "guides": {
+      "eyebrow": "Hoe-doe-ik-handleiding",
+      "hubEyebrow": "Gemeenschap opbouwen",
+      "hubTitle": "Handleidingen voor gemeenschapsopbouw",
+      "allGuides": "Alle handleidingen",
+      "glossarySection": "Gemeenschaps-OS-woordenlijst",
+      "startLocal": "Lokaal beginnen",
+      "cityCardBody": "Ontdek echte locaties, groepen en handleidingen in {{city}}.",
+      "overview": "Overzicht",
+      "stepByStep": "Stap voor stap",
+      "stepNumber": "Stap {{number}}.",
+      "relatedGuides": "Gerelateerde handleidingen",
+      "exploreCommunities": "Ontdek gemeenschappen",
+      "howJoinOriginHelps": "Hoe JoinOrigin kan helpen",
+      "keepLearning": "Blijf leren"
+    },
+    "glossary": {
+      "eyebrow": "Gemeenschaps-OS",
+      "title": "Gemeenschaps-OS-woordenlijst",
+      "intro": "De essentiële woordenschat van gemeenschapsopbouw — duidelijke definities van de termen die organisatoren, moderatoren en oprichters dagelijks gebruiken.",
+      "whyTitle": "Waarom een woordenlijst",
+      "termsTitle": "Termen die we zullen definiëren",
+      "goDeeper": "Ga dieper",
+      "comingSoon": "Definitie binnenkort."
+    },
+    "cta": {
+      "joinWaitlist": "Op de wachtlijst"
+    }
   }
 }

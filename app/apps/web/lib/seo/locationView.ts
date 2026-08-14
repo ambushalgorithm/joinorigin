@@ -26,7 +26,7 @@
 
 import type { Metadata } from 'next';
 
-import type { Locale } from '@joinorigin/i18n';
+import { getDictionary, getT, type Locale } from '@joinorigin/i18n';
 
 import { getCityContent, getCountryContent, getRegionContent } from './content';
 import type { IdeaCategory, LocationContent, LocationFaq } from './content/types';
@@ -275,6 +275,8 @@ export interface GroupTypeLink {
   label: string;
   path: string;
   current?: boolean;
+  /** Group-type key (or the reserved `ideas` slug) for client chrome lookup. */
+  key?: GroupTypeKey | typeof IDEA_VARIANT;
 }
 
 /**
@@ -299,17 +301,20 @@ export function groupTypeLinksFor(
       ? entryPath.replace(/\/[^/]+$/, '')
       : `${localePathPrefix(locale)}${LOCATION_HUB_PATH}/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`;
   const links: GroupTypeLink[] = [];
+  const t = getT(getDictionary(locale));
   for (const type of GROUP_TYPES) {
     if (!content.variantIntros[type.key]) continue;
     links.push({
       label: groupTypeLabelForLocale(type.key, locale),
       path: `${base}/${type.key}`,
+      key: type.key,
     });
   }
   if (content.ideaPage) {
     links.push({
-      label: locale === 'de' ? '30 Ideen für Community-Events' : '30 community event ideas',
+      label: t('seoContent.location.ideasLink'),
       path: `${base}/${IDEA_VARIANT}`,
+      key: IDEA_VARIANT,
     });
   }
   return links;
@@ -348,22 +353,10 @@ export interface LocationViewData {
   entityLabel: string;
 }
 
-/** Localized eyebrow labels (static chrome — TASK-310 wires seoContent). */
+/** Localized eyebrow labels (chrome — seoContent namespace, TASK-310). */
 function eyebrowFor(kind: PageKind, locale: Locale): string {
-  if (locale === 'de') {
-    if (kind === 'hub') return 'Communities nach Stadt';
-    if (kind === 'country') return 'Communities im Land';
-    if (kind === 'region') return 'Communities in der Region';
-    if (kind === 'ideas') return 'Event-Ideen';
-    if (kind === 'variant') return 'Community-Typ';
-    return 'Communities in der Stadt';
-  }
-  if (kind === 'hub') return 'Communities by city';
-  if (kind === 'country') return 'Communities in this country';
-  if (kind === 'region') return 'Communities in this region';
-  if (kind === 'ideas') return 'Community event ideas';
-  if (kind === 'variant') return 'Community type';
-  return 'Communities in this city';
+  const t = getT(getDictionary(locale));
+  return t(`seoContent.eyebrow.${kind}`);
 }
 
 /** H1 for a location page (registry title without the brand suffix). */
@@ -473,14 +466,15 @@ function faqFor(entry: LocationPageEntry, content: LocationContent | undefined):
  * ------------------------------------------------------------------ */
 
 function breadcrumbsFor(entry: LocationPageEntry, locale: Locale): BreadcrumbItem[] {
-  const hubName = locale === 'de' ? 'Communities nach Stadt' : 'Communities by City';
+  const t = getT(getDictionary(locale));
+  const hubName = t('seoContent.breadcrumb.hub');
   // Up-links stay on the EN canonical tree for de pages (the de surface only
   // carries the 7 Berlin pages — ancestors are EN-only, phase A §7.1).
   const upPrefix = locale === 'de' ? '' : '';
   const upPath = (segments: string[]) =>
     `${upPrefix}${LOCATION_HUB_PATH}${segments.map((segment) => `/${segment}`).join('')}`;
   const crumbs: BreadcrumbItem[] = [
-    { name: 'Home', path: '/' },
+    { name: t('seoContent.breadcrumb.home'), path: '/' },
     { name: hubName, path: locale === 'de' ? LOCATION_HUB_PATH : LOCATION_HUB_PATH },
   ];
   if (entry.kind === 'hub') {

@@ -99,7 +99,7 @@ export function LocationCta({ source, headline, subline, ctaLabel }: LocationCta
           <Headline>{bandHeadline}</Headline>
           <Subline>{bandSubline}</Subline>
           <RotatingBorderButton
-            label={ctaLabel ?? t('ctaBand.joinLabel')}
+            label={ctaLabel ?? t('seoContent.cta.joinWaitlist')}
             fillDirection="left"
             onClick={(event) => {
               trackEvent({ name: 'signup_click', props: { source } });

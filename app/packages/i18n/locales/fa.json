@@ -504,5 +504,67 @@
       "title": "به JoinOrigin خوش آمدید",
       "subtitle": "فضای کاری شما آماده است."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "جوامع بر اساس شهر",
+      "country": "جوامع در این کشور",
+      "region": "جوامع در این منطقه",
+      "city": "جوامع در این شهر",
+      "variant": "نوع جامعه",
+      "ideas": "ایده‌های رویداد جامعه"
+    },
+    "breadcrumb": {
+      "home": "خانه",
+      "hub": "جوامع بر اساس شهر"
+    },
+    "location": {
+      "presenceClaim": "یک جامعه در {{city}} پیدا کنید یا راه‌اندازی کنید",
+      "communitiesIn": "جوامع در {{city}}",
+      "cityFacts": "حقایق شهر",
+      "exploreGroupTypes": "کاوش انواع جوامع",
+      "groupTypesInCity": "انواع جوامع در شهر",
+      "flagshipCities": "شهرهای شاخص",
+      "nearbyCities": "جوامع در شهرهای نزدیک",
+      "guidesTitle": "راهنماهای راه‌اندازی جامعه",
+      "stepByStepGuide": "راهنمای گام‌به‌گام",
+      "ideasLink": "۳۰ ایده رویداد جامعه",
+      "faqHeading": "پرسش‌های پرتکرار"
+    },
+    "groupTypes": {
+      "startup": "جوامع استارتاپی",
+      "creative": "جوامع خلاق و طراحی",
+      "political": "جوامع سیاسی و مدنی",
+      "meetup": "گردهمایی‌ها و رویدادهای جامعه",
+      "smallBusiness": "جوامع کسب‌وکار کوچک"
+    },
+    "guides": {
+      "eyebrow": "راهنمای آموزشی",
+      "hubEyebrow": "ساخت جامعه",
+      "hubTitle": "راهنماهای ساخت جامعه",
+      "allGuides": "همه راهنماها",
+      "glossarySection": "واژه‌نامه سیستم جامعه",
+      "startLocal": "محلی شروع کنید",
+      "cityCardBody": "مکان‌ها، گروه‌ها و راهنماهای واقعی در {{city}} را کاوش کنید.",
+      "overview": "مرور کلی",
+      "stepByStep": "گام‌به‌گام",
+      "stepNumber": "گام {{number}}.",
+      "relatedGuides": "راهنماهای مرتبط",
+      "exploreCommunities": "کاوش جوامع",
+      "howJoinOriginHelps": "چگونه JoinOrigin می‌تواند کمک کند",
+      "keepLearning": "به یادگیری ادامه دهید"
+    },
+    "glossary": {
+      "eyebrow": "سیستم جامعه",
+      "title": "واژه‌نامه سیستم جامعه",
+      "intro": "واژگان ضروری ساخت جامعه — تعریف‌های روشن برای اصطلاحاتی که سازمان‌دهندگان، مدیران و بنیان‌گذاران هر روز به کار می‌برند.",
+      "whyTitle": "چرا واژه‌نامه",
+      "termsTitle": "اصطلاحاتی که تعریف می‌کنیم",
+      "goDeeper": "عمیق‌تر بروید",
+      "comingSoon": "تعریف به‌زودی."
+    },
+    "cta": {
+      "joinWaitlist": "پیوستن به فهرست انتظار"
+    }
   }
 }

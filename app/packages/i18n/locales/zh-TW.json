@@ -504,5 +504,67 @@
       "title": "歡迎來到 JoinOrigin",
       "subtitle": "你的工作空間已準備就緒。"
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "依城市查看社群",
+      "country": "這個國家的社群",
+      "region": "這個地區的社群",
+      "city": "這個城市的社群",
+      "variant": "社群類型",
+      "ideas": "社群活動點子"
+    },
+    "breadcrumb": {
+      "home": "首頁",
+      "hub": "依城市查看社群"
+    },
+    "location": {
+      "presenceClaim": "在{{city}}尋找或建立社群",
+      "communitiesIn": "{{city}}的社群",
+      "cityFacts": "城市資料",
+      "exploreGroupTypes": "探索社群類型",
+      "groupTypesInCity": "這個城市的社群類型",
+      "flagshipCities": "重點城市",
+      "nearbyCities": "鄰近城市的社群",
+      "guidesTitle": "建立社群指南",
+      "stepByStepGuide": "逐步指南",
+      "ideasLink": "30個社群活動點子",
+      "faqHeading": "常見問題"
+    },
+    "groupTypes": {
+      "startup": "新創社群",
+      "creative": "創意與設計社群",
+      "political": "政治與公民社群",
+      "meetup": "社群聚會與活動",
+      "smallBusiness": "小型企業社群"
+    },
+    "guides": {
+      "eyebrow": "操作指南",
+      "hubEyebrow": "社群經營",
+      "hubTitle": "社群經營指南",
+      "allGuides": "所有指南",
+      "glossarySection": "社群系統詞彙表",
+      "startLocal": "在地開始",
+      "cityCardBody": "探索{{city}}真實的場地、群體和指南。",
+      "overview": "總覽",
+      "stepByStep": "逐步進行",
+      "stepNumber": "第{{number}}步。",
+      "relatedGuides": "相關指南",
+      "exploreCommunities": "探索社群",
+      "howJoinOriginHelps": "JoinOrigin能如何協助",
+      "keepLearning": "繼續學習"
+    },
+    "glossary": {
+      "eyebrow": "社群系統",
+      "title": "社群系統詞彙表",
+      "intro": "社群經營的基本詞彙——為組織者、管理員和創辦人每天使用的術語提供清晰的定義。",
+      "whyTitle": "為什麼需要詞彙表",
+      "termsTitle": "我們將定義的術語",
+      "goDeeper": "深入了解",
+      "comingSoon": "定義即將推出。"
+    },
+    "cta": {
+      "joinWaitlist": "加入等候名單"
+    }
   }
 }

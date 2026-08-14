@@ -504,5 +504,67 @@
       "title": "JoinOrigin'e hoş geldiniz",
       "subtitle": "Çalışma alanınız hazır."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "Şehre göre topluluklar",
+      "country": "Bu ülkedeki topluluklar",
+      "region": "Bu bölgedeki topluluklar",
+      "city": "Bu şehirdeki topluluklar",
+      "variant": "Topluluk türü",
+      "ideas": "Topluluk etkinliği fikirleri"
+    },
+    "breadcrumb": {
+      "home": "Ana Sayfa",
+      "hub": "Şehre Göre Topluluklar"
+    },
+    "location": {
+      "presenceClaim": "{{city}} şehrinde bir topluluk bulun veya başlatın",
+      "communitiesIn": "{{city}} şehrindeki topluluklar",
+      "cityFacts": "Şehir bilgileri",
+      "exploreGroupTypes": "Topluluk türlerini keşfedin",
+      "groupTypesInCity": "Şehirdeki topluluk türleri",
+      "flagshipCities": "Amiral şehirler",
+      "nearbyCities": "Yakın şehirlerdeki topluluklar",
+      "guidesTitle": "Topluluk başlatma rehberleri",
+      "stepByStepGuide": "Adım adım rehber",
+      "ideasLink": "30 topluluk etkinliği fikri",
+      "faqHeading": "Sıkça sorulan sorular"
+    },
+    "groupTypes": {
+      "startup": "Girişim toplulukları",
+      "creative": "Yaratıcı ve tasarım toplulukları",
+      "political": "Siyasi ve sivil topluluklar",
+      "meetup": "Topluluk buluşmaları ve etkinlikleri",
+      "smallBusiness": "Küçük işletme toplulukları"
+    },
+    "guides": {
+      "eyebrow": "Nasıl yapılır rehberi",
+      "hubEyebrow": "Topluluk kurma",
+      "hubTitle": "Topluluk Kurma Rehberleri",
+      "allGuides": "Tüm rehberler",
+      "glossarySection": "Topluluk İşletim Sistemi sözlüğü",
+      "startLocal": "Yerelden başlayın",
+      "cityCardBody": "{{city}} şehrindeki gerçek mekanları, grupları ve rehberleri keşfedin.",
+      "overview": "Genel bakış",
+      "stepByStep": "Adım adım",
+      "stepNumber": "Adım {{number}}.",
+      "relatedGuides": "İlgili rehberler",
+      "exploreCommunities": "Toplulukları keşfedin",
+      "howJoinOriginHelps": "JoinOrigin nasıl yardımcı olabilir",
+      "keepLearning": "Öğrenmeye devam edin"
+    },
+    "glossary": {
+      "eyebrow": "Topluluk İşletim Sistemi",
+      "title": "Topluluk İşletim Sistemi sözlüğü",
+      "intro": "Topluluk kurmanın temel sözlüğü — organizatörlerin, moderatörlerin ve kurucuların her gün kullandığı terimlerin net tanımları.",
+      "whyTitle": "Neden bir sözlük",
+      "termsTitle": "Tanımlayacağımız terimler",
+      "goDeeper": "Daha derine inin",
+      "comingSoon": "Tanım yakında."
+    },
+    "cta": {
+      "joinWaitlist": "Bekleme listesine katılın"
+    }
   }
 }

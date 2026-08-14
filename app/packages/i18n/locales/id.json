@@ -504,5 +504,67 @@
       "title": "Selamat datang di JoinOrigin",
       "subtitle": "Ruang kerja Anda sudah siap."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "Komunitas per kota",
+      "country": "Komunitas di negara ini",
+      "region": "Komunitas di wilayah ini",
+      "city": "Komunitas di kota ini",
+      "variant": "Jenis komunitas",
+      "ideas": "Ide acara komunitas"
+    },
+    "breadcrumb": {
+      "home": "Beranda",
+      "hub": "Komunitas per Kota"
+    },
+    "location": {
+      "presenceClaim": "Temukan atau mulai komunitas di {{city}}",
+      "communitiesIn": "Komunitas di {{city}}",
+      "cityFacts": "Fakta kota",
+      "exploreGroupTypes": "Jelajahi jenis komunitas",
+      "groupTypesInCity": "Jenis komunitas di kota ini",
+      "flagshipCities": "Kota utama",
+      "nearbyCities": "Komunitas di kota sekitar",
+      "guidesTitle": "Panduan memulai komunitas",
+      "stepByStepGuide": "Panduan langkah demi langkah",
+      "ideasLink": "30 ide acara komunitas",
+      "faqHeading": "Pertanyaan yang sering diajukan"
+    },
+    "groupTypes": {
+      "startup": "Komunitas startup",
+      "creative": "Komunitas kreatif & desain",
+      "political": "Komunitas politik & sipil",
+      "meetup": "Meetup & acara komunitas",
+      "smallBusiness": "Komunitas usaha kecil"
+    },
+    "guides": {
+      "eyebrow": "Panduan cara",
+      "hubEyebrow": "Membangun komunitas",
+      "hubTitle": "Panduan Membangun Komunitas",
+      "allGuides": "Semua panduan",
+      "glossarySection": "Glosarium OS Komunitas",
+      "startLocal": "Mulai secara lokal",
+      "cityCardBody": "Jelajahi tempat, grup, dan panduan nyata di {{city}}.",
+      "overview": "Ringkasan",
+      "stepByStep": "Langkah demi langkah",
+      "stepNumber": "Langkah {{number}}.",
+      "relatedGuides": "Panduan terkait",
+      "exploreCommunities": "Jelajahi komunitas",
+      "howJoinOriginHelps": "Bagaimana JoinOrigin dapat membantu",
+      "keepLearning": "Terus belajar"
+    },
+    "glossary": {
+      "eyebrow": "OS Komunitas",
+      "title": "Glosarium OS Komunitas",
+      "intro": "Kosakata penting dalam membangun komunitas — definisi jelas untuk istilah yang digunakan penyelenggara, moderator, dan pendiri setiap hari.",
+      "whyTitle": "Mengapa glosarium",
+      "termsTitle": "Istilah yang akan kami definisikan",
+      "goDeeper": "Lebih dalam",
+      "comingSoon": "Definisi segera hadir."
+    },
+    "cta": {
+      "joinWaitlist": "Gabung daftar tunggu"
+    }
   }
 }

@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import { useI18n } from '@joinorigin/i18n';
+
 import MenuPageShell from '../MenuPageShell';
 import Reveal from '../Reveal';
 import SectionBand from '../SectionBand';
@@ -189,6 +191,7 @@ const Attribution = styled.p`
 `;
 
 export function LocationView({ data }: { data: LocationViewData }) {
+  const { t } = useI18n();
   const heroTitle = data.heading;
   const heroLead = data.lead;
   const isIdeas = data.kind === 'ideas';
@@ -196,10 +199,32 @@ export function LocationView({ data }: { data: LocationViewData }) {
   const hasSiblings = data.siblingCities.length > 0;
   const hasFaq = data.faq.length > 0;
 
+  // Hero eyebrow + breadcrumb chrome follow the active cookie locale via the
+  // `seoContent` namespace (TASK-310); the server view model still carries
+  // the route-locale values as a deterministic fallback for the JSON-LD
+  // mirror and for non-hydrated rendering.
+  const eyebrow = t(`seoContent.eyebrow.${data.kind}`);
+  const crumbLabel = (crumb: (typeof data.breadcrumbs)[number]) => {
+    if (crumb.path === '/') return t('seoContent.breadcrumb.home');
+    if (crumb.path === '/location') return t('seoContent.breadcrumb.hub');
+    return crumb.name;
+  };
+
+  /** Group-type link label — prefers the client chrome dictionary (cookie
+   *  locale), falls back to the server-baked label. */
+  const groupLinkLabel = (link: (typeof data.groupTypeLinks)[number]) => {
+    if (link.key === 'ideas') return t('seoContent.location.ideasLink');
+    if (link.key) {
+      const chromeKey = link.key === 'small-business' ? 'smallBusiness' : link.key;
+      return t(`seoContent.groupTypes.${chromeKey}`);
+    }
+    return link.label;
+  };
+
   return (
     <MenuPageShell
       hero={{
-        eyebrow: data.eyebrow,
+        eyebrow,
         title: heroTitle,
         lead: heroLead,
         scene: 'community',
@@ -213,11 +238,11 @@ export function LocationView({ data }: { data: LocationViewData }) {
           {data.breadcrumbs.map((crumb, index) =>
             index === data.breadcrumbs.length - 1 ? (
               <BreadcrumbItem key={crumb.path}>
-                <BreadcrumbCurrent aria-current="page">{crumb.name}</BreadcrumbCurrent>
+                <BreadcrumbCurrent aria-current="page">{crumbLabel(crumb)}</BreadcrumbCurrent>
               </BreadcrumbItem>
             ) : (
               <BreadcrumbItem key={crumb.path}>
-                <BreadcrumbLink href={crumb.path}>{crumb.name}</BreadcrumbLink>
+                <BreadcrumbLink href={crumb.path}>{crumbLabel(crumb)}</BreadcrumbLink>
               </BreadcrumbItem>
             ),
           )}
@@ -229,9 +254,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
           <Reveal>
             <Section>
               <SectionTitle>
-                {data.locale === 'de'
-                  ? `Community in ${data.entityLabel} finden oder gründen`
-                  : `Find or start a community in ${data.entityLabel}`}
+                {t('seoContent.location.presenceClaim', { city: data.entityLabel })}
               </SectionTitle>
               <BodyCopy data-testid="location-intro">{data.intro || data.lead}</BodyCopy>
             </Section>
@@ -240,7 +263,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
           {data.dataPoints.length > 0 ? (
             <Reveal>
               <Section>
-                <SectionTitle>{data.locale === 'de' ? 'Stadt-Fakten' : 'City facts'}</SectionTitle>
+                <SectionTitle>{t('seoContent.location.cityFacts')}</SectionTitle>
                 <BulletList data-testid="location-data-points">
                   {data.dataPoints.map((point) => (
                     <ListItem key={point}>{point}</ListItem>
@@ -255,18 +278,14 @@ export function LocationView({ data }: { data: LocationViewData }) {
               <Section>
                 <SectionTitle>
                   {isIdeas
-                    ? data.locale === 'de'
-                      ? 'Community-Typen in der Stadt'
-                      : 'Community types in the city'
-                    : data.locale === 'de'
-                      ? 'Community-Typen entdecken'
-                      : 'Explore community types'}
+                    ? t('seoContent.location.groupTypesInCity')
+                    : t('seoContent.location.exploreGroupTypes')}
                 </SectionTitle>
                 <TagList data-testid="location-group-type-links">
                   {data.groupTypeLinks.map((link) => (
                     <TagItem key={link.path}>
                       <TagLink href={link.path} $current={link.current}>
-                        {link.label}
+                        {groupLinkLabel(link)}
                       </TagLink>
                     </TagItem>
                   ))}
@@ -309,12 +328,8 @@ export function LocationView({ data }: { data: LocationViewData }) {
               <Section>
                 <SectionTitle>
                   {data.kind === 'hub'
-                    ? data.locale === 'de'
-                      ? 'Flagship-Städte'
-                      : 'Flagship cities'
-                    : data.locale === 'de'
-                      ? 'Communities in nahegelegenen Städten'
-                      : 'Communities in nearby cities'}
+                    ? t('seoContent.location.flagshipCities')
+                    : t('seoContent.location.nearbyCities')}
                 </SectionTitle>
                 <CardGrid data-testid="location-sibling-cities">
                   {data.siblingCities.map((sibling) => (
@@ -327,9 +342,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
                           {sibling.name}
                         </Link>
                       </CardTitle>
-                      <CardBody>
-                        {data.locale === 'de' ? 'Communities entdecken' : 'Explore communities'}
-                      </CardBody>
+                      <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
                     </Card>
                   ))}
                 </CardGrid>
@@ -343,11 +356,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
         <PageContainer>
           <Reveal>
             <Section>
-              <SectionTitle>
-                {data.locale === 'de'
-                  ? 'Anleitungen zum Community-Aufbau'
-                  : 'Guides for starting a community'}
-              </SectionTitle>
+              <SectionTitle>{t('seoContent.location.guidesTitle')}</SectionTitle>
               <CardGrid data-testid="location-guide-links">
                 {data.guideLinks.map((guide) => (
                   <Card key={guide.path}>
@@ -356,11 +365,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
                         {guide.title}
                       </Link>
                     </CardTitle>
-                    <CardBody>
-                      {data.locale === 'de'
-                        ? 'Schritt-für-Schritt-Anleitung'
-                        : 'Step-by-step guide'}
-                    </CardBody>
+                    <CardBody>{t('seoContent.location.stepByStepGuide')}</CardBody>
                   </Card>
                 ))}
               </CardGrid>
@@ -374,9 +379,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
           <PageContainer>
             <Reveal>
               <Section>
-                <SectionTitle>
-                  {data.locale === 'de' ? 'Häufig gestellte Fragen' : 'Frequently asked questions'}
-                </SectionTitle>
+                <SectionTitle>{t('seoContent.location.faqHeading')}</SectionTitle>
                 <FaqSection data-testid="location-faq">
                   {data.faq.map((entry) => (
                     <FaqCard key={entry.question}>

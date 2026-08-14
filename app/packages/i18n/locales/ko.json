@@ -504,5 +504,67 @@
       "title": "JoinOrigin에 오신 것을 환영합니다",
       "subtitle": "워크스페이스가 준비되었습니다."
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "도시별 커뮤니티",
+      "country": "이 나라의 커뮤니티",
+      "region": "이 지역의 커뮤니티",
+      "city": "이 도시의 커뮤니티",
+      "variant": "커뮤니티 유형",
+      "ideas": "커뮤니티 이벤트 아이디어"
+    },
+    "breadcrumb": {
+      "home": "홈",
+      "hub": "도시별 커뮤니티"
+    },
+    "location": {
+      "presenceClaim": "{{city}}에서 커뮤니티 찾기 또는 시작하기",
+      "communitiesIn": "{{city}}의 커뮤니티",
+      "cityFacts": "도시 정보",
+      "exploreGroupTypes": "커뮤니티 유형 살펴보기",
+      "groupTypesInCity": "이 도시의 커뮤니티 유형",
+      "flagshipCities": "대표 도시",
+      "nearbyCities": "인근 도시의 커뮤니티",
+      "guidesTitle": "커뮤니티 시작 가이드",
+      "stepByStepGuide": "단계별 가이드",
+      "ideasLink": "커뮤니티 이벤트 아이디어 30가지",
+      "faqHeading": "자주 묻는 질문"
+    },
+    "groupTypes": {
+      "startup": "스타트업 커뮤니티",
+      "creative": "창의·디자인 커뮤니티",
+      "political": "정치·시민 커뮤니티",
+      "meetup": "커뮤니티 모임 및 이벤트",
+      "smallBusiness": "소규모 사업 커뮤니티"
+    },
+    "guides": {
+      "eyebrow": "실용 가이드",
+      "hubEyebrow": "커뮤니티 구축",
+      "hubTitle": "커뮤니티 구축 가이드",
+      "allGuides": "모든 가이드",
+      "glossarySection": "커뮤니티 OS 용어집",
+      "startLocal": "지역에서 시작하기",
+      "cityCardBody": "{{city}}의 실제 장소, 그룹, 가이드를 살펴보세요.",
+      "overview": "개요",
+      "stepByStep": "단계별",
+      "stepNumber": "단계 {{number}}.",
+      "relatedGuides": "관련 가이드",
+      "exploreCommunities": "커뮤니티 살펴보기",
+      "howJoinOriginHelps": "JoinOrigin이 어떻게 도울 수 있나요",
+      "keepLearning": "계속 배우기"
+    },
+    "glossary": {
+      "eyebrow": "커뮤니티 OS",
+      "title": "커뮤니티 OS 용어집",
+      "intro": "커뮤니티 구축의 필수 용어 — 운영자, 중재자, 창업자가 매일 사용하는 용어에 대한 명확한 정의.",
+      "whyTitle": "왜 용어집인가",
+      "termsTitle": "앞으로 정의할 용어",
+      "goDeeper": "더 알아보기",
+      "comingSoon": "정의가 곧 제공됩니다."
+    },
+    "cta": {
+      "joinWaitlist": "대기자 명단에 참여하기"
+    }
   }
 }

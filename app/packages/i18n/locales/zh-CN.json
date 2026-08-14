@@ -504,5 +504,67 @@
       "title": "欢迎来到 JoinOrigin",
       "subtitle": "你的工作空间已准备就绪。"
     }
+  },
+  "seoContent": {
+    "eyebrow": {
+      "hub": "按城市查找社区",
+      "country": "这个国家的社区",
+      "region": "这个地区的社区",
+      "city": "这个城市的社区",
+      "variant": "社区类型",
+      "ideas": "社区活动创意"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "hub": "按城市查找社区"
+    },
+    "location": {
+      "presenceClaim": "在{{city}}找到或创建社区",
+      "communitiesIn": "{{city}}的社区",
+      "cityFacts": "城市数据",
+      "exploreGroupTypes": "探索社区类型",
+      "groupTypesInCity": "这个城市的社区类型",
+      "flagshipCities": "重点城市",
+      "nearbyCities": "附近城市的社区",
+      "guidesTitle": "创建社区指南",
+      "stepByStepGuide": "分步指南",
+      "ideasLink": "30个社区活动创意",
+      "faqHeading": "常见问题"
+    },
+    "groupTypes": {
+      "startup": "创业社区",
+      "creative": "创意与设计社区",
+      "political": "政治与公民社区",
+      "meetup": "社区聚会与活动",
+      "smallBusiness": "小企业社区"
+    },
+    "guides": {
+      "eyebrow": "操作指南",
+      "hubEyebrow": "社区建设",
+      "hubTitle": "社区建设指南",
+      "allGuides": "所有指南",
+      "glossarySection": "社区系统术语表",
+      "startLocal": "本地开始",
+      "cityCardBody": "探索{{city}}真实的场地、群体和指南。",
+      "overview": "概述",
+      "stepByStep": "分步进行",
+      "stepNumber": "第{{number}}步。",
+      "relatedGuides": "相关指南",
+      "exploreCommunities": "探索社区",
+      "howJoinOriginHelps": "JoinOrigin如何提供帮助",
+      "keepLearning": "继续学习"
+    },
+    "glossary": {
+      "eyebrow": "社区系统",
+      "title": "社区系统术语表",
+      "intro": "社区建设的基本词汇——为组织者、管理员和创始人每天使用的术语提供清晰的定义。",
+      "whyTitle": "为什么需要术语表",
+      "termsTitle": "我们将定义的术语",
+      "goDeeper": "深入了解",
+      "comingSoon": "定义即将推出。"
+    },
+    "cta": {
+      "joinWaitlist": "加入候补名单"
+    }
   }
 }
