@@ -180,6 +180,103 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     }
   });
 
+  /**
+   * Sitemap ↔ live-pages parity (TASK-311, design §9.1):
+   *  1. every URL in /sitemap.xml returns 200 on the live server,
+   *  2. every indexable page (ROUTES + location EN/de + guides + hubs) is
+   *     listed in the sitemap — no drift between the registry, pages, and
+   *     the sitemap.
+   */
+  test('sitemap lists exactly the indexable pages and every URL returns 200', async ({
+    request,
+  }) => {
+    test.setTimeout(180_000);
+    const response = await request.get('/sitemap.xml');
+    expect(response.status()).toBe(200);
+    const xmlText = await response.text();
+
+    const locs = [...xmlText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    expect(locs.length).toBeGreaterThan(0);
+
+    // Every sitemap URL must be live (200).
+    for (const loc of locs) {
+      const url = new URL(loc);
+      const pageResponse = await request.get(url.pathname);
+      expect(pageResponse.status(), `live ${url.pathname}`).toBe(200);
+    }
+
+    // Every indexable page must be listed — assert the deterministic
+    // Sprint-12 indexable set (registry-derived, fixed by design §8.2).
+    const paths = locs.map((loc) => new URL(loc).pathname);
+    const expectedIndexable = [
+      ...PATHS,
+      '/location',
+      '/location/united-states',
+      '/location/united-states/new-york',
+      '/location/united-states/new-york/new-york',
+      '/location/united-states/new-york/new-york/startup',
+      '/location/united-states/new-york/new-york/creative',
+      '/location/united-states/new-york/new-york/political',
+      '/location/united-states/new-york/new-york/meetup',
+      '/location/united-states/new-york/new-york/small-business',
+      '/location/united-states/new-york/new-york/ideas',
+      '/location/germany',
+      '/location/germany/berlin',
+      '/location/germany/berlin/berlin',
+      '/location/germany/berlin/berlin/startup',
+      '/location/germany/berlin/berlin/creative',
+      '/location/germany/berlin/berlin/political',
+      '/location/germany/berlin/berlin/meetup',
+      '/location/germany/berlin/berlin/small-business',
+      '/location/germany/berlin/berlin/ideas',
+      '/de/location/germany/berlin/berlin',
+      '/de/location/germany/berlin/berlin/startup',
+      '/de/location/germany/berlin/berlin/creative',
+      '/de/location/germany/berlin/berlin/political',
+      '/de/location/germany/berlin/berlin/meetup',
+      '/de/location/germany/berlin/berlin/small-business',
+      '/de/location/germany/berlin/berlin/ideas',
+      '/guides',
+      '/glossary',
+      '/guides/start-a-community',
+      '/guides/organize-a-meetup',
+      '/guides/first-10-members',
+      '/guides/find-a-co-founder',
+      '/guides/keep-a-community-active',
+      '/guides/hybrid-communities',
+      '/guides/moderation',
+    ];
+    for (const path of expectedIndexable) {
+      expect(paths, `indexable page ${path} in sitemap`).toContain(path);
+    }
+    // And nothing else: the sitemap lists exactly the indexable set.
+    expect(paths.sort()).toEqual([...expectedIndexable].sort());
+  });
+
+  test('sitemap carries Berlin de alternates.languages + x-default for the Berlin cluster', async ({
+    page,
+  }) => {
+    const response = await page.goto('/sitemap.xml');
+    expect(response?.status()).toBe(200);
+    const xmlText = (await response?.text().catch(() => '')) ?? '';
+
+    // EN Berlin city page must declare the de alternate via xhtml:link.
+    expect(xmlText).toContain('hreflang="de"');
+    expect(xmlText).toContain('hreflang="x-default"');
+    expect(xmlText).toContain('/de/location/germany/berlin/berlin');
+    // The 7 de pages are their own <url> entries.
+    expect(xmlText).toContain('<loc>http://localhost:3100/de/location/germany/berlin/berlin</loc>');
+    expect(xmlText).toContain(
+      '<loc>http://localhost:3100/de/location/germany/berlin/berlin/ideas</loc>',
+    );
+    // EN-only pages emit no hreflang cluster (phase A). Parse the sitemap
+    // into <url> blocks and assert the NYC block carries no alternates.
+    const blocks = [...xmlText.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => m[1]);
+    const nycBlock = blocks.find((block) => block.includes('new-york/new-york</loc>'));
+    expect(nycBlock).toBeDefined();
+    expect(nycBlock ?? '').not.toContain('hreflang');
+  });
+
   test('/robots.txt returns 200, allows all crawlers, and references the sitemap', async ({
     page,
   }) => {
@@ -195,7 +292,9 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     expect(text).toMatch(/Sitemap: https?:\/\/[^\s]+\/sitemap\.xml/);
   });
 
-  test('/llms.txt returns 200 text/plain with an H1 + link list', async ({ page }) => {
+  test('/llms.txt returns 200 text/plain with an H1 + curated sections (TASK-311)', async ({
+    page,
+  }) => {
     const response = await page.goto('/llms.txt');
     expect(response?.status()).toBe(200);
     const contentType = response?.headers()['content-type'] ?? '';
@@ -207,6 +306,22 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     expect(text).toContain('## ');
     expect(text).toContain('[/about](');
     expect(text).toContain('[/features](');
+    // Curated sections (design §9.3) — hub + 2 flagships, all 7 guides,
+    // glossary hub; never the long tail.
+    expect(text).toContain('## Locations');
+    expect(text).toContain('[/location](http://localhost:3100/location)');
+    expect(text).toContain('[/location/united-states/new-york/new-york](');
+    expect(text).toContain('[/location/germany/berlin/berlin](');
+    expect(text).toContain('## Guides');
+    expect(text).toContain('[/guides/start-a-community](');
+    expect(text).toContain('[/guides/moderation](');
+    expect(text).toContain('## Glossary');
+    expect(text).toContain('[/glossary](');
+    // ~2 KB budget so LLM crawlers hold the file in context.
+    expect(Buffer.byteLength(text, 'utf8')).toBeLessThanOrEqual(2 * 1024);
+    // Long tail never enumerated (Tier-3 city pages are sitemap-only).
+    expect(text).not.toContain('/location/united-states/texas/austin');
+    expect(text).not.toContain('/de/location');
   });
 });
 
