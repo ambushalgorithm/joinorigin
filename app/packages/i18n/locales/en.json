@@ -522,6 +522,7 @@
       "presenceClaim": "Find or start a community in {{city}}",
       "communitiesIn": "Communities in {{city}}",
       "cityFacts": "City facts",
+      "exploreCommunities": "Explore communities",
       "exploreGroupTypes": "Explore community types",
       "groupTypesInCity": "Community types in the city",
       "flagshipCities": "Flagship cities",

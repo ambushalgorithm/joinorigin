@@ -522,6 +522,7 @@
       "presenceClaim": "Найдите или создайте сообщество в {{city}}",
       "communitiesIn": "Сообщества в {{city}}",
       "cityFacts": "Факты о городе",
+      "exploreCommunities": "Изучить сообщества",
       "exploreGroupTypes": "Изучить типы сообществ",
       "groupTypesInCity": "Типы сообществ в городе",
       "flagshipCities": "Ключевые города",

@@ -104,3 +104,31 @@ describe('seoContent chrome — cookie-locale chrome switching (design §7.1)', 
     expect(screen.getByText('Frequently asked questions')).toBeInTheDocument();
   });
 });
+
+describe('seoContent.location.exploreCommunities — missing chrome key fix (TASK-314)', () => {
+  it('resolves the sibling-cities CTA label instead of rendering the raw key (EN hub)', () => {
+    const entry = resolveLocationEntry({});
+    expect(entry?.kind).toBe('hub');
+    const data = buildLocationViewData(entry!);
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    // The sibling-cities cards use seoContent.location.exploreCommunities as
+    // their body — the key must resolve to the localized label.
+    const siblingGrid = screen.getByTestId('location-sibling-cities');
+    expect(within(siblingGrid).getAllByText('Explore communities').length).toBeGreaterThan(0);
+
+    // The raw key string must never surface in the rendered DOM.
+    expect(screen.queryByText('seoContent.location.exploreCommunities')).not.toBeInTheDocument();
+    expect(document.body.textContent).not.toContain('seoContent.location.exploreCommunities');
+  });
+
+  it('renders the localized sibling-cities label in German (de chrome)', () => {
+    const entry = resolveLocationEntry({});
+    const data = buildLocationViewData(entry!);
+    renderWithI18n(<LocationView data={data} />, 'de');
+
+    const siblingGrid = screen.getByTestId('location-sibling-cities');
+    expect(within(siblingGrid).getAllByText('Communities entdecken').length).toBeGreaterThan(0);
+    expect(document.body.textContent).not.toContain('seoContent.location.exploreCommunities');
+  });
+});

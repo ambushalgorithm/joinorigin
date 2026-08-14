@@ -522,6 +522,7 @@
       "presenceClaim": "Trouvez ou créez une communauté à {{city}}",
       "communitiesIn": "Communautés à {{city}}",
       "cityFacts": "Chiffres de la ville",
+      "exploreCommunities": "Explorer les communautés",
       "exploreGroupTypes": "Explorer les types de communauté",
       "groupTypesInCity": "Types de communauté dans la ville",
       "flagshipCities": "Villes phares",

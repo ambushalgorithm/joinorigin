@@ -522,6 +522,7 @@
       "presenceClaim": "{{city}}でコミュニティを見つけるか始める",
       "communitiesIn": "{{city}}のコミュニティ",
       "cityFacts": "都市データ",
+      "exploreCommunities": "コミュニティを探す",
       "exploreGroupTypes": "コミュニティの種類を探す",
       "groupTypesInCity": "この都市のコミュニティの種類",
       "flagshipCities": "主要都市",

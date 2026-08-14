@@ -522,6 +522,7 @@
       "presenceClaim": "{{city}}에서 커뮤니티 찾기 또는 시작하기",
       "communitiesIn": "{{city}}의 커뮤니티",
       "cityFacts": "도시 정보",
+      "exploreCommunities": "커뮤니티 살펴보기",
       "exploreGroupTypes": "커뮤니티 유형 살펴보기",
       "groupTypesInCity": "이 도시의 커뮤니티 유형",
       "flagshipCities": "대표 도시",
