@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+import { DEFAULT_LOCALE, resolveLocale } from '@joinorigin/i18n';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
@@ -8,6 +9,13 @@ import { NextRequest, NextResponse } from 'next/server';
  *
  * Validates `{ name, email }`, then appends one RFC 4180-quoted CSV row to
  * `apps/web/data/leads.csv` (created with a header row on first write).
+ *
+ * Beyond the user-supplied name/email, each row passively captures server-side
+ * request context (Story 3 — Expanded Signup): client IP (x-forwarded-for /
+ * x-real-ip fallback), locale (x-joinorigin-locale or accept-language, resolved
+ * through the shared i18n `resolveLocale`), user agent, referrer (referer
+ * header), and the server timestamp (ISO-8601 UTC). Zero client-side changes;
+ * the waitlist form still submits only `{ name, email }`.
  *
  * Guards: POST-only (405), `Content-Type: application/json` (400 on missing),
  * JSON parse errors (400), body > 10 KB (413), per-IP rate limit of 10
@@ -21,7 +29,7 @@ const NAME_MAX_LENGTH = 120;
 const MAX_BODY_BYTES = 10 * 1024;
 const MAX_SUBMISSIONS_PER_MINUTE = 10;
 const RATE_WINDOW_MS = 60_000;
-const CSV_HEADER = 'timestamp,name,email';
+const CSV_HEADER = 'timestamp,name,email,ip,locale,userAgent,referrer';
 
 const CSV_PATH = process.env.LEADS_CSV_PATH ?? path.join(process.cwd(), 'data', 'leads.csv');
 
@@ -36,7 +44,42 @@ function getClientIp(request: NextRequest): string {
   if (forwarded) {
     return forwarded.split(',')[0].trim();
   }
+  const realIp = request.headers.get('x-real-ip');
+  if (realIp) {
+    return realIp.trim();
+  }
   return 'unknown';
+}
+
+/**
+ * Passive locale capture: prefer the proxy-forwarded i18n locale
+ * (`x-joinorigin-locale`, set from accept-language by the middleware), else
+ * parse the raw `accept-language` header, and resolve through the shared i18n
+ * `resolveLocale` so the stored tag is always a supported locale (`en` when
+ * nothing usable is present).
+ */
+function getLocale(request: NextRequest): string {
+  const forwarded = request.headers.get('x-joinorigin-locale');
+  if (forwarded) {
+    return resolveLocale(forwarded);
+  }
+  const acceptLanguage = request.headers.get('accept-language');
+  if (acceptLanguage) {
+    const preferred = acceptLanguage
+      .split(',')
+      .map((part) => part.trim().split(';')[0].trim())
+      .find(Boolean);
+    return resolveLocale(preferred ?? undefined);
+  }
+  return DEFAULT_LOCALE;
+}
+
+function getUserAgent(request: NextRequest): string {
+  return request.headers.get('user-agent')?.trim() || 'unknown';
+}
+
+function getReferrer(request: NextRequest): string {
+  return request.headers.get('referer')?.trim() || '';
 }
 
 function isRateLimited(ip: string): boolean {
@@ -65,6 +108,17 @@ async function ensureHeaderRow(): Promise<void> {
   } catch {
     await fs.mkdir(path.dirname(CSV_PATH), { recursive: true });
     await fs.appendFile(CSV_PATH, `${CSV_HEADER}\n`, 'utf8');
+    return;
+  }
+
+  // File exists: migrate a legacy header (pre-Story-3 `timestamp,name,email`)
+  // to the expanded schema without touching data rows.
+  const contents = await fs.readFile(CSV_PATH, 'utf8');
+  const newlineIndex = contents.indexOf('\n');
+  const firstLine = newlineIndex === -1 ? contents : contents.slice(0, newlineIndex);
+  if (firstLine !== CSV_HEADER) {
+    const rest = newlineIndex === -1 ? '' : contents.slice(newlineIndex + 1);
+    await fs.writeFile(CSV_PATH, `${CSV_HEADER}\n${rest}`, 'utf8');
   }
 }
 
@@ -130,10 +184,21 @@ export async function POST(request: NextRequest) {
 
   const timestamp = new Date().toISOString();
   const email = rawEmail.toLowerCase();
-  const row = `${timestamp},${csvEscape(rawName)},${csvEscape(email)}\n`;
+  const locale = getLocale(request);
+  const userAgent = getUserAgent(request);
+  const referrer = getReferrer(request);
+  const row = [
+    timestamp,
+    csvEscape(rawName),
+    csvEscape(email),
+    csvEscape(clientIp),
+    csvEscape(locale),
+    csvEscape(userAgent),
+    csvEscape(referrer),
+  ].join(',');
 
   try {
-    await appendRow(row);
+    await appendRow(`${row}\n`);
   } catch {
     return jsonError('form', 'Something went wrong.', 500);
   }
