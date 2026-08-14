@@ -530,7 +530,8 @@
       "guidesTitle": "Panduan memulai komunitas",
       "stepByStepGuide": "Panduan langkah demi langkah",
       "ideasLink": "30 ide acara komunitas",
-      "faqHeading": "Pertanyaan yang sering diajukan"
+      "faqHeading": "Pertanyaan yang sering diajukan",
+      "translatePage": "Terjemahkan halaman ini"
     },
     "groupTypes": {
       "startup": "Komunitas startup",
@@ -553,7 +554,8 @@
       "relatedGuides": "Panduan terkait",
       "exploreCommunities": "Jelajahi komunitas",
       "howJoinOriginHelps": "Bagaimana JoinOrigin dapat membantu",
-      "keepLearning": "Terus belajar"
+      "keepLearning": "Terus belajar",
+      "translatePage": "Terjemahkan halaman ini"
     },
     "glossary": {
       "eyebrow": "OS Komunitas",

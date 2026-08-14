@@ -530,7 +530,8 @@
       "guidesTitle": "建立社群指南",
       "stepByStepGuide": "逐步指南",
       "ideasLink": "30個社群活動點子",
-      "faqHeading": "常見問題"
+      "faqHeading": "常見問題",
+      "translatePage": "翻譯此頁面"
     },
     "groupTypes": {
       "startup": "新創社群",
@@ -553,7 +554,8 @@
       "relatedGuides": "相關指南",
       "exploreCommunities": "探索社群",
       "howJoinOriginHelps": "JoinOrigin能如何協助",
-      "keepLearning": "繼續學習"
+      "keepLearning": "繼續學習",
+      "translatePage": "翻譯此頁面"
     },
     "glossary": {
       "eyebrow": "社群系統",

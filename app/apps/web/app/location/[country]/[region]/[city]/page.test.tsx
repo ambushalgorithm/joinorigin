@@ -75,4 +75,31 @@ describe('/location/[country]/[region]/[city] route', () => {
     expect(screen.getByTestId('location-faq')).toBeInTheDocument();
     expect(screen.getByTestId('location-cta-band')).toBeInTheDocument();
   });
+
+  it('renders the Translate this page link on the EN page with the correct href (TASK-318)', () => {
+    const entry = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
+    const data = buildLocationViewData(entry!);
+    renderWithI18n(<LocationView data={data} />);
+
+    const link = screen.getByTestId('translate-page-link');
+    expect(link).toHaveTextContent('Translate this page');
+
+    const url = new URL(link.getAttribute('href') ?? '');
+    expect(`${url.origin}${url.pathname}`).toBe('https://translate.google.com/translate');
+    expect(url.searchParams.get('sl')).toBe('en');
+    expect(url.searchParams.get('tl')).toBe('en');
+    expect(url.searchParams.get('u')).toBe(window.location.href);
+  });
+
+  it('omits the translate link on the de Berlin surface (already translated — TASK-318)', () => {
+    const entry = resolveLocationEntry(
+      { country: 'germany', region: 'berlin', city: 'berlin' },
+      'de',
+    );
+    const data = buildLocationViewData(entry!, 'de');
+    renderWithI18n(<LocationView data={data} />);
+
+    expect(screen.getByTestId('location-breadcrumbs')).toBeInTheDocument();
+    expect(screen.queryByTestId('translate-page-link')).not.toBeInTheDocument();
+  });
 });

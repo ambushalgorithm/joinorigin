@@ -89,6 +89,18 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
     expect(screen.getByText('New York City')).toBeInTheDocument();
     expect(screen.getByText('Berlin')).toBeInTheDocument();
   });
+
+  it('renders the Translate this page link with the correct href (TASK-318)', () => {
+    renderWithI18n(<GuideView entry={entry} content={content} />);
+
+    const link = screen.getByTestId('translate-page-link');
+    expect(link).toHaveTextContent('Translate this page');
+
+    const url = new URL(link.getAttribute('href') ?? '');
+    expect(`${url.origin}${url.pathname}`).toBe('https://translate.google.com/translate');
+    expect(url.searchParams.get('sl')).toBe('en');
+    expect(url.searchParams.get('u')).toBe(window.location.href);
+  });
 });
 
 describe('guide page wrapper', () => {

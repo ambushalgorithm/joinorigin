@@ -530,7 +530,8 @@
       "guidesTitle": "Przewodniki zakładania społeczności",
       "stepByStepGuide": "Przewodnik krok po kroku",
       "ideasLink": "30 pomysłów na wydarzenia społecznościowe",
-      "faqHeading": "Często zadawane pytania"
+      "faqHeading": "Często zadawane pytania",
+      "translatePage": "Przetłumacz tę stronę"
     },
     "groupTypes": {
       "startup": "Społeczności startupowe",
@@ -553,7 +554,8 @@
       "relatedGuides": "Powiązane przewodniki",
       "exploreCommunities": "Poznaj społeczności",
       "howJoinOriginHelps": "Jak JoinOrigin może pomóc",
-      "keepLearning": "Ucz się dalej"
+      "keepLearning": "Ucz się dalej",
+      "translatePage": "Przetłumacz tę stronę"
     },
     "glossary": {
       "eyebrow": "System społecznościowy",

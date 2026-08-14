@@ -530,7 +530,8 @@
       "guidesTitle": "Гайди зі створення спільноти",
       "stepByStepGuide": "Покроковий гайд",
       "ideasLink": "30 ідей для заходів спільноти",
-      "faqHeading": "Часті запитання"
+      "faqHeading": "Часті запитання",
+      "translatePage": "Перекласти цю сторінку"
     },
     "groupTypes": {
       "startup": "Стартап-спільноти",
@@ -553,7 +554,8 @@
       "relatedGuides": "Пов'язані гайди",
       "exploreCommunities": "Дослідити спільноти",
       "howJoinOriginHelps": "Як JoinOrigin може допомогти",
-      "keepLearning": "Продовжуйте вчитися"
+      "keepLearning": "Продовжуйте вчитися",
+      "translatePage": "Перекласти цю сторінку"
     },
     "glossary": {
       "eyebrow": "Система спільноти",

@@ -530,7 +530,8 @@
       "guidesTitle": "Anleitungen zum Community-Aufbau",
       "stepByStepGuide": "Schritt-für-Schritt-Anleitung",
       "ideasLink": "30 Ideen für Community-Events",
-      "faqHeading": "Häufig gestellte Fragen"
+      "faqHeading": "Häufig gestellte Fragen",
+      "translatePage": "Diese Seite übersetzen"
     },
     "groupTypes": {
       "startup": "Startup-Communities",
@@ -553,7 +554,8 @@
       "relatedGuides": "Verwandte Anleitungen",
       "exploreCommunities": "Communities entdecken",
       "howJoinOriginHelps": "Wie JoinOrigin helfen kann",
-      "keepLearning": "Weiterlernen"
+      "keepLearning": "Weiterlernen",
+      "translatePage": "Diese Seite übersetzen"
     },
     "glossary": {
       "eyebrow": "Community-OS",

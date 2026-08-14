@@ -530,7 +530,8 @@
       "guidesTitle": "コミュニティを始めるためのガイド",
       "stepByStepGuide": "ステップバイステップガイド",
       "ideasLink": "コミュニティイベントのアイデア30選",
-      "faqHeading": "よくある質問"
+      "faqHeading": "よくある質問",
+      "translatePage": "このページを翻訳"
     },
     "groupTypes": {
       "startup": "スタートアップコミュニティ",
@@ -553,7 +554,8 @@
       "relatedGuides": "関連ガイド",
       "exploreCommunities": "コミュニティを探す",
       "howJoinOriginHelps": "JoinOriginがどのように役立つか",
-      "keepLearning": "学び続ける"
+      "keepLearning": "学び続ける",
+      "translatePage": "このページを翻訳"
     },
     "glossary": {
       "eyebrow": "コミュニティOS",

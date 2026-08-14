@@ -530,7 +530,8 @@
       "guidesTitle": "Guías para crear una comunidad",
       "stepByStepGuide": "Guía paso a paso",
       "ideasLink": "30 ideas de eventos comunitarios",
-      "faqHeading": "Preguntas frecuentes"
+      "faqHeading": "Preguntas frecuentes",
+      "translatePage": "Traducir esta página"
     },
     "groupTypes": {
       "startup": "Comunidades de startups",
@@ -553,7 +554,8 @@
       "relatedGuides": "Guías relacionadas",
       "exploreCommunities": "Explora comunidades",
       "howJoinOriginHelps": "Cómo puede ayudar JoinOrigin",
-      "keepLearning": "Sigue aprendiendo"
+      "keepLearning": "Sigue aprendiendo",
+      "translatePage": "Traducir esta página"
     },
     "glossary": {
       "eyebrow": "Sistema comunitario",

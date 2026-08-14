@@ -530,7 +530,8 @@
       "guidesTitle": "راهنماهای راه‌اندازی جامعه",
       "stepByStepGuide": "راهنمای گام‌به‌گام",
       "ideasLink": "۳۰ ایده رویداد جامعه",
-      "faqHeading": "پرسش‌های پرتکرار"
+      "faqHeading": "پرسش‌های پرتکرار",
+      "translatePage": "ترجمه این صفحه"
     },
     "groupTypes": {
       "startup": "جوامع استارتاپی",
@@ -553,7 +554,8 @@
       "relatedGuides": "راهنماهای مرتبط",
       "exploreCommunities": "کاوش جوامع",
       "howJoinOriginHelps": "چگونه JoinOrigin می‌تواند کمک کند",
-      "keepLearning": "به یادگیری ادامه دهید"
+      "keepLearning": "به یادگیری ادامه دهید",
+      "translatePage": "ترجمه این صفحه"
     },
     "glossary": {
       "eyebrow": "سیستم جامعه",

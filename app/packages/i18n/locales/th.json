@@ -530,7 +530,8 @@
       "guidesTitle": "คำแนะนำสำหรับการเริ่มชุมชน",
       "stepByStepGuide": "คำแนะนำทีละขั้นตอน",
       "ideasLink": "30 ไอเดียกิจกรรมชุมชน",
-      "faqHeading": "คำถามที่พบบ่อย"
+      "faqHeading": "คำถามที่พบบ่อย",
+      "translatePage": "แปลหน้านี้"
     },
     "groupTypes": {
       "startup": "ชุมชนสตาร์ทอัพ",
@@ -553,7 +554,8 @@
       "relatedGuides": "คู่มือที่เกี่ยวข้อง",
       "exploreCommunities": "สำรวจชุมชน",
       "howJoinOriginHelps": "JoinOrigin ช่วยได้อย่างไร",
-      "keepLearning": "เรียนรู้ต่อไป"
+      "keepLearning": "เรียนรู้ต่อไป",
+      "translatePage": "แปลหน้านี้"
     },
     "glossary": {
       "eyebrow": "ระบบชุมชน",

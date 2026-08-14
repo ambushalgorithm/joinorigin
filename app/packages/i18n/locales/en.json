@@ -530,7 +530,8 @@
       "guidesTitle": "Guides for starting a community",
       "stepByStepGuide": "Step-by-step guide",
       "ideasLink": "30 community event ideas",
-      "faqHeading": "Frequently asked questions"
+      "faqHeading": "Frequently asked questions",
+      "translatePage": "Translate this page"
     },
     "groupTypes": {
       "startup": "Startup communities",
@@ -553,7 +554,8 @@
       "relatedGuides": "Related guides",
       "exploreCommunities": "Explore communities",
       "howJoinOriginHelps": "How JoinOrigin can help",
-      "keepLearning": "Keep learning"
+      "keepLearning": "Keep learning",
+      "translatePage": "Translate this page"
     },
     "glossary": {
       "eyebrow": "Community OS",
