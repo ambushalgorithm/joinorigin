@@ -117,11 +117,25 @@ export interface CityContent extends BaseContent {
   };
 }
 
+/** One step in a how-to guide (design §6.2 step-by-step structure). */
+export interface GuideStep {
+  /** Step heading (rendered as a step `<h2>`), e.g. "Define a clear purpose". */
+  title: string;
+  /** Step body — 1–3 honest, evergreen paragraphs. */
+  body: string;
+}
+
 /** L1 how-to guide content (authored by fe-guides-pages, TASK-309). */
 export interface GuideContent extends BaseContent {
   kind: 'guide';
   /** Step-by-step body sections (single H1 + step structure per §6.2). */
   sections: string[];
+  /**
+   * Structured steps for richer rendering — the page wrapper renders each
+   * step as an `<h2>` + body (kept in lockstep with `sections` which stays
+   * the flat source for word-count/quality gates).
+   */
+  steps: GuideStep[];
 }
 
 export type LocationContent = CountryContent | RegionContent | CityContent | GuideContent;

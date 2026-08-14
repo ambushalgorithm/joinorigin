@@ -23,6 +23,14 @@ import germanyCountryEn from './en/country/germany';
 import newYorkRegionEn from './en/region/new-york';
 import newYorkCityEn from './en/city/new-york';
 import unitedStatesCountryEn from './en/country/united-states';
+// L1 how-to guides (TASK-309) — EN source of truth.
+import findACoFounderGuideEn from './en/guide/find-a-co-founder';
+import first10MembersGuideEn from './en/guide/first-10-members';
+import hybridCommunitiesGuideEn from './en/guide/hybrid-communities';
+import keepCommunityActiveGuideEn from './en/guide/keep-a-community-active';
+import moderationGuideEn from './en/guide/moderation';
+import organizeMeetupGuideEn from './en/guide/organize-a-meetup';
+import startCommunityGuideEn from './en/guide/start-a-community';
 import type {
   CityContent,
   ContentKind,
@@ -61,6 +69,19 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'city', slug: 'berlin', locale: 'en', content: berlinCityEn },
   // Per-locale translations (Berlin → de, MVP).
   { kind: 'city', slug: 'berlin', locale: 'de', content: berlinCityDe },
+  // L1 how-to guides (TASK-309) — manual content, EN source of truth.
+  { kind: 'guide', slug: 'start-a-community', locale: 'en', content: startCommunityGuideEn },
+  { kind: 'guide', slug: 'organize-a-meetup', locale: 'en', content: organizeMeetupGuideEn },
+  { kind: 'guide', slug: 'first-10-members', locale: 'en', content: first10MembersGuideEn },
+  { kind: 'guide', slug: 'find-a-co-founder', locale: 'en', content: findACoFounderGuideEn },
+  {
+    kind: 'guide',
+    slug: 'keep-a-community-active',
+    locale: 'en',
+    content: keepCommunityActiveGuideEn,
+  },
+  { kind: 'guide', slug: 'hybrid-communities', locale: 'en', content: hybridCommunitiesGuideEn },
+  { kind: 'guide', slug: 'moderation', locale: 'en', content: moderationGuideEn },
 ];
 
 /** True when committed content exists for (kind, slug) in a locale. */
