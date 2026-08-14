@@ -19,6 +19,118 @@ const content: CityContent = {
     'Strong Stammtisch and Späti corner-shop gathering culture.',
     'Large international population — many groups run in English.',
   ],
+  variantEnrichment: {
+    startup: {
+      venues: [
+        'Coworking spaces in Mitte and Kreuzberg',
+        'Accelerator event rooms near Rosenthaler Platz',
+        'Impact hubs with founder breakfast corners',
+        'University startup spaces at TU Berlin and ESMT',
+        'English-friendly cafés with meeting corners',
+        'Biergarten tables for relaxed founder evenings',
+      ],
+      formats: [
+        'Founder breakfasts with quick round intros',
+        'Pitch evenings and demo nights',
+        'Coworking open houses for early teams',
+        'Climate tech and AI builder tables',
+        'Cross-border founder mixers (English-first)',
+      ],
+      howToStart: [
+        'Pick a narrow vertical — climate tech, AI builders, or marketplaces — and an English-first name.',
+        'Reserve a weekly breakfast or evening slot at a Mitte or Kreuzberg coworking space.',
+        'Run three open meetups, then ask two regulars to co-organize and set a monthly rhythm.',
+      ],
+    },
+    creative: {
+      venues: [
+        'Studios and project spaces in Neukölln and Friedrichshain',
+        'Mitte galleries and exhibition rooms',
+        'RAW-Gelände courtyards and event halls',
+        'UdK Berlin and art school workshop rooms',
+        'Rehearsal and recording studios',
+        'Kiez cafés with long tables for critiques',
+      ],
+      formats: [
+        'Studio open weekends and portfolio nights',
+        'Design critique evenings',
+        'Music production circles that share gear',
+        'Zine and risograph print nights',
+        'Artist talks in project spaces',
+      ],
+      howToStart: [
+        'Pick a craft, a district, and a regular evening — specificity builds identity faster here.',
+        'Find a collective studio or project space in Neukölln or Friedrichshain that will host you.',
+        'Run a first open studio night, collect works in progress, and make feedback the standing agenda.',
+      ],
+    },
+    political: {
+      venues: [
+        'District assembly rooms across the twelve Bezirke',
+        'Tenant initiative spaces in Neukölln and Kreuzberg',
+        'Neighborhood centers and Stadtteilbüros',
+        'Community gardens and street libraries',
+        'Civic tech co-working spaces',
+        'Volunteer project rooms near refugee support initiatives',
+      ],
+      formats: [
+        'Open district assembly sessions',
+        'Rent-law and tenant rights info evenings',
+        'Citizens’ initiative planning meetings',
+        'Volunteer info sessions and first-shift briefings',
+        'Civic participation workshops in plain language',
+      ],
+      howToStart: [
+        'Choose one concrete issue and a small geography — a kiez, a street, or one housing policy.',
+        'Attend three existing initiative meetings first and partner instead of duplicating work.',
+        'Host an open info evening with a real organizer as co-host to build a trustworthy base.',
+      ],
+    },
+    meetup: {
+      venues: [
+        'Biergartens in Kreuzberg and Neukölln',
+        'Cafés in Prenzlauer Berg with community corners',
+        'Tempelhofer Feld lawns and grill areas',
+        'Späti bars and kiez Kneipen with tables',
+        'Mauerpark and Volkspark Friedrichshain',
+        'Public libraries with meeting rooms',
+      ],
+      formats: [
+        'Weekly Stammtisch at the same table',
+        'Monthly themed walks and bike rides',
+        'Board game and Spieleabend evenings',
+        'Language exchange tables',
+        'Sunday market strolls and picnics',
+      ],
+      howToStart: [
+        'Choose a repeatable format — a weekly Stammtisch, a monthly walk — and a fixed venue.',
+        'Pick a biergarten, Späti bar, or park spot that will host you every time.',
+        'Run the first three sessions at the same time and place, then ask regulars to invite one newcomer each.',
+      ],
+    },
+    'small-business': {
+      venues: [
+        'Späti corners and late-night kiosk owners’ tables',
+        'Brewery taprooms with long tables',
+        'Werkstatt and repair-café floors',
+        'Maker market stalls at flea markets',
+        'Kiez cafe back rooms with a Stammtisch vibe',
+        'Chamber of commerce seminar rooms',
+      ],
+      formats: [
+        'Kiez owners’ breakfast tables with no agenda',
+        'Street festival stall planning for the summer markets',
+        'Chamber digitalization clinics (online selling, invoices)',
+        'Shared buying circles for supplies and repairs',
+        'Neighborhood walking tours of shop corridors',
+      ],
+      howToStart: [
+        'Choose one kiez and a café that already feeds local shop owners; claim a regular corner table.',
+        'Run a no-agenda breakfast first — owners come when they get to vent about landlords and deliveries.',
+        'After three breakfasts, rotate one practical topic per month and let the kiez merchant group spread the word.',
+      ],
+    },
+  },
   variantIntros: {
     startup:
       'The Berlin startup scene has grown from a scrappy post-reunification experiment into one of Europe’s most important tech ecosystems, with strengths in marketplaces, fintech, climate tech, and developer tools. Founders and engineers cluster in Mitte and Kreuzberg, where coworking spaces, accelerators, and university programs at TU Berlin and ESMT create a dense loop of talent and capital. Berlin’s famous pragmatism shapes the community: meetings are less about status and more about shipping, hiring, and surviving the next funding round. Recurring formats include founder breakfasts, pitch evenings, and coworking open houses where early teams can find their first engineers and designers. The international scene is a real asset — English is common in meetups, which helps founders who are new to Germany. Starting a startup community here works best with a narrow vertical and a regular rhythm: a monthly AI builders night or a climate tech founders table builds a reliable following faster than a generalist founder group.',

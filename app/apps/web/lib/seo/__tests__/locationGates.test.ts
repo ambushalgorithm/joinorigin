@@ -316,3 +316,36 @@ describe('lib/seo locationGates — taxonomy sanity', () => {
     }
   });
 });
+
+describe('lib/seo locationGates — variant enrichment distinctness (TASK-319)', () => {
+  const concatEnrichment = (enrichment: {
+    venues: string[];
+    formats: string[];
+    howToStart: string[];
+  }) => [...enrichment.venues, ...enrichment.formats, ...enrichment.howToStart].join(' ');
+
+  it('NYC startup enrichment differs from Berlin startup enrichment (no name-swap)', () => {
+    const nyc = getCityContent('new-york', 'en');
+    const berlin = getCityContent('berlin', 'en');
+    const nycStartup = nyc?.variantEnrichment?.startup;
+    const berlinStartup = berlin?.variantEnrichment?.startup;
+    expect(nycStartup).toBeDefined();
+    expect(berlinStartup).toBeDefined();
+    expect(berlinStartup?.venues.join(' ')).not.toContain('SoHo');
+    expect(nycStartup?.venues.join(' ')).toContain('SoHo');
+    const sim = similarity(concatEnrichment(nycStartup!), concatEnrichment(berlinStartup!));
+    expect(sim).toBeLessThan(NEAR_DUPLICATE_THRESHOLD);
+  });
+
+  it('startup enrichment differs from creative enrichment within the same city', () => {
+    for (const citySlug of ['new-york', 'berlin'] as const) {
+      const content = getCityContent(citySlug, 'en');
+      const startup = content?.variantEnrichment?.startup;
+      const creative = content?.variantEnrichment?.creative;
+      expect(startup).toBeDefined();
+      expect(creative).toBeDefined();
+      const sim = similarity(concatEnrichment(startup!), concatEnrichment(creative!));
+      expect(sim).toBeLessThan(NEAR_DUPLICATE_THRESHOLD);
+    }
+  });
+});

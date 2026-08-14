@@ -535,7 +535,10 @@
       "stepByStepGuide": "Hướng dẫn từng bước",
       "ideasLink": "30 ý tưởng sự kiện cộng đồng",
       "faqHeading": "Câu hỏi thường gặp",
-      "translatePage": "Dịch trang này"
+      "translatePage": "Dịch trang này",
+      "variantVenuesTitle": "Nơi {{type}} tụ họp",
+      "variantFormatsTitle": "Các hình thức điển hình",
+      "variantHowToTitle": "Cách bắt đầu"
     },
     "groupTypes": {
       "startup": "Cộng đồng khởi nghiệp",

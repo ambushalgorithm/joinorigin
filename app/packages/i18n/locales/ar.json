@@ -535,7 +535,10 @@
       "stepByStepGuide": "دليل خطوة بخطوة",
       "ideasLink": "30 فكرة لفعاليات مجتمعية",
       "faqHeading": "الأسئلة الشائعة",
-      "translatePage": "ترجمة هذه الصفحة"
+      "translatePage": "ترجمة هذه الصفحة",
+      "variantVenuesTitle": "أين يجتمع {{type}}",
+      "variantFormatsTitle": "التنسيقات النموذجية",
+      "variantHowToTitle": "كيف تبدأ"
     },
     "groupTypes": {
       "startup": "مجتمعات الشركات الناشئة",

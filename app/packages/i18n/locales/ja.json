@@ -535,7 +535,10 @@
       "stepByStepGuide": "ステップバイステップガイド",
       "ideasLink": "コミュニティイベントのアイデア30選",
       "faqHeading": "よくある質問",
-      "translatePage": "このページを翻訳"
+      "translatePage": "このページを翻訳",
+      "variantVenuesTitle": "{{type}}が集まる場所",
+      "variantFormatsTitle": "よくある形式",
+      "variantHowToTitle": "始め方"
     },
     "groupTypes": {
       "startup": "スタートアップコミュニティ",

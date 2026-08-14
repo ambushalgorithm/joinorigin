@@ -206,6 +206,22 @@ const Attribution = styled.p`
   }
 `;
 
+/** Ordered step list for the "How to start" enrichment section (TASK-319). */
+const StepList = styled.ol`
+  margin: 0;
+  padding: 0;
+  padding-left: ${({ theme }) => theme.spacing.lg}px;
+  list-style: decimal;
+  font-family: ${({ theme }) => theme.fontFamilies.sans};
+  font-size: ${({ theme }) => theme.typography.body}px;
+  line-height: 1.6;
+  color: ${({ theme }) => theme.colors.textMuted};
+
+  li + li {
+    margin-top: ${({ theme }) => theme.spacing.sm}px;
+  }
+`;
+
 /** Human label for a hub-directory entry kind (TASK-317 card body). */
 function hubDirectoryKindLabel(kind: string): string {
   switch (kind) {
@@ -232,6 +248,20 @@ export function LocationView({ data }: { data: LocationViewData }) {
   const hasGroupLinks = data.groupTypeLinks.length > 0;
   const hasSiblings = data.siblingCities.length > 0;
   const hasFaq = data.faq.length > 0;
+
+  // TASK-319 — variant enrichment: only variant pages with committed
+  // venues/formats/howToStart render the distinct "Where {type} communities
+  // gather" / "Typical formats" / "How to start" sections. The heading label
+  // reuses the group-type chrome dictionary so it stays localized.
+  const hasVariantEnrichment =
+    data.kind === 'variant' && !!data.groupType && !!data.variantEnrichment;
+  const currentGroupLabel = hasVariantEnrichment
+    ? t(
+        `seoContent.groupTypes.${
+          data.groupType === 'small-business' ? 'smallBusiness' : data.groupType
+        }`,
+      )
+    : '';
 
   // TASK-317 — the `/location` hub search/filter: a browsable directory of
   // every indexable location page (country/region/city/group-type/ideas),
@@ -348,6 +378,54 @@ export function LocationView({ data }: { data: LocationViewData }) {
           ) : null}
         </PageContainer>
       </SectionBand>
+
+      {/* TASK-319 — variant enrichment: distinct "Where {type} communities
+          gather" (venues) / "Typical formats" / "How to start" sections on
+          variant pages only. Body copy comes from the per-city content files;
+          headings are seoContent.* chrome keys (localized via the active
+          locale). */}
+      {hasVariantEnrichment && data.variantEnrichment ? (
+        <SectionBand variant="plain">
+          <PageContainer>
+            <Reveal>
+              <Section data-testid="variant-enrichment">
+                <SectionTitle data-testid="variant-enrichment-venues-title">
+                  {t('seoContent.location.variantVenuesTitle', { type: currentGroupLabel })}
+                </SectionTitle>
+                <BulletList data-testid="variant-enrichment-venues">
+                  {data.variantEnrichment.venues.map((venue) => (
+                    <ListItem key={venue}>{venue}</ListItem>
+                  ))}
+                </BulletList>
+              </Section>
+            </Reveal>
+            <Reveal>
+              <Section>
+                <SectionTitle data-testid="variant-enrichment-formats-title">
+                  {t('seoContent.location.variantFormatsTitle')}
+                </SectionTitle>
+                <BulletList data-testid="variant-enrichment-formats">
+                  {data.variantEnrichment.formats.map((format) => (
+                    <ListItem key={format}>{format}</ListItem>
+                  ))}
+                </BulletList>
+              </Section>
+            </Reveal>
+            <Reveal>
+              <Section>
+                <SectionTitle data-testid="variant-enrichment-howto-title">
+                  {t('seoContent.location.variantHowToTitle')}
+                </SectionTitle>
+                <StepList data-testid="variant-enrichment-howto">
+                  {data.variantEnrichment.howToStart.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </StepList>
+              </Section>
+            </Reveal>
+          </PageContainer>
+        </SectionBand>
+      ) : null}
 
       {isHub && hubDirectory.length > 0 ? (
         <SectionBand variant="plain">

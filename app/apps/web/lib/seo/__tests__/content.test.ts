@@ -74,6 +74,65 @@ describe('lib/seo content — quality contract (G1/G2/G5)', () => {
     }
   });
 
+  it('city files carry per-variant enrichment (venues 4–6, formats 4–5, howToStart 3) (TASK-319)', () => {
+    for (const slug of EXPECTED_CITIES) {
+      const content = getCityContent(slug, 'en');
+      expect(content).toBeDefined();
+      for (const type of GROUP_TYPES) {
+        const enrichment = content?.variantEnrichment?.[type.key];
+        expect(enrichment).toBeDefined();
+        if (!enrichment) continue;
+        expect(enrichment.venues.length).toBeGreaterThanOrEqual(4);
+        expect(enrichment.venues.length).toBeLessThanOrEqual(6);
+        expect(enrichment.formats.length).toBeGreaterThanOrEqual(4);
+        expect(enrichment.formats.length).toBeLessThanOrEqual(5);
+        expect(enrichment.howToStart).toHaveLength(3);
+        for (const venue of enrichment.venues) {
+          expect(venue.length).toBeGreaterThan(0);
+        }
+        for (const format of enrichment.formats) {
+          expect(format.length).toBeGreaterThan(0);
+        }
+        for (const step of enrichment.howToStart) {
+          expect(step.length).toBeGreaterThan(0);
+        }
+      }
+    }
+  });
+
+  it('variant enrichment differs per city for the same group type (G5-safe, TASK-319)', () => {
+    for (const type of GROUP_TYPES) {
+      const nyc = getCityContent('new-york', 'en');
+      const berlin = getCityContent('berlin', 'en');
+      const nycEnrichment = nyc?.variantEnrichment?.[type.key];
+      const berlinEnrichment = berlin?.variantEnrichment?.[type.key];
+      expect(nycEnrichment).toBeDefined();
+      expect(berlinEnrichment).toBeDefined();
+      const concat = (e: { venues: string[]; formats: string[]; howToStart: string[] }) =>
+        [...e.venues, ...e.formats, ...e.howToStart].join(' ');
+      const sim = similarity(concat(nycEnrichment!), concat(berlinEnrichment!));
+      expect(sim).toBeLessThan(NEAR_DUPLICATE_THRESHOLD);
+    }
+  });
+
+  it('variant enrichment differs within a city across group types (TASK-319)', () => {
+    for (const slug of EXPECTED_CITIES) {
+      const content = getCityContent(slug, 'en');
+      expect(content).toBeDefined();
+      const concat = (e: { venues: string[]; formats: string[]; howToStart: string[] }) =>
+        [...e.venues, ...e.formats, ...e.howToStart].join(' ');
+      for (let i = 0; i < GROUP_TYPES.length; i += 1) {
+        for (let j = i + 1; j < GROUP_TYPES.length; j += 1) {
+          const a = content?.variantEnrichment?.[GROUP_TYPES[i].key];
+          const b = content?.variantEnrichment?.[GROUP_TYPES[j].key];
+          if (!a || !b) continue;
+          const sim = similarity(concat(a), concat(b));
+          expect(sim).toBeLessThan(NEAR_DUPLICATE_THRESHOLD);
+        }
+      }
+    }
+  });
+
   it('NYC and Berlin city intros are not near-duplicates (G5, no reuse)', () => {
     const nyc = getCityContent('new-york', 'en');
     const berlin = getCityContent('berlin', 'en');

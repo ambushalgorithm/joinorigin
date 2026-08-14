@@ -535,7 +535,10 @@
       "stepByStepGuide": "คำแนะนำทีละขั้นตอน",
       "ideasLink": "30 ไอเดียกิจกรรมชุมชน",
       "faqHeading": "คำถามที่พบบ่อย",
-      "translatePage": "แปลหน้านี้"
+      "translatePage": "แปลหน้านี้",
+      "variantVenuesTitle": "สถานที่ที่ {{type}} รวมตัวกัน",
+      "variantFormatsTitle": "รูปแบบทั่วไป",
+      "variantHowToTitle": "วิธีเริ่มต้น"
     },
     "groupTypes": {
       "startup": "ชุมชนสตาร์ทอัพ",
