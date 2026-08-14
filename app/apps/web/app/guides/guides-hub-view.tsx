@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
 
+import HubSearchInput from '../../components/HubSearchInput';
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
 import SectionBand from '../../components/SectionBand';
@@ -18,6 +20,8 @@ import {
   Section,
   SectionTitle,
 } from '../../components/menuPagePrimitives';
+import { filterByKeyword } from '../../lib/search/hubFilter';
+import { useDebouncedValue } from '../../lib/search/useDebouncedValue';
 import type { GuidePageEntry } from '../../lib/seo/guides';
 import { GLOSSARY_HUB_PATH } from '../../lib/seo/guides';
 
@@ -25,6 +29,10 @@ import { GLOSSARY_HUB_PATH } from '../../lib/seo/guides';
  * Community Building hub view (design §6.3) — pillar page listing all 7 L1
  * guides as cards, plus links to the glossary and the flagship city pages
  * (topic-cluster backbone). Single H1 via `MenuHero`.
+ *
+ * TASK-317 — the guide card grid is filtered client-side by title/keyword
+ * with a debounced search input (~180ms). No new route, no server
+ * round-trip; the registry (`GuidePageEntry[]`) is the only data source.
  */
 
 export interface GuidesHubViewProps {
@@ -43,6 +51,14 @@ const StyledLink = styled(Link)`
 
 export function GuidesHubView({ entries }: GuidesHubViewProps) {
   const { t } = useI18n();
+  const [guideQuery, setGuideQuery] = useState('');
+  const debouncedGuideQuery = useDebouncedValue(guideQuery);
+  const filteredEntries = filterByKeyword(
+    entries,
+    debouncedGuideQuery,
+    (entry) => `${entry.title} ${entry.description}`,
+  );
+  const hasGuideMatches = filteredEntries.length > 0;
 
   return (
     <MenuPageShell
@@ -60,16 +76,30 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
           <Reveal>
             <Section>
               <SectionTitle>{t('seoContent.guides.allGuides')}</SectionTitle>
-              <CardGrid>
-                {entries.map((entry) => (
-                  <Card key={entry.slug}>
-                    <CardTitle>
-                      <StyledLink href={entry.path}>{entry.title}</StyledLink>
-                    </CardTitle>
-                    <CardBody>{entry.description}</CardBody>
-                  </Card>
-                ))}
-              </CardGrid>
+              <HubSearchInput
+                id="guides-hub-search"
+                label="Search guides"
+                placeholder="Search by guide title or keyword"
+                value={guideQuery}
+                onChange={setGuideQuery}
+                data-testid="guides-hub-search"
+              />
+              {hasGuideMatches ? (
+                <CardGrid data-testid="guides-hub-grid">
+                  {filteredEntries.map((entry) => (
+                    <Card key={entry.slug}>
+                      <CardTitle>
+                        <StyledLink href={entry.path}>{entry.title}</StyledLink>
+                      </CardTitle>
+                      <CardBody>{entry.description}</CardBody>
+                    </Card>
+                  ))}
+                </CardGrid>
+              ) : (
+                <BodyCopy data-testid="guides-hub-empty" role="status">
+                  No guides match “{debouncedGuideQuery}”.
+                </BodyCopy>
+              )}
             </Section>
           </Reveal>
         </PageContainer>
