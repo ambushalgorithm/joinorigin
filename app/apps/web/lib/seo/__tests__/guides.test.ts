@@ -9,7 +9,10 @@ import {
 import { MIN_PROSE_WORDS, wordCount } from '../locationGates';
 
 /**
- * fe-guides-pages registry + content tests (TASK-309).
+ * fe-guides-pages registry + content tests (TASK-309) extended for
+ * TASK-320: every guide LEADS with how JoinOrigin solves the
+ * connecting-people problem — the intro mentions JoinOrigin and every step
+ * carries a per-step `joinOriginNote` (honest early-access framing).
  *
  * Enforces the L1 how-to guide contract (design §6.2): all 7 guides are
  * registered with unique canonical paths, every guide clears the ≥150-word
@@ -107,6 +110,45 @@ describe('lib/seo guides — content quality gates (§6.2)', () => {
         expect(step.title.length).toBeGreaterThan(0);
         expect(step.body.length).toBeGreaterThan(0);
       }
+    }
+  });
+
+  it('every guide leads with JoinOrigin — intro mentions JoinOrigin (TASK-320)', () => {
+    for (const slug of GUIDE_SLUGS) {
+      const content = getGuideContent(slug, 'en');
+      expect(content?.intro ?? '').toContain('JoinOrigin');
+      // The intro leads: the JoinOrigin mention appears inside the first
+      // half of the intro, not just as a trailing caveat.
+      const intro = content?.intro ?? '';
+      const mentionIndex = intro.indexOf('JoinOrigin');
+      expect(mentionIndex).toBeGreaterThanOrEqual(0);
+      expect(mentionIndex).toBeLessThan(intro.length / 2);
+    }
+  });
+
+  it('every step maps to JoinOrigin via a per-step joinOriginNote (TASK-320)', () => {
+    for (const slug of GUIDE_SLUGS) {
+      const content = getGuideContent(slug, 'en');
+      const steps = content?.steps ?? [];
+      expect(steps.length).toBeGreaterThanOrEqual(4);
+      for (const step of steps) {
+        expect(step.joinOriginNote.length).toBeGreaterThan(0);
+        expect(step.joinOriginNote).toContain('JoinOrigin');
+      }
+    }
+  });
+
+  it('sections stay in lockstep with steps (title + body + joinOriginNote)', () => {
+    for (const slug of GUIDE_SLUGS) {
+      const content = getGuideContent(slug, 'en');
+      const steps = content?.steps ?? [];
+      const sections = content?.sections ?? [];
+      expect(sections).toHaveLength(steps.length);
+      steps.forEach((step, index) => {
+        expect(sections[index]).toContain(step.title);
+        expect(sections[index]).toContain(step.body);
+        expect(sections[index]).toContain(step.joinOriginNote);
+      });
     }
   });
 
