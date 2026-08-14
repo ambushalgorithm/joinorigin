@@ -535,7 +535,10 @@
       "stepByStepGuide": "Guida passo passo",
       "ideasLink": "30 idee per eventi di comunità",
       "faqHeading": "Domande frequenti",
-      "translatePage": "Traduci questa pagina"
+      "translatePage": "Traduci questa pagina",
+      "variantVenuesTitle": "Dove si riuniscono {{type}}",
+      "variantFormatsTitle": "Formati tipici",
+      "variantHowToTitle": "Come iniziare"
     },
     "groupTypes": {
       "startup": "Comunità di startup",

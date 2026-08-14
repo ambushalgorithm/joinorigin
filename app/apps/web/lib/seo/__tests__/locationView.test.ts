@@ -129,6 +129,82 @@ describe('lib/seo locationView — resolve + view model', () => {
     expect(data.intro.split(/\s+/).length).toBeGreaterThanOrEqual(150);
   });
 
+  it('variant pages carry the group-type key + enrichment in the view model (TASK-319)', () => {
+    const nycStartup = buildLocationViewData(
+      resolveLocationEntry({
+        country: 'united-states',
+        region: 'new-york',
+        city: 'new-york',
+        variant: 'startup',
+      })!,
+    );
+    expect(nycStartup.groupType).toBe('startup');
+    expect(nycStartup.variantEnrichment).toBeDefined();
+    expect(nycStartup.variantEnrichment?.venues.length).toBeGreaterThanOrEqual(4);
+    expect(nycStartup.variantEnrichment?.venues.length).toBeLessThanOrEqual(6);
+    expect(nycStartup.variantEnrichment?.formats.length).toBeGreaterThanOrEqual(4);
+    expect(nycStartup.variantEnrichment?.howToStart).toHaveLength(3);
+
+    const berlinStartup = buildLocationViewData(
+      resolveLocationEntry({
+        country: 'germany',
+        region: 'berlin',
+        city: 'berlin',
+        variant: 'startup',
+      })!,
+    );
+    expect(berlinStartup.groupType).toBe('startup');
+    expect(berlinStartup.variantEnrichment).toBeDefined();
+    // Genuinely distinct: NYC startup venues ≠ Berlin startup venues.
+    expect(berlinStartup.variantEnrichment?.venues.join(' ')).not.toContain('SoHo');
+    expect(nycStartup.variantEnrichment?.venues.join(' ')).toContain('SoHo');
+    expect(berlinStartup.variantEnrichment?.venues.join(' ')).toContain('Mitte');
+  });
+
+  it('startup and creative enrichment differ within the same city (view model, TASK-319)', () => {
+    const startup = buildLocationViewData(
+      resolveLocationEntry({
+        country: 'united-states',
+        region: 'new-york',
+        city: 'new-york',
+        variant: 'startup',
+      })!,
+    );
+    const creative = buildLocationViewData(
+      resolveLocationEntry({
+        country: 'united-states',
+        region: 'new-york',
+        city: 'new-york',
+        variant: 'creative',
+      })!,
+    );
+    expect(startup.groupType).toBe('startup');
+    expect(creative.groupType).toBe('creative');
+    expect(creative.variantEnrichment).toBeDefined();
+    const venuesJoined = creative.variantEnrichment?.venues.join(' ') ?? '';
+    expect(venuesJoined).toContain('Chelsea');
+    expect(startup.variantEnrichment?.venues.join(' ')).not.toContain('Chelsea');
+  });
+
+  it('city/ideas pages do NOT carry group-type enrichment (variant-only, TASK-319)', () => {
+    const city = buildLocationViewData(
+      resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' })!,
+    );
+    expect(city.groupType).toBeUndefined();
+    expect(city.variantEnrichment).toBeUndefined();
+
+    const ideas = buildLocationViewData(
+      resolveLocationEntry({
+        country: 'germany',
+        region: 'berlin',
+        city: 'berlin',
+        variant: 'ideas',
+      })!,
+    );
+    expect(ideas.groupType).toBeUndefined();
+    expect(ideas.variantEnrichment).toBeUndefined();
+  });
+
   it('builds the ideas view model with the 30-item listicle', () => {
     const entry = resolveLocationEntry({
       country: 'germany',

@@ -105,6 +105,66 @@ describe('seoContent chrome — cookie-locale chrome switching (design §7.1)', 
   });
 });
 
+describe('seoContent chrome — variant enrichment sections (TASK-319)', () => {
+  it('renders "Where {type} communities gather" / "Typical formats" / "How to start" on a variant page (EN)', () => {
+    const entry = resolveLocationEntry({
+      country: 'united-states',
+      region: 'new-york',
+      city: 'new-york',
+      variant: 'startup',
+    });
+    const data = buildLocationViewData(entry!);
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    // Section headings come from seoContent.* chrome keys + the localized
+    // group-type label ({{type}} interpolation).
+    expect(screen.getByText('Where Startup communities gather')).toBeInTheDocument();
+    expect(screen.getByText('Typical formats')).toBeInTheDocument();
+    expect(screen.getByText('How to start')).toBeInTheDocument();
+
+    // Venue/form/step body copy comes from the content file, not dictionaries.
+    expect(screen.getByTestId('variant-enrichment-venues')).toBeInTheDocument();
+    expect(screen.getByTestId('variant-enrichment-formats')).toBeInTheDocument();
+    expect(screen.getByTestId('variant-enrichment-howto')).toBeInTheDocument();
+    expect(screen.getByText(/Coworking spaces in SoHo and Flatiron/)).toBeInTheDocument();
+  });
+
+  it('renders the German chrome headings + German body on a de variant page', () => {
+    const entry = resolveLocationEntry(
+      {
+        country: 'germany',
+        region: 'berlin',
+        city: 'berlin',
+        variant: 'startup',
+      },
+      'de',
+    );
+    const data = buildLocationViewData(entry!, 'de');
+    renderWithI18n(<LocationView data={data} />, 'de');
+
+    expect(screen.getByText('Wo sich Startup-Communities treffen')).toBeInTheDocument();
+    expect(screen.getByText('Typische Formate')).toBeInTheDocument();
+    expect(screen.getByText('So startest du')).toBeInTheDocument();
+    // German body copy from the de Berlin content file.
+    expect(screen.getByText(/Coworking-Spaces in Mitte und Kreuzberg/)).toBeInTheDocument();
+  });
+
+  it('does NOT render enrichment sections on city or ideas pages (variant-only)', () => {
+    const city = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
+    renderWithI18n(<LocationView data={buildLocationViewData(city!)} />, 'en');
+    expect(screen.queryByTestId('variant-enrichment')).not.toBeInTheDocument();
+
+    const ideas = resolveLocationEntry({
+      country: 'germany',
+      region: 'berlin',
+      city: 'berlin',
+      variant: 'ideas',
+    });
+    renderWithI18n(<LocationView data={buildLocationViewData(ideas!)} />, 'en');
+    expect(screen.queryByTestId('variant-enrichment')).not.toBeInTheDocument();
+  });
+});
+
 describe('seoContent.location.exploreCommunities — missing chrome key fix (TASK-314)', () => {
   it('resolves the sibling-cities CTA label instead of rendering the raw key (EN hub)', () => {
     const entry = resolveLocationEntry({});

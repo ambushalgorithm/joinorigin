@@ -535,7 +535,10 @@
       "stepByStepGuide": "Adım adım rehber",
       "ideasLink": "30 topluluk etkinliği fikri",
       "faqHeading": "Sıkça sorulan sorular",
-      "translatePage": "Bu sayfayı çevir"
+      "translatePage": "Bu sayfayı çevir",
+      "variantVenuesTitle": "{{type}} topluluklarının buluştuğu yer",
+      "variantFormatsTitle": "Tipik formatlar",
+      "variantHowToTitle": "Nasıl başlanır"
     },
     "groupTypes": {
       "startup": "Girişim toplulukları",

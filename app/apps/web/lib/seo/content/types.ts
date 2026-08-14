@@ -93,14 +93,38 @@ export interface RegionContent extends BaseContent {
 }
 
 /**
+ * Per-variant enrichment (TASK-319) — the concrete "what it looks like in
+ * practice" layer that visibly differentiates variant pages:
+ *
+ * - `venues` — 4–6 real venue-type strings (never fabricated addresses,
+ *   only kinds of places that genuinely exist in the city),
+ * - `formats` — 4–5 typical community formats (recurring patterns locals
+ *   actually use),
+ * - `howToStart` — 3 short, honest steps to start this community.
+ *
+ * Like `variantIntros`, enrichment is authored per city×type and must be
+ * G5-safe: distinct per city and per type (no name-swapped templates).
+ */
+export interface VariantEnrichment {
+  /** 4–6 real venue-type strings where this community gathers. */
+  venues: string[];
+  /** 4–5 typical community formats. */
+  formats: string[];
+  /** 3 short steps to start this community. */
+  howToStart: string[];
+}
+
+/**
  * City content — the 7-page surface source of truth:
- * city page (intro/dataPoints/faq) + 5 variant pages (variantIntros)
- * + idea page (ideaPage).
+ * city page (intro/dataPoints/faq) + 5 variant pages (variantIntros
+ * + variantEnrichment) + idea page (ideaPage).
  */
 export interface CityContent extends BaseContent {
   kind: 'city';
   /** Per-variant unique prose — ≥150 words each (G2/G5). */
   variantIntros: Partial<Record<GroupTypeKey, string>>;
+  /** Per-variant enrichment — venues/formats/how-to (TASK-319). */
+  variantEnrichment: Partial<Record<GroupTypeKey, VariantEnrichment>>;
   ideaPage: IdeaPageContent;
   /**
    * Per-locale title/description overrides for the page surface. EN

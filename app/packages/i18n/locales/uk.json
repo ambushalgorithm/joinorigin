@@ -535,7 +535,10 @@
       "stepByStepGuide": "Покроковий гайд",
       "ideasLink": "30 ідей для заходів спільноти",
       "faqHeading": "Часті запитання",
-      "translatePage": "Перекласти цю сторінку"
+      "translatePage": "Перекласти цю сторінку",
+      "variantVenuesTitle": "Де збираються {{type}}",
+      "variantFormatsTitle": "Типові формати",
+      "variantHowToTitle": "Як почати"
     },
     "groupTypes": {
       "startup": "Стартап-спільноти",

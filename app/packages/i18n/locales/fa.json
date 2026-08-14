@@ -535,7 +535,10 @@
       "stepByStepGuide": "راهنمای گام‌به‌گام",
       "ideasLink": "۳۰ ایده رویداد جامعه",
       "faqHeading": "پرسش‌های پرتکرار",
-      "translatePage": "ترجمه این صفحه"
+      "translatePage": "ترجمه این صفحه",
+      "variantVenuesTitle": "جایی که {{type}} دور هم جمع میشوند",
+      "variantFormatsTitle": "قالبهای معمول",
+      "variantHowToTitle": "چگونه شروع کنیم"
     },
     "groupTypes": {
       "startup": "جوامع استارتاپی",

@@ -52,6 +52,118 @@ const content: CityContent = {
     'Starke Stammtisch- und Späti-Kultur des Zusammenkommens.',
     'Große internationale Bevölkerung – viele Gruppen laufen auf Englisch.',
   ],
+  variantEnrichment: {
+    startup: {
+      venues: [
+        'Coworking-Spaces in Mitte und Kreuzberg',
+        'Accelerator-Räume nahe dem Rosenthaler Platz',
+        'Impact Hubs mit Frühstücks-Ecke für Gründer:innen',
+        'Uni-Startup-Räume der TU Berlin und der ESMT',
+        'Englischfreundliche Cafés mit Meeting-Ecke',
+        'Biergarten-Tische für entspannte Gründer:innen-Abende',
+      ],
+      formats: [
+        'Gründer:innen-Frühstücke mit kurzen Vorstellungsrunden',
+        'Pitch-Abende und Demo-Nights',
+        'Coworking-Tage der offenen Tür für frühe Teams',
+        'Climate-Tech- und AI-Builders-Stammtische',
+        'Internationale Gründer:innen-Treffen (auf Englisch)',
+      ],
+      howToStart: [
+        'Wähle einen engen Fokus – Climate Tech, AI Builders oder Marktplätze – und einen englischsprachigen Namen.',
+        'Reserviere einen festen Wochentermin in einem Coworking-Space in Mitte oder Kreuzberg.',
+        'Veranstalte drei offene Meetups und bitte danach zwei Stammgäste, mitzuorganisieren und einen monatlichen Rhythmus zu finden.',
+      ],
+    },
+    creative: {
+      venues: [
+        'Ateliers und Projektflächen in Neukölln und Friedrichshain',
+        'Galerien und Ausstellungsräume in Mitte',
+        'Höfe und Veranstaltungsflächen am RAW-Gelände',
+        'Werkstatträume der UdK Berlin und anderer Kunsthochschulen',
+        'Proberäume und Tonstudios',
+        'Kiez-Cafés mit langen Tischen für Kritikrunden',
+      ],
+      formats: [
+        'Offene Atelierwochenenden und Portfolio-Abende',
+        'Design-Kritikabende',
+        'Musikproduktions-Zirkel mit geteiltem Equipment',
+        'Zine- und Risograph-Druckabende',
+        'Künstler:innengespräche in Projektflächen',
+      ],
+      howToStart: [
+        'Wähle ein Handwerk, einen Bezirk und einen festen Abend – Spezifität schafft hier schneller Identität.',
+        'Finde ein Kollektivstudio oder eine Projektfläche in Neukölln oder Friedrichshain, die euch aufnimmt.',
+        'Starte mit einem offenen Studioabend, sammle Arbeiten in Arbeit und mache Feedback zur festen Tagesordnung.',
+      ],
+    },
+    political: {
+      venues: [
+        'Sitzungsräume der Bezirksverordnetenversammlungen',
+        'Räume von Mieterinitiativen in Neukölln und Kreuzberg',
+        'Nachbarschaftszentren und Stadtteilbüros',
+        'Gemeinschaftsgärten und BücherboXXen',
+        'Civic-Tech-Co-Working-Räume',
+        'Freiwilligen-Räume nahe der Geflüchtetenhilfe',
+      ],
+      formats: [
+        'Offene Sitzungen der Bezirksverordnetenversammlungen',
+        'Info-Abende zu Mietrecht und Mieterrechten',
+        'Planungstreffen von Bürgerinitiativen',
+        'Informationsveranstaltungen und erste Schichten für Freiwillige',
+        'Workshops zur Bürgerbeteiligung in einfacher Sprache',
+      ],
+      howToStart: [
+        'Wähle ein konkretes Thema und einen überschaubaren Ort – einen Kiez, eine Straße oder eine Wohnungspolitik-Frage.',
+        'Besuche zuerst drei bestehende Initiativen und kooperiere statt zu duplizieren.',
+        'Veranstalte einen offenen Info-Abend mit einem echten Organisator als Co-Gastgeber, um Vertrauen aufzubauen.',
+      ],
+    },
+    meetup: {
+      venues: [
+        'Biergärten in Kreuzberg und Neukölln',
+        'Cafés in Prenzlauer Berg mit Community-Ecken',
+        'Wiesen und Grillflächen auf dem Tempelhofer Feld',
+        'Späti-Kneipen und Kiezlokale mit Tischen',
+        'Mauerpark und Volkspark Friedrichshain',
+        'Öffentliche Bibliotheken mit Besprechungsräumen',
+      ],
+      formats: [
+        'Wöchentlicher Stammtisch am selben Tisch',
+        'Monatliche Themen-Spaziergänge und Radtouren',
+        'Brettspiel- und Spieleabende',
+        'Sprachtandems und Konversationstische',
+        'Sonntags-Marktbummel und Picknicks',
+      ],
+      howToStart: [
+        'Wähle ein wiederkehrendes Format – einen wöchentlichen Stammtisch, einen monatlichen Spaziergang – und einen festen Ort.',
+        'Suche dir einen Biergarten, eine Späti-Kneipe oder einen Parkplatz, der euch jedes Mal aufnimmt.',
+        'Veranstalte die ersten drei Termine zur gleichen Zeit am gleichen Ort und bitte Stammgäste, je einen Neuling mitzubringen.',
+      ],
+    },
+    'small-business': {
+      venues: [
+        'Räume von Kiez-Gewerbevereinen',
+        'Lokale Cafés mit Hinterzimmern für Runde Tische',
+        'Späti-eigene Community-Ecken',
+        'Maker-Markt-Hallen und Craft-Brauerei-Taprooms',
+        'Workshop-Räume der Kammern',
+        'Repair-Cafés und Werkstätten',
+      ],
+      formats: [
+        'Monatliche Kiez-Runde Tische für Inhaber:innen',
+        'Planungstreffen für Straßenfeste und Märkte',
+        'Kammer-Workshops zu Lizenzen und Digitalisierung',
+        'Teilnahmetage auf Maker-Märkten',
+        'Peer-Gruppen zu Lohnabrechnung, Vermieter:innen und Online-Verkauf',
+      ],
+      howToStart: [
+        'Wähle eine Straße oder einen Kiez und lade die Inhaber:innen von zwölf Läden zu einem ersten Café-Stammtisch ein.',
+        'Wechsle praktische Themen – Mietverhandlungen, Lohnabrechnung, Online-Verkauf – damit sich jedes Treffen lohnt.',
+        'Kooperiere mit dem Kiez-Gewerbeverein oder der Kammer, um Inhaber:innen jenseits deiner Straße zu erreichen.',
+      ],
+    },
+  },
   variantIntros: {
     startup:
       'Die Berliner Startup-Szene hat sich von einem improvisierten Experiment nach der Wiedervereinigung zu einem der wichtigsten Tech-Ökosysteme Europas entwickelt, mit Stärken in Marktplätzen, Fintech, Climate Tech und Entwickler-Tools. Gründer:innen und Entwickler:innen konzentrieren sich in Mitte und Kreuzberg, wo Coworking-Spaces, Acceleratoren und Universitätsprogramme der TU Berlin und der ESMT einen dichten Kreislauf aus Talent und Kapital erzeugen. Berlins berühmter Pragmatismus prägt die Community: Bei Treffen geht es weniger um Status als ums Liefern, Einstellen und Überleben der nächsten Finanzierungsrunde. Bewährte Formate sind Gründer:innen-Frühstücke, Pitch-Abende und Coworking-Tage der offenen Tür, bei denen frühe Teams ihre ersten Entwickler:innen und Designer:innen finden. Die internationale Szene ist ein echtes Plus – Englisch ist in Meetups üblich, was Gründer:innen hilft, die neu in Deutschland sind. Eine Startup-Community hier zu gründen, funktioniert am besten mit einem engen Fokus und einem festen Rhythmus: Ein monatlicher AI-Builders-Abend oder ein Climate-Tech-Stammtisch baut schneller eine verlässliche Anhängerschaft auf als eine allgemeine Gründer:innen-Gruppe.',

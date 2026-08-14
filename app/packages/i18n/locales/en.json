@@ -535,7 +535,10 @@
       "stepByStepGuide": "Step-by-step guide",
       "ideasLink": "30 community event ideas",
       "faqHeading": "Frequently asked questions",
-      "translatePage": "Translate this page"
+      "translatePage": "Translate this page",
+      "variantVenuesTitle": "Where {{type}} gather",
+      "variantFormatsTitle": "Typical formats",
+      "variantHowToTitle": "How to start"
     },
     "groupTypes": {
       "startup": "Startup communities",

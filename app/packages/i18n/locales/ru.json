@@ -535,7 +535,10 @@
       "stepByStepGuide": "Пошаговое руководство",
       "ideasLink": "30 идей для мероприятий сообщества",
       "faqHeading": "Часто задаваемые вопросы",
-      "translatePage": "Перевести эту страницу"
+      "translatePage": "Перевести эту страницу",
+      "variantVenuesTitle": "Где собираются {{type}}",
+      "variantFormatsTitle": "Типичные форматы",
+      "variantHowToTitle": "Как начать"
     },
     "groupTypes": {
       "startup": "Стартап-сообщества",

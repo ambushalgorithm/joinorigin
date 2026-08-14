@@ -535,7 +535,10 @@
       "stepByStepGuide": "Panduan langkah demi langkah",
       "ideasLink": "30 ide acara komunitas",
       "faqHeading": "Pertanyaan yang sering diajukan",
-      "translatePage": "Terjemahkan halaman ini"
+      "translatePage": "Terjemahkan halaman ini",
+      "variantVenuesTitle": "Tempat {{type}} berkumpul",
+      "variantFormatsTitle": "Format umum",
+      "variantHowToTitle": "Cara memulai"
     },
     "groupTypes": {
       "startup": "Komunitas startup",

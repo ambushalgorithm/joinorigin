@@ -243,3 +243,52 @@ test.describe('location JSON-LD', () => {
     expect((itemList?.itemListElement as unknown[]).length).toBe(30);
   });
 });
+
+test.describe('location variant enrichment (TASK-319)', () => {
+  test('Berlin startup variant renders distinct enrichment sections with German chrome', async ({
+    page,
+  }) => {
+    await page.goto('/de/location/germany/berlin/berlin/startup');
+    // Chrome headings localized via seoContent.* keys.
+    await expect(page.getByText('Wo sich Startup-Communities treffen')).toBeVisible();
+    await expect(page.getByText('Typische Formate')).toBeVisible();
+    await expect(page.getByText('So startest du')).toBeVisible();
+
+    // German body copy from the de Berlin content file.
+    await expect(page.getByText(/Coworking-Spaces in Mitte und Kreuzberg/)).toBeVisible();
+    await expect(page.getByTestId('variant-enrichment-venues')).toBeVisible();
+    await expect(page.getByTestId('variant-enrichment-formats')).toBeVisible();
+    await expect(page.getByTestId('variant-enrichment-howto')).toBeVisible();
+  });
+
+  test('NYC startup and Berlin startup variant pages are visibly differentiated', async ({
+    page,
+  }) => {
+    await page.goto('/location/united-states/new-york/new-york/startup');
+    await expect(page.getByText('Where Startup communities gather')).toBeVisible();
+    // NYC-specific venue copy.
+    await expect(page.getByText(/Coworking spaces in SoHo and Flatiron/)).toBeVisible();
+    await expect(page.getByTestId('variant-enrichment-venues')).toBeVisible();
+
+    await page.goto('/location/germany/berlin/berlin/startup');
+    await expect(page.getByText('Where Startup communities gather')).toBeVisible();
+    // Berlin-specific venue copy — no NYC overlap.
+    await expect(page.getByText(/Coworking spaces in Mitte and Kreuzberg/)).toBeVisible();
+    await expect(page.getByText('Coworking spaces in SoHo and Flatiron')).toHaveCount(0);
+  });
+
+  test('startup vs creative variants within a city render distinct enrichment', async ({ page }) => {
+    await page.goto('/location/united-states/new-york/new-york/startup');
+    await expect(page.getByText(/Coworking spaces in SoHo and Flatiron/)).toBeVisible();
+
+    await page.goto('/location/united-states/new-york/new-york/creative');
+    await expect(page.getByText('Where Creative & design communities gather')).toBeVisible();
+    await expect(page.getByText(/Chelsea gallery spaces/)).toBeVisible();
+    await expect(page.getByText('Coworking spaces in SoHo and Flatiron')).toHaveCount(0);
+  });
+
+  test('city page does NOT render variant enrichment sections', async ({ page }) => {
+    await page.goto('/location/germany/berlin/berlin');
+    await expect(page.getByTestId('variant-enrichment')).toHaveCount(0);
+  });
+});

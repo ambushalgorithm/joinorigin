@@ -19,6 +19,118 @@ const content: CityContent = {
     'Public anchors include Central Park, Prospect Park, and the High Line.',
     'Venue scene: coworking spaces, libraries, coffee shops, community gardens.',
   ],
+  variantEnrichment: {
+    startup: {
+      venues: [
+        'Coworking spaces in SoHo and Flatiron',
+        'Fintech and AI office lobbies in Midtown',
+        'Accelerator demo rooms near Union Square',
+        'Startup event halls in DUMBO and Brooklyn',
+        'University innovation labs at NYU and Columbia',
+        'Rooftop lounges in Williamsburg for evening mixers',
+      ],
+      formats: [
+        'Pitch nights and demo days',
+        'Co-founder speed dating',
+        'Industry-specific happy hours (fintech, healthtech, AI)',
+        'Founder office hours with operators and investors',
+        'Weekend hackathons and builder jams',
+      ],
+      howToStart: [
+        'Pick a narrow vertical — fintech, climate, healthtech, or AI builders — and name the group around it.',
+        'Reserve a recurring weekly slot at a coworking or incubator that will host you consistently.',
+        'Run three open meetups before recruiting co-organizers, then split roles and set a monthly cadence.',
+      ],
+    },
+    creative: {
+      venues: [
+        'Chelsea gallery spaces',
+        'Brooklyn film and design studios in DUMBO',
+        'Garment district fashion ateliers',
+        'Arts collectives and studios in Bushwick',
+        'Pratt, Parsons, and SVA campus rooms',
+        'Bookstore cafés with reading rooms',
+      ],
+      formats: [
+        'Studio tours and open critique nights',
+        'Portfolio reviews in small groups',
+        'Themed co-working days for makers',
+        'Craft-specific circles (letterpress, knitwear, motion)',
+        'Exhibition walkthroughs with artist talks',
+      ],
+      howToStart: [
+        'Choose one craft, borough, or career stage so the group builds a clear identity fast.',
+        'Partner with a gallery, studio, or school to host a first open critique night.',
+        'Collect portfolios before the second event and make feedback the core of every session.',
+      ],
+    },
+    political: {
+      venues: [
+        'Community board offices across the 59 districts',
+        'Public library meeting rooms',
+        'Tenant association halls in Brooklyn and the Bronx',
+        'Civic tech meetup spaces in Lower Manhattan',
+        'Neighborhood center rooms in Queens and Harlem',
+        'City Council hearing rooms for testimony practice',
+      ],
+      formats: [
+        'Community board and district meetings',
+        'Tenant rights and rent-law workshops',
+        'Volunteer phone-banking and canvassing sessions',
+        'Civic 101 classes on how city government works',
+        'Testimony prep sessions for Council hearings',
+      ],
+      howToStart: [
+        'Pick one concrete issue and a small geography — a block, a district, or one housing policy.',
+        'Attend three existing meetings first, then partner with an organization rather than duplicating it.',
+        'Host a newcomer-friendly workshop on how city government works to build a steady base.',
+      ],
+    },
+    meetup: {
+      venues: [
+        'Public libraries across the five boroughs',
+        'Neighborhood bars with private rooms',
+        'Parks — Central Park, Prospect Park, and the High Line',
+        'Community kitchens and gardens in Brooklyn and Queens',
+        'Coffee shops in Greenwich Village and Astoria',
+        'Rooftops and shared courtyard spaces',
+      ],
+      formats: [
+        'Evening talks with lightning-round intros',
+        'Weekend outdoor walks and photo walks',
+        'Low-stakes socials that welcome newcomers explicitly',
+        'Monthly themed meetups with a repeatable format',
+        'Language exchanges and book clubs',
+      ],
+      howToStart: [
+        'Choose a repeatable format — a monthly themed walk, a weekly coworking session — so members build habits.',
+        'Find one venue that will host you consistently and lock in the same time and place.',
+        'Announce the first three dates up front and ask every attendee to invite one person.',
+      ],
+    },
+    'small-business': {
+      venues: [
+        'Business improvement district offices in SoHo and Astoria',
+        'Merchant association halls and street festival spaces',
+        'Local cafés with community rooms',
+        'Chamber of commerce event spaces',
+        'Neighborhood libraries with meeting rooms',
+        'Shop corridors that host evening roundtables',
+      ],
+      formats: [
+        'Monthly owner roundtables at a local café',
+        'Street festival planning sessions',
+        'City agency workshops on licensing and loans',
+        'Merchant association meetings',
+        'Peer groups for payroll, marketing, and insurance topics',
+      ],
+      howToStart: [
+        'Pick a corridor or kiez and invite the owners on one street to a first coffee roundtable.',
+        'Rotate practical topics — rent, permits, marketing — so every meeting pays for itself.',
+        'Partner with the local merchant association or chamber to reach owners beyond your network.',
+      ],
+    },
+  },
   variantIntros: {
     startup:
       'The New York startup scene is one of the most mature in the world, shaped by finance, media, healthcare, and a growing wave of AI and fintech companies. Founders cluster in SoHo, Flatiron, and Brooklyn coworking spaces, while accelerators and university programs at NYU and Columbia keep a steady pipeline of early teams moving. What makes New York different from single-industry hubs is breadth: a founder can meet an investor in the morning, a designer in the afternoon, and a healthcare operator in the evening without leaving Manhattan. Community patterns are well established — pitch nights, demo days, co-founder speed dating, and industry-specific happy hours happen weekly. Newcomers typically start by attending open meetups, joining a coworking community, or volunteering at a conference before launching their own group. The honest advice for starting a startup community here is to pick a narrow vertical — fintech, climate, healthtech, or AI builders — because generalist groups dilute quickly in such a dense market.',

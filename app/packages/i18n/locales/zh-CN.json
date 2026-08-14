@@ -535,7 +535,10 @@
       "stepByStepGuide": "分步指南",
       "ideasLink": "30个社区活动创意",
       "faqHeading": "常见问题",
-      "translatePage": "翻译此页面"
+      "translatePage": "翻译此页面",
+      "variantVenuesTitle": "{{type}}聚集的地方",
+      "variantFormatsTitle": "常见形式",
+      "variantHowToTitle": "如何开始"
     },
     "groupTypes": {
       "startup": "创业社区",

@@ -535,7 +535,10 @@
       "stepByStepGuide": "逐步指南",
       "ideasLink": "30個社群活動點子",
       "faqHeading": "常見問題",
-      "translatePage": "翻譯此頁面"
+      "translatePage": "翻譯此頁面",
+      "variantVenuesTitle": "{{type}}聚集的地方",
+      "variantFormatsTitle": "常見形式",
+      "variantHowToTitle": "如何開始"
     },
     "groupTypes": {
       "startup": "新創社群",

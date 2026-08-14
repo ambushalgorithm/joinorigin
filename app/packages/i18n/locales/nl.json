@@ -535,7 +535,10 @@
       "stepByStepGuide": "Stap-voor-stap handleiding",
       "ideasLink": "30 ideeën voor gemeenschapsevenementen",
       "faqHeading": "Veelgestelde vragen",
-      "translatePage": "Deze pagina vertalen"
+      "translatePage": "Deze pagina vertalen",
+      "variantVenuesTitle": "Waar {{type}} samenkomen",
+      "variantFormatsTitle": "Typische formats",
+      "variantHowToTitle": "Hoe te beginnen"
     },
     "groupTypes": {
       "startup": "Startup-gemeenschappen",

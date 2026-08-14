@@ -535,7 +535,10 @@
       "stepByStepGuide": "Przewodnik krok po kroku",
       "ideasLink": "30 pomysłów na wydarzenia społecznościowe",
       "faqHeading": "Często zadawane pytania",
-      "translatePage": "Przetłumacz tę stronę"
+      "translatePage": "Przetłumacz tę stronę",
+      "variantVenuesTitle": "Gdzie spotykają się {{type}}",
+      "variantFormatsTitle": "Typowe formaty",
+      "variantHowToTitle": "Jak zacząć"
     },
     "groupTypes": {
       "startup": "Społeczności startupowe",

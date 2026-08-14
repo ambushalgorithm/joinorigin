@@ -29,7 +29,12 @@ import type { Metadata } from 'next';
 import { getDictionary, getT, type Locale } from '@joinorigin/i18n';
 
 import { getCityContent, getCountryContent, getRegionContent } from './content';
-import type { IdeaCategory, LocationContent, LocationFaq } from './content/types';
+import type {
+  IdeaCategory,
+  LocationContent,
+  LocationFaq,
+  VariantEnrichment,
+} from './content/types';
 import type { LocationCity } from './data/types';
 import { LOCATION_ATTRIBUTION } from './data/types';
 import { breadcrumbList, faqPage, type BreadcrumbItem } from './jsonLd';
@@ -44,6 +49,7 @@ import {
   findRegion,
   getFlagshipConfig,
   groupTypeLabelForLocale,
+  isGroupTypeKey,
   loadLocationSnapshot,
   regionSlug,
   type FlagshipCityConfig,
@@ -368,6 +374,19 @@ export interface LocationViewData {
   lead: string;
   /** Full authored intro prose (unique city/variant/idea copy — G2 source). */
   intro: string;
+  /**
+   * Group-type key of the current variant page (TASK-319) — lets the view
+   * render the "Where {type} communities gather" enrichment headings.
+   * Present only on variant pages.
+   */
+  groupType?: GroupTypeKey;
+  /**
+   * Per-variant enrichment — venues/formats/how-to (TASK-319). Present only
+   * on variant pages with committed enrichment; drives the distinct variant
+   * sections ("Where {type} communities gather", "Typical formats",
+   * "How to start").
+   */
+  variantEnrichment?: VariantEnrichment;
   breadcrumbs: BreadcrumbItem[];
   dataPoints: string[];
   faq: LocationFaq[];
@@ -434,6 +453,17 @@ export function buildLocationViewData(
     content?.intro ??
     '';
 
+  // TASK-319 — per-variant enrichment: expose the current variant's group
+  // type + its committed venues/formats/howToStart so LocationView can render
+  // distinct "Where {type} communities gather" / "Typical formats" /
+  // "How to start" sections on variant pages only.
+  const groupType =
+    entry.kind === 'variant' && isGroupTypeKey(entry.groupType ?? '')
+      ? (entry.groupType as GroupTypeKey)
+      : undefined;
+  const variantEnrichment =
+    groupType && content?.kind === 'city' ? content.variantEnrichment?.[groupType] : undefined;
+
   // The hero lead is the registry description (short chrome); the full
   // authored intro renders as the body prose section (design §6.4 #1/#6).
   const lead = entry.description;
@@ -449,6 +479,8 @@ export function buildLocationViewData(
     heading: headingFor(entry),
     lead,
     intro,
+    groupType,
+    variantEnrichment,
     breadcrumbs,
     dataPoints: content?.dataPoints ?? [],
     faq: faqFor(entry, content),
