@@ -530,7 +530,8 @@
       "guidesTitle": "Гайды по созданию сообщества",
       "stepByStepGuide": "Пошаговое руководство",
       "ideasLink": "30 идей для мероприятий сообщества",
-      "faqHeading": "Часто задаваемые вопросы"
+      "faqHeading": "Часто задаваемые вопросы",
+      "translatePage": "Перевести эту страницу"
     },
     "groupTypes": {
       "startup": "Стартап-сообщества",
@@ -553,7 +554,8 @@
       "relatedGuides": "Связанные гайды",
       "exploreCommunities": "Изучить сообщества",
       "howJoinOriginHelps": "Как JoinOrigin может помочь",
-      "keepLearning": "Продолжайте учиться"
+      "keepLearning": "Продолжайте учиться",
+      "translatePage": "Перевести эту страницу"
     },
     "glossary": {
       "eyebrow": "Система сообщества",

@@ -530,7 +530,8 @@
       "guidesTitle": "Topluluk başlatma rehberleri",
       "stepByStepGuide": "Adım adım rehber",
       "ideasLink": "30 topluluk etkinliği fikri",
-      "faqHeading": "Sıkça sorulan sorular"
+      "faqHeading": "Sıkça sorulan sorular",
+      "translatePage": "Bu sayfayı çevir"
     },
     "groupTypes": {
       "startup": "Girişim toplulukları",
@@ -553,7 +554,8 @@
       "relatedGuides": "İlgili rehberler",
       "exploreCommunities": "Toplulukları keşfedin",
       "howJoinOriginHelps": "JoinOrigin nasıl yardımcı olabilir",
-      "keepLearning": "Öğrenmeye devam edin"
+      "keepLearning": "Öğrenmeye devam edin",
+      "translatePage": "Bu sayfayı çevir"
     },
     "glossary": {
       "eyebrow": "Topluluk İşletim Sistemi",

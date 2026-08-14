@@ -25,6 +25,7 @@ import {
   SectionTitle,
 } from '../menuPagePrimitives';
 import LocationCta from './LocationCta';
+import TranslatePageLink from '../TranslatePageLink';
 import type { LocationViewData } from '../../lib/seo/locationView';
 
 /**
@@ -68,6 +69,17 @@ const BreadcrumbList = styled.ol`
   list-style: none;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: ${({ theme }) => theme.typography.body}px;
+`;
+
+/** Breadcrumb row + the secondary "Translate this page" link-out (TASK-318):
+ *  the link sits inline-end of the breadcrumbs, visually unobtrusive and
+ *  never competing with the language switcher. */
+const BreadcrumbRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
 `;
 
 const BreadcrumbItem = styled.li`
@@ -234,19 +246,26 @@ export function LocationView({ data }: { data: LocationViewData }) {
       showCtaBand={false}
     >
       <BreadcrumbNav aria-label="Breadcrumb" data-testid="location-breadcrumbs">
-        <BreadcrumbList>
-          {data.breadcrumbs.map((crumb, index) =>
-            index === data.breadcrumbs.length - 1 ? (
-              <BreadcrumbItem key={crumb.path}>
-                <BreadcrumbCurrent aria-current="page">{crumbLabel(crumb)}</BreadcrumbCurrent>
-              </BreadcrumbItem>
-            ) : (
-              <BreadcrumbItem key={crumb.path}>
-                <BreadcrumbLink href={crumb.path}>{crumbLabel(crumb)}</BreadcrumbLink>
-              </BreadcrumbItem>
-            ),
-          )}
-        </BreadcrumbList>
+        <BreadcrumbRow>
+          <BreadcrumbList>
+            {data.breadcrumbs.map((crumb, index) =>
+              index === data.breadcrumbs.length - 1 ? (
+                <BreadcrumbItem key={crumb.path}>
+                  <BreadcrumbCurrent aria-current="page">{crumbLabel(crumb)}</BreadcrumbCurrent>
+                </BreadcrumbItem>
+              ) : (
+                <BreadcrumbItem key={crumb.path}>
+                  <BreadcrumbLink href={crumb.path}>{crumbLabel(crumb)}</BreadcrumbLink>
+                </BreadcrumbItem>
+              ),
+            )}
+          </BreadcrumbList>
+          {/* EN canonical pages only — the de Berlin surface is already
+              translated (TASK-318). */}
+          {data.locale === 'en' ? (
+            <TranslatePageLink labelKey="seoContent.location.translatePage" />
+          ) : null}
+        </BreadcrumbRow>
       </BreadcrumbNav>
 
       <SectionBand variant="glass" accent="community" glow>

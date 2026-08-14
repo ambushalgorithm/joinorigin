@@ -530,7 +530,8 @@
       "guidesTitle": "创建社区指南",
       "stepByStepGuide": "分步指南",
       "ideasLink": "30个社区活动创意",
-      "faqHeading": "常见问题"
+      "faqHeading": "常见问题",
+      "translatePage": "翻译此页面"
     },
     "groupTypes": {
       "startup": "创业社区",
@@ -553,7 +554,8 @@
       "relatedGuides": "相关指南",
       "exploreCommunities": "探索社区",
       "howJoinOriginHelps": "JoinOrigin如何提供帮助",
-      "keepLearning": "继续学习"
+      "keepLearning": "继续学习",
+      "translatePage": "翻译此页面"
     },
     "glossary": {
       "eyebrow": "社区系统",

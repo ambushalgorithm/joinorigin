@@ -530,7 +530,8 @@
       "guidesTitle": "أدلة لبدء مجتمع",
       "stepByStepGuide": "دليل خطوة بخطوة",
       "ideasLink": "30 فكرة لفعاليات مجتمعية",
-      "faqHeading": "الأسئلة الشائعة"
+      "faqHeading": "الأسئلة الشائعة",
+      "translatePage": "ترجمة هذه الصفحة"
     },
     "groupTypes": {
       "startup": "مجتمعات الشركات الناشئة",
@@ -553,7 +554,8 @@
       "relatedGuides": "أدلة ذات صلة",
       "exploreCommunities": "استكشف المجتمعات",
       "howJoinOriginHelps": "كيف يمكن لـ JoinOrigin المساعدة",
-      "keepLearning": "واصل التعلم"
+      "keepLearning": "واصل التعلم",
+      "translatePage": "ترجمة هذه الصفحة"
     },
     "glossary": {
       "eyebrow": "نظام المجتمع",

@@ -26,6 +26,7 @@ import {
   SectionTitle,
 } from '../../../components/menuPagePrimitives';
 import { trackEvent } from '../../../lib/analytics';
+import TranslatePageLink from '../../../components/TranslatePageLink';
 import type { GuideContent } from '../../../lib/seo/content/types';
 import type { GuidePageEntry } from '../../../lib/seo/guides';
 import { GUIDES_HUB_PATH, GLOSSARY_HUB_PATH } from '../../../lib/seo/guides';
@@ -78,6 +79,26 @@ const CityLinks = styled.div`
   gap: ${({ theme }) => theme.spacing.md}px;
 `;
 
+/** Hero-meta row for the secondary "Translate this page" link-out (TASK-318):
+ *  guides are EN canonical only, so the link always renders — a small
+ *  unobtrusive text link aligned inline-end, never competing with the
+ *  language switcher. */
+const TranslateRow = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 64px 0;
+  display: flex;
+  justify-content: flex-end;
+
+  @media (max-width: 1024px) {
+    padding: 24px 32px 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px 20px 0;
+  }
+`;
+
 /** Honest "JoinOrigin can help" CTA — rendered INSIDE the shell so the
  *  WaitlistModalProvider context is available (same pattern as CtaBand). */
 function GuideJoinCta({ slug }: { slug: string }) {
@@ -117,6 +138,10 @@ export function GuideView({ entry, content }: GuideViewProps) {
         cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },
       }}
     >
+      <TranslateRow>
+        <TranslatePageLink labelKey="seoContent.guides.translatePage" />
+      </TranslateRow>
+
       <SectionBand variant="glass" accent="docs" glow>
         <PageContainer>
           <Reveal>

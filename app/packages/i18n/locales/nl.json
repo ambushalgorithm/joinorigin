@@ -530,7 +530,8 @@
       "guidesTitle": "Handleidingen voor het starten van een gemeenschap",
       "stepByStepGuide": "Stap-voor-stap handleiding",
       "ideasLink": "30 ideeën voor gemeenschapsevenementen",
-      "faqHeading": "Veelgestelde vragen"
+      "faqHeading": "Veelgestelde vragen",
+      "translatePage": "Deze pagina vertalen"
     },
     "groupTypes": {
       "startup": "Startup-gemeenschappen",
@@ -553,7 +554,8 @@
       "relatedGuides": "Gerelateerde handleidingen",
       "exploreCommunities": "Ontdek gemeenschappen",
       "howJoinOriginHelps": "Hoe JoinOrigin kan helpen",
-      "keepLearning": "Blijf leren"
+      "keepLearning": "Blijf leren",
+      "translatePage": "Deze pagina vertalen"
     },
     "glossary": {
       "eyebrow": "Gemeenschaps-OS",
