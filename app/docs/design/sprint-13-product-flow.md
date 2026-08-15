@@ -18,19 +18,20 @@ This is the **Product Screen-Flow Document** for the JoinOrigin application laye
 between the marketing site that exists today (Sprint 1–12) and the networked product that comes
 next (Auth, profiles, communities, rooms). It fixes the **product model**, the **core loop**, the
 **screen flow**, the **core-object → screen mapping**, and the **Matrix infrastructure mapping**
-for the MVP, and records the **locked decisions (D1–D4)** plus an **open-questions list** for
-product sign-off.
+for the MVP, and records the **locked decisions (D1–D4)** plus the **product sign-off answers**
+to the §8 questions (Q1–Q10, signed off 2026-08-15).
 
 Scope rules for this document:
 
 - It is a **design contract**. Zero implementation files are edited by this role.
 - It does **not** draft replacement copy (§6 is a high-level delta audit only — the contract for
   a later content-update sprint).
-- It does **not** answer its own open questions (§8) — those are for product sign-off.
+- It records the §8 questions **as answered by product sign-off** (2026-08-15) — the deferred
+  sprints (§7) implement those answers verbatim.
 - It references the **whitepaper** (`app/docs/ORIGIN-WHITEPAPER.md`) and the **`/features`**
   screen as the two canonical sources of the product model. Where this document makes a product
   decision, the decision is consistent with those sources and is labeled a **locked decision (D#)**
-  or an **open question (Q#)**.
+  or a **product sign-off answer (Q#)**.
 
 **Terminology pinned in this document:**
 
@@ -200,7 +201,8 @@ screens as follows. **Every core object has a home screen and a communication su
 - **Communities get a Space, not just a room** (whitepaper §Matrix Mapping: Community → Space).
   A Space contains the community's rooms (main room + project/idea sub-rooms as they spawn).
 - **Feed is a projection, not a silo.** The Feed screen aggregates posts from rooms the member
-  belongs to, plus public discovery content (see §8 Q-list for scope).
+  belongs to, plus public discovery content (Q5 — signed off: all post types in scope — updates,
+  opportunities, events, announcements; see §8).
 - **Companies and Opportunities are mapped but deferred.** They appear on `/features` today as
   brand promises; their screens arrive in later phases (whitepaper Phase 2/3).
 
@@ -222,21 +224,28 @@ The MVP implements it verbatim. JoinOrigin owns identity/profile/social graph/fe
 (whitepaper §JoinOrigin Responsibilities); Matrix provides DMs, community chat, presence,
 notifications, group messaging (whitepaper §Matrix Responsibilities).
 
-### 4.2 Client decision — Element is the default chat client (D4)
+### 4.2 Client decision — Element is the default chat client, opened via DEEP LINK (D4 + Q8)
 
 **D4 (UPDATED in planning 2026-08-15): Element is the default chat client for the MVP across
-mobile, web, and desktop.**
+mobile, web, and desktop.** Per product sign-off on Q8 (2026-08-15), Element is **opened via
+DEEP LINK from the JoinOrigin app — no inline embed** (no iframe, no embedded SDK) on web or
+mobile.
 
-- **Web:** Element Web, embedded/launched from the JoinOrigin web app as the room surface (S8).
-- **Mobile:** the Element mobile app is the default room surface on iOS/Android; the JoinOrigin
-  mobile app deep-links into it (or embeds the same Matrix client stack where feasible).
-- **Desktop:** Element Desktop is the default room surface on desktop operating systems.
+- **Web:** the JoinOrigin web app **deep-links into Element Web** (open in a new context/tab)
+  as the room surface (S8). Element Web is **not inline-embedded** in the JoinOrigin app.
+- **Mobile:** the JoinOrigin mobile app **deep-links into the Element mobile app** on iOS/Android.
+  The Element mobile app is the default room surface; no embedded Matrix client stack in the
+  JoinOrigin app.
+- **Desktop:** Element Desktop is the default room surface on desktop operating systems,
+  opened by deep link from the JoinOrigin app where applicable.
 - No custom chat UI is built for the MVP. The product ships the standard Element experience;
   JoinOrigin's own app surfaces remain the discovery/identity/social-graph layer around it.
 
 Rationale: the whitepaper's MVP lists "Embedded Matrix Client UI" and open-protocol
 flexibility; building a custom chat client would duplicate Element and delay the network.
-D4 keeps the MVP communication surface 100% standard Matrix/Element.
+D4 keeps the MVP communication surface 100% standard Matrix/Element. The deep-link opening
+mode (Q8) keeps the JoinOrigin app lean (no heavy embedded client, no iframe sandbox/SSO
+complexity) while preserving the full Element experience for room control (D2).
 
 ### 4.3 Homeserver decision — self-hosted Synapse (locked)
 
@@ -249,17 +258,20 @@ D4 keeps the MVP communication surface 100% standard Matrix/Element.
   via **matrix.org** as the fallback/interop path. Rooms remain reachable from the wider Matrix
   ecosystem; JoinOrigin users can communicate with Matrix users on other homeservers.
 - **Ownership:** JoinOrigin runs the homeserver for its own users (the platform's hosted
-  product remains the source of truth for identity; see §6 `/docs` disambiguation — "nothing to
-  self-host" refers to the *product* (there is no JoinOrigin server to run yourself), while the
-  *reference stack* self-hosts its components (Plausible today, Synapse next) in the standard
-  open-source deployment model).
+  product remains the source of truth for identity). Per product sign-off on Q9 (2026-08-15),
+  **public marketing/docs copy drops hosting/self-host messaging entirely** — the "nothing to
+  self-host" disambiguation is removed from public copy rather than expanded (see §6.2, delta
+  direction changed from *disambiguate* to *remove*). The *open-source reference stack* note
+  (Plausible today, Synapse next — self-hostable components in `docker-compose.yml`) remains
+  in **internal docs only**; it is not discussed in public copy for now (deferred; revisit
+  later).
 
 ### 4.4 Infra change summary (for the Matrix-infra sprint, §7)
 
 | Change | Location | Pattern |
 |--------|----------|---------|
 | Add Synapse homeserver service | `app/docker-compose.yml` | same as `plausible` service (named volumes, healthcheck, local port, env config) |
-| Element Web client | served/embedded from the web app (room surface) | Element Web standard distribution; no custom chat UI (D4) |
+| Element Web client | opened via **deep link** from the web app (room surface, S8 — Q8, no inline embed) | Element Web standard distribution; no custom chat UI (D4) |
 | Federation | homeserver → matrix.org | default federation settings; fallback path documented |
 | Env/config | `.env.example` additions | `SYNAPSE_*` vars mirroring `PLAUSIBLE_*` pattern |
 
@@ -305,11 +317,12 @@ reserved `ideas` variant — `apps/web/lib/seo/locationData.ts`).
 
 **Decision (UPDATED in planning 2026-08-15):** Element is the **default chat client for the MVP
 across mobile, web, and desktop** (Element Web on web, Element mobile app on iOS/Android,
-Element Desktop on desktop). No custom chat UI in the MVP.
+Element Desktop on desktop). Element is **opened via DEEP LINK** from the JoinOrigin app on web
+and mobile — **no inline embed** (Q8, signed off 2026-08-15). No custom chat UI in the MVP.
 
 - Supersedes any earlier narrower reading ("Element Web only"). The update was locked in
   planning on 2026-08-15 and is recorded here verbatim.
-- §4.2 details the per-surface behavior.
+- §4.2 details the per-surface behavior, including the deep-link opening mode (Q8).
 
 ---
 
@@ -346,18 +359,20 @@ events") stays; the *emphasis* moves from venue/event logistics toward the digit
   - `moderation` — emphasize: creator control = Matrix room ownership (D2), roles in Element.
 - No replacement copy drafted here; the content-update sprint reworks intros/sections/steps.
 
-### 6.2 `/docs` — self-host disambiguation
+### 6.2 `/docs` — REMOVE self-host/hosting messaging (Q9)
 
 **Surface:** `apps/web/app/docs/` (`docs-view.tsx` + `en.json` `docs.*` keys, FAQ entries such
 as "Is JoinOrigin self-hostable?").
 
-**Delta direction:** the current copy ("Origin is a hosted product... there is nothing to
-self-host") must be **disambiguated** against the new infra decision (§4.3): the *product* has
-nothing to self-host (JoinOrigin runs the hosted service), while the *open-source reference
-stack* self-hosts its components (Plausible today, Synapse homeserver next) in
-`docker-compose.yml`. The architecture section and FAQ need a precise two-layered statement:
-(1) JoinOrigin product = hosted; (2) JoinOrigin open-source stack = self-hostable components
-including the Matrix homeserver.
+**Delta direction (UPDATED by product sign-off on Q9, 2026-08-15 — changed from *disambiguate*
+to *remove*):** **REMOVE self-host/hosting messaging from public copy entirely.** Product copy
+should **not discuss hosting** — no "nothing to self-host", no "Can I self-host?" FAQ entry
+about the reference stack, no disambiguation between the hosted product and the self-hostable
+reference stack. The open-source reference stack note (Plausible, Synapse in
+`docker-compose.yml`) may remain in **internal docs only** (README/internal architecture docs);
+public marketing/docs copy **drops hosting talk** — the hosting/self-host topic is deferred and
+revisited later. The content-update sprint removes/deletes the hosting FAQ entries and wording
+rather than expanding them.
 
 ### 6.3 "Room" terminology pinned to Matrix room
 
@@ -368,7 +383,7 @@ product copy; "chat channel", "group chat", "conversation space" are not used fo
 communication surface. The term should appear in Features/Docs copy consistently with §0
 terminology. (Also the SEO `/location` variant label "Community meetups & events" for the
 `meetup` group type is *not* changed by this pin — it is a group-type taxonomy label, not a room
-term; see §8 Q4 for whether to revisit it.)
+term; §8 Q4 (signed off) keeps the label as-is.)
 
 ### 6.4 Homepage / Features / Community — minimal deltas
 
@@ -402,7 +417,7 @@ scheduling); each sprint consumes this document + §3/§4 mappings.
 | **Auth** | Sign up, log in, session, Matrix user provisioning (User → Matrix User per §4.1) | prerequisite for every product screen |
 | **Explore / Search** | Explore screen (S5) with object-type toggle + location/group-type facets (D3); search/filter implementation | Auth (joins are member actions) |
 | **Matrix infra** | Synapse homeserver in `app/docker-compose.yml` (Plausible pattern), Element Web/mobile/desktop wiring (D4), federation to matrix.org, room/space creation service (D1) | Auth (provisioning); can start in parallel with Auth for the compose/service layer |
-| **Content updates** | §6 delta audit — guides re-centering, `/docs` disambiguation, room terminology, minimal homepage/features/community deltas | After product model is implemented (copy must match live behavior) |
+| **Content updates** | §6 delta audit — guides re-centering, `/docs` hosting-messaging **removal** (Q9), room terminology, minimal homepage/features/community deltas | After product model is implemented (copy must match live behavior) |
 
 Out of scope for all of the above (per whitepaper phases): Companies and Opportunities screens
 (Phase 2/3), events platform (never core, §1), custom chat UI (D4), AI collaboration (Phase 4),
@@ -410,59 +425,94 @@ federation beyond the matrix.org fallback (Phase 5).
 
 ---
 
-## 8. Open Questions for Product Sign-Off
+## 8. Product Sign-Off — Open Questions Answered (Q1–Q10)
 
-The following questions are **open for product sign-off**. This document deliberately provides
-**no recommended defaults** — each question is listed for the product owner/PM to decide before
-the deferred sprints (§7) consume this document.
+The questions below were **open for product sign-off** at initial authoring (TASK-323, which
+deliberately provided **no recommended defaults**). All ten were **answered by product sign-off
+on 2026-08-15** (TASK-324). Each answer is a **locked input** for the deferred sprints (§7) —
+later sprints implement these answers verbatim. The sign-off supersedes the "questions only"
+state: where a question referenced a §6 delta direction, that direction has been updated in the
+body of this document.
 
 - **Q1 — Explore data source & indexation.** What is the initial population of Explore
   (People / Ideas / Groups / Projects)? Are Explore results and public pages indexable/searchable
   by default, or do creators opt in to public visibility?
+  **Answer:** the initial population of Explore is the **current generated content** (the
+  Sprint 11/12 SEO content engine's location/variant/guide content) — no user-generated seed is
+  required before the Explore/Content sprints. Explore results and public pages are
+  **indexable/searchable by default**; **creators can opt out** of public visibility.
 
 - **Q2 — Join semantics.** Does joining require an account (Auth) always, or can a visitor join
   a room anonymously/link-only for the MVP? What happens to a join when the room is archived
   (D2 archive) — is membership preserved?
+  **Answer:** **anonymous join is allowed for the MVP** — a visitor can join a room via
+  link/invite without an Auth account. **Membership is preserved when the room is archived**
+  (archiving does not drop members).
 
 - **Q3 — Room naming and URL scheme.** What is the public URL scheme for Idea/Group/Project
   pages and their rooms (e.g. `/idea/<slug>`, `/group/<slug>`, `/project/<slug>`)? Do public
   pages mirror the Sprint 11/12 `/location/<country>/<region>/<city>` pattern or use a
   flat object namespace?
+  **Answer:** the URL scheme is **deferred to an architect** (a dedicated URL-scheme design
+  task before the Explore/Public-page sprints), with a **leaning preference for a flat object
+  namespace**: `/idea/<slug>`, `/group/<slug>`, `/project/<slug>` — not the nested
+  `/location/<country>/<region>/<city>` pattern.
 
 - **Q4 — `meetup` group-type label.** The SEO taxonomy label for the `meetup` group type is
   "Community meetups & events". With the clarified model (in-person downstream), should this
   label change, and if so to what?
+  **Answer:** the **`meetup` group-type label stays** — "Community meetups & events" is
+  unchanged. Connections, group chat, and coordination continue to flow through Matrix/Element;
+  the label is a group-type taxonomy label, not a product-model claim.
 
 - **Q5 — Feed composition.** Does the Feed screen aggregate only rooms the member belongs to,
   or also public discovery content? What post types (updates, opportunities, events,
   announcements) are in MVP feed scope?
+  **Answer:** the Feed screen aggregates **room content PLUS public discovery content**. All
+  post types are in MVP feed scope: **updates, opportunities, events, announcements**.
 
 - **Q6 — Room ↔ object lifecycle.** When an Idea/Group/Project is archived or deleted in
   JoinOrigin, what happens to its Matrix room/Space (retain-and-lock, rename-with-suffix, or
   remove)? Who may trigger it — only the creator/room owner?
+  **Answer:** on archive/delete the **creator/room owner has full control** over the object's
+  room (no platform-imposed action). The MVP **may offer a prompt** (retain-and-lock /
+  rename-with-suffix / remove) but keeps it **minimal for MVP** — expanded later.
 
 - **Q7 — Space structure for Communities.** For a Community (Space), is the MVP structure
   "one Space + one main room", or "one Space + main room + per-object rooms" from day one? When
   does a sub-object (Idea/Project) inside a community get its own room vs. using the main room?
+  **Answer:** **one Space + one main room for the MVP** (matches the whitepaper Initial MVP:
+  Communities + chat + feed). Sub-object (Idea/Project) rooms are **added naturally as
+  sub-objects are published** — D1 auto-creation applies per object, so each published
+  sub-object gets its own room rather than sharing the main room.
 
 - **Q8 — Element embedding depth.** Is Element embedded inline in the JoinOrigin web app
   (iframe/embedded client) or opened as a separate window/app from the JoinOrigin app (deep
   link)? The same question applies on mobile (embedded SDK vs. handoff to the Element app).
+  **Answer:** Element is opened via **DEEP LINK** — **no inline embed** on **web and mobile**.
+  The JoinOrigin app hands off to Element (Element Web in a new context/tab on web; the Element
+  mobile app on iOS/Android). No embedded SDK/iframe in the MVP (see §4.2/D4).
 
 - **Q9 — Self-host messaging.** The `/docs` disambiguation (6.2) will state the product is
   hosted while the open-source stack self-hosts components (Plausible, Synapse). Is that the
   intended public framing, and should the FAQ gain a "Can I self-host?" entry about the
   reference stack?
+  **Answer:** **REMOVE self-host/hosting messaging from public copy entirely** (defer; revisit
+  later). Product copy should not discuss hosting; the open-source reference stack note may
+  remain in **internal docs only**. Public marketing/docs copy drops hosting talk — this changes
+  §6.2's delta direction from *disambiguate* to *remove*.
 
 - **Q10 — Notifications.** Are notifications (Matrix push) part of the MVP room surface, or do
   they arrive in a later sprint? Who controls notification defaults — user or room owner?
+  **Answer:** notifications are **deferred to a later sprint** — Matrix push is not part of the
+  MVP room surface. (Control of notification defaults is likewise deferred with them.)
 
 ---
 
 ## 9. Document Consistency & Sources
 
 This document is consistent with the locked planning decisions (Sprint 13 planning session,
-2026-08-15) and with:
+2026-08-15) and with the **product sign-off on §8 (Q1–Q10, 2026-08-15, TASK-324)**, and with:
 
 - **`app/docs/ORIGIN-WHITEPAPER.md`** — Core Objects, Communication Architecture (Matrix),
   Matrix Mapping, Matrix/JoinOrigin Responsibilities, Initial MVP, Phases.
