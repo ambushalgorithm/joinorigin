@@ -32,7 +32,7 @@ describe('lib/seo guides — registry', () => {
   });
 
   it('derives canonical guide paths under /guides/<slug>', () => {
-    expect(entries[0]?.path).toBe('/guides/start-a-community');
+    expect(entries[0]?.path).toBe('/guides/publish-an-idea');
     for (const entry of entries) {
       expect(entry.path).toBe(`${GUIDES_HUB_PATH}/${entry.slug}`);
       expect(entry.params).toEqual({ slug: entry.slug });
