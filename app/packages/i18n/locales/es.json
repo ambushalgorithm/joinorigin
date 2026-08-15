@@ -84,22 +84,22 @@
       },
       "q3": {
         "question": "¿Qué puedo hacer una vez que esté dentro?",
-        "answer": "Crea un perfil que funcione como un currículum, publica tu idea como página, crea o únete a comunidades sobre cualquier tema e invita a las personas con las que quieras trabajar. Cada comunidad incluye su propia sala donde los miembros se conectan. La lista de espera reserva tu lugar para que tu comunidad esté lista cuando se abra el acceso anticipado."
+        "answer": "Crea un perfil que funcione como un currículum, publica tu idea como página, crea o únete a comunidades sobre cualquier tema e invita a las personas con las que quieras trabajar. Cada comunidad incluye su propia sala donde los miembros se conectan. La lista de espera reserva tu lugar para que tu comunidad esté lista cuando se abra la plataforma."
       },
       "q4": {
-        "question": "¿Cuándo comienza el acceso anticipado?",
-        "answer": "El acceso anticipado se abre por oleadas mientras la plataforma avanza hacia el lanzamiento. Unirte a la lista de espera ahora reserva tu lugar y recibirás una invitación en cuanto tu comunidad esté lista."
+        "question": "¿Cuándo se abre la plataforma?",
+        "answer": "La plataforma se abre por oleadas mientras avanza hacia el lanzamiento. Unirte a la lista de espera ahora reserva tu lugar y recibirás una invitación en cuanto tu comunidad esté lista."
       },
       "q5": {
         "question": "¿Cómo me uno?",
-        "answer": "Haz clic en Comenzar en cualquier parte de esta página, introduce tu nombre y correo electrónico y estarás en la lista de espera. Recibirás una invitación cuando el acceso anticipado llegue a tu lugar."
+        "answer": "Haz clic en Comenzar en cualquier parte de esta página, introduce tu nombre y correo electrónico y estarás en la lista de espera. Recibirás una invitación cuando la plataforma llegue a tu lugar."
       }
     }
   },
   "waitlist": {
     "close": "Cerrar",
     "heading": "Únete a la lista de espera",
-    "subcopy": "Sé el primero en la fila para el acceso anticipado. Te enviaremos un correo cuando tu espacio de trabajo esté listo.",
+    "subcopy": "Sé el primero en la fila para la plataforma. Te enviaremos un correo cuando tu espacio de trabajo esté listo.",
     "nameLabel": "Nombre",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "Correo electrónico",
@@ -121,7 +121,7 @@
   },
   "ctaBand": {
     "headline": "Encuentra a tu gente. Construye con ellos.",
-    "subline": "Únete a más de 2.400 creadores en la red social de colaboración de Origin y sé el primero cuando se abra el acceso anticipado.",
+    "subline": "Únete a más de 2.400 creadores en la red social de colaboración de Origin y sé el primero cuando se abra la plataforma.",
     "joinLabel": "Únete a la lista de espera",
     "contactLabel": "Contáctanos"
   },
@@ -341,7 +341,7 @@
       },
       "q4": {
         "question": "¿Cuándo se lanza el MVP?",
-        "answer": "JoinOrigin está en acceso anticipado. La Fundación de la comunidad (Fase 1) es el MVP y se entrega primero a los miembros de la lista de espera."
+        "answer": "JoinOrigin sigue en la lista de espera. La Fundación de la comunidad (Fase 1) es el MVP y se entrega primero a los miembros de la lista de espera."
       }
     }
   },
@@ -353,7 +353,7 @@
     },
     "sectionMission": "Nuestra misión",
     "missionParagraph1": "Origin está construyendo el sistema operativo de la colaboración humana. En lugar de cinco herramientas separadas para el chat, las comunidades y los proyectos, tus relaciones viven en un solo espacio de trabajo tranquilo. El grafo social es el producto: perfiles, ideas, comunidades, comunicación, feed, proyectos, empresas y oportunidades cuelgan todos de la misma red de personas.",
-    "missionParagraph2": "Hoy estamos en acceso anticipado, con más de 2.400 creadores en la lista de espera. A medida que la plataforma crece a través de la hoja de ruta — Fundación de la comunidad, Colaboración, Organización, Colaboración con IA y Red global — la misión sigue siendo la misma: ayudar a las personas a encontrarse y construir juntas.",
+    "missionParagraph2": "Hoy seguimos en la lista de espera, con más de 2.400 creadores ya registrados. A medida que la plataforma crece a través de la hoja de ruta — Fundación de la comunidad, Colaboración, Organización, Colaboración con IA y Red global — la misión sigue siendo la misma: ayudar a las personas a encontrarse y construir juntas.",
     "sectionPrinciples": "Principios rectores",
     "principles": {
       "peopleFirst": {
@@ -396,7 +396,7 @@
     "hero": {
       "eyebrow": "Contacto",
       "title": "Háblanos",
-      "lead": "¿Tienes una pregunta sobre Origin — la red social de colaboración —, el acceso anticipado o cómo crear una comunidad? Nos encantaría saber de ti. Pregúntanos lo que sea."
+      "lead": "¿Tienes una pregunta sobre Origin — la red social de colaboración —, la lista de espera o cómo crear una comunidad? Nos encantaría saber de ti. Pregúntanos lo que sea."
     },
     "sectionForm": "Envíanos un mensaje",
     "form": {
@@ -422,7 +422,7 @@
         "answer": "Respondemos en un plazo de 2 días hábiles. Para obtener la respuesta más rápida, consulta primero las preguntas frecuentes de la documentación."
       },
       "q2": {
-        "question": "¿Puedo obtener acceso anticipado?",
+        "question": "¿Puedo obtener acceso cuando se abra la plataforma?",
         "answer": "Sí: únete a la lista de espera desde la página de inicio. Los primeros miembros serán los primeros en entrar cuando se lance el sistema operativo comunitario."
       }
     }
@@ -431,19 +431,19 @@
     "hero": {
       "eyebrow": "Legal",
       "title": "Política de privacidad",
-      "lead": "Cuando te unes a la lista de espera, recopilamos tu nombre y tu dirección de correo electrónico a través del formulario de la lista de espera (POST /api/leads). Esa es la única información personal que solicitamos durante el acceso anticipado."
+      "lead": "Cuando te unes a la lista de espera, recopilamos tu nombre y tu dirección de correo electrónico a través del formulario de la lista de espera (POST /api/leads). Esa es la única información personal que te pedimos en la lista de espera."
     },
     "sectionCollect": "Qué recopilamos",
     "collect": {
       "waitlistDataTitle": "Datos de la lista de espera",
-      "waitlistDataBody": "Nombre y correo electrónico, utilizados únicamente para avisarte cuando se abra el acceso anticipado e invitarte a entrar.",
+      "waitlistDataBody": "Nombre y correo electrónico, utilizados únicamente para avisarte cuando se abra la plataforma e invitarte a entrar.",
       "analyticsTitle": "Analítica",
       "analyticsBody": "Utilizamos analítica basada en configuración (Plausible autoalojado por defecto) para comprender el uso agregado del sitio. Se prevé un banner de consentimiento para un sprint posterior.",
       "technicalDataTitle": "Datos técnicos básicos",
       "technicalDataBody": "Registros estándar del servidor y metadatos del navegador que nos ayudan a mantener el sitio fiable."
     },
     "sectionUse": "Cómo los utilizamos",
-    "useBody": "Utilizamos la información que recopilamos para operar el sitio, enviar invitaciones de acceso anticipado y mejorar el producto. No vendemos tu información personal.",
+    "useBody": "Utilizamos la información que recopilamos para operar el sitio, enviar invitaciones de la lista de espera y mejorar el producto. No vendemos tu información personal.",
     "sectionIdentity": "Identidad y flexibilidad",
     "identityBody": "Tú eliges cómo te presentas en Origin. Puedes participar con una cuenta con tu nombre o permanecer anónimo, y las comunidades, los chats y las páginas de ideas pueden estar abiertos a todos o restringidos por sus organizadores. Estas opciones se implementarán gradualmente: la idea es que tú decidas qué compartes y con quién.",
     "sectionRights": "Tus derechos",
@@ -473,7 +473,7 @@
     "sectionIntellectualProperty": "Propiedad intelectual",
     "intellectualPropertyBody": "Las marcas comerciales, los logotipos y los materiales del sitio de JoinOrigin pertenecen a JoinOrigin. No puedes utilizarlos sin nuestro permiso. Los componentes de código abierto permanecen bajo sus respectivas licencias.",
     "sectionDisclaimers": "Exención de responsabilidad",
-    "disclaimersBody": "El Servicio se proporciona «tal cual» durante el acceso anticipado. Trabajamos para mantenerlo fiable, pero no garantizamos que esté libre de interrupciones o errores.",
+    "disclaimersBody": "El Servicio se proporciona «tal cual» durante el periodo de la lista de espera. Trabajamos para mantenerlo fiable, pero no garantizamos que esté libre de interrupciones o errores.",
     "sectionChanges": "Cambios",
     "changesBody": "Podemos actualizar estos Términos a medida que el Servicio evolucione. Los cambios importantes se anunciarán en esta página, y el uso continuado después de los cambios implica que aceptas los Términos actualizados.",
     "sectionContact": "Contacto",
