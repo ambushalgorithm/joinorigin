@@ -84,7 +84,7 @@
       },
       "q3": {
         "question": "İçeri girdikten sonra neler yapabilirim?",
-        "answer": "Özgeçmiş gibi çalışan bir profil oluşturun, fikrinizi bir fikir sayfası olarak yayınlayın, her şeyin etrafında topluluklar başlatın ya da katılın ve birlikte çalışmak istediğiniz kişileri davet edin. Bekleme listesi yerinizi ayırtır; erken erişim açıldığında topluluğunuz hazır olur."
+        "answer": "Özgeçmiş gibi çalışan bir profil oluşturun, fikrinizi bir fikir sayfası olarak yayınlayın, her şeyin etrafında topluluklar başlatın ya da katılın ve birlikte çalışmak istediğiniz kişileri davet edin. Her topluluğun, üyelerin bağlandığı kendi odası vardır. Bekleme listesi yerinizi ayırtır; erken erişim açıldığında topluluğunuz hazır olur."
       },
       "q4": {
         "question": "Erken erişim ne zaman başlıyor?",
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Temel nesneler",
       "title": "Bir topluluğun ihtiyaç duyduğu her şey, tek bir sakin çalışma alanında",
-      "lead": "Origin, sekiz temel nesne etrafında kurulmuş bir sosyal iş birliği ağıdır: profiller, fikirler, topluluklar, sohbetler, gönderiler, projeler, şirketler ve fırsatlar. Beş ayrı araç yerine ilişkileriniz tek bir yerde yaşar."
+      "lead": "Origin, sekiz temel nesne etrafında kurulmuş bir sosyal iş birliği ağıdır: profiller, fikirler, topluluklar, iletişim, akış, projeler, şirketler ve fırsatlar. Beş ayrı araç yerine ilişkileriniz tek bir yerde yaşar."
     },
     "sectionCoreObjects": "Temel nesneler",
     "coreObjects": {
@@ -143,7 +143,7 @@
         "body": "İlgi alanları, sektörler ve hedefler etrafındaki gruplar — Girişim Kurucuları, Küçük İşletmeler, Kitap Kulüpleri, Topluluk Örgütleri, Fikri Olan Herkes — üyelerin birbirini bulduğu yer."
       },
       "communication": {
-        "body": "Açık Matrix protokolü üzerinden gerçek zamanlı sohbet, doğrudan mesajlar ve grup tartışmaları; varsayılan olarak uçtan uca şifreli."
+        "body": "Her topluluk bir Matrix odasıyla gelir: açık Matrix protokolü üzerinden gerçek zamanlı sohbet, doğrudan mesajlar ve grup tartışmaları; varsayılan olarak uçtan uca şifreli."
       },
       "feed": {
         "body": "Takip ettiğiniz kişilerden ve topluluklardan gönderiler, güncellemeler ve fırsatlar — ağınızda önemli olanların sakin bir akışı."
@@ -210,7 +210,7 @@
       },
       "q2": {
         "question": "JoinOrigin açık kaynak mı?",
-        "answer": "Kod, AGPL-3.0 lisansı altında açıktır ve iletişim açık Matrix protokolü üzerinde çalışır. Origin'in kendisi JoinOrigin tarafından yürütülen barındırılan bir üründür — kendi kendine barındırılacak bir şey yoktur — ve verileriniz taşınabilir kalır."
+        "answer": "Kod, AGPL-3.0 lisansı altında açıktır ve iletişim açık Matrix protokolü üzerinde çalışır. Verileriniz taşınabilir kalır."
       },
       "q3": {
         "question": "Sosyal grafik nedir?",
@@ -270,7 +270,7 @@
       },
       "q3": {
         "question": "Verilerim bana mı ait?",
-        "answer": "Evet. Kimliğinizin ve verilerinizin sahibi sizsiniz. Origin barındırılan bir üründür, bu yüzden kendi kendine barındırılacak bir şey yoktur — ancak verileriniz taşınabilir ve ağ grafiğiniz açık Matrix protokolü üzerinde kalıcıdır."
+        "answer": "Evet. Kimliğinizin ve verilerinizin sahibi sizsiniz. Verileriniz taşınabilir ve ağ grafiğiniz açık Matrix protokolü üzerinde kalıcıdır."
       },
       "q4": {
         "question": "Kendi insanlarımı nasıl bulurum?",
@@ -278,7 +278,7 @@
       },
       "q5": {
         "question": "Anonim olarak mı yoksa adımla mı katılabilirim?",
-        "answer": "Siz seçersiniz. Adlı bir hesapla katılabilir veya anonim kalabilirsiniz; topluluklar, sohbetler ve fikir sayfaları herkese açık olabilir veya organizatörler tarafından sınırlandırılabilir. Bu seçenekler zamanla kullanıma sunulacaktır."
+        "answer": "Siz seçersiniz. Adlı bir hesapla katılabilir veya anonim kalabilirsiniz; topluluklar, odalar ve fikir sayfaları herkese açık olabilir veya organizatörler tarafından sınırlandırılabilir. Bu seçenekler zamanla kullanıma sunulacaktır."
       }
     }
   },
@@ -300,7 +300,7 @@
         "body": "Fikirler, Origin'deki her şeyin başlangıç noktasıdır. Herhangi bir fikir için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü, bir 10K koşusu — ve onu inşa etmek isteyen insanlar sizi bulur."
       },
       "communication": {
-        "body": "Mesajlaşma; gerçek zamanlı sohbeti, doğrudan mesajları ve grup tartışmalarını kapsar. Açık Matrix protokolü üzerinde çalışır; böylece sohbetler taşınabilirdir ve uçtan uca şifrelenebilir."
+        "body": "İletişim, bir Matrix odasında gerçekleşir — gerçek zamanlı sohbet, doğrudan mesajlar ve grup tartışmaları. Açık Matrix protokolü üzerinde çalışır; böylece sohbetler taşınabilirdir ve uçtan uca şifrelenebilir."
       },
       "feed": {
         "body": "Akış, takip ettiğiniz kişilerden ve topluluklardan gönderileri, güncellemeleri ve fırsatları gösterir. Ağınızda önemli olanların sakin bir akışıdır, bir etkileşim makinesi değil."
@@ -335,7 +335,7 @@
     },
     "sectionArchitecture": "Mimari ve standartlar",
     "architectureParagraph1": "Sosyal grafik üründür: her nesne, insan ağına ve onların ilişkilerine bağlıdır. Mesajlaşma açık Matrix protokolünü kullanır (merkeziyetsiz, uçtan uca şifreli) ve ağ grafiğiniz ile bağlantılarınız sonsuza dek kalıcıdır; böylece ilişkileriniz taşınabilir kalır.",
-    "architectureParagraph2": "Origin, web tarafında React, TypeScript ve Next.js ile, arka uçta ise NestJS, PostgreSQL, Redis ve Docker ile kurulmuş barındırılan bir üründür. Açık kalan şeyler protokol (Matrix), verileriniz ve AGPL-3.0 altındaki kaynak kodudur — kendi kendine barındırılacak hiçbir şey yoktur.",
+    "architectureParagraph2": "Origin, web tarafında React, TypeScript ve Next.js ile, arka uçta ise NestJS, PostgreSQL, Redis ve Docker ile kurulmuştur. Açık kalan şeyler protokol (Matrix), verileriniz ve AGPL-3.0 altındaki kaynak kodudur.",
     "faq": {
       "q1": {
         "question": "JoinOrigin hangi teknolojilerle kuruldu?",
@@ -344,10 +344,6 @@
       "q2": {
         "question": "Matrix nedir?",
         "answer": "Matrix, uçtan uca şifrelemeye sahip açık, merkeziyetsiz bir iletişim protokolüdür. Origin bunun üzerinde çalışır; böylece sohbetler — ve arkalarındaki ağ grafiği — taşınabilirdir ve sonsuza dek kalıcıdır."
-      },
-      "q3": {
-        "question": "JoinOrigin kendi kendine barındırılabilir mi?",
-        "answer": "Hayır. Origin, JoinOrigin tarafından yürütülen barındırılan bir üründür; bu yüzden kendi kendine barındırılacak bir şey yoktur. Ağ grafiğiniz ve bağlantılarınız açık Matrix protokolü üzerinden sonsuza dek kalıcıdır ve verileriniz taşınabilir kalır."
       },
       "q4": {
         "question": "MVP ne zaman kullanıma sunuluyor?",
@@ -362,7 +358,7 @@
       "lead": "Origin, tek bir inanç üzerine kurulmuş bir sosyal iş birliği ağıdır: internetteki en değerli varlık içerik ya da yazılım değil — insan ağı ve kurdukları ilişkilerdir."
     },
     "sectionMission": "Misyonumuz",
-    "missionParagraph1": "Origin, insan iş birliği için işletim sistemini kuruyor. Sohbet, topluluklar ve projeler için beş ayrı araç yerine ilişkileriniz tek bir sakin çalışma alanında yaşar. Sosyal grafik üründür: profiller, fikirler, topluluklar, sohbetler, gönderiler, projeler, şirketler ve fırsatların tümü aynı insan ağına bağlıdır.",
+    "missionParagraph1": "Origin, insan iş birliği için işletim sistemini kuruyor. Sohbet, topluluklar ve projeler için beş ayrı araç yerine ilişkileriniz tek bir sakin çalışma alanında yaşar. Sosyal grafik üründür: profiller, fikirler, topluluklar, iletişim, akış, projeler, şirketler ve fırsatların tümü aynı insan ağına bağlıdır.",
     "missionParagraph2": "Bugün erken erişimdeyiz; bekleme listesinde 2.400+ kurucu var. Platform yol haritası boyunca büyürken — Topluluk Temeli, İş Birliği, Organizasyon, Yapay Zekâ ile İş Birliği ve Küresel Ağ — misyon aynı kalır: insanların birbirini bulmasına ve birlikte inşa etmesine yardımcı olmak.",
     "sectionPrinciples": "Rehber ilkeler",
     "principles": {
@@ -377,7 +373,7 @@
       },
       "openArchitecture": {
         "title": "Açık Mimari",
-        "body": "İletişim açık Matrix protokolü üzerinde çalışır; kimlik, profiller, topluluklar ve sosyal grafik taşınabilir ve kullanıcıya aittir. Origin barındırıldığı için kendi kendine barındırılacak bir şey yoktur."
+        "body": "İletişim açık Matrix protokolü üzerinde çalışır; kimlik, profiller, topluluklar ve sosyal grafik taşınabilir ve kullanıcıya aittir."
       }
     },
     "sectionFounder": "Kurucu rehberliği",
@@ -398,7 +394,7 @@
       },
       "q3": {
         "question": "JoinOrigin açık kaynak mı?",
-        "answer": "Kod, AGPL-3.0 lisansı altında açıktır ve iletişim açık Matrix protokolü üzerinde çalışır. Origin, JoinOrigin tarafından yürütülen barındırılan bir üründür — kendi kendine barındırılacak bir şey yoktur — ve ağ grafiğiniz taşınabilir kalır. Ayrıntılar için dokümanlara bakın."
+        "answer": "Kod, AGPL-3.0 lisansı altında açıktır ve iletişim açık Matrix protokolü üzerinde çalışır. Ağ grafiğiniz taşınabilir kalır. Ayrıntılar için dokümanlara bakın."
       }
     }
   },
