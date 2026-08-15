@@ -84,7 +84,7 @@
       },
       "q3": {
         "question": "Was kann ich tun, sobald ich dabei bin?",
-        "answer": "Erstelle ein Profil, das wie ein Lebenslauf funktioniert, veröffentliche deine Idee als Ideenseite, starte oder tritt Communities zu jedem Thema bei und lade die Menschen ein, mit denen du arbeiten möchtest. Die Warteliste reserviert deinen Platz, damit deine Community bereit ist, wenn der Early Access beginnt."
+        "answer": "Erstelle ein Profil, das wie ein Lebenslauf funktioniert, veröffentliche deine Idee als Ideenseite, starte oder tritt Communities zu jedem Thema bei und lade die Menschen ein, mit denen du arbeiten möchtest. Jede Community bringt ihren eigenen Raum mit, in dem sich Mitglieder verbinden. Die Warteliste reserviert deinen Platz, damit deine Community bereit ist, wenn der Early Access beginnt."
       },
       "q4": {
         "question": "Wann beginnt der Early Access?",
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Kernobjekte",
       "title": "Alles, was eine Community braucht, in einem ruhigen Workspace",
-      "lead": "Origin ist ein soziales Kollaborationsnetzwerk, das um acht Kernobjekte herum aufgebaut ist: Profile, Ideen, Communities, Unterhaltungen, Posts, Projekte, Unternehmen und Chancen. Statt fünf getrennter Tools leben deine Beziehungen an einem Ort."
+      "lead": "Origin ist ein soziales Kollaborationsnetzwerk, das um acht Kernobjekte herum aufgebaut ist: Profile, Ideen, Communities, Kommunikation, Feed, Projekte, Unternehmen und Chancen. Statt fünf getrennter Tools leben deine Beziehungen an einem Ort."
     },
     "sectionCoreObjects": "Kernobjekte",
     "coreObjects": {
@@ -143,7 +143,7 @@
         "body": "Gruppen rund um Interessen, Branchen und Ziele — Startup-Gründer:innen, kleine Unternehmen, Buchclubs, Gemeinschaftsorganisationen, Menschen mit einer Idee — in denen sich Mitglieder gegenseitig finden."
       },
       "communication": {
-        "body": "Echtzeit-Chat, Direktnachrichten und Gruppendiskussionen über das offene Matrix-Protokoll, standardmäßig Ende-zu-Ende-verschlüsselt."
+        "body": "Jede Community bringt einen Matrix-Raum mit: Echtzeit-Chat, Direktnachrichten und Gruppendiskussionen über das offene Matrix-Protokoll, standardmäßig Ende-zu-Ende-verschlüsselt."
       },
       "feed": {
         "body": "Posts, Updates und Chancen von den Menschen und Communities, denen du folgst — ein ruhiger Strom dessen, was in deinem Netzwerk zählt."
@@ -210,7 +210,7 @@
       },
       "q2": {
         "question": "Ist JoinOrigin Open Source?",
-        "answer": "Der Code ist unter AGPL-3.0 offen, und die Kommunikation läuft über das offene Matrix-Protokoll. Origin selbst ist ein von JoinOrigin betriebenes Hosted-Produkt — es gibt nichts zum Selbsthosten — und deine Daten bleiben portabel."
+        "answer": "Der Code ist unter AGPL-3.0 offen, und die Kommunikation läuft über das offene Matrix-Protokoll. Deine Daten bleiben portabel."
       },
       "q3": {
         "question": "Was ist der soziale Graph?",
@@ -270,7 +270,7 @@
       },
       "q3": {
         "question": "Gehören mir meine Daten?",
-        "answer": "Ja. Du besitzt deine Identität und deine Daten. Origin ist ein Hosted-Produkt, es gibt also nichts zum Selbsthosten — aber deine Daten sind portabel und dein Netzwerk-Graph bleibt über das offene Matrix-Protokoll bestehen."
+        "answer": "Ja. Du besitzt deine Identität und deine Daten. Deine Daten sind portabel und dein Netzwerk-Graph bleibt über das offene Matrix-Protokoll bestehen."
       },
       "q4": {
         "question": "Wie finde ich meine Leute?",
@@ -278,7 +278,7 @@
       },
       "q5": {
         "question": "Kann ich anonym oder mit Namen beitreten?",
-        "answer": "Du entscheidest. Du kannst mit einem benannten Konto teilnehmen oder anonym bleiben, und Communities, Chats und Ideenseiten können für alle offen oder durch Organisator:innen eingeschränkt sein. Diese Optionen werden nach und nach ausgerollt."
+        "answer": "Du entscheidest. Du kannst mit einem benannten Konto teilnehmen oder anonym bleiben, und Communities, Räume und Ideenseiten können für alle offen oder durch Organisator:innen eingeschränkt sein. Diese Optionen werden nach und nach ausgerollt."
       }
     }
   },
@@ -300,7 +300,7 @@
         "body": "Ideen sind der Ausgangspunkt für alles auf Origin. Veröffentliche eine Ideenseite für jede Idee — ein kleines Unternehmen, ein KI-Startup, einen Buchclub, einen 10-km-Lauf — und die Menschen, die sie bauen wollen, finden dich."
       },
       "communication": {
-        "body": "Kommunikation umfasst Echtzeit-Chat, Direktnachrichten und Gruppendiskussionen. Sie läuft über das offene Matrix-Protokoll, sodass Gespräche portabel und Ende-zu-Ende-verschlüsselt sein können."
+        "body": "Kommunikation findet in einem Matrix-Raum statt — Echtzeit-Chat, Direktnachrichten und Gruppendiskussionen. Sie läuft über das offene Matrix-Protokoll, sodass Gespräche portabel und Ende-zu-Ende-verschlüsselt sein können."
       },
       "feed": {
         "body": "Der Feed zeigt Posts, Updates und Chancen von den Menschen und Communities, denen du folgst. Er ist ein ruhiger Strom dessen, was in deinem Netzwerk zählt — keine Engagement-Maschine."
@@ -335,7 +335,7 @@
     },
     "sectionArchitecture": "Architektur & Standards",
     "architectureParagraph1": "Der soziale Graph ist das Produkt: Jedes Objekt hängt am Netzwerk der Menschen und ihrer Beziehungen. Die Kommunikation nutzt das offene Matrix-Protokoll (dezentral, E2EE), und dein Netzwerk-Graph und deine Verbindungen bleiben für immer bestehen, sodass deine Beziehungen portabel bleiben.",
-    "architectureParagraph2": "Origin ist ein Hosted-Produkt, das im Web mit React, TypeScript und Next.js und im Backend mit NestJS, PostgreSQL, Redis und Docker gebaut ist. Offen bleiben das Protokoll (Matrix), deine Daten und der Quellcode unter AGPL-3.0 — es gibt nichts zum Selbsthosten.",
+    "architectureParagraph2": "Origin ist im Web mit React, TypeScript und Next.js und im Backend mit NestJS, PostgreSQL, Redis und Docker gebaut. Offen bleiben das Protokoll (Matrix), deine Daten und der Quellcode unter AGPL-3.0.",
     "faq": {
       "q1": {
         "question": "Worauf basiert JoinOrigin?",
@@ -344,10 +344,6 @@
       "q2": {
         "question": "Was ist Matrix?",
         "answer": "Matrix ist ein offenes, dezentrales Kommunikationsprotokoll mit Ende-zu-Ende-Verschlüsselung. Origin läuft darauf, sodass Gespräche — und der dahinterliegende Netzwerk-Graph — portabel sind und für immer bestehen bleiben."
-      },
-      "q3": {
-        "question": "Ist JoinOrigin selbst hostbar?",
-        "answer": "Nein. Origin ist ein von JoinOrigin betriebenes Hosted-Produkt, es gibt also nichts zum Selbsthosten. Dein Netzwerk-Graph und deine Verbindungen bleiben über das offene Matrix-Protokoll für immer bestehen, und deine Daten bleiben portabel."
       },
       "q4": {
         "question": "Wann startet das MVP?",
@@ -362,7 +358,7 @@
       "lead": "Origin ist ein soziales Kollaborationsnetzwerk, das auf einer Überzeugung aufbaut: Das wertvollste Kapital im Internet ist nicht Inhalt oder Software — es ist das Netzwerk der Menschen und die Beziehungen, die sie eingehen."
     },
     "sectionMission": "Unsere Mission",
-    "missionParagraph1": "Origin baut das Betriebssystem für menschliche Zusammenarbeit. Statt fünf getrennter Tools für Chat, Communities und Projekte leben deine Beziehungen in einem ruhigen Workspace. Der soziale Graph ist das Produkt: Profile, Ideen, Communities, Unterhaltungen, Posts, Projekte, Unternehmen und Chancen hängen alle am selben Netzwerk von Menschen.",
+    "missionParagraph1": "Origin baut das Betriebssystem für menschliche Zusammenarbeit. Statt fünf getrennter Tools für Chat, Communities und Projekte leben deine Beziehungen in einem ruhigen Workspace. Der soziale Graph ist das Produkt: Profile, Ideen, Communities, Kommunikation, Feed, Projekte, Unternehmen und Chancen hängen alle am selben Netzwerk von Menschen.",
     "missionParagraph2": "Wir befinden uns heute im Early Access, mit 2.400+ Buildern auf der Warteliste. Während die Plattform durch die Roadmap wächst — Community-Grundlage, Zusammenarbeit, Organisation, KI-Zusammenarbeit und das Globale Netzwerk — bleibt die Mission dieselbe: Menschen helfen, sich gegenseitig zu finden und gemeinsam aufzubauen.",
     "sectionPrinciples": "Leitprinzipien",
     "principles": {
@@ -377,7 +373,7 @@
       },
       "openArchitecture": {
         "title": "Offene Architektur",
-        "body": "Die Kommunikation läuft über das offene Matrix-Protokoll, und Identität, Profile, Communities und der soziale Graph sind portabel und gehören den Nutzer:innen. Origin ist gehostet, es gibt also nichts zum Selbsthosten."
+        "body": "Die Kommunikation läuft über das offene Matrix-Protokoll, und Identität, Profile, Communities und der soziale Graph sind portabel und gehören den Nutzer:innen."
       }
     },
     "sectionFounder": "Leitlinie des Gründers",
@@ -398,7 +394,7 @@
       },
       "q3": {
         "question": "Ist JoinOrigin Open Source?",
-        "answer": "Der Code ist unter AGPL-3.0 offen, und die Kommunikation läuft über das offene Matrix-Protokoll. Origin ist ein von JoinOrigin betriebenes Hosted-Produkt — es gibt nichts zum Selbsthosten — und dein Netzwerk-Graph bleibt portabel. Details findest du in der Dokumentation."
+        "answer": "Der Code ist unter AGPL-3.0 offen, und die Kommunikation läuft über das offene Matrix-Protokoll. Dein Netzwerk-Graph bleibt portabel. Details findest du in der Dokumentation."
       }
     }
   },
