@@ -33,20 +33,19 @@ export const GUIDES_RELEASE_DATE = '2026-08-14';
 
 /** The 12 L1 how-to guides in display order (design §6.1). */
 export const GUIDE_SLUGS = [
-  'start-a-community',
-  'find-a-co-founder',
-  'first-10-members',
-  'keep-a-community-active',
-  'hybrid-communities',
-  'organize-a-meetup',
-  'moderation',
-  // TASK-353 — 5 new L1 guides appended after the original 7 (user order
-  // of the existing guides is preserved unchanged).
   'publish-an-idea',
   'create-a-project',
   'create-a-group',
   'publish-a-small-business-idea',
   'publish-a-startup-concept',
+  'find-a-co-founder',
+  'start-a-community',
+  'first-10-members',
+  'keep-a-community-active',
+  'hybrid-communities',
+  'organize-a-meetup',
+  'moderation',
+
 ] as const;
 
 export type GuideSlug = (typeof GUIDE_SLUGS)[number];
