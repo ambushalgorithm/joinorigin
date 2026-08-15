@@ -85,8 +85,8 @@ test.describe('/guides hub search/filter (TASK-317)', () => {
     const search = page.getByRole('searchbox', { name: 'Search guides' });
     await expect(search).toBeVisible();
 
-    // All 7 guide cards render initially.
-    await expect(page.locator('[data-testid="guides-hub-grid"] a')).toHaveCount(7);
+    // All 12 guide cards render initially (TASK-353 — 7 original + 5 new).
+    await expect(page.locator('[data-testid="guides-hub-grid"] a')).toHaveCount(12);
 
     // Type a keyword — only the matching guide card remains after debounce.
     await search.fill('meetup');

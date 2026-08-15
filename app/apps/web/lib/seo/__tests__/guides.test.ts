@@ -14,7 +14,7 @@ import { MIN_PROSE_WORDS, wordCount } from '../locationGates';
  * connecting-people problem — the intro mentions JoinOrigin and every step
  * carries a per-step `joinOriginNote` (honest early-access framing).
  *
- * Enforces the L1 how-to guide contract (design §6.2): all 7 guides are
+ * Enforces the L1 how-to guide contract (design §6.2): all 12 guides are
  * registered with unique canonical paths, every guide clears the ≥150-word
  * prose gate with FAQ ≥3 pairs + dataPoints ≥3, every guide has a
  * step-by-step structure, and the cross-link mesh (hub + sibling guides +
@@ -25,8 +25,8 @@ describe('lib/seo guides — registry', () => {
   const entries = guidePageEntries();
   const paths = entries.map((entry) => entry.path);
 
-  it('registers exactly the 7 L1 how-to guides in display order', () => {
-    expect(GUIDE_SLUGS).toHaveLength(7);
+  it('registers exactly the 12 L1 how-to guides in display order', () => {
+    expect(GUIDE_SLUGS).toHaveLength(12);
     expect(entries.map((entry) => entry.slug)).toEqual([...GUIDE_SLUGS]);
     expect(new Set(paths).size).toBe(paths.length);
   });
@@ -174,6 +174,6 @@ describe('lib/seo guides — content quality gates (§6.2)', () => {
   it('the registry lists guide content alongside location content', () => {
     const enContent = listContent('en');
     const guideCount = enContent.filter((content) => content.kind === 'guide').length;
-    expect(guideCount).toBe(7);
+    expect(guideCount).toBe(12);
   });
 });

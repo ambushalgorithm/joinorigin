@@ -245,6 +245,11 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
       '/guides/keep-a-community-active',
       '/guides/hybrid-communities',
       '/guides/moderation',
+      '/guides/publish-an-idea',
+      '/guides/create-a-project',
+      '/guides/create-a-group',
+      '/guides/publish-a-small-business-idea',
+      '/guides/publish-a-startup-concept',
     ];
     for (const path of expectedIndexable) {
       expect(paths, `indexable page ${path} in sitemap`).toContain(path);

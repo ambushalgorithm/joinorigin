@@ -8,17 +8,17 @@ import { GuideView } from './guide-view';
 
 /**
  * Unit tests for the /guides/[slug] guide page (design §6.2, TASK-309 +
- * TASK-320): generateStaticParams emits exactly the 7 guide slugs,
- * generateMetadata derives per-guide title/description/canonical, and the
- * page renders a single H1 + visible FAQ block mirrored in FAQPage JSON-LD
- * with the cross-link mesh (hub, sibling guides, city pages), honest CTA,
- * and the JoinOrigin-led structure (intro + per-step JoinOrigin notes).
+ * TASK-320 + TASK-353): generateStaticParams emits exactly the 12 guide
+ * slugs, generateMetadata derives per-guide title/description/canonical, and
+ * the page renders a single H1 + visible FAQ block mirrored in FAQPage
+ * JSON-LD with the cross-link mesh (hub, sibling guides, city pages), honest
+ * CTA, and the JoinOrigin-led structure (intro + per-step JoinOrigin notes).
  */
 
 describe('guides/[slug] page — static params + metadata', () => {
-  it('generateStaticParams returns exactly the 7 guide slugs', () => {
+  it('generateStaticParams returns exactly the 12 guide slugs', () => {
     const params = generateStaticParams();
-    expect(params).toHaveLength(7);
+    expect(params).toHaveLength(12);
     expect(params.map((p) => p.slug)).toEqual(
       expect.arrayContaining([
         'start-a-community',
@@ -28,6 +28,11 @@ describe('guides/[slug] page — static params + metadata', () => {
         'keep-a-community-active',
         'hybrid-communities',
         'moderation',
+        'publish-an-idea',
+        'create-a-project',
+        'create-a-group',
+        'publish-a-small-business-idea',
+        'publish-a-startup-concept',
       ]),
     );
   });

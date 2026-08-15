@@ -69,7 +69,7 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
       hero={{
         eyebrow: t('seoContent.guides.hubEyebrow'),
         title: t('seoContent.guides.hubTitle'),
-        lead: 'Seven practical, evergreen how-to guides for finding, joining, and starting groups — and communicating in a creator-controlled room. From the first group to healthy moderation.',
+        lead: 'Twelve practical, evergreen how-to guides for finding, joining, and starting groups — and communicating in a creator-controlled room. From publishing an idea to healthy moderation.',
         scene: 'community',
         accent: 'community',
         cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },

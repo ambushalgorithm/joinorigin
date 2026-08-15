@@ -7,7 +7,7 @@ import GuidesHubPage, { metadata } from './page';
 
 /**
  * Unit tests for the /guides hub (design §6.3 — L2a pillar page):
- * metadata export + single H1 + links to all 7 guides + glossary + city
+ * metadata export + single H1 + links to all 12 guides + glossary + city
  * pages, plus the TASK-317 client-side guide-card search/filter (debounced
  * keyword match + empty state).
  *
@@ -32,7 +32,7 @@ describe('guides hub page', () => {
     expect(headings[0]).toHaveTextContent('Community Building Guides');
   });
 
-  it('links all 7 guides', () => {
+  it('links all 12 guides', () => {
     renderWithI18n(<GuidesHubPage />);
     for (const entry of guidePageEntries()) {
       expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);

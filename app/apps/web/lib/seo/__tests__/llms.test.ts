@@ -10,9 +10,10 @@ import { absoluteUrl } from '../url';
  * Enforces the curated-index contract:
  *  - Locations section = hub + the 2 MVP flagships ONLY (never the long
  *    tail — the sitemap is the exhaustive index),
- *  - Guides section = all 7 L1 guides,
+ *  - Guides section = all 12 L1 guides,
  *  - Glossary section = the glossary hub,
- *  - total size ≤ ~2 KB so LLM crawlers hold it in context,
+ *  - total size ≤ ~3 KB so LLM crawlers hold it in context (12-guide set,
+ *    TASK-353 — the original ~2 KB budget assumed 7 guides),
  *  - every link is an absolute LLM-parseable URL; no `/api/*` links.
  */
 
@@ -21,8 +22,8 @@ const KB = 1024;
 describe('lib/seo llms.txt — curated sections', () => {
   const text = buildLlmsText();
 
-  it('stays within the ~2 KB context budget', () => {
-    expect(Buffer.byteLength(text, 'utf8')).toBeLessThanOrEqual(2 * KB);
+  it('stays within the ~3 KB context budget', () => {
+    expect(Buffer.byteLength(text, 'utf8')).toBeLessThanOrEqual(3 * KB);
   });
 
   it('has a Locations section listing the hub + exactly the 2 flagships', () => {
@@ -39,13 +40,13 @@ describe('lib/seo llms.txt — curated sections', () => {
     expect(text).toContain('## Locations');
   });
 
-  it('has a Guides section listing all 7 L1 guides (never partial)', () => {
+  it('has a Guides section listing all 12 L1 guides (never partial)', () => {
     const section = LLMS_ENTRIES.find((entry) => entry.heading === 'Guides');
     expect(section).toBeDefined();
     const paths = section?.links.map((link) => link.path) ?? [];
     const guidePaths = guidePageEntries().map((entry) => entry.path);
     expect(paths.sort()).toEqual([...guidePaths].sort());
-    expect(guidePageEntries()).toHaveLength(7);
+    expect(guidePageEntries()).toHaveLength(12);
     expect(text).toContain('## Guides');
   });
 
