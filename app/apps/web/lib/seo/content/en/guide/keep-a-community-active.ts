@@ -8,7 +8,7 @@ import type { GuideContent } from '../../types';
  * activity (feeding the feed) are the retention surface — the community
  * lives in the room between gatherings, and in-person events are a
  * downstream consequence. JoinOrigin value is woven into the intro and
- * every step (per-step `joinOriginNote`), with honest early-access framing
+ * every step (per-step `joinOriginNote`), with honest waitlist framing
  * — JoinOrigin does not manage communities or staff events. Single H1,
  * step-by-step structure, FAQ mirrored 1:1 in `FAQPage` JSON-LD. "Room" is
  * pinned to the Matrix room (§6.3).
@@ -22,7 +22,7 @@ const content: GuideContent = {
     'Keep your community active — use the room and its feed as the retention surface, build rituals, share the organizer load, and create small contribution paths. Practical steps from JoinOrigin.',
   intro: [
     'Most communities do not die from a bad launch; they die from silence — the moment when people stop feeling connected and quietly drift away. Keeping a community active is therefore a connecting-people problem: people stay when they feel they belong, and they feel they belong when there is a visible, organized place where the community lives. That is exactly what JoinOrigin is being built to be.',
-    'JoinOrigin is a community OS in early access, designed to help people find, start, and organize communities — and in its digital model the room is the retention surface: a creator-controlled Matrix room where rituals, updates, and contributions stay visible, and whose activity flows into the feed that keeps members connected between gatherings. In-person events remain a downstream consequence of a formed community, never the core — the room and its feed are what keep the community alive day to day. JoinOrigin does not manage communities or staff events, and early access is still on the waitlist, but the platform’s entire design intent is to keep communities connected between gatherings.',
+    'JoinOrigin is a community OS still on the waitlist, designed to help people find, start, and organize communities — and in its digital model the room is the retention surface: a creator-controlled Matrix room where rituals, updates, and contributions stay visible, and whose activity flows into the feed that keeps members connected between gatherings. In-person events remain a downstream consequence of a formed community, never the core — the room and its feed are what keep the community alive day to day. JoinOrigin does not manage communities or staff events, and it is still on the waitlist, but the platform’s entire design intent is to keep communities connected between gatherings.',
     'This guide covers the practical mechanics of a healthy, active community: establishing rituals that make participation a habit, creating shared artifacts in the room, distributing the organizer load so no single person burns out, opening small contribution paths so every member can add value, and measuring the signals that tell you whether the community is actually alive. Every step maps to how JoinOrigin is designed to help.',
   ],
   dataPoints: [

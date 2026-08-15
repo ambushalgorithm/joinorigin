@@ -14,7 +14,7 @@ import { ContactView } from './contact-view';
 export const metadata: Metadata = createMetadata({
   title: 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
   description:
-    'Questions about JoinOrigin, early access, or starting a community? Contact the team — we reply within 2 business days.',
+    'Questions about JoinOrigin, the waitlist, or starting a community? Contact the team — we reply within 2 business days.',
   path: '/contact',
   keywords: [
     'contact JoinOrigin',

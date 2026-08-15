@@ -72,7 +72,7 @@ export const ROUTES: readonly SiteRoute[] = [
     path: '/contact',
     title: 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
     description:
-      'Questions about JoinOrigin, early access, or starting a community? Contact the team — we reply within 2 business days.',
+      'Questions about JoinOrigin, the waitlist, or starting a community? Contact the team — we reply within 2 business days.',
     changeFrequency: 'monthly',
     priority: 0.8,
   },

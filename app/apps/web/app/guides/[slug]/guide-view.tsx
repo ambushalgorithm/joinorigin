@@ -65,7 +65,7 @@ const StepNumber = styled.span`
 
 /** Per-step "How JoinOrigin helps here" note (TASK-320) — rendered under each
  *  step body so every guide visibly leads with how JoinOrigin solves the
- *  connecting-people problem. Honest early-access framing only. */
+ *  connecting-people problem. Honest waitlist framing only. */
 const JoinOriginNote = styled.div`
   margin-top: ${({ theme }) => theme.spacing.sm}px;
   padding: ${({ theme }) => theme.spacing.sm}px ${({ theme }) => theme.spacing.md}px;
@@ -252,7 +252,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
               <SectionTitle>{t('seoContent.guides.howJoinOriginHelps')}</SectionTitle>
               <BodyCopy>
                 JoinOrigin is building a community OS to help you find or start communities — the
-                steps above work today with tools you already have. When early access opens, the
+                steps above work today with tools you already have. When the platform opens, the
                 platform is designed to handle the structure, discovery, and organization so you can
                 focus on your members. Join the waitlist to be the first to know.
               </BodyCopy>

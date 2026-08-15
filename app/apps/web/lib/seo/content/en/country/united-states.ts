@@ -26,7 +26,7 @@ const content: CountryContent = {
     {
       question: 'How do I find communities near me in the United States?',
       answer:
-        'Start at the /location hub, choose your state and city, then browse the group-type pages — startup, creative, political, meetup, and small business communities. JoinOrigin is building the platform that makes discovery easy; joining the waitlist keeps you updated on early access.',
+        'Start at the /location hub, choose your state and city, then browse the group-type pages — startup, creative, political, meetup, and small business communities. JoinOrigin is building the platform that makes discovery easy; joining the waitlist keeps you updated as the platform opens.',
     },
     {
       question: 'Can I start a community in any U.S. city?',

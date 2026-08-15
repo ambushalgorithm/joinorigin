@@ -7,7 +7,7 @@ import type { GuideContent } from '../../types';
  * connects the online and (downstream) in-person parts of a hybrid
  * community — one community, one room, two entry points. JoinOrigin value
  * is woven into the intro and every step (per-step `joinOriginNote`), with
- * honest early-access framing — JoinOrigin does not provide event tools or
+ * honest waitlist framing — JoinOrigin does not provide event tools or
  * staff hybrid events. Single H1, step-by-step structure, FAQ mirrored 1:1
  * in `FAQPage` JSON-LD. "Room" is pinned to the Matrix room (§6.3) —
  * physical venues are described as venues/spaces, never "rooms".
@@ -21,7 +21,7 @@ const content: GuideContent = {
     'Run a hybrid community where the room connects in-person and online members — choose the right tools, design equal participation, and keep both audiences engaged. From JoinOrigin.',
   intro: [
     'A hybrid community brings people together in two places at once — physically in a venue and virtually through a screen — and the real challenge is again about people: making sure both audiences feel like they belong to one connected community, not two separate ones. JoinOrigin is being built with exactly that connecting-people goal.',
-    'JoinOrigin is a community OS in early access, designed to help people find, join, and start communities — so a hybrid group has one room that connects the online and the (downstream) in-person parts: local and remote members see the same community, the same rhythm, and the same next steps. In the digital connect→join→room model, the room is the persistent surface where both halves of the community live between gatherings; the in-person event is a downstream consequence that the room holds together before and after. JoinOrigin does not provide event tools or staff hybrid events, and early access is still on the waitlist, but the platform’s design intent is to give any community — hybrid included — a single room where its members stay connected.',
+    'JoinOrigin is a community OS still on the waitlist, designed to help people find, join, and start communities — so a hybrid group has one room that connects the online and the (downstream) in-person parts: local and remote members see the same community, the same rhythm, and the same next steps. In the digital connect→join→room model, the room is the persistent surface where both halves of the community live between gatherings; the in-person event is a downstream consequence that the room holds together before and after. JoinOrigin does not provide event tools or staff hybrid events, and it is still on the waitlist, but the platform’s design intent is to give any community — hybrid included — a single room where its members stay connected.',
     'This guide covers the practical decisions that make hybrid communities succeed: deciding whether hybrid is the right model, building the room that both audiences share, choosing a format and tools that fit, designing the gathering so in-person and online members share the same experience, managing the space so neither side dominates, and keeping a persistent room that holds the community together between gatherings. Every step shows where JoinOrigin is designed to help.',
   ],
   dataPoints: [

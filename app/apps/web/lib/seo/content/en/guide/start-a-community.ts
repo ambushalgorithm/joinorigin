@@ -7,7 +7,7 @@ import type { GuideContent } from '../../types';
  * room auto-created on publish (D1) → members join via link; venue/format
  * guidance stays as a downstream consequence, never the core. JoinOrigin
  * value is woven into the intro and every step (per-step `joinOriginNote`),
- * with honest early-access framing — JoinOrigin is on a waitlist and does
+ * with honest waitlist framing — JoinOrigin is on a waitlist and does
  * not run local events. Single H1, step-by-step structure, FAQ mirrored 1:1
  * in `FAQPage` JSON-LD. "Room" is pinned to the Matrix room (§6.3).
  */
@@ -20,7 +20,7 @@ const content: GuideContent = {
     'Learn how to start a community from scratch — publish a group, open its room, and bring members in through a join link. Practical steps from JoinOrigin.',
   intro: [
     'The hardest part of starting a community is rarely the venue, the agenda, or the budget — it is finding the first people who share your interest and giving them one clear place to connect. That is exactly the problem JoinOrigin is being built to solve.',
-    'JoinOrigin is a community OS in early access, designed around the digital loop: you publish a group, its room is auto-created, and members join through a link. The room is where the community actually lives — a creator-controlled Matrix room where members talk, share updates, and plan together from day one, instead of scattering across spreadsheets, scattered messages, and sign-up forms. In-person events exist only as a downstream consequence: once a group forms and its room is alive, members may choose to meet in person — and JoinOrigin does not run local events. While early access is still on the waitlist, the entire point of the platform is connecting people who would otherwise never meet, which is why every step in this guide maps to something JoinOrigin is designed to help with.',
+    'JoinOrigin is a community OS still on the waitlist, designed around the digital loop: you publish a group, its room is auto-created, and members join through a link. The room is where the community actually lives — a creator-controlled Matrix room where members talk, share updates, and plan together from day one, instead of scattering across spreadsheets, scattered messages, and sign-up forms. In-person events exist only as a downstream consequence: once a group forms and its room is alive, members may choose to meet in person — and JoinOrigin does not run local events. While the platform is still on the waitlist, its entire point is connecting people who would otherwise never meet, which is why every step in this guide maps to something JoinOrigin is designed to help with.',
     'The approach works for any community type: a founder circle, a book club, a local running group, a small business network, or an online professional community. The core principle is simple — people join because of a clear promise, and they stay because the experience reliably delivers on that promise. You do not need a big budget, a venue, or an existing audience to begin; you need a clear purpose, a realistic first step, and the discipline to repeat it.',
   ],
   dataPoints: [
@@ -48,37 +48,37 @@ const content: GuideContent = {
     {
       question: 'How can JoinOrigin help me start a community?',
       answer:
-        'JoinOrigin is being built so that publishing a group auto-creates its room and members join through a link — one organized digital home for a community’s purpose, people, and conversation. It is still on a waitlist and does not run local events, so the practical steps in this guide work today, and joining the waitlist keeps you first in line for early access.',
+        'JoinOrigin is being built so that publishing a group auto-creates its room and members join through a link — one organized digital home for a community’s purpose, people, and conversation. It is still on a waitlist and does not run local events, so the practical steps in this guide work today, and joining the waitlist keeps you first in line when the platform opens.',
     },
   ],
   sections: [
-    'Define a clear purpose. Decide who the community is for, what problem it solves, and what a successful member looks like. Write a one-sentence mission such as “a group for new founders in Brooklyn to share early-stage lessons”. JoinOrigin is designed to give your purpose a home — a public group page where the mission, audience, and promise are visible to anyone searching for a group like yours. Until early access opens, write the mission down and keep it in front of every invitation.',
-    'Publish the group and open its room. The digital core of a community is a published group with a room where members can talk. In the JoinOrigin model, publishing a group auto-creates its room (D1) — the creator owns it from second zero and can invite, remove, and assign roles inside Element. JoinOrigin is being built so there is no “create the chat later” step: publish the group and the room exists immediately, with the creator as room owner. Until early access opens, set up the group home and its room in the tools you already use.',
-    'Share your join link. A join link is the simplest invitation there is: one link, one click, and a new member lands in the room. Put the link everywhere — your group page, personal messages, and the places your audience already gathers. JoinOrigin is designed so that joining is a single action — clicking Join on the public page or following a direct invite link from a member. Until early access opens, one short, clear link to your group does the same job.',
+    'Define a clear purpose. Decide who the community is for, what problem it solves, and what a successful member looks like. Write a one-sentence mission such as “a group for new founders in Brooklyn to share early-stage lessons”. JoinOrigin is designed to give your purpose a home — a public group page where the mission, audience, and promise are visible to anyone searching for a group like yours. Until the platform opens, write the mission down and keep it in front of every invitation.',
+    'Publish the group and open its room. The digital core of a community is a published group with a room where members can talk. In the JoinOrigin model, publishing a group auto-creates its room (D1) — the creator owns it from second zero and can invite, remove, and assign roles inside Element. JoinOrigin is being built so there is no “create the chat later” step: publish the group and the room exists immediately, with the creator as room owner. Until the platform opens, set up the group home and its room in the tools you already use.',
+    'Share your join link. A join link is the simplest invitation there is: one link, one click, and a new member lands in the room. Put the link everywhere — your group page, personal messages, and the places your audience already gathers. JoinOrigin is designed so that joining is a single action — clicking Join on the public page or following a direct invite link from a member. Until the platform opens, one short, clear link to your group does the same job.',
     'Invite your first ten people personally. Personal invitations convert far better than public posts. Message friends, colleagues, and acquaintances who fit the audience, share the join link, and ask them to bring one other person. JoinOrigin is being built to make discovery easier — a place where people looking for a community can find yours and join through a link. Personal invitations still do the heavy lifting today, and every member you invite becomes a channel to their own network.',
     'Choose a format and cadence (a downstream choice). Once the group is forming, pick a recurring format — a monthly discussion, a weekly working session, a talk, or a social walk. Recurring beats one-off because habits are what turn strangers into members. This is a downstream choice: the group can gather in person later, but the room is already the community’s home. JoinOrigin is being built so organizers can describe their format once and members can see what to expect before they join — which reduces the hesitation that stops first-timers. Today, choose your format and state it in every invite.',
     'Run a great first gathering. If members choose to meet in person — arrive early, greet every person, run a short introduction round, and end with a clear next date. The goal of the first meeting is not size; it is that everyone leaves wanting to return. JoinOrigin does not staff or run gatherings — the experience is yours to design. The platform is designed to help the community form around it: one shared room where the date, recap, and next steps live.',
     'Collect feedback and iterate. After the first weeks, ask members what they want more or less of — in the room and at gatherings. Adjust the format, time, or venue based on their answers, not on what you imagined. JoinOrigin is being built to keep a community’s shared memory in one place — notes, decisions, and what members asked for — so iteration is visible instead of lost. Today, ask members directly in the room after each gathering.',
-    'Publish a consistent rhythm and grow slowly. Keep the same day and format for several months before expanding. Growth compounds through referrals when every member can describe what the community is in one sentence and share its join link. JoinOrigin is designed to help your community stay findable and connected as it grows — one place where the rhythm, the promise, the room, and the people are visible. Joining the waitlist keeps you informed as early access opens.',
+    'Publish a consistent rhythm and grow slowly. Keep the same day and format for several months before expanding. Growth compounds through referrals when every member can describe what the community is in one sentence and share its join link. JoinOrigin is designed to help your community stay findable and connected as it grows — one place where the rhythm, the promise, the room, and the people are visible. Joining the waitlist keeps you informed as the platform opens.',
   ],
   steps: [
     {
       title: 'Define a clear purpose',
       body: 'Decide who the community is for, what problem it solves, and what a successful member looks like. Write a one-sentence mission such as “a group for new founders in Brooklyn to share early-stage lessons”.',
       joinOriginNote:
-        'JoinOrigin is designed to give your purpose a home — a public group page where the mission, audience, and promise are visible to anyone searching for a group like yours. Until early access opens, write the mission down and keep it in front of every invitation.',
+        'JoinOrigin is designed to give your purpose a home — a public group page where the mission, audience, and promise are visible to anyone searching for a group like yours. Until the platform opens, write the mission down and keep it in front of every invitation.',
     },
     {
       title: 'Publish the group and open its room',
       body: 'The digital core of a community is a published group with a room where members can talk. In the JoinOrigin model, publishing a group auto-creates its room (D1) — the creator owns it from second zero and can invite, remove, and assign roles inside Element.',
       joinOriginNote:
-        'JoinOrigin is being built so there is no “create the chat later” step: publish the group and the room exists immediately, with the creator as room owner. Until early access opens, set up the group home and its room in the tools you already use.',
+        'JoinOrigin is being built so there is no “create the chat later” step: publish the group and the room exists immediately, with the creator as room owner. Until the platform opens, set up the group home and its room in the tools you already use.',
     },
     {
       title: 'Share your join link',
       body: 'A join link is the simplest invitation there is: one link, one click, and a new member lands in the room. Put the link everywhere — your group page, personal messages, and the places your audience already gathers.',
       joinOriginNote:
-        'JoinOrigin is designed so that joining is a single action — clicking Join on the public page or following a direct invite link from a member. Until early access opens, one short, clear link to your group does the same job.',
+        'JoinOrigin is designed so that joining is a single action — clicking Join on the public page or following a direct invite link from a member. Until the platform opens, one short, clear link to your group does the same job.',
     },
     {
       title: 'Invite your first ten people personally',
@@ -108,7 +108,7 @@ const content: GuideContent = {
       title: 'Publish a consistent rhythm and grow slowly',
       body: 'Keep the same day and format for several months before expanding. Growth compounds through referrals when every member can describe what the community is in one sentence and share its join link.',
       joinOriginNote:
-        'JoinOrigin is designed to help your community stay findable and connected as it grows — one place where the rhythm, the promise, the room, and the people are visible. Joining the waitlist keeps you informed as early access opens.',
+        'JoinOrigin is designed to help your community stay findable and connected as it grows — one place where the rhythm, the promise, the room, and the people are visible. Joining the waitlist keeps you informed as the platform opens.',
     },
   ],
 };

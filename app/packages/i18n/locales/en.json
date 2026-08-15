@@ -84,22 +84,22 @@
       },
       "q3": {
         "question": "What can I do once I am in?",
-        "answer": "Create a profile that works like a resume, post your idea as an idea page, start or join communities around anything, and invite the people you want to work with. Every community comes with its own room where members connect. The waitlist reserves your spot so your community is ready when early access opens."
+        "answer": "Create a profile that works like a resume, post your idea as an idea page, start or join communities around anything, and invite the people you want to work with. Every community comes with its own room where members connect. The waitlist reserves your spot so your community is ready when the platform opens."
       },
       "q4": {
-        "question": "When does early access start?",
-        "answer": "Early access opens in waves as the platform builds toward launch. Joining the waitlist now reserves your spot, and you will be invited as soon as your community is ready."
+        "question": "When does the platform open?",
+        "answer": "The platform opens in waves as it builds toward launch. Joining the waitlist now reserves your spot, and you will be invited as soon as your community is ready."
       },
       "q5": {
         "question": "How do I join?",
-        "answer": "Click Get Started anywhere on this page, enter your name and email, and you are on the waitlist. You will receive an invite when early access reaches your spot."
+        "answer": "Click Get Started anywhere on this page, enter your name and email, and you are on the waitlist. You will receive an invite when the platform reaches your spot."
       }
     }
   },
   "waitlist": {
     "close": "Close",
     "heading": "Join the waitlist",
-    "subcopy": "Be first in line for early access. We'll email you when your workspace is ready.",
+    "subcopy": "Be first in line for the platform. We'll email you when your workspace is ready.",
     "nameLabel": "Name",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "Email",
@@ -121,7 +121,7 @@
   },
   "ctaBand": {
     "headline": "Find your people. Build together.",
-    "subline": "Join 2,400+ builders on Origin's social collaboration network and be first in when early access opens.",
+    "subline": "Join 2,400+ builders on Origin's social collaboration network and be first in when the platform opens.",
     "joinLabel": "Join the waitlist",
     "contactLabel": "Contact us"
   },
@@ -341,7 +341,7 @@
       },
       "q4": {
         "question": "When is the MVP launching?",
-        "answer": "JoinOrigin is in early access. The Community Foundation (Phase 1) is the MVP and ships to waitlist members first."
+        "answer": "JoinOrigin is still on the waitlist. The Community Foundation (Phase 1) is the MVP and ships to waitlist members first."
       }
     }
   },
@@ -353,7 +353,7 @@
     },
     "sectionMission": "Our mission",
     "missionParagraph1": "Origin is building the operating system for human collaboration. Instead of five separate tools for chat, communities, and projects, your relationships live in one calm workspace. The social graph is the product: profiles, ideas, communities, communication, feed, projects, companies, and opportunities all hang off the same network of people.",
-    "missionParagraph2": "We are in early access today, with 2,400+ builders on the waitlist. As the platform grows through the roadmap — Community Foundation, Collaboration, Organization, AI Collaboration, and the Global Network — the mission stays the same: help people find each other and build together.",
+    "missionParagraph2": "We are still on the waitlist today, with 2,400+ builders already signed up. As the platform grows through the roadmap — Community Foundation, Collaboration, Organization, AI Collaboration, and the Global Network — the mission stays the same: help people find each other and build together.",
     "sectionPrinciples": "Guiding principles",
     "principles": {
       "peopleFirst": {
@@ -396,7 +396,7 @@
     "hero": {
       "eyebrow": "Contact",
       "title": "Talk to us",
-      "lead": "Have a question about Origin — the social collaboration network — early access, or starting a community? We'd love to hear from you. Ask us anything."
+      "lead": "Have a question about Origin — the social collaboration network — the waitlist, or starting a community? We'd love to hear from you. Ask us anything."
     },
     "sectionForm": "Send a message",
     "form": {
@@ -422,7 +422,7 @@
         "answer": "We reply within 2 business days. For the fastest answer, check the docs FAQ first."
       },
       "q2": {
-        "question": "Can I get early access?",
+        "question": "Can I get access when the platform opens?",
         "answer": "Yes — join the waitlist from the home page. Early members are the first in when the community OS launches."
       }
     }
@@ -431,19 +431,19 @@
     "hero": {
       "eyebrow": "Legal",
       "title": "Privacy Policy",
-      "lead": "When you join the waitlist we collect your name and email address through the waitlist form (POST /api/leads). That is the only personal information we ask for during early access."
+      "lead": "When you join the waitlist we collect your name and email address through the waitlist form (POST /api/leads). That is the only personal information we ask for on the waitlist."
     },
     "sectionCollect": "What we collect",
     "collect": {
       "waitlistDataTitle": "Waitlist data",
-      "waitlistDataBody": "Name and email, used only to tell you when early access opens and to invite you in.",
+      "waitlistDataBody": "Name and email, used only to tell you when the platform opens and to invite you in.",
       "analyticsTitle": "Analytics",
       "analyticsBody": "We run config-driven analytics (self-hosted Plausible by default) to understand aggregate usage of the site. A consent banner is planned for a later sprint.",
       "technicalDataTitle": "Basic technical data",
       "technicalDataBody": "Standard server logs and browser metadata that help us keep the site reliable."
     },
     "sectionUse": "How we use it",
-    "useBody": "We use the information we collect to operate the site, deliver early-access invites, and improve the product. We do not sell your personal information.",
+    "useBody": "We use the information we collect to operate the site, deliver waitlist invites, and improve the product. We do not sell your personal information.",
     "sectionIdentity": "Identity & flexibility",
     "identityBody": "You choose how you show up on Origin. You can participate with a named account or stay anonymous, and communities, chats, and idea pages can be open to everyone or gated by their organizers. These options roll out over time — the point is that you decide what you share and with whom.",
     "sectionRights": "Your rights",
@@ -473,7 +473,7 @@
     "sectionIntellectualProperty": "Intellectual property",
     "intellectualPropertyBody": "JoinOrigin's trademarks, logos, and site materials belong to JoinOrigin. You may not use them without our permission. Open-source components remain under their respective licenses.",
     "sectionDisclaimers": "Disclaimers",
-    "disclaimersBody": "The Service is provided “as is” during early access. We work to keep it reliable but do not guarantee that it will be uninterrupted or error-free.",
+    "disclaimersBody": "The Service is provided “as is” during the waitlist period. We work to keep it reliable but do not guarantee that it will be uninterrupted or error-free.",
     "sectionChanges": "Changes",
     "changesBody": "We may update these Terms as the Service evolves. Material changes will be announced on this page, and continued use after changes means you accept the updated Terms.",
     "sectionContact": "Contact",
