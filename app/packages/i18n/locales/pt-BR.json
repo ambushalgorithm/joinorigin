@@ -84,7 +84,7 @@
       },
       "q3": {
         "question": "O que posso fazer quando entrar?",
-        "answer": "Crie um perfil que funciona como um currículo, publique sua ideia como uma página de ideia, comece ou entre em comunidades sobre qualquer coisa e convide as pessoas com quem você quer trabalhar. A lista de espera reserva seu lugar para que sua comunidade esteja pronta quando o acesso antecipado abrir."
+        "answer": "Crie um perfil que funciona como um currículo, publique sua ideia como uma página de ideia, comece ou entre em comunidades sobre qualquer coisa e convide as pessoas com quem você quer trabalhar. Toda comunidade vem com sua própria sala, onde os membros se conectam. A lista de espera reserva seu lugar para que sua comunidade esteja pronta quando o acesso antecipado abrir."
       },
       "q4": {
         "question": "Quando começa o acesso antecipado?",
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Objetos principais",
       "title": "Tudo o que uma comunidade precisa, em um espaço de trabalho tranquilo",
-      "lead": "O Origin é uma rede social de colaboração construída em torno de oito objetos principais: perfis, ideias, comunidades, conversas, publicações, projetos, empresas e oportunidades. Em vez de cinco ferramentas separadas, seus relacionamentos vivem em um só lugar."
+      "lead": "O Origin é uma rede social de colaboração construída em torno de oito objetos principais: perfis, ideias, comunidades, comunicação, feed, projetos, empresas e oportunidades. Em vez de cinco ferramentas separadas, seus relacionamentos vivem em um só lugar."
     },
     "sectionCoreObjects": "Objetos principais",
     "coreObjects": {
@@ -143,7 +143,7 @@
         "body": "Grupos em torno de interesses, setores e objetivos — Fundadores de Startups, Pequenas Empresas, Clubes do Livro, Organizações Comunitárias, Qualquer Pessoa com uma Ideia — onde os membros se encontram."
       },
       "communication": {
-        "body": "Chat em tempo real, mensagens diretas e discussões em grupo pelo protocolo aberto Matrix, com criptografia de ponta a ponta por padrão."
+        "body": "Toda comunidade vem com uma sala Matrix: chat em tempo real, mensagens diretas e discussões em grupo pelo protocolo aberto Matrix, com criptografia de ponta a ponta por padrão."
       },
       "feed": {
         "body": "Publicações, atualizações e oportunidades das pessoas e comunidades que você segue — um fluxo tranquilo do que importa na sua rede."
@@ -210,7 +210,7 @@
       },
       "q2": {
         "question": "A JoinOrigin é de código aberto?",
-        "answer": "O código é aberto sob a AGPL-3.0, e a comunicação roda no protocolo aberto Matrix. O Origin em si é um produto hospedado mantido pela JoinOrigin — não há nada para autohospedar — e seus dados permanecem portáveis."
+        "answer": "O código é aberto sob a AGPL-3.0, e a comunicação roda no protocolo aberto Matrix. Seus dados permanecem portáveis."
       },
       "q3": {
         "question": "O que é o grafo social?",
@@ -270,7 +270,7 @@
       },
       "q3": {
         "question": "Meus dados são meus?",
-        "answer": "Sim. Você é dono da sua identidade e dos seus dados. O Origin é um produto hospedado, então não há nada para autohospedar — mas seus dados são portáveis e seu grafo de rede persiste no protocolo aberto Matrix."
+        "answer": "Sim. Você é dono da sua identidade e dos seus dados. Seus dados são portáveis e seu grafo de rede persiste no protocolo aberto Matrix."
       },
       "q4": {
         "question": "Como encontro minhas pessoas?",
@@ -278,7 +278,7 @@
       },
       "q5": {
         "question": "Posso participar anonimamente ou pelo nome?",
-        "answer": "Você escolhe. Você pode participar com uma conta identificada ou permanecer anônimo, e comunidades, chats e páginas de ideias podem ser abertos a todos ou restritos pelos organizadores. Essas opções serão implementadas gradualmente."
+        "answer": "Você escolhe. Você pode participar com uma conta identificada ou permanecer anônimo, e comunidades, salas e páginas de ideias podem ser abertos a todos ou restritos pelos organizadores. Essas opções serão implementadas gradualmente."
       }
     }
   },
@@ -300,7 +300,7 @@
         "body": "As ideias são o ponto de partida de tudo no Origin. Publique uma página de ideia para qualquer ideia — uma pequena empresa, uma startup de IA, um clube do livro, uma corrida de 10 km — e as pessoas que querem construí-la encontram você."
       },
       "communication": {
-        "body": "A comunicação abrange chat em tempo real, mensagens diretas e discussões em grupo. Ela roda no protocolo aberto Matrix, de modo que as conversas são portáveis e podem ter criptografia de ponta a ponta."
+        "body": "A comunicação acontece em uma sala Matrix — chat em tempo real, mensagens diretas e discussões em grupo. Ela roda no protocolo aberto Matrix, de modo que as conversas são portáveis e podem ter criptografia de ponta a ponta."
       },
       "feed": {
         "body": "O feed mostra publicações, atualizações e oportunidades das pessoas e comunidades que você segue. É um fluxo tranquilo do que importa na sua rede, não uma máquina de engajamento."
@@ -335,7 +335,7 @@
     },
     "sectionArchitecture": "Arquitetura e padrões",
     "architectureParagraph1": "O grafo social é o produto: cada objeto depende da rede de pessoas e seus relacionamentos. A comunicação usa o protocolo aberto Matrix (descentralizado, com criptografia de ponta a ponta), e seu grafo de rede e conexões persistem para sempre, de modo que seus relacionamentos permanecem portáveis.",
-    "architectureParagraph2": "O Origin é um produto hospedado construído com React, TypeScript e Next.js na web, e NestJS, PostgreSQL, Redis e Docker no backend. O que permanece aberto é o protocolo (Matrix), seus dados e o código-fonte sob a AGPL-3.0 — não há nada para autohospedar.",
+    "architectureParagraph2": "O Origin é construído com React, TypeScript e Next.js na web, e NestJS, PostgreSQL, Redis e Docker no backend. O que permanece aberto é o protocolo (Matrix), seus dados e o código-fonte sob a AGPL-3.0.",
     "faq": {
       "q1": {
         "question": "Com o que a JoinOrigin é construída?",
@@ -344,10 +344,6 @@
       "q2": {
         "question": "O que é o Matrix?",
         "answer": "O Matrix é um protocolo de comunicação aberto e descentralizado com criptografia de ponta a ponta. O Origin roda nele, de modo que as conversas — e o grafo de rede por trás delas — são portáveis e persistem para sempre."
-      },
-      "q3": {
-        "question": "A JoinOrigin pode ser autohospedada?",
-        "answer": "Não. O Origin é um produto hospedado mantido pela JoinOrigin, então não há nada para autohospedar. Seu grafo de rede e conexões persistem para sempre por meio do protocolo aberto Matrix, e seus dados permanecem portáveis."
       },
       "q4": {
         "question": "Quando o MVP será lançado?",
@@ -362,7 +358,7 @@
       "lead": "O Origin é uma rede social de colaboração construída sobre uma crença: o ativo mais valioso da internet não é conteúdo nem software — é a rede de pessoas e os relacionamentos que elas formam."
     },
     "sectionMission": "Nossa missão",
-    "missionParagraph1": "O Origin está construindo o sistema operacional para a colaboração humana. Em vez de cinco ferramentas separadas para chat, comunidades e projetos, seus relacionamentos vivem em um único espaço de trabalho tranquilo. O grafo social é o produto: perfis, ideias, comunidades, conversas, publicações, projetos, empresas e oportunidades dependem todos da mesma rede de pessoas.",
+    "missionParagraph1": "O Origin está construindo o sistema operacional para a colaboração humana. Em vez de cinco ferramentas separadas para chat, comunidades e projetos, seus relacionamentos vivem em um único espaço de trabalho tranquilo. O grafo social é o produto: perfis, ideias, comunidades, comunicação, feed, projetos, empresas e oportunidades dependem todos da mesma rede de pessoas.",
     "missionParagraph2": "Estamos em acesso antecipado hoje, com mais de 2.400 criadores na lista de espera. À medida que a plataforma cresce pelo roadmap — Fundação da Comunidade, Colaboração, Organização, Colaboração com IA e Rede Global — a missão permanece a mesma: ajudar as pessoas a se encontrarem e construírem juntas.",
     "sectionPrinciples": "Princípios norteadores",
     "principles": {
@@ -377,7 +373,7 @@
       },
       "openArchitecture": {
         "title": "Arquitetura Aberta",
-        "body": "A comunicação roda no protocolo aberto Matrix, e identidade, perfis, comunidades e o grafo social são portáveis e de propriedade do usuário. O Origin é hospedado, então não há nada para autohospedar."
+        "body": "A comunicação roda no protocolo aberto Matrix, e identidade, perfis, comunidades e o grafo social são portáveis e de propriedade do usuário."
       }
     },
     "sectionFounder": "Orientação do fundador",
@@ -398,7 +394,7 @@
       },
       "q3": {
         "question": "A JoinOrigin é de código aberto?",
-        "answer": "O código é aberto sob a AGPL-3.0, e a comunicação roda no protocolo aberto Matrix. O Origin é um produto hospedado mantido pela JoinOrigin — não há nada para autohospedar — e seu grafo de rede permanece portável. Consulte a documentação para obter detalhes."
+        "answer": "O código é aberto sob a AGPL-3.0, e a comunicação roda no protocolo aberto Matrix. Seu grafo de rede permanece portável. Consulte a documentação para obter detalhes."
       }
     }
   },
