@@ -83,7 +83,6 @@ export function FeaturesView() {
         meta: { avatars: true },
       }}
     >
-      
       <SectionBand variant="plain">
         <PageContainer>
           <Reveal>

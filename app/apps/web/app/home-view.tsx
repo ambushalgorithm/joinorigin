@@ -32,7 +32,6 @@ import {
   SectionTitle,
 } from '../components/menuPagePrimitives';
 
-
 /**
  * JoinOrigin homescreen view (spec `app/docs/design/sprint-3-homescreen-spec.md`,
  * discovery §5.1): sticky header, hero (typewriter H1 + orbit circles viz),

@@ -117,7 +117,7 @@ export function DocsView() {
           </Reveal>
         </PageContainer>
       </SectionBand>
-      
+
       <SectionBand variant="glass" accent="docs" glow>
         <PageContainer>
           <Reveal>

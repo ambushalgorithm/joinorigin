@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRef } from 'react';
 import styled from 'styled-components';
 
@@ -74,15 +73,6 @@ const Supporting = styled.p`
   @media (max-width: 480px) {
     font-size: 16px;
   }
-`;
-
-/** Explore hub cross-links row (TASK-316) under the hero CTA. */
-const ExploreLinks = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.lg}px;
-  margin-top: ${({ theme }) => theme.spacing.lg}px;
-  flex-wrap: wrap;
 `;
 
 const Trust = styled.div`

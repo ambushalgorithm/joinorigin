@@ -137,7 +137,7 @@
         "body": "Hồ sơ hoạt động như một sơ yếu lý lịch sống: nó mang theo kinh nghiệm, kỹ năng và ý tưởng của bạn — cùng danh tiếng và các mối quan hệ — xuyên suốt mọi cộng đồng và dự án bạn tham gia."
       },
       "ideas": {
-        "body": "Mỗi ý tưởng đều có một mái nhà. Đăng một trang ý tưởng cho bất cứ điều gì — một doanh nghiệp nhỏ, một startup AI, giúp đỡ người vô gia cư, một giải chạy 10 km, một câu lạc bộ sách, một giải bóng thiếu nhi — và tìm những người muốn cùng bạn xây dựng nó."
+        "body": "Ý tưởng là điểm khởi đầu của mọi thứ trên Origin. Đăng một trang ý tưởng cho bất cứ điều gì — một doanh nghiệp nhỏ, một startup AI, một câu lạc bộ sách, một giải chạy 10 km — và những người muốn xây dựng nó sẽ tìm thấy bạn."
       },
       "communities": {
         "body": "Các nhóm xoay quanh sở thích, ngành nghề và mục tiêu — Nhà sáng lập Startup, Doanh nghiệp nhỏ, Câu lạc bộ sách, Tổ chức cộng đồng, Bất kỳ ai có Ý tưởng — nơi các thành viên tìm thấy nhau."
@@ -146,7 +146,7 @@
         "body": "Mỗi cộng đồng đều đi kèm một phòng Matrix: trò chuyện thời gian thực, tin nhắn trực tiếp và thảo luận nhóm qua giao thức Matrix mở, được mã hóa đầu cuối mặc định."
       },
       "feed": {
-        "body": "Bài đăng, cập nhật và cơ hội từ những người và cộng đồng bạn theo dõi — một dòng chảy bình yên của những gì quan trọng trong mạng lưới của bạn."
+        "body": "Bảng tin hiển thị bài đăng, cập nhật và cơ hội từ những người và cộng đồng bạn theo dõi. Đó là một dòng chảy bình yên của những gì quan trọng trong mạng lưới của bạn, không phải một cỗ máy gây nghiện."
       },
       "projects": {
         "body": "Những nỗ lực cộng tác nơi các thành viên cộng đồng làm việc cùng nhau và biến các cuộc trò chuyện thành kết quả."
@@ -188,19 +188,13 @@
     "sectionRoadmap": "Lộ trình",
     "roadmap": {
       "phase1": {
-        "body": "Hồ sơ, cộng đồng, trò chuyện và đồ thị xã hội — lớp nền tảng nơi mọi người tìm thấy nhau."
+        "body": "Hồ sơ, cộng đồng, trò chuyện và đồ thị xã hội. Thước đo thành công: các thành viên hình thành cộng đồng bền vững."
       },
       "phase2": {
-        "body": "Các dự án, không gian làm việc dùng chung và công cụ biến cuộc trò chuyện của cộng đồng thành công việc chung."
+        "body": "Các dự án, không gian làm việc dùng chung và công cụ biến cuộc trò chuyện thành công việc chung. Thước đo thành công: các cộng đồng cùng nhau tạo ra kết quả."
       },
       "phase3": {
-        "body": "Các công ty và dự án kinh doanh do thành viên tạo lập, với quản lý đội nhóm và quản trị."
-      },
-      "phase4": {
-        "body": "Các trợ lý AI giúp cộng đồng điều phối, tóm tắt và ghép nối cơ hội."
-      },
-      "phase5": {
-        "body": "Các tiêu chuẩn mở và tính di động để mạng lưới kết nối xuyên các nền tảng, không chỉ bó hẹp trong một ống khói."
+        "body": "Các công ty và dự án kinh doanh do thành viên tạo lập, với quản lý đội nhóm và quản trị. Thước đo thành công: các công ty được thành lập bên trong mạng lưới."
       }
     },
     "faq": {
@@ -297,13 +291,13 @@
         "body": "Cộng đồng là những nhóm người chia sẻ sở thích, ngành nghề, mục tiêu và cơ hội — xoay quanh bất cứ ý tưởng nào. Chúng là trung tâm của sự gắn kết trên Origin và là cách các thành viên tìm thấy nhau."
       },
       "ideas": {
-        "body": "Ý tưởng là điểm khởi đầu của mọi thứ trên Origin. Đăng một trang ý tưởng cho bất cứ điều gì — một doanh nghiệp nhỏ, một startup AI, một câu lạc bộ sách, một giải chạy 10 km — và những người muốn xây dựng nó sẽ tìm thấy bạn."
+        "body": "Mỗi ý tưởng đều có một mái nhà. Đăng một trang ý tưởng cho bất cứ điều gì — một doanh nghiệp nhỏ, một startup AI, giúp đỡ người vô gia cư, một giải chạy 10 km, một câu lạc bộ sách, một giải bóng thiếu nhi — và tìm những người muốn cùng bạn xây dựng nó."
       },
       "communication": {
         "body": "Giao tiếp diễn ra trong một phòng Matrix — trò chuyện thời gian thực, tin nhắn trực tiếp và thảo luận nhóm. Nó chạy trên giao thức Matrix mở, để các cuộc trò chuyện luôn di động và có thể được mã hóa đầu cuối."
       },
       "feed": {
-        "body": "Bảng tin hiển thị bài đăng, cập nhật và cơ hội từ những người và cộng đồng bạn theo dõi. Đó là một dòng chảy bình yên của những gì quan trọng trong mạng lưới của bạn, không phải một cỗ máy gây nghiện."
+        "body": "Bài đăng, cập nhật và cơ hội từ những người và cộng đồng bạn theo dõi — một dòng chảy bình yên của những gì quan trọng trong mạng lưới của bạn."
       },
       "projects": {
         "body": "Dự án là những nỗ lực cộng tác nơi các thành viên cùng làm việc hướng tới một kết quả chung. Chúng kết nối đồ thị xã hội với công việc thực tế bên trong và giữa các cộng đồng."

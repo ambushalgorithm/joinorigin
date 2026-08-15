@@ -137,7 +137,7 @@
         "body": "Um perfil funciona como um currículo vivo: ele carrega sua experiência, habilidades e ideias — além de sua reputação e relacionamentos — por todas as comunidades e projetos de que você participa."
       },
       "ideas": {
-        "body": "Toda ideia tem um lar. Publique uma página de ideia para qualquer coisa — uma pequena empresa, uma startup de IA, ajudar pessoas em situação de rua, uma corrida de 10 km, um clube do livro, uma liga infantil — e encontre as pessoas que querem construí-la com você."
+        "body": "As ideias são o ponto de partida de tudo no Origin. Publique uma página de ideia para qualquer ideia — uma pequena empresa, uma startup de IA, um clube do livro, uma corrida de 10 km — e as pessoas que querem construí-la encontram você."
       },
       "communities": {
         "body": "Grupos em torno de interesses, setores e objetivos — Fundadores de Startups, Pequenas Empresas, Clubes do Livro, Organizações Comunitárias, Qualquer Pessoa com uma Ideia — onde os membros se encontram."
@@ -146,7 +146,7 @@
         "body": "Toda comunidade vem com uma sala Matrix: chat em tempo real, mensagens diretas e discussões em grupo pelo protocolo aberto Matrix, com criptografia de ponta a ponta por padrão."
       },
       "feed": {
-        "body": "Publicações, atualizações e oportunidades das pessoas e comunidades que você segue — um fluxo tranquilo do que importa na sua rede."
+        "body": "O feed mostra publicações, atualizações e oportunidades das pessoas e comunidades que você segue. É um fluxo tranquilo do que importa na sua rede, não uma máquina de engajamento."
       },
       "projects": {
         "body": "Esforços colaborativos em que os membros da comunidade trabalham juntos e transformam conversas em resultados."
@@ -188,19 +188,13 @@
     "sectionRoadmap": "Roadmap",
     "roadmap": {
       "phase1": {
-        "body": "Perfis, comunidades, chat e o grafo social — a camada base onde as pessoas se encontram."
+        "body": "Perfis, comunidades, chat e o grafo social. Métrica de sucesso: membros formando comunidades duradouras."
       },
       "phase2": {
-        "body": "Projetos, espaços de trabalho compartilhados e ferramentas que transformam conversas da comunidade em trabalho conjunto."
+        "body": "Projetos, espaços de trabalho compartilhados e ferramentas que transformam conversas em trabalho conjunto. Métrica de sucesso: comunidades entregando resultados juntas."
       },
       "phase3": {
-        "body": "Empresas e ventures formadas por membros, com gestão de equipe e governança."
-      },
-      "phase4": {
-        "body": "Agentes de IA que ajudam as comunidades a coordenar, resumir e conectar oportunidades."
-      },
-      "phase5": {
-        "body": "Padrões abertos e portabilidade para que a rede se conecte entre plataformas, não apenas dentro de um único silo."
+        "body": "Empresas e ventures formadas por membros, com gestão de equipe e governança. Métrica de sucesso: empresas fundadas dentro da rede."
       }
     },
     "faq": {
@@ -297,13 +291,13 @@
         "body": "As comunidades são grupos de pessoas que compartilham interesses, setores, objetivos e oportunidades — em torno de qualquer ideia. Elas são o centro do engajamento no Origin e a forma como os membros se encontram."
       },
       "ideas": {
-        "body": "As ideias são o ponto de partida de tudo no Origin. Publique uma página de ideia para qualquer ideia — uma pequena empresa, uma startup de IA, um clube do livro, uma corrida de 10 km — e as pessoas que querem construí-la encontram você."
+        "body": "Toda ideia tem um lar. Publique uma página de ideia para qualquer coisa — uma pequena empresa, uma startup de IA, ajudar pessoas em situação de rua, uma corrida de 10 km, um clube do livro, uma liga infantil — e encontre as pessoas que querem construí-la com você."
       },
       "communication": {
         "body": "A comunicação acontece em uma sala Matrix — chat em tempo real, mensagens diretas e discussões em grupo. Ela roda no protocolo aberto Matrix, de modo que as conversas são portáveis e podem ter criptografia de ponta a ponta."
       },
       "feed": {
-        "body": "O feed mostra publicações, atualizações e oportunidades das pessoas e comunidades que você segue. É um fluxo tranquilo do que importa na sua rede, não uma máquina de engajamento."
+        "body": "Publicações, atualizações e oportunidades das pessoas e comunidades que você segue — um fluxo tranquilo do que importa na sua rede."
       },
       "projects": {
         "body": "Os projetos são esforços colaborativos em que os membros trabalham juntos em direção a um resultado compartilhado. Eles conectam o grafo social ao trabalho real dentro e entre as comunidades."

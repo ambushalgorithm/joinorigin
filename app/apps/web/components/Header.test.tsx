@@ -31,10 +31,10 @@ describe('Header', () => {
     // Explore dropdown (TASK-316) + retained top-level links.
     expect(screen.getByTestId('explore-menu-toggle')).toBeInTheDocument();
     expect(screen.getByText('Explore')).toBeInTheDocument();
-    for (const label of ['Locations', 'Guides', 'Glossary']) {
+    for (const label of ['Community', 'Guides', 'Locations']) {
       expect(screen.getByText(label)).toBeInTheDocument();
     }
-    for (const label of ['Features', 'Community', 'Docs', 'About']) {
+    for (const label of ['Features', 'Docs', 'About']) {
       expect(screen.getByText(label)).toBeInTheDocument();
     }
     expect(screen.getByText('Log In')).toBeInTheDocument();
@@ -53,17 +53,17 @@ describe('Header', () => {
     // desktop `<nav>` is `display:none` here; `hidden: true` scopes the role
     // query to the rendered anchors (real visibility is covered by e2e).
     const menu = screen.getByTestId('explore-menu');
-    expect(within(menu).getByRole('link', { name: 'Locations', hidden: true })).toHaveAttribute(
+    expect(within(menu).getByRole('link', { name: 'Community', hidden: true })).toHaveAttribute(
       'href',
-      '/location',
+      '/community',
     );
     expect(within(menu).getByRole('link', { name: 'Guides', hidden: true })).toHaveAttribute(
       'href',
       '/guides',
     );
-    expect(within(menu).getByRole('link', { name: 'Glossary', hidden: true })).toHaveAttribute(
+    expect(within(menu).getByRole('link', { name: 'Locations', hidden: true })).toHaveAttribute(
       'href',
-      '/glossary',
+      '/location',
     );
     // ESC closes the dropdown.
     await user.keyboard('{Escape}');
@@ -115,16 +115,16 @@ describe('Header', () => {
 
     // The Explore group label + links come first, then the retained links.
     expect(within(menu).getByText('Explore')).toBeInTheDocument();
+    expect(within(menu).getByRole('link', { name: 'Community' })).toHaveAttribute(
+      'href',
+      '/community',
+    );
+    expect(within(menu).getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/guides');
     expect(within(menu).getByRole('link', { name: 'Locations' })).toHaveAttribute(
       'href',
       '/location',
     );
-    expect(within(menu).getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/guides');
-    expect(within(menu).getByRole('link', { name: 'Glossary' })).toHaveAttribute(
-      'href',
-      '/glossary',
-    );
-    for (const label of ['Features', 'Community', 'Docs', 'About']) {
+    for (const label of ['Features', 'Docs', 'About']) {
       expect(within(menu).getByText(label)).toBeInTheDocument();
     }
   });

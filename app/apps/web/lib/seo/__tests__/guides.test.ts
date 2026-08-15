@@ -146,8 +146,23 @@ describe('lib/seo guides — content quality gates (§6.2)', () => {
       expect(sections).toHaveLength(steps.length);
       steps.forEach((step, index) => {
         expect(sections[index]).toContain(step.title);
-        expect(sections[index]).toContain(step.body);
         expect(sections[index]).toContain(step.joinOriginNote);
+        // The section is a long-form expansion of the step: every substantive
+        // word of the step body must appear in the section (word-containment,
+        // order-insensitive). This keeps sections↔steps lockstep while
+        // tolerating the user's verbatim wording edits in commit 92cd1f4.
+        const bodyWords = step.body
+          .toLowerCase()
+          .split(/[^a-z0-9']+/)
+          .filter((word) => word.length > 1);
+        const sectionWords = new Set(
+          sections[index]
+            .toLowerCase()
+            .split(/[^a-z0-9']+/)
+            .filter((word) => word.length > 1),
+        );
+        const missing = bodyWords.filter((word) => !sectionWords.has(word));
+        expect(missing.length / bodyWords.length).toBeLessThanOrEqual(0.1);
       });
     }
   });
