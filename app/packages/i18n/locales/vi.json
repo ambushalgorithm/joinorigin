@@ -84,7 +84,7 @@
       },
       "q3": {
         "question": "Tôi có thể làm gì khi đã tham gia?",
-        "answer": "Tạo hồ sơ hoạt động như sơ yếu lý lịch, đăng ý tưởng dưới dạng một trang ý tưởng, bắt đầu hoặc tham gia các cộng đồng xoay quanh bất cứ điều gì, và mời những người bạn muốn hợp tác cùng. Danh sách chờ giữ chỗ cho bạn để cộng đồng của bạn sẵn sàng khi mở cửa truy cập sớm."
+        "answer": "Tạo hồ sơ hoạt động như sơ yếu lý lịch, đăng ý tưởng dưới dạng một trang ý tưởng, bắt đầu hoặc tham gia các cộng đồng xoay quanh bất cứ điều gì, và mời những người bạn muốn hợp tác cùng. Mỗi cộng đồng đều có phòng riêng nơi các thành viên kết nối với nhau. Danh sách chờ giữ chỗ cho bạn để cộng đồng của bạn sẵn sàng khi mở cửa truy cập sớm."
       },
       "q4": {
         "question": "Khi nào truy cập sớm bắt đầu?",
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Đối tượng cốt lõi",
       "title": "Mọi thứ một cộng đồng cần, trong một không gian làm việc bình yên",
-      "lead": "Origin là một mạng lưới cộng tác xã hội được xây dựng quanh tám đối tượng cốt lõi: hồ sơ, ý tưởng, cộng đồng, cuộc trò chuyện, bài đăng, dự án, công ty và cơ hội. Thay vì năm công cụ riêng biệt, các mối quan hệ của bạn nằm ở một nơi duy nhất."
+      "lead": "Origin là một mạng lưới cộng tác xã hội được xây dựng quanh tám đối tượng cốt lõi: hồ sơ, ý tưởng, cộng đồng, giao tiếp, bảng tin, dự án, công ty và cơ hội. Thay vì năm công cụ riêng biệt, các mối quan hệ của bạn nằm ở một nơi duy nhất."
     },
     "sectionCoreObjects": "Đối tượng cốt lõi",
     "coreObjects": {
@@ -143,7 +143,7 @@
         "body": "Các nhóm xoay quanh sở thích, ngành nghề và mục tiêu — Nhà sáng lập Startup, Doanh nghiệp nhỏ, Câu lạc bộ sách, Tổ chức cộng đồng, Bất kỳ ai có Ý tưởng — nơi các thành viên tìm thấy nhau."
       },
       "communication": {
-        "body": "Trò chuyện thời gian thực, tin nhắn trực tiếp và thảo luận nhóm qua giao thức Matrix mở, được mã hóa đầu cuối mặc định."
+        "body": "Mỗi cộng đồng đều đi kèm một phòng Matrix: trò chuyện thời gian thực, tin nhắn trực tiếp và thảo luận nhóm qua giao thức Matrix mở, được mã hóa đầu cuối mặc định."
       },
       "feed": {
         "body": "Bài đăng, cập nhật và cơ hội từ những người và cộng đồng bạn theo dõi — một dòng chảy bình yên của những gì quan trọng trong mạng lưới của bạn."
@@ -210,7 +210,7 @@
       },
       "q2": {
         "question": "JoinOrigin có mã nguồn mở không?",
-        "answer": "Mã nguồn mở theo AGPL-3.0, và giao tiếp chạy trên giao thức Matrix mở. Bản thân Origin là một sản phẩm được lưu trữ vận hành bởi JoinOrigin — không có gì để tự lưu trữ — và dữ liệu của bạn luôn di động."
+        "answer": "Mã nguồn mở theo AGPL-3.0, và giao tiếp chạy trên giao thức Matrix mở. Dữ liệu của bạn luôn di động."
       },
       "q3": {
         "question": "Đồ thị xã hội là gì?",
@@ -270,7 +270,7 @@
       },
       "q3": {
         "question": "Dữ liệu của tôi có phải của tôi không?",
-        "answer": "Có. Bạn sở hữu danh tính và dữ liệu của mình. Origin là một sản phẩm được lưu trữ, nên không có gì để tự lưu trữ — nhưng dữ liệu của bạn di động và đồ thị mạng lưới của bạn tồn tại bền vững trên giao thức Matrix mở."
+        "answer": "Có. Bạn sở hữu danh tính và dữ liệu của mình. Dữ liệu của bạn di động và đồ thị mạng lưới của bạn tồn tại bền vững trên giao thức Matrix mở."
       },
       "q4": {
         "question": "Làm thế nào để tôi tìm thấy những người của mình?",
@@ -278,7 +278,7 @@
       },
       "q5": {
         "question": "Tôi có thể tham gia ẩn danh hoặc bằng tên không?",
-        "answer": "Bạn tự lựa chọn. Bạn có thể tham gia bằng tài khoản có tên hoặc giữ ẩn danh, và các cộng đồng, cuộc trò chuyện và trang ý tưởng có thể mở cho mọi người hoặc bị giới hạn bởi người tổ chức. Các tùy chọn này sẽ được triển khai dần theo thời gian."
+        "answer": "Bạn tự lựa chọn. Bạn có thể tham gia bằng tài khoản có tên hoặc giữ ẩn danh, và các cộng đồng, phòng và trang ý tưởng có thể mở cho mọi người hoặc bị giới hạn bởi người tổ chức. Các tùy chọn này sẽ được triển khai dần theo thời gian."
       }
     }
   },
@@ -300,7 +300,7 @@
         "body": "Ý tưởng là điểm khởi đầu của mọi thứ trên Origin. Đăng một trang ý tưởng cho bất cứ điều gì — một doanh nghiệp nhỏ, một startup AI, một câu lạc bộ sách, một giải chạy 10 km — và những người muốn xây dựng nó sẽ tìm thấy bạn."
       },
       "communication": {
-        "body": "Giao tiếp bao gồm trò chuyện thời gian thực, tin nhắn trực tiếp và thảo luận nhóm. Nó chạy trên giao thức Matrix mở, để các cuộc trò chuyện luôn di động và có thể được mã hóa đầu cuối."
+        "body": "Giao tiếp diễn ra trong một phòng Matrix — trò chuyện thời gian thực, tin nhắn trực tiếp và thảo luận nhóm. Nó chạy trên giao thức Matrix mở, để các cuộc trò chuyện luôn di động và có thể được mã hóa đầu cuối."
       },
       "feed": {
         "body": "Bảng tin hiển thị bài đăng, cập nhật và cơ hội từ những người và cộng đồng bạn theo dõi. Đó là một dòng chảy bình yên của những gì quan trọng trong mạng lưới của bạn, không phải một cỗ máy gây nghiện."
@@ -335,7 +335,7 @@
     },
     "sectionArchitecture": "Kiến trúc & tiêu chuẩn",
     "architectureParagraph1": "Đồ thị xã hội chính là sản phẩm: mọi đối tượng đều treo trên mạng lưới con người và các mối quan hệ của họ. Giao tiếp sử dụng giao thức Matrix mở (phi tập trung, mã hóa đầu cuối), và đồ thị mạng lưới cùng các kết nối của bạn tồn tại mãi mãi, để các mối quan hệ của bạn luôn di động.",
-    "architectureParagraph2": "Origin là một sản phẩm được lưu trữ, xây dựng bằng React, TypeScript và Next.js trên web, cùng NestJS, PostgreSQL, Redis và Docker ở backend. Điều luôn mở là giao thức (Matrix), dữ liệu của bạn và mã nguồn theo AGPL-3.0 — không có gì để tự lưu trữ.",
+    "architectureParagraph2": "Origin được xây dựng bằng React, TypeScript và Next.js trên web, cùng NestJS, PostgreSQL, Redis và Docker ở backend. Điều luôn mở là giao thức (Matrix), dữ liệu của bạn và mã nguồn theo AGPL-3.0.",
     "faq": {
       "q1": {
         "question": "JoinOrigin được xây dựng trên nền tảng gì?",
@@ -344,10 +344,6 @@
       "q2": {
         "question": "Matrix là gì?",
         "answer": "Matrix là một giao thức giao tiếp mở, phi tập trung với mã hóa đầu cuối. Origin chạy trên nó, để các cuộc trò chuyện — và đồ thị mạng lưới đằng sau chúng — luôn di động và tồn tại mãi mãi."
-      },
-      "q3": {
-        "question": "JoinOrigin có thể tự lưu trữ được không?",
-        "answer": "Không. Origin là một sản phẩm được lưu trữ vận hành bởi JoinOrigin, nên không có gì để tự lưu trữ. Đồ thị mạng lưới và các kết nối của bạn tồn tại mãi mãi qua giao thức Matrix mở, và dữ liệu của bạn luôn di động."
       },
       "q4": {
         "question": "Khi nào MVP ra mắt?",
@@ -362,7 +358,7 @@
       "lead": "Origin là một mạng lưới cộng tác xã hội được xây dựng trên một niềm tin: tài sản giá trị nhất trên internet không phải là nội dung hay phần mềm — mà là mạng lưới con người và các mối quan hệ họ hình thành."
     },
     "sectionMission": "Sứ mệnh của chúng tôi",
-    "missionParagraph1": "Origin đang xây dựng hệ điều hành cho sự cộng tác của con người. Thay vì năm công cụ riêng biệt cho trò chuyện, cộng đồng và dự án, các mối quan hệ của bạn sống trong một không gian làm việc bình yên. Đồ thị xã hội chính là sản phẩm: hồ sơ, ý tưởng, cộng đồng, cuộc trò chuyện, bài đăng, dự án, công ty và cơ hội đều treo trên cùng một mạng lưới con người.",
+    "missionParagraph1": "Origin đang xây dựng hệ điều hành cho sự cộng tác của con người. Thay vì năm công cụ riêng biệt cho trò chuyện, cộng đồng và dự án, các mối quan hệ của bạn sống trong một không gian làm việc bình yên. Đồ thị xã hội chính là sản phẩm: hồ sơ, ý tưởng, cộng đồng, giao tiếp, bảng tin, dự án, công ty và cơ hội đều treo trên cùng một mạng lưới con người.",
     "missionParagraph2": "Hôm nay chúng tôi đang trong giai đoạn truy cập sớm, với 2.400+ nhà sáng lập trong danh sách chờ. Khi nền tảng phát triển qua lộ trình — Nền tảng Cộng đồng, Hợp tác, Tổ chức, Hợp tác AI và Mạng lưới Toàn cầu — sứ mệnh vẫn không đổi: giúp mọi người tìm thấy nhau và cùng nhau xây dựng.",
     "sectionPrinciples": "Các nguyên tắc chỉ đạo",
     "principles": {
@@ -377,7 +373,7 @@
       },
       "openArchitecture": {
         "title": "Kiến trúc Mở",
-        "body": "Giao tiếp chạy trên giao thức Matrix mở, và danh tính, hồ sơ, cộng đồng cùng đồ thị xã hội đều di động và thuộc quyền sở hữu của người dùng. Origin được lưu trữ, nên không có gì để tự lưu trữ."
+        "body": "Giao tiếp chạy trên giao thức Matrix mở, và danh tính, hồ sơ, cộng đồng cùng đồ thị xã hội đều di động và thuộc quyền sở hữu của người dùng."
       }
     },
     "sectionFounder": "Định hướng từ nhà sáng lập",
@@ -398,7 +394,7 @@
       },
       "q3": {
         "question": "JoinOrigin có mã nguồn mở không?",
-        "answer": "Mã nguồn mở theo AGPL-3.0, và giao tiếp chạy trên giao thức Matrix mở. Origin là một sản phẩm được lưu trữ vận hành bởi JoinOrigin — không có gì để tự lưu trữ — và đồ thị mạng lưới của bạn luôn di động. Xem tài liệu để biết chi tiết."
+        "answer": "Mã nguồn mở theo AGPL-3.0, và giao tiếp chạy trên giao thức Matrix mở. Đồ thị mạng lưới của bạn luôn di động. Xem tài liệu để biết chi tiết."
       }
     }
   },
