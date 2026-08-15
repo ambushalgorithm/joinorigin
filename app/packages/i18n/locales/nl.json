@@ -84,22 +84,22 @@
       },
       "q3": {
         "question": "Wat kan ik doen zodra ik binnen ben?",
-        "answer": "Maak een profiel dat werkt als een cv, plaats je idee als idee-pagina, start of sluit je aan bij community's rondom alles en nodig de mensen uit waarmee je wilt werken. Elke community heeft een eigen kamer waar leden elkaar ontmoeten. De wachtlijst reserveert je plek, zodat je community klaar is wanneer de vroege toegang opent."
+        "answer": "Maak een profiel dat werkt als een cv, plaats je idee als idee-pagina, start of sluit je aan bij community's rondom alles en nodig de mensen uit waarmee je wilt werken. Elke community heeft een eigen kamer waar leden elkaar ontmoeten. De wachtlijst reserveert je plek, zodat je community klaar is wanneer het platform opent."
       },
       "q4": {
-        "question": "Wanneer begint de vroege toegang?",
-        "answer": "De vroege toegang opent in fases terwijl het platform zich voorbereidt op de lancering. Door je nu aan te melden voor de wachtlijst reserveer je je plek en word je uitgenodigd zodra je community klaar is."
+        "question": "Wanneer opent het platform?",
+        "answer": "Het platform opent in fases terwijl het zich voorbereidt op de lancering. Door je nu aan te melden voor de wachtlijst reserveer je je plek en word je uitgenodigd zodra je community klaar is."
       },
       "q5": {
         "question": "Hoe doe ik mee?",
-        "answer": "Klik ergens op deze pagina op “Aan de slag”, vul je naam en e-mailadres in en je staat op de wachtlijst. Je ontvangt een uitnodiging wanneer de vroege toegang jouw plek bereikt."
+        "answer": "Klik ergens op deze pagina op “Aan de slag”, vul je naam en e-mailadres in en je staat op de wachtlijst. Je ontvangt een uitnodiging wanneer het platform jouw plek bereikt."
       }
     }
   },
   "waitlist": {
     "close": "Sluiten",
     "heading": "Op de wachtlijst",
-    "subcopy": "Wees als eerste in de rij voor vroege toegang. We mailen je zodra je werkruimte klaar is.",
+    "subcopy": "Wees als eerste in de rij voor het platform. We mailen je zodra je werkruimte klaar is.",
     "nameLabel": "Naam",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-mailadres",
@@ -121,7 +121,7 @@
   },
   "ctaBand": {
     "headline": "Vind je mensen. Bouw samen.",
-    "subline": "Sluit je aan bij 2.400+ bouwers op het sociale samenwerkingsnetwerk van Origin en wees als eerste binnen wanneer de vroege toegang opent.",
+    "subline": "Sluit je aan bij 2.400+ bouwers op het sociale samenwerkingsnetwerk van Origin en wees als eerste binnen wanneer het platform opent.",
     "joinLabel": "Op de wachtlijst",
     "contactLabel": "Neem contact op"
   },
@@ -341,7 +341,7 @@
       },
       "q4": {
         "question": "Wanneer lanceert de MVP?",
-        "answer": "JoinOrigin is in vroege toegang. De Community Foundation (Fase 1) is de MVP en wordt als eerste naar wachtlijstleden uitgerold."
+        "answer": "JoinOrigin staat nog op de wachtlijst. De Community Foundation (Fase 1) is de MVP en wordt als eerste naar wachtlijstleden uitgerold."
       }
     }
   },
@@ -353,7 +353,7 @@
     },
     "sectionMission": "Onze missie",
     "missionParagraph1": "Origin bouwt het besturingssysteem voor menselijke samenwerking. In plaats van vijf losse tools voor chat, community's en projecten leven je relaties in één rustige werkruimte. De sociale graaf is het product: profielen, ideeën, community's, communicatie, feed, projecten, bedrijven en kansen hangen allemaal af van hetzelfde netwerk van mensen.",
-    "missionParagraph2": "We zijn vandaag in vroege toegang, met 2.400+ bouwers op de wachtlijst. Terwijl het platform groeit via de roadmap — Community Foundation, Samenwerking, Organisatie, AI-samenwerking en het mondiale netwerk — blijft de missie hetzelfde: mensen helpen elkaar te vinden en samen te bouwen.",
+    "missionParagraph2": "We staan vandaag nog op de wachtlijst, met 2.400+ bouwers die zich al hebben aangemeld. Terwijl het platform groeit via de roadmap — Community Foundation, Samenwerking, Organisatie, AI-samenwerking en het mondiale netwerk — blijft de missie hetzelfde: mensen helpen elkaar te vinden en samen te bouwen.",
     "sectionPrinciples": "Leidende principes",
     "principles": {
       "peopleFirst": {
@@ -396,7 +396,7 @@
     "hero": {
       "eyebrow": "Contact",
       "title": "Praat met ons",
-      "lead": "Heb je een vraag over Origin — het sociale samenwerkingsnetwerk — over vroege toegang of het starten van een community? We horen graag van je. Vraag ons gerust van alles."
+      "lead": "Heb je een vraag over Origin — het sociale samenwerkingsnetwerk — over de wachtlijst of het starten van een community? We horen graag van je. Vraag ons gerust van alles."
     },
     "sectionForm": "Stuur een bericht",
     "form": {
@@ -422,7 +422,7 @@
         "answer": "We reageren binnen 2 werkdagen. Voor het snelste antwoord kun je eerst de FAQ in de docs raadplegen."
       },
       "q2": {
-        "question": "Kan ik vroege toegang krijgen?",
+        "question": "Kan ik toegang krijgen wanneer het platform opent?",
         "answer": "Ja — meld je via de startpagina aan voor de wachtlijst. Vroege leden zijn als eerste binnen wanneer het community-besturingssysteem lanceert."
       }
     }
@@ -431,19 +431,19 @@
     "hero": {
       "eyebrow": "Juridisch",
       "title": "Privacybeleid",
-      "lead": "Wanneer je je aanmeldt voor de wachtlijst verzamelen we je naam en e-mailadres via het wachtlijstformulier (POST /api/leads). Dat is de enige persoonlijke informatie die we tijdens de vroege toegang vragen."
+      "lead": "Wanneer je je aanmeldt voor de wachtlijst verzamelen we je naam en e-mailadres via het wachtlijstformulier (POST /api/leads). Dat is de enige persoonlijke informatie die we op de wachtlijst vragen."
     },
     "sectionCollect": "Wat we verzamelen",
     "collect": {
       "waitlistDataTitle": "Wachtlijstgegevens",
-      "waitlistDataBody": "Naam en e-mailadres, uitsluitend gebruikt om je te laten weten wanneer de vroege toegang opent en om je uit te nodigen.",
+      "waitlistDataBody": "Naam en e-mailadres, uitsluitend gebruikt om je te laten weten wanneer het platform opent en om je uit te nodigen.",
       "analyticsTitle": "Analytics",
       "analyticsBody": "We gebruiken config-gestuurde analytics (standaard zelf gehost Plausible) om het geaggregeerde gebruik van de site te begrijpen. Een toestemmingsbanner is gepland voor een latere sprint.",
       "technicalDataTitle": "Basis technische gegevens",
       "technicalDataBody": "Standaard serverlogs en browsermetadata die ons helpen de site betrouwbaar te houden."
     },
     "sectionUse": "Hoe we het gebruiken",
-    "useBody": "We gebruiken de verzamelde informatie om de site te beheren, uitnodigingen voor vroege toegang te versturen en het product te verbeteren. We verkopen je persoonlijke informatie niet.",
+    "useBody": "We gebruiken de verzamelde informatie om de site te beheren, uitnodigingen voor de wachtlijst te versturen en het product te verbeteren. We verkopen je persoonlijke informatie niet.",
     "sectionIdentity": "Identiteit & flexibiliteit",
     "identityBody": "Jij kiest hoe je op Origin verschijnt. Je kunt meedoen met een account op naam of anoniem blijven, en community's, chats en idee-pagina's kunnen open zijn voor iedereen of beperkt worden door hun organisatoren. Deze opties worden geleidelijk uitgerold — het punt is dat jij bepaalt wat je deelt en met wie.",
     "sectionRights": "Jouw rechten",
@@ -473,7 +473,7 @@
     "sectionIntellectualProperty": "Intellectueel eigendom",
     "intellectualPropertyBody": "De handelsmerken, logo's en websitematerialen van JoinOrigin zijn van JoinOrigin. Je mag ze niet gebruiken zonder onze toestemming. Open-sourcecomponenten blijven onder hun respectievelijke licenties.",
     "sectionDisclaimers": "Vrijwaringen",
-    "disclaimersBody": "De Dienst wordt tijdens de vroege toegang “as is” aangeboden. We werken eraan hem betrouwbaar te houden, maar garanderen niet dat hij ononderbroken of foutloos is.",
+    "disclaimersBody": "De Dienst wordt tijdens de wachtlijstperiode “as is” aangeboden. We werken eraan hem betrouwbaar te houden, maar garanderen niet dat hij ononderbroken of foutloos is.",
     "sectionChanges": "Wijzigingen",
     "changesBody": "We kunnen deze voorwaarden bijwerken naarmate de Dienst evolueert. Materiële wijzigingen worden op deze pagina aangekondigd en door de Dienst na wijzigingen te blijven gebruiken aanvaard je de bijgewerkte voorwaarden.",
     "sectionContact": "Contact",
