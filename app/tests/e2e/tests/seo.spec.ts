@@ -322,8 +322,8 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     expect(text).toContain('[/guides/moderation](');
     expect(text).toContain('## Glossary');
     expect(text).toContain('[/glossary](');
-    // ~2 KB budget so LLM crawlers hold the file in context.
-    expect(Buffer.byteLength(text, 'utf8')).toBeLessThanOrEqual(2 * 1024);
+    // ~3 KB budget so LLM crawlers hold the file in context (12-guide set, TASK-353).
+    expect(Buffer.byteLength(text, 'utf8')).toBeLessThanOrEqual(3 * 1024);
     // Long tail never enumerated (Tier-3 city pages are sitemap-only).
     expect(text).not.toContain('/location/united-states/texas/austin');
     expect(text).not.toContain('/de/location');
