@@ -120,7 +120,7 @@ export function buildLlmsText(): string {
     '',
     '> Origin is a social collaboration network — a community OS where people',
     '> post ideas, form communities, and build projects together.',
-    '> Early access; join the waitlist.',
+    '> Still on the waitlist; join us.',
     '',
   ];
 
