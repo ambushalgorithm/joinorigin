@@ -44,26 +44,26 @@ import { faqPage } from '../../lib/seo/jsonLd';
  */
 
 const CORE_OBJECT_KEYS = [
-  'profiles',
   'ideas',
+  'projects',
+  'feed',
   'communities',
   'communication',
-  'feed',
-  'projects',
-  'companies',
+  'profiles',
   'opportunities',
+  'companies',
 ] as const;
 
 const COMPARISON_KEYS = ['linkedin', 'discord', 'reddit', 'github'] as const;
 
-const ROADMAP_PHASE_KEYS = ['phase1', 'phase2', 'phase3', 'phase4', 'phase5'] as const;
+const ROADMAP_PHASE_KEYS = ['phase1', 'phase2', 'phase3'] as const;
 
 /** Explore hub cross-links row (TASK-316) — additive, keeps copy intact. */
 const ExploreLinks = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.lg}px;
-  margin-top: ${({ theme }) => theme.spacing.md}px;
+  margin: ${({ theme }) => theme.spacing.md}px ${({ theme }) => theme.spacing.md}px;
   flex-wrap: wrap;
 `;
 
@@ -83,26 +83,7 @@ export function FeaturesView() {
         meta: { avatars: true },
       }}
     >
-      <SectionBand variant="glass" accent="features" glow>
-        <PageContainer>
-          <Reveal>
-            <Section>
-              <SectionTitle>{t('features.sectionCoreObjects')}</SectionTitle>
-              <CardGrid>
-                {CORE_OBJECT_KEYS.map((object, index) => (
-                  <Reveal key={object} delay={`${index * 0.08}s`}>
-                    <Card>
-                      <CardTitle>{t(`common.objects.${object}`)}</CardTitle>
-                      <CardBody>{t(`features.coreObjects.${object}.body`)}</CardBody>
-                    </Card>
-                  </Reveal>
-                ))}
-              </CardGrid>
-            </Section>
-          </Reveal>
-        </PageContainer>
-      </SectionBand>
-
+      
       <SectionBand variant="plain">
         <PageContainer>
           <Reveal>
@@ -132,6 +113,26 @@ export function FeaturesView() {
                   ))}
                 </TableBody>
               </CompareTable>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
+
+      <SectionBand variant="glass" accent="features" glow>
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('features.sectionCoreObjects')}</SectionTitle>
+              <CardGrid>
+                {CORE_OBJECT_KEYS.map((object, index) => (
+                  <Reveal key={object} delay={`${index * 0.08}s`}>
+                    <Card>
+                      <CardTitle>{t(`common.objects.${object}`)}</CardTitle>
+                      <CardBody>{t(`features.coreObjects.${object}.body`)}</CardBody>
+                    </Card>
+                  </Reveal>
+                ))}
+              </CardGrid>
             </Section>
           </Reveal>
         </PageContainer>

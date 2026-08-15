@@ -34,11 +34,11 @@ export const GUIDES_RELEASE_DATE = '2026-08-14';
 /** The 7 L1 how-to guides in display order (design §6.1). */
 export const GUIDE_SLUGS = [
   'start-a-community',
-  'organize-a-meetup',
-  'first-10-members',
   'find-a-co-founder',
+  'first-10-members',
   'keep-a-community-active',
   'hybrid-communities',
+  'organize-a-meetup',
   'moderation',
 ] as const;
 

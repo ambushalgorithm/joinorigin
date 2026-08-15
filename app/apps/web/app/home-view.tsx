@@ -15,9 +15,23 @@ import LogoMarquee from '../components/LogoMarquee';
 import Reveal from '../components/Reveal';
 import { BRAND_MESH } from '../components/landingTokens';
 import { WaitlistModalProvider } from '../components/WaitlistModal/WaitlistModalProvider';
+import ChipMarquee from '../components/ChipMarquee';
 import { faqEntries, faqNamespace } from '../lib/faq';
 import { JsonLd } from '../lib/seo/JsonLdScript';
 import { faqPage } from '../lib/seo/jsonLd';
+
+import SectionBand from '../components/SectionBand';
+import {
+  BodyCopy,
+  Card,
+  CardBody,
+  CardGrid,
+  CardTitle,
+  PageContainer,
+  Section,
+  SectionTitle,
+} from '../components/menuPagePrimitives';
+
 
 /**
  * JoinOrigin homescreen view (spec `app/docs/design/sprint-3-homescreen-spec.md`,
@@ -147,6 +161,17 @@ const FaqAnswer = styled.p`
   color: ${({ theme }) => theme.colors.textMuted};
 `;
 
+const CONCEPT_KEYS = [
+  'ideas',
+  'projects',
+  'feed',
+  'communities',
+  'communication',
+  'profiles',
+  'opportunities',
+  'companies',
+] as const;
+
 export function HomeView() {
   const { t, dictionary } = useI18n();
   const homeFaq = faqEntries(faqNamespace(dictionary, 'home'));
@@ -166,6 +191,36 @@ export function HomeView() {
                 <Reveal>
                   <Definition>{t('home.definition')}</Definition>
                 </Reveal>
+                <SectionBand variant="glass">
+                  <PageContainer>
+                    <Reveal>
+                      <Section>
+                        <SectionTitle>{t('community.sectionExamples')}</SectionTitle>
+                        <BodyCopy>{t('community.examplesIntro')}</BodyCopy>
+                        <ChipMarquee intro={t('community.examplesIntro')} />
+                      </Section>
+                    </Reveal>
+                  </PageContainer>
+                </SectionBand>
+                <SectionBand variant="glass" accent="docs" glow>
+                  <PageContainer>
+                    <Reveal>
+                      <Section>
+                        <SectionTitle id="concepts">{t('docs.sectionConcepts')}</SectionTitle>
+                        <CardGrid>
+                          {CONCEPT_KEYS.map((concept, index) => (
+                            <Reveal key={concept} delay={`${index * 0.08}s`}>
+                              <Card>
+                                <CardTitle>{t(`common.objects.${concept}`)}</CardTitle>
+                                <CardBody>{t(`docs.concepts.${concept}.body`)}</CardBody>
+                              </Card>
+                            </Reveal>
+                          ))}
+                        </CardGrid>
+                      </Section>
+                    </Reveal>
+                  </PageContainer>
+                </SectionBand>
                 <Reveal>
                   <LogoMarquee />
                 </Reveal>

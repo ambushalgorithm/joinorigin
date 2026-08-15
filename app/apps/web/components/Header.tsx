@@ -33,16 +33,15 @@ import LanguageSwitcher from './LanguageSwitcher';
 
 const NAV_LINKS = [
   { key: 'common.nav.features', href: '/features' },
-  { key: 'common.nav.community', href: '/community' },
   { key: 'common.nav.docs', href: '/docs' },
   { key: 'common.nav.about', href: '/about' },
 ];
 
 /** Explore submenu links (TASK-316): Locations / Guides / Glossary. */
 const EXPLORE_LINKS = [
-  { key: 'common.nav.locations', href: '/location' },
+  { key: 'common.nav.community', href: '/community' },
   { key: 'common.nav.guides', href: '/guides' },
-  { key: 'common.nav.glossary', href: '/glossary' },
+  { key: 'common.nav.locations', href: '/location' },
 ];
 
 const fadeDown = keyframes`

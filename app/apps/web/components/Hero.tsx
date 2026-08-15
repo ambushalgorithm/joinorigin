@@ -81,27 +81,27 @@ const RightColumn = styled.div`
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        const q = gsap.utils.selector(heroRef);
-        q('[data-gsap-parallax]').forEach((el: HTMLElement) => {
-          gsap.to(el, {
-            yPercent: -12,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: 0.6,
-            },
-          });
-        });
-      });
-    },
-    { scope: heroRef },
-  );
+  // useGSAP(
+  //   () => {
+  //     const mm = gsap.matchMedia();
+  //     mm.add('(prefers-reduced-motion: no-preference)', () => {
+  //       const q = gsap.utils.selector(heroRef);
+  //       q('[data-gsap-parallax]').forEach((el: HTMLElement) => {
+  //         gsap.to(el, {
+  //           yPercent: -3,
+  //           ease: 'none',
+  //           scrollTrigger: {
+  //             trigger: heroRef.current,
+  //             start: 'top top',
+  //             end: 'bottom top',
+  //             scrub: 0.6,
+  //           },
+  //         });
+  //       });
+  //     });
+  //   },
+  //   { scope: heroRef },
+  // );
 
   return (
     <HeroSection ref={heroRef} data-testid="hero">

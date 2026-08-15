@@ -48,7 +48,7 @@ const CONCEPT_KEYS = [
   'opportunities',
 ] as const;
 
-const ROADMAP_PHASE_KEYS = ['phase1', 'phase2', 'phase3', 'phase4', 'phase5'] as const;
+const ROADMAP_PHASE_KEYS = ['phase1', 'phase2', 'phase3'] as const;
 
 /** Explore hub cross-links row (TASK-316) — additive, keeps copy intact. */
 const ExploreLinks = styled.div`
@@ -76,13 +76,48 @@ export function DocsView() {
       subnav={{
         label: t('docs.hero.eyebrow'),
         links: [
-          { id: 'concepts', label: t('docs.sectionConcepts') },
-          { id: 'roadmap', label: t('docs.sectionRoadmap') },
           { id: 'architecture', label: t('docs.sectionArchitecture') },
           { id: 'faq', label: t('common.faqHeading') },
+          { id: 'concepts', label: t('docs.sectionConcepts') },
+          { id: 'roadmap', label: t('docs.sectionRoadmap') },
         ],
       }}
     >
+      <SectionBand variant="glass" accent="docs">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle id="architecture">{t('docs.sectionArchitecture')}</SectionTitle>
+              <BodyCopy>{t('docs.architectureParagraph1')}</BodyCopy>
+              <BodyCopy>{t('docs.architectureParagraph2')}</BodyCopy>
+              <ExploreLinks>
+                <AccentLink href="/location">{t('common.nav.locations')}</AccentLink>
+                <AccentLink href="/guides">{t('common.nav.guides')}</AccentLink>
+                <AccentLink href="/glossary">{t('common.nav.glossary')}</AccentLink>
+              </ExploreLinks>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
+
+      <SectionBand variant="plain">
+        <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle id="faq">{t('common.faqHeading')}</SectionTitle>
+              <FaqSection>
+                {faq.map((entry) => (
+                  <FaqCard key={entry.question}>
+                    <FaqQuestion>{entry.question}</FaqQuestion>
+                    <FaqAnswer>{entry.answer}</FaqAnswer>
+                  </FaqCard>
+                ))}
+              </FaqSection>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
+      
       <SectionBand variant="glass" accent="docs" glow>
         <PageContainer>
           <Reveal>
@@ -123,40 +158,6 @@ export function DocsView() {
         </PageContainer>
       </SectionBand>
 
-      <SectionBand variant="glass" accent="docs">
-        <PageContainer>
-          <Reveal>
-            <Section>
-              <SectionTitle id="architecture">{t('docs.sectionArchitecture')}</SectionTitle>
-              <BodyCopy>{t('docs.architectureParagraph1')}</BodyCopy>
-              <BodyCopy>{t('docs.architectureParagraph2')}</BodyCopy>
-              <ExploreLinks>
-                <AccentLink href="/location">{t('common.nav.locations')}</AccentLink>
-                <AccentLink href="/guides">{t('common.nav.guides')}</AccentLink>
-                <AccentLink href="/glossary">{t('common.nav.glossary')}</AccentLink>
-              </ExploreLinks>
-            </Section>
-          </Reveal>
-        </PageContainer>
-      </SectionBand>
-
-      <SectionBand variant="plain">
-        <PageContainer>
-          <Reveal>
-            <Section>
-              <SectionTitle id="faq">{t('common.faqHeading')}</SectionTitle>
-              <FaqSection>
-                {faq.map((entry) => (
-                  <FaqCard key={entry.question}>
-                    <FaqQuestion>{entry.question}</FaqQuestion>
-                    <FaqAnswer>{entry.answer}</FaqAnswer>
-                  </FaqCard>
-                ))}
-              </FaqSection>
-            </Section>
-          </Reveal>
-        </PageContainer>
-      </SectionBand>
       {/* FAQPage JSON-LD — localized mirror of the visible FAQ block
           (arch-i18n §7.4), rendered into the initial SSR HTML. */}
       <JsonLd data={faqPage(faq)} />

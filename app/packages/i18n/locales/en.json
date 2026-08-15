@@ -137,7 +137,7 @@
         "body": "A profile works like a living resume: it carries your experience, skills, and ideas — plus your reputation and relationships — across every community and project you join."
       },
       "ideas": {
-        "body": "Every idea gets a home. Post an idea page for anything — a small business, an AI startup, helping the homeless, a 10k run, a book club, a pee-wee league — and find the people who want to build it with you."
+        "body": "Ideas are the starting point of everything on Origin. Post an idea page for any idea — a small business, an AI startup, a book club, a 10k run — and the people who want to build it find you."
       },
       "communities": {
         "body": "Groups around interests, industries, and goals — Startup Founders, Small Businesses, Book Clubs, Community Organizations, Anyone with an Idea — where members find each other."
@@ -146,7 +146,7 @@
         "body": "Every community comes with a Matrix room: real-time chat, direct messages, and group discussions over the open Matrix protocol, end-to-end encrypted by default."
       },
       "feed": {
-        "body": "Posts, updates, and opportunities from the people and communities you follow — a calm stream of what matters in your network."
+        "body": "The feed shows posts, updates, and opportunities from the people and communities you follow. It is a calm stream of what matters in your network, not an engagement machine."
       },
       "projects": {
         "body": "Collaborative efforts where community members work together and turn conversations into outcomes."
@@ -188,19 +188,13 @@
     "sectionRoadmap": "Roadmap",
     "roadmap": {
       "phase1": {
-        "body": "Profiles, communities, chat, and the social graph — the base layer where people find each other."
+        "body": "Profiles, communities, chat, and the social graph. Success metric: members forming durable communities."
       },
       "phase2": {
-        "body": "Projects, shared workspaces, and tools that turn community conversations into joint work."
+        "body": "Projects, shared workspaces, and tools that turn conversations into joint work. Success metric: communities shipping outcomes together."
       },
       "phase3": {
-        "body": "Companies and ventures formed by members, with team management and governance."
-      },
-      "phase4": {
-        "body": "AI workers that help communities coordinate, summarize, and match opportunities."
-      },
-      "phase5": {
-        "body": "Open standards and portability so the network connects across platforms, not just inside one silo."
+        "body": "Companies and ventures formed by members, with team management and governance. Success metric: companies founded inside the network."
       }
     },
     "faq": {
@@ -297,13 +291,13 @@
         "body": "Communities are groups of people who share interests, industries, goals, and opportunities — around any idea. They are the center of engagement on Origin and the way members find each other."
       },
       "ideas": {
-        "body": "Ideas are the starting point of everything on Origin. Post an idea page for any idea — a small business, an AI startup, a book club, a 10k run — and the people who want to build it find you."
+        "body": "Every idea gets a home. Post an idea page for anything — a small business, an AI startup, helping the homeless, a 10k run, a book club, a pee-wee league — and find the people who want to build it with you."
       },
       "communication": {
         "body": "Communication happens in a Matrix room — real-time chat, direct messages, and group discussions. It runs on the open Matrix protocol, so conversations are portable and can be end-to-end encrypted."
       },
       "feed": {
-        "body": "The feed shows posts, updates, and opportunities from the people and communities you follow. It is a calm stream of what matters in your network, not an engagement machine."
+        "body": "Posts, updates, and opportunities from the people and communities you follow — a calm stream of what matters in your network."
       },
       "projects": {
         "body": "Projects are collaborative efforts where members work together toward a shared outcome. They connect the social graph to real work inside and across communities."

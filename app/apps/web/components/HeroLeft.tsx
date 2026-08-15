@@ -85,19 +85,6 @@ const ExploreLinks = styled.div`
   flex-wrap: wrap;
 `;
 
-const ExploreLink = styled(Link)`
-  font-family: ${({ theme }) => theme.fontFamilies.sans};
-  font-size: 14px;
-  font-weight: ${({ theme }) => theme.fontWeights.semibold};
-  color: ${({ theme }) => theme.colors.primary};
-  text-decoration: none;
-
-  &:hover,
-  &:focus-visible {
-    text-decoration: underline;
-  }
-`;
-
 const Trust = styled.div`
   display: flex;
   align-items: center;
@@ -188,13 +175,7 @@ export function HeroLeft() {
         </Actions>
       </div>
 
-      {/* Explore cross-links (TASK-316): additive nav to the SEO hubs. */}
       <div data-hero="supporting">
-        <ExploreLinks>
-          <ExploreLink href="/location">{t('common.nav.locations')}</ExploreLink>
-          <ExploreLink href="/guides">{t('common.nav.guides')}</ExploreLink>
-          <ExploreLink href="/glossary">{t('common.nav.glossary')}</ExploreLink>
-        </ExploreLinks>
         <Supporting>{t('home.hero.supporting')}</Supporting>
       </div>
 

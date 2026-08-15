@@ -31,7 +31,7 @@ const content: GuideContent = {
     {
       question: 'When should a community go hybrid?',
       answer:
-        'When part of your audience reliably cannot attend in person — because of distance, schedule, or mobility — and the community still wants one shared identity. If everyone can meet locally, in-person-only is simpler and often better.',
+        'When part of your audience reliably cannot attend in person — because of distance, schedule, or mobility — and the community still wants one shared identity. If everyone can meet locally, meeting in person is simpler and often better.',
     },
     {
       question: 'What is the minimum tool setup for a hybrid gathering?',
@@ -50,8 +50,8 @@ const content: GuideContent = {
     },
   ],
   sections: [
-    'Decide whether hybrid is the right model. Go hybrid when a meaningful share of your audience cannot attend in person. If most members can meet locally, in-person-only is usually stronger — hybrid adds complexity you should not take on without a reason. JoinOrigin is designed to help any community find and keep members, but the format decision is yours. Today, go hybrid only when a meaningful share of your audience cannot attend in person.',
-    'Build the room that connects both audiences. Before anything else, make sure the community has a shared room where remote and local members talk, share updates, and see the same next steps. The room is what makes hybrid feel like one community rather than two. JoinOrigin is being built so every group has a room from publish (D1) — the persistent surface that holds the online and in-person parts together. Today, set up one shared room both audiences can join.',
+    'Decide whether hybrid is the right model. Go hybrid when it makes sense do meet in person. If most members can meet locally, meeting in person makes the bond stronger — hybrid allows trust to build and read people more thouroughly. JoinOrigin is designed to help any community find and keep members, but the format decision is yours. Today, go hybrid only when it makes sense do meet in person.',
+    'Build the room that connects both audiences. Before anything else, make sure the community has a shared room where remote and local members talk, share updates, and see the same next steps. The room is what makes hybrid feel like one community rather than two. JoinOrigin is being built so every group has a room from publish — the persistent surface that holds the online and in-person parts together. Today, set up one shared room both audiences can join.',
     'Choose one reliable video tool and one shared document. Keep the stack minimal: a video call link for remote members, a doc for notes and shared links, and one calendar entry. Complexity is the enemy of consistent hybrid gatherings. JoinOrigin does not provide event tooling — keep the stack minimal today. The platform is designed to be the persistent room where the link and doc live, not the event tool itself.',
     'Design the agenda for two audiences. Run an introduction round that includes remote members by name, keep visuals on a shared screen, and leave space for the online side to speak. A hybrid agenda names both audiences explicitly. JoinOrigin is being built so both audiences share one community room, which makes “design for two audiences” a natural fit. Today, name both audiences explicitly in the agenda.',
     'Assign a bridge person. One person watches the remote side: greets late joiners, calls on remote hands, and relays what the venue misses. Without a bridge, the online audience becomes spectators. JoinOrigin does not staff events — the bridge person is a human role. The platform is designed to keep the community organized in one room so the bridge has one place to see who joined and what was shared.',
@@ -62,15 +62,15 @@ const content: GuideContent = {
   steps: [
     {
       title: 'Decide whether hybrid is the right model',
-      body: 'Go hybrid when a meaningful share of your audience cannot attend in person. If most members can meet locally, in-person-only is usually stronger — hybrid adds complexity you should not take on without a reason.',
+      body: 'Go hybrid when it makes sense do meet in person. If most members can meet locally, meeting in person makes the bond stronger — hybrid allows trust to build faster and read people more thouroughly.',
       joinOriginNote:
-        'JoinOrigin is designed to help any community find and keep members, but the format decision is yours. Today, go hybrid only when a meaningful share of your audience cannot attend in person.',
+        'JoinOrigin is designed to help any community find and keep members, but the format decision is yours. Today, go hybrid only when it makes sense do meet in person.',
     },
     {
       title: 'Build the room that connects both audiences',
       body: 'Before anything else, make sure the community has a shared room where remote and local members talk, share updates, and see the same next steps. The room is what makes hybrid feel like one community rather than two.',
       joinOriginNote:
-        'JoinOrigin is being built so every group has a room from publish (D1) — the persistent surface that holds the online and in-person parts together. Today, set up one shared room both audiences can join.',
+        'JoinOrigin is being built so every group has a room from publish — the persistent surface that holds the online and in-person parts together. Today, set up one shared room both audiences can join.',
     },
     {
       title: 'Choose one reliable video tool and one shared document',
