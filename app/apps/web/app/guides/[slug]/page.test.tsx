@@ -62,9 +62,13 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
     expect(headings[0]).toHaveTextContent(content.title ?? entry.title);
   });
 
-  it('renders the definitional intro and step-by-step structure', () => {
+  it('renders the definitional intro paragraphs and step-by-step structure', () => {
     renderWithI18n(<GuideView entry={entry} content={content} />);
-    expect(screen.getByText(content.intro)).toBeInTheDocument();
+    // The intro is an array of paragraphs — every paragraph renders as its
+    // own BodyCopy block (TASK-351 multi-paragraph model).
+    for (const paragraph of content.intro) {
+      expect(screen.getByText(paragraph)).toBeInTheDocument();
+    }
     expect(screen.getAllByRole('heading', { level: 2 }).length).toBeGreaterThanOrEqual(
       content.steps.length,
     );
@@ -72,7 +76,7 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
 
   it('leads with JoinOrigin — intro + every step renders a JoinOrigin note (TASK-320)', () => {
     renderWithI18n(<GuideView entry={entry} content={content} />);
-    expect(content.intro).toContain('JoinOrigin');
+    expect(content.intro.join(' ')).toContain('JoinOrigin');
     // The "How JoinOrigin can help" label renders once per step.
     expect(screen.getAllByText('How JoinOrigin can help').length).toBeGreaterThanOrEqual(
       content.steps.length,

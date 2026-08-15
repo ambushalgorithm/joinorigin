@@ -30,9 +30,12 @@ import { getDictionary, getT, type Locale } from '@joinorigin/i18n';
 
 import { getCityContent, getCountryContent, getRegionContent } from './content';
 import type {
+  CityContent,
+  CountryContent,
   IdeaCategory,
   LocationContent,
   LocationFaq,
+  RegionContent,
   VariantEnrichment,
 } from './content/types';
 import type { LocationCity } from './data/types';
@@ -511,8 +514,12 @@ export function buildLocationViewData(
   };
 }
 
-/** Resolve the authored content for an entry (per-locale, EN at canonical). */
-function contentFor(entry: LocationPageEntry, locale: Locale): LocationContent | undefined {
+/** Resolve the authored content for an entry (per-locale, EN at canonical).
+ *  Location pages never load guide content — only country/region/city. */
+function contentFor(
+  entry: LocationPageEntry,
+  locale: Locale,
+): CountryContent | RegionContent | CityContent | undefined {
   if (entry.kind === 'country') return getCountryContent(entry.params.country ?? '', locale);
   if (entry.kind === 'region') return getRegionContent(entry.params.region ?? '', locale);
   return getCityContent(entry.params.city ?? '', locale);

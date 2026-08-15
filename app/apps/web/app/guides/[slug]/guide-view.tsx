@@ -170,7 +170,9 @@ export function GuideView({ entry, content }: GuideViewProps) {
           <Reveal>
             <Section>
               <SectionTitle>{t('seoContent.guides.overview')}</SectionTitle>
-              <BodyCopy>{content.intro}</BodyCopy>
+              {content.intro.map((paragraph) => (
+                <BodyCopy key={paragraph}>{paragraph}</BodyCopy>
+              ))}
             </Section>
           </Reveal>
         </PageContainer>

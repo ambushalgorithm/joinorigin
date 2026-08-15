@@ -87,10 +87,13 @@ describe('lib/seo guides — content quality gates (§6.2)', () => {
     }
   });
 
-  it('every guide intro clears the ≥150-word prose gate (G2)', () => {
+  it('every guide intro clears the ≥150-word prose gate (G2, paragraphs summed)', () => {
     for (const slug of GUIDE_SLUGS) {
       const content = getGuideContent(slug, 'en');
-      expect(wordCount(content?.intro ?? '')).toBeGreaterThanOrEqual(MIN_PROSE_WORDS);
+      const introParagraphs = content?.intro ?? [];
+      expect(introParagraphs.length).toBeGreaterThan(0);
+      const introWords = introParagraphs.reduce((sum, paragraph) => sum + wordCount(paragraph), 0);
+      expect(introWords).toBeGreaterThanOrEqual(MIN_PROSE_WORDS);
     }
   });
 
@@ -116,10 +119,11 @@ describe('lib/seo guides — content quality gates (§6.2)', () => {
   it('every guide leads with JoinOrigin — intro mentions JoinOrigin (TASK-320)', () => {
     for (const slug of GUIDE_SLUGS) {
       const content = getGuideContent(slug, 'en');
-      expect(content?.intro ?? '').toContain('JoinOrigin');
+      const introParagraphs = content?.intro ?? [];
+      const intro = introParagraphs.join(' ');
+      expect(intro).toContain('JoinOrigin');
       // The intro leads: the JoinOrigin mention appears inside the first
       // half of the intro, not just as a trailing caveat.
-      const intro = content?.intro ?? '';
       const mentionIndex = intro.indexOf('JoinOrigin');
       expect(mentionIndex).toBeGreaterThanOrEqual(0);
       expect(mentionIndex).toBeLessThan(intro.length / 2);

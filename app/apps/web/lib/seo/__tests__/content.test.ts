@@ -55,8 +55,14 @@ describe('lib/seo content — registry + EN fallback', () => {
 describe('lib/seo content — quality contract (G1/G2/G5)', () => {
   it('every content file declares its kind/locale/slug and ≥150-word intro (G2)', () => {
     for (const content of listContent('en')) {
+      // Guides model the intro as a paragraph array (TASK-351) — sum the
+      // paragraph word counts so the same ≥150-word gate applies.
+      const introWords =
+        content.kind === 'guide'
+          ? content.intro.reduce((sum, paragraph) => sum + wordCount(paragraph), 0)
+          : wordCount(content.intro);
       expect(content.intro.length).toBeGreaterThan(0);
-      expect(wordCount(content.intro)).toBeGreaterThanOrEqual(MIN_PROSE_WORDS);
+      expect(introWords).toBeGreaterThanOrEqual(MIN_PROSE_WORDS);
       expect(content.dataPoints.length).toBeGreaterThanOrEqual(3);
       expect(content.faq.length).toBeGreaterThanOrEqual(3);
     }
