@@ -277,6 +277,10 @@ export function proseForPage(
       .join(' ');
     return `${intro} ${ideaText}`;
   }
+  // Guides never flow through the location gates (PageKind has no 'guide'),
+  // but the union type allows them — join the paragraph array defensively so
+  // the prose gate still sees the full intro text (TASK-351 multi-paragraph).
+  if (content.kind === 'guide') return content.intro.join(' ');
   return content.intro;
 }
 

@@ -71,11 +71,6 @@ export interface BaseContent {
   locale: Locale;
   /** Entity slug (kebab-case) this file targets. */
   slug: string;
-  /**
-   * Unique, honest prose section — ≥150 words (G2). Never a name-swapped
-   * template: distinct per city/region/country (G5).
-   */
-  intro: string;
   /** City-specific data-point sentences (G1): venues, signals, facts. */
   dataPoints: string[];
   faq: LocationFaq[];
@@ -86,10 +81,20 @@ export interface BaseContent {
 
 export interface CountryContent extends BaseContent {
   kind: 'country';
+  /**
+   * Unique, honest prose section — ≥150 words (G2). Never a name-swapped
+   * template: distinct per city/region/country (G5).
+   */
+  intro: string;
 }
 
 export interface RegionContent extends BaseContent {
   kind: 'region';
+  /**
+   * Unique, honest prose section — ≥150 words (G2). Never a name-swapped
+   * template: distinct per city/region/country (G5).
+   */
+  intro: string;
 }
 
 /**
@@ -121,6 +126,11 @@ export interface VariantEnrichment {
  */
 export interface CityContent extends BaseContent {
   kind: 'city';
+  /**
+   * Unique, honest prose section — ≥150 words (G2). Never a name-swapped
+   * template: distinct per city/region/country (G5).
+   */
+  intro: string;
   /** Per-variant unique prose — ≥150 words each (G2/G5). */
   variantIntros: Partial<Record<GroupTypeKey, string>>;
   /** Per-variant enrichment — venues/formats/how-to (TASK-319). */
@@ -159,6 +169,13 @@ export interface GuideStep {
 /** L1 how-to guide content (authored by fe-guides-pages, TASK-309). */
 export interface GuideContent extends BaseContent {
   kind: 'guide';
+  /**
+   * Definitional intro — an explicit array of paragraphs, each one a
+   * standalone string rendered as its own paragraph block on the guide
+   * page (TASK-351). The combined paragraphs must still clear the ≥150-word
+   * prose gate (G2) — gate word counts sum the paragraph lengths.
+   */
+  intro: string[];
   /** Step-by-step body sections (single H1 + step structure per §6.2). */
   sections: string[];
   /**
