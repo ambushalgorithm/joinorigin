@@ -33,7 +33,7 @@ describe('design tokens', () => {
     expect(theme.colors.primaryContrast).toBe('#FFFFFF');
     // Text.
     expect(theme.colors.text).toBe('#F5F8FF');
-    expect(theme.colors.textMuted).toBe('#ACB6DC');
+    expect(theme.colors.textMuted).toBe('#dddfe7');
     expect(theme.colors.textSubtle).toBe('#7E89B0');
     // Feedback + soft variants.
     expect(theme.colors.destructive).toBe('#F2555A');
