@@ -30,6 +30,10 @@ import { GLOSSARY_HUB_PATH } from '../../lib/seo/guides';
  * guides as cards, plus links to the glossary and the flagship city pages
  * (topic-cluster backbone). Single H1 via `MenuHero`.
  *
+ * TASK-326 — hub copy re-centered on the digital connect→join→room model:
+ * finding, joining, and starting groups, then communicating in a
+ * creator-controlled room (§6.1); in-person events remain downstream.
+ *
  * TASK-317 — the guide card grid is filtered client-side by title/keyword
  * with a debounced search input (~180ms). No new route, no server
  * round-trip; the registry (`GuidePageEntry[]`) is the only data source.
@@ -65,7 +69,7 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
       hero={{
         eyebrow: t('seoContent.guides.hubEyebrow'),
         title: t('seoContent.guides.hubTitle'),
-        lead: 'Seven practical, evergreen how-to guides for starting, growing, and running communities — from the first idea to healthy moderation.',
+        lead: 'Seven practical, evergreen how-to guides for finding, joining, and starting groups — and communicating in a creator-controlled room. From the first group to healthy moderation.',
         scene: 'community',
         accent: 'community',
         cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },
@@ -111,7 +115,7 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
             <Section>
               <SectionTitle>{t('seoContent.guides.glossarySection')}</SectionTitle>
               <BodyCopy>
-                Learn the core terms behind communities, moderation, onboarding, and engagement
+                Learn the core terms behind groups, rooms, moderation, onboarding, and engagement
                 loops in the{' '}
                 <StyledLink href={GLOSSARY_HUB_PATH}>
                   {t('seoContent.guides.glossarySection')}
