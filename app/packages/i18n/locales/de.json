@@ -84,22 +84,22 @@
       },
       "q3": {
         "question": "Was kann ich tun, sobald ich dabei bin?",
-        "answer": "Erstelle ein Profil, das wie ein Lebenslauf funktioniert, veröffentliche deine Idee als Ideenseite, starte oder tritt Communities zu jedem Thema bei und lade die Menschen ein, mit denen du arbeiten möchtest. Jede Community bringt ihren eigenen Raum mit, in dem sich Mitglieder verbinden. Die Warteliste reserviert deinen Platz, damit deine Community bereit ist, wenn der Early Access beginnt."
+        "answer": "Erstelle ein Profil, das wie ein Lebenslauf funktioniert, veröffentliche deine Idee als Ideenseite, starte oder tritt Communities zu jedem Thema bei und lade die Menschen ein, mit denen du arbeiten möchtest. Jede Community bringt ihren eigenen Raum mit, in dem sich Mitglieder verbinden. Die Warteliste reserviert deinen Platz, damit deine Community bereit ist, wenn die Plattform startet."
       },
       "q4": {
-        "question": "Wann beginnt der Early Access?",
-        "answer": "Der Early Access wird in Wellen geöffnet, während sich die Plattform auf den Launch zubewegt. Wenn du dich jetzt auf die Warteliste setzt, sicherst du dir deinen Platz, und du wirst eingeladen, sobald deine Community bereit ist."
+        "question": "Wann startet die Plattform?",
+        "answer": "Die Plattform wird in Wellen geöffnet, während sie sich auf den Launch zubewegt. Wenn du dich jetzt auf die Warteliste setzt, sicherst du dir deinen Platz, und du wirst eingeladen, sobald deine Community bereit ist."
       },
       "q5": {
         "question": "Wie kann ich beitreten?",
-        "answer": "Klicke irgendwo auf dieser Seite auf „Loslegen“, gib deinen Namen und deine E-Mail ein, und schon bist du auf der Warteliste. Du erhältst eine Einladung, sobald der Early Access deinen Platz erreicht."
+        "answer": "Klicke irgendwo auf dieser Seite auf „Loslegen“, gib deinen Namen und deine E-Mail ein, und schon bist du auf der Warteliste. Du erhältst eine Einladung, sobald die Plattform deinen Platz erreicht."
       }
     }
   },
   "waitlist": {
     "close": "Schließen",
     "heading": "Auf die Warteliste",
-    "subcopy": "Sei unter den Ersten beim Early Access. Wir schicken dir eine E-Mail, sobald dein Workspace bereit ist.",
+    "subcopy": "Sei unter den Ersten, wenn die Plattform startet. Wir schicken dir eine E-Mail, sobald dein Workspace bereit ist.",
     "nameLabel": "Name",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-Mail",
@@ -121,7 +121,7 @@
   },
   "ctaBand": {
     "headline": "Finde deine Leute. Baue gemeinsam.",
-    "subline": "Schließe dich 2.400+ Buildern im sozialen Kollaborationsnetzwerk von Origin an und sei beim Early Access von Anfang an dabei.",
+    "subline": "Schließe dich 2.400+ Buildern im sozialen Kollaborationsnetzwerk von Origin an und sei von Anfang an dabei, wenn die Plattform startet.",
     "joinLabel": "Auf die Warteliste",
     "contactLabel": "Kontakt aufnehmen"
   },
@@ -341,7 +341,7 @@
       },
       "q4": {
         "question": "Wann startet das MVP?",
-        "answer": "JoinOrigin befindet sich im Early Access. Die Community-Grundlage (Phase 1) ist das MVP und wird zuerst an Wartelisten-Mitglieder ausgerollt."
+        "answer": "JoinOrigin ist weiterhin auf der Warteliste. Die Community-Grundlage (Phase 1) ist das MVP und wird zuerst an Wartelisten-Mitglieder ausgerollt."
       }
     }
   },
@@ -353,7 +353,7 @@
     },
     "sectionMission": "Unsere Mission",
     "missionParagraph1": "Origin baut das Betriebssystem für menschliche Zusammenarbeit. Statt fünf getrennter Tools für Chat, Communities und Projekte leben deine Beziehungen in einem ruhigen Workspace. Der soziale Graph ist das Produkt: Profile, Ideen, Communities, Kommunikation, Feed, Projekte, Unternehmen und Chancen hängen alle am selben Netzwerk von Menschen.",
-    "missionParagraph2": "Wir befinden uns heute im Early Access, mit 2.400+ Buildern auf der Warteliste. Während die Plattform durch die Roadmap wächst — Community-Grundlage, Zusammenarbeit, Organisation, KI-Zusammenarbeit und das Globale Netzwerk — bleibt die Mission dieselbe: Menschen helfen, sich gegenseitig zu finden und gemeinsam aufzubauen.",
+    "missionParagraph2": "Wir sind heute weiterhin auf der Warteliste, mit 2.400+ Buildern, die sich bereits angemeldet haben. Während die Plattform durch die Roadmap wächst — Community-Grundlage, Zusammenarbeit, Organisation, KI-Zusammenarbeit und das Globale Netzwerk — bleibt die Mission dieselbe: Menschen helfen, sich gegenseitig zu finden und gemeinsam aufzubauen.",
     "sectionPrinciples": "Leitprinzipien",
     "principles": {
       "peopleFirst": {
@@ -396,7 +396,7 @@
     "hero": {
       "eyebrow": "Kontakt",
       "title": "Sprich mit uns",
-      "lead": "Du hast eine Frage zu Origin — dem sozialen Kollaborationsnetzwerk —, zum Early Access oder zum Starten einer Community? Wir freuen uns auf deine Nachricht. Frag uns einfach alles."
+      "lead": "Du hast eine Frage zu Origin — dem sozialen Kollaborationsnetzwerk —, zur Warteliste oder zum Starten einer Community? Wir freuen uns auf deine Nachricht. Frag uns einfach alles."
     },
     "sectionForm": "Nachricht senden",
     "form": {
@@ -422,7 +422,7 @@
         "answer": "Wir antworten innerhalb von 2 Werktagen. Für die schnellste Antwort wirf zuerst einen Blick in die FAQ der Dokumentation."
       },
       "q2": {
-        "question": "Kann ich Early Access bekommen?",
+        "question": "Kann ich Zugang bekommen, wenn die Plattform startet?",
         "answer": "Ja — setz dich auf der Startseite auf die Warteliste. Frühe Mitglieder sind beim Launch des Community-Betriebssystems als Erste dabei."
       }
     }
@@ -431,19 +431,19 @@
     "hero": {
       "eyebrow": "Rechtliches",
       "title": "Datenschutzerklärung",
-      "lead": "Wenn du dich auf die Warteliste setzt, erfassen wir deinen Namen und deine E-Mail-Adresse über das Wartelisten-Formular (POST /api/leads). Das sind die einzigen persönlichen Daten, die wir während des Early Access abfragen."
+      "lead": "Wenn du dich auf die Warteliste setzt, erfassen wir deinen Namen und deine E-Mail-Adresse über das Wartelisten-Formular (POST /api/leads). Das sind die einzigen persönlichen Daten, die wir auf der Warteliste abfragen."
     },
     "sectionCollect": "Was wir erfassen",
     "collect": {
       "waitlistDataTitle": "Wartelisten-Daten",
-      "waitlistDataBody": "Name und E-Mail, die nur dazu dienen, dir mitzuteilen, wann der Early Access beginnt, und dich einzuladen.",
+      "waitlistDataBody": "Name und E-Mail, die nur dazu dienen, dir mitzuteilen, wann die Plattform startet, und dich einzuladen.",
       "analyticsTitle": "Analytics",
       "analyticsBody": "Wir nutzen konfigurationsgesteuerte Analytics (standardmäßig selbst gehostetes Plausible), um die aggregierte Nutzung der Website zu verstehen. Ein Consent-Banner ist für einen späteren Sprint geplant.",
       "technicalDataTitle": "Basis-Technikdaten",
       "technicalDataBody": "Standardmäßige Server-Logs und Browser-Metadaten, die uns helfen, die Website zuverlässig zu halten."
     },
     "sectionUse": "Wie wir sie verwenden",
-    "useBody": "Wir verwenden die erfassten Informationen, um die Website zu betreiben, Early-Access-Einladungen zu versenden und das Produkt zu verbessern. Wir verkaufen deine persönlichen Daten nicht.",
+    "useBody": "Wir verwenden die erfassten Informationen, um die Website zu betreiben, Wartelisten-Einladungen zu versenden und das Produkt zu verbessern. Wir verkaufen deine persönlichen Daten nicht.",
     "sectionIdentity": "Identität & Flexibilität",
     "identityBody": "Du entscheidest, wie du auf Origin auftrittst. Du kannst mit einem benannten Konto teilnehmen oder anonym bleiben, und Communities, Chats und Ideenseiten können für alle offen oder durch ihre Organisator:innen eingeschränkt sein. Diese Optionen werden nach und nach ausgerollt — wichtig ist, dass du entscheidest, was du mit wem teilst.",
     "sectionRights": "Deine Rechte",
@@ -473,7 +473,7 @@
     "sectionIntellectualProperty": "Geistiges Eigentum",
     "intellectualPropertyBody": "Die Marken, Logos und Website-Materialien von JoinOrigin gehören JoinOrigin. Du darfst sie ohne unsere Erlaubnis nicht verwenden. Open-Source-Komponenten bleiben unter ihren jeweiligen Lizenzen.",
     "sectionDisclaimers": "Haftungsausschluss",
-    "disclaimersBody": "Der Dienst wird während des Early Access „wie besehen“ bereitgestellt. Wir bemühen uns, ihn zuverlässig zu halten, garantieren jedoch nicht, dass er ununterbrochen oder fehlerfrei funktioniert.",
+    "disclaimersBody": "Der Dienst wird während der Wartelistenphase „wie besehen“ bereitgestellt. Wir bemühen uns, ihn zuverlässig zu halten, garantieren jedoch nicht, dass er ununterbrochen oder fehlerfrei funktioniert.",
     "sectionChanges": "Änderungen",
     "changesBody": "Wir können diese Bedingungen aktualisieren, während sich der Dienst weiterentwickelt. Wesentliche Änderungen werden auf dieser Seite angekündigt, und die weitere Nutzung nach Änderungen bedeutet, dass du die aktualisierten Bedingungen akzeptierst.",
     "sectionContact": "Kontakt",
