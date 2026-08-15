@@ -60,7 +60,9 @@ describe('docs page', () => {
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     const faq = payloads.find((p) => p['@type'] === 'FAQPage');
-    expect(faq?.mainEntity).toHaveLength(4);
+    // The self-host/hosting FAQ was removed from public copy (Sprint 14 §6.2/Q9),
+    // so the docs FAQ now renders 3 entries.
+    expect(faq?.mainEntity).toHaveLength(3);
     expect(payloads.some((p) => p['@type'] === 'BreadcrumbList')).toBe(true);
   });
 });
