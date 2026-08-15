@@ -52,14 +52,14 @@ import type { LocationViewData } from '../../lib/seo/locationView';
 const BreadcrumbNav = styled.nav`
   max-width: 1280px;
   margin: 0 auto;
-  padding: 24px 64px 0;
+  padding: 24px 64px 24px;
 
   @media (max-width: 1024px) {
-    padding: 24px 32px 0;
+    padding: 24px 32px 24px;
   }
 
   @media (max-width: 480px) {
-    padding: 20px 20px 0;
+    padding: 20px 20px 20px;
   }
 `;
 

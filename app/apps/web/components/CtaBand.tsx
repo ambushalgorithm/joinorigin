@@ -36,7 +36,7 @@ const OVERRIDE_CTA_HREF = '/contact';
 
 const Band = styled.section`
   max-width: 880px;
-  margin: 0 auto 64px;
+  margin: 64px auto 64px;
   padding: 16px 24px;
 `;
 

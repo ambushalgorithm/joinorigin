@@ -25,7 +25,7 @@ export const colors = {
 
   // Text
   text: '#F5F8FF', // primary text
-  textMuted: '#ACB6DC', // secondary text
+  textMuted: '#dddfe7', // secondary text
   textSubtle: '#7E89B0', // tertiary text, placeholders
 
   // Feedback

@@ -25,6 +25,7 @@ const Input = styled.input`
   width: 100%;
   max-width: 480px;
   padding: 12px 16px;
+  margin-bottom: 20px;
   border-radius: ${({ theme }) => theme.radius.md}px;
   border: 1px solid ${({ theme }) => theme.colors.border};
   background: ${({ theme }) => theme.colors.surfaceElevated};
