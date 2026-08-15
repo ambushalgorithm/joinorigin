@@ -84,7 +84,7 @@
       },
       "q3": {
         "question": "Apa yang bisa saya lakukan setelah masuk?",
-        "answer": "Buat profil yang berfungsi seperti CV, unggah ide Anda sebagai halaman ide, mulai atau ikuti komunitas untuk apa pun, dan undang orang yang ingin Anda ajak bekerja sama. Daftar tunggu mengamankan tempat Anda sehingga komunitas Anda siap saat akses awal dibuka."
+        "answer": "Buat profil yang berfungsi seperti CV, unggah ide Anda sebagai halaman ide, mulai atau ikuti komunitas untuk apa pun, dan undang orang yang ingin Anda ajak bekerja sama. Setiap komunitas dilengkapi ruangnya sendiri tempat para anggota terhubung. Daftar tunggu mengamankan tempat Anda sehingga komunitas Anda siap saat akses awal dibuka."
       },
       "q4": {
         "question": "Kapan akses awal dimulai?",
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Objek inti",
       "title": "Semua yang dibutuhkan komunitas, dalam satu ruang kerja yang tenang",
-      "lead": "Origin adalah jaringan kolaborasi sosial yang dibangun di sekitar delapan objek inti: profil, ide, komunitas, percakapan, kiriman, proyek, perusahaan, dan peluang. Alih-alih lima alat terpisah, relasi Anda hidup dalam satu tempat."
+      "lead": "Origin adalah jaringan kolaborasi sosial yang dibangun di sekitar delapan objek inti: profil, ide, komunitas, komunikasi, linimasa, proyek, perusahaan, dan peluang. Alih-alih lima alat terpisah, relasi Anda hidup dalam satu tempat."
     },
     "sectionCoreObjects": "Objek inti",
     "coreObjects": {
@@ -143,7 +143,7 @@
         "body": "Grup berdasarkan minat, industri, dan tujuan — Pendiri Startup, Bisnis Kecil, Klub Buku, Organisasi Komunitas, Siapa pun dengan Ide — tempat para anggota saling menemukan."
       },
       "communication": {
-        "body": "Obrolan real-time, pesan langsung, dan diskusi grup melalui protokol Matrix yang terbuka, terenkripsi ujung-ke-ujung secara default."
+        "body": "Setiap komunitas dilengkapi ruang Matrix: obrolan real-time, pesan langsung, dan diskusi grup melalui protokol Matrix yang terbuka, terenkripsi ujung-ke-ujung secara default."
       },
       "feed": {
         "body": "Kiriman, pembaruan, dan peluang dari orang dan komunitas yang Anda ikuti — aliran tenang tentang hal-hal penting di jaringan Anda."
@@ -210,7 +210,7 @@
       },
       "q2": {
         "question": "Apakah JoinOrigin bersifat open source?",
-        "answer": "Kodenya terbuka di bawah lisensi AGPL-3.0, dan komunikasi berjalan di atas protokol Matrix yang terbuka. Origin sendiri adalah produk terkelola (hosted) yang dijalankan oleh JoinOrigin — tidak ada yang perlu di-host sendiri — dan data Anda tetap portabel."
+        "answer": "Kodenya terbuka di bawah lisensi AGPL-3.0, dan komunikasi berjalan di atas protokol Matrix yang terbuka. Data Anda tetap portabel."
       },
       "q3": {
         "question": "Apa itu social graph?",
@@ -270,7 +270,7 @@
       },
       "q3": {
         "question": "Apakah data saya milik saya?",
-        "answer": "Ya. Anda memiliki identitas dan data Anda. Origin adalah produk terkelola, jadi tidak ada yang perlu di-host sendiri — tetapi data Anda portabel dan grafik jaringan Anda tetap tersimpan di protokol Matrix yang terbuka."
+        "answer": "Ya. Anda memiliki identitas dan data Anda. Data Anda portabel dan grafik jaringan Anda tetap tersimpan di protokol Matrix yang terbuka."
       },
       "q4": {
         "question": "Bagaimana cara menemukan orang-orang saya?",
@@ -278,7 +278,7 @@
       },
       "q5": {
         "question": "Bisakah saya bergabung secara anonim atau dengan nama?",
-        "answer": "Terserah Anda. Anda dapat berpartisipasi dengan akun bernama atau tetap anonim, dan komunitas, obrolan, serta halaman ide dapat terbuka untuk semua orang atau dibatasi oleh penyelenggara. Opsi ini diluncurkan secara bertahap."
+        "answer": "Terserah Anda. Anda dapat berpartisipasi dengan akun bernama atau tetap anonim, dan komunitas, ruang, serta halaman ide dapat terbuka untuk semua orang atau dibatasi oleh penyelenggara. Opsi ini diluncurkan secara bertahap."
       }
     }
   },
@@ -300,7 +300,7 @@
         "body": "Ide adalah titik awal dari segala sesuatu di Origin. Unggah halaman ide untuk ide apa pun — bisnis kecil, startup AI, klub buku, lari 10k — dan orang yang ingin membangunnya akan menemukan Anda."
       },
       "communication": {
-        "body": "Komunikasi mencakup obrolan real-time, pesan langsung, dan diskusi grup. Semuanya berjalan di atas protokol Matrix yang terbuka, sehingga percakapan portabel dan dapat dienkripsi ujung-ke-ujung."
+        "body": "Komunikasi terjadi dalam ruang Matrix — obrolan real-time, pesan langsung, dan diskusi grup. Semuanya berjalan di atas protokol Matrix yang terbuka, sehingga percakapan portabel dan dapat dienkripsi ujung-ke-ujung."
       },
       "feed": {
         "body": "Linimasa menampilkan kiriman, pembaruan, dan peluang dari orang serta komunitas yang Anda ikuti. Ini adalah aliran tenang tentang hal-hal penting di jaringan Anda, bukan mesin keterlibatan."
@@ -335,7 +335,7 @@
     },
     "sectionArchitecture": "Arsitektur & standar",
     "architectureParagraph1": "Social graph adalah produknya: setiap objek menggantung pada jaringan orang dan relasi mereka. Komunikasi menggunakan protokol Matrix yang terbuka (terdesentralisasi, E2EE), dan grafik jaringan serta koneksi Anda tersimpan selamanya, sehingga relasi Anda tetap portabel.",
-    "architectureParagraph2": "Origin adalah produk terkelola yang dibangun dengan React, TypeScript, dan Next.js di web, serta NestJS, PostgreSQL, Redis, dan Docker di backend. Yang tetap terbuka adalah protokol (Matrix), data Anda, dan kode sumber di bawah lisensi AGPL-3.0 — tidak ada yang perlu di-host sendiri.",
+    "architectureParagraph2": "Origin dibangun dengan React, TypeScript, dan Next.js di web, serta NestJS, PostgreSQL, Redis, dan Docker di backend. Yang tetap terbuka adalah protokol (Matrix), data Anda, dan kode sumber di bawah lisensi AGPL-3.0.",
     "faq": {
       "q1": {
         "question": "Di atas apa JoinOrigin dibangun?",
@@ -344,10 +344,6 @@
       "q2": {
         "question": "Apa itu Matrix?",
         "answer": "Matrix adalah protokol komunikasi yang terbuka dan terdesentralisasi dengan enkripsi ujung-ke-ujung. Origin berjalan di atasnya, sehingga percakapan — dan grafik jaringan di baliknya — portabel dan tersimpan selamanya."
-      },
-      "q3": {
-        "question": "Apakah JoinOrigin dapat di-host sendiri?",
-        "answer": "Tidak. Origin adalah produk terkelola yang dijalankan oleh JoinOrigin, jadi tidak ada yang perlu di-host sendiri. Grafik jaringan dan koneksi Anda tersimpan selamanya melalui protokol Matrix yang terbuka, dan data Anda tetap portabel."
       },
       "q4": {
         "question": "Kapan MVP diluncurkan?",
@@ -362,7 +358,7 @@
       "lead": "Origin adalah jaringan kolaborasi sosial yang dibangun di atas satu keyakinan: aset paling berharga di internet bukanlah konten atau perangkat lunak — melainkan jaringan manusia dan relasi yang mereka bentuk."
     },
     "sectionMission": "Misi kami",
-    "missionParagraph1": "Origin sedang membangun sistem operasi untuk kolaborasi manusia. Alih-alih lima alat terpisah untuk obrolan, komunitas, dan proyek, relasi Anda hidup dalam satu ruang kerja yang tenang. Social graph adalah produknya: profil, ide, komunitas, percakapan, kiriman, proyek, perusahaan, dan peluang semuanya menggantung pada jaringan manusia yang sama.",
+    "missionParagraph1": "Origin sedang membangun sistem operasi untuk kolaborasi manusia. Alih-alih lima alat terpisah untuk obrolan, komunitas, dan proyek, relasi Anda hidup dalam satu ruang kerja yang tenang. Social graph adalah produknya: profil, ide, komunitas, komunikasi, linimasa, proyek, perusahaan, dan peluang semuanya menggantung pada jaringan manusia yang sama.",
     "missionParagraph2": "Kami sedang dalam akses awal, dengan 2.400+ pembangun di daftar tunggu. Saat platform tumbuh melalui peta jalan — Fondasi Komunitas, Kolaborasi, Organisasi, Kolaborasi AI, dan Jaringan Global — misinya tetap sama: membantu orang saling menemukan dan membangun bersama.",
     "sectionPrinciples": "Prinsip-prinsip panduan",
     "principles": {
@@ -377,7 +373,7 @@
       },
       "openArchitecture": {
         "title": "Arsitektur Terbuka",
-        "body": "Komunikasi berjalan di atas protokol Matrix yang terbuka, dan identitas, profil, komunitas, serta social graph bersifat portabel dan dimiliki pengguna. Origin terkelola, jadi tidak ada yang perlu di-host sendiri."
+        "body": "Komunikasi berjalan di atas protokol Matrix yang terbuka, dan identitas, profil, komunitas, serta social graph bersifat portabel dan dimiliki pengguna."
       }
     },
     "sectionFounder": "Panduan pendiri",
@@ -398,7 +394,7 @@
       },
       "q3": {
         "question": "Apakah JoinOrigin bersifat open source?",
-        "answer": "Kodenya terbuka di bawah lisensi AGPL-3.0, dan komunikasi berjalan di atas protokol Matrix yang terbuka. Origin adalah produk terkelola yang dijalankan oleh JoinOrigin — tidak ada yang perlu di-host sendiri — dan grafik jaringan Anda tetap portabel. Lihat dokumen untuk detailnya."
+        "answer": "Kodenya terbuka di bawah lisensi AGPL-3.0, dan komunikasi berjalan di atas protokol Matrix yang terbuka. Grafik jaringan Anda tetap portabel. Lihat dokumen untuk detailnya."
       }
     }
   },
