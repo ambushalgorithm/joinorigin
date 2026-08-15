@@ -137,7 +137,7 @@
         "body": "Profil berfungsi seperti CV yang hidup: profil membawa pengalaman, keterampilan, dan ide Anda — plus reputasi dan relasi — di setiap komunitas dan proyek yang Anda ikuti."
       },
       "ideas": {
-        "body": "Setiap ide mendapat rumah. Unggah halaman ide untuk apa pun — bisnis kecil, startup AI, membantu tuna wisma, lari 10k, klub buku, liga pee-wee — dan temukan orang yang ingin membangunnya bersama Anda."
+        "body": "Ide adalah titik awal dari segala sesuatu di Origin. Unggah halaman ide untuk ide apa pun — bisnis kecil, startup AI, klub buku, lari 10k — dan orang yang ingin membangunnya akan menemukan Anda."
       },
       "communities": {
         "body": "Grup berdasarkan minat, industri, dan tujuan — Pendiri Startup, Bisnis Kecil, Klub Buku, Organisasi Komunitas, Siapa pun dengan Ide — tempat para anggota saling menemukan."
@@ -146,7 +146,7 @@
         "body": "Setiap komunitas dilengkapi ruang Matrix: obrolan real-time, pesan langsung, dan diskusi grup melalui protokol Matrix yang terbuka, terenkripsi ujung-ke-ujung secara default."
       },
       "feed": {
-        "body": "Kiriman, pembaruan, dan peluang dari orang dan komunitas yang Anda ikuti — aliran tenang tentang hal-hal penting di jaringan Anda."
+        "body": "Linimasa menampilkan kiriman, pembaruan, dan peluang dari orang serta komunitas yang Anda ikuti. Ini adalah aliran tenang tentang hal-hal penting di jaringan Anda, bukan mesin keterlibatan."
       },
       "projects": {
         "body": "Upaya kolaboratif tempat para anggota komunitas bekerja sama dan mengubah percakapan menjadi hasil nyata."
@@ -188,19 +188,13 @@
     "sectionRoadmap": "Peta jalan",
     "roadmap": {
       "phase1": {
-        "body": "Profil, komunitas, obrolan, dan social graph — lapisan dasar tempat orang saling menemukan."
+        "body": "Profil, komunitas, obrolan, dan social graph. Metrik keberhasilan: anggota membentuk komunitas yang bertahan lama."
       },
       "phase2": {
-        "body": "Proyek, ruang kerja bersama, dan alat yang mengubah percakapan komunitas menjadi kerja bersama."
+        "body": "Proyek, ruang kerja bersama, dan alat yang mengubah percakapan menjadi kerja bersama. Metrik keberhasilan: komunitas menghasilkan hasil bersama-sama."
       },
       "phase3": {
-        "body": "Perusahaan dan ventura yang dibentuk oleh anggota, dengan manajemen tim dan tata kelola."
-      },
-      "phase4": {
-        "body": "Pekerja AI yang membantu komunitas berkoordinasi, merangkum, dan mencocokkan peluang."
-      },
-      "phase5": {
-        "body": "Standar terbuka dan portabilitas sehingga jaringan terhubung lintas platform, tidak hanya di dalam satu silo."
+        "body": "Perusahaan dan ventura yang dibentuk oleh anggota, dengan manajemen tim dan tata kelola. Metrik keberhasilan: perusahaan yang didirikan di dalam jaringan."
       }
     },
     "faq": {
@@ -297,13 +291,13 @@
         "body": "Komunitas adalah kelompok orang yang berbagi minat, industri, tujuan, dan peluang — untuk ide apa pun. Komunitas adalah pusat keterlibatan di Origin dan cara anggota saling menemukan."
       },
       "ideas": {
-        "body": "Ide adalah titik awal dari segala sesuatu di Origin. Unggah halaman ide untuk ide apa pun — bisnis kecil, startup AI, klub buku, lari 10k — dan orang yang ingin membangunnya akan menemukan Anda."
+        "body": "Setiap ide mendapat rumah. Unggah halaman ide untuk apa pun — bisnis kecil, startup AI, membantu tuna wisma, lari 10k, klub buku, liga pee-wee — dan temukan orang yang ingin membangunnya bersama Anda."
       },
       "communication": {
         "body": "Komunikasi terjadi dalam ruang Matrix — obrolan real-time, pesan langsung, dan diskusi grup. Semuanya berjalan di atas protokol Matrix yang terbuka, sehingga percakapan portabel dan dapat dienkripsi ujung-ke-ujung."
       },
       "feed": {
-        "body": "Linimasa menampilkan kiriman, pembaruan, dan peluang dari orang serta komunitas yang Anda ikuti. Ini adalah aliran tenang tentang hal-hal penting di jaringan Anda, bukan mesin keterlibatan."
+        "body": "Kiriman, pembaruan, dan peluang dari orang dan komunitas yang Anda ikuti — aliran tenang tentang hal-hal penting di jaringan Anda."
       },
       "projects": {
         "body": "Proyek adalah upaya kolaboratif tempat anggota bekerja sama menuju hasil bersama. Proyek menghubungkan social graph dengan pekerjaan nyata di dalam dan lintas komunitas."

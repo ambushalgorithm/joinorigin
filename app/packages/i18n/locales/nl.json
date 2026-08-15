@@ -137,7 +137,7 @@
         "body": "Een profiel werkt als een levend cv: het draagt je ervaring, vaardigheden en ideeën — plus je reputatie en relaties — mee naar elke community en elk project waar je lid van wordt."
       },
       "ideas": {
-        "body": "Elk idee krijgt een thuis. Plaats een idee-pagina voor alles — een klein bedrijf, een AI-startup, hulp aan daklozen, een 10k-loop, een boekenclub, een jeugdsportcompetitie — en vind de mensen die het met jou willen bouwen."
+        "body": "Ideeën zijn het startpunt van alles op Origin. Plaats een idee-pagina voor elk idee — een klein bedrijf, een AI-startup, een boekenclub, een 10k-loop — en de mensen die het willen bouwen vinden jou."
       },
       "communities": {
         "body": "Groepen rondom interesses, sectoren en doelen — Startup-oprichters, kleine bedrijven, boekenclubs, maatschappelijke organisaties, iedereen met een idee — waar leden elkaar vinden."
@@ -146,7 +146,7 @@
         "body": "Elke community heeft een Matrix-kamer: realtime-chat, directe berichten en groepsdiscussies via het open Matrix-protocol, standaard end-to-end versleuteld."
       },
       "feed": {
-        "body": "Berichten, updates en kansen van de mensen en community's die je volgt — een rustige stroom van wat er in je netwerk toe doet."
+        "body": "De feed toont berichten, updates en kansen van de mensen en community's die je volgt. Het is een rustige stroom van wat er in je netwerk toe doet, geen betrokkenheidsmachine."
       },
       "projects": {
         "body": "Gezamenlijke inspanningen waarin communityleden samenwerken en gesprekken omzetten in resultaten."
@@ -188,19 +188,13 @@
     "sectionRoadmap": "Roadmap",
     "roadmap": {
       "phase1": {
-        "body": "Profielen, community's, chat en de sociale graaf — de basislaag waar mensen elkaar vinden."
+        "body": "Profielen, community's, chat en de sociale graaf. Succesmetriek: leden die duurzame community's vormen."
       },
       "phase2": {
-        "body": "Projecten, gedeelde werkruimtes en tools die communitygesprekken omzetten in gezamenlijk werk."
+        "body": "Projecten, gedeelde werkruimtes en tools die gesprekken omzetten in gezamenlijk werk. Succesmetriek: community's die samen resultaten opleveren."
       },
       "phase3": {
-        "body": "Bedrijven en ondernemingen die leden oprichten, met teammanagement en bestuur."
-      },
-      "phase4": {
-        "body": "AI-werkers die community's helpen coördineren, samenvatten en kansen matchen."
-      },
-      "phase5": {
-        "body": "Open standaarden en overdraagbaarheid zodat het netwerk verbindt over platforms heen, niet alleen binnen één silo."
+        "body": "Bedrijven en ondernemingen die leden oprichten, met teammanagement en bestuur. Succesmetriek: bedrijven die binnen het netwerk worden opgericht."
       }
     },
     "faq": {
@@ -297,13 +291,13 @@
         "body": "Community's zijn groepen mensen die interesses, sectoren, doelen en kansen delen — rondom elk idee. Ze vormen het middelpunt van betrokkenheid op Origin en de manier waarop leden elkaar vinden."
       },
       "ideas": {
-        "body": "Ideeën zijn het startpunt van alles op Origin. Plaats een idee-pagina voor elk idee — een klein bedrijf, een AI-startup, een boekenclub, een 10k-loop — en de mensen die het willen bouwen vinden jou."
+        "body": "Elk idee krijgt een thuis. Plaats een idee-pagina voor alles — een klein bedrijf, een AI-startup, hulp aan daklozen, een 10k-loop, een boekenclub, een jeugdsportcompetitie — en vind de mensen die het met jou willen bouwen."
       },
       "communication": {
         "body": "Communicatie vindt plaats in een Matrix-kamer — realtime-chat, directe berichten en groepsdiscussies. Het draait op het open Matrix-protocol, zodat gesprekken overdraagbaar zijn en end-to-end versleuteld kunnen worden."
       },
       "feed": {
-        "body": "De feed toont berichten, updates en kansen van de mensen en community's die je volgt. Het is een rustige stroom van wat er in je netwerk toe doet, geen betrokkenheidsmachine."
+        "body": "Berichten, updates en kansen van de mensen en community's die je volgt — een rustige stroom van wat er in je netwerk toe doet."
       },
       "projects": {
         "body": "Projecten zijn gezamenlijke inspanningen waarin leden naar een gedeeld resultaat toewerken. Ze verbinden de sociale graaf met echt werk binnen en tussen community's."

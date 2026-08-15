@@ -3,9 +3,6 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 
-import { useGSAP } from '@gsap/react';
-import { gsap } from '../lib/gsap';
-
 import { HERO_RADIAL_GLOW_1, HERO_RADIAL_GLOW_2, HERO_VIGNETTE } from './landingTokens';
 import HeroLeft from './HeroLeft';
 import OrbitViz from './OrbitViz';

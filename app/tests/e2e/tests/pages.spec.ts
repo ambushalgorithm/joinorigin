@@ -39,19 +39,18 @@ export const MENU_PAGES = [
   { path: '/terms', h1: 'Terms of Service' },
 ] as const;
 
-/** Header primary nav labels → href (discovery §3.1). */
+/** Header primary nav labels → href (discovery §3.1; 92cd1f4 moved Community into Explore). */
 export const HEADER_NAV = [
   { label: 'Features', href: '/features' },
-  { label: 'Community', href: '/community' },
   { label: 'Docs', href: '/docs' },
   { label: 'About', href: '/about' },
 ] as const;
 
-/** Explore submenu labels → href (TASK-316). */
+/** Explore submenu labels → href (TASK-316; 92cd1f4 moved Community in, Glossary out). */
 export const EXPLORE_NAV = [
-  { label: 'Locations', href: '/location' },
+  { label: 'Community', href: '/community' },
   { label: 'Guides', href: '/guides' },
-  { label: 'Glossary', href: '/glossary' },
+  { label: 'Locations', href: '/location' },
 ] as const;
 
 /** Footer grouped links (discovery §3.2 + Explore group TASK-316). */
@@ -155,11 +154,13 @@ test.describe('navigation reaches every menu page', () => {
       await header.getByTestId('explore-dropdown').hover();
     }
 
-    // Retained nav links still present next to the Explore dropdown.
+    // Retained nav links still present next to the Explore dropdown
+    // (92cd1f4 moved Community into the Explore submenu).
     await expect(header.getByRole('link', { name: 'Features' })).toBeVisible();
-    await expect(header.getByRole('link', { name: 'Community' })).toBeVisible();
     await expect(header.getByRole('link', { name: 'Docs' })).toBeVisible();
     await expect(header.getByRole('link', { name: 'About' })).toBeVisible();
+    // Community is reachable from the Explore submenu (already visited above).
+    await expect(header.getByTestId('explore-menu').getByRole('link', { name: 'Community' })).toBeVisible();
   });
 
   test('footer grouped links reach every page', async ({ page }) => {

@@ -137,7 +137,7 @@
         "body": "Profil działa jak żywe CV: przenosi Twoje doświadczenie, umiejętności i pomysły — a także reputację i relacje — przez każdą społeczność i każdy projekt, do których dołączysz."
       },
       "ideas": {
-        "body": "Każdy pomysł dostaje swój dom. Opublikuj stronę pomysłu dla dowolnej rzeczy — małej firmy, startupu AI, pomocy bezdomnym, biegu na 10 km, klubu książki, ligi żaków — i znajdź ludzi, którzy chcą budować go razem z Tobą."
+        "body": "Pomysły są punktem wyjścia wszystkiego na Origin. Opublikuj stronę pomysłu dla dowolnej idei — małej firmy, startupu AI, klubu książki, biegu na 10 km — a ludzie, którzy chcą go zbudować, znajdą Ciebie."
       },
       "communities": {
         "body": "Grupy wokół zainteresowań, branż i celów — Założyciele Startupów, Małe Firmy, Kluby Książki, Organizacje Społeczne, Każdy z Pomysłem — w których członkowie odnajdują siebie nawzajem."
@@ -146,7 +146,7 @@
         "body": "Każda społeczność ma swój pokój Matrix: czat w czasie rzeczywistym, wiadomości bezpośrednie i dyskusje grupowe oparte na otwartym protokole Matrix, domyślnie szyfrowane end-to-end."
       },
       "feed": {
-        "body": "Posty, aktualizacje i okazje od osób i społeczności, które obserwujesz — spokojny strumień tego, co ważne w Twojej sieci."
+        "body": "Aktualności pokazują posty, aktualizacje i okazje od osób i społeczności, które obserwujesz. To spokojny strumień tego, co ważne w Twojej sieci, a nie maszyna do wywoływania zaangażowania."
       },
       "projects": {
         "body": "Wspólne przedsięwzięcia, w których członkowie społeczności pracują razem i zamieniają rozmowy w konkretne rezultaty."
@@ -188,19 +188,13 @@
     "sectionRoadmap": "Mapa drogowa",
     "roadmap": {
       "phase1": {
-        "body": "Profile, społeczności, czat i graf społecznościowy — podstawa, na której ludzie się odnajdują."
+        "body": "Profile, społeczności, czat i graf społecznościowy. Metryka sukcesu: członkowie tworzący trwałe społeczności."
       },
       "phase2": {
-        "body": "Projekty, wspólne przestrzenie robocze i narzędzia, które zamieniają rozmowy społeczności we wspólną pracę."
+        "body": "Projekty, wspólne przestrzenie robocze i narzędzia, które zamieniają rozmowy we wspólną pracę. Metryka sukcesu: społeczności wspólnie dostarczające rezultaty."
       },
       "phase3": {
-        "body": "Firmy i przedsięwzięcia tworzone przez członków, z zarządzaniem zespołem i nadzorem."
-      },
-      "phase4": {
-        "body": "Pracownicy AI, którzy pomagają społecznościom koordynować, podsumowywać i dopasowywać okazje."
-      },
-      "phase5": {
-        "body": "Otwarte standardy i przenośność, dzięki którym sieć łączy się między platformami, a nie tylko w obrębie jednej zamkniętej przestrzeni."
+        "body": "Firmy i przedsięwzięcia tworzone przez członków, z zarządzaniem zespołem i nadzorem. Metryka sukcesu: firmy zakładane wewnątrz sieci."
       }
     },
     "faq": {
@@ -297,13 +291,13 @@
         "body": "Społeczności to grupy ludzi, którzy dzielą zainteresowania, branże, cele i okazje — wokół dowolnego pomysłu. Są centrum zaangażowania na Origin i sposobem, w jaki członkowie się odnajdują."
       },
       "ideas": {
-        "body": "Pomysły są punktem wyjścia wszystkiego na Origin. Opublikuj stronę pomysłu dla dowolnej idei — małej firmy, startupu AI, klubu książki, biegu na 10 km — a ludzie, którzy chcą go zbudować, znajdą Ciebie."
+        "body": "Każdy pomysł dostaje swój dom. Opublikuj stronę pomysłu dla dowolnej rzeczy — małej firmy, startupu AI, pomocy bezdomnym, biegu na 10 km, klubu książki, ligi żaków — i znajdź ludzi, którzy chcą budować go razem z Tobą."
       },
       "communication": {
         "body": "Komunikacja odbywa się w pokoju Matrix — czat w czasie rzeczywistym, wiadomości bezpośrednie i dyskusje grupowe. Działa na otwartym protokole Matrix, dzięki czemu rozmowy są przenośne i mogą być szyfrowane end-to-end."
       },
       "feed": {
-        "body": "Aktualności pokazują posty, aktualizacje i okazje od osób i społeczności, które obserwujesz. To spokojny strumień tego, co ważne w Twojej sieci, a nie maszyna do wywoływania zaangażowania."
+        "body": "Posty, aktualizacje i okazje od osób i społeczności, które obserwujesz — spokojny strumień tego, co ważne w Twojej sieci."
       },
       "projects": {
         "body": "Projekty to wspólne przedsięwzięcia, w których członkowie pracują razem na rzecz wspólnego rezultatu. Łączą graf społecznościowy z realną pracą wewnątrz społeczności i między nimi."

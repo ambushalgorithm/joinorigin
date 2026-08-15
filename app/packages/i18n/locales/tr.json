@@ -137,7 +137,7 @@
         "body": "Bir profil, canlı bir özgeçmiş gibi çalışır: deneyiminizi, becerilerinizi ve fikirlerinizi — ayrıca itibarınızı ve ilişkilerinizi — katıldığınız her topluluğa ve projeye taşır."
       },
       "ideas": {
-        "body": "Her fikir bir yuva bulur. Her şey için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, evsizlere yardım, bir 10K koşusu, bir kitap kulübü, bir minikler ligi — ve onu sizinle birlikte inşa etmek isteyen insanları bulun."
+        "body": "Fikirler, Origin'deki her şeyin başlangıç noktasıdır. Herhangi bir fikir için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü, bir 10K koşusu — ve onu inşa etmek isteyen insanlar sizi bulur."
       },
       "communities": {
         "body": "İlgi alanları, sektörler ve hedefler etrafındaki gruplar — Girişim Kurucuları, Küçük İşletmeler, Kitap Kulüpleri, Topluluk Örgütleri, Fikri Olan Herkes — üyelerin birbirini bulduğu yer."
@@ -146,7 +146,7 @@
         "body": "Her topluluk bir Matrix odasıyla gelir: açık Matrix protokolü üzerinden gerçek zamanlı sohbet, doğrudan mesajlar ve grup tartışmaları; varsayılan olarak uçtan uca şifreli."
       },
       "feed": {
-        "body": "Takip ettiğiniz kişilerden ve topluluklardan gönderiler, güncellemeler ve fırsatlar — ağınızda önemli olanların sakin bir akışı."
+        "body": "Akış, takip ettiğiniz kişilerden ve topluluklardan gönderileri, güncellemeleri ve fırsatları gösterir. Ağınızda önemli olanların sakin bir akışıdır, bir etkileşim makinesi değil."
       },
       "projects": {
         "body": "Topluluk üyelerinin birlikte çalıştığı ve sohbetleri sonuçlara dönüştürdüğü iş birliğine dayalı çabalar."
@@ -188,19 +188,13 @@
     "sectionRoadmap": "Yol Haritası",
     "roadmap": {
       "phase1": {
-        "body": "Profiller, topluluklar, sohbet ve sosyal grafik — insanların birbirini bulduğu temel katman."
+        "body": "Profiller, topluluklar, sohbet ve sosyal grafik. Başarı ölçütü: üyelerin kalıcı topluluklar oluşturması."
       },
       "phase2": {
-        "body": "Projeler, paylaşılan çalışma alanları ve topluluk sohbetlerini ortak çalışmaya dönüştüren araçlar."
+        "body": "Projeler, paylaşılan çalışma alanları ve sohbetleri ortak çalışmaya dönüştüren araçlar. Başarı ölçütü: toplulukların birlikte sonuç üretmesi."
       },
       "phase3": {
-        "body": "Üyeler tarafından kurulan şirketler ve girişimler; takım yönetimi ve yönetişim ile."
-      },
-      "phase4": {
-        "body": "Toplulukların koordine olmasına, özet çıkarmasına ve fırsatları eşleştirmesine yardımcı olan yapay zekâ çalışanları."
-      },
-      "phase5": {
-        "body": "Ağın yalnızca tek bir silonun içinde değil, platformlar arasında bağlanmasını sağlayan açık standartlar ve taşınabilirlik."
+        "body": "Üyeler tarafından kurulan şirketler ve girişimler; takım yönetimi ve yönetişim ile. Başarı ölçütü: ağ içinde kurulan şirketler."
       }
     },
     "faq": {
@@ -297,13 +291,13 @@
         "body": "Topluluklar, ilgi alanlarını, sektörleri, hedefleri ve fırsatları paylaşan insan gruplarıdır — herhangi bir fikir etrafında. Origin'de etkileşimin merkezi ve üyelerin birbirini bulma yoludur."
       },
       "ideas": {
-        "body": "Fikirler, Origin'deki her şeyin başlangıç noktasıdır. Herhangi bir fikir için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü, bir 10K koşusu — ve onu inşa etmek isteyen insanlar sizi bulur."
+        "body": "Her fikir bir yuva bulur. Her şey için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, evsizlere yardım, bir 10K koşusu, bir kitap kulübü, bir minikler ligi — ve onu sizinle birlikte inşa etmek isteyen insanları bulun."
       },
       "communication": {
         "body": "İletişim, bir Matrix odasında gerçekleşir — gerçek zamanlı sohbet, doğrudan mesajlar ve grup tartışmaları. Açık Matrix protokolü üzerinde çalışır; böylece sohbetler taşınabilirdir ve uçtan uca şifrelenebilir."
       },
       "feed": {
-        "body": "Akış, takip ettiğiniz kişilerden ve topluluklardan gönderileri, güncellemeleri ve fırsatları gösterir. Ağınızda önemli olanların sakin bir akışıdır, bir etkileşim makinesi değil."
+        "body": "Takip ettiğiniz kişilerden ve topluluklardan gönderiler, güncellemeler ve fırsatlar — ağınızda önemli olanların sakin bir akışı."
       },
       "projects": {
         "body": "Projeler, üyelerin ortak bir sonuca doğru birlikte çalıştığı iş birliğine dayalı çabalardır. Sosyal grafiği, toplulukların içindeki ve arasındaki gerçek işlere bağlarlar."

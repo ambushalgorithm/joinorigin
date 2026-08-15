@@ -137,7 +137,7 @@
         "body": "Un profil fonctionne comme un CV vivant : il porte votre expérience, vos compétences et vos idées — ainsi que votre réputation et vos relations — à travers chaque communauté et chaque projet que vous rejoignez."
       },
       "ideas": {
-        "body": "Chaque idée trouve un foyer. Publiez une page d'idée pour tout — une petite entreprise, une start-up IA, aider les sans-abri, un 10 km, un club de lecture, une ligue de hockey pee-wee — et trouvez les personnes qui veulent la construire avec vous."
+        "body": "Les idées sont le point de départ de tout sur Origin. Publiez une page d'idée pour n'importe quelle idée — une petite entreprise, une start-up IA, un club de lecture, un 10 km — et les personnes qui veulent la construire vous trouvent."
       },
       "communities": {
         "body": "Des groupes autour de centres d'intérêt, d'industries et d'objectifs — Fondateurs de start-up, Petites entreprises, Clubs de lecture, Organisations communautaires, Toute personne avec une idée — où les membres se retrouvent."
@@ -146,7 +146,7 @@
         "body": "Chaque communauté dispose d'un salon Matrix : discussion en temps réel, messages directs et discussions de groupe via le protocole ouvert Matrix, chiffrés de bout en bout par défaut."
       },
       "feed": {
-        "body": "Publications, actualités et opportunités des personnes et des communautés que vous suivez — un fil apaisé de ce qui compte dans votre réseau."
+        "body": "Le fil affiche les publications, actualités et opportunités des personnes et communautés que vous suivez. C'est un fil apaisé de ce qui compte dans votre réseau, pas une machine à engagement."
       },
       "projects": {
         "body": "Des efforts collaboratifs où les membres d'une communauté travaillent ensemble et transforment les conversations en résultats concrets."
@@ -188,19 +188,13 @@
     "sectionRoadmap": "Feuille de route",
     "roadmap": {
       "phase1": {
-        "body": "Profils, communautés, messagerie et graphe social — la couche de base où les personnes se retrouvent."
+        "body": "Profils, communautés, messagerie et graphe social. Indicateur de réussite : les membres qui forment des communautés durables."
       },
       "phase2": {
-        "body": "Projets, espaces de travail partagés et outils qui transforment les conversations communautaires en travail collectif."
+        "body": "Projets, espaces de travail partagés et outils qui transforment les conversations en travail collectif. Indicateur de réussite : les communautés qui livrent des résultats ensemble."
       },
       "phase3": {
-        "body": "Entreprises et startups créées par les membres, avec gestion d'équipe et gouvernance."
-      },
-      "phase4": {
-        "body": "Des agents IA qui aident les communautés à se coordonner, à résumer et à mettre en correspondance les opportunités."
-      },
-      "phase5": {
-        "body": "Des standards ouverts et la portabilité pour que le réseau connecte entre plateformes, pas seulement à l'intérieur d'un silo."
+        "body": "Entreprises et startups créées par les membres, avec gestion d'équipe et gouvernance. Indicateur de réussite : des entreprises fondées au sein du réseau."
       }
     },
     "faq": {
@@ -297,13 +291,13 @@
         "body": "Les communautés sont des groupes de personnes qui partagent des centres d'intérêt, des industries, des objectifs et des opportunités — autour de n'importe quelle idée. Elles sont au cœur de l'engagement sur Origin et le moyen par lequel les membres se retrouvent."
       },
       "ideas": {
-        "body": "Les idées sont le point de départ de tout sur Origin. Publiez une page d'idée pour n'importe quelle idée — une petite entreprise, une start-up IA, un club de lecture, un 10 km — et les personnes qui veulent la construire vous trouvent."
+        "body": "Chaque idée trouve un foyer. Publiez une page d'idée pour tout — une petite entreprise, une start-up IA, aider les sans-abri, un 10 km, un club de lecture, une ligue de hockey pee-wee — et trouvez les personnes qui veulent la construire avec vous."
       },
       "communication": {
         "body": "La communication se déroule dans un salon Matrix — discussion en temps réel, messages directs et discussions de groupe. Elle repose sur le protocole ouvert Matrix, pour que les conversations soient portables et puissent être chiffrées de bout en bout."
       },
       "feed": {
-        "body": "Le fil affiche les publications, actualités et opportunités des personnes et communautés que vous suivez. C'est un fil apaisé de ce qui compte dans votre réseau, pas une machine à engagement."
+        "body": "Publications, actualités et opportunités des personnes et des communautés que vous suivez — un fil apaisé de ce qui compte dans votre réseau."
       },
       "projects": {
         "body": "Les projets sont des efforts collaboratifs où les membres travaillent ensemble vers un résultat commun. Ils connectent le graphe social au travail concret à l'intérieur et à travers les communautés."
