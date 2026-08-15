@@ -84,7 +84,7 @@
       },
       "q3": {
         "question": "Wat kan ik doen zodra ik binnen ben?",
-        "answer": "Maak een profiel dat werkt als een cv, plaats je idee als idee-pagina, start of sluit je aan bij community's rondom alles en nodig de mensen uit waarmee je wilt werken. De wachtlijst reserveert je plek, zodat je community klaar is wanneer de vroege toegang opent."
+        "answer": "Maak een profiel dat werkt als een cv, plaats je idee als idee-pagina, start of sluit je aan bij community's rondom alles en nodig de mensen uit waarmee je wilt werken. Elke community heeft een eigen kamer waar leden elkaar ontmoeten. De wachtlijst reserveert je plek, zodat je community klaar is wanneer de vroege toegang opent."
       },
       "q4": {
         "question": "Wanneer begint de vroege toegang?",
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Kernobjecten",
       "title": "Alles wat een community nodig heeft, in één rustige werkruimte",
-      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is opgebouwd rond acht kernobjecten: profielen, ideeën, community's, gesprekken, berichten, projecten, bedrijven en kansen. In plaats van vijf losse tools leven je relaties op één plek."
+      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is opgebouwd rond acht kernobjecten: profielen, ideeën, community's, communicatie, feed, projecten, bedrijven en kansen. In plaats van vijf losse tools leven je relaties op één plek."
     },
     "sectionCoreObjects": "Kernobjecten",
     "coreObjects": {
@@ -143,7 +143,7 @@
         "body": "Groepen rondom interesses, sectoren en doelen — Startup-oprichters, kleine bedrijven, boekenclubs, maatschappelijke organisaties, iedereen met een idee — waar leden elkaar vinden."
       },
       "communication": {
-        "body": "Realtime-chat, directe berichten en groepsdiscussies via het open Matrix-protocol, standaard end-to-end versleuteld."
+        "body": "Elke community heeft een Matrix-kamer: realtime-chat, directe berichten en groepsdiscussies via het open Matrix-protocol, standaard end-to-end versleuteld."
       },
       "feed": {
         "body": "Berichten, updates en kansen van de mensen en community's die je volgt — een rustige stroom van wat er in je netwerk toe doet."
@@ -210,7 +210,7 @@
       },
       "q2": {
         "question": "Is JoinOrigin open source?",
-        "answer": "De code is open onder AGPL-3.0 en communicatie verloopt via het open Matrix-protocol. Origin zelf is een gehost product dat door JoinOrigin wordt beheerd — er is niets om zelf te hosten — en je gegevens blijven overdraagbaar."
+        "answer": "De code is open onder AGPL-3.0 en communicatie verloopt via het open Matrix-protocol. Je gegevens blijven overdraagbaar."
       },
       "q3": {
         "question": "Wat is de sociale graaf?",
@@ -270,7 +270,7 @@
       },
       "q3": {
         "question": "Is mijn data van mij?",
-        "answer": "Ja. Je bezit je identiteit en je gegevens. Origin is een gehost product, dus er is niets om zelf te hosten — maar je gegevens zijn overdraagbaar en je netwerkgraaf blijft behouden via het open Matrix-protocol."
+        "answer": "Ja. Je bezit je identiteit en je gegevens. Je gegevens zijn overdraagbaar en je netwerkgraaf blijft behouden via het open Matrix-protocol."
       },
       "q4": {
         "question": "Hoe vind ik mijn mensen?",
@@ -278,7 +278,7 @@
       },
       "q5": {
         "question": "Kan ik anoniem of met naam meedoen?",
-        "answer": "Jij kiest. Je kunt meedoen met een account op naam of anoniem blijven, en community's, chats en idee-pagina's kunnen open zijn voor iedereen of beperkt worden door organisatoren. Deze opties worden geleidelijk uitgerold."
+        "answer": "Jij kiest. Je kunt meedoen met een account op naam of anoniem blijven, en community's, kamers en idee-pagina's kunnen open zijn voor iedereen of beperkt worden door organisatoren. Deze opties worden geleidelijk uitgerold."
       }
     }
   },
@@ -300,7 +300,7 @@
         "body": "Ideeën zijn het startpunt van alles op Origin. Plaats een idee-pagina voor elk idee — een klein bedrijf, een AI-startup, een boekenclub, een 10k-loop — en de mensen die het willen bouwen vinden jou."
       },
       "communication": {
-        "body": "Communicatie omvat realtime-chat, directe berichten en groepsdiscussies. Het draait op het open Matrix-protocol, zodat gesprekken overdraagbaar zijn en end-to-end versleuteld kunnen worden."
+        "body": "Communicatie vindt plaats in een Matrix-kamer — realtime-chat, directe berichten en groepsdiscussies. Het draait op het open Matrix-protocol, zodat gesprekken overdraagbaar zijn en end-to-end versleuteld kunnen worden."
       },
       "feed": {
         "body": "De feed toont berichten, updates en kansen van de mensen en community's die je volgt. Het is een rustige stroom van wat er in je netwerk toe doet, geen betrokkenheidsmachine."
@@ -335,7 +335,7 @@
     },
     "sectionArchitecture": "Architectuur & standaarden",
     "architectureParagraph1": "De sociale graaf is het product: elk object hangt af van het netwerk van mensen en hun relaties. Communicatie gebruikt het open Matrix-protocol (gedecentraliseerd, E2EE), en je netwerkgraaf en connecties blijven voor altijd behouden, zodat je relaties overdraagbaar blijven.",
-    "architectureParagraph2": "Origin is een gehost product, op het web gebouwd met React, TypeScript en Next.js, en in de backend met NestJS, PostgreSQL, Redis en Docker. Open blijven het protocol (Matrix), je gegevens en de broncode onder AGPL-3.0 — er is niets om zelf te hosten.",
+    "architectureParagraph2": "Origin is op het web gebouwd met React, TypeScript en Next.js, en in de backend met NestJS, PostgreSQL, Redis en Docker. Open blijven het protocol (Matrix), je gegevens en de broncode onder AGPL-3.0.",
     "faq": {
       "q1": {
         "question": "Waarop is JoinOrigin gebouwd?",
@@ -344,10 +344,6 @@
       "q2": {
         "question": "Wat is Matrix?",
         "answer": "Matrix is een open, gedecentraliseerd communicatieprotocol met end-to-end-versleuteling. Origin draait erop, zodat gesprekken — en de netwerkgraaf erachter — overdraagbaar zijn en voor altijd blijven bestaan."
-      },
-      "q3": {
-        "question": "Is JoinOrigin zelf te hosten?",
-        "answer": "Nee. Origin is een gehost product dat door JoinOrigin wordt beheerd, dus er is niets om zelf te hosten. Je netwerkgraaf en connecties blijven voor altijd behouden via het open Matrix-protocol en je gegevens blijven overdraagbaar."
       },
       "q4": {
         "question": "Wanneer lanceert de MVP?",
@@ -362,7 +358,7 @@
       "lead": "Origin is een sociaal samenwerkingsnetwerk dat is gebouwd op één overtuiging: het meest waardevolle bezit op internet is niet content of software — het is het netwerk van mensen en de relaties die zij vormen."
     },
     "sectionMission": "Onze missie",
-    "missionParagraph1": "Origin bouwt het besturingssysteem voor menselijke samenwerking. In plaats van vijf losse tools voor chat, community's en projecten leven je relaties in één rustige werkruimte. De sociale graaf is het product: profielen, ideeën, community's, gesprekken, berichten, projecten, bedrijven en kansen hangen allemaal af van hetzelfde netwerk van mensen.",
+    "missionParagraph1": "Origin bouwt het besturingssysteem voor menselijke samenwerking. In plaats van vijf losse tools voor chat, community's en projecten leven je relaties in één rustige werkruimte. De sociale graaf is het product: profielen, ideeën, community's, communicatie, feed, projecten, bedrijven en kansen hangen allemaal af van hetzelfde netwerk van mensen.",
     "missionParagraph2": "We zijn vandaag in vroege toegang, met 2.400+ bouwers op de wachtlijst. Terwijl het platform groeit via de roadmap — Community Foundation, Samenwerking, Organisatie, AI-samenwerking en het mondiale netwerk — blijft de missie hetzelfde: mensen helpen elkaar te vinden en samen te bouwen.",
     "sectionPrinciples": "Leidende principes",
     "principles": {
@@ -377,7 +373,7 @@
       },
       "openArchitecture": {
         "title": "Open architectuur",
-        "body": "Communicatie verloopt via het open Matrix-protocol en identiteit, profielen, community's en de sociale graaf zijn overdraagbaar en eigendom van de gebruiker. Origin is gehost, dus er is niets om zelf te hosten."
+        "body": "Communicatie verloopt via het open Matrix-protocol en identiteit, profielen, community's en de sociale graaf zijn overdraagbaar en eigendom van de gebruiker."
       }
     },
     "sectionFounder": "Advies van de oprichter",
@@ -398,7 +394,7 @@
       },
       "q3": {
         "question": "Is JoinOrigin open source?",
-        "answer": "De code is open onder AGPL-3.0 en communicatie verloopt via het open Matrix-protocol. Origin is een gehost product dat door JoinOrigin wordt beheerd — er is niets om zelf te hosten — en je netwerkgraaf blijft overdraagbaar. Zie de docs voor details."
+        "answer": "De code is open onder AGPL-3.0 en communicatie verloopt via het open Matrix-protocol. Je netwerkgraaf blijft overdraagbaar. Zie de docs voor details."
       }
     }
   },
