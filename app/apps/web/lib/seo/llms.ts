@@ -8,9 +8,10 @@ import { absoluteUrl } from './url';
  * design §9.3).
  *
  * Single `LLMS_ENTRIES` array drives the plain-text route handler at
- * `app/llms.txt/route.ts` — keep the doc under ~2 KB so LLM crawlers can
- * hold it in context. **Curated, not exhaustive**: Locations lists the hub +
- * the two flagship city pages (NYC + Berlin) — the long tail lives in the
+ * `app/llms.txt/route.ts` — keep the doc under ~3 KB so LLM crawlers can
+ * hold it in context (the 12-guide set, TASK-353, raised the original ~2 KB
+ * budget for 7 guides). **Curated, not exhaustive**: Locations lists the hub
+ * + the two flagship city pages (NYC + Berlin) — the long tail lives in the
  * sitemap, never here (design §9.3). Every link points to an LLM-parseable
  * HTML page; no links to the waitlist modal or `/api/*`.
  *
@@ -30,7 +31,7 @@ function flagshipLinks(): Array<{ path: string; description: string }> {
   }));
 }
 
-/** Curated guide links — all 7 L1 guides, terse descriptions. */
+/** Curated guide links — all 12 L1 guides, terse descriptions. */
 function guideLinks(): Array<{ path: string; description: string }> {
   const terse = new Map<string, string>([
     ['start-a-community', 'Start a community.'],
@@ -40,6 +41,11 @@ function guideLinks(): Array<{ path: string; description: string }> {
     ['keep-a-community-active', 'Keep a community active.'],
     ['hybrid-communities', 'Run hybrid communities.'],
     ['moderation', 'Moderate a community.'],
+    ['publish-an-idea', 'Publish an idea.'],
+    ['create-a-project', 'Create a project.'],
+    ['create-a-group', 'Create a group.'],
+    ['publish-a-small-business-idea', 'Publish a small business idea.'],
+    ['publish-a-startup-concept', 'Publish a startup concept.'],
   ]);
   return guidePageEntries().map((entry) => ({
     path: entry.path,

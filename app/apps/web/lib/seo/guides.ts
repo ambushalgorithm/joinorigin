@@ -31,7 +31,7 @@ export const GLOSSARY_HUB_PATH = '/glossary';
 /** Deterministic `lastModified` for guide entries (design §9.1). */
 export const GUIDES_RELEASE_DATE = '2026-08-14';
 
-/** The 7 L1 how-to guides in display order (design §6.1). */
+/** The 12 L1 how-to guides in display order (design §6.1). */
 export const GUIDE_SLUGS = [
   'start-a-community',
   'find-a-co-founder',
@@ -40,6 +40,13 @@ export const GUIDE_SLUGS = [
   'hybrid-communities',
   'organize-a-meetup',
   'moderation',
+  // TASK-353 — 5 new L1 guides appended after the original 7 (user order
+  // of the existing guides is preserved unchanged).
+  'publish-an-idea',
+  'create-a-project',
+  'create-a-group',
+  'publish-a-small-business-idea',
+  'publish-a-startup-concept',
 ] as const;
 
 export type GuideSlug = (typeof GUIDE_SLUGS)[number];

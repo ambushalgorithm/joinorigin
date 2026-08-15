@@ -24,12 +24,17 @@ import newYorkRegionEn from './en/region/new-york';
 import newYorkCityEn from './en/city/new-york';
 import unitedStatesCountryEn from './en/country/united-states';
 // L1 how-to guides (TASK-309) — EN source of truth.
+import createAGroupGuideEn from './en/guide/create-a-group';
+import createAProjectGuideEn from './en/guide/create-a-project';
 import findACoFounderGuideEn from './en/guide/find-a-co-founder';
 import first10MembersGuideEn from './en/guide/first-10-members';
 import hybridCommunitiesGuideEn from './en/guide/hybrid-communities';
 import keepCommunityActiveGuideEn from './en/guide/keep-a-community-active';
 import moderationGuideEn from './en/guide/moderation';
 import organizeMeetupGuideEn from './en/guide/organize-a-meetup';
+import publishAnIdeaGuideEn from './en/guide/publish-an-idea';
+import publishASmallBusinessIdeaGuideEn from './en/guide/publish-a-small-business-idea';
+import publishAStartupConceptGuideEn from './en/guide/publish-a-startup-concept';
 import startCommunityGuideEn from './en/guide/start-a-community';
 import type {
   CityContent,
@@ -82,6 +87,22 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   { kind: 'guide', slug: 'hybrid-communities', locale: 'en', content: hybridCommunitiesGuideEn },
   { kind: 'guide', slug: 'moderation', locale: 'en', content: moderationGuideEn },
+  // L1 how-to guides (TASK-353) — 5 new guides appended in display order.
+  { kind: 'guide', slug: 'publish-an-idea', locale: 'en', content: publishAnIdeaGuideEn },
+  { kind: 'guide', slug: 'create-a-project', locale: 'en', content: createAProjectGuideEn },
+  { kind: 'guide', slug: 'create-a-group', locale: 'en', content: createAGroupGuideEn },
+  {
+    kind: 'guide',
+    slug: 'publish-a-small-business-idea',
+    locale: 'en',
+    content: publishASmallBusinessIdeaGuideEn,
+  },
+  {
+    kind: 'guide',
+    slug: 'publish-a-startup-concept',
+    locale: 'en',
+    content: publishAStartupConceptGuideEn,
+  },
 ];
 
 /** True when committed content exists for (kind, slug) in a locale. */
