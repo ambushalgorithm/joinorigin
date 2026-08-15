@@ -84,22 +84,22 @@
       },
       "q3": {
         "question": "İçeri girdikten sonra neler yapabilirim?",
-        "answer": "Özgeçmiş gibi çalışan bir profil oluşturun, fikrinizi bir fikir sayfası olarak yayınlayın, her şeyin etrafında topluluklar başlatın ya da katılın ve birlikte çalışmak istediğiniz kişileri davet edin. Her topluluğun, üyelerin bağlandığı kendi odası vardır. Bekleme listesi yerinizi ayırtır; erken erişim açıldığında topluluğunuz hazır olur."
+        "answer": "Özgeçmiş gibi çalışan bir profil oluşturun, fikrinizi bir fikir sayfası olarak yayınlayın, her şeyin etrafında topluluklar başlatın ya da katılın ve birlikte çalışmak istediğiniz kişileri davet edin. Her topluluğun, üyelerin bağlandığı kendi odası vardır. Bekleme listesi yerinizi ayırtır; platform açıldığında topluluğunuz hazır olur."
       },
       "q4": {
-        "question": "Erken erişim ne zaman başlıyor?",
-        "answer": "Platform lansmana doğru ilerlerken erken erişim dalgalar hâlinde açılır. Bekleme listesine şimdi katılmak yerinizi ayırtır ve topluluğunuz hazır olduğunda davet edilirsiniz."
+        "question": "Platform ne zaman açılıyor?",
+        "answer": "Platform lansmana doğru ilerlerken dalgalar hâlinde açılır. Bekleme listesine şimdi katılmak yerinizi ayırtır ve topluluğunuz hazır olduğunda davet edilirsiniz."
       },
       "q5": {
         "question": "Nasıl katılırım?",
-        "answer": "Bu sayfadaki herhangi bir Başlayın düğmesine tıklayın, adınızı ve e-postanızı girin; bekleme listesindesiniz. Erken erişim sırası size geldiğinde bir davetiye alacaksınız."
+        "answer": "Bu sayfadaki herhangi bir Başlayın düğmesine tıklayın, adınızı ve e-postanızı girin; bekleme listesindesiniz. Platform sırası size geldiğinde bir davetiye alacaksınız."
       }
     }
   },
   "waitlist": {
     "close": "Kapat",
     "heading": "Bekleme listesine katılın",
-    "subcopy": "Erken erişim için ilk sırada olun. Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
+    "subcopy": "Platform için ilk sırada olun. Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
     "nameLabel": "Ad",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-posta",
@@ -121,7 +121,7 @@
   },
   "ctaBand": {
     "headline": "İnsanlarını bul. Birlikte inşa et.",
-    "subline": "Origin'in sosyal iş birliği ağındaki 2.400+ kurucuya katılın ve erken erişim açıldığında ilk sırada olun.",
+    "subline": "Origin'in sosyal iş birliği ağındaki 2.400+ kurucuya katılın ve platform açıldığında ilk sırada olun.",
     "joinLabel": "Bekleme listesine katılın",
     "contactLabel": "Bize ulaşın"
   },
@@ -341,7 +341,7 @@
       },
       "q4": {
         "question": "MVP ne zaman kullanıma sunuluyor?",
-        "answer": "JoinOrigin erken erişimdedir. Topluluk Temeli (Faz 1) MVP'dir ve önce bekleme listesindeki üyelere sunulur."
+        "answer": "JoinOrigin hâlâ bekleme listesindedir. Topluluk Temeli (Faz 1) MVP'dir ve önce bekleme listesindeki üyelere sunulur."
       }
     }
   },
@@ -353,7 +353,7 @@
     },
     "sectionMission": "Misyonumuz",
     "missionParagraph1": "Origin, insan iş birliği için işletim sistemini kuruyor. Sohbet, topluluklar ve projeler için beş ayrı araç yerine ilişkileriniz tek bir sakin çalışma alanında yaşar. Sosyal grafik üründür: profiller, fikirler, topluluklar, iletişim, akış, projeler, şirketler ve fırsatların tümü aynı insan ağına bağlıdır.",
-    "missionParagraph2": "Bugün erken erişimdeyiz; bekleme listesinde 2.400+ kurucu var. Platform yol haritası boyunca büyürken — Topluluk Temeli, İş Birliği, Organizasyon, Yapay Zekâ ile İş Birliği ve Küresel Ağ — misyon aynı kalır: insanların birbirini bulmasına ve birlikte inşa etmesine yardımcı olmak.",
+    "missionParagraph2": "Bugün hâlâ bekleme listesindeyiz; 2.400+ kurucu çoktan kaydoldu. Platform yol haritası boyunca büyürken — Topluluk Temeli, İş Birliği, Organizasyon, Yapay Zekâ ile İş Birliği ve Küresel Ağ — misyon aynı kalır: insanların birbirini bulmasına ve birlikte inşa etmesine yardımcı olmak.",
     "sectionPrinciples": "Rehber ilkeler",
     "principles": {
       "peopleFirst": {
@@ -396,7 +396,7 @@
     "hero": {
       "eyebrow": "İletişim",
       "title": "Bizimle konuşun",
-      "lead": "Origin — sosyal iş birliği ağı —, erken erişim ya da bir topluluk başlatma hakkında sorunuz mu var? Sizden haber almayı çok isteriz. Bize her şeyi sorabilirsiniz."
+      "lead": "Origin — sosyal iş birliği ağı —, bekleme listesi ya da bir topluluk başlatma hakkında sorunuz mu var? Sizden haber almayı çok isteriz. Bize her şeyi sorabilirsiniz."
     },
     "sectionForm": "Mesaj gönderin",
     "form": {
@@ -422,7 +422,7 @@
         "answer": "2 iş günü içinde yanıt veriyoruz. En hızlı yanıt için önce dokümanlardaki SSS bölümüne bakın."
       },
       "q2": {
-        "question": "Erken erişim alabilir miyim?",
+        "question": "Platform açıldığında erişim alabilir miyim?",
         "answer": "Evet — ana sayfadan bekleme listesine katılın. Topluluk işletim sistemi kullanıma sunulduğunda erken üyeler ilk sırada olur."
       }
     }
@@ -431,19 +431,19 @@
     "hero": {
       "eyebrow": "Yasal",
       "title": "Gizlilik Politikası",
-      "lead": "Bekleme listesine katıldığınızda, bekleme listesi formu aracılığıyla (POST /api/leads) adınızı ve e-posta adresinizi toplarız. Erken erişim sırasında talep ettiğimiz tek kişisel bilgi budur."
+      "lead": "Bekleme listesine katıldığınızda, bekleme listesi formu aracılığıyla (POST /api/leads) adınızı ve e-posta adresinizi toplarız. Bekleme listesinde talep ettiğimiz tek kişisel bilgi budur."
     },
     "sectionCollect": "Neleri topluyoruz",
     "collect": {
       "waitlistDataTitle": "Bekleme listesi verileri",
-      "waitlistDataBody": "Ad ve e-posta; yalnızca erken erişimin ne zaman açıldığını bildirmek ve sizi davet etmek için kullanılır.",
+      "waitlistDataBody": "Ad ve e-posta; yalnızca platformun ne zaman açılacağını bildirmek ve sizi davet etmek için kullanılır.",
       "analyticsTitle": "Analitik",
       "analyticsBody": "Sitenin toplu kullanımını anlamak için yapılandırma tabanlı analitik çalıştırıyoruz (varsayılan olarak kendi sunucumuzda barındırılan Plausible). Bir onay (consent) bildirimi sonraki bir sprintte planlanmaktadır.",
       "technicalDataTitle": "Temel teknik veriler",
       "technicalDataBody": "Sitenin güvenilir kalmasına yardımcı olan standart sunucu günlükleri ve tarayıcı meta verileri."
     },
     "sectionUse": "Bunları nasıl kullanıyoruz",
-    "useBody": "Topladığımız bilgileri siteyi işletmek, erken erişim davetiyelerini iletmek ve ürünü geliştirmek için kullanıyoruz. Kişisel bilgilerinizi satmıyoruz.",
+    "useBody": "Topladığımız bilgileri siteyi işletmek, bekleme listesi davetiyelerini iletmek ve ürünü geliştirmek için kullanıyoruz. Kişisel bilgilerinizi satmıyoruz.",
     "sectionIdentity": "Kimlik ve esneklik",
     "identityBody": "Origin'de nasıl görüneceğinizi siz seçersiniz. Adlı bir hesapla katılabilir veya anonim kalabilirsiniz; topluluklar, sohbetler ve fikir sayfaları herkese açık olabilir veya organizatörleri tarafından sınırlandırılabilir. Bu seçenekler zamanla kullanıma sunulur — önemli olan neyi ve kiminle paylaşacağınıza sizin karar vermenizdir.",
     "sectionRights": "Haklarınız",
@@ -473,7 +473,7 @@
     "sectionIntellectualProperty": "Fikri mülkiyet",
     "intellectualPropertyBody": "JoinOrigin'in ticari markaları, logoları ve site materyalleri JoinOrigin'e aittir. İzinsiz kullanamazsınız. Açık kaynak bileşenler, kendi lisansları altında kalır.",
     "sectionDisclaimers": "Sorumluluk reddi",
-    "disclaimersBody": "Hizmet, erken erişim süresince “olduğu gibi” sunulmaktadır. Güvenilir kalması için çalışıyoruz ancak kesintisiz veya hatasız olacağını garanti etmiyoruz.",
+    "disclaimersBody": "Hizmet, bekleme listesi süresince “olduğu gibi” sunulmaktadır. Güvenilir kalması için çalışıyoruz ancak kesintisiz veya hatasız olacağını garanti etmiyoruz.",
     "sectionChanges": "Değişiklikler",
     "changesBody": "Hizmet geliştikçe bu Koşulları güncelleyebiliriz. Önemli değişiklikler bu sayfada duyurulacaktır ve değişikliklerden sonra kullanmaya devam etmeniz, güncellenmiş Koşulları kabul ettiğiniz anlamına gelir.",
     "sectionContact": "İletişim",
