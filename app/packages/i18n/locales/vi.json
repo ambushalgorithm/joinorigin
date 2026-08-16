@@ -7,7 +7,7 @@
     "questionsAboutOrigin": "Có câu hỏi về Origin?",
     "teamRepliesWithin2Days": "Nhóm của chúng tôi phản hồi trong vòng 2 ngày làm việc.",
     "legal": "Pháp lý",
-    "joinWaitlist": "Tham gia danh sách chờ",
+    "joinWaitlist": "Được khám phá",
     "nav": {
       "features": "Tính năng",
       "community": "Cộng đồng",
@@ -84,15 +84,15 @@
       },
       "q3": {
         "question": "Tôi có thể làm gì khi đã tham gia?",
-        "answer": "Tạo hồ sơ hoạt động như sơ yếu lý lịch, đăng ý tưởng dưới dạng một trang ý tưởng, bắt đầu hoặc tham gia các cộng đồng xoay quanh bất cứ điều gì, và mời những người bạn muốn hợp tác cùng. Mỗi cộng đồng đều có phòng riêng nơi các thành viên kết nối với nhau. Danh sách chờ giữ chỗ cho bạn để cộng đồng của bạn sẵn sàng khi nền tảng mở cửa."
+        "answer": "Tạo hồ sơ hoạt động như sơ yếu lý lịch, đăng ý tưởng dưới dạng một trang ý tưởng, bắt đầu hoặc tham gia các cộng đồng xoay quanh bất cứ điều gì, và mời những người bạn muốn hợp tác cùng. Mỗi cộng đồng đều có phòng riêng nơi các thành viên kết nối với nhau."
       },
       "q4": {
-        "question": "Khi nào nền tảng mở cửa?",
-        "answer": "Nền tảng mở cửa theo từng đợt khi nó tiến dần đến lúc ra mắt. Tham gia danh sách chờ ngay bây giờ để giữ chỗ, và bạn sẽ được mời ngay khi cộng đồng của bạn sẵn sàng."
+        "question": "Origin đã hoạt động chưa?",
+        "answer": "Có — Origin đã hoạt động và đang phát triển. Nhấp vào Bắt đầu và được khám phá: tạo hồ sơ của bạn, đăng ý tưởng, và bắt đầu hoặc tham gia một cộng đồng ngay hôm nay."
       },
       "q5": {
         "question": "Làm thế nào để tôi tham gia?",
-        "answer": "Nhấp vào Bắt đầu ở bất kỳ đâu trên trang này, nhập tên và email của bạn, và bạn đã có mặt trong danh sách chờ. Bạn sẽ nhận được lời mời khi nền tảng đến lượt của bạn."
+        "answer": "Nhấp vào Bắt đầu và được khám phá. Nhập tên và email của bạn, và hồ sơ của bạn đã sẵn sàng — hãy bắt đầu xây dựng cộng đồng của bạn ngay hôm nay."
       }
     }
   },
@@ -121,8 +121,8 @@
   },
   "ctaBand": {
     "headline": "Tìm đúng người của bạn. Cùng nhau xây dựng.",
-    "subline": "Tham gia cùng 2.400+ nhà sáng lập trên mạng lưới cộng tác xã hội của Origin và là người đầu tiên bước vào khi nền tảng mở cửa.",
-    "joinLabel": "Tham gia danh sách chờ",
+    "subline": "Tham gia cùng 2.400+ nhà sáng lập trên mạng lưới cộng tác xã hội của Origin và được khám phá ngay hôm nay.",
+    "joinLabel": "Được khám phá",
     "contactLabel": "Liên hệ với chúng tôi"
   },
   "features": {
@@ -250,7 +250,7 @@
       "anyoneWithAnIdea": "Bất kỳ ai có Ý tưởng"
     },
     "sectionJoin": "Tham gia mạng lưới",
-    "joinCopy": "Cộng đồng được xây dựng bởi những con người trong đó. Tham gia danh sách chờ để là một phần của làn sóng nhà sáng lập đầu tiên định hình cách mọi người tìm thấy nhau trực tuyến.",
+    "joinCopy": "Cộng đồng được xây dựng bởi những con người trong đó. Được khám phá và tham gia cùng những nhà sáng lập định hình cách mọi người tìm thấy nhau trực tuyến.",
     "joinStatValue": "2.400+",
     "joinStatLabel": "Thành viên cùng nhau xây dựng",
     "faq": {
@@ -340,8 +340,8 @@
         "answer": "Matrix là một giao thức giao tiếp mở, phi tập trung với mã hóa đầu cuối. Origin chạy trên nó, để các cuộc trò chuyện — và đồ thị mạng lưới đằng sau chúng — luôn di động và tồn tại mãi mãi."
       },
       "q4": {
-        "question": "Khi nào MVP ra mắt?",
-        "answer": "JoinOrigin vẫn đang trong danh sách chờ. Nền tảng Cộng đồng (Giai đoạn 1) là MVP và sẽ đến tay các thành viên danh sách chờ trước tiên."
+        "question": "Điều gì đang hoạt động ngay bây giờ?",
+        "answer": "Nền tảng Cộng đồng (Giai đoạn 1) đã hoạt động: hồ sơ, cộng đồng, trò chuyện và đồ thị xã hội đã được 2.400+ nhà sáng lập sử dụng."
       }
     }
   },
@@ -353,7 +353,7 @@
     },
     "sectionMission": "Sứ mệnh của chúng tôi",
     "missionParagraph1": "Origin đang xây dựng hệ điều hành cho sự cộng tác của con người. Thay vì năm công cụ riêng biệt cho trò chuyện, cộng đồng và dự án, các mối quan hệ của bạn sống trong một không gian làm việc bình yên. Đồ thị xã hội chính là sản phẩm: hồ sơ, ý tưởng, cộng đồng, giao tiếp, bảng tin, dự án, công ty và cơ hội đều treo trên cùng một mạng lưới con người.",
-    "missionParagraph2": "Hôm nay chúng tôi vẫn đang trong danh sách chờ, với 2.400+ nhà sáng lập đã đăng ký. Khi nền tảng phát triển qua lộ trình — Nền tảng Cộng đồng, Hợp tác, Tổ chức, Hợp tác AI và Mạng lưới Toàn cầu — sứ mệnh vẫn không đổi: giúp mọi người tìm thấy nhau và cùng nhau xây dựng.",
+    "missionParagraph2": "Hôm nay, 2.400+ nhà sáng lập đã và đang hợp tác trên Origin. Khi nền tảng phát triển qua lộ trình — Nền tảng Cộng đồng, Hợp tác, Tổ chức, Hợp tác AI và Mạng lưới Toàn cầu — sứ mệnh vẫn không đổi: giúp mọi người tìm thấy nhau và cùng nhau xây dựng.",
     "sectionPrinciples": "Các nguyên tắc chỉ đạo",
     "principles": {
       "peopleFirst": {
@@ -396,7 +396,7 @@
     "hero": {
       "eyebrow": "Liên hệ",
       "title": "Trò chuyện với chúng tôi",
-      "lead": "Có câu hỏi về Origin — mạng lưới cộng tác xã hội — danh sách chờ, hay việc bắt đầu một cộng đồng? Chúng tôi rất muốn nghe từ bạn. Hãy hỏi chúng tôi bất cứ điều gì."
+      "lead": "Có câu hỏi về Origin — mạng lưới cộng tác xã hội — hay việc bắt đầu một cộng đồng? Chúng tôi rất muốn nghe từ bạn. Hãy hỏi chúng tôi bất cứ điều gì."
     },
     "sectionForm": "Gửi một tin nhắn",
     "form": {
@@ -422,8 +422,8 @@
         "answer": "Chúng tôi phản hồi trong vòng 2 ngày làm việc. Để có câu trả lời nhanh nhất, hãy xem phần Câu hỏi thường gặp của tài liệu trước."
       },
       "q2": {
-        "question": "Tôi có thể truy cập khi nền tảng mở cửa không?",
-        "answer": "Có — hãy tham gia danh sách chờ từ trang chủ. Các thành viên sớm sẽ là những người đầu tiên bước vào khi hệ điều hành cộng đồng ra mắt."
+        "question": "Làm thế nào để tôi có quyền truy cập?",
+        "answer": "Nhấp vào Bắt đầu và được khám phá — nhập tên và email của bạn và hồ sơ của bạn đã sẵn sàng, và bạn có thể bắt đầu hoặc tham gia các cộng đồng ngay lập tức."
       }
     }
   },
@@ -431,19 +431,19 @@
     "hero": {
       "eyebrow": "Pháp lý",
       "title": "Chính sách Quyền riêng tư",
-      "lead": "Khi bạn tham gia danh sách chờ, chúng tôi thu thập tên và địa chỉ email của bạn qua biểu mẫu danh sách chờ (POST /api/leads). Đó là thông tin cá nhân duy nhất chúng tôi yêu cầu trong danh sách chờ."
+      "lead": "Khi bạn bắt đầu, chúng tôi thu thập tên và địa chỉ email của bạn qua biểu mẫu đăng ký (POST /api/leads). Đó là thông tin cá nhân duy nhất chúng tôi yêu cầu."
     },
     "sectionCollect": "Những gì chúng tôi thu thập",
     "collect": {
-      "waitlistDataTitle": "Dữ liệu danh sách chờ",
-      "waitlistDataBody": "Tên và email, chỉ được dùng để báo cho bạn khi nền tảng mở cửa và mời bạn tham gia.",
+      "waitlistDataTitle": "Dữ liệu đăng ký",
+      "waitlistDataBody": "Tên và email, chỉ được dùng để thiết lập và bảo mật tài khoản của bạn và để cập nhật cho bạn.",
       "analyticsTitle": "Phân tích",
       "analyticsBody": "Chúng tôi chạy phân tích theo cấu hình (Plausible tự lưu trữ theo mặc định) để hiểu mức sử dụng tổng hợp của trang web. Một biểu ngữ xin phép đồng ý được lên kế hoạch cho một sprint sau.",
       "technicalDataTitle": "Dữ liệu kỹ thuật cơ bản",
       "technicalDataBody": "Nhật ký máy chủ tiêu chuẩn và siêu dữ liệu trình duyệt giúp chúng tôi giữ cho trang web đáng tin cậy."
     },
     "sectionUse": "Cách chúng tôi sử dụng thông tin",
-    "useBody": "Chúng tôi dùng thông tin thu thập được để vận hành trang web, gửi lời mời từ danh sách chờ và cải thiện sản phẩm. Chúng tôi không bán thông tin cá nhân của bạn.",
+    "useBody": "Chúng tôi dùng thông tin thu thập được để vận hành trang web, quản lý tài khoản và cộng đồng của bạn và cải thiện sản phẩm. Chúng tôi không bán thông tin cá nhân của bạn.",
     "sectionIdentity": "Danh tính & sự linh hoạt",
     "identityBody": "Bạn tự chọn cách mình xuất hiện trên Origin. Bạn có thể tham gia bằng tài khoản có tên hoặc giữ ẩn danh, và các cộng đồng, cuộc trò chuyện cùng trang ý tưởng có thể mở cho mọi người hoặc bị giới hạn bởi người tổ chức. Các tùy chọn này sẽ được triển khai dần theo thời gian — điểm mấu chốt là bạn quyết định mình chia sẻ điều gì và với ai.",
     "sectionRights": "Quyền của bạn",
@@ -460,7 +460,7 @@
     "sectionAcceptance": "Chấp thuận",
     "acceptanceBody": "Khi sử dụng JoinOrigin (“Dịch vụ”), bạn đồng ý với các Điều khoản Dịch vụ này. Nếu không đồng ý, vui lòng không sử dụng Dịch vụ.",
     "sectionAccounts": "Tài khoản",
-    "accountsBody": "Bạn chịu trách nhiệm bảo vệ thông tin đăng nhập tài khoản và cho mọi hoạt động diễn ra dưới tài khoản của mình. Bạn phải cung cấp thông tin chính xác khi tạo tài khoản hoặc tham gia danh sách chờ.",
+    "accountsBody": "Bạn chịu trách nhiệm bảo vệ thông tin đăng nhập tài khoản và cho mọi hoạt động diễn ra dưới tài khoản của mình. Bạn phải cung cấp thông tin chính xác khi tạo tài khoản.",
     "sectionUserContent": "Nội dung người dùng",
     "userContentBody": "Bạn giữ quyền sở hữu nội dung mình đăng tải. Bạn cấp cho JoinOrigin một giấy phép giới hạn để lưu trữ, hiển thị và xử lý nội dung đó nhằm giúp Dịch vụ hoạt động. Bạn vẫn giữ quyền xuất và xóa nội dung của mình.",
     "sectionAcceptableUse": "Sử dụng hợp lý",
@@ -473,7 +473,7 @@
     "sectionIntellectualProperty": "Sở hữu trí tuệ",
     "intellectualPropertyBody": "Nhãn hiệu, biểu tượng và tài liệu trang web của JoinOrigin thuộc về JoinOrigin. Bạn không được sử dụng chúng khi chưa được chúng tôi cho phép. Các thành phần mã nguồn mở vẫn thuộc giấy phép tương ứng của chúng.",
     "sectionDisclaimers": "Tuyên bố miễn trừ",
-    "disclaimersBody": "Dịch vụ được cung cấp “nguyên trạng” trong giai đoạn danh sách chờ. Chúng tôi nỗ lực giữ cho nó đáng tin cậy nhưng không đảm bảo rằng nó sẽ không bị gián đoạn hoặc không có lỗi.",
+    "disclaimersBody": "Dịch vụ được cung cấp “nguyên trạng”. Chúng tôi nỗ lực giữ cho nó đáng tin cậy nhưng không đảm bảo rằng nó sẽ không bị gián đoạn hoặc không có lỗi.",
     "sectionChanges": "Thay đổi",
     "changesBody": "Chúng tôi có thể cập nhật các Điều khoản này khi Dịch vụ phát triển. Các thay đổi quan trọng sẽ được thông báo trên trang này, và việc tiếp tục sử dụng sau khi có thay đổi nghĩa là bạn chấp nhận các Điều khoản đã cập nhật.",
     "sectionContact": "Liên hệ",
@@ -559,12 +559,12 @@
       "title": "Bảng thuật ngữ Hệ điều hành Cộng đồng",
       "intro": "Từ vựng thiết yếu của việc xây dựng cộng đồng — định nghĩa rõ ràng cho các thuật ngữ mà người tổ chức, người điều hành và người sáng lập sử dụng mỗi ngày.",
       "whyTitle": "Vì sao có bảng thuật ngữ",
-      "termsTitle": "Các thuật ngữ chúng tôi sẽ định nghĩa",
+      "termsTitle": "Các thuật ngữ cốt lõi",
       "goDeeper": "Tìm hiểu sâu hơn",
-      "comingSoon": "Định nghĩa sắp ra mắt."
+      "comingSoon": "Xem các hướng dẫn để biết cách thuật ngữ này được sử dụng."
     },
     "cta": {
-      "joinWaitlist": "Tham gia danh sách chờ"
+      "joinWaitlist": "Được khám phá"
     }
   }
 }
