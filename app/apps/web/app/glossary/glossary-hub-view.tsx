@@ -89,8 +89,8 @@ export function GlossaryHubView() {
             <Section>
               <SectionTitle>{t('seoContent.glossary.termsTitle')}</SectionTitle>
               <BodyCopy>
-                The glossary term pages are coming soon. In the meantime, here are the terms we are
-                planning to define:
+                Here are the core terms every organizer, moderator, and founder uses — each one is
+                defined in practice across the Community Building guides:
               </BodyCopy>
               <CardGrid>
                 {SEEDED_TERMS.map((term) => (

@@ -408,7 +408,7 @@ const content: CityContent = {
     {
       question: 'How do I find a community in Berlin?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real districts, venues, and formats where Berliners gather. JoinOrigin is a waitlist platform — joining keeps you informed as the platform opens.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real districts, venues, and formats where Berliners gather. JoinOrigin is live — create your profile and find or start your community today.',
     },
     {
       question: 'Is it realistic to start a community in Berlin?',
@@ -423,7 +423,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Berlin?',
       answer:
-        'No. JoinOrigin is a waitlist platform without local offices or staff. All community descriptions reflect the real city landscape, and the platform is designed to help Berliners find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Berliners find or start communities.',
     },
   ],
 };

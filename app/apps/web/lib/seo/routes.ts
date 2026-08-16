@@ -32,7 +32,7 @@ export const ROUTES: readonly SiteRoute[] = [
     path: '/',
     title: 'JoinOrigin — Social Collaboration Network & Community OS',
     description:
-      'Origin is a social collaboration network where people post ideas, form communities, and build projects together. Join 2,400+ builders on the waitlist.',
+      'Origin is a social collaboration network where people post ideas, form communities, and build projects together. Join 2,400+ builders already collaborating.',
     changeFrequency: 'weekly',
     priority: 1,
   },
@@ -72,7 +72,7 @@ export const ROUTES: readonly SiteRoute[] = [
     path: '/contact',
     title: 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
     description:
-      'Questions about JoinOrigin, the waitlist, or starting a community? Contact the team — we reply within 2 business days.',
+      'Questions about JoinOrigin or starting a community? Contact the team — we reply within 2 business days.',
     changeFrequency: 'monthly',
     priority: 0.8,
   },

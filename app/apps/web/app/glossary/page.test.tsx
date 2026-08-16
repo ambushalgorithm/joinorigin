@@ -24,9 +24,9 @@ describe('glossary hub page', () => {
     expect(headings[0]).toHaveTextContent('Community OS Glossary');
   });
 
-  it('lists the seeded terms (term pages deferred)', () => {
+  it('lists the seeded terms', () => {
     renderWithI18n(<GlossaryHubPage />);
-    expect(screen.getByText('Terms we will define')).toBeInTheDocument();
+    expect(screen.getByText('Core terms')).toBeInTheDocument();
     for (const term of ['Community', 'Moderation', 'Hybrid events', 'Co-founder']) {
       expect(screen.getAllByText(term).length).toBeGreaterThanOrEqual(1);
     }

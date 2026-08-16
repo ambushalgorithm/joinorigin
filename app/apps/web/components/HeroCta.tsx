@@ -9,8 +9,8 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 /**
  * Hero-level join CTA (spec sprint-10-menu-redesign §4.3).
  *
- * - `waitlist` variant: the shared `RotatingBorderButton` ("Join the
- *   waitlist", `size="large"`, `fillDirection="left"`) wired to the same
+ * - `waitlist` variant: the shared `RotatingBorderButton` ("Get discovered",
+ *   `size="large"`, `fillDirection="left"`) wired to the same
  *   waitlist modal as every other CTA on the page. `testID="hero-join-button"`.
  * - `contact` variant: a muted ghost link to `/contact` (legal pages never
  *   open the waitlist modal). `testID="hero-contact-link"`.

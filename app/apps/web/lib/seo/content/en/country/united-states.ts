@@ -13,9 +13,9 @@ const content: CountryContent = {
   slug: 'united-states',
   title: 'Communities in the United States | JoinOrigin',
   description:
-    'Find or start communities in the United States — from startup scenes in New York to small business networks across the country. Join the JoinOrigin waitlist.',
+    'Find or start communities in the United States — from startup scenes in New York to small business networks across the country. Join Origin and get discovered.',
   intro:
-    'The United States has one of the most varied community scenes in the world, shaped by a mix of dense coastal metros, sprawling university towns, and mid-sized cities with strong local identities. From startup communities in New York and San Francisco to book clubs in college towns and small business groups in the Midwest, Americans tend to organize around shared interests, professions, and neighborhoods. Coworking spaces, public libraries, coffee shops, and university campuses provide natural homes for meetups. Volunteer culture and civic organizations run deep in many states, while immigrant communities bring their own traditions of gathering and mutual aid. The result is a country where you can usually find a group that matches your interests within a reasonable drive or transit ride. If you cannot find one, starting a community is a realistic option: most cities have venues, event platforms, and existing networks that make the first gathering possible. JoinOrigin exists to make that discovery and creation process easier, with waitlist access for early builders.',
+    'The United States has one of the most varied community scenes in the world, shaped by a mix of dense coastal metros, sprawling university towns, and mid-sized cities with strong local identities. From startup communities in New York and San Francisco to book clubs in college towns and small business groups in the Midwest, Americans tend to organize around shared interests, professions, and neighborhoods. Coworking spaces, public libraries, coffee shops, and university campuses provide natural homes for meetups. Volunteer culture and civic organizations run deep in many states, while immigrant communities bring their own traditions of gathering and mutual aid. The result is a country where you can usually find a group that matches your interests within a reasonable drive or transit ride. If you cannot find one, starting a community is a realistic option: most cities have venues, event platforms, and existing networks that make the first gathering possible. JoinOrigin exists to make that discovery and creation process easier — find or start your community today.',
   dataPoints: [
     'Population of roughly 327 million across 50 states.',
     'English is the primary language, with Spanish widely spoken.',
@@ -26,7 +26,7 @@ const content: CountryContent = {
     {
       question: 'How do I find communities near me in the United States?',
       answer:
-        'Start at the /location hub, choose your state and city, then browse the group-type pages — startup, creative, political, meetup, and small business communities. JoinOrigin is building the platform that makes discovery easy; joining the waitlist keeps you updated as the platform opens.',
+        'Start at the /location hub, choose your state and city, then browse the group-type pages — startup, creative, political, meetup, and small business communities. JoinOrigin makes discovery easy — create your profile and start finding or building communities today.',
     },
     {
       question: 'Can I start a community in any U.S. city?',
@@ -36,7 +36,7 @@ const content: CountryContent = {
     {
       question: 'Is JoinOrigin available across the whole country?',
       answer:
-        'JoinOrigin is a waitlist platform with no local offices yet. Content on this site describes community opportunities in each city honestly, and the platform is designed to help people find or start communities anywhere in the United States.',
+        'Yes. JoinOrigin has no local offices, and content on this site describes community opportunities in each city honestly. The platform helps people find or start communities anywhere in the United States.',
     },
   ],
 };

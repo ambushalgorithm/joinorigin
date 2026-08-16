@@ -32,7 +32,7 @@ const content: RegionContent = {
     {
       question: 'Does JoinOrigin have a presence in New York State?',
       answer:
-        'JoinOrigin is a waitlist platform without local offices or staff. All presence claims on these pages describe the real community landscape honestly, and the product is designed to help New Yorkers find or start communities.',
+        'Yes. JoinOrigin has no local offices or staff. All presence claims on these pages describe the real community landscape honestly, and the product helps New Yorkers find or start communities.',
     },
   ],
 };

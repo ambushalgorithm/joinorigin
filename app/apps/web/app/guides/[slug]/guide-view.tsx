@@ -35,7 +35,7 @@ import { useWaitlist } from '../../../components/WaitlistModal/WaitlistModalProv
 /**
  * L1 how-to guide view (design §6.2) — client view rendering a single H1
  * (via `MenuHero`), the definitional intro, step-by-step structure, FAQ
- * block (mirrored 1:1 in the server-rendered `FAQPage` JSON-LD), honest
+ * block (mirrored 1:1 in the server-rendered `FAQPage` JSON-LD), the
  * "JoinOrigin can help" CTA, and the cross-link mesh (hub + sibling guides +
  * flagship city pages).
  */
@@ -65,7 +65,7 @@ const StepNumber = styled.span`
 
 /** Per-step "How JoinOrigin helps here" note (TASK-320) — rendered under each
  *  step body so every guide visibly leads with how JoinOrigin solves the
- *  connecting-people problem. Honest waitlist framing only. */
+ *  connecting-people problem. */
 const JoinOriginNote = styled.div`
   margin-top: ${({ theme }) => theme.spacing.sm}px;
   padding: ${({ theme }) => theme.spacing.sm}px ${({ theme }) => theme.spacing.md}px;
@@ -122,7 +122,7 @@ const TranslateRow = styled.div`
   }
 `;
 
-/** Honest "JoinOrigin can help" CTA — rendered INSIDE the shell so the
+/** "JoinOrigin can help" CTA — rendered INSIDE the shell so the
  *  WaitlistModalProvider context is available (same pattern as CtaBand). */
 function GuideJoinCta({ slug }: { slug: string }) {
   const { t } = useI18n();
@@ -251,10 +251,10 @@ export function GuideView({ entry, content }: GuideViewProps) {
             <Section>
               <SectionTitle>{t('seoContent.guides.howJoinOriginHelps')}</SectionTitle>
               <BodyCopy>
-                JoinOrigin is building a community OS to help you find or start communities — the
-                steps above work today with tools you already have. When the platform opens, the
-                platform is designed to handle the structure, discovery, and organization so you can
-                focus on your members. Join the waitlist to be the first to know.
+                JoinOrigin is a community OS that helps you find or start communities — the steps
+                above work on the platform and with the tools you already have. JoinOrigin handles
+                the structure, discovery, and organization so you can focus on your members. Click
+                Get Started and get discovered.
               </BodyCopy>
               <GuideJoinCta slug={entry.slug} />
             </Section>

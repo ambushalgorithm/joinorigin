@@ -15,7 +15,7 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
  * Slim footer (spec §5.6 + sprint-4-discovery §3.2).
  *
  * Brand mark + wordmark, tagline, grouped nav (Explore / Product / Company /
- * Legal), `Join the waitlist` rotating-border CTA, the copyright line, and the
+ * Legal), `Get discovered` rotating-border CTA, the copyright line, and the
  * language switcher (Sprint 9, compact variant aligned to the inline end).
  * Stacks vertically on mobile.
  */
