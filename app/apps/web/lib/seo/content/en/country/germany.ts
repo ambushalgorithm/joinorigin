@@ -32,7 +32,7 @@ const content: CountryContent = {
     {
       question: 'Does JoinOrigin operate in Germany?',
       answer:
-        'JoinOrigin is a waitlist platform without local offices. The Berlin pages are translated into German, and the product is designed to help people find or start communities anywhere in Germany.',
+        'Yes. JoinOrigin has no local offices. The Berlin pages are translated into German, and the product helps people find or start communities anywhere in Germany.',
     },
   ],
 };

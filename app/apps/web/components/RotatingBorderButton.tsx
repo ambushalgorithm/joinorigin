@@ -11,7 +11,7 @@ import { ROTATING_BORDER_GRADIENT, ENTRANCE_EASING } from './landingTokens';
  * - The button body is a dark pill (`theme.colors.surface`) with a label that
  *   keeps its text color.
  * - On hover an accent fill slides in — from the left for "Get Started" /
- *   "Join the waitlist", from the right for "Start Project" — using the
+ *   "Get discovered", from the right for "Start Project" — using the
  *   shared `cubic-bezier(0.22, 1, 0.36, 1)` ease.
  *
  * `--border-angle` is registered globally in `GlobalStyles` (`@property`),

@@ -57,7 +57,7 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
   {
     heading: 'Overview',
     links: [
-      { path: '/', description: 'What Origin is and how to join the waitlist.' },
+      { path: '/', description: 'What Origin is and how to get started.' },
       {
         path: '/about',
         description: 'Mission and principles — the operating system for human collaboration.',
@@ -126,7 +126,7 @@ export function buildLlmsText(): string {
     '',
     '> Origin is a social collaboration network — a community OS where people',
     '> post ideas, form communities, and build projects together.',
-    '> Still on the waitlist; join us.',
+    '> Live and growing — join us.',
     '',
   ];
 

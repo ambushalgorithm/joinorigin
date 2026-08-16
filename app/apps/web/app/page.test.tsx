@@ -52,7 +52,7 @@ describe('home page', () => {
     renderPage();
     expect(screen.getByText('Trusted by teams at')).toBeInTheDocument();
     expect(screen.getByText('Where teams find their origin')).toBeInTheDocument();
-    expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
+    expect(screen.getByText('Get discovered')).toBeInTheDocument();
     expect(screen.getByText('Privacy')).toBeInTheDocument();
     expect(screen.getByText('Terms')).toBeInTheDocument();
     expect(screen.getByText('© 2026 JoinOrigin')).toBeInTheDocument();

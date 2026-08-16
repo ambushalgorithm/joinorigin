@@ -408,7 +408,7 @@ const content: CityContent = {
     {
       question: 'How do I find a community in New York City?',
       answer:
-        'Start with the group-type pages: startup, creative, political, meetup, and small business communities. Each lists the real venues, institutions, and formats where New Yorkers gather. JoinOrigin is a waitlist platform — joining keeps you informed as the platform opens.',
+        'Start with the group-type pages: startup, creative, political, meetup, and small business communities. Each lists the real venues, institutions, and formats where New Yorkers gather. JoinOrigin is live — create your profile and find or start your community today.',
     },
     {
       question: 'Is it realistic to start a community in NYC?',
@@ -423,7 +423,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in New York?',
       answer:
-        'No. JoinOrigin is a waitlist platform without local offices or staff. All community descriptions reflect the real city landscape, and the platform is designed to help New Yorkers find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps New Yorkers find or start communities.',
     },
   ],
 };

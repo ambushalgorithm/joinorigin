@@ -50,7 +50,7 @@ import type { FlagshipCityConfig, GroupTypeKey } from './locationData';
 export const LOCATION_HUB_PATH = '/location';
 
 const BRAND = 'JoinOrigin';
-const WAITLIST_PHRASE = 'Join the JoinOrigin waitlist to be first in when the platform opens.';
+const WAITLIST_PHRASE = 'Join Origin and get discovered today.';
 
 export interface LocationPageEntry {
   /** Dynamic segment values (design §8.4). Hub uses an empty object. */

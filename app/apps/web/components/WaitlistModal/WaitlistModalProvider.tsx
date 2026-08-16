@@ -9,7 +9,7 @@ import WaitlistModal from './WaitlistModal';
  *
  * A single `WaitlistModalProvider` exposes `openWaitlist()` and renders the
  * modal once at page level. Every CTA across the page (header `Get Started`,
- * hero `Start Project`, footer `Join the waitlist`) calls the same context
+ * hero `Start Project`, footer `Get discovered`) calls the same context
  * function. Any element with `data-open-waitlist` also opens the modal.
  */
 

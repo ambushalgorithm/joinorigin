@@ -26,7 +26,7 @@ describe('privacy page', () => {
     // Section titles also appear in the sticky anchor nav (Sprint 10) —
     // assert at least one render of each.
     expect(screen.getAllByText('What we collect').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText('Waitlist data')).toBeInTheDocument();
+    expect(screen.getByText('Signup data')).toBeInTheDocument();
     expect(screen.getAllByText('Identity & flexibility').length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText('Your rights').length).toBeGreaterThanOrEqual(1);
     // "Contact" appears as the page section title, the footer link, and the

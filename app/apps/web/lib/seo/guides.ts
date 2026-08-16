@@ -45,7 +45,6 @@ export const GUIDE_SLUGS = [
   'hybrid-communities',
   'organize-a-meetup',
   'moderation',
-
 ] as const;
 
 export type GuideSlug = (typeof GUIDE_SLUGS)[number];

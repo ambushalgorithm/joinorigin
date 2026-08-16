@@ -6,7 +6,7 @@ import { leadsCsvHasEmail, waitForHydration } from './helpers';
  * Any-button waitlist modal coverage (spec §9).
  *
  * Verifies the trigger contract ("any button" — header Get Started, hero Start
- * Project, footer Join the waitlist, and future-proof `data-open-waitlist`),
+ * Project, footer Get discovered, and future-proof `data-open-waitlist`),
  * modal a11y/behaviors (focus, ESC, backdrop, ✕, reset, focus trap), the
  * success state, inline validation errors, and the CSV capture flow.
  */

@@ -33,7 +33,7 @@ const content: RegionContent = {
     {
       question: 'Does JoinOrigin operate in Berlin?',
       answer:
-        'JoinOrigin is a waitlist platform without local offices. Berlin is one of two MVP flagship cities, and its pages are translated into German to serve the local audience honestly.',
+        'Yes. JoinOrigin has no local offices. Berlin is one of two flagship cities, and its pages are translated into German to serve the local audience honestly.',
     },
   ],
 };
