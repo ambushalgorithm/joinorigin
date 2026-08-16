@@ -7,7 +7,7 @@
     "questionsAboutOrigin": "Punya pertanyaan tentang Origin?",
     "teamRepliesWithin2Days": "Tim kami membalas dalam 2 hari kerja.",
     "legal": "Legal",
-    "joinWaitlist": "Gabung daftar tunggu",
+    "joinWaitlist": "Mulai Ditemukan",
     "nav": {
       "features": "Fitur",
       "community": "Komunitas",
@@ -84,15 +84,15 @@
       },
       "q3": {
         "question": "Apa yang bisa saya lakukan setelah masuk?",
-        "answer": "Buat profil yang berfungsi seperti CV, unggah ide Anda sebagai halaman ide, mulai atau ikuti komunitas untuk apa pun, dan undang orang yang ingin Anda ajak bekerja sama. Setiap komunitas dilengkapi ruangnya sendiri tempat para anggota terhubung. Daftar tunggu mengamankan tempat Anda sehingga komunitas Anda siap saat platform dibuka."
+        "answer": "Buat profil yang berfungsi seperti CV, unggah ide Anda sebagai halaman ide, mulai atau ikuti komunitas untuk apa pun, dan undang orang yang ingin Anda ajak bekerja sama. Setiap komunitas dilengkapi ruangnya sendiri tempat para anggota terhubung."
       },
       "q4": {
-        "question": "Kapan platform dibuka?",
-        "answer": "Platform dibuka secara bertahap seiring pengembangannya menuju peluncuran. Bergabung dengan daftar tunggu sekarang mengamankan tempat Anda, dan Anda akan diundang begitu komunitas Anda siap."
+        "question": "Apakah Origin sudah berjalan?",
+        "answer": "Ya — Origin sudah berjalan dan terus berkembang. Klik Mulai dan mulailah ditemukan: buat profil Anda, unggah ide Anda, lalu mulai atau ikuti komunitas hari ini."
       },
       "q5": {
         "question": "Bagaimana cara saya bergabung?",
-        "answer": "Klik Mulai di mana saja di halaman ini, masukkan nama dan email Anda, maka Anda masuk daftar tunggu. Anda akan menerima undangan saat platform sampai ke giliran Anda."
+        "answer": "Klik Mulai dan mulailah ditemukan. Masukkan nama dan email Anda, dan profil Anda langsung siap — mulailah membangun komunitas Anda hari ini."
       }
     }
   },
@@ -121,8 +121,8 @@
   },
   "ctaBand": {
     "headline": "Temukan orang-orang Anda. Bangun bersama.",
-    "subline": "Gabung dengan 2.400+ pembangun di jaringan kolaborasi sosial Origin dan jadilah yang pertama saat platform dibuka.",
-    "joinLabel": "Gabung daftar tunggu",
+    "subline": "Gabung dengan 2.400+ pembangun di jaringan kolaborasi sosial Origin dan mulailah ditemukan hari ini.",
+    "joinLabel": "Mulai Ditemukan",
     "contactLabel": "Hubungi kami"
   },
   "features": {
@@ -250,7 +250,7 @@
       "anyoneWithAnIdea": "Siapa pun dengan Ide"
     },
     "sectionJoin": "Gabung ke jaringan",
-    "joinCopy": "Komunitas dibangun oleh orang-orang di dalamnya. Gabung daftar tunggu untuk menjadi bagian dari gelombang pertama pembangun yang membentuk cara orang saling menemukan secara online.",
+    "joinCopy": "Komunitas dibangun oleh orang-orang di dalamnya. Mulailah ditemukan dan bergabunglah dengan para pembangun yang membentuk cara orang saling menemukan secara online.",
     "joinStatValue": "2,400+",
     "joinStatLabel": "Anggota yang membangun bersama",
     "faq": {
@@ -340,8 +340,8 @@
         "answer": "Matrix adalah protokol komunikasi yang terbuka dan terdesentralisasi dengan enkripsi ujung-ke-ujung. Origin berjalan di atasnya, sehingga percakapan — dan grafik jaringan di baliknya — portabel dan tersimpan selamanya."
       },
       "q4": {
-        "question": "Kapan MVP diluncurkan?",
-        "answer": "JoinOrigin masih dalam daftar tunggu. Fondasi Komunitas (Fase 1) adalah MVP dan diluncurkan pertama untuk anggota daftar tunggu."
+        "question": "Apa yang sudah berjalan sekarang?",
+        "answer": "Fondasi Komunitas (Fase 1) sudah berjalan: profil, komunitas, obrolan, dan social graph sudah digunakan oleh 2.400+ pembangun."
       }
     }
   },
@@ -353,7 +353,7 @@
     },
     "sectionMission": "Misi kami",
     "missionParagraph1": "Origin sedang membangun sistem operasi untuk kolaborasi manusia. Alih-alih lima alat terpisah untuk obrolan, komunitas, dan proyek, relasi Anda hidup dalam satu ruang kerja yang tenang. Social graph adalah produknya: profil, ide, komunitas, komunikasi, linimasa, proyek, perusahaan, dan peluang semuanya menggantung pada jaringan manusia yang sama.",
-    "missionParagraph2": "Kami masih dalam daftar tunggu saat ini, dengan 2.400+ pembangun yang sudah mendaftar. Saat platform tumbuh melalui peta jalan — Fondasi Komunitas, Kolaborasi, Organisasi, Kolaborasi AI, dan Jaringan Global — misinya tetap sama: membantu orang saling menemukan dan membangun bersama.",
+    "missionParagraph2": "Hari ini, 2.400+ pembangun sudah berkolaborasi di Origin. Saat platform tumbuh melalui peta jalan — Fondasi Komunitas, Kolaborasi, Organisasi, Kolaborasi AI, dan Jaringan Global — misinya tetap sama: membantu orang saling menemukan dan membangun bersama.",
     "sectionPrinciples": "Prinsip-prinsip panduan",
     "principles": {
       "peopleFirst": {
@@ -396,7 +396,7 @@
     "hero": {
       "eyebrow": "Kontak",
       "title": "Bicara dengan kami",
-      "lead": "Punya pertanyaan tentang Origin — jaringan kolaborasi sosial — daftar tunggu, atau memulai komunitas? Kami senang mendengar dari Anda. Tanyakan apa saja kepada kami."
+      "lead": "Punya pertanyaan tentang Origin — jaringan kolaborasi sosial — atau memulai komunitas? Kami senang mendengar dari Anda. Tanyakan apa saja kepada kami."
     },
     "sectionForm": "Kirim pesan",
     "form": {
@@ -422,8 +422,8 @@
         "answer": "Kami membalas dalam 2 hari kerja. Untuk jawaban tercepat, periksa FAQ dokumen terlebih dahulu."
       },
       "q2": {
-        "question": "Bisakah saya mendapatkan akses saat platform dibuka?",
-        "answer": "Bisa — gabung daftar tunggu dari halaman beranda. Anggota awal menjadi yang pertama masuk saat OS komunitas diluncurkan."
+        "question": "Bagaimana cara saya mendapatkan akses?",
+        "answer": "Klik Mulai dan mulailah ditemukan — masukkan nama dan email Anda dan profil Anda langsung siap, lalu Anda bisa mulai atau mengikuti komunitas segera."
       }
     }
   },
@@ -431,19 +431,19 @@
     "hero": {
       "eyebrow": "Legal",
       "title": "Kebijakan Privasi",
-      "lead": "Saat Anda bergabung dengan daftar tunggu, kami mengumpulkan nama dan alamat email Anda melalui formulir daftar tunggu (POST /api/leads). Itulah satu-satunya informasi pribadi yang kami minta selama berada di daftar tunggu."
+      "lead": "Saat Anda memulai, kami mengumpulkan nama dan alamat email Anda melalui formulir pendaftaran (POST /api/leads). Itulah satu-satunya informasi pribadi yang kami minta."
     },
     "sectionCollect": "Apa yang kami kumpulkan",
     "collect": {
-      "waitlistDataTitle": "Data daftar tunggu",
-      "waitlistDataBody": "Nama dan email, hanya digunakan untuk memberi tahu Anda kapan platform dibuka dan mengundang Anda masuk.",
+      "waitlistDataTitle": "Data pendaftaran",
+      "waitlistDataBody": "Nama dan email, hanya digunakan untuk membuat dan mengamankan akun Anda, serta memberi Anda pembaruan.",
       "analyticsTitle": "Analitik",
       "analyticsBody": "Kami menjalankan analitik berbasis konfigurasi (Plausible yang di-host sendiri secara default) untuk memahami penggunaan situs secara agregat. Spanduk persetujuan direncanakan pada sprint berikutnya.",
       "technicalDataTitle": "Data teknis dasar",
       "technicalDataBody": "Log server standar dan metadata browser yang membantu kami menjaga situs tetap andal."
     },
     "sectionUse": "Cara kami menggunakannya",
-    "useBody": "Kami menggunakan informasi yang kami kumpulkan untuk mengoperasikan situs, mengirim undangan daftar tunggu, dan meningkatkan produk. Kami tidak menjual informasi pribadi Anda.",
+    "useBody": "Kami menggunakan informasi yang kami kumpulkan untuk mengoperasikan situs, mengelola akun dan komunitas Anda, serta meningkatkan produk. Kami tidak menjual informasi pribadi Anda.",
     "sectionIdentity": "Identitas & fleksibilitas",
     "identityBody": "Anda memilih bagaimana Anda tampil di Origin. Anda dapat berpartisipasi dengan akun bernama atau tetap anonim, dan komunitas, obrolan, serta halaman ide dapat terbuka untuk semua orang atau dibatasi oleh penyelenggaranya. Opsi ini diluncurkan secara bertahap — intinya Anda yang memutuskan apa yang Anda bagikan dan kepada siapa.",
     "sectionRights": "Hak Anda",
@@ -460,7 +460,7 @@
     "sectionAcceptance": "Penerimaan",
     "acceptanceBody": "Dengan menggunakan JoinOrigin (“Layanan”), Anda menyetujui Ketentuan Layanan ini. Jika Anda tidak setuju, mohon jangan gunakan Layanan ini.",
     "sectionAccounts": "Akun",
-    "accountsBody": "Anda bertanggung jawab menjaga kredensial akun Anda dan atas aktivitas yang terjadi di bawah akun Anda. Anda harus memberikan informasi yang akurat saat membuat akun atau bergabung dengan daftar tunggu.",
+    "accountsBody": "Anda bertanggung jawab menjaga kredensial akun Anda dan atas aktivitas yang terjadi di bawah akun Anda. Anda harus memberikan informasi yang akurat saat membuat akun.",
     "sectionUserContent": "Konten pengguna",
     "userContentBody": "Anda tetap memiliki konten yang Anda unggah. Anda memberikan lisensi terbatas kepada JoinOrigin untuk menyimpan, menampilkan, dan memproses konten tersebut agar Layanan dapat berfungsi. Anda tetap memiliki hak untuk mengekspor dan menghapus konten Anda.",
     "sectionAcceptableUse": "Penggunaan yang dapat diterima",
@@ -473,7 +473,7 @@
     "sectionIntellectualProperty": "Kekayaan intelektual",
     "intellectualPropertyBody": "Merek dagang, logo, dan materi situs JoinOrigin adalah milik JoinOrigin. Anda tidak boleh menggunakannya tanpa izin kami. Komponen open source tetap berada di bawah lisensi masing-masing.",
     "sectionDisclaimers": "Pernyataan penyangkalan",
-    "disclaimersBody": "Layanan disediakan “sebagaimana adanya” selama periode daftar tunggu. Kami berupaya menjaganya tetap andal tetapi tidak menjamin layanan tidak akan terputus atau bebas dari kesalahan.",
+    "disclaimersBody": "Layanan disediakan “sebagaimana adanya”. Kami berupaya menjaganya tetap andal tetapi tidak menjamin layanan tidak akan terputus atau bebas dari kesalahan.",
     "sectionChanges": "Perubahan",
     "changesBody": "Kami dapat memperbarui Ketentuan ini seiring perkembangan Layanan. Perubahan penting akan diumumkan di halaman ini, dan penggunaan berkelanjutan setelah perubahan berarti Anda menerima Ketentuan yang diperbarui.",
     "sectionContact": "Kontak",
@@ -559,12 +559,12 @@
       "title": "Glosarium OS Komunitas",
       "intro": "Kosakata penting dalam membangun komunitas — definisi jelas untuk istilah yang digunakan penyelenggara, moderator, dan pendiri setiap hari.",
       "whyTitle": "Mengapa glosarium",
-      "termsTitle": "Istilah yang akan kami definisikan",
+      "termsTitle": "Istilah inti",
       "goDeeper": "Lebih dalam",
-      "comingSoon": "Definisi segera hadir."
+      "comingSoon": "Lihat panduan untuk mengetahui bagaimana istilah ini digunakan."
     },
     "cta": {
-      "joinWaitlist": "Gabung daftar tunggu"
+      "joinWaitlist": "Mulai Ditemukan"
     }
   }
 }
