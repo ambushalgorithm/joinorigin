@@ -40,7 +40,7 @@ describe('CtaBand', () => {
     expect(
       screen.getByText(/Join 2,400\+ builders on Origin's social collaboration network/i),
     ).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Get discovered' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Get Discovered' })).toBeInTheDocument();
   });
 
   it('renders the contact override as a link to /contact (no join button)', () => {
@@ -55,6 +55,6 @@ describe('CtaBand', () => {
     expect(screen.getByText('Our team replies within 2 business days.')).toBeInTheDocument();
     const contactLink = screen.getByRole('link', { name: 'Contact us' });
     expect(contactLink).toHaveAttribute('href', '/contact');
-    expect(screen.queryByRole('button', { name: 'Get discovered' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Get Discovered' })).not.toBeInTheDocument();
   });
 });
