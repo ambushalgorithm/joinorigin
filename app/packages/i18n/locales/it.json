@@ -7,7 +7,7 @@
     "questionsAboutOrigin": "Domande su Origin?",
     "teamRepliesWithin2Days": "Il nostro team risponde entro 2 giorni lavorativi.",
     "legal": "Legale",
-    "joinWaitlist": "Entra nella lista d'attesa",
+    "joinWaitlist": "Fatti scoprire",
     "nav": {
       "features": "Funzionalità",
       "community": "Community",
@@ -84,15 +84,15 @@
       },
       "q3": {
         "question": "Cosa posso fare una volta dentro?",
-        "answer": "Crea un profilo che funziona come un curriculum, pubblica la tua idea come pagina di idea, avvia o unisciti a community su qualsiasi cosa e invita le persone con cui vuoi lavorare. Ogni community ha la propria stanza, dove i membri si connettono. La lista d'attesa ti riserva il posto, così la tua community è pronta quando la piattaforma si apre."
+        "answer": "Crea un profilo che funziona come un curriculum, pubblica la tua idea come pagina di idea, avvia o unisciti a community su qualsiasi cosa e invita le persone con cui vuoi lavorare. Ogni community ha la propria stanza, dove i membri si connettono."
       },
       "q4": {
-        "question": "Quando si apre la piattaforma?",
-        "answer": "La piattaforma si apre a ondate mentre si prepara al lancio. Entrare ora in lista d'attesa ti riserva il posto e riceverai l'invito appena la tua community è pronta."
+        "question": "Origin è attivo?",
+        "answer": "Sì — Origin è attivo e in crescita. Clicca su Inizia e fatti scoprire: crea il tuo profilo, pubblica la tua idea e avvia o unisciti a una community oggi."
       },
       "q5": {
         "question": "Come posso entrare?",
-        "answer": "Clicca su Inizia in qualsiasi punto di questa pagina, inserisci nome ed email e sei in lista d'attesa. Riceverai un invito quando la piattaforma arriverà al tuo posto."
+        "answer": "Clicca su Inizia e fatti scoprire. Inserisci nome ed email e il tuo profilo è pronto — inizia a costruire la tua community oggi."
       }
     }
   },
@@ -121,8 +121,8 @@
   },
   "ctaBand": {
     "headline": "Trova le tue persone. Costruisci insieme.",
-    "subline": "Unisciti a oltre 2.400 creatori sulla rete di collaborazione sociale di Origin e sii tra i primi quando la piattaforma si apre.",
-    "joinLabel": "Entra nella lista d'attesa",
+    "subline": "Unisciti a oltre 2.400 creatori sulla rete di collaborazione sociale di Origin e fatti scoprire oggi.",
+    "joinLabel": "Fatti scoprire",
     "contactLabel": "Contattaci"
   },
   "features": {
@@ -250,7 +250,7 @@
       "anyoneWithAnIdea": "Chiunque abbia un'idea"
     },
     "sectionJoin": "Entra nella rete",
-    "joinCopy": "La community è costruita dalle persone che ne fanno parte. Entra in lista d'attesa per far parte della prima ondata di creatori che stanno dando forma al modo in cui le persone si trovano online.",
+    "joinCopy": "La community è costruita dalle persone che ne fanno parte. Fatti scoprire e unisciti ai creatori che stanno dando forma al modo in cui le persone si trovano online.",
     "joinStatValue": "2.400+",
     "joinStatLabel": "Membri che costruiscono insieme",
     "faq": {
@@ -340,8 +340,8 @@
         "answer": "Matrix è un protocollo di comunicazione aperto e decentralizzato con crittografia end-to-end. Origin funziona su di esso, così le conversazioni — e il grafo di rete dietro di esse — sono portabili e persistono per sempre."
       },
       "q4": {
-        "question": "Quando verrà lanciata la MVP?",
-        "answer": "JoinOrigin è ancora in lista d'attesa. La Community Foundation (Fase 1) è la MVP e viene distribuita prima ai membri in lista d'attesa."
+        "question": "Cosa è attivo ora?",
+        "answer": "La Fondamenta della Community (Fase 1) è attiva: profili, community, chat e grafo sociale sono già in uso da oltre 2.400 creatori."
       }
     }
   },
@@ -353,7 +353,7 @@
     },
     "sectionMission": "La nostra missione",
     "missionParagraph1": "Origin sta costruendo il sistema operativo della collaborazione umana. Invece di cinque strumenti separati per chat, community e progetti, le tue relazioni vivono in un unico spazio di lavoro sereno. Il grafo sociale è il prodotto: profili, idee, community, comunicazione, feed, progetti, aziende e opportunità dipendono tutti dalla stessa rete di persone.",
-    "missionParagraph2": "Oggi siamo ancora in lista d'attesa, con oltre 2.400 creatori già iscritti. Mentre la piattaforma cresce attraverso la roadmap — Fondamenta della Community, Collaborazione, Organizzazione, Collaborazione con l'IA e Rete Globale — la missione resta la stessa: aiutare le persone a trovarsi e a costruire insieme.",
+    "missionParagraph2": "Oggi oltre 2.400 creatori stanno già collaborando su Origin. Mentre la piattaforma cresce attraverso la roadmap — Fondamenta della Community, Collaborazione, Organizzazione, Collaborazione con l'IA e Rete Globale — la missione resta la stessa: aiutare le persone a trovarsi e a costruire insieme.",
     "sectionPrinciples": "Principi guida",
     "principles": {
       "peopleFirst": {
@@ -396,7 +396,7 @@
     "hero": {
       "eyebrow": "Contatti",
       "title": "Parla con noi",
-      "lead": "Hai una domanda su Origin — la rete di collaborazione sociale — sulla lista d'attesa o su come creare una community? Ci piacerebbe sentirti. Chiedici qualsiasi cosa."
+      "lead": "Hai una domanda su Origin — la rete di collaborazione sociale — o su come creare una community? Ci piacerebbe sentirti. Chiedici qualsiasi cosa."
     },
     "sectionForm": "Invia un messaggio",
     "form": {
@@ -422,8 +422,8 @@
         "answer": "Rispondiamo entro 2 giorni lavorativi. Per una risposta più rapida, consulta prima le FAQ della documentazione."
       },
       "q2": {
-        "question": "Posso ottenere l'accesso quando la piattaforma si apre?",
-        "answer": "Sì — entra in lista d'attesa dalla home page. I primi membri saranno i primi ad accedere quando il sistema operativo di comunità verrà lanciato."
+        "question": "Come ottengo l'accesso?",
+        "answer": "Clicca su Inizia e fatti scoprire — inserisci nome ed email e il tuo profilo è pronto, e puoi avviare o unirti subito alle community."
       }
     }
   },
@@ -431,19 +431,19 @@
     "hero": {
       "eyebrow": "Legale",
       "title": "Informativa sulla privacy",
-      "lead": "Quando entri in lista d'attesa raccogliamo il tuo nome e il tuo indirizzo email tramite il modulo della lista d'attesa (POST /api/leads). Questa è l'unica informazione personale che ti chiediamo in lista d'attesa."
+      "lead": "Quando inizi, raccogliamo il tuo nome e il tuo indirizzo email tramite il modulo di registrazione (POST /api/leads). Questa è l'unica informazione personale che ti chiediamo."
     },
     "sectionCollect": "Cosa raccogliamo",
     "collect": {
-      "waitlistDataTitle": "Dati della lista d'attesa",
-      "waitlistDataBody": "Nome ed email, usati solo per comunicarti quando la piattaforma si apre e per invitarti.",
+      "waitlistDataTitle": "Dati di registrazione",
+      "waitlistDataBody": "Nome ed email, usati solo per configurare e proteggere il tuo account e per tenerti aggiornato.",
       "analyticsTitle": "Analytics",
       "analyticsBody": "Utilizziamo analytics configurabili (Plausible auto-ospitato per impostazione predefinita) per comprendere l'utilizzo aggregato del sito. Un banner per il consenso è previsto in uno sprint successivo.",
       "technicalDataTitle": "Dati tecnici di base",
       "technicalDataBody": "Log del server standard e metadati del browser che ci aiutano a mantenere il sito affidabile."
     },
     "sectionUse": "Come li usiamo",
-    "useBody": "Usiamo le informazioni raccolte per gestire il sito, inviare gli inviti della lista d'attesa e migliorare il prodotto. Non vendiamo le tue informazioni personali.",
+    "useBody": "Usiamo le informazioni raccolte per gestire il sito, gestire il tuo account e le tue community e migliorare il prodotto. Non vendiamo le tue informazioni personali.",
     "sectionIdentity": "Identità e flessibilità",
     "identityBody": "Scegli tu come presentarti su Origin. Puoi partecipare con un account con nome o restare anonimo, e community, chat e pagine di idee possono essere aperte a tutti o ad accesso limitato dagli organizzatori. Queste opzioni verranno introdotte gradualmente — il punto è che decidi tu cosa condividere e con chi.",
     "sectionRights": "I tuoi diritti",
@@ -460,7 +460,7 @@
     "sectionAcceptance": "Accettazione",
     "acceptanceBody": "Utilizzando JoinOrigin (il «Servizio»), accetti i presenti Termini di servizio. Se non sei d'accordo, ti preghiamo di non utilizzare il Servizio.",
     "sectionAccounts": "Account",
-    "accountsBody": "Sei responsabile della protezione delle credenziali del tuo account e delle attività che avvengono sotto il tuo account. Devi fornire informazioni accurate quando crei un account o entri in lista d'attesa.",
+    "accountsBody": "Sei responsabile della protezione delle credenziali del tuo account e delle attività che avvengono sotto il tuo account. Devi fornire informazioni accurate quando crei un account.",
     "sectionUserContent": "Contenuti degli utenti",
     "userContentBody": "Conservi la proprietà dei contenuti che pubblichi. Concedi a JoinOrigin una licenza limitata per archiviare, visualizzare ed elaborare tali contenuti affinché il Servizio possa funzionare. Mantieni i diritti di esportare e cancellare i tuoi contenuti.",
     "sectionAcceptableUse": "Uso consentito",
@@ -473,7 +473,7 @@
     "sectionIntellectualProperty": "Proprietà intellettuale",
     "intellectualPropertyBody": "I marchi, i loghi e i materiali del sito di JoinOrigin appartengono a JoinOrigin. Non puoi utilizzarli senza il nostro permesso. I componenti open source restano sotto le rispettive licenze.",
     "sectionDisclaimers": "Esclusioni di responsabilità",
-    "disclaimersBody": "Il Servizio è fornito «così com'è» durante il periodo di lista d'attesa. Lavoriamo per mantenerlo affidabile ma non garantiamo che sarà ininterrotto o privo di errori.",
+    "disclaimersBody": "Il Servizio è fornito «così com'è». Lavoriamo per mantenerlo affidabile ma non garantiamo che sarà ininterrotto o privo di errori.",
     "sectionChanges": "Modifiche",
     "changesBody": "Potremmo aggiornare i presenti Termini man mano che il Servizio evolve. Le modifiche sostanziali verranno annunciate in questa pagina e l'uso continuato dopo le modifiche implica l'accettazione dei Termini aggiornati.",
     "sectionContact": "Contatti",
@@ -559,12 +559,12 @@
       "title": "Glossario del sistema comunitario",
       "intro": "Il vocabolario essenziale della costruzione di comunità: definizioni chiare dei termini che organizzatori, moderatori e fondatori usano ogni giorno.",
       "whyTitle": "Perché un glossario",
-      "termsTitle": "Termini che definiremo",
+      "termsTitle": "Termini principali",
       "goDeeper": "Approfondisci",
-      "comingSoon": "Definizione in arrivo."
+      "comingSoon": "Consulta le guide per vedere come viene usato questo termine."
     },
     "cta": {
-      "joinWaitlist": "Entra nella lista d'attesa"
+      "joinWaitlist": "Fatti scoprire"
     }
   }
 }
