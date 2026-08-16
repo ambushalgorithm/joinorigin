@@ -7,7 +7,7 @@
     "questionsAboutOrigin": "Questions about Origin?",
     "teamRepliesWithin2Days": "Our team replies within 2 business days.",
     "legal": "Legal",
-    "joinWaitlist": "Get discovered",
+    "joinWaitlist": "Get Discovered",
     "nav": {
       "features": "Features",
       "community": "Community",
@@ -122,7 +122,7 @@
   "ctaBand": {
     "headline": "Find your people. Build together.",
     "subline": "Join 2,400+ builders on Origin's social collaboration network and get discovered today.",
-    "joinLabel": "Get discovered",
+    "joinLabel": "Get Discovered",
     "contactLabel": "Contact us"
   },
   "features": {
@@ -564,7 +564,7 @@
       "comingSoon": "See the guides for how this term is used."
     },
     "cta": {
-      "joinWaitlist": "Get discovered"
+      "joinWaitlist": "Get Discovered"
     }
   }
 }
