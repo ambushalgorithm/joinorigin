@@ -205,7 +205,9 @@ test.describe('Berlin de pages + hreflang', () => {
     const response = await page.goto('/de/location/germany/berlin/berlin');
     expect(response?.status()).toBe(200);
     const servedHtml = (await response?.text()) ?? '';
-    expect(servedHtml).toContain('<html lang="de" dir="ltr">');
+    // The server-rendered <html> carries lang + dir first (the FOUC critical
+    // style attribute may follow; TASK-404 added it to the opening tag).
+    expect(servedHtml).toMatch(/<html lang="de" dir="ltr"[^>]*>/);
   });
 
   for (const path of EN_ONLY) {

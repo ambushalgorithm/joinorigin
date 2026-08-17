@@ -55,9 +55,11 @@ describe('MenuHero', () => {
     expect(container.querySelector('main')).toBeNull();
   });
 
-  it('renders the local scene SVG as decorative content (inline, aria-hidden)', () => {
+  it('renders the local scene SVG as decorative content (inline, aria-hidden)', async () => {
     renderHero({ scene: 'features' });
-    const scene = screen.getByTestId('menu-hero-scene');
+    // Scene is registered through `next/dynamic` (TASK-404 code-split); the
+    // SVG appears once the scene chunk resolves.
+    const scene = await screen.findByTestId('menu-hero-scene');
     expect(scene.tagName).toBe('svg');
     expect(scene).toHaveAttribute('aria-hidden', 'true');
     expect(scene).not.toHaveAttribute('src');

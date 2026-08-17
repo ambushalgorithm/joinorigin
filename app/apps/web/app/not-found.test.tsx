@@ -33,10 +33,12 @@ describe('not-found boundary', () => {
     expect(screen.getByTestId('not-found-page')).toBeInTheDocument();
   });
 
-  it('renders the decorative not-found scene inline above the brand', () => {
+  it('renders the decorative not-found scene inline above the brand', async () => {
     const { container } = renderNotFound();
-    const scene = container.querySelector('svg[data-testid="menu-hero-scene"]');
-    expect(scene).not.toBeNull();
+    // The scene is registered through `next/dynamic` (TASK-404 code-split);
+    // the SVG appears once the scene chunk resolves.
+    const scene = await screen.findByTestId('menu-hero-scene');
+    expect(container.querySelector('svg[data-testid="menu-hero-scene"]')).toBe(scene);
     // No sandboxed <img>-loaded scene SVG (the icon-spin fix).
     expect(container.querySelector('img[src*="not-found-scene"]')).toBeNull();
     expect(scene).toHaveAttribute('aria-hidden', 'true');

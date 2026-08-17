@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import styled from 'styled-components';
 
 import { PAGE_SCHEMES } from './menuTokens';
@@ -57,12 +57,20 @@ export function MenuScene({ scene, glow, alt = '' }: MenuSceneProps) {
     <Scene $glow={glow} ref={rootRef}>
       {/* background ring becomes a real element (GSAP target; was ::after) */}
       <span className="scene-ring" aria-hidden="true" data-testid="scene-ring" />
-      <SceneArt
-        alt={alt}
-        primary={scheme.primary}
-        secondary={scheme.secondary}
-        gradient={scheme.gradient}
-      />
+      {/*
+        Scene art is registered through `next/dynamic` (TASK-404 code-split).
+        The Suspense boundary keeps the lazy chunk local: while the scene
+        chunk loads, only the decorative scene area suspends — the rest of the
+        tree hydrates immediately (no hydration/CLS impact on page content).
+      */}
+      <Suspense fallback={null}>
+        <SceneArt
+          alt={alt}
+          primary={scheme.primary}
+          secondary={scheme.secondary}
+          gradient={scheme.gradient}
+        />
+      </Suspense>
     </Scene>
   );
 }
