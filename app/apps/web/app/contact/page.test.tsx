@@ -28,9 +28,9 @@ describe('contact page', () => {
     expect(headings[0]).toHaveTextContent('Talk to us');
     expect(screen.getByTestId('contact-form')).toBeInTheDocument();
     expect(screen.getByText('Other ways to reach us')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'hello@joinorigin.com' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'hello@joinorigin.co' })).toHaveAttribute(
       'href',
-      'mailto:hello@joinorigin.com',
+      'mailto:hello@joinorigin.co',
     );
   });
 
@@ -61,7 +61,7 @@ describe('contact page', () => {
 
     expect(hrefSetter).toHaveBeenCalledTimes(1);
     const mailto = hrefSetter.mock.calls[0][0] as string;
-    expect(mailto).toMatch(/^mailto:hello@joinorigin\.com\?/);
+    expect(mailto).toMatch(/^mailto:hello@joinorigin\.co\?/);
     expect(mailto).toContain('subject=');
     expect(mailto).toContain('body=');
     expect(decodeURIComponent(mailto)).toContain('Ada Lovelace');

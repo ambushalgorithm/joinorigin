@@ -58,8 +58,8 @@ COPY . .
 # NEXT_PUBLIC_* values are inlined into the client bundle at build time.
 # They can be overridden with `docker build --build-arg ...`.
 ARG NEXT_PUBLIC_SITE_URL=http://localhost:3100
-ARG NEXT_PUBLIC_SITE_DOMAIN=joinorigin.com
-ARG NEXT_PUBLIC_PLAUSIBLE_API_HOST=https://analytics.joinorigin.com
+ARG NEXT_PUBLIC_SITE_DOMAIN=joinorigin.co
+ARG NEXT_PUBLIC_PLAUSIBLE_API_HOST=https://analytics.joinorigin.co
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
     NEXT_PUBLIC_SITE_DOMAIN=$NEXT_PUBLIC_SITE_DOMAIN \
     NEXT_PUBLIC_PLAUSIBLE_API_HOST=$NEXT_PUBLIC_PLAUSIBLE_API_HOST

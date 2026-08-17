@@ -178,7 +178,7 @@ export async function queryWikidataLabels(
           {
             headers: {
               Accept: 'application/sparql-results+json',
-              'User-Agent': 'JoinOrigin-GeoBot/0.1 (https://joinorigin.com)',
+              'User-Agent': 'JoinOrigin-GeoBot/0.1 (https://joinorigin.co)',
             },
             redirect: 'follow',
           },

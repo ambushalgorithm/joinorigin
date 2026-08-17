@@ -161,13 +161,13 @@ describe('Trans — rich text + interpolation (arch-i18n §4.1)', () => {
       <I18nProvider locale="en" dictionary={getDictionary('en')}>
         <Trans
           i18nKey="contact.otherEmail"
-          values={{ email: 'hello@joinorigin.com' }}
-          components={[<a key="mail" href="mailto:hello@joinorigin.com" />]}
+          values={{ email: 'hello@joinorigin.co' }}
+          components={[<a key="mail" href="mailto:hello@joinorigin.co" />]}
         />
       </I18nProvider>,
     );
-    const link = screen.getByRole('link', { name: 'hello@joinorigin.com' });
-    expect(link).toHaveAttribute('href', 'mailto:hello@joinorigin.com');
+    const link = screen.getByRole('link', { name: 'hello@joinorigin.co' });
+    expect(link).toHaveAttribute('href', 'mailto:hello@joinorigin.co');
   });
 
   it('renders plain text when no components are given', () => {

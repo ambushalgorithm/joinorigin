@@ -37,7 +37,7 @@ import { faqEntries, faqNamespace } from '../../lib/faq';
  * `<Trans>` numbered tags.
  */
 
-const CONTACT_EMAIL = 'hello@joinorigin.com';
+const CONTACT_EMAIL = 'hello@joinorigin.co';
 
 const Field = styled.label`
   display: flex;
