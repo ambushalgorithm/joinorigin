@@ -80,6 +80,27 @@ describe('Header', () => {
     expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
   });
 
+  it('opens the waitlist modal from the desktop Log In button (TASK-405)', async () => {
+    const user = userEvent.setup();
+    renderHeader();
+
+    await user.click(screen.getByTestId('login-button'));
+
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
+  });
+
+  it('opens the waitlist modal from the mobile panel Log In button (TASK-405)', async () => {
+    const user = userEvent.setup();
+    renderHeader();
+
+    await user.click(screen.getByTestId('mobile-menu-toggle'));
+    await user.click(screen.getByTestId('mobile-login-button'));
+
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
+  });
+
   it('restores focus to the trigger button when the modal closes (spec §9.2)', async () => {
     const user = userEvent.setup();
     renderHeader();
