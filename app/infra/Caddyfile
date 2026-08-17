@@ -1,0 +1,53 @@
+# Caddyfile — analytics.qa1.joinorigin.co
+#
+# Reverse proxy for the self-hosted Plausible Community Edition stack with
+# path-based HTTP Basic Auth (Sprint 17, TASK-401).
+#
+# Access policy:
+#   PUBLIC    /js/*         — Plausible tracking script (loaded by visitors)
+#   PUBLIC    /api/event    — event ingestion API (called by the script)
+#   PROTECTED everything else — dashboard (/), /sites/*, /settings, /login
+#                               and the remaining /api/* endpoints (stats etc.)
+#
+# The public paths MUST stay unauthenticated or browser analytics breaks:
+# /js/script.js is fetched by every visitor's browser and each pageview POSTs
+# to /api/event — neither can send Basic Auth credentials.
+#
+# Basic Auth credentials (dev default — regenerate for production):
+#   user:     plausible
+#   password: plausible
+# Regenerate with:  caddy hash-password --plaintext '<new-password>'
+# (the hash below is bcrypt; Caddy verifies it via golang.org/x/crypto/bcrypt)
+#
+# Deployment note: the upstream `plausible:8000` resolves to the `plausible`
+# service inside the docker-compose network. Copy this file to the analytics
+# host and run `caddy run --config Caddyfile` (or add it to an existing Caddy
+# site block). This repo copy is the source of truth — do not hand-edit the
+# live config without mirroring the change here.
+
+analytics.qa1.joinorigin.co {
+	encode zstd gzip
+
+	# Public — Plausible tracking script(s). Matches /js/script.js,
+	# /js/script.outbound-links.js, etc. No auth: visitors' browsers must be
+	# able to load the tracker without credentials.
+	handle /js/* {
+		reverse_proxy plausible:8000
+	}
+
+	# Public — Plausible event ingestion. Matches POST /api/event (and the
+	# GET /api/event?domain=... CSWSH probe Plausible issues when the script
+	# loads). No auth: every pageview/tracked event POSTs here.
+	handle /api/event {
+		reverse_proxy plausible:8000
+	}
+
+	# Protected — dashboard, sites, settings, login, and every other /api/*
+	# endpoint. Paths that don't match the public handles above land here.
+	handle {
+		basic_auth {
+			plausible $2b$10$vkfFi9e8QAy7SG.6QP5QbuvtcgmTVtGaQGNssqfPA2cKV9Asa7JAG
+		}
+		reverse_proxy plausible:8000
+	}
+}

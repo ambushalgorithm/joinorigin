@@ -31,7 +31,7 @@ services:
       args:
         # Build-time (client-inlined) public configuration.
         NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3100}
-        NEXT_PUBLIC_SITE_DOMAIN: ${NEXT_PUBLIC_SITE_DOMAIN:-joinorigin.com}
+        NEXT_PUBLIC_SITE_DOMAIN: ${NEXT_PUBLIC_SITE_DOMAIN:-joinorigin.co}
         # Local self-hosted Plausible (see the `plausible` service below).
         # If you change PLAUSIBLE_PORT you must also set
         # NEXT_PUBLIC_PLAUSIBLE_API_HOST to match, e.g. http://localhost:8001.
@@ -47,7 +47,7 @@ services:
       # Optional runtime analytics overrides (server-side reads; client-side
       # values were baked at build time). Default points at the local
       # self-hosted Plausible service.
-      NEXT_PUBLIC_SITE_DOMAIN: ${NEXT_PUBLIC_SITE_DOMAIN:-joinorigin.com}
+      NEXT_PUBLIC_SITE_DOMAIN: ${NEXT_PUBLIC_SITE_DOMAIN:-joinorigin.co}
       NEXT_PUBLIC_PLAUSIBLE_API_HOST: ${NEXT_PUBLIC_PLAUSIBLE_API_HOST:-http://localhost:8000}
       NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
       NEXT_PUBLIC_UMAMI_HOST_URL: ${NEXT_PUBLIC_UMAMI_HOST_URL:-}
@@ -94,6 +94,13 @@ services:
     volumes:
       - plausible-event-data:/var/lib/clickhouse
       - plausible-event-logs:/var/log/clickhouse-server
+      # Thread-control fix (Sprint 17, TASK-401): shrinks the 512-thread
+      # background schedule pool default and bounds the HTTP-facing pools
+      # (keep_alive_timeout 10s -> 1s, max_concurrent_queries 1000 -> 100,
+      # max_thread_pool_size 10000 -> 256, max_thread_pool_free_size 1000 ->
+      # 64) so Plausible connection churn no longer balloons the server to
+      # ~714 threads.
+      - ./infra/clickhouse/config.d/thread-control.xml:/etc/clickhouse-server/config.d/thread-control.xml:ro
     ulimits:
       nofile:
         soft: 262144
@@ -122,8 +129,11 @@ services:
       # Dev-only default so `docker compose up` works out of the box. MUST be
       # overridden for any non-local deployment (openssl rand -base64 48).
       SECRET_KEY_BASE: ${PLAUSIBLE_SECRET_KEY_BASE:-AgATEOwcChkd0bLhvv8bv2rVH54woxuCO4t4VluBQQpntZ2oaT4UhMmzxVIRXlZU}
-      # Keep local registration open so the first dashboard user can be created.
-      DISABLE_REGISTRATION: ${PLAUSIBLE_DISABLE_REGISTRATION:-false}
+      # Registration closed by default (Sprint 17, TASK-401) — the dashboard is
+      # protected by Caddy Basic Auth (infra/Caddyfile), so signup must not be
+      # publicly reachable. To create the first dashboard user, temporarily set
+      # PLAUSIBLE_DISABLE_REGISTRATION=false (or use invite_only) and revert.
+      DISABLE_REGISTRATION: ${PLAUSIBLE_DISABLE_REGISTRATION:-true}
       HTTP_PORT: "8000"
       DATABASE_URL: postgres://postgres:${PLAUSIBLE_DB_PASSWORD:-postgres}@plausible_db:5432/plausible_db
       CLICKHOUSE_DATABASE_URL: http://plausible_events_db:8123/plausible_events_db

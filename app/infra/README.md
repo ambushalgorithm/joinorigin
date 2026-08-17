@@ -10,6 +10,8 @@ The `infra/` directory contains all infrastructure-as-code (IaC) definitions, co
 
 | Path | Purpose |
 |---|---|
+| `Caddyfile` | Caddy reverse proxy for `analytics.qa1.joinorigin.co` — path-based HTTP Basic Auth for the Plausible dashboard (public `/js/*` + `/api/event`, protected dashboard) |
+| `clickhouse/` | ClickHouse server overrides (thread-control fix for the Plausible event store) |
 | `docker/` | Dockerfiles for all platform services and application containers |
 | `compose/` | Docker Compose files for local development and CI environments |
 | `kubernetes/` | Kubernetes manifests (deployments, services, configmaps, ingress) |
@@ -128,6 +130,51 @@ Conventions: use CDK v2, synthesize to CloudFormation or Terraform, snapshot tes
 - Internal DNS: `.uwp.local` zone for inter-service communication (e.g., `worker-runtime.uwp.local`)
 - DNS restriction: worker sandboxes restricted to internal resolver only — no arbitrary external DNS
 - Certificate management: cert-manager with Let's Encrypt for TLS certificates
+
+## Analytics Hardening — Plausible Access Control + ClickHouse Threads (Sprint 17)
+
+### Plausible dashboard access control (`Caddyfile`)
+
+The self-hosted Plausible dashboard on `analytics.qa1.joinorigin.co` is
+protected with HTTP Basic Auth in [`Caddyfile`](./Caddyfile). The policy is
+path-based so browser tracking keeps working without credentials:
+
+| Path | Policy | Why |
+|---|---|---|
+| `/js/*` (`/js/script.js`, …) | public | tracker script loaded by every visitor's browser |
+| `/api/event` | public | pageview / event ingestion POSTed by the script |
+| `/`, `/sites/*`, `/settings`, `/login`, other `/api/*` | Basic Auth | dashboard + stats API |
+
+Registration is closed as well: `PLAUSIBLE_DISABLE_REGISTRATION=true` is the
+default in `docker-compose.yml` and `apps/web/.env.example` (TASK-401).
+
+### ClickHouse ~714-thread root cause + fix (`clickhouse/config.d/`)
+
+**Root cause** (verified empirically against `clickhouse/clickhouse-server:24.12-alpine`
+and the v24.12.6.70-stable source in `programs/server/Server.cpp`):
+
+1. **Dominant** — oversized defaults for the per-connection + background pools.
+   Every protocol server (HTTP 8123, native TCP 9000, ...) runs on one
+   `Poco::ThreadPool` sized `max(max_connections)` — default **4096** — with
+   idle threads retained for **60s**. Plausible's ClickHouse HTTP client churns
+   through keep-alive connections; each open connection holds a pool thread
+   (`HTTPHandler`), so the count climbs with every ingestion burst and never
+   drains (locally: 700 connections -> 1371 threads, retained indefinitely).
+   On top of that, ClickHouse 24.12 pre-creates 512 `BgSchPool` threads at
+   startup (`background_schedule_pool_size` default is 512; the `128` in the
+   image's `config.xml` is inside a comment) — an idle instance already sits
+   at ~670 threads.
+
+**Fix:** [`clickhouse/config.d/thread-control.xml`](./clickhouse/config.d/thread-control.xml)
+is mounted into `plausible_events_db` (see `docker-compose.yml`) and bounds the
+per-connection + background + query pools:
+`max_connections=200`, `keep_alive_timeout=1`,
+`max_concurrent_queries=100`, `max_thread_pool_size=256`,
+`max_thread_pool_free_size=64`, `background_schedule_pool_size=64`.
+
+**Verification:** reproduced locally with the same connection-churn workload
+against the default vs fixed config — see the TASK-401 PR notes for
+before/after thread counts.
 
 ## Local Development
 

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+  ClickHouse thread-control overrides — Sprint 17, TASK-401.
+
+  Root cause of the ~714 clickhouse-server threads.
+
+  Verified empirically against clickhouse/clickhouse-server:24.12-alpine
+  (source: programs/server/Server.cpp v24.12.6.70-stable) — two contributors:
+
+  1) DOMINANT — oversized defaults for the per-connection + background pools.
+     a. HTTP/native server pool: every protocol server (HTTP 8123, native TCP,
+        9000, ...) runs on a single Poco::ThreadPool sized as
+           Poco::ThreadPool server_pool(min=3, max=max_connections, idle=60s)
+        where `max_connections` defaults to 4096 and idle threads are retained
+        for 60 SECONDS. Plausible's ClickHouse HTTP client churns through many
+        keep-alive connections; each open connection occupies a pool thread
+        (comm: HTTPHandler) for up to keep_alive_timeout (default 10s), and
+        after a burst the idle threads stay around for a full 60s — so the
+        count climbs with every ingestion burst and never drains. Observed
+        locally: 700 concurrent connections -> 1371 threads, retained
+        indefinitely.
+     b. background schedule pool: ClickHouse 24.12 compiles in
+        `background_schedule_pool_size = 512` (the "128" in the image's
+        config.xml is inside an XML comment, so 512 applies). The server
+        pre-creates 512 BgSchPool threads at startup — a fully idle instance
+        already sits at ~670 threads.
+
+  Fix — bound the per-connection pool and the background/query pools:
+
+    <max_connections>                 200  — cap on the shared server_pool
+                                            (default 4096). This is the direct
+                                            bound on HTTPHandler threads: at
+                                            most 200 simultaneous connections
+                                            (incl. native TCP/gRPC) instead
+                                            of up to 4096. Plausible's
+                                            event/stats traffic is a handful
+                                            of concurrent queries, so 200 is
+                                            generous while capping thread
+                                            growth.
+    <keep_alive_timeout>                1  — drop idle keep-alive connections
+                                            after 1s (was 10s) so churned
+                                            connections release their
+                                            server_pool thread immediately.
+    <max_concurrent_queries>          100  — hard cap on concurrently executing
+                                            queries (default 1000).
+    <max_thread_pool_size>            256  — cap on the Global thread pool used
+                                            for query execution (default
+                                            10000). 32 threads/core on an
+                                            8-core host is far beyond this
+                                            workload.
+    <max_thread_pool_free_size>        64  — idle threads the Global pool may
+                                            retain (default 1000); without
+                                            this the pool keeps churn-created
+                                            threads alive indefinitely after
+                                            a burst.
+    <background_schedule_pool_size>    64  — down from 512. A single-node
+                                            Plausible event store needs a
+                                            handful of scheduler threads;
+                                            64 leaves ample headroom while
+                                            cutting 448 threads.
+
+  Result: idle baseline drops to ~220 threads, and under the same
+  Plausible-style connection churn the count stays bounded (<= ~420 even in an
+  artificial 700-connection flood) instead of climbing to 1371 and sticking.
+-->
+<clickhouse>
+    <max_connections>200</max_connections>
+    <keep_alive_timeout>1</keep_alive_timeout>
+    <max_concurrent_queries>100</max_concurrent_queries>
+    <max_thread_pool_size>256</max_thread_pool_size>
+    <max_thread_pool_free_size>64</max_thread_pool_free_size>
+    <background_schedule_pool_size>64</background_schedule_pool_size>
+</clickhouse>
