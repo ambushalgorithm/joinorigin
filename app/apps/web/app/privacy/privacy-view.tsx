@@ -28,7 +28,7 @@ import {
  * uses `<Trans>` numbered tags (arch-i18n §4.1).
  */
 
-const CONTACT_EMAIL = 'hello@joinorigin.com';
+const CONTACT_EMAIL = 'hello@joinorigin.co';
 
 export function PrivacyView() {
   const { t } = useI18n();

@@ -112,7 +112,7 @@ export function contactPage() {
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer support',
-        email: 'hello@joinorigin.com',
+        email: 'hello@joinorigin.co',
         url: absoluteUrl('/contact'),
       },
     },

@@ -12,7 +12,7 @@
 export const SITE = {
   name: 'JoinOrigin',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3100',
-  domain: process.env.NEXT_PUBLIC_SITE_DOMAIN ?? 'joinorigin.com',
+  domain: process.env.NEXT_PUBLIC_SITE_DOMAIN ?? 'joinorigin.co',
   description:
     'Origin is a social collaboration network — the community OS where your ideas, projects, and communities come together in one organized space.',
   twitterHandle: '@joinorigin', // update if a real handle is provisioned

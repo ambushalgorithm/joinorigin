@@ -168,7 +168,7 @@ they are passed as compose build args:
 ```bash
 # optional: override from the shell or a root .env before building
 NEXT_PUBLIC_SITE_URL=http://localhost:3100 \
-NEXT_PUBLIC_SITE_DOMAIN=joinorigin.com \
+NEXT_PUBLIC_SITE_DOMAIN=joinorigin.co \
 docker compose up --build
 ```
 
@@ -226,7 +226,7 @@ with `PLAUSIBLE_PORT`, e.g. `PLAUSIBLE_PORT=8001 docker compose up -d plausible`
 
 1. Open `http://localhost:8000/register` and create the first user account.
 2. In the dashboard, add the site with the **same domain** the web app reports:
-   the default is `joinorigin.com` (`NEXT_PUBLIC_SITE_DOMAIN`, see
+   the default is `joinorigin.co` (`NEXT_PUBLIC_SITE_DOMAIN`, see
    `apps/web/.env.example`). Use a custom domain such as `localhost` if you set
    `NEXT_PUBLIC_SITE_DOMAIN=localhost` and restart with a rebuild.
 3. The tracking script is already pointed at the local instance:
@@ -244,7 +244,7 @@ curl -s -o /dev/null -w '%{http_code}\n' http://localhost:8000/register        #
 # Send a pageview like the browser would (202 = accepted)
 curl -s -o /dev/null -w '%{http_code}\n' -X POST http://localhost:8000/api/event \
   -H 'Content-Type: application/json' \
-  -d '{"domain":"joinorigin.com","name":"pageview","url":"http://localhost:3100/"}'
+  -d '{"domain":"joinorigin.co","name":"pageview","url":"http://localhost:3100/"}'
 ```
 
 Then open `http://localhost:3100` in a browser and watch the realtime view in
