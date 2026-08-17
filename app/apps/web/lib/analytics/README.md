@@ -18,7 +18,17 @@ infra-plausible (TASK-277) — `docker-compose.yml` runs the Plausible
 Community Edition collector on `http://localhost:8000`, and `config.ts` +
 `adapters/plausible.ts` default `apiHost` to that endpoint (matching
 `apps/web/.env.example`). Production deployments MUST override
-`NEXT_PUBLIC_PLAUSIBLE_API_HOST` with the public analytics origin.
+`NEXT_PUBLIC_PLAUSIBLE_API_HOST` with the public analytics origin
+(`https://analytics.qa1.joinorigin.co`).
+
+**DEV GUARD (Sprint 17, TASK-402):** the Plausible tracker script is **never
+injected** when running in development (`NODE_ENV=development`) or when the
+site domain is a local dev domain (`localhost`, `127.0.0.1`, `0.0.0.0`). This
+prevents the script from loading in the first place, which kills the
+collector's "Ignoring Event: localhost" server log. Config resolution is
+unchanged; only the adapter's script-injection step is skipped. Production
+(`NODE_ENV=production`, domain `joinorigin.co`, apiHost
+`https://analytics.qa1.joinorigin.co`) is unaffected.
 
 ## Directory Map
 
@@ -54,7 +64,7 @@ Resolution order (lowest → highest precedence):
      endpoint from `docker-compose.yml`, infra-plausible TASK-277).
    - `umami` — **disabled** by default, configured only if
      `NEXT_PUBLIC_UMAMI_WEBSITE_ID` is set (hostUrl defaults to
-     `https://analytics.joinorigin.com` when only the id is given).
+     `https://analytics.joinorigin.co` when only the id is given).
    - `ga4` — **disabled** by default, configured only if
      `NEXT_PUBLIC_GA4_MEASUREMENT_ID` is set.
 2. **`NEXT_PUBLIC_ANALYTICS_JSON`** — optional full JSON config

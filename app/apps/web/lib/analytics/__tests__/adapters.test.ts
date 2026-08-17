@@ -30,7 +30,7 @@ describe('createAdapters', () => {
   it('instantiates exactly the enabled trackers in config order', () => {
     const config: AnalyticsConfig = {
       trackers: [
-        { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.com' },
+        { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.co' },
         { id: 'umami', kind: 'umami', enabled: false, websiteId: 'u-1' },
         { id: 'ga4', kind: 'ga4', enabled: true, measurementId: 'G-X' },
       ],
@@ -78,13 +78,13 @@ describe('script injection contracts', () => {
       id: 'plausible',
       kind: 'plausible',
       enabled: true,
-      domain: 'joinorigin.com',
+      domain: 'joinorigin.co',
     });
 
     expect(mockedLoadScript).toHaveBeenCalledTimes(1);
     expect(mockedLoadScript).toHaveBeenCalledWith(
       'http://localhost:8000/js/script.js',
-      expect.objectContaining({ 'data-domain': 'joinorigin.com', defer: '' }),
+      expect.objectContaining({ 'data-domain': 'joinorigin.co', defer: '' }),
     );
   });
 
@@ -94,15 +94,79 @@ describe('script injection contracts', () => {
       id: 'plausible',
       kind: 'plausible',
       enabled: true,
-      domain: 'joinorigin.com',
-      apiHost: 'https://analytics.joinorigin.com',
+      domain: 'joinorigin.co',
+      apiHost: 'https://analytics.joinorigin.co',
     });
 
     expect(mockedLoadScript).toHaveBeenCalledTimes(1);
     expect(mockedLoadScript).toHaveBeenCalledWith(
-      'https://analytics.joinorigin.com/js/script.js',
-      expect.objectContaining({ 'data-domain': 'joinorigin.com', defer: '' }),
+      'https://analytics.joinorigin.co/js/script.js',
+      expect.objectContaining({ 'data-domain': 'joinorigin.co', defer: '' }),
     );
+  });
+
+  it('PRODUCTION PATH (Sprint 17, TASK-402): injects from analytics.qa1.joinorigin.co with domain joinorigin.co', async () => {
+    const adapter = new PlausibleAdapter();
+    await adapter.init({
+      id: 'plausible',
+      kind: 'plausible',
+      enabled: true,
+      domain: 'joinorigin.co',
+      apiHost: 'https://analytics.qa1.joinorigin.co',
+    });
+
+    expect(mockedLoadScript).toHaveBeenCalledTimes(1);
+    expect(mockedLoadScript).toHaveBeenCalledWith(
+      'https://analytics.qa1.joinorigin.co/js/script.js',
+      expect.objectContaining({ 'data-domain': 'joinorigin.co', defer: '' }),
+    );
+  });
+
+  it('DEV GUARD (Sprint 17, TASK-402): skips injection for a localhost domain', async () => {
+    const adapter = new PlausibleAdapter();
+    await adapter.init({
+      id: 'plausible',
+      kind: 'plausible',
+      enabled: true,
+      domain: 'localhost',
+      apiHost: 'http://localhost:8000',
+    });
+
+    expect(mockedLoadScript).not.toHaveBeenCalled();
+  });
+
+  it('DEV GUARD (Sprint 17, TASK-402): skips injection when NODE_ENV=development even with production values', async () => {
+    const env = process.env as Record<string, string | undefined>;
+    const originalNodeEnv = env.NODE_ENV;
+    env.NODE_ENV = 'development';
+    try {
+      const adapter = new PlausibleAdapter();
+      await adapter.init({
+        id: 'plausible',
+        kind: 'plausible',
+        enabled: true,
+        domain: 'joinorigin.co',
+        apiHost: 'https://analytics.qa1.joinorigin.co',
+      });
+
+      expect(mockedLoadScript).not.toHaveBeenCalled();
+    } finally {
+      if (originalNodeEnv === undefined) {
+        delete env.NODE_ENV;
+      } else {
+        env.NODE_ENV = originalNodeEnv;
+      }
+    }
+  });
+
+  it('DEV GUARD (Sprint 17, TASK-402): guard is on for 127.0.0.1 and 0.0.0.0 too', () => {
+    const { shouldSkipPlausibleInjection } = jest.requireActual('../adapters/plausible') as {
+      shouldSkipPlausibleInjection: (domain: string) => boolean;
+    };
+    expect(shouldSkipPlausibleInjection('127.0.0.1')).toBe(true);
+    expect(shouldSkipPlausibleInjection('0.0.0.0')).toBe(true);
+    expect(shouldSkipPlausibleInjection('localhost')).toBe(true);
+    expect(shouldSkipPlausibleInjection('joinorigin.co')).toBe(false);
   });
 
   it('plausible honors a custom apiHost (local collector)', async () => {
@@ -111,7 +175,7 @@ describe('script injection contracts', () => {
       id: 'plausible',
       kind: 'plausible',
       enabled: true,
-      domain: 'joinorigin.com',
+      domain: 'joinorigin.co',
       apiHost: 'http://localhost:8000',
     });
 
@@ -169,7 +233,7 @@ describe('script injection contracts', () => {
       id: 'plausible',
       kind: 'plausible' as const,
       enabled: true,
-      domain: 'joinorigin.com',
+      domain: 'joinorigin.co',
     };
 
     await adapter.init(config);
@@ -183,7 +247,7 @@ describe('script injection contracts', () => {
     const adapter = new PlausibleAdapter();
 
     await expect(
-      adapter.init({ id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.com' }),
+      adapter.init({ id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.co' }),
     ).resolves.toBeUndefined();
   });
 });

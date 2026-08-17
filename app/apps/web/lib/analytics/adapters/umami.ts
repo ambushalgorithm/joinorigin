@@ -25,7 +25,7 @@ declare global {
   }
 }
 
-const DEFAULT_HOST_URL = 'https://analytics.joinorigin.com';
+const DEFAULT_HOST_URL = 'https://analytics.joinorigin.co';
 
 export class UmamiAdapter implements TrackerAdapter {
   readonly id = 'umami';

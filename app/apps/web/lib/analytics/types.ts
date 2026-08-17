@@ -16,13 +16,13 @@ export interface AnalyticsTrackerConfig {
   kind: TrackerKind;
   /** Master switch. Disabled trackers are ignored (no script, no events). */
   enabled: boolean;
-  /** Plausible: site domain reported with events (e.g. 'joinorigin.com'). */
+  /** Plausible: site domain reported with events (e.g. 'joinorigin.co'). */
   domain?: string;
-  /** Plausible (self-hosted): API origin, e.g. 'https://analytics.joinorigin.com'. */
+  /** Plausible (self-hosted): API origin, e.g. 'https://analytics.joinorigin.co'. */
   apiHost?: string;
   /** Umami: website id from the Umami dashboard. */
   websiteId?: string;
-  /** Umami (self-hosted): script origin, e.g. 'https://analytics.joinorigin.com'. */
+  /** Umami (self-hosted): script origin, e.g. 'https://analytics.joinorigin.co'. */
   hostUrl?: string;
   /** GA4: measurement id, e.g. 'G-XXXXXXX'. */
   measurementId?: string;

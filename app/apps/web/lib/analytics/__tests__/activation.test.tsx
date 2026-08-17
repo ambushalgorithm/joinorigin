@@ -1,17 +1,21 @@
 /**
- * Activation tests (Sprint 10, TASK-279) — the wired-out-of-the-box config.
+ * Activation tests (Sprint 10, TASK-279 + Sprint 17, TASK-402).
  *
- * With NO analytics env vars set, the shipped default must point the app at
- * the LOCAL self-hosted Plausible endpoint provisioned by infra-plausible
- * (TASK-277) and actually dispatch pageviews + custom events to it:
+ * With NO analytics env vars set, the shipped default resolves a plausible
+ * tracker pointed at the LOCAL self-hosted Plausible endpoint provisioned by
+ * infra-plausible (TASK-277).
  *
- *  1. Config parsing → `resolveAnalyticsConfig()` resolves a plausible
- *     tracker with apiHost `http://localhost:8000` (matches docker-compose +
- *     .env.example).
- *  2. Plausible adapter URL → `init` injects `${apiHost}/js/script.js` with
- *     `data-domain` + defer.
- *  3. Event dispatch → `trackPageView` / `trackEvent` forward to the vendor
- *     global (`window.plausible`) that the collector script registers.
+ * DEV GUARD (Sprint 17, TASK-402): because the no-env default domain is
+ * `localhost` (a local dev domain), the tracker script must NOT be injected —
+ * this kills the collector's "Ignoring Event: localhost" server log by
+ * preventing the script from loading in the first place. Event dispatch to
+ * the vendor global still works (no-op when the script never registered the
+ * global).
+ *
+ * PRODUCTION PATH (Sprint 17, TASK-402): with `NEXT_PUBLIC_SITE_DOMAIN=
+ * joinorigin.co` + `NEXT_PUBLIC_PLAUSIBLE_API_HOST=https://analytics.qa1
+ * .joinorigin.co`, the adapter injects the production tracker script and
+ * pageviews flow — production analytics stays intact.
  */
 
 import { act, render } from '@testing-library/react';
@@ -91,15 +95,11 @@ describe('activation — wired local Plausible config (no env overrides)', () =>
     expect(adapters[0].id).toBe('plausible');
   });
 
-  it('adapter URL: init injects the local collector script.js with data-domain + defer', async () => {
+  it('DEV GUARD: init with the default (localhost-domain) config does NOT inject a script', async () => {
     const adapter = new PlausibleAdapter();
     await adapter.init(resolveAnalyticsConfig().trackers[0]);
 
-    expect(mockedLoadScript).toHaveBeenCalledTimes(1);
-    expect(mockedLoadScript).toHaveBeenCalledWith(
-      'http://localhost:8000/js/script.js',
-      expect.objectContaining({ 'data-domain': 'localhost', defer: '' }),
-    );
+    expect(mockedLoadScript).not.toHaveBeenCalled();
   });
 
   it('event dispatch: pageview reaches the collector global with an absolute URL', () => {
@@ -127,7 +127,65 @@ describe('activation — wired local Plausible config (no env overrides)', () =>
     expect(mockPlausible).toHaveBeenCalledWith('join_click', { props: { source: 'hero' } });
   });
 
-  it('provider: mounting AnalyticsProvider with the default config injects the local script and fires a pageview', async () => {
+  it('DEV GUARD: mounting AnalyticsProvider with the default config injects no script', async () => {
+    await act(async () => {
+      render(
+        <AnalyticsProvider>
+          <div>child</div>
+        </AnalyticsProvider>,
+      );
+    });
+
+    // The adapter is still selected, but the dev guard stops script
+    // injection. Without the collector script no vendor global is ever
+    // registered, so no event can reach the collector (kills the
+    // "Ignoring Event: localhost" log).
+    expect(__getTrackersForTests().map((t) => t.kind)).toEqual(['plausible']);
+    expect(mockedLoadScript).not.toHaveBeenCalled();
+  });
+});
+
+describe('production path (Sprint 17, TASK-402)', () => {
+  it('config parsing: resolves domain joinorigin.co + apiHost analytics.qa1.joinorigin.co', () => {
+    process.env = {
+      ...originalEnv,
+      NEXT_PUBLIC_SITE_DOMAIN: 'joinorigin.co',
+      NEXT_PUBLIC_PLAUSIBLE_API_HOST: 'https://analytics.qa1.joinorigin.co',
+    };
+
+    const config = resolveAnalyticsConfig();
+
+    expect(config.trackers[0]).toMatchObject({
+      id: 'plausible',
+      kind: 'plausible',
+      enabled: true,
+      domain: 'joinorigin.co',
+      apiHost: 'https://analytics.qa1.joinorigin.co',
+    });
+  });
+
+  it('adapter URL: init injects the production tracker script with data-domain joinorigin.co', async () => {
+    process.env = {
+      ...originalEnv,
+      NEXT_PUBLIC_SITE_DOMAIN: 'joinorigin.co',
+      NEXT_PUBLIC_PLAUSIBLE_API_HOST: 'https://analytics.qa1.joinorigin.co',
+    };
+    const adapter = new PlausibleAdapter();
+    await adapter.init(resolveAnalyticsConfig().trackers[0]);
+
+    expect(mockedLoadScript).toHaveBeenCalledTimes(1);
+    expect(mockedLoadScript).toHaveBeenCalledWith(
+      'https://analytics.qa1.joinorigin.co/js/script.js',
+      expect.objectContaining({ 'data-domain': 'joinorigin.co', defer: '' }),
+    );
+  });
+
+  it('provider: mounting AnalyticsProvider with the production env injects the script and fires a pageview', async () => {
+    process.env = {
+      ...originalEnv,
+      NEXT_PUBLIC_SITE_DOMAIN: 'joinorigin.co',
+      NEXT_PUBLIC_PLAUSIBLE_API_HOST: 'https://analytics.qa1.joinorigin.co',
+    };
     const mockPlausible = jest.fn();
     (globalThis as Record<string, unknown>).plausible = mockPlausible;
 
@@ -139,9 +197,8 @@ describe('activation — wired local Plausible config (no env overrides)', () =>
       );
     });
 
-    expect(__getTrackersForTests().map((t) => t.kind)).toEqual(['plausible']);
     expect(mockedLoadScript).toHaveBeenCalledWith(
-      'http://localhost:8000/js/script.js',
+      'https://analytics.qa1.joinorigin.co/js/script.js',
       expect.anything(),
     );
     expect(mockPlausible).toHaveBeenCalledWith(
