@@ -24,7 +24,8 @@ import LanguageSwitcher from './LanguageSwitcher';
  * - Explore dropdown (TASK-316): desktop submenu with Locations (`/location`),
  *   Guides (`/guides`), Glossary (`/glossary`); the mobile panel lists the
  *   same Explore links above the Features/Community/Docs/About links.
- * - `Log In` link + rotating-border `Get Started` CTA on the right.
+ * - `Log In` button + rotating-border `Get Started` CTA on the right. Both
+ *   open the same waitlist modal (TASK-405) — there is no auth/login route.
  * - Language switcher (Sprint 9): desktop right cluster before `Log In`;
  *   mobile-panel row between the nav links and `Log In`.
  * - Mobile: hamburger toggles a dropdown panel; closes on link click,
@@ -267,13 +268,17 @@ const Right = styled.div`
   gap: ${({ theme }) => theme.spacing.lg}px;
 `;
 
-const LogInLink = styled(Link)`
+const LogInLink = styled.button`
   position: relative;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: 15px;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.text};
   text-decoration: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 
   &::after {
     content: '';
@@ -341,6 +346,28 @@ const MobileLink = styled(Link)`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.text};
   text-decoration: none;
+  border-radius: ${({ theme }) => theme.radius.md}px;
+
+  &:hover,
+  &:focus-visible {
+    background: ${({ theme }) => theme.colors.surfaceElevated};
+  }
+`;
+
+/** Mobile-panel `Log In` control — a button that opens the waitlist modal (TASK-405). */
+const MobileLogInButton = styled.button`
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 ${({ theme }) => theme.spacing.md}px;
+  font-family: ${({ theme }) => theme.fontFamilies.sans};
+  font-size: 16px;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  color: ${({ theme }) => theme.colors.text};
+  text-decoration: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
   border-radius: ${({ theme }) => theme.radius.md}px;
 
   &:hover,
@@ -483,7 +510,13 @@ export function Header() {
 
         <Right>
           <LanguageSwitcher variant="header" />
-          <LogInLink href="/#login">{t('header.logIn')}</LogInLink>
+          <LogInLink
+            type="button"
+            onClick={(event) => openWaitlist(event.currentTarget)}
+            data-testid="login-button"
+          >
+            {t('header.logIn')}
+          </LogInLink>
           <RotatingBorderButton
             label={t('header.getStarted')}
             onClick={(event) => openWaitlist(event.currentTarget)}
@@ -531,9 +564,16 @@ export function Header() {
             </MobileLink>
           ))}
           <LanguageSwitcher variant="mobile-panel" />
-          <MobileLink href="/#login" onClick={closeMobile}>
+          <MobileLogInButton
+            type="button"
+            data-testid="mobile-login-button"
+            onClick={(event) => {
+              closeMobile();
+              openWaitlist(event.currentTarget);
+            }}
+          >
             {t('header.logIn')}
-          </MobileLink>
+          </MobileLogInButton>
           <RotatingBorderButton
             label={t('header.getStarted')}
             onClick={(event) => {
