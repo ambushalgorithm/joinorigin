@@ -51,7 +51,7 @@ afterEach(() => {
 describe('AnalyticsProvider', () => {
   it('renders children unchanged', () => {
     setAnalyticsJson([
-      { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.com' },
+      { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.co' },
     ]);
 
     render(
@@ -66,7 +66,7 @@ describe('AnalyticsProvider', () => {
 
   it('inits enabled trackers on mount (script injection stubbed)', async () => {
     setAnalyticsJson([
-      { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.com' },
+      { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.co' },
     ]);
 
     await act(async () => {
@@ -83,7 +83,7 @@ describe('AnalyticsProvider', () => {
 
   it('dispatches a pageview on route change', async () => {
     setAnalyticsJson([
-      { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.com' },
+      { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.co' },
     ]);
     const mockPlausible = jest.fn();
     (globalThis as Record<string, unknown>).plausible = mockPlausible;
@@ -116,7 +116,7 @@ describe('AnalyticsProvider', () => {
 
   it('does not dispatch pageviews when trackPageViews is false', async () => {
     setAnalyticsJson(
-      [{ id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.com' }],
+      [{ id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.co' }],
       false,
     );
     const mockPlausible = jest.fn();
@@ -151,7 +151,7 @@ describe('AnalyticsProvider', () => {
 
   it('is SSR-safe — renderToString does not access vendor globals or inject scripts', () => {
     setAnalyticsJson([
-      { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.com' },
+      { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.co' },
     ]);
 
     const html = renderToString(

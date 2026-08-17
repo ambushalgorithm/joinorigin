@@ -33,13 +33,13 @@ describe('loadScript', () => {
     try {
       const pending = loadScript('https://example.com/script.js', {
         defer: '',
-        'data-domain': 'joinorigin.com',
+        'data-domain': 'joinorigin.co',
       });
 
       const node = getNode();
       expect(node).not.toBeNull();
       expect(node?.src).toBe('https://example.com/script.js');
-      expect(node?.getAttribute('data-domain')).toBe('joinorigin.com');
+      expect(node?.getAttribute('data-domain')).toBe('joinorigin.co');
       expect(node?.hasAttribute('defer')).toBe(true);
       expect(node?.hasAttribute('data-analytics-injected')).toBe(true);
 

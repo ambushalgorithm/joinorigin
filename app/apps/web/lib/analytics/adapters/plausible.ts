@@ -6,6 +6,14 @@
  * - `trackPageView(path)`: `window.plausible?.('pageview', { u: absoluteUrl(path) })`.
  * - `trackEvent({name, props})`: `window.plausible?.(name, { props })`.
  *
+ * DEV GUARD (Sprint 17, TASK-402): when running in development
+ * (`NODE_ENV=development`) or against a local dev domain (`localhost`,
+ * `127.0.0.1`, `0.0.0.0`) the script is NOT injected — this prevents the
+ * tracker from loading in the first place and kills the collector's
+ * "Ignoring Event: localhost" server log. Production (`NODE_ENV=production`,
+ * domain `joinorigin.co`, apiHost `analytics.qa1.joinorigin.co`) keeps the
+ * injection path above.
+ *
  * ACTIVATION (Sprint 10, TASK-279): the fallback API host is the local
  * self-hosted Plausible stack (`http://localhost:8000`, infra-plausible
  * TASK-277) — same default as `config.ts` + `docker-compose.yml`.
@@ -29,6 +37,25 @@ declare global {
 /** Local self-hosted Plausible endpoint (infra-plausible TASK-277). */
 const DEFAULT_API_HOST = 'http://localhost:8000';
 
+/**
+ * Local/dev domains where the Plausible script must never load (Sprint 17
+ * TASK-402 dev guard).
+ */
+const LOCAL_DEV_DOMAINS: ReadonlySet<string> = new Set(['localhost', '127.0.0.1', '0.0.0.0']);
+
+/**
+ * Dev guard: skip Plausible script injection when running in development
+ * (`NODE_ENV=development`) or when the site domain is a local dev domain.
+ * The production path (`NODE_ENV=production`, domain `joinorigin.co`, apiHost
+ * `analytics.qa1.joinorigin.co`) is never affected.
+ */
+export function shouldSkipPlausibleInjection(domain: string): boolean {
+  if (process.env.NODE_ENV === 'development') {
+    return true;
+  }
+  return LOCAL_DEV_DOMAINS.has(domain);
+}
+
 export class PlausibleAdapter implements TrackerAdapter {
   readonly id = 'plausible';
   readonly kind = 'plausible' as const;
@@ -47,6 +74,18 @@ export class PlausibleAdapter implements TrackerAdapter {
       // hand-rolled config must never crash the page.
       if (typeof console !== 'undefined') {
         console.debug('[analytics] plausible enabled without domain — skipping script');
+      }
+      return;
+    }
+
+    if (shouldSkipPlausibleInjection(domain)) {
+      // Dev guard (Sprint 17, TASK-402): never load the tracker in
+      // development or against a localhost domain — kills the
+      // "Ignoring Event: localhost" collector log by not loading the script.
+      if (typeof console !== 'undefined') {
+        console.debug(
+          '[analytics] plausible dev guard — skipping script injection (dev/localhost)',
+        );
       }
       return;
     }

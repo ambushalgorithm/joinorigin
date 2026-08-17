@@ -17,8 +17,12 @@
  * the self-hosted Plausible stack in `docker-compose.yml`
  * (`http://localhost:8000`, override with `PLAUSIBLE_PORT`). Production
  * deployments MUST set `NEXT_PUBLIC_PLAUSIBLE_API_HOST` to the public
- * analytics origin (e.g. `https://analytics.joinorigin.com`) — the client
+ * analytics origin (e.g. `https://analytics.qa1.joinorigin.co`) — the client
  * bundle inlines this value at build time.
+ *
+ * DEV GUARD (Sprint 17, TASK-402): Plausible script injection is skipped in
+ * dev (`NODE_ENV=development`) and for localhost domains — see
+ * `adapters/plausible.ts`. Config resolution itself is unchanged.
  *
  * Design source: `app/docs/design/sprint-4-seo-arch.md` §2.4.
  */
@@ -45,7 +49,7 @@ const DEFAULT_PLAUSIBLE_API_HOST = 'http://localhost:8000';
  * Umami fallback when only a website id is set. Umami is opt-in; an operator
  * enabling it without a host keeps the production analytics origin.
  */
-const DEFAULT_UMAMI_HOST_URL = 'https://analytics.joinorigin.com';
+const DEFAULT_UMAMI_HOST_URL = 'https://analytics.joinorigin.co';
 
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.length > 0;

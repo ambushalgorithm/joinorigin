@@ -17,7 +17,7 @@ import { parseAndValidate, resolveAnalyticsConfig } from '../config';
 /** Local self-hosted Plausible endpoint (infra-plausible TASK-277). */
 const LOCAL_PLAUSIBLE_API_HOST = 'http://localhost:8000';
 /** Umami fallback host when only a website id is set (production analytics host). */
-const DEFAULT_UMAMI_HOST_URL = 'https://analytics.joinorigin.com';
+const DEFAULT_UMAMI_HOST_URL = 'https://analytics.joinorigin.co';
 
 const originalEnv = process.env;
 
@@ -61,15 +61,32 @@ describe('resolveAnalyticsConfig defaults', () => {
 
   it('uses NEXT_PUBLIC_SITE_DOMAIN and NEXT_PUBLIC_PLAUSIBLE_API_HOST when set', () => {
     setEnv({
-      NEXT_PUBLIC_SITE_DOMAIN: 'joinorigin.com',
+      NEXT_PUBLIC_SITE_DOMAIN: 'joinorigin.co',
       NEXT_PUBLIC_PLAUSIBLE_API_HOST: 'https://analytics.example.com',
     });
 
     const config = resolveAnalyticsConfig();
 
     expect(config.trackers[0]).toMatchObject({
-      domain: 'joinorigin.com',
+      domain: 'joinorigin.co',
       apiHost: 'https://analytics.example.com',
+    });
+  });
+
+  it('PRODUCTION PATH (Sprint 17, TASK-402): resolves domain joinorigin.co + apiHost analytics.qa1.joinorigin.co', () => {
+    setEnv({
+      NEXT_PUBLIC_SITE_DOMAIN: 'joinorigin.co',
+      NEXT_PUBLIC_PLAUSIBLE_API_HOST: 'https://analytics.qa1.joinorigin.co',
+    });
+
+    const config = resolveAnalyticsConfig();
+
+    expect(config.trackers[0]).toMatchObject({
+      id: 'plausible',
+      kind: 'plausible',
+      enabled: true,
+      domain: 'joinorigin.co',
+      apiHost: 'https://analytics.qa1.joinorigin.co',
     });
   });
 
@@ -133,7 +150,7 @@ describe('resolveAnalyticsConfig JSON override', () => {
           {
             id: 'plausible',
             kind: 'plausible',
-            domain: 'joinorigin.com',
+            domain: 'joinorigin.co',
             apiHost: 'http://localhost:8000',
           },
         ],
@@ -148,7 +165,7 @@ describe('resolveAnalyticsConfig JSON override', () => {
       id: 'plausible',
       kind: 'plausible',
       enabled: true,
-      domain: 'joinorigin.com',
+      domain: 'joinorigin.co',
       apiHost: 'http://localhost:8000',
     });
     expect(config.trackPageViews).toBe(true);
@@ -159,7 +176,7 @@ describe('resolveAnalyticsConfig JSON override', () => {
       NEXT_PUBLIC_ANALYTICS_JSON: JSON.stringify({
         trackers: [
           { id: 'ga4', kind: 'ga4', enabled: true, measurementId: 'G-ONLY' },
-          { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.com' },
+          { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.co' },
         ],
         trackPageViews: false,
       }),
@@ -191,7 +208,7 @@ describe('resolveAnalyticsConfig JSON override', () => {
 
   it('defaults enabled to true and trackPageViews to true', () => {
     const config = parseAndValidate(
-      JSON.stringify({ trackers: [{ id: 'p', kind: 'plausible', domain: 'joinorigin.com' }] }),
+      JSON.stringify({ trackers: [{ id: 'p', kind: 'plausible', domain: 'joinorigin.co' }] }),
     );
 
     expect(config.trackers[0].enabled).toBe(true);
@@ -265,7 +282,7 @@ describe('parseAndValidate validation', () => {
       parseAndValidate(
         JSON.stringify({
           trackers: [
-            { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.com' },
+            { id: 'plausible', kind: 'plausible', enabled: true, domain: 'joinorigin.co' },
             { id: 'plausible', kind: 'umami', enabled: true, websiteId: 'u-1' },
           ],
         }),
