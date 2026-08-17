@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type RefObject } from 'react';
 
-import { useGSAP } from '@gsap/react';
 import { gsap } from '../lib/gsap';
 
 import { ENTRANCE_EASING } from './landingTokens';
@@ -172,54 +171,132 @@ export const HERO_STAGGER = {
  * the TASK-290 pivot pin, so the orbit cluster now stays static and centered.
  * Reduced-motion users get the final static state instantly (no tweens
  * registered).
+ *
+ * Hydration safety (TASK-407): the scene art is code-split through
+ * `next/dynamic` (TASK-404), so the scene SVG is present in the SSR HTML
+ * (no FOUC) but its React subtree hydrates in a LATER commit than the
+ * surrounding page shell. A layout-effect registration (useGSAP's default)
+ * would mutate the SSR'd `.scene-main-group` — `transform`, `data-svg-origin`,
+ * inline `style` — BEFORE React hydrates the scene chunk, producing React 19
+ * "attributes did not match" hydration errors. Registration is therefore
+ * deferred to a post-paint `useEffect` + `requestAnimationFrame` poll that
+ * waits until a GSAP target (`.scene-main-group` / `.scene-ring`) exists in
+ * the DOM AND React has claimed it (React attaches `__reactFiber$` /
+ * `__reactProps$` internal markers to hydrated host nodes). Everything runs
+ * inside `gsap.context()` so the timeline/matchMedia revert cleanly on
+ * unmount.
  */
-export function useSceneMotion(scopeRef: RefObject<HTMLElement | null>): void {
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        const q = gsap.utils.selector(scopeRef);
+const SCENE_TARGET_SELECTORS = ['.scene-main-group', '.scene-ring'] as const;
 
-        // GSAP-native SVG pivot (TASK-290). GSAP rewrites transform-origin
-        // for SVG elements in viewBox units, so the CSS-only
-        // `transform-box: fill-box; transform-origin: center` rule on the
-        // scene primitives is NOT honored when a transform tween starts — the
-        // floating hub group would pivot around the viewBox origin and drift
-        // off-center. Pinning the transform-box/origin per target via
-        // gsap.set() keeps the float tween positioned correctly. Only set
-        // targets that exist (not every scene ships every group — avoids GSAP
-        // "target not found" console noise).
-        const pinPivot = (selector: string): void => {
-          if (q(selector).length > 0) {
-            gsap.set(q(selector), {
-              transformBox: 'fill-box',
-              transformOrigin: 'center center',
-            });
-          }
-        };
-        pinPivot('.scene-main-group');
+/**
+ * Give the code-split scene chunk a generous window to hydrate before giving
+ * up (a failed/lost chunk must not spin the rAF poll forever — the scene then
+ * simply stays in its static SSR state, matching reduced-motion behavior).
+ */
+const SCENE_HYDRATION_MAX_WAIT_MS = 30_000;
 
-        const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
-        // Only add tween steps for groups the scene actually ships — GSAP
-        // warns on empty targets (e.g. the 404 page has no `.scene-ring`).
-        if (q('.scene-main-group').length > 0) {
-          tl.to(
-            q('.scene-main-group'),
-            {
-              y: -10,
-              duration: SCENE_TIMINGS.float,
-              yoyo: true,
-              repeat: 1,
-              ease: 'sine.inOut',
-            },
-            0,
-          );
-        }
-        if (q('.scene-ring').length > 0) {
-          tl.to(q('.scene-ring'), { rotation: -360, duration: SCENE_TIMINGS.ring }, 0);
-        }
-      });
-    },
-    { scope: scopeRef },
+/** True once React has hydrated the node (attaches fiber/props internals). */
+function isReactHydrated(node: Element | null | undefined): boolean {
+  if (!node) {
+    return false;
+  }
+  return Object.keys(node).some(
+    (key) => key.startsWith('__reactFiber') || key.startsWith('__reactProps'),
   );
+}
+
+export function useSceneMotion(scopeRef: RefObject<HTMLElement | null>): void {
+  useEffect(() => {
+    const scope = scopeRef.current;
+    if (!scope) {
+      return undefined;
+    }
+
+    let cancelled = false;
+    let rafId = 0;
+    let context: gsap.Context | null = null;
+    const startedAt = Date.now();
+
+    const tryRegister = (): void => {
+      if (cancelled) {
+        return;
+      }
+      // Wait until the code-split scene chunk has hydrated: the GSAP targets
+      // exist in the SSR HTML immediately (no FOUC), but React only claims
+      // them when the lazy chunk hydrates in a later commit. Registering
+      // earlier mutates SSR DOM that React is about to diff (TASK-407).
+      // NOTE: `.scene-ring` is shell-owned (hydrates with the first commit),
+      // so EVERY present target must be React-claimed — `some()` would pass
+      // as soon as the ring hydrates, while `.scene-main-group` (inside the
+      // lazy chunk) is still unclaimed.
+      const q = gsap.utils.selector(scope);
+      const targets = SCENE_TARGET_SELECTORS.flatMap(
+        (selector) => Array.from(q(selector)) as Element[],
+      );
+      const hydrated = targets.length > 0 && targets.every((target) => isReactHydrated(target));
+
+      if (!hydrated) {
+        // Keep polling while the chunk could still arrive; give up quietly
+        // after the window (scene stays static, same as reduced-motion).
+        if (Date.now() - startedAt < SCENE_HYDRATION_MAX_WAIT_MS) {
+          rafId = requestAnimationFrame(tryRegister);
+        }
+        return;
+      }
+
+      context = gsap.context(() => {
+        const mm = gsap.matchMedia();
+        mm.add('(prefers-reduced-motion: no-preference)', () => {
+          const q2 = gsap.utils.selector(scope);
+
+          // GSAP-native SVG pivot (TASK-290). GSAP rewrites transform-origin
+          // for SVG elements in viewBox units, so the CSS-only
+          // `transform-box: fill-box; transform-origin: center` rule on the
+          // scene primitives is NOT honored when a transform tween starts — the
+          // floating hub group would pivot around the viewBox origin and drift
+          // off-center. Pinning the transform-box/origin per target via
+          // gsap.set() keeps the float tween positioned correctly. Only set
+          // targets that exist (not every scene ships every group — avoids GSAP
+          // "target not found" console noise).
+          const pinPivot = (selector: string): void => {
+            if (q2(selector).length > 0) {
+              gsap.set(q2(selector), {
+                transformBox: 'fill-box',
+                transformOrigin: 'center center',
+              });
+            }
+          };
+          pinPivot('.scene-main-group');
+
+          const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
+          // Only add tween steps for groups the scene actually ships — GSAP
+          // warns on empty targets (e.g. the 404 page has no `.scene-ring`).
+          if (q2('.scene-main-group').length > 0) {
+            tl.to(
+              q2('.scene-main-group'),
+              {
+                y: -10,
+                duration: SCENE_TIMINGS.float,
+                yoyo: true,
+                repeat: 1,
+                ease: 'sine.inOut',
+              },
+              0,
+            );
+          }
+          if (q2('.scene-ring').length > 0) {
+            tl.to(q2('.scene-ring'), { rotation: -360, duration: SCENE_TIMINGS.ring }, 0);
+          }
+        });
+      }, scope);
+    };
+
+    rafId = requestAnimationFrame(tryRegister);
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafId);
+      context?.revert();
+    };
+  }, [scopeRef]);
 }
