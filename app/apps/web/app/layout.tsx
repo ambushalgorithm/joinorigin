@@ -95,13 +95,46 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const dictionary = getDictionary(locale);
 
   return (
-    <html lang={locale} dir={dir}>
+    <html
+      lang={locale}
+      dir={dir}
+      // Critical first-paint style: the brand canvas color is applied as an
+      // inline attribute so the page never flashes white before the
+      // styled-components SSR flush is parsed (FOUC elimination, TASK-404).
+      // Mirrors `theme.colors.background` (#0A1022).
+      //
+      // `suppressHydrationWarning` is intentional: React 19 compares the
+      // style attribute during hydration and reports a diff between the
+      // server-serialized `background-color: rgb(...)` and the client
+      // camelCase style object even though the computed value is identical.
+      // The attribute is static and critical — no patching is needed, and
+      // suppressing the check keeps hydration from bailing on the whole tree.
+      suppressHydrationWarning
+      style={{ backgroundColor: 'rgb(10, 16, 34)' }}
+    >
       <head>
-        {/* Hosted fonts — no Google Fonts network request at runtime (spec §2.3). */}
+        {/* Hosted fonts — no Google Fonts network request at runtime (spec §2.3).
+            Latin subsets are preloaded (critical path) so `font-display: optional`
+            faces are available at first paint; the CSS files declare the full
+            @font-face + unicode-range set. */}
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          href="/fonts/inter/inter-latin.woff2"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          href="/fonts/urbanist/urbanist-latin.woff2"
+        />
         <link rel="stylesheet" href="/fonts/inter.css" />
         <link rel="stylesheet" href="/fonts/urbanist.css" />
       </head>
-      <body>
+      <body suppressHydrationWarning style={{ backgroundColor: 'rgb(10, 16, 34)' }}>
         <Registry>
           {/* i18n mount — client provider seeded with the server-resolved
               locale + dictionary (arch-i18n §6.3); wraps analytics + pages. */}

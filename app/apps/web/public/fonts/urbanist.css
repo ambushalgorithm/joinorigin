@@ -2,12 +2,19 @@
  * Downloaded from fonts.gstatic.com (Urbanist v18) and hosted locally —
  * no external CDN references at runtime.
  * Weights 500-800 (display/heading face) served by the variable files below.
+ *
+ * font-display strategy (fe-load-polish, TASK-404):
+ * - `optional` on both subsets: the browser uses the webfont only when it is
+ *   already available at first paint (the latin files are preloaded from the
+ *   layout `<head>`, so they almost always are), otherwise it silently keeps
+ *   the system-ui fallback. This eliminates FOUT/FOUC entirely — no fallback
+ *   text is ever swapped after the first paint.
  */
 @font-face {
   font-family: 'Urbanist';
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
+  font-display: optional;
   src: url(./urbanist/urbanist-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
@@ -17,7 +24,7 @@
   font-family: 'Urbanist';
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
+  font-display: optional;
   src: url(./urbanist/urbanist-latin-ext.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,

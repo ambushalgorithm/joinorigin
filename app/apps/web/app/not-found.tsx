@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import styled, { css, keyframes, ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
@@ -234,11 +234,18 @@ export default function NotFound() {
         <GridLayer aria-hidden="true" />
         <Content>
           <Scene aria-hidden="true" ref={sceneRef}>
-            <NotFoundScene
-              primary={PAGE_SCHEMES.notFound.primary}
-              secondary={PAGE_SCHEMES.notFound.secondary}
-              gradient={PAGE_SCHEMES.notFound.gradient}
-            />
+            {/*
+              The scene is registered through `next/dynamic` (TASK-404
+              code-split). The Suspense boundary keeps the lazy chunk local so
+              the 404 boundary hydrates even while the scene chunk loads.
+            */}
+            <Suspense fallback={null}>
+              <NotFoundScene
+                primary={PAGE_SCHEMES.notFound.primary}
+                secondary={PAGE_SCHEMES.notFound.secondary}
+                gradient={PAGE_SCHEMES.notFound.gradient}
+              />
+            </Suspense>
           </Scene>
           <Brand>
             <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={32} height={32} />

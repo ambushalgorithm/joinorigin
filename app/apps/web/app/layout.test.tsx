@@ -129,4 +129,46 @@ describe('root layout', () => {
       mockLocaleHeader.value = 'en';
     }
   });
+
+  it('preloads the critical latin font files and keeps the font stylesheets (TASK-404)', async () => {
+    const element = await RootLayout({ children: <main>page content</main> });
+    const { container } = renderLayout(element);
+    const preloads = Array.from(
+      container.querySelectorAll<HTMLLinkElement>('link[rel="preload"][as="font"]'),
+    ).map((link) => link.href);
+    expect(preloads).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining('/fonts/inter/inter-latin.woff2'),
+        expect.stringContaining('/fonts/urbanist/urbanist-latin.woff2'),
+      ]),
+    );
+    // The @font-face stylesheets remain linked (they declare unicode-range).
+    const stylesheets = Array.from(
+      container.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]'),
+    ).map((link) => link.href);
+    expect(stylesheets).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining('/fonts/inter.css'),
+        expect.stringContaining('/fonts/urbanist.css'),
+      ]),
+    );
+  });
+
+  it('inlines the critical first-paint body background so no white flash occurs (TASK-404)', async () => {
+    const element = await RootLayout({ children: <main>page content</main> });
+    const { container } = renderLayout(element);
+    // The brand canvas color is applied as inline attributes on <html> and
+    // <body> so the first paint is dark before any CSS parse/hydration.
+    // (jsdom normalizes the hex to `rgb(10, 16, 34)`; the prod HTML keeps
+    // the original `#0A1022` — both are theme.colors.background.)
+    const htmlStyle = (container.querySelector('html') as HTMLElement | null)?.getAttribute(
+      'style',
+    );
+    const bodyStyle = (container.querySelector('body') as HTMLElement | null)?.getAttribute(
+      'style',
+    );
+    for (const style of [htmlStyle, bodyStyle]) {
+      expect(style).toMatch(/rgb\(10, 16, 34\)|#0A1022/i);
+    }
+  });
 });

@@ -24,9 +24,11 @@ function renderScene(props: Partial<React.ComponentProps<typeof MenuScene>> = {}
 }
 
 describe('MenuScene', () => {
-  it('renders the scene SVG inline (no img, no external svg src)', () => {
+  it('renders the scene SVG inline (no img, no external svg src)', async () => {
     const { container } = renderScene();
-    const scene = screen.getByTestId('menu-hero-scene');
+    // The scene is registered through `next/dynamic` (TASK-404 code-split);
+    // the SVG appears once the scene chunk resolves.
+    const scene = await screen.findByTestId('menu-hero-scene');
     expect(scene.tagName).toBe('svg');
     // No sandboxed <img> SVG load — the icon-spin fix (TASK-283 gap).
     expect(container.querySelector('img')).toBeNull();
@@ -34,21 +36,22 @@ describe('MenuScene', () => {
     expect(scene).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('renders every scene key through the SCENE_MAP registry', () => {
+  it('renders every scene key through the SCENE_MAP registry', async () => {
     for (const key of Object.keys(SCENE_MAP) as Array<keyof typeof SCENE_MAP>) {
       const { unmount } = render(
         <ThemeProvider theme={theme}>
           <MenuScene scene={key} />
         </ThemeProvider>,
       );
-      const scene = screen.getByTestId('menu-hero-scene');
+      const scene = await screen.findByTestId('menu-hero-scene');
       expect(scene.tagName).toBe('svg');
       unmount();
     }
   });
 
-  it('renders the GSAP motion hook elements (orbit group + ring)', () => {
+  it('renders the GSAP motion hook elements (orbit group + ring)', async () => {
     const { container } = renderScene();
+    await screen.findByTestId('menu-hero-scene');
     // GSAP targets: the inline orbit group + the real background ring element.
     expect(container.querySelector('.scene-orbit-group')).not.toBeNull();
     expect(container.querySelector('.scene-main-group')).not.toBeNull();
@@ -56,14 +59,14 @@ describe('MenuScene', () => {
     expect(ring).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('keeps the alt prop for accessibility parity', () => {
+  it('keeps the alt prop for accessibility parity', async () => {
     const { rerender } = renderScene();
-    expect(screen.getByTestId('menu-hero-scene')).toBeInTheDocument();
+    expect(await screen.findByTestId('menu-hero-scene')).toBeInTheDocument();
     rerender(
       <ThemeProvider theme={theme}>
         <MenuScene scene="features" alt="decorative scene" />
       </ThemeProvider>,
     );
-    expect(screen.getByTestId('menu-hero-scene')).toHaveAttribute('aria-hidden', 'true');
+    expect(await screen.findByTestId('menu-hero-scene')).toHaveAttribute('aria-hidden', 'true');
   });
 });
