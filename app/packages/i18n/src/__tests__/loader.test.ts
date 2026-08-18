@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { SUPPORTED_LOCALES } from '../resolve';
 import { getDictionary, getT, loadDictionary, lookup } from '../loader';
 import type { Dictionary } from '../types';
+import { PENDING_ADDITIONS, PENDING_REMOVALS } from '../../scripts/check-keys';
 
 const LOCALES_DIR = join(__dirname, '..', '..', 'locales');
 
@@ -47,7 +48,22 @@ describe('dictionary loading — every locale JSON (arch-i18n §10.1)', () => {
         unknown
       >;
       const keys = flattenKeys(raw);
-      expect(keys).toEqual(enKeys);
+
+      // Sprint 18 (TASK-411): en.json gained new keys that the per-locale
+      // i18n-{locale}-s18 roles translate in parallel, and dropped keys those
+      // roles are still cleaning up. During the transition a locale may be
+      // missing exactly PENDING_ADDITIONS and may carry exactly
+      // PENDING_REMOVALS — any other diff is drift and fails (mirrors
+      // scripts/check-keys.ts). Once all locales land, parity is exact again.
+      const missing = [...enKeys].filter((key) => !keys.has(key));
+      const extra = [...keys].filter((key) => !enKeys.has(key));
+      for (const key of missing) {
+        expect(PENDING_ADDITIONS.has(key)).toBe(true);
+      }
+      for (const key of extra) {
+        expect(PENDING_REMOVALS.has(key)).toBe(true);
+      }
+
       expect(raw.dir).toBe(locale === 'ar' || locale === 'fa' ? 'rtl' : 'ltr');
       expect(getDictionary(locale)).toBeDefined();
     }

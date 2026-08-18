@@ -35,10 +35,15 @@ describe('CtaBand', () => {
   it('renders the default join band with an h2 headline', () => {
     renderBand();
     expect(
-      screen.getByRole('heading', { level: 2, name: 'Find your people. Build together.' }),
+      screen.getByRole('heading', {
+        level: 2,
+        name: 'Find your people. Start or grow something together.',
+      }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Join 2,400\+ builders on Origin's social collaboration network/i),
+      screen.getByText(
+        /Join 2,400\+ builders — from first ideas to established companies — on Origin's social collaboration network/i,
+      ),
     ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Get Discovered' })).toBeInTheDocument();
   });

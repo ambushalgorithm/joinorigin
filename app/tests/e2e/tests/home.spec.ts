@@ -25,7 +25,7 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
 
   // Hero left: typewriter heading completes to the full two-tone copy.
   await expect(page.locator('h1')).toContainText(
-    'Ideas, projects and community collaboration space — where teams and the best projects find their Origin.',
+    'Ideas, projects and community collaboration space — where new and existing teams find their Origin.',
     {
       timeout: 15_000,
     },
