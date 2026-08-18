@@ -16,13 +16,13 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'en',
   slug: 'first-10-members',
-  title: 'How to Get Your First 10 Members for a New Community | JoinOrigin',
+  title: 'How to Get Your First 10 Members for a New or Growing Community | JoinOrigin',
   description:
-    'Get your first 10 members without a big budget — start from your personal network, share invite links, and make the room the place people want to join. Practical steps from JoinOrigin.',
+    'Get your first 10 members without a big budget — whether you are launching a new community or re-energizing an existing one, start from your personal network, share invite links, and make the room the place people want to join. Practical steps from JoinOrigin.',
   intro: [
-    'The first ten members are the hardest to get and the most important, because they define the culture of a community before it has any reputation to attract strangers. That first-ten problem is fundamentally a connecting-people problem, and it is the core problem JoinOrigin solves.',
+    'The first ten members are the hardest to get and the most important, because they define the culture of a community before it has any reputation to attract strangers — and they are just as valuable when an existing community is stalled or restarting, because a committed core is what turns a quiet group into a living one. That first-ten problem is fundamentally a connecting-people problem, and it is the core problem JoinOrigin solves.',
     'JoinOrigin is a community OS built around the digital connect→join→room loop: you publish a group, its room is auto-created, and members join through a link. The room is the joining surface — every person who clicks Join or follows an invite link lands in the group’s room, the one place where the community lives and where new members feel immediately connected. JoinOrigin does not recruit members or run events — that part is yours. The platform makes discovery and joining dramatically easier; early growth still comes from personal reach: the people you directly invite with a link, the ones they bring, and the ones who stay because the room feels alive.',
-    'This guide breaks the first-ten-members problem into concrete steps — starting from the people you already know, publishing your group so it has a room to join, inviting personally with links, running a first gathering that converts attendees into promoters, and building a simple referral habit so each member brings the next — and every step shows where JoinOrigin helps.',
+    'This guide breaks the first-ten-members problem into concrete steps — whether you are starting a new community or reviving an existing one: starting from the people you already know, publishing your group so it has a room to join, inviting personally with links, running a first gathering that converts attendees into promoters, and building a simple referral habit so each member brings the next — and every step shows where JoinOrigin helps.',
   ],
   dataPoints: [
     'Personal invitations convert at a far higher rate than public posts or paid ads.',
@@ -54,7 +54,7 @@ const content: GuideContent = {
   ],
   sections: [
     'List fifty people you already know. Write down anyone who fits the community’s purpose: friends, colleagues, classmates, former coworkers, neighbors, and online acquaintances. You need about five times more names than the ten you want. JoinOrigin gives your community a visible home and a room people can find — but the first names still come from people you know. List fifty and treat every one as a personal introduction.',
-    'Publish your group and open its room. A community you cannot point to does not exist yet. Publish the group with a clear mission, and let its room be auto-created so there is a real place for members to land. Publishing a group on JoinOrigin auto-creates its room — the room is the joining surface, and the creator owns it from the start. Set up your group and its room in the tools you already use before you invite anyone if you prefer.',
+    'Publish your group and open its room. A community you cannot point to does not exist yet — and one whose home is scattered across chats and lists is nearly as hard to grow. Publish the group with a clear mission, and let its room be auto-created so there is a real place for members to land. Publishing a group on JoinOrigin auto-creates its room — the room is the joining surface, and the creator owns it from the start. Set up your group and its room in the tools you already use before you invite anyone if you prefer.',
     'Invite personally with a specific ask and a link. Send a short message naming the community, the first date or first conversation, and why you think they would enjoy it — and include the join link. Personal messages beat generic posts, and a specific date beats a vague promise. JoinOrigin removes the friction of joining once people find you — one link, one click, into the room. A short personal message with a specific date and a link converts better than any public post.',
     'Ask every invitee to bring one person. Make it a normal part of the ask: “Bring a friend who might like this.” Referral invitations are how small networks compound into real communities. JoinOrigin gives members one shareable home for the community — so referral conversations point to a real link and a real room. Make “bring a friend” part of the ask, and give them the link to share.',
     'Run one genuinely good first gathering. Spend your energy on the experience, not the headcount: a warm welcome, a clear format, and a defined end time. People who enjoy the first gathering will bring the next ten. JoinOrigin does not run events — the experience is yours. The platform helps the community form around it: one room where members can point to afterward and keep the connection going.',
@@ -71,7 +71,7 @@ const content: GuideContent = {
     },
     {
       title: 'Publish your group and open its room',
-      body: 'A community you cannot point to does not exist yet. Publish the group with a clear mission, and let its room be auto-created so there is a real place for members to land.',
+      body: 'A community you cannot point to does not exist yet — and one whose home is scattered across chats and lists is nearly as hard to grow. Publish the group with a clear mission, and let its room be auto-created so there is a real place for members to land.',
       joinOriginNote:
         'Publishing a group on JoinOrigin auto-creates its room — the room is the joining surface, and the creator owns it from the start. Set up your group and its room in the tools you already use before you invite anyone if you prefer.',
     },

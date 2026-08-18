@@ -19,9 +19,9 @@ const content: GuideContent = {
   description:
     'Create a group on JoinOrigin — publish a group page, open its room automatically, and invite members through a join link. Practical steps from JoinOrigin.',
   intro: [
-    'Every community starts with the same two moves: deciding who it is for, and giving those people one clear place to connect. A group without a home never forms — interest scatters across messages, spreadsheets, and one-off conversations, and nothing sticks. The group page and its room are that home, and creating them well is the difference between a real community and a list of names.',
+    'Every community — whether it is brand new or has been meeting informally for months — runs on the same two moves: deciding who it is for, and giving those people one clear place to connect. A group without a home never forms properly; interest scatters across messages, spreadsheets, and one-off conversations, and nothing sticks. The group page and its room are that home, and creating them well is the difference between a real community and a list of names.',
     'The JoinOrigin loop works like this: you publish a group, its public page appears, and its room is auto-created at the moment of publishing. People discover the group through Explore or follow a join link, joining is a single click, and they land in the room — a creator-controlled Matrix room where the community actually lives. The creator owns the room from second zero and controls who joins and how the group works.',
-    'This guide covers the whole path: choosing the audience and purpose, writing a group page people can find, publishing the group and opening its room, setting expectations as creator, sharing the join link, inviting the first members, starting the first conversations, and keeping the room active so the group keeps growing.',
+    'This guide covers the whole path — whether the group is new or already exists on paper: choosing the audience and purpose, writing a group page people can find, publishing the group and opening its room, setting expectations as creator, sharing the join link, inviting the first members, starting the first conversations, and keeping the room active so the group keeps growing.',
   ],
   dataPoints: [
     'The clearest groups start with one audience and one promise — specificity is a growth feature.',

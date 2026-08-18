@@ -19,9 +19,9 @@ const content: GuideContent = {
   slug: 'publish-a-small-business-idea',
   title: 'How to Publish a Small Business Idea: Idea Page + Room | JoinOrigin',
   description:
-    'Publish a small business idea on JoinOrigin — write a public idea page, open its room automatically, and invite customers and collaborators who want to see it happen. Practical steps from JoinOrigin.',
+    'Publish a small business idea on JoinOrigin — whether you are launching a new venture or an existing business sharing what it offers, write a public idea page, open its room automatically, and invite customers and collaborators who want to see it happen. Practical steps from JoinOrigin.',
   intro: [
-    'Most small businesses begin the same way: someone notices a real problem in their neighborhood, workplace, or hobby, and they cannot stop thinking about the fix. The next step is the fragile one — turning that spark into something other people can see, react to, and join. A small business idea needs a public home, and it needs people around it before it needs a storefront.',
+    'Small businesses often begin the same way — someone notices a real problem in their neighborhood, workplace, or hobby, and they cannot stop thinking about the fix — but many others are already operating: a running shop, a working service, a product with customers. Whether your business is still a spark or already serving people, the next step is the same: turn what you have into something other people can see, react to, and join. A small business needs a public home, and it needs people around it — before it needs a storefront, and long after one exists.',
     'The JoinOrigin loop works like this: you publish a small business idea, its public idea page appears, and its room is auto-created at the moment of publishing. People discover the page or follow a link, joining is a single click, and they land in the room — a creator-controlled Matrix room where customers, collaborators, and early believers can ask questions, share feedback, and get involved. The creator owns the room from second zero and decides who joins and what happens inside.',
     'This guide walks through publishing a small business idea the way you would open a shop: naming the customer and the problem, writing the idea page like a storefront, publishing it and opening the room, sharing the page with your local network, inviting early customers and collaborators, listening in the room, refining the offer from real feedback, and growing the room into your first customer base.',
   ],
@@ -35,7 +35,7 @@ const content: GuideContent = {
     {
       question: 'How is a small business idea different from a regular idea page?',
       answer:
-        'The page format is the same, but the promise is sharper: a customer, a problem, and an offer. Where a general idea invites collaborators, a small business idea page invites early customers and local believers — people who would actually buy, refer, or help you get started.',
+        'The page format is the same, but the promise is sharper: a customer, a problem, and an offer. Where a general idea invites collaborators, a small business idea page invites early customers and local believers — people who would actually buy, refer, or help you get started or grow what is already running.',
     },
     {
       question: 'When is the room created for my business idea?',
