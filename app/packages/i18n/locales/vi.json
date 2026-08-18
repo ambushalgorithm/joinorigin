@@ -61,10 +61,10 @@
   },
   "home": {
     "hero": {
-      "headline": "Không gian hợp tác ý tưởng, dự án và cộng đồng — nơi các đội nhóm và những dự án xuất sắc nhất tìm thấy Origin.",
+      "headline": "Không gian hợp tác ý tưởng, dự án và cộng đồng — nơi các đội nhóm mới và hiện hữu tìm thấy Origin của mình.",
       "headlineAccent": "Origin.",
       "startProject": "Bắt đầu dự án",
-      "supporting": "Tạo hồ sơ hoạt động như sơ yếu lý lịch của bạn, đăng ý tưởng dưới dạng một trang, và bắt đầu hoặc tham gia một cộng đồng xoay quanh bất cứ điều gì — một doanh nghiệp nhỏ, một startup AI, một câu lạc bộ sách, một giải chạy 10 km.",
+      "supporting": "Tạo hồ sơ hoạt động như sơ yếu lý lịch của bạn, đăng ý tưởng dưới dạng một trang, và bắt đầu hoặc tham gia một cộng đồng xoay quanh bất cứ điều gì — một ý tưởng hoàn toàn mới, một doanh nghiệp nhỏ hiện hữu, một startup AI, một câu lạc bộ sách, hoặc một giải chạy 10 km.",
       "trustAvatarsAlt": "Thành viên JoinOrigin {{number}}",
       "trustCopy": "Tham gia cùng 2.400+ nhà sáng lập đang hợp tác"
     },
@@ -99,7 +99,7 @@
   "waitlist": {
     "close": "Đóng",
     "heading": "Tham gia danh sách chờ",
-    "subcopy": "Hãy đứng đầu hàng chờ cho nền tảng. Chúng tôi sẽ gửi email cho bạn khi không gian làm việc của bạn sẵn sàng.",
+    "subcopy": "Hãy được khám phá trên hệ điều hành cộng đồng — dù bạn đang bắt đầu điều gì đó mới hay phát triển một dự án hiện hữu. Chúng tôi sẽ gửi email cho bạn khi không gian làm việc của bạn sẵn sàng.",
     "nameLabel": "Tên",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "Email",
@@ -120,8 +120,8 @@
     }
   },
   "ctaBand": {
-    "headline": "Tìm đúng người của bạn. Cùng nhau xây dựng.",
-    "subline": "Tham gia cùng 2.400+ nhà sáng lập trên mạng lưới cộng tác xã hội của Origin và được khám phá ngay hôm nay.",
+    "headline": "Tìm đúng người của bạn. Cùng nhau bắt đầu hoặc phát triển điều gì đó.",
+    "subline": "Tham gia cùng 2.400+ nhà sáng lập — từ những ý tưởng đầu tiên đến các công ty đã thành lập — trên mạng lưới cộng tác xã hội của Origin và được khám phá ngay hôm nay.",
     "joinLabel": "Được khám phá",
     "contactLabel": "Liên hệ với chúng tôi"
   },
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Đối tượng cốt lõi",
       "title": "Mọi thứ một cộng đồng cần, trong một không gian làm việc bình yên",
-      "lead": "Origin là một mạng lưới cộng tác xã hội được xây dựng quanh tám đối tượng cốt lõi: hồ sơ, ý tưởng, cộng đồng, giao tiếp, bảng tin, dự án, công ty và cơ hội. Thay vì năm công cụ riêng biệt, các mối quan hệ của bạn nằm ở một nơi duy nhất."
+      "lead": "Origin là một mạng lưới cộng tác xã hội được xây dựng quanh tám đối tượng cốt lõi: hồ sơ, ý tưởng, cộng đồng, giao tiếp, bảng tin, dự án, công ty và cơ hội. Dù bạn đang bắt đầu điều gì đó mới hay phát triển một công ty hiện hữu, các mối quan hệ của bạn nằm ở một nơi duy nhất thay vì năm công cụ riêng biệt."
     },
     "sectionCoreObjects": "Đối tượng cốt lõi",
     "coreObjects": {
@@ -164,25 +164,55 @@
       "toolHeader": "Công cụ",
       "greatAtHeader": "Giỏi về",
       "addsHeader": "Điều JoinOrigin bổ sung",
-      "linkedin": {
-        "tool": "LinkedIn",
-        "strength": "kết nối các chuyên gia",
-        "gap": "nhưng không vận hành các cộng đồng, trò chuyện và dự án biến kết nối thành cộng tác."
+      "slack": {
+        "tool": "Slack",
+        "strength": "kết nối các đội nhóm trong kênh",
+        "gap": "nhưng được xây dựng cho một không gian làm việc duy nhất — nó không mang theo hồ sơ, cộng đồng, dự án và cơ hội xuyên suốt những người bạn đã biết."
       },
       "discord": {
         "tool": "Discord",
         "strength": "giao tiếp",
         "gap": "nhưng không được tổ chức quanh hồ sơ, cộng đồng, dự án và cơ hội trên một đồ thị xã hội dùng chung."
       },
-      "reddit": {
-        "tool": "Reddit",
-        "strength": "thảo luận",
-        "gap": "nhưng ẩn danh và không mang theo danh tiếng, các mối quan hệ hay dự án về phía trước."
+      "whatsapp": {
+        "tool": "WhatsApp",
+        "strength": "nhắn tin",
+        "gap": "nhưng là một ứng dụng trò chuyện riêng tư — nó không mang lại cho cộng đồng hồ sơ, dự án và khả năng khám phá bền vững trên một đồ thị xã hội dùng chung."
       },
-      "github": {
-        "tool": "GitHub",
-        "strength": "mã hóa",
-        "gap": "nhưng được xây dựng cho kho mã nguồn, không phải cho toàn bộ phạm vi cộng tác của con người."
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "kết nối các chuyên gia",
+        "gap": "nhưng không vận hành các cộng đồng, trò chuyện và dự án biến kết nối thành cộng tác."
+      },
+      "meetup": {
+        "tool": "Meetup",
+        "strength": "tìm sự kiện",
+        "gap": "nhưng được xây dựng quanh việc xác nhận tham dự một lần — nó không duy trì cộng đồng, dự án và các mối quan hệ phát triển sau sự kiện."
+      },
+      "eventbrite": {
+        "tool": "Eventbrite",
+        "strength": "bán vé",
+        "gap": "nhưng quản lý sự kiện, không phải cộng đồng — nó không mang lại cho nhóm của bạn một mái nhà lâu dài với hồ sơ, dự án và cơ hội."
+      },
+      "notion": {
+        "tool": "Notion",
+        "strength": "tổ chức công việc",
+        "gap": "nhưng là một công cụ tài liệu — nó không kết nối những con người đằng sau các trang thành một cộng đồng cùng làm việc."
+      },
+      "asana": {
+        "tool": "Asana",
+        "strength": "theo dõi dự án",
+        "gap": "nhưng được xây dựng cho nhiệm vụ, không phải mối quan hệ — nó không làm nổi bật những con người và cộng đồng tạo nên dự án."
+      },
+      "patreon": {
+        "tool": "Patreon",
+        "strength": "tài trợ cho người sáng tạo",
+        "gap": "nhưng được xây dựng quanh đăng ký — nó không mang lại cho thành viên của bạn hồ sơ, dự án và cộng đồng trên một đồ thị xã hội dùng chung."
+      },
+      "facebook": {
+        "tool": "Facebook",
+        "strength": "kết nối các nhóm",
+        "gap": "nhưng được xây dựng quanh một bảng tin quảng cáo — nó không mang lại cho cộng đồng một không gian làm việc bình yên với hồ sơ, dự án và cơ hội."
       }
     },
     "sectionRoadmap": "Lộ trình",
@@ -528,7 +558,29 @@
       "translatePage": "Dịch trang này",
       "variantVenuesTitle": "Nơi {{type}} tụ họp",
       "variantFormatsTitle": "Các hình thức điển hình",
-      "variantHowToTitle": "Cách bắt đầu"
+      "variantHowToTitle": "Cách bắt đầu",
+      "browseLocations": "Duyệt địa điểm",
+      "searchLocationsLabel": "Tìm kiếm địa điểm",
+      "searchLocationsPlaceholder": "Tìm kiếm theo thành phố, quốc gia hoặc loại cộng đồng",
+      "emptyState": "Không có địa điểm nào khớp với “{{query}}”.",
+      "attribution": "Dữ liệu địa điểm © GeoNames contributors, CC BY 4.0; dữ liệu thành phố © SimpleMaps (worldcities basic), CC BY 4.0.",
+      "directoryKinds": {
+        "country": "Quốc gia",
+        "region": "Khu vực",
+        "city": "Thành phố",
+        "variant": "Loại cộng đồng",
+        "ideas": "Ý tưởng sự kiện cộng đồng",
+        "fallback": "Địa điểm"
+      },
+      "guideCardTitles": {
+        "start-a-community": "Bắt đầu một cộng đồng",
+        "organize-a-meetup": "Tổ chức một buổi gặp gỡ",
+        "first-10-members": "Có được 10 thành viên đầu tiên",
+        "find-a-co-founder": "Tìm một đồng sáng lập",
+        "keep-a-community-active": "Giữ cho cộng đồng hoạt động",
+        "hybrid-communities": "Vận hành cộng đồng kết hợp",
+        "moderation": "Điều hành cộng đồng của bạn"
+      }
     },
     "groupTypes": {
       "startup": "Cộng đồng khởi nghiệp",
@@ -541,17 +593,29 @@
       "eyebrow": "Hướng dẫn cách làm",
       "hubEyebrow": "Xây dựng cộng đồng",
       "hubTitle": "Hướng dẫn xây dựng cộng đồng",
+      "hubLead": "Mười hai hướng dẫn thực tế, bền vững để tìm, tham gia và bắt đầu các nhóm — và giao tiếp trong một phòng do người sáng tạo kiểm soát. Từ việc công bố một ý tưởng đến điều hành cộng đồng lành mạnh.",
       "allGuides": "Tất cả hướng dẫn",
+      "searchLabel": "Tìm kiếm hướng dẫn",
+      "searchPlaceholder": "Tìm kiếm theo tiêu đề hoặc từ khóa",
+      "emptyState": "Không có hướng dẫn nào khớp với “{{query}}”.",
       "glossarySection": "Bảng thuật ngữ Hệ điều hành Cộng đồng",
+      "glossaryBandCopy": "Tìm hiểu các thuật ngữ cốt lõi đằng sau các nhóm, phòng, điều hành, tiếp nhận thành viên và vòng tương tác trong <1>{{glossary}}</1>.",
+      "universalCopy": "Hướng dẫn mang tính phổ quát — cộng đồng mang tính địa phương. Tìm hoặc bắt đầu một cộng đồng tại một thành phố gần bạn:",
       "startLocal": "Bắt đầu tại địa phương",
       "cityCardBody": "Khám phá địa điểm, nhóm và hướng dẫn thực tế tại {{city}}.",
       "overview": "Tổng quan",
       "stepByStep": "Từng bước",
       "stepNumber": "Bước {{number}}.",
       "relatedGuides": "Hướng dẫn liên quan",
+      "continueBuilding": "Tiếp tục xây dựng với hướng dẫn tiếp theo trong chuỗi.",
+      "practiceInCity": "Đưa các bước này vào thực tế tại một thành phố thực.",
       "exploreCommunities": "Khám phá cộng đồng",
       "howJoinOriginHelps": "JoinOrigin có thể giúp như thế nào",
+      "howJoinOriginHelpsBody": "JoinOrigin là một hệ điều hành cộng đồng giúp bạn tìm hoặc bắt đầu các cộng đồng — các bước trên hoạt động trên nền tảng và với những công cụ bạn đã có. JoinOrigin lo phần cấu trúc, khám phá và tổ chức để bạn tập trung vào thành viên của mình. Nhấp Bắt đầu và được khám phá.",
       "keepLearning": "Tiếp tục học hỏi",
+      "keepLearningGuides": "Duyệt tất cả hướng dẫn trên <1>trung tâm Xây dựng cộng đồng</1>.",
+      "keepLearningGlossary": "Tìm hiểu các thuật ngữ cốt lõi trong <1>bảng thuật ngữ Hệ điều hành Cộng đồng</1>.",
+      "keepLearningLocations": "Tìm trang thành phố trên <1>trung tâm địa điểm</1> để bắt đầu tại địa phương.",
       "translatePage": "Dịch trang này"
     },
     "glossary": {
@@ -561,7 +625,60 @@
       "whyTitle": "Vì sao có bảng thuật ngữ",
       "termsTitle": "Các thuật ngữ cốt lõi",
       "goDeeper": "Tìm hiểu sâu hơn",
-      "comingSoon": "Xem các hướng dẫn để biết cách thuật ngữ này được sử dụng."
+      "terms": {
+        "community": {
+          "name": "Cộng đồng",
+          "definition": "Một nhóm người chia sẻ sở thích, ngành nghề, mục tiêu hoặc cơ hội và kết nối xoay quanh chúng. Trên Origin, mỗi cộng đồng đều đi kèm một phòng nơi các thành viên tìm thấy nhau và cùng nhau xây dựng."
+        },
+        "community-manager": {
+          "name": "Quản lý cộng đồng",
+          "definition": "Người giữ cho một cộng đồng chào đón, sôi động và đi đúng sứ mệnh — chào đón thành viên mới, khơi gợi cuộc trò chuyện và điều phối các dự án. Trên Origin, thành viên bắt đầu một cộng đồng sẽ sở hữu và điều hành phòng của cộng đồng đó."
+        },
+        "community-os": {
+          "name": "Hệ điều hành Cộng đồng",
+          "definition": "Một nền tảng đưa hồ sơ, cộng đồng, trò chuyện, dự án và cơ hội vào một không gian làm việc có tổ chức. Origin là hệ điều hành cộng đồng đứng đằng sau JoinOrigin."
+        },
+        "moderation": {
+          "name": "Điều hành",
+          "definition": "Việc giữ cho một cộng đồng an toàn và đúng chủ đề thông qua các hướng dẫn rõ ràng và thực thi nhất quán, công bằng. Điều hành tốt bảo vệ các mối quan hệ khiến một cộng đồng đáng để tham gia."
+        },
+        "onboarding": {
+          "name": "Tiếp nhận thành viên",
+          "definition": "Quá trình chào đón thành viên mới và giúp họ thực hiện hành động đầu tiên có ý nghĩa — tự giới thiệu, tham gia một cuộc trò chuyện hoặc bắt đầu một dự án. Tiếp nhận tốt biến thành viên mới thành thành viên tích cực."
+        },
+        "activation": {
+          "name": "Kích hoạt",
+          "definition": "Khoảnh khắc một thành viên mới thực hiện hành động khiến họ trở thành một phần của cộng đồng — bài đăng đầu tiên, sự kiện đầu tiên hoặc dự án đầu tiên. Kích hoạt là bước giữa việc tham gia và đóng góp."
+        },
+        "engagement-loop": {
+          "name": "Vòng tương tác",
+          "definition": "Vòng lặp tham gia lặp đi lặp lại giữ cho một cộng đồng sống động: ai đó đăng bài, những người khác phản hồi, và cuộc trò chuyện tạo thêm lý do để quay lại. Các vòng lặp lành mạnh là nhịp đập của một cộng đồng sôi động."
+        },
+        "hybrid-events": {
+          "name": "Sự kiện kết hợp",
+          "definition": "Các sự kiện kết hợp tham gia trực tiếp và trực tuyến, để các thành viên ở những nơi khác nhau có thể tham dự cùng một buổi tụ họp. Hình thức kết hợp giúp cộng đồng duy trì kết nối giữa các buổi gặp gỡ."
+        },
+        "co-founder": {
+          "name": "Đồng sáng lập",
+          "definition": "Một người cùng bạn xây dựng một dự án hoặc công ty và chia sẻ hành trình thành lập. Trên Origin, đồng sáng lập thường được tìm thấy qua mạng lưới — những người tham gia trang ý tưởng của bạn và quyết định cùng nhau xây dựng."
+        }
+      }
+    },
+    "metadata": {
+      "waitlistPhrase": "Tham gia Origin và được khám phá ngay hôm nay.",
+      "title": {
+        "communitiesIn": "Cộng đồng tại {{name}}",
+        "communitiesInWithRegion": "Cộng đồng tại {{name}}, {{region}}",
+        "variantIn": "{{label}} tại {{name}}",
+        "ideasIn": "30 ý tưởng sự kiện cộng đồng tại {{name}}"
+      },
+      "description": {
+        "city": "Tìm hoặc bắt đầu cộng đồng tại {{city}} — các nhóm khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ. {{waitlist}}",
+        "variant": "Tìm hoặc bắt đầu {{label}} tại {{city}} — địa điểm, nhóm và hướng dẫn thực tế. {{waitlist}}",
+        "ideas": "Khám phá 30 ý tưởng sự kiện cộng đồng tại {{city}} — các sự kiện kết nối, học hỏi, ngoài trời, chuyên môn, sáng tạo và tác động. {{waitlist}}",
+        "country": "Tìm hoặc bắt đầu cộng đồng tại {{country}} — từ các hệ sinh thái khởi nghiệp đến mạng lưới doanh nghiệp nhỏ. {{waitlist}}",
+        "region": "Tìm hoặc bắt đầu cộng đồng tại {{region}} — các buổi gặp gỡ, nhóm và sự kiện trên khắp khu vực. {{waitlist}}"
+      }
     },
     "cta": {
       "joinWaitlist": "Được khám phá"
