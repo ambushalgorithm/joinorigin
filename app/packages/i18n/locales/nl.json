@@ -61,10 +61,10 @@
   },
   "home": {
     "hero": {
-      "headline": "Ideeën, projecten en community-samenwerking — hier vinden teams en de beste projecten hun Origin.",
+      "headline": "Ideeën, projecten en community-samenwerking — hier vinden nieuwe én bestaande teams hun Origin.",
       "headlineAccent": "Origin.",
       "startProject": "Start een project",
-      "supporting": "Maak een profiel dat werkt als je cv, plaats je idee als pagina en start of sluit je aan bij een community rondom alles — een klein bedrijf, een AI-startup, een boekenclub, een 10k-loop.",
+      "supporting": "Maak een profiel dat werkt als je cv, plaats je idee als pagina en start of sluit je aan bij een community rondom alles — een gloednieuw idee, een bestaand klein bedrijf, een AI-startup, een boekenclub of een 10k-loop.",
       "trustAvatarsAlt": "JoinOrigin-lid {{number}}",
       "trustCopy": "Sluit je aan bij 2.400+ bouwers die al samenwerken"
     },
@@ -99,7 +99,7 @@
   "waitlist": {
     "close": "Sluiten",
     "heading": "Op de wachtlijst",
-    "subcopy": "Wees als eerste in de rij voor het platform. We mailen je zodra je werkruimte klaar is.",
+    "subcopy": "Word ontdekt op het community-besturingssysteem — of je nu iets nieuws start of een bestaand project laat groeien. We mailen je zodra je werkruimte klaar is.",
     "nameLabel": "Naam",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-mailadres",
@@ -120,8 +120,8 @@
     }
   },
   "ctaBand": {
-    "headline": "Vind je mensen. Bouw samen.",
-    "subline": "Sluit je aan bij 2.400+ bouwers op het sociale samenwerkingsnetwerk van Origin en word vandaag nog ontdekt.",
+    "headline": "Vind je mensen. Start of groei samen iets.",
+    "subline": "Sluit je aan bij 2.400+ bouwers — van eerste ideeën tot gevestigde bedrijven — op het sociale samenwerkingsnetwerk van Origin en word vandaag nog ontdekt.",
     "joinLabel": "Word ontdekt",
     "contactLabel": "Neem contact op"
   },
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Kernobjecten",
       "title": "Alles wat een community nodig heeft, in één rustige werkruimte",
-      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is opgebouwd rond acht kernobjecten: profielen, ideeën, community's, communicatie, feed, projecten, bedrijven en kansen. In plaats van vijf losse tools leven je relaties op één plek."
+      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is opgebouwd rond acht kernobjecten: profielen, ideeën, community's, communicatie, feed, projecten, bedrijven en kansen. Of je nu iets nieuws start of een bestaand bedrijf laat groeien, je relaties leven op één plek in plaats van in vijf losse tools."
     },
     "sectionCoreObjects": "Kernobjecten",
     "coreObjects": {
@@ -164,25 +164,55 @@
       "toolHeader": "Tool",
       "greatAtHeader": "Sterk in",
       "addsHeader": "Wat JoinOrigin toevoegt",
-      "linkedin": {
-        "tool": "LinkedIn",
-        "strength": "vindt professionals",
-        "gap": "maar drijft niet de community's, chats en projecten die connecties omzetten in samenwerking."
+      "slack": {
+        "tool": "Slack",
+        "strength": "verbindt teams in kanalen",
+        "gap": "maar is gebouwd voor één werkruimte — het draagt geen profielen, community's, projecten en kansen mee over de mensen die je al kent."
       },
       "discord": {
         "tool": "Discord",
         "strength": "communiceert",
         "gap": "maar is niet georganiseerd rond profielen, community's, projecten en kansen op een gedeelde sociale graaf."
       },
-      "reddit": {
-        "tool": "Reddit",
-        "strength": "discussieert",
-        "gap": "maar is anoniem en draagt reputatie, relaties of projecten niet mee."
+      "whatsapp": {
+        "tool": "WhatsApp",
+        "strength": "stuurt berichten",
+        "gap": "maar is een privéchat-app — het geeft community's geen duurzame profielen, projecten en vindbaarheid op een gedeelde sociale graaf."
       },
-      "github": {
-        "tool": "GitHub",
-        "strength": "codeert",
-        "gap": "maar is gebouwd voor repositories, niet voor het volledige scala aan menselijke samenwerking."
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "vindt professionals",
+        "gap": "maar drijft niet de community's, chats en projecten die connecties omzetten in samenwerking."
+      },
+      "meetup": {
+        "tool": "Meetup",
+        "strength": "vindt evenementen",
+        "gap": "maar draait om eenmalige aanmeldingen — het draagt de community, projecten en relaties die na het evenement groeien niet mee."
+      },
+      "eventbrite": {
+        "tool": "Eventbrite",
+        "strength": "verkoopt tickets",
+        "gap": "maar beheert evenementen, geen community's — het geeft je groep geen blijvend thuis met profielen, projecten en kansen."
+      },
+      "notion": {
+        "tool": "Notion",
+        "strength": "organiseert werk",
+        "gap": "maar is een documenttool — het verbindt de mensen achter de pagina's niet tot een community die samenwerkt."
+      },
+      "asana": {
+        "tool": "Asana",
+        "strength": "volgt projecten",
+        "gap": "maar is gebouwd voor taken, niet voor relaties — het brengt de mensen en community's die projecten mogelijk maken niet naar boven."
+      },
+      "patreon": {
+        "tool": "Patreon",
+        "strength": "financiert makers",
+        "gap": "maar draait om abonnementen — het geeft je leden geen profielen, projecten en community's op een gedeelde sociale graaf."
+      },
+      "facebook": {
+        "tool": "Facebook",
+        "strength": "verbindt groepen",
+        "gap": "maar is gebouwd rond een advertentie-feed — het geeft community's geen rustige werkruimte met profielen, projecten en kansen."
       }
     },
     "sectionRoadmap": "Roadmap",
@@ -528,7 +558,29 @@
       "translatePage": "Deze pagina vertalen",
       "variantVenuesTitle": "Waar {{type}} samenkomen",
       "variantFormatsTitle": "Typische formats",
-      "variantHowToTitle": "Hoe te beginnen"
+      "variantHowToTitle": "Hoe te beginnen",
+      "browseLocations": "Locaties doorbladeren",
+      "searchLocationsLabel": "Locaties zoeken",
+      "searchLocationsPlaceholder": "Zoek op stad, land of communitytype",
+      "emptyState": "Geen locaties gevonden voor “{{query}}”.",
+      "attribution": "Locatiegegevens © GeoNames-bijdragers, CC BY 4.0; stadsgegevens © SimpleMaps (worldcities basic), CC BY 4.0.",
+      "directoryKinds": {
+        "country": "Land",
+        "region": "Regio",
+        "city": "Stad",
+        "variant": "Communitytype",
+        "ideas": "Ideeën voor community-evenementen",
+        "fallback": "Locatie"
+      },
+      "guideCardTitles": {
+        "start-a-community": "Start een community",
+        "organize-a-meetup": "Organiseer een meetup",
+        "first-10-members": "Haal je eerste 10 leden binnen",
+        "find-a-co-founder": "Vind een medeoprichter",
+        "keep-a-community-active": "Houd een community actief",
+        "hybrid-communities": "Draai hybride community's",
+        "moderation": "Modereer je community"
+      }
     },
     "groupTypes": {
       "startup": "Startup-gemeenschappen",
@@ -541,17 +593,29 @@
       "eyebrow": "Hoe-doe-ik-handleiding",
       "hubEyebrow": "Gemeenschap opbouwen",
       "hubTitle": "Handleidingen voor gemeenschapsopbouw",
+      "hubLead": "Twaalf praktische, tijdloze handleidingen voor het vinden, aansluiten en starten van groepen — en voor communiceren in een door de maker beheerde kamer. Van het publiceren van een idee tot gezonde moderatie.",
       "allGuides": "Alle handleidingen",
+      "searchLabel": "Handleidingen zoeken",
+      "searchPlaceholder": "Zoek op titel of trefwoord",
+      "emptyState": "Geen handleidingen gevonden voor “{{query}}”.",
       "glossarySection": "Gemeenschaps-OS-woordenlijst",
+      "glossaryBandCopy": "Leer de kernbegrippen achter groepen, kamers, moderatie, onboarding en betrokkenheidslussen in de <1>{{glossary}}</1>.",
+      "universalCopy": "Handleidingen zijn universeel — community's zijn lokaal. Vind of start een community in een stad bij jou in de buurt:",
       "startLocal": "Lokaal beginnen",
       "cityCardBody": "Ontdek echte locaties, groepen en handleidingen in {{city}}.",
       "overview": "Overzicht",
       "stepByStep": "Stap voor stap",
       "stepNumber": "Stap {{number}}.",
       "relatedGuides": "Gerelateerde handleidingen",
+      "continueBuilding": "Blijf bouwen met de volgende handleiding in de serie.",
+      "practiceInCity": "Pas deze stappen in de praktijk toe in een echte stad.",
       "exploreCommunities": "Ontdek gemeenschappen",
       "howJoinOriginHelps": "Hoe JoinOrigin kan helpen",
+      "howJoinOriginHelpsBody": "JoinOrigin is een community-besturingssysteem dat je helpt community's te vinden of te starten — de stappen hierboven werken op het platform en met de tools die je al hebt. JoinOrigin regelt de structuur, vindbaarheid en organisatie, zodat jij je kunt richten op je leden. Klik op “Aan de slag” en word ontdekt.",
       "keepLearning": "Blijf leren",
+      "keepLearningGuides": "Bekijk alle handleidingen op de <1>Community Building-hub</1>.",
+      "keepLearningGlossary": "Leer de kernbegrippen in de <1>Community OS-woordenlijst</1>.",
+      "keepLearningLocations": "Vind een stadspagina op de <1>locatiehub</1> om lokaal te beginnen.",
       "translatePage": "Deze pagina vertalen"
     },
     "glossary": {
@@ -561,7 +625,60 @@
       "whyTitle": "Waarom een woordenlijst",
       "termsTitle": "Kernbegrippen",
       "goDeeper": "Ga dieper",
-      "comingSoon": "Zie de handleidingen voor hoe deze term wordt gebruikt."
+      "terms": {
+        "community": {
+          "name": "Community",
+          "definition": "Een groep mensen die interesses, sectoren, doelen of kansen delen en zich daaromheen verbinden. Op Origin heeft elke community een kamer waar leden elkaar vinden en samen bouwen."
+        },
+        "community-manager": {
+          "name": "Communitymanager",
+          "definition": "De persoon die een community gastvrij, actief en op koers houdt — nieuwe leden welkom heten, gesprekken op gang brengen en projecten coördineren. Op Origin is het lid dat een community start eigenaar en moderator van de kamer."
+        },
+        "community-os": {
+          "name": "Community-besturingssysteem",
+          "definition": "Een platform dat profielen, community's, chat, projecten en kansen samenbrengt in één overzichtelijke werkruimte. Origin is het community-besturingssysteem achter JoinOrigin."
+        },
+        "moderation": {
+          "name": "Moderatie",
+          "definition": "De praktijk van het veilig en op onderwerp houden van een community door duidelijke richtlijnen en consistent, eerlijk toezicht. Goede moderatie beschermt de relaties die een community de moeite waard maken om bij te horen."
+        },
+        "onboarding": {
+          "name": "Onboarding",
+          "definition": "Het proces van het welkom heten van nieuwe leden en het helpen zetten van een eerste betekenisvolle stap — je voorstellen, deelnemen aan een gesprek of een project starten. Sterke onboarding maakt van nieuwe leden actieve leden."
+        },
+        "activation": {
+          "name": "Activering",
+          "definition": "Het moment waarop een nieuw lid de actie zet die hen deel van de community maakt — de eerste post, het eerste evenement of het eerste project. Activering is de stap tussen lid worden en bijdragen."
+        },
+        "engagement-loop": {
+          "name": "Betrokkenheidslus",
+          "definition": "De terugkerende cyclus van deelname die een community levend houdt: iemand plaatst iets, anderen reageren en het gesprek creëert meer redenen om terug te komen. Gezonde lussen zijn de hartslag van een actieve community."
+        },
+        "hybrid-events": {
+          "name": "Hybride evenementen",
+          "definition": "Evenementen die fysieke en online deelname combineren, zodat leden op verschillende plekken hetzelfde samenzijn kunnen bijwonen. Hybride formats helpen community's verbonden te blijven tussen meetups."
+        },
+        "co-founder": {
+          "name": "Medeoprichter",
+          "definition": "Iemand die samen met jou een project of bedrijf bouwt en de oprichtingsreis deelt. Op Origin worden medeoprichters vaak via het netwerk gevonden — mensen die zich bij je idee-pagina aansluiten en besluiten samen te bouwen."
+        }
+      }
+    },
+    "metadata": {
+      "waitlistPhrase": "Sluit je aan bij Origin en word vandaag ontdekt.",
+      "title": {
+        "communitiesIn": "Community's in {{name}}",
+        "communitiesInWithRegion": "Community's in {{name}}, {{region}}",
+        "variantIn": "{{label}} in {{name}}",
+        "ideasIn": "30 ideeën voor community-evenementen in {{name}}"
+      },
+      "description": {
+        "city": "Vind of start community's in {{city}} — startup-, creatieve, politieke, meetup- en kleine-bedrijfsgroepen. {{waitlist}}",
+        "variant": "Vind of start {{label}} in {{city}} — echte locaties, groepen en handleidingen. {{waitlist}}",
+        "ideas": "Ontdek 30 ideeën voor community-evenementen in {{city}} — netwerk-, leer-, outdoor-, professionele, creatieve en impactevenementen. {{waitlist}}",
+        "country": "Vind of start community's in {{country}} — van startupscènes tot netwerken van kleine bedrijven. {{waitlist}}",
+        "region": "Vind of start community's in {{region}} — meetups, groepen en evenementen in de hele regio. {{waitlist}}"
+      }
     },
     "cta": {
       "joinWaitlist": "Word ontdekt"
