@@ -61,10 +61,10 @@
   },
   "home": {
     "hero": {
-      "headline": "Ruang kolaborasi ide, proyek, dan komunitas — tempat tim dan proyek terbaik menemukan Origin mereka.",
+      "headline": "Ruang kolaborasi ide, proyek, dan komunitas — tempat tim baru dan yang sudah ada menemukan Origin mereka.",
       "headlineAccent": "Origin.",
       "startProject": "Mulai Proyek",
-      "supporting": "Buat profil yang berfungsi seperti CV Anda, unggah ide Anda sebagai halaman, dan mulai atau ikuti komunitas untuk apa pun — bisnis kecil, startup AI, klub buku, lari 10k.",
+      "supporting": "Buat profil yang berfungsi seperti CV Anda, unggah ide Anda sebagai halaman, dan mulai atau ikuti komunitas untuk apa pun — ide yang benar-benar baru, bisnis kecil yang sudah berjalan, startup AI, klub buku, atau lari 10k.",
       "trustAvatarsAlt": "Anggota JoinOrigin {{number}}",
       "trustCopy": "Gabung dengan 2.400+ pembangun yang sudah berkolaborasi"
     },
@@ -99,7 +99,7 @@
   "waitlist": {
     "close": "Tutup",
     "heading": "Gabung daftar tunggu",
-    "subcopy": "Jadilah yang pertama dalam antrean platform. Kami akan mengirim email saat ruang kerja Anda siap.",
+    "subcopy": "Mulailah ditemukan di OS komunitas — baik Anda memulai sesuatu yang baru maupun mengembangkan proyek yang sudah ada. Kami akan mengirim email saat ruang kerja Anda siap.",
     "nameLabel": "Nama",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "Email",
@@ -120,8 +120,8 @@
     }
   },
   "ctaBand": {
-    "headline": "Temukan orang-orang Anda. Bangun bersama.",
-    "subline": "Gabung dengan 2.400+ pembangun di jaringan kolaborasi sosial Origin dan mulailah ditemukan hari ini.",
+    "headline": "Temukan orang-orang Anda. Mulai atau kembangkan sesuatu bersama.",
+    "subline": "Gabung dengan 2.400+ pembangun — dari ide pertama hingga perusahaan mapan — di jaringan kolaborasi sosial Origin dan mulailah ditemukan hari ini.",
     "joinLabel": "Mulai Ditemukan",
     "contactLabel": "Hubungi kami"
   },
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Objek inti",
       "title": "Semua yang dibutuhkan komunitas, dalam satu ruang kerja yang tenang",
-      "lead": "Origin adalah jaringan kolaborasi sosial yang dibangun di sekitar delapan objek inti: profil, ide, komunitas, komunikasi, linimasa, proyek, perusahaan, dan peluang. Alih-alih lima alat terpisah, relasi Anda hidup dalam satu tempat."
+      "lead": "Origin adalah jaringan kolaborasi sosial yang dibangun di sekitar delapan objek inti: profil, ide, komunitas, komunikasi, linimasa, proyek, perusahaan, dan peluang. Baik Anda memulai sesuatu yang baru maupun mengembangkan perusahaan yang sudah ada, relasi Anda hidup dalam satu tempat alih-alih lima alat terpisah."
     },
     "sectionCoreObjects": "Objek inti",
     "coreObjects": {
@@ -174,15 +174,45 @@
         "strength": "berkomunikasi",
         "gap": "tetapi tidak terorganisir di sekitar profil, komunitas, proyek, dan peluang dalam satu social graph bersama."
       },
-      "reddit": {
-        "tool": "Reddit",
-        "strength": "berdiskusi",
-        "gap": "tetapi anonim dan tidak membawa reputasi, relasi, atau proyek ke depan."
+      "slack": {
+        "tool": "Slack",
+        "strength": "menghubungkan tim dalam kanal",
+        "gap": "tetapi dibangun untuk satu ruang kerja saja — tidak membawa profil, komunitas, proyek, dan peluang ke orang-orang yang sudah Anda kenal."
       },
-      "github": {
-        "tool": "GitHub",
-        "strength": "menulis kode",
-        "gap": "tetapi dibangun untuk repositori, bukan untuk seluruh cakupan kolaborasi manusia."
+      "whatsapp": {
+        "tool": "WhatsApp",
+        "strength": "berkirim pesan",
+        "gap": "tetapi merupakan aplikasi obrolan pribadi — tidak memberikan komunitas profil, proyek, dan penemuan yang bertahan lama dalam satu social graph bersama."
+      },
+      "meetup": {
+        "tool": "Meetup",
+        "strength": "menemukan acara",
+        "gap": "tetapi dibangun di sekitar RSVP sekali jalan — tidak membawa komunitas, proyek, dan relasi yang tumbuh setelah acara."
+      },
+      "eventbrite": {
+        "tool": "Eventbrite",
+        "strength": "menjual tiket",
+        "gap": "tetapi mengelola acara, bukan komunitas — tidak memberikan grup Anda rumah yang bertahan lama dengan profil, proyek, dan peluang."
+      },
+      "notion": {
+        "tool": "Notion",
+        "strength": "mengorganisir pekerjaan",
+        "gap": "tetapi merupakan alat dokumen — tidak menghubungkan orang-orang di balik halaman menjadi komunitas yang bekerja sama."
+      },
+      "asana": {
+        "tool": "Asana",
+        "strength": "melacak proyek",
+        "gap": "tetapi dibangun untuk tugas, bukan relasi — tidak menampilkan orang dan komunitas yang membuat proyek terwujud."
+      },
+      "patreon": {
+        "tool": "Patreon",
+        "strength": "mendanai kreator",
+        "gap": "tetapi dibangun di sekitar langganan — tidak memberikan anggota Anda profil, proyek, dan komunitas dalam satu social graph bersama."
+      },
+      "facebook": {
+        "tool": "Facebook",
+        "strength": "menghubungkan grup",
+        "gap": "tetapi dibangun di sekitar linimasa iklan — tidak memberikan komunitas ruang kerja yang tenang dengan profil, proyek, dan peluang."
       }
     },
     "sectionRoadmap": "Peta jalan",
@@ -528,7 +558,29 @@
       "translatePage": "Terjemahkan halaman ini",
       "variantVenuesTitle": "Tempat {{type}} berkumpul",
       "variantFormatsTitle": "Format umum",
-      "variantHowToTitle": "Cara memulai"
+      "variantHowToTitle": "Cara memulai",
+      "browseLocations": "Jelajahi lokasi",
+      "searchLocationsLabel": "Cari lokasi",
+      "searchLocationsPlaceholder": "Cari berdasarkan kota, negara, atau jenis komunitas",
+      "emptyState": "Tidak ada lokasi yang cocok dengan “{{query}}”.",
+      "attribution": "Data lokasi © kontributor GeoNames, CC BY 4.0; data kota © SimpleMaps (worldcities basic), CC BY 4.0.",
+      "directoryKinds": {
+        "country": "Negara",
+        "region": "Wilayah",
+        "city": "Kota",
+        "variant": "Jenis komunitas",
+        "ideas": "Ide acara komunitas",
+        "fallback": "Lokasi"
+      },
+      "guideCardTitles": {
+        "start-a-community": "Mulai sebuah komunitas",
+        "organize-a-meetup": "Selenggarakan meetup",
+        "first-10-members": "Dapatkan 10 anggota pertama Anda",
+        "find-a-co-founder": "Temukan co-founder",
+        "keep-a-community-active": "Jaga komunitas tetap aktif",
+        "hybrid-communities": "Jalankan komunitas hibrida",
+        "moderation": "Moderasi komunitas Anda"
+      }
     },
     "groupTypes": {
       "startup": "Komunitas startup",
@@ -552,7 +604,19 @@
       "exploreCommunities": "Jelajahi komunitas",
       "howJoinOriginHelps": "Bagaimana JoinOrigin dapat membantu",
       "keepLearning": "Terus belajar",
-      "translatePage": "Terjemahkan halaman ini"
+      "translatePage": "Terjemahkan halaman ini",
+      "hubLead": "Dua belas panduan praktis yang selalu relevan untuk menemukan, bergabung dengan, dan memulai grup — serta berkomunikasi dalam ruang yang dikendalikan kreator. Dari menerbitkan ide hingga moderasi yang sehat.",
+      "searchLabel": "Cari panduan",
+      "searchPlaceholder": "Cari berdasarkan judul panduan atau kata kunci",
+      "emptyState": "Tidak ada panduan yang cocok dengan “{{query}}”.",
+      "glossaryBandCopy": "Pelajari istilah inti di balik grup, ruang, moderasi, onboarding, dan lingkar keterlibatan di <1>{{glossary}}</1>.",
+      "universalCopy": "Panduan bersifat universal — komunitas bersifat lokal. Temukan atau mulai komunitas di kota dekat Anda:",
+      "continueBuilding": "Lanjutkan membangun dengan panduan berikutnya dalam seri ini.",
+      "practiceInCity": "Praktikkan langkah-langkah ini di kota yang sesungguhnya.",
+      "howJoinOriginHelpsBody": "JoinOrigin adalah OS komunitas yang membantu Anda menemukan atau memulai komunitas — langkah-langkah di atas berfungsi di platform dan dengan alat yang sudah Anda miliki. JoinOrigin menangani struktur, penemuan, dan organisasi sehingga Anda dapat fokus pada anggota Anda. Klik Mulai dan mulailah ditemukan.",
+      "keepLearningGuides": "Jelajahi semua panduan di <1>pusat Membangun Komunitas</1>.",
+      "keepLearningGlossary": "Pelajari istilah inti di <1>glosarium OS Komunitas</1>.",
+      "keepLearningLocations": "Temukan halaman kota di <1>pusat lokasi</1> untuk memulai secara lokal."
     },
     "glossary": {
       "eyebrow": "OS Komunitas",
@@ -561,10 +625,63 @@
       "whyTitle": "Mengapa glosarium",
       "termsTitle": "Istilah inti",
       "goDeeper": "Lebih dalam",
-      "comingSoon": "Lihat panduan untuk mengetahui bagaimana istilah ini digunakan."
+      "terms": {
+        "community": {
+          "name": "Komunitas",
+          "definition": "Sekelompok orang yang berbagi minat, industri, tujuan, atau peluang dan terhubung di sekitarnya. Di Origin, setiap komunitas dilengkapi ruang tempat anggota saling menemukan dan membangun bersama."
+        },
+        "community-manager": {
+          "name": "Manajer komunitas",
+          "definition": "Orang yang menjaga komunitas tetap ramah, aktif, dan sesuai misi — menyambut anggota baru, memicu percakapan, dan mengoordinasikan proyek. Di Origin, anggota yang memulai komunitas memiliki dan memoderasi ruangnya."
+        },
+        "community-os": {
+          "name": "OS Komunitas",
+          "definition": "Platform yang menyatukan profil, komunitas, obrolan, proyek, dan peluang dalam satu ruang kerja yang terorganisir. Origin adalah OS komunitas di balik JoinOrigin."
+        },
+        "moderation": {
+          "name": "Moderasi",
+          "definition": "Praktik menjaga komunitas tetap aman dan sesuai topik melalui pedoman yang jelas serta penegakan yang konsisten dan adil. Moderasi yang baik melindungi relasi yang membuat komunitas layak diikuti."
+        },
+        "onboarding": {
+          "name": "Onboarding",
+          "definition": "Proses menyambut anggota baru dan membantu mereka mengambil tindakan pertama yang bermakna — memperkenalkan diri, bergabung dalam percakapan, atau memulai proyek. Onboarding yang kuat mengubah anggota baru menjadi anggota yang aktif."
+        },
+        "activation": {
+          "name": "Aktivasi",
+          "definition": "Momen ketika anggota baru melakukan tindakan yang menjadikan mereka bagian dari komunitas — kiriman pertama, acara pertama, atau proyek pertama. Aktivasi adalah langkah antara bergabung dan berkontribusi."
+        },
+        "engagement-loop": {
+          "name": "Lingkar keterlibatan",
+          "definition": "Siklus partisipasi berulang yang menjaga komunitas tetap hidup: seseorang mengirim, yang lain merespons, dan percakapan menciptakan lebih banyak alasan untuk kembali. Lingkar yang sehat adalah denyut nadi komunitas yang aktif."
+        },
+        "hybrid-events": {
+          "name": "Acara hibrida",
+          "definition": "Acara yang memadukan partisipasi tatap muka dan daring, sehingga anggota di tempat berbeda dapat mengikuti pertemuan yang sama. Format hibrida membantu komunitas tetap terhubung di antara meetup."
+        },
+        "co-founder": {
+          "name": "Co-founder",
+          "definition": "Seseorang yang membangun proyek atau perusahaan bersama Anda dan berbagi perjalanan pendirian. Di Origin, co-founder sering ditemukan melalui jaringan — orang-orang yang bergabung dengan halaman ide Anda dan memutuskan untuk membangun bersama."
+        }
+      }
     },
     "cta": {
       "joinWaitlist": "Mulai Ditemukan"
+    },
+    "metadata": {
+      "waitlistPhrase": "Bergabunglah dengan Origin dan mulailah ditemukan hari ini.",
+      "title": {
+        "communitiesIn": "Komunitas di {{name}}",
+        "communitiesInWithRegion": "Komunitas di {{name}}, {{region}}",
+        "variantIn": "{{label}} di {{name}}",
+        "ideasIn": "30 ide acara komunitas di {{name}}"
+      },
+      "description": {
+        "city": "Temukan atau mulai komunitas di {{city}} — grup startup, kreatif, politik, meetup, dan usaha kecil. {{waitlist}}",
+        "variant": "Temukan atau mulai {{label}} di {{city}} — tempat, grup, dan panduan nyata. {{waitlist}}",
+        "ideas": "Temukan 30 ide acara komunitas di {{city}} — acara jejaring, pembelajaran, luar ruangan, profesional, kreatif, dan berdampak. {{waitlist}}",
+        "country": "Temukan atau mulai komunitas di {{country}} — dari ekosistem startup hingga jaringan usaha kecil. {{waitlist}}",
+        "region": "Temukan atau mulai komunitas di {{region}} — meetup, grup, dan acara di seluruh wilayah. {{waitlist}}"
+      }
     }
   }
 }
