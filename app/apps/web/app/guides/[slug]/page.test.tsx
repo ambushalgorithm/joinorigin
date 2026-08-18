@@ -1,6 +1,8 @@
-import { screen } from '@testing-library/react';
+import type { ReactElement } from 'react';
+import { render, screen } from '@testing-library/react';
 
-import { renderWithI18n } from '../../../test-utils';
+import { getDictionary, I18nProvider } from '@joinorigin/i18n';
+
 import GuidePage, { generateMetadata, generateStaticParams } from './page';
 import { getGuideContent } from '../../../lib/seo/content';
 import { guidePageEntry } from '../../../lib/seo/guides';
@@ -13,7 +15,43 @@ import { GuideView } from './guide-view';
  * the page renders a single H1 + visible FAQ block mirrored in FAQPage
  * JSON-LD with the cross-link mesh (hub, sibling guides, city pages), honest
  * CTA, and the JoinOrigin-led structure (intro + per-step JoinOrigin notes).
+ *
+ * TASK-414: the guide-view footer copy (related-guide card body, city
+ * practice line, JoinOrigin CTA body, keep-learning bullets) renders from
+ * dictionary keys. The keys are seeded into the test dictionary so the suite
+ * is deterministic regardless of merge order with the en-keys role.
  */
+
+/** TASK-411 guide-view footer keys (EN source values — mirror en.json after
+ *  the i18n-en-keys merge; kept here so the view tests run green in
+ *  isolation). */
+const GUIDE_FOOTER_CHROME: Record<string, unknown> = {
+  continueBuilding: 'Continue building with the next guide in the series.',
+  practiceInCity: 'Put these steps into practice in a real city.',
+  howJoinOriginHelpsBody:
+    'JoinOrigin is a community OS that helps you find or start communities — the steps above work on the platform and with the tools you already have. JoinOrigin handles the structure, discovery, and organization so you can focus on your members. Click Get Started and get discovered.',
+  keepLearningGuides: 'Browse all guides on the <1>Community Building hub</1>.',
+  keepLearningGlossary: 'Learn the core terms in the <1>Community OS glossary</1>.',
+  keepLearningLocations: 'Find a city page on the <1>locations hub</1> to start local.',
+};
+
+function renderWithGuideI18n(ui: ReactElement) {
+  const en = getDictionary('en');
+  const seoContent = (en.seoContent as Record<string, unknown> | undefined) ?? {};
+  const guides = (seoContent.guides as Record<string, unknown> | undefined) ?? {};
+  const dictionary = {
+    ...en,
+    seoContent: {
+      ...seoContent,
+      guides: { ...guides, ...GUIDE_FOOTER_CHROME },
+    },
+  };
+  return render(
+    <I18nProvider locale="en" dictionary={dictionary}>
+      {ui}
+    </I18nProvider>,
+  );
+}
 
 describe('guides/[slug] page — static params + metadata', () => {
   it('generateStaticParams returns exactly the 12 guide slugs', () => {
@@ -61,14 +99,14 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
   }
 
   it('renders a single h1 with the guide title', () => {
-    renderWithI18n(<GuideView entry={entry} content={content} />);
+    renderWithGuideI18n(<GuideView entry={entry} content={content} />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent(content.title ?? entry.title);
   });
 
   it('renders the definitional intro paragraphs and step-by-step structure', () => {
-    renderWithI18n(<GuideView entry={entry} content={content} />);
+    renderWithGuideI18n(<GuideView entry={entry} content={content} />);
     // The intro is an array of paragraphs — every paragraph renders as its
     // own BodyCopy block (TASK-351 multi-paragraph model).
     for (const paragraph of content.intro) {
@@ -80,7 +118,7 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
   });
 
   it('leads with JoinOrigin — intro + every step renders a JoinOrigin note (TASK-320)', () => {
-    renderWithI18n(<GuideView entry={entry} content={content} />);
+    renderWithGuideI18n(<GuideView entry={entry} content={content} />);
     expect(content.intro.join(' ')).toContain('JoinOrigin');
     // The "How JoinOrigin can help" label renders once per step.
     expect(screen.getAllByText('How JoinOrigin can help').length).toBeGreaterThanOrEqual(
@@ -92,7 +130,7 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
   });
 
   it('renders the FAQ block (JSON-LD mirror is asserted on the server wrapper)', () => {
-    renderWithI18n(<GuideView entry={entry} content={content} />);
+    renderWithGuideI18n(<GuideView entry={entry} content={content} />);
     const faqQ = content.faq[0];
     if (!faqQ) throw new Error('guide must have FAQ');
 
@@ -101,7 +139,7 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
   });
 
   it('cross-links to the guides hub + sibling guides + flagship cities + waitlist CTA', () => {
-    renderWithI18n(<GuideView entry={entry} content={content} />);
+    renderWithGuideI18n(<GuideView entry={entry} content={content} />);
     expect(screen.getByText('Related guides')).toBeInTheDocument();
     // JoinOrigin-led: the "How JoinOrigin can help" label appears once per
     // step plus once in the closing CTA band.
@@ -117,7 +155,7 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
   });
 
   it('renders the Translate this page link with the correct href (TASK-318)', () => {
-    renderWithI18n(<GuideView entry={entry} content={content} />);
+    renderWithGuideI18n(<GuideView entry={entry} content={content} />);
 
     const link = screen.getByTestId('translate-page-link');
     expect(link).toHaveTextContent('Translate this page');
@@ -127,12 +165,42 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
     expect(url.searchParams.get('sl')).toBe('en');
     expect(url.searchParams.get('u')).toBe(window.location.href);
   });
+
+  it('renders the localized footer copy from dictionary keys (TASK-414)', () => {
+    renderWithGuideI18n(<GuideView entry={entry} content={content} />);
+    // The related-guide card body renders once per sibling guide.
+    expect(
+      screen.getAllByText('Continue building with the next guide in the series.').length,
+    ).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText('Put these steps into practice in a real city.')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'JoinOrigin is a community OS that helps you find or start communities — the steps above work on the platform and with the tools you already have. JoinOrigin handles the structure, discovery, and organization so you can focus on your members. Click Get Started and get discovered.',
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('renders the keep-learning links from Trans keys (TASK-414)', () => {
+    renderWithGuideI18n(<GuideView entry={entry} content={content} />);
+    expect(screen.getByRole('link', { name: 'Community Building hub' })).toHaveAttribute(
+      'href',
+      '/guides',
+    );
+    expect(screen.getByRole('link', { name: 'Community OS glossary' })).toHaveAttribute(
+      'href',
+      '/glossary',
+    );
+    expect(screen.getByRole('link', { name: 'locations hub' })).toHaveAttribute(
+      'href',
+      '/location',
+    );
+  });
 });
 
 describe('guide page wrapper', () => {
   it('renders GuidePage with a single H1', async () => {
     const page = await GuidePage({ params: Promise.resolve({ slug: 'start-a-community' }) });
-    renderWithI18n(page);
+    renderWithGuideI18n(page);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
   });
@@ -143,7 +211,7 @@ describe('guide page wrapper', () => {
     if (!content) throw new Error('missing guide content');
 
     const page = await GuidePage({ params: Promise.resolve({ slug }) });
-    renderWithI18n(page);
+    renderWithGuideI18n(page);
 
     // Visible FAQ block.
     const faqQ = content.faq[0];
