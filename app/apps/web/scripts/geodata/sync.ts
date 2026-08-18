@@ -6,6 +6,7 @@
  *
  * Flow (design §5.3):
  *   download → CLEAN → DEDUP → JOIN → OVERLAY → LOCALIZE → SNAPSHOT
+ *   → MANUAL OVERRIDES (TASK-409, `manual-overrides.json`)
  *
  * Output: `apps/web/lib/seo/data/locations.json` (committed snapshot).
  * Scope: all countries + all regions + cities with population ≥
@@ -32,6 +33,7 @@ import {
 import { buildAdminNameIndex, buildSimpleMapsIndex, matchSimpleMaps } from './overlay';
 import { buildNameResolver, queryWikidataLabels } from './localize';
 import { buildSnapshot, writeSnapshot } from './snapshot';
+import { applyManualOverrides, loadManualOverrides } from './manual-overrides';
 import { DEFAULT_MIN_POPULATION } from './config';
 import type { CleanCity, CleanCountry, CleanRegion, GeoCityRow, SimpleMapsRow } from './types';
 
@@ -208,7 +210,18 @@ async function main() {
     regions,
     cities,
   });
-  writeSnapshot(snapshot);
+
+  // 7b. MANUAL OVERRIDES — deterministic post-build merge so hand-added
+  // cities (e.g. Singapore, Hong Kong, Bengaluru) survive every run.
+  console.log('[geo:sync] MANUAL OVERRIDES…');
+  const { snapshot: finalSnapshot, superseded } = applyManualOverrides(
+    snapshot,
+    loadManualOverrides(),
+  );
+  for (const key of superseded) {
+    console.warn(`[geo:sync]   manual override superseded pipeline entity: ${key}`);
+  }
+  writeSnapshot(finalSnapshot);
   console.log('[geo:sync] done.');
 }
 

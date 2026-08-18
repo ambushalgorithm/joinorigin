@@ -29,7 +29,7 @@ full 235K dump (Tier-3 long tail).
 ## Pipeline (design §5.3)
 
 ```
-download → CLEAN → DEDUP → JOIN → OVERLAY → LOCALIZE → SNAPSHOT
+download → CLEAN → DEDUP → JOIN → OVERLAY → LOCALIZE → SNAPSHOT → MANUAL OVERRIDES
 ```
 
 | Step | File | Rule |
@@ -40,6 +40,29 @@ download → CLEAN → DEDUP → JOIN → OVERLAY → LOCALIZE → SNAPSHOT
 | OVERLAY | `overlay.ts` | SimpleMaps match (iso2+admin1+ascii; fallback name-unique; proximity) → cleaner names + capital |
 | LOCALIZE | `localize.ts` | Wikidata labels (SPARQL, batched) → GeoNames alternate names → EN |
 | SNAPSHOT | `snapshot.ts` | emit `locations.json` (deterministic version date) |
+| MANUAL OVERRIDES | `manual-overrides.ts` | merge committed `manual-overrides.json` AFTER the build, BEFORE write — hand-added rows survive every run |
+
+## Manual overrides (TASK-409)
+
+`manual-overrides.json` holds hand-added city/region/country rows that the
+pipeline would drop or mis-name:
+
+- **Bengaluru** (geonameId 1277333, IN, region `in-19` Karnataka) — pipeline
+  emits the row with a wrong `name`/`asciiName`; the override pins the canonical
+  identity and preserves the pipeline's localization.
+- **Singapore** (geonameId 1880251, SG, new region row `sg-00`) — GeoNames has
+  no admin-1 for SG, so the pipeline scope step drops the city; both the city
+  and a whole-country region row are hand-added.
+- **Hong Kong** (geonameId 1819729, HK, unified city row) — the capital feature
+  has no admin-1 in GeoNames and is dropped; the unified city row is hand-added
+  under the existing `hk-hcw` (Central and Western) region.
+
+Merge rules (`applyManualOverrides`, unit-tested): keyed by `iso2`/`id`/`id`;
+override fields win, unmentioned pipeline fields are preserved; `names` is
+merged per-locale and every new entity is filled to 21 locales (EN fallback);
+new entities append at the end; superseded pipeline entities are logged via
+`console.warn` (never silently overwritten). Re-running `geo:sync` keeps the
+rows because the merge happens after every build.
 
 ## Unit tests
 
@@ -47,6 +70,7 @@ download → CLEAN → DEDUP → JOIN → OVERLAY → LOCALIZE → SNAPSHOT
 pnpm --filter @joinorigin/web test scripts/geodata
 ```
 
-Covers CLEAN (P-class filter), DEDUP (dedup key + population + sameName) and
-JOIN (countryInfo/admin1/timeZones) rules with Andorra/US/DE sample asserts
-(geodata §4).
+Covers CLEAN (P-class filter), DEDUP (dedup key + population + sameName),
+JOIN (countryInfo/admin1/timeZones), SNAPSHOT (deterministic assembly + 21-locale
+names) and MANUAL OVERRIDES (append/replace/merge rules, idempotency, supersede
+reporting) with Andorra/US/DE/sample asserts (geodata §4).
