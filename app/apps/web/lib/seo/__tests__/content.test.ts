@@ -2,24 +2,118 @@ import {
   contentLocalesFor,
   getCityContent,
   getCountryContent,
+  getGuideContent,
   getRegionContent,
   listContent,
 } from '../content';
-import { GROUP_TYPES } from '../locationData';
+import { GROUP_TYPES, TIER_2_CITY_SLUGS } from '../locationData';
+import type { Locale } from '@joinorigin/i18n';
 import { nearDuplicate, NEAR_DUPLICATE_THRESHOLD, similarity, wordCount } from '../locationGates';
 
 /**
- * fe-seo-registry content-file model tests (TASK-307).
+ * fe-seo-registry content-file model tests (TASK-307) + Sprint 18
+ * registry-completeness tests (TASK-442).
  *
  * Enforces the content contract: EN source of truth per city/region/
  * country, per-locale files (content/de/city/berlin.ts), body copy lives
  * in content files (never locale JSONs), unique prose ≥150 words (G2),
  * ≥3 data points (G1), 30 ideas in 6 categories (§6.6), and no
  * NYC↔Berlin reuse (G5 + idea-page uniqueness rule).
+ *
+ * TASK-442: every Sprint 18 file — 55 EN cities, per-locale city
+ * translations, and 12×20 guide translations — must be registered and
+ * resolvable through the registry.
  */
 
 const MIN_PROSE_WORDS = 150;
 const EXPECTED_CITIES = ['new-york', 'berlin'];
+const GUIDE_SLUGS = [
+  'publish-an-idea',
+  'create-a-project',
+  'create-a-group',
+  'publish-a-small-business-idea',
+  'publish-a-startup-concept',
+  'find-a-co-founder',
+  'start-a-community',
+  'first-10-members',
+  'keep-a-community-active',
+  'hybrid-communities',
+  'organize-a-meetup',
+  'moderation',
+];
+const NON_EN_LOCALES: Locale[] = [
+  'ar',
+  'de',
+  'es',
+  'fa',
+  'fr',
+  'hi',
+  'id',
+  'it',
+  'ja',
+  'ko',
+  'nl',
+  'pl',
+  'pt-BR',
+  'ru',
+  'th',
+  'tr',
+  'uk',
+  'vi',
+  'zh-CN',
+  'zh-TW',
+];
+
+describe('lib/seo content — Sprint 18 registry completeness (TASK-442)', () => {
+  it('registers every one of the 55 approved cities with EN source-of-truth content', () => {
+    expect(TIER_2_CITY_SLUGS).toHaveLength(55);
+    for (const slug of TIER_2_CITY_SLUGS) {
+      const content = getCityContent(slug, 'en');
+      expect(content).toBeDefined();
+      expect(content?.kind).toBe('city');
+      expect(content?.locale).toBe('en');
+      expect(content?.slug).toBe(slug);
+    }
+  });
+
+  it('registers the per-locale city translations for the predominant-locale cities', () => {
+    // de: berlin + munich; es: 8 cities; hi: 6 cities; etc. Every locale
+    // listed in the Sprint 18 plan has committed city content.
+    expect(contentLocalesFor('city', 'berlin')).toEqual(expect.arrayContaining(['en', 'de']));
+    expect(contentLocalesFor('city', 'munich')).toEqual(expect.arrayContaining(['en', 'de']));
+    expect(contentLocalesFor('city', 'paris')).toEqual(expect.arrayContaining(['en', 'fr']));
+    expect(contentLocalesFor('city', 'montreal')).toEqual(expect.arrayContaining(['en', 'fr']));
+    expect(contentLocalesFor('city', 'mexico-city')).toEqual(expect.arrayContaining(['en', 'es']));
+    expect(contentLocalesFor('city', 'sao-paulo')).toEqual(expect.arrayContaining(['en', 'pt-BR']));
+    expect(contentLocalesFor('city', 'mumbai')).toEqual(expect.arrayContaining(['en', 'hi']));
+    expect(contentLocalesFor('city', 'tokyo')).toEqual(expect.arrayContaining(['en', 'ja']));
+    expect(contentLocalesFor('city', 'taipei')).toEqual(expect.arrayContaining(['en', 'zh-TW']));
+    expect(contentLocalesFor('city', 'dubai')).toEqual(expect.arrayContaining(['en', 'ar']));
+    // Locale translation resolves exactly (no EN fallback at the per-locale surface).
+    expect(getCityContent('paris', 'fr')?.locale).toBe('fr');
+    expect(getCityContent('mumbai', 'hi')?.locale).toBe('hi');
+  });
+
+  it('registers all 12×20 = 240 guide translations', () => {
+    for (const locale of NON_EN_LOCALES) {
+      for (const slug of GUIDE_SLUGS) {
+        const content = getGuideContent(slug, locale);
+        expect(content).toBeDefined();
+        expect(content?.kind).toBe('guide');
+        expect(content?.locale).toBe(locale);
+        expect(content?.slug).toBe(slug);
+      }
+    }
+  });
+
+  it('registers the 12 EN guides and keeps the EN source of truth', () => {
+    for (const slug of GUIDE_SLUGS) {
+      const content = getGuideContent(slug, 'en');
+      expect(content).toBeDefined();
+      expect(content?.locale).toBe('en');
+    }
+  });
+});
 
 describe('lib/seo content — registry + EN fallback', () => {
   it('resolves the EN source of truth for both flagship cities', () => {

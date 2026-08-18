@@ -166,8 +166,90 @@ export function isIdeaVariant(slug: string): boolean {
  * Tier 3 — Long tail: data-only cities, noindexed until promoted.
  * ------------------------------------------------------------------ */
 
-/** Tier-2 auto-generated slice for Sprint 12 (empty — deferred per MVP). */
-export const TIER_2_CITY_SLUGS: readonly string[] = [];
+/**
+ * Tier-2 auto-generated slice — the Sprint 18 55-city approved set
+ * (user-approved planning session 2026-08-17; tasks.md). The 2 flagships
+ * (new-york, berlin) are also part of the 55-city set but resolve to Tier-1
+ * because `tierForCitySlug` checks the flagship list first.
+ */
+export const TIER_2_CITY_SLUGS: readonly string[] = [
+  // en (15)
+  'new-york',
+  'london',
+  'san-francisco',
+  'los-angeles',
+  'chicago',
+  'austin',
+  'toronto',
+  'vancouver',
+  'dublin',
+  'nairobi',
+  'lagos',
+  'cape-town',
+  'johannesburg',
+  'sydney',
+  'singapore',
+  // de (2)
+  'berlin',
+  'munich',
+  // fr (2)
+  'paris',
+  'montreal',
+  // es (8)
+  'mexico-city',
+  'buenos-aires',
+  'bogota',
+  'lima',
+  'barcelona',
+  'madrid',
+  'medellin',
+  'barranquilla',
+  // pt-BR (3)
+  'sao-paulo',
+  'rio-de-janeiro',
+  'lisbon',
+  // it (1)
+  'milan',
+  // nl (1)
+  'amsterdam',
+  // pl (1)
+  'warsaw',
+  // tr (1)
+  'istanbul',
+  // uk (1)
+  'kyiv',
+  // ru (1)
+  'moscow',
+  // fa (1)
+  'tehran',
+  // ar (3)
+  'dubai',
+  'cairo',
+  'casablanca',
+  // hi (6)
+  'mumbai',
+  'delhi',
+  'bengaluru',
+  'hyderabad',
+  'chennai',
+  'pune',
+  // ja (2)
+  'tokyo',
+  'osaka',
+  // ko (1)
+  'seoul',
+  // zh-TW (2)
+  'taipei',
+  'hong-kong',
+  // zh-CN (1)
+  'shanghai',
+  // id (1)
+  'jakarta',
+  // th (1)
+  'bangkok',
+  // vi (1)
+  'ho-chi-minh-city',
+];
 
 export interface FlagshipCityConfig {
   /** City URL slug (kebab-case). */
