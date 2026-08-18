@@ -61,10 +61,10 @@
   },
   "home": {
     "hero": {
-      "headline": "Ein Raum für Ideen, Projekte und Community-Zusammenarbeit — hier finden Teams und die besten Projekte ihren Origin.",
+      "headline": "Ideen, Projekte und Community-Zusammenarbeit an einem Ort — hier finden neue und bestehende Teams ihren Origin.",
       "headlineAccent": "Origin.",
       "startProject": "Projekt starten",
-      "supporting": "Erstelle ein Profil, das wie dein Lebenslauf funktioniert, veröffentliche deine Idee als Seite und starte oder tritt einer Community zu jedem Thema bei — einem kleinen Unternehmen, einem KI-Startup, einem Buchclub, einem 10-km-Lauf.",
+      "supporting": "Erstelle ein Profil, das wie dein Lebenslauf funktioniert, veröffentliche deine Idee als Seite und starte oder tritt einer Community zu jedem Thema bei — einer brandneuen Idee, einem bestehenden kleinen Unternehmen, einem KI-Startup, einem Buchclub oder einem 10-km-Lauf.",
       "trustAvatarsAlt": "JoinOrigin-Mitglied {{number}}",
       "trustCopy": "Schließe dich 2.400+ Buildern an, die bereits zusammenarbeiten"
     },
@@ -99,7 +99,7 @@
   "waitlist": {
     "close": "Schließen",
     "heading": "Auf die Warteliste",
-    "subcopy": "Sei unter den Ersten, wenn die Plattform startet. Wir schicken dir eine E-Mail, sobald dein Workspace bereit ist.",
+    "subcopy": "Werde im Community-Betriebssystem entdeckt — ob du etwas Neues startest oder ein bestehendes Projekt weiterentwickelst. Wir schicken dir eine E-Mail, sobald dein Workspace bereit ist.",
     "nameLabel": "Name",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-Mail",
@@ -120,8 +120,8 @@
     }
   },
   "ctaBand": {
-    "headline": "Finde deine Leute. Baue gemeinsam.",
-    "subline": "Schließe dich 2.400+ Buildern im sozialen Kollaborationsnetzwerk von Origin an und werde noch heute entdeckt.",
+    "headline": "Finde deine Leute. Starte oder entwickle gemeinsam etwas weiter.",
+    "subline": "Schließe dich 2.400+ Buildern an — von ersten Ideen bis zu etablierten Unternehmen — im sozialen Kollaborationsnetzwerk von Origin und werde noch heute entdeckt.",
     "joinLabel": "Werde entdeckt",
     "contactLabel": "Kontakt aufnehmen"
   },
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Kernobjekte",
       "title": "Alles, was eine Community braucht, in einem ruhigen Workspace",
-      "lead": "Origin ist ein soziales Kollaborationsnetzwerk, das um acht Kernobjekte herum aufgebaut ist: Profile, Ideen, Communities, Kommunikation, Feed, Projekte, Unternehmen und Chancen. Statt fünf getrennter Tools leben deine Beziehungen an einem Ort."
+      "lead": "Origin ist ein soziales Kollaborationsnetzwerk, das um acht Kernobjekte herum aufgebaut ist: Profile, Ideen, Communities, Kommunikation, Feed, Projekte, Unternehmen und Chancen. Egal, ob du etwas Neues startest oder ein bestehendes Unternehmen weiterentwickelst — deine Beziehungen leben an einem Ort statt in fünf getrennten Tools."
     },
     "sectionCoreObjects": "Kernobjekte",
     "coreObjects": {
@@ -164,25 +164,55 @@
       "toolHeader": "Tool",
       "greatAtHeader": "Stark in",
       "addsHeader": "Was JoinOrigin hinzufügt",
-      "linkedin": {
-        "tool": "LinkedIn",
-        "strength": "findet Fachleute",
-        "gap": "aber betreibt nicht die Communities, Chats und Projekte, die aus Verbindungen Zusammenarbeit machen."
+      "slack": {
+        "tool": "Slack",
+        "strength": "verbindet Teams in Kanälen",
+        "gap": "aber ist für einen einzelnen Workspace gebaut — es trägt Profile, Communities, Projekte und Chancen nicht über die Menschen, die du bereits kennst, hinweg."
       },
       "discord": {
         "tool": "Discord",
         "strength": "kommuniziert",
         "gap": "aber ist nicht um Profile, Communities, Projekte und Chancen in einem gemeinsamen sozialen Graphen organisiert."
       },
-      "reddit": {
-        "tool": "Reddit",
-        "strength": "diskutiert",
-        "gap": "aber ist anonym und führt weder Reputation, Beziehungen noch Projekte weiter."
+      "whatsapp": {
+        "tool": "WhatsApp",
+        "strength": "sendet Nachrichten",
+        "gap": "aber ist eine private Chat-App — es gibt Communities keine dauerhaften Profile, Projekte und keine Entdeckbarkeit auf einem gemeinsamen sozialen Graphen."
       },
-      "github": {
-        "tool": "GitHub",
-        "strength": "programmiert",
-        "gap": "aber ist für Repositories gebaut, nicht für die volle Bandbreite menschlicher Zusammenarbeit."
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "findet Fachleute",
+        "gap": "aber betreibt nicht die Communities, Chats und Projekte, die aus Verbindungen Zusammenarbeit machen."
+      },
+      "meetup": {
+        "tool": "Meetup",
+        "strength": "findet Veranstaltungen",
+        "gap": "aber ist um einmalige RSVPs gebaut — es trägt die Community, Projekte und Beziehungen nicht weiter, die nach der Veranstaltung wachsen."
+      },
+      "eventbrite": {
+        "tool": "Eventbrite",
+        "strength": "verkauft Tickets",
+        "gap": "aber verwaltet Veranstaltungen, keine Communities — es gibt deiner Gruppe kein dauerhaftes Zuhause mit Profilen, Projekten und Chancen."
+      },
+      "notion": {
+        "tool": "Notion",
+        "strength": "organisiert Arbeit",
+        "gap": "aber ist ein Dokumenten-Tool — es verbindet die Menschen hinter den Seiten nicht zu einer Community, die zusammenarbeitet."
+      },
+      "asana": {
+        "tool": "Asana",
+        "strength": "verfolgt Projekte",
+        "gap": "aber ist für Aufgaben gebaut, nicht für Beziehungen — es zeigt nicht die Menschen und Communities, die Projekte möglich machen."
+      },
+      "patreon": {
+        "tool": "Patreon",
+        "strength": "finanziert Creator",
+        "gap": "aber ist um Abonnements gebaut — es gibt deinen Mitgliedern keine Profile, Projekte und Communities auf einem gemeinsamen sozialen Graphen."
+      },
+      "facebook": {
+        "tool": "Facebook",
+        "strength": "verbindet Gruppen",
+        "gap": "aber ist um einen Werbe-Feed gebaut — es gibt Communities keinen ruhigen Workspace mit Profilen, Projekten und Chancen."
       }
     },
     "sectionRoadmap": "Roadmap",
@@ -528,7 +558,29 @@
       "translatePage": "Diese Seite übersetzen",
       "variantVenuesTitle": "Wo sich {{type}} treffen",
       "variantFormatsTitle": "Typische Formate",
-      "variantHowToTitle": "So startest du"
+      "variantHowToTitle": "So startest du",
+      "browseLocations": "Standorte durchsuchen",
+      "searchLocationsLabel": "Standorte durchsuchen",
+      "searchLocationsPlaceholder": "Nach Stadt, Land oder Community-Typ suchen",
+      "emptyState": "Keine Standorte passen zu „{{query}}“.",
+      "attribution": "Standortdaten © GeoNames-Mitwirkende, CC BY 4.0; Stadtdaten © SimpleMaps (worldcities basic), CC BY 4.0.",
+      "directoryKinds": {
+        "country": "Land",
+        "region": "Region",
+        "city": "Stadt",
+        "variant": "Community-Typ",
+        "ideas": "Community-Event-Ideen",
+        "fallback": "Standort"
+      },
+      "guideCardTitles": {
+        "start-a-community": "Starte eine Community",
+        "organize-a-meetup": "Organisiere ein Meetup",
+        "first-10-members": "Gewinne deine ersten 10 Mitglieder",
+        "find-a-co-founder": "Finde eine:n Co-Gründer:in",
+        "keep-a-community-active": "Halte eine Community aktiv",
+        "hybrid-communities": "Führe hybride Communities",
+        "moderation": "Moderiere deine Community"
+      }
     },
     "groupTypes": {
       "startup": "Startup-Communities",
@@ -541,17 +593,29 @@
       "eyebrow": "How-to-Anleitung",
       "hubEyebrow": "Community-Aufbau",
       "hubTitle": "Anleitungen zum Community-Aufbau",
+      "hubLead": "Zwölf praktische, zeitlose How-to-Anleitungen zum Finden, Beitreten und Gründen von Gruppen — und zur Kommunikation in einem rauminhabergeführten Raum. Vom Veröffentlichen einer Idee bis zu gesunder Moderation.",
       "allGuides": "Alle Anleitungen",
+      "searchLabel": "Anleitungen durchsuchen",
+      "searchPlaceholder": "Nach Anleitungstitel oder Stichwort suchen",
+      "emptyState": "Keine Anleitungen passen zu „{{query}}“.",
       "glossarySection": "Community-OS-Glossar",
+      "glossaryBandCopy": "Lerne die Kernbegriffe hinter Gruppen, Räumen, Moderation, Onboarding und Engagement-Schleifen im <1>{{glossary}}</1>.",
+      "universalCopy": "Anleitungen sind universell — Communities sind lokal. Finde oder gründe eine Community in einer Stadt in deiner Nähe:",
       "startLocal": "Lokal starten",
       "cityCardBody": "Entdecke echte Orte, Gruppen und Anleitungen in {{city}}.",
       "overview": "Überblick",
       "stepByStep": "Schritt für Schritt",
       "stepNumber": "Schritt {{number}}.",
       "relatedGuides": "Verwandte Anleitungen",
+      "continueBuilding": "Baue mit der nächsten Anleitung der Reihe weiter.",
+      "practiceInCity": "Setze diese Schritte in einer echten Stadt um.",
       "exploreCommunities": "Communities entdecken",
       "howJoinOriginHelps": "Wie JoinOrigin helfen kann",
+      "howJoinOriginHelpsBody": "JoinOrigin ist ein Community-Betriebssystem, das dir hilft, Communities zu finden oder zu gründen — die Schritte oben funktionieren auf der Plattform und mit den Tools, die du bereits hast. JoinOrigin übernimmt Struktur, Entdeckbarkeit und Organisation, damit du dich auf deine Mitglieder konzentrieren kannst. Klicke auf „Loslegen“ und werde entdeckt.",
       "keepLearning": "Weiterlernen",
+      "keepLearningGuides": "Durchstöbere alle Anleitungen auf dem <1>Hub für Community-Aufbau</1>.",
+      "keepLearningGlossary": "Lerne die Kernbegriffe im <1>Community-OS-Glossar</1>.",
+      "keepLearningLocations": "Finde auf dem <1>Standorte-Hub</1> eine Stadtseite, um lokal zu starten.",
       "translatePage": "Diese Seite übersetzen"
     },
     "glossary": {
@@ -561,7 +625,60 @@
       "whyTitle": "Warum ein Glossar",
       "termsTitle": "Kernbegriffe",
       "goDeeper": "Tiefer eintauchen",
-      "comingSoon": "Sieh in den Anleitungen nach, wie dieser Begriff verwendet wird."
+      "terms": {
+        "community": {
+          "name": "Community",
+          "definition": "Eine Gruppe von Menschen, die Interessen, Branchen, Ziele oder Chancen teilen und sich darum herum verbinden. Auf Origin bringt jede Community einen Raum mit, in dem Mitglieder sich gegenseitig finden und gemeinsam aufbauen."
+        },
+        "community-manager": {
+          "name": "Community-Manager:in",
+          "definition": "Die Person, die eine Community einladend, aktiv und auf Kurs hält — neue Mitglieder willkommen heißt, Gespräche anregt und Projekte koordiniert. Auf Origin besitzt das Mitglied, das eine Community startet, deren Raum und moderiert ihn."
+        },
+        "community-os": {
+          "name": "Community-Betriebssystem",
+          "definition": "Eine Plattform, die Profile, Communities, Chat, Projekte und Chancen in einen organisierten Workspace bringt. Origin ist das Community-Betriebssystem hinter JoinOrigin."
+        },
+        "moderation": {
+          "name": "Moderation",
+          "definition": "Die Praxis, eine Community durch klare Richtlinien und eine konsequente, faire Durchsetzung sicher und thematisch fokussiert zu halten. Gute Moderation schützt die Beziehungen, die eine Community lohnenswert machen."
+        },
+        "onboarding": {
+          "name": "Onboarding",
+          "definition": "Der Prozess, neue Mitglieder willkommen zu heißen und ihnen zu einer ersten bedeutsamen Handlung zu verhelfen — sich vorzustellen, an einem Gespräch teilzunehmen oder ein Projekt zu starten. Starkes Onboarding macht aus neuen Mitgliedern aktive."
+        },
+        "activation": {
+          "name": "Aktivierung",
+          "definition": "Der Moment, in dem ein neues Mitglied die Handlung ausführt, die es zu einem Teil der Community macht — der erste Beitrag, das erste Event oder das erste Projekt. Aktivierung ist der Schritt zwischen Beitritt und Mitgestaltung."
+        },
+        "engagement-loop": {
+          "name": "Engagement-Schleife",
+          "definition": "Der sich wiederholende Zyklus der Teilnahme, der eine Community am Leben hält: Jemand postet, andere antworten, und das Gespräch schafft weitere Gründe zurückzukehren. Gesunde Schleifen sind der Herzschlag einer aktiven Community."
+        },
+        "hybrid-events": {
+          "name": "Hybride Events",
+          "definition": "Events, die Präsenz- und Online-Teilnahme verbinden, sodass Mitglieder an verschiedenen Orten am selben Treffen teilnehmen können. Hybride Formate helfen Communities, zwischen Meetups verbunden zu bleiben."
+        },
+        "co-founder": {
+          "name": "Co-Gründer:in",
+          "definition": "Eine Person, die mit dir ein Projekt oder Unternehmen aufbaut und den Gründungsweg teilt. Auf Origin werden Co-Gründer:innen oft über das Netzwerk gefunden — Menschen, die zu deiner Ideenseite kommen und beschließen, gemeinsam zu bauen."
+        }
+      }
+    },
+    "metadata": {
+      "waitlistPhrase": "Tritt Origin bei und werde noch heute entdeckt.",
+      "title": {
+        "communitiesIn": "Communities in {{name}}",
+        "communitiesInWithRegion": "Communities in {{name}}, {{region}}",
+        "variantIn": "{{label}} in {{name}}",
+        "ideasIn": "30 Ideen für Community-Events in {{name}}"
+      },
+      "description": {
+        "city": "Finde oder gründe Communities in {{city}} — Startup-, Kreativ-, politische, Meetup- und Kleinunternehmer-Gruppen. {{waitlist}}",
+        "variant": "Finde oder gründe {{label}} in {{city}} — echte Orte, Gruppen und Anleitungen. {{waitlist}}",
+        "ideas": "Entdecke 30 Ideen für Community-Events in {{city}} — Networking-, Lern-, Outdoor-, Berufs-, Kreativ- und Impact-Events. {{waitlist}}",
+        "country": "Finde oder gründe Communities in {{country}} — von Startup-Szenen bis zu Kleinunternehmer-Netzwerken. {{waitlist}}",
+        "region": "Finde oder gründe Communities in {{region}} — Meetups, Gruppen und Events in der gesamten Region. {{waitlist}}"
+      }
     },
     "cta": {
       "joinWaitlist": "Werde entdeckt"
