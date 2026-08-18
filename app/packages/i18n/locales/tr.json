@@ -61,10 +61,10 @@
   },
   "home": {
     "hero": {
-      "headline": "Fikirler, projeler ve topluluk iş birliği alanı — ekiplerin ve en iyi projelerin buluştuğu yer: Origin.",
+      "headline": "Fikirler, projeler ve topluluk iş birliği alanı — yeni ve mevcut ekiplerin Origin'ini bulduğu yer.",
       "headlineAccent": "Origin.",
       "startProject": "Proje Başlat",
-      "supporting": "Özgeçmişiniz gibi çalışan bir profil oluşturun, fikrinizi bir sayfa olarak yayınlayın ve her şeyin etrafında bir topluluk başlatın ya da katılın — küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü, bir 10K koşusu.",
+      "supporting": "Özgeçmişiniz gibi çalışan bir profil oluşturun, fikrinizi bir sayfa olarak yayınlayın ve her şeyin etrafında bir topluluk başlatın ya da katılın — yepyeni bir fikir, mevcut bir küçük işletme, bir yapay zekâ girişimi, bir kitap kulübü veya bir 10K koşusu.",
       "trustAvatarsAlt": "JoinOrigin üyesi {{number}}",
       "trustCopy": "Hâlihazırda iş birliği yapan 2.400+ kurucuya katılın"
     },
@@ -99,7 +99,7 @@
   "waitlist": {
     "close": "Kapat",
     "heading": "Bekleme listesine katılın",
-    "subcopy": "Platform için ilk sırada olun. Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
+    "subcopy": "Topluluk işletim sisteminde keşfedilin — ister yeni bir şey başlatıyor ister mevcut bir projeyi büyütüyor olun. Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
     "nameLabel": "Ad",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-posta",
@@ -120,8 +120,8 @@
     }
   },
   "ctaBand": {
-    "headline": "İnsanlarını bul. Birlikte inşa et.",
-    "subline": "Origin'in sosyal iş birliği ağındaki 2.400+ kurucuya katılın ve bugün keşfedilin.",
+    "headline": "İnsanlarını bul. Birlikte bir şey başlat ya da büyüt.",
+    "subline": "İlk fikirlerden köklü şirketlere — Origin'in sosyal iş birliği ağındaki 2.400+ kurucuya katılın ve bugün keşfedilin.",
     "joinLabel": "Keşfedilin",
     "contactLabel": "Bize ulaşın"
   },
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Temel nesneler",
       "title": "Bir topluluğun ihtiyaç duyduğu her şey, tek bir sakin çalışma alanında",
-      "lead": "Origin, sekiz temel nesne etrafında kurulmuş bir sosyal iş birliği ağıdır: profiller, fikirler, topluluklar, iletişim, akış, projeler, şirketler ve fırsatlar. Beş ayrı araç yerine ilişkileriniz tek bir yerde yaşar."
+      "lead": "Origin, sekiz temel nesne etrafında kurulmuş bir sosyal iş birliği ağıdır: profiller, fikirler, topluluklar, iletişim, akış, projeler, şirketler ve fırsatlar. İster yeni bir şey başlatıyor ister mevcut bir şirketi büyütüyor olun, ilişkileriniz beş ayrı araç yerine tek bir yerde yaşar."
     },
     "sectionCoreObjects": "Temel nesneler",
     "coreObjects": {
@@ -174,15 +174,45 @@
         "strength": "iletişim kurar",
         "gap": "ancak ortak bir sosyal grafik üzerinde profiller, topluluklar, projeler ve fırsatlar etrafında organize edilmemiştir."
       },
-      "reddit": {
-        "tool": "Reddit",
-        "strength": "tartışır",
-        "gap": "ancak anonimdir ve itibarı, ilişkileri ya da projeleri ileriye taşımaz."
+      "slack": {
+        "tool": "Slack",
+        "strength": "ekiplerin kanallarda bağlantı kurmasını sağlar",
+        "gap": "ancak tek bir çalışma alanı için kurulmuştur — zaten tanıdığınız kişiler arasında profilleri, toplulukları, projeleri ve fırsatları taşımaz."
       },
-      "github": {
-        "tool": "GitHub",
-        "strength": "kod yazar",
-        "gap": "ancak insan iş birliğinin tüm yelpazesi için değil, depolar için kurulmuştur."
+      "whatsapp": {
+        "tool": "WhatsApp",
+        "strength": "mesajlaşır",
+        "gap": "ancak özel bir sohbet uygulamasıdır — topluluklara ortak bir sosyal grafik üzerinde kalıcı profiller, projeler ve keşif sunmaz."
+      },
+      "meetup": {
+        "tool": "Meetup",
+        "strength": "etkinlikleri bulur",
+        "gap": "ancak tek seferlik RSVP'ler etrafında kurulmuştur — etkinlikten sonra büyüyen topluluğu, projeleri ve ilişkileri taşımaz."
+      },
+      "eventbrite": {
+        "tool": "Eventbrite",
+        "strength": "bilet satar",
+        "gap": "ancak etkinlikleri yönetir, toplulukları değil — grubunuza profiller, projeler ve fırsatlarla kalıcı bir yuva vermez."
+      },
+      "notion": {
+        "tool": "Notion",
+        "strength": "işi organize eder",
+        "gap": "ancak bir doküman aracıdır — sayfaların arkasındaki insanları birlikte çalışan bir topluluğa bağlamaz."
+      },
+      "asana": {
+        "tool": "Asana",
+        "strength": "projeleri takip eder",
+        "gap": "ancak görevler için kurulmuştur, ilişkiler için değil — projeleri hayata geçiren insanları ve toplulukları yüzeye çıkarmaz."
+      },
+      "patreon": {
+        "tool": "Patreon",
+        "strength": "yaratıcıları finanse eder",
+        "gap": "ancak abonelikler etrafında kurulmuştur — üyelerinize ortak bir sosyal grafik üzerinde profiller, projeler ve topluluklar sunmaz."
+      },
+      "facebook": {
+        "tool": "Facebook",
+        "strength": "grupları bağlar",
+        "gap": "ancak bir reklam akışı etrafında kurulmuştur — topluluklara profiller, projeler ve fırsatlarla sakin bir çalışma alanı sunmaz."
       }
     },
     "sectionRoadmap": "Yol Haritası",
@@ -528,7 +558,29 @@
       "translatePage": "Bu sayfayı çevir",
       "variantVenuesTitle": "{{type}} topluluklarının buluştuğu yer",
       "variantFormatsTitle": "Tipik formatlar",
-      "variantHowToTitle": "Nasıl başlanır"
+      "variantHowToTitle": "Nasıl başlanır",
+      "browseLocations": "Konumlara göz atın",
+      "searchLocationsLabel": "Konumlarda ara",
+      "searchLocationsPlaceholder": "Şehre, ülkeye veya topluluk türüne göre ara",
+      "emptyState": "“{{query}}” ile eşleşen konum bulunamadı.",
+      "attribution": "Konum verileri © GeoNames katkıda bulunanlar, CC BY 4.0; şehir verileri © SimpleMaps (worldcities basic), CC BY 4.0.",
+      "directoryKinds": {
+        "country": "Ülke",
+        "region": "Bölge",
+        "city": "Şehir",
+        "variant": "Topluluk türü",
+        "ideas": "Topluluk etkinliği fikirleri",
+        "fallback": "Konum"
+      },
+      "guideCardTitles": {
+        "start-a-community": "Bir topluluk başlatın",
+        "organize-a-meetup": "Bir buluşma düzenleyin",
+        "first-10-members": "İlk 10 üyenizi edinin",
+        "find-a-co-founder": "Bir kurucu ortak bulun",
+        "keep-a-community-active": "Bir topluluğu aktif tutun",
+        "hybrid-communities": "Hibrit topluluklar yürütün",
+        "moderation": "Topluluğunuzu moderasyonla yönetin"
+      }
     },
     "groupTypes": {
       "startup": "Girişim toplulukları",
@@ -552,7 +604,19 @@
       "exploreCommunities": "Toplulukları keşfedin",
       "howJoinOriginHelps": "JoinOrigin nasıl yardımcı olabilir",
       "keepLearning": "Öğrenmeye devam edin",
-      "translatePage": "Bu sayfayı çevir"
+      "translatePage": "Bu sayfayı çevir",
+      "hubLead": "Grupları bulmak, katılmak ve başlatmak — ve yaratıcının kontrolündeki bir odada iletişim kurmak için on iki pratik, kalıcı nasıl yapılır rehberi. Bir fikri yayınlamaktan sağlıklı moderasyona kadar.",
+      "searchLabel": "Rehberlerde ara",
+      "searchPlaceholder": "Rehber başlığına veya anahtar kelimeye göre ara",
+      "emptyState": "“{{query}}” ile eşleşen rehber bulunamadı.",
+      "glossaryBandCopy": "Grupların, odaların, moderasyonun, karşılama süreçlerinin ve etkileşim döngülerinin arkasındaki temel terimleri <1>{{glossary}}</1> içinde öğrenin.",
+      "universalCopy": "Rehberler evrenseldir — topluluklar yereldir. Size yakın bir şehirde bir topluluk bulun veya başlatın:",
+      "continueBuilding": "Serideki bir sonraki rehberle inşa etmeye devam edin.",
+      "practiceInCity": "Bu adımları gerçek bir şehirde uygulamaya koyun.",
+      "howJoinOriginHelpsBody": "JoinOrigin, toplulukları bulmanıza veya başlatmanıza yardımcı olan bir topluluk işletim sistemidir — yukarıdaki adımlar platformda ve hâlihazırda kullandığınız araçlarla çalışır. JoinOrigin; yapıyı, keşfedilmeyi ve organizasyonu yönetir, böylece siz üyelerinize odaklanabilirsiniz. Başlayın'a tıklayın ve keşfedilin.",
+      "keepLearningGuides": "<1>Topluluk Kurma merkezindeki</1> tüm rehberlere göz atın.",
+      "keepLearningGlossary": "<1>Topluluk İşletim Sistemi sözlüğündeki</1> temel terimleri öğrenin.",
+      "keepLearningLocations": "Yerelden başlamak için <1>konumlar merkezinde</1> bir şehir sayfası bulun."
     },
     "glossary": {
       "eyebrow": "Topluluk İşletim Sistemi",
@@ -561,10 +625,63 @@
       "whyTitle": "Neden bir sözlük",
       "termsTitle": "Temel terimler",
       "goDeeper": "Daha derine inin",
-      "comingSoon": "Bu terimin nasıl kullanıldığını öğrenmek için rehberlere bakın."
+      "terms": {
+        "community": {
+          "name": "Topluluk",
+          "definition": "İlgi alanlarını, sektörleri, hedefleri veya fırsatları paylaşan ve bunların etrafında bir araya gelen insan grubu. Origin'de her topluluk, üyelerin birbirini bulduğu ve birlikte inşa ettiği bir odayla gelir."
+        },
+        "community-manager": {
+          "name": "Topluluk yöneticisi",
+          "definition": "Bir topluluğu sıcak, aktif ve görevinde tutan kişi — yeni üyeleri karşılar, sohbeti başlatır ve projeleri koordine eder. Origin'de bir topluluğu başlatan üye, odasının sahibi ve moderatörüdür."
+        },
+        "community-os": {
+          "name": "Topluluk İşletim Sistemi",
+          "definition": "Profilleri, toplulukları, sohbeti, projeleri ve fırsatları tek bir düzenli çalışma alanında toplayan platform. Origin, JoinOrigin'in arkasındaki topluluk işletim sistemidir."
+        },
+        "moderation": {
+          "name": "Moderasyon",
+          "definition": "Bir topluluğu net kurallar ve tutarlı, adil uygulamayla güvenli ve konu odaklı tutma pratiği. İyi moderasyon, bir topluluğu katılmaya değer kılan ilişkileri korur."
+        },
+        "onboarding": {
+          "name": "Karşılama süreci",
+          "definition": "Yeni üyeleri karşılama ve ilk anlamlı adımı atmalarına yardımcı olma süreci — kendilerini tanıtma, bir sohbete katılma veya bir proje başlatma. Güçlü bir karşılama süreci, yeni üyeleri aktif üyelere dönüştürür."
+        },
+        "activation": {
+          "name": "Aktivasyon",
+          "definition": "Yeni bir üyenin topluluğun parçası olmasını sağlayan eylemi gerçekleştirdiği an — ilk gönderisi, ilk etkinliği veya ilk projesi. Aktivasyon, katılmak ile katkıda bulunmak arasındaki adımdır."
+        },
+        "engagement-loop": {
+          "name": "Etkileşim döngüsü",
+          "definition": "Bir topluluğu canlı tutan tekrarlayan katılım döngüsü: biri gönderi paylaşır, diğerleri yanıt verir ve sohbet geri dönmek için daha fazla neden yaratır. Sağlıklı döngüler, aktif bir topluluğun kalp atışıdır."
+        },
+        "hybrid-events": {
+          "name": "Hibrit etkinlikler",
+          "definition": "Yüz yüze ve çevrimiçi katılımı birleştiren etkinlikler; böylece farklı yerlerdeki üyeler aynı buluşmaya katılabilir. Hibrit formatlar, toplulukların buluşmalar arasında bağlı kalmasına yardımcı olur."
+        },
+        "co-founder": {
+          "name": "Kurucu ortak",
+          "definition": "Sizinle birlikte bir proje veya şirket kuran ve kuruluş yolculuğunu paylaşan kişi. Origin'de kurucu ortaklar genellikle ağ üzerinden bulunur — fikir sayfanıza katılan ve birlikte inşa etmeye karar veren insanlar."
+        }
+      }
     },
     "cta": {
       "joinWaitlist": "Keşfedilin"
+    },
+    "metadata": {
+      "waitlistPhrase": "Origin'e katılın ve bugün keşfedilin.",
+      "title": {
+        "communitiesIn": "{{name}} şehrindeki topluluklar",
+        "communitiesInWithRegion": "{{name}}, {{region}} şehrindeki topluluklar",
+        "variantIn": "{{name}} şehrindeki {{label}}",
+        "ideasIn": "{{name}} şehrinde 30 topluluk etkinliği fikri"
+      },
+      "description": {
+        "city": "{{city}} şehrinde topluluklar bulun veya başlatın — girişim, yaratıcı, siyasi, buluşma ve küçük işletme grupları. {{waitlist}}",
+        "variant": "{{city}} şehrinde {{label}} bulun veya başlatın — gerçek mekanlar, gruplar ve nasıl yapılır rehberleri. {{waitlist}}",
+        "ideas": "{{city}} şehrinde 30 topluluk etkinliği fikri keşfedin — ağ kurma, öğrenme, açık hava, profesyonel, yaratıcı ve etki etkinlikleri. {{waitlist}}",
+        "country": "{{country}} ülkesinde topluluklar bulun veya başlatın — girişim sahnelerinden küçük işletme ağlarına. {{waitlist}}",
+        "region": "{{region}} bölgesinde topluluklar bulun veya başlatın — bölge genelinde buluşmalar, gruplar ve etkinlikler. {{waitlist}}"
+      }
     }
   }
 }
