@@ -623,8 +623,12 @@
       "title": "Glosarium OS Komunitas",
       "intro": "Kosakata penting dalam membangun komunitas — definisi jelas untuk istilah yang digunakan penyelenggara, moderator, dan pendiri setiap hari.",
       "whyTitle": "Mengapa glosarium",
+      "whyBody": "Membangun komunitas punya bahasanya sendiri, dan istilah-istilahnya sering dipakai secara longgar. Glosarium OS Komunitas memberi penyelenggara, moderator, dan pendiri definisi bersama yang bisa diandalkan — dari konsep klasik seperti moderasi dan onboarding hingga ide yang lebih baru seperti lingkar keterlibatan dan acara hibrida.",
       "termsTitle": "Istilah inti",
+      "termsIntro": "Berikut istilah inti yang dipakai setiap penyelenggara, moderator, dan pendiri — masing-masing didefinisikan dalam praktik di Panduan Membangun Komunitas:",
       "goDeeper": "Lebih dalam",
+      "goDeeperItem1": "Kerjakan <1>Panduan Membangun Komunitas</1> — panduan langkah demi langkah di balik setiap istilah.",
+      "goDeeperItem2": "Lihat konsep-konsep ini dalam praktik: halaman kota <1>Kota New York</1> dan <2>Berlin</2>.",
       "terms": {
         "community": {
           "name": "Komunitas",

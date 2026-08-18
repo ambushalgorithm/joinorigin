@@ -623,8 +623,12 @@
       "title": "Community-OS-Glossar",
       "intro": "Das wesentliche Vokabular des Community-Aufbaus – klare Definitionen für die Begriffe, die Organisatoren, Moderatoren und Gründer täglich verwenden.",
       "whyTitle": "Warum ein Glossar",
+      "whyBody": "Community-Aufbau hat eine eigene Sprache, und die Begriffe werden oft locker verwendet. Ein Community-OS-Glossar gibt Organisatoren, Moderatoren und Gründern gemeinsame Definitionen, auf die sie sich verlassen können – von klassischen Konzepten wie Moderation und Onboarding bis zu neueren Ideen wie Engagement-Schleifen und Hybrid-Events.",
       "termsTitle": "Kernbegriffe",
+      "termsIntro": "Hier sind die Kernbegriffe, die jeder Organisator, Moderator und Gründer verwendet – jeder einzelne wird in den Anleitungen zum Community-Aufbau anhand der Praxis erklärt:",
       "goDeeper": "Tiefer eintauchen",
+      "goDeeperItem1": "Arbeite dich durch die <1>Anleitungen zum Community-Aufbau</1> – die Schritt-für-Schritt-Anleitungen hinter jedem Begriff.",
+      "goDeeperItem2": "Sieh die Konzepte in der Praxis: die <1>New York City</1>- und <2>Berlin</2>-Stadtseiten.",
       "terms": {
         "community": {
           "name": "Community",

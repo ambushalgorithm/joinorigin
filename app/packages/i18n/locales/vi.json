@@ -623,8 +623,12 @@
       "title": "Bảng thuật ngữ Hệ điều hành Cộng đồng",
       "intro": "Từ vựng thiết yếu của việc xây dựng cộng đồng — định nghĩa rõ ràng cho các thuật ngữ mà người tổ chức, người điều hành và người sáng lập sử dụng mỗi ngày.",
       "whyTitle": "Vì sao có bảng thuật ngữ",
+      "whyBody": "Xây dựng cộng đồng có ngôn ngữ riêng và các thuật ngữ thường được dùng khá lỏng lẻo. Bảng thuật ngữ Hệ điều hành Cộng đồng mang đến cho người tổ chức, người điều hành và người sáng lập những định nghĩa chung đáng tin cậy — từ các khái niệm kinh điển như điều hành và tiếp nhận thành viên đến những ý tưởng mới hơn như vòng tương tác và sự kiện kết hợp.",
       "termsTitle": "Các thuật ngữ cốt lõi",
+      "termsIntro": "Dưới đây là các thuật ngữ cốt lõi mà mọi người tổ chức, người điều hành và người sáng lập đều dùng — mỗi thuật ngữ được định nghĩa trong thực tế xuyên suốt Hướng dẫn xây dựng cộng đồng:",
       "goDeeper": "Tìm hiểu sâu hơn",
+      "goDeeperItem1": "Hãy xem qua <1>Hướng dẫn xây dựng cộng đồng</1> — các hướng dẫn từng bước đằng sau mỗi thuật ngữ.",
+      "goDeeperItem2": "Xem các khái niệm trong thực tế: trang thành phố <1>Thành phố New York</1> và <2>Berlin</2>.",
       "terms": {
         "community": {
           "name": "Cộng đồng",

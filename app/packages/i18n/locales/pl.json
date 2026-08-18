@@ -623,8 +623,12 @@
       "title": "Słownik systemu społecznościowego",
       "intro": "Niezbędne słownictwo budowania społeczności — jasne definicje terminów używanych codziennie przez organizatorów, moderatorów i założycieli.",
       "whyTitle": "Po co słownik",
+      "whyBody": "Budowanie społeczności ma swój własny język, a terminy są często używane swobodnie. Słownik systemu społecznościowego daje organizatorom, moderatorom i założycielom wspólne definicje, na których mogą polegać — od klasycznych pojęć, takich jak moderacja i wdrażanie, po nowsze idee, takie jak pętle zaangażowania i wydarzenia hybrydowe.",
       "termsTitle": "Terminy kluczowe",
+      "termsIntro": "Oto kluczowe terminy, których używa każdy organizator, moderator i założyciel — każdy z nich jest zdefiniowany w praktyce w Przewodnikach budowania społeczności:",
       "goDeeper": "Zagłęb się",
+      "goDeeperItem1": "Przerób <1>Przewodniki budowania społeczności</1> — praktyczne poradniki krok po kroku stojące za każdym terminem.",
+      "goDeeperItem2": "Zobacz te pojęcia w praktyce: strony miast <1>Nowy Jork</1> i <2>Berlin</2>.",
       "terms": {
         "community": {
           "name": "Społeczność",

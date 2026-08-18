@@ -623,8 +623,12 @@
       "title": "Glossario del sistema comunitario",
       "intro": "Il vocabolario essenziale della costruzione di comunità: definizioni chiare dei termini che organizzatori, moderatori e fondatori usano ogni giorno.",
       "whyTitle": "Perché un glossario",
+      "whyBody": "La costruzione di comunità ha un proprio linguaggio e i termini vengono spesso usati in modo generico. Un glossario del sistema comunitario offre a organizzatori, moderatori e fondatori definizioni condivise su cui poter contare — dai concetti classici come moderazione e onboarding alle idee più recenti come cicli di coinvolgimento ed eventi ibridi.",
       "termsTitle": "Termini principali",
+      "termsIntro": "Ecco i termini principali che ogni organizzatore, moderatore e fondatore usa — ognuno è definito nella pratica nelle Guide per costruire comunità:",
       "goDeeper": "Approfondisci",
+      "goDeeperItem1": "Sfoglia le <1>Guide per costruire comunità</1> — le guide passo passo dietro ogni termine.",
+      "goDeeperItem2": "Guarda questi concetti in pratica: le pagine città di <1>New York</1> e <2>Berlino</2>.",
       "terms": {
         "community": {
           "name": "Community",
