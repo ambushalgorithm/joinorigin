@@ -5,16 +5,18 @@
 import { NextRequest } from 'next/server';
 import { unstable_doesMiddlewareMatch } from 'next/experimental/testing/server';
 
-import { proxy, config, LOCALE_COOKIE } from './proxy';
+import { proxy, config, LOCALE_COOKIE, localeFromPathname } from './proxy';
 
 /**
  * Unit tests for the locale-resolution proxy (`proxy.ts`, Next.js 16
  * convention — migrated from `middleware.ts` via the `middleware-to-proxy`
  * codemod). Proxy defaults to the Node.js runtime.
  *
- * Contract (arch-i18n §6.3, unchanged from the middleware):
- *  - precedence: cookie `joinorigin_locale` wins → Accept-Language →
- *    `DEFAULT_LOCALE` (`en`)
+ * Contract (arch-i18n §6.3, updated TASK-444):
+ *  - locale-prefixed paths (`/<locale>` or `/<locale>/...`) force that
+ *    locale regardless of cookie / Accept-Language
+ *  - otherwise precedence: cookie `joinorigin_locale` wins → Accept-Language
+ *    → `DEFAULT_LOCALE` (`en`)
  *  - the resolved locale is forwarded as `x-joinorigin-locale` on BOTH the
  *    request (via NextResponse.next request headers) and the response
  *  - no URL rewrite — URLs stay clean
@@ -86,7 +88,7 @@ describe('proxy locale resolution', () => {
   });
 });
 
-describe('/de/* forces German server-side (TASK-315)', () => {
+describe('/de/* forces German server-side (TASK-315 → generalized TASK-444)', () => {
   it('forces de for /de/location/... with no cookie and no Accept-Language', () => {
     const response = runProxyAt('http://localhost/de/location/germany/berlin/berlin');
     expect(response.headers.get('x-joinorigin-locale')).toBe('de');
@@ -126,18 +128,84 @@ describe('/de/* forces German server-side (TASK-315)', () => {
     expect(response.headers.get('x-middleware-request-x-joinorigin-locale')).toBe('de');
     expect(response.headers.get('x-middleware-override-headers')).toContain('x-joinorigin-locale');
   });
+});
 
-  it('does not force de for paths merely starting with /de- (e.g. /deutschland)', () => {
-    // Only the exact `/de` or `/de/...` prefix is the German surface; other
-    // paths keep the normal precedence.
-    const response = runProxyAt('http://localhost/deutschland', {
+describe('non-EN locale-prefixed paths force their locale (TASK-444)', () => {
+  it.each([
+    ['es', '/es/guides/start-a-community'],
+    ['ja', '/ja/guides/start-a-community'],
+    ['ar', '/ar/guides/start-a-community'],
+    ['fr', '/fr/guides/start-a-community'],
+    ['hi', '/hi/guides/start-a-community'],
+    ['id', '/id/guides/start-a-community'],
+    ['it', '/it/guides/start-a-community'],
+    ['ko', '/ko/guides/start-a-community'],
+    ['nl', '/nl/guides/start-a-community'],
+    ['pl', '/pl/guides/start-a-community'],
+    ['ru', '/ru/guides/start-a-community'],
+    ['th', '/th/guides/start-a-community'],
+    ['tr', '/tr/guides/start-a-community'],
+    ['uk', '/uk/guides/start-a-community'],
+    ['vi', '/vi/guides/start-a-community'],
+    ['fa', '/fa/guides/start-a-community'],
+    ['pt-BR', '/pt-BR/guides/start-a-community'],
+    ['zh-CN', '/zh-CN/guides/start-a-community'],
+    ['zh-TW', '/zh-TW/guides/start-a-community'],
+  ])('forces %s for %s despite a conflicting cookie and Accept-Language', (locale, path) => {
+    const response = runProxyAt(`http://localhost${path}`, {
+      cookie: `${LOCALE_COOKIE}=fr`,
+      'accept-language': 'en',
+    });
+    expect(response.headers.get('x-joinorigin-locale')).toBe(locale);
+  });
+
+  it('forces es for /es despite an English Accept-Language and no cookie', () => {
+    const response = runProxyAt('http://localhost/es/guides', {
+      'accept-language': 'en',
+    });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('es');
+  });
+
+  it('forces ja for the bare /ja path', () => {
+    const response = runProxyAt('http://localhost/ja', {
+      'accept-language': 'de',
+    });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('ja');
+  });
+
+  it('forces ar for /ar/ nested variants and forwards it on the request headers', () => {
+    const response = runProxyAt('http://localhost/ar/guides/organize-a-meetup', {
+      cookie: `${LOCALE_COOKIE}=de`,
       'accept-language': 'fr',
     });
-    expect(response.headers.get('x-joinorigin-locale')).toBe('fr');
+    expect(response.headers.get('x-joinorigin-locale')).toBe('ar');
+    expect(response.headers.get('x-middleware-request-x-joinorigin-locale')).toBe('ar');
+  });
+
+  it('localeFromPathname resolves every non-EN prefix and ignores EN', () => {
+    expect(localeFromPathname('/es')).toBe('es');
+    expect(localeFromPathname('/es/guides')).toBe('es');
+    expect(localeFromPathname('/pt-BR/guides/start-a-community')).toBe('pt-BR');
+    expect(localeFromPathname('/zh-CN/guides')).toBe('zh-CN');
+    expect(localeFromPathname('/zh-TW/guides')).toBe('zh-TW');
+    expect(localeFromPathname('/en/guides')).toBeUndefined();
+    expect(localeFromPathname('/location/germany/berlin/berlin')).toBeUndefined();
+    expect(localeFromPathname('/')).toBeUndefined();
+  });
+
+  it('does not force a locale for paths merely starting with a locale letter sequence', () => {
+    // Only the exact `/<locale>` or `/<locale>/...` prefixes are locale
+    // surfaces; `/deutschland`, `/events`, `/japan` keep the normal precedence.
+    const deutschland = runProxyAt('http://localhost/deutschland', { 'accept-language': 'fr' });
+    expect(deutschland.headers.get('x-joinorigin-locale')).toBe('fr');
+    const events = runProxyAt('http://localhost/events', { 'accept-language': 'ja' });
+    expect(events.headers.get('x-joinorigin-locale')).toBe('ja');
+    const japan = runProxyAt('http://localhost/japan', { 'accept-language': 'es' });
+    expect(japan.headers.get('x-joinorigin-locale')).toBe('es');
   });
 });
 
-describe('non-/de routes keep cookie → Accept-Language precedence (TASK-315)', () => {
+describe('non-locale-prefixed routes keep cookie → Accept-Language precedence (TASK-315)', () => {
   it('cookie wins on EN location pages', () => {
     const response = runProxyAt('http://localhost/location/germany/berlin/berlin', {
       cookie: `${LOCALE_COOKIE}=fr`,

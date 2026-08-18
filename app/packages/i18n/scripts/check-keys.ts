@@ -81,6 +81,12 @@ export const EN_EXPECTATIONS: readonly string[] = [
     `seoContent.glossary.terms.${slug}.name`,
     `seoContent.glossary.terms.${slug}.definition`,
   ]),
+  // TASK-444 — glossary hub section bodies (whyBody/termsIntro + the
+  // go-deeper bullets with Trans link placeholders).
+  'seoContent.glossary.whyBody',
+  'seoContent.glossary.termsIntro',
+  'seoContent.glossary.goDeeperItem1',
+  'seoContent.glossary.goDeeperItem2',
   'seoContent.guides.hubLead',
   'seoContent.guides.searchLabel',
   'seoContent.guides.searchPlaceholder',
@@ -132,6 +138,12 @@ export const PENDING_ADDITIONS: ReadonlySet<string> = new Set([
     `seoContent.glossary.terms.${slug}.name`,
     `seoContent.glossary.terms.${slug}.definition`,
   ]),
+  // seoContent.glossary.* — 4 section-body keys (TASK-444; TASK-445
+  // translates them into the 20 non-EN locales after this role merges).
+  'seoContent.glossary.whyBody',
+  'seoContent.glossary.termsIntro',
+  'seoContent.glossary.goDeeperItem1',
+  'seoContent.glossary.goDeeperItem2',
   // seoContent.guides.* — guides-hub + guide-view chrome (TASK-414).
   'seoContent.guides.hubLead',
   'seoContent.guides.searchLabel',
