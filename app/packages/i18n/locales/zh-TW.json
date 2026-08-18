@@ -61,10 +61,10 @@
   },
   "home": {
     "hero": {
-      "headline": "點子、專案與社群協作空間——讓團隊與最棒的專案在這裡找到他們的 Origin.",
+      "headline": "點子、專案與社群協作空間——讓全新與既有的團隊在這裡找到他們的 Origin。",
       "headlineAccent": "Origin.",
       "startProject": "開始專案",
-      "supporting": "建立一個像履歷一樣的個人檔案，把你的點子發布成頁面，然後圍繞任何事物開始或加入社群——一家小型企業、一個 AI 新創、一個讀書會、一場 10 公里路跑。",
+      "supporting": "建立一個像履歷一樣的個人檔案，把你的點子發布成頁面，然後圍繞任何事物開始或加入社群——一個全新的點子、一家既有的小型企業、一個 AI 新創、一個讀書會、一場 10 公里路跑。",
       "trustAvatarsAlt": "JoinOrigin 成員 {{number}}",
       "trustCopy": "已有 2,400+ 位建設者在此協作"
     },
@@ -99,7 +99,7 @@
   "waitlist": {
     "close": "關閉",
     "heading": "加入等候名單",
-    "subcopy": "平台開放時的第一順位。當你的工作空間準備就緒時，我們會以電子郵件通知你。",
+    "subcopy": "在社群 OS 上讓自己被發現——無論你是正要開創全新的東西，還是正在壯大一個既有的專案。當你的工作空間準備就緒時，我們會以電子郵件通知你。",
     "nameLabel": "姓名",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "電子郵件",
@@ -120,8 +120,8 @@
     }
   },
   "ctaBand": {
-    "headline": "找到你的夥伴。一起建設。",
-    "subline": "加入 Origin 社交協作網路上 2,400+ 位建設者的行列，今天就讓自己被發現。",
+    "headline": "找到你的夥伴。一起開始或壯大某件事。",
+    "subline": "加入 Origin 社交協作網路上 2,400+ 位建設者的行列——從最初的點子到成熟的公司——今天就讓自己被發現。",
     "joinLabel": "讓自己被發現",
     "contactLabel": "聯絡我們"
   },
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "核心物件",
       "title": "社群所需的一切，盡在一個安定的工作空間",
-      "lead": "Origin 是一個圍繞八種核心物件打造的社交協作網路：個人檔案、點子、社群、通訊、動態、專案、公司與機會。你不必使用五套分開的工具，你的人際關係都生活在同一個地方。"
+      "lead": "Origin 是一個圍繞八種核心物件打造的社交協作網路：個人檔案、點子、社群、通訊、動態、專案、公司與機會。無論你是在開創全新的東西，還是正在壯大一家既有公司，你的人際關係都生活在同一個地方，而不是分散在五套分開的工具裡。"
     },
     "sectionCoreObjects": "核心物件",
     "coreObjects": {
@@ -164,25 +164,55 @@
       "toolHeader": "工具",
       "greatAtHeader": "擅長",
       "addsHeader": "JoinOrigin 補足了什麼",
-      "linkedin": {
-        "tool": "LinkedIn",
-        "strength": "尋找專業人士",
-        "gap": "但無法驅動把連結轉化為協作的社群、聊天與專案。"
+      "slack": {
+        "tool": "Slack",
+        "strength": "在頻道中連結團隊",
+        "gap": "但它是為單一工作空間而打造——無法在你認識的人之間承載個人檔案、社群、專案與機會。"
       },
       "discord": {
         "tool": "Discord",
         "strength": "通訊",
         "gap": "但並非圍繞著共享社交圖譜上的個人檔案、社群、專案與機會來組織。"
       },
-      "reddit": {
-        "tool": "Reddit",
-        "strength": "討論",
-        "gap": "但它是匿名的，無法承載聲譽、人際關係或專案。"
+      "whatsapp": {
+        "tool": "WhatsApp",
+        "strength": "傳送訊息",
+        "gap": "但它是私人聊天應用程式——無法在共享社交圖譜上為社群提供持久的個人檔案、專案與被發現的機會。"
       },
-      "github": {
-        "tool": "GitHub",
-        "strength": "撰寫程式",
-        "gap": "但它是為程式庫而打造，不是為人類協作的完整範疇。"
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "尋找專業人士",
+        "gap": "但無法驅動把連結轉化為協作的社群、聊天與專案。"
+      },
+      "meetup": {
+        "tool": "Meetup",
+        "strength": "尋找活動",
+        "gap": "但它圍繞著一次性的報名——無法承載活動結束之後持續成長的社群、專案與人際關係。"
+      },
+      "eventbrite": {
+        "tool": "Eventbrite",
+        "strength": "銷售門票",
+        "gap": "但它管理的是活動，不是社群——無法為你的群體提供一個有個人檔案、專案與機會的長久家園。"
+      },
+      "notion": {
+        "tool": "Notion",
+        "strength": "組織工作",
+        "gap": "但它是文件工具——無法把頁面背後的人連結成一個能一起協作的社群。"
+      },
+      "asana": {
+        "tool": "Asana",
+        "strength": "追蹤專案",
+        "gap": "但它是為任務而打造，不是為人際關係——無法浮現讓專案成真的那些人與社群。"
+      },
+      "patreon": {
+        "tool": "Patreon",
+        "strength": "贊助創作者",
+        "gap": "但它圍繞著訂閱——無法在共享社交圖譜上為你的成員提供個人檔案、專案與社群。"
+      },
+      "facebook": {
+        "tool": "Facebook",
+        "strength": "連結社團",
+        "gap": "但它圍繞著廣告動態——無法為社群提供一個有個人檔案、專案與機會的安定工作空間。"
       }
     },
     "sectionRoadmap": "路線圖",
@@ -528,7 +558,29 @@
       "translatePage": "翻譯此頁面",
       "variantVenuesTitle": "{{type}}聚集的地方",
       "variantFormatsTitle": "常見形式",
-      "variantHowToTitle": "如何開始"
+      "variantHowToTitle": "如何開始",
+      "browseLocations": "瀏覽地點",
+      "searchLocationsLabel": "搜尋地點",
+      "searchLocationsPlaceholder": "依城市、國家或社群類型搜尋",
+      "emptyState": "沒有符合「{{query}}」的地點。",
+      "attribution": "地點資料 © GeoNames 貢獻者，CC BY 4.0；城市資料 © SimpleMaps（worldcities basic），CC BY 4.0。",
+      "directoryKinds": {
+        "country": "國家",
+        "region": "地區",
+        "city": "城市",
+        "variant": "社群類型",
+        "ideas": "社群活動點子",
+        "fallback": "地點"
+      },
+      "guideCardTitles": {
+        "start-a-community": "建立社群",
+        "organize-a-meetup": "舉辦聚會",
+        "first-10-members": "獲得你的前 10 位成員",
+        "find-a-co-founder": "尋找共同創辦人",
+        "keep-a-community-active": "讓社群保持活躍",
+        "hybrid-communities": "經營混合式社群",
+        "moderation": "管理你的社群"
+      }
     },
     "groupTypes": {
       "startup": "新創社群",
@@ -541,17 +593,29 @@
       "eyebrow": "操作指南",
       "hubEyebrow": "社群經營",
       "hubTitle": "社群經營指南",
+      "hubLead": "十二份實用、歷久彌新的操作指南，教你找到、加入並建立群體——以及在創作者掌控的聊天室中溝通。從發布點子到健康的管理，一應俱全。",
       "allGuides": "所有指南",
+      "searchLabel": "搜尋指南",
+      "searchPlaceholder": "依指南標題或關鍵字搜尋",
+      "emptyState": "沒有符合「{{query}}」的指南。",
       "glossarySection": "社群系統詞彙表",
+      "glossaryBandCopy": "在<1>{{glossary}}</1>中學習群體、聊天室、管理、入門與參與循環背後的核心術語。",
+      "universalCopy": "指南放諸四海皆準——社群則紮根於在地。在你附近的城市尋找或建立社群：",
       "startLocal": "在地開始",
       "cityCardBody": "探索{{city}}真實的場地、群體和指南。",
       "overview": "總覽",
       "stepByStep": "逐步進行",
       "stepNumber": "第{{number}}步。",
       "relatedGuides": "相關指南",
+      "continueBuilding": "繼續閱讀系列中的下一份指南，持續建設。",
+      "practiceInCity": "在真實城市中實踐這些步驟。",
       "exploreCommunities": "探索社群",
       "howJoinOriginHelps": "JoinOrigin能如何協助",
+      "howJoinOriginHelpsBody": "JoinOrigin 是一個社群 OS，幫助你尋找或建立社群——上述步驟在平台上與你已使用的工具上都適用。JoinOrigin 處理結構、被發現與組織，讓你能專注在成員身上。點擊「開始使用」並讓自己被發現。",
       "keepLearning": "繼續學習",
+      "keepLearningGuides": "在<1>社群經營中心</1>瀏覽所有指南。",
+      "keepLearningGlossary": "在<1>社群系統詞彙表</1>中學習核心術語。",
+      "keepLearningLocations": "前往<1>地點中心</1>找到城市頁面，從在地開始。",
       "translatePage": "翻譯此頁面"
     },
     "glossary": {
@@ -561,7 +625,60 @@
       "whyTitle": "為什麼需要詞彙表",
       "termsTitle": "核心術語",
       "goDeeper": "深入了解",
-      "comingSoon": "請參閱指南以了解這個術語的用法。"
+      "terms": {
+        "community": {
+          "name": "社群",
+          "definition": "一群分享興趣、產業、目標或機會並圍繞它們連結的人。在 Origin 上，每個社群都附帶一個聊天室，成員在其中找到彼此並一起建設。"
+        },
+        "community-manager": {
+          "name": "社群經營者",
+          "definition": "讓社群保持歡迎、活躍且不偏離使命的人——歡迎新成員、激起對話並協調專案。在 Origin 上，建立社群的成員擁有並管理其聊天室。"
+        },
+        "community-os": {
+          "name": "社群 OS",
+          "definition": "一個將個人檔案、社群、聊天、專案與機會帶入同一個有組織工作空間的平台。Origin 就是 JoinOrigin 背後的社群 OS。"
+        },
+        "moderation": {
+          "name": "管理",
+          "definition": "透過清楚的準則與一致、公平的執行，讓社群保持安全且不偏離主題的實務。良好的管理保護著讓社群值得加入的人際關係。"
+        },
+        "onboarding": {
+          "name": "新成員引導",
+          "definition": "歡迎新成員並幫助他們採取第一個有意義行動的過程——自我介紹、加入對話或展開專案。強而有力的引導能把新成員變成活躍成員。"
+        },
+        "activation": {
+          "name": "啟用",
+          "definition": "新成員採取讓他們成為社群一員的行動的那一刻——他們的第一篇貼文、第一場活動或第一個專案。啟用是介於加入與貢獻之間的步驟。"
+        },
+        "engagement-loop": {
+          "name": "參與循環",
+          "definition": "讓社群保持活力的重複參與循環：有人貼文、其他人回應、對話製造更多回訪的理由。健康的循環是活躍社群的心跳。"
+        },
+        "hybrid-events": {
+          "name": "混合式活動",
+          "definition": "結合現場與線上參與的活動，讓不同地方的成員能加入同一場聚會。混合式形式幫助社群在聚會之間保持連結。"
+        },
+        "co-founder": {
+          "name": "共同創辦人",
+          "definition": "與你一起打造專案或公司、共同經歷創業旅程的人。在 Origin 上，共同創辦人常透過網路被找到——加入你的點子頁面並決定一起建設的人。"
+        }
+      }
+    },
+    "metadata": {
+      "waitlistPhrase": "加入 Origin，今天就讓自己被發現。",
+      "title": {
+        "communitiesIn": "{{name}}的社群",
+        "communitiesInWithRegion": "{{name}}、{{region}}的社群",
+        "variantIn": "{{name}}的{{label}}",
+        "ideasIn": "{{name}}的30個社群活動點子"
+      },
+      "description": {
+        "city": "在{{city}}尋找或建立社群——新創、創意、政治、聚會與小型企業社群。{{waitlist}}",
+        "variant": "在{{city}}尋找或建立{{label}}——真實的場地、群體與指南。{{waitlist}}",
+        "ideas": "發掘{{city}}的30個社群活動點子——人脈、學習、戶外、專業、創意與影響力活動。{{waitlist}}",
+        "country": "在{{country}}尋找或建立社群——從新創場景到小型企業網路。{{waitlist}}",
+        "region": "在{{region}}尋找或建立社群——跨地區的聚會、群體與活動。{{waitlist}}"
+      }
     },
     "cta": {
       "joinWaitlist": "讓自己被發現"
