@@ -2,10 +2,14 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { JsonLd } from '../../../lib/seo/JsonLdScript';
-import { getGuideContent } from '../../../lib/seo/content';
-import { GUIDE_SLUGS, GUIDES_HUB_PATH, guidePageEntry } from '../../../lib/seo/guides';
+import {
+  GUIDES_HUB_PATH,
+  guidePageEntry,
+  guidePageForLocale,
+  guidePageMetadata,
+} from '../../../lib/seo/guides';
+import { GUIDE_SLUGS } from '../../../lib/seo/guides';
 import { breadcrumbList, faqPage } from '../../../lib/seo/jsonLd';
-import { createMetadata } from '../../../lib/seo/metadata';
 import { GuideView } from './guide-view';
 
 /**
@@ -15,6 +19,11 @@ import { GuideView } from './guide-view';
  * The FAQPage JSON-LD mirrors the visible FAQ block 1:1 — both read the same
  * committed content file (`lib/seo/content/en/guide/<slug>.ts`), so the
  * structured data can never drift from the page copy.
+ *
+ * Locale-aware loader (TASK-421): content resolution goes through the shared
+ * `guidePageForLocale` loader, which resolves the active locale surface
+ * ('en' on this canonical route) with EN fallback — the same code path the
+ * per-locale surfaces (`app/<locale>/guides/[slug]/page.tsx`) use.
  */
 interface GuidePageProps {
   params: Promise<{ slug: string }>;
@@ -26,23 +35,18 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const entry = guidePageEntry(slug);
+  const entry = guidePageEntry(slug, 'en');
   if (!entry) return {};
-  return createMetadata({
-    title: entry.title,
-    description: entry.description,
-    path: entry.path,
-    keywords: [slug.replace(/-/g, ' '), 'community', 'how to', 'guide'],
-  });
+  return guidePageMetadata(entry);
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {
   const { slug } = await params;
-  const entry = guidePageEntry(slug);
-  const content = getGuideContent(slug, 'en');
-  if (!entry || !content || content.kind !== 'guide') {
+  const page = guidePageForLocale(slug);
+  if (!page) {
     notFound();
   }
+  const { entry, content } = page;
 
   return (
     <>

@@ -1,10 +1,29 @@
-import { getGuideContent, listContent } from '../content';
+import { SUPPORTED_LOCALES } from '@joinorigin/i18n';
+
+// `hasContent` is a non-configurable SWC export — replace it with a
+// call-through jest.fn so tests can pin the committed-content state
+// deterministically (TASK-421) while defaulting to the real registry.
+jest.mock('../content', () => {
+  const actual = jest.requireActual('../content');
+  return { ...actual, hasContent: jest.fn(actual.hasContent) };
+});
+
+import * as contentModule from '../content';
+import { getGuideContent, hasContent, listContent } from '../content';
 import {
   GLOSSARY_HUB_PATH,
   GUIDES_HUB_PATH,
   GUIDE_SLUGS,
+  guideHubLanguagesFor,
+  guideHubMetadata,
+  guideHubPath,
+  guideLanguagesFor,
   guidePageEntries,
   guidePageEntry,
+  guidePageForLocale,
+  guidePageMetadata,
+  guidePath,
+  type GuidePageEntry,
 } from '../guides';
 import { MIN_PROSE_WORDS, wordCount } from '../locationGates';
 
@@ -192,5 +211,133 @@ describe('lib/seo guides — content quality gates (§6.2)', () => {
     const enContent = listContent('en');
     const guideCount = enContent.filter((content) => content.kind === 'guide').length;
     expect(guideCount).toBe(12);
+  });
+});
+
+describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
+  const NON_EN_LOCALES = SUPPORTED_LOCALES.filter((locale) => locale !== 'en');
+
+  it('exposes locale-prefixed hub + guide paths', () => {
+    expect(guideHubPath('en')).toBe('/guides');
+    expect(guideHubPath('de')).toBe('/de/guides');
+    expect(guidePath('start-a-community')).toBe('/guides/start-a-community');
+    expect(guidePath('start-a-community', 'de')).toBe('/de/guides/start-a-community');
+    expect(guidePath('start-a-community', 'pt-BR')).toBe('/pt-BR/guides/start-a-community');
+  });
+
+  it('registers EN entries with the en locale and unchanged canonical paths', () => {
+    const entries = guidePageEntries('en');
+    expect(entries).toHaveLength(12);
+    for (const entry of entries) {
+      expect(entry.locale).toBe('en');
+      expect(entry.path).toBe(`${GUIDES_HUB_PATH}/${entry.slug}`);
+    }
+  });
+
+  it('locale surfaces enumerate ONLY guides with committed translated content', () => {
+    for (const locale of NON_EN_LOCALES) {
+      const entries = guidePageEntries(locale);
+      expect(entries.length).toBeLessThanOrEqual(GUIDE_SLUGS.length);
+      for (const entry of entries) {
+        // The EN fallback is never enumerated for a per-locale surface —
+        // untranslated guides never get locale-prefixed URLs (R5).
+        expect(hasContent('guide', entry.slug, locale)).toBe(true);
+        expect(entry.locale).toBe(locale);
+        expect(entry.path).toBe(`/${locale}${GUIDES_HUB_PATH}/${entry.slug}`);
+      }
+    }
+  });
+
+  it('locale-aware page resolution stays consistent with committed content', () => {
+    for (const locale of NON_EN_LOCALES) {
+      for (const slug of GUIDE_SLUGS) {
+        expect(guidePageForLocale(slug, locale) !== undefined).toBe(
+          hasContent('guide', slug, locale),
+        );
+        expect(guidePageEntry(slug, locale) !== undefined).toBe(hasContent('guide', slug, locale));
+      }
+    }
+    // Unknown slugs never resolve on any surface (→ notFound).
+    expect(guidePageForLocale('not-a-guide')).toBeUndefined();
+    expect(guidePageForLocale('not-a-guide', 'de')).toBeUndefined();
+    expect(guidePageEntry('not-a-guide', 'de')).toBeUndefined();
+  });
+
+  it('locale surfaces emit self + en + x-default → EN canonical hreflang', () => {
+    expect(guideLanguagesFor('start-a-community', 'de')).toEqual({
+      de: 'http://localhost:3100/de/guides/start-a-community',
+      en: 'http://localhost:3100/guides/start-a-community',
+      'x-default': 'http://localhost:3100/guides/start-a-community',
+    });
+    expect(guideHubLanguagesFor('de')).toEqual({
+      de: 'http://localhost:3100/de/guides',
+      en: 'http://localhost:3100/guides',
+      'x-default': 'http://localhost:3100/guides',
+    });
+  });
+
+  it('guidePageMetadata carries the hreflang cluster for a locale surface entry', () => {
+    const deEntry: GuidePageEntry = {
+      params: { slug: 'start-a-community' },
+      path: '/de/guides/start-a-community',
+      slug: 'start-a-community',
+      locale: 'de',
+      title: 'Gemeinschaft aufbauen | JoinOrigin',
+      description: 'Praktische Schritte für den Aufbau von Gemeinschaften.',
+      lastModified: '2026-08-14',
+      priority: 0.7,
+      related: [],
+      cities: [],
+    };
+    const meta = guidePageMetadata(deEntry);
+    expect(meta.alternates?.canonical).toBe('http://localhost:3100/de/guides/start-a-community');
+    expect(meta.alternates?.languages).toEqual({
+      de: 'http://localhost:3100/de/guides/start-a-community',
+      en: 'http://localhost:3100/guides/start-a-community',
+      'x-default': 'http://localhost:3100/guides/start-a-community',
+    });
+  });
+
+  it('EN canonical guide pages list every translated locale once translations exist', () => {
+    const hasContentMock = contentModule.hasContent as jest.Mock;
+    hasContentMock.mockImplementation(
+      (kind: string, slug: string, locale: string) =>
+        kind === 'guide' && locale !== 'en' && (GUIDE_SLUGS as readonly string[]).includes(slug),
+    );
+    try {
+      const languages = guideLanguagesFor('start-a-community', 'en');
+      expect(languages?.en).toBe('http://localhost:3100/guides/start-a-community');
+      expect(languages?.['x-default']).toBe('http://localhost:3100/guides/start-a-community');
+      expect(languages?.de).toBe('http://localhost:3100/de/guides/start-a-community');
+      expect(languages?.fa).toBe('http://localhost:3100/fa/guides/start-a-community');
+      // en + x-default + one entry per non-EN locale = 22 keys.
+      expect(Object.keys(languages ?? {})).toHaveLength(SUPPORTED_LOCALES.length + 1);
+    } finally {
+      hasContentMock.mockRestore();
+    }
+  });
+
+  it('EN surfaces omit the hreflang cluster until a translation is committed (phase A parity)', () => {
+    const hasContentMock = contentModule.hasContent as jest.Mock;
+    hasContentMock.mockImplementation(() => false);
+    try {
+      expect(guideLanguagesFor('start-a-community', 'en')).toBeUndefined();
+      expect(guideHubLanguagesFor('en')).toBeUndefined();
+    } finally {
+      hasContentMock.mockRestore();
+    }
+  });
+
+  it('guideHubMetadata keeps the EN hub title/description/canonical', () => {
+    const meta = guideHubMetadata('en');
+    expect(meta.title).toBe('Community Building Guides | JoinOrigin');
+    expect(meta.alternates?.canonical).toBe('http://localhost:3100/guides');
+    const deHub = guideHubMetadata('de');
+    expect(deHub.alternates?.canonical).toBe('http://localhost:3100/de/guides');
+    expect(deHub.alternates?.languages).toEqual({
+      de: 'http://localhost:3100/de/guides',
+      en: 'http://localhost:3100/guides',
+      'x-default': 'http://localhost:3100/guides',
+    });
   });
 });

@@ -87,6 +87,20 @@ describe('guides/[slug] page — static params + metadata', () => {
       expect.arrayContaining(['start a community', 'community', 'how to', 'guide']),
     );
   });
+
+  it('generateMetadata hreflang: x-default always points at the EN canonical (TASK-421)', async () => {
+    // The cluster is complete once per-locale translations land (Group 3/4);
+    // whenever it exists, `en` and `x-default` resolve to the EN canonical.
+    const metadata = await generateMetadata({
+      params: Promise.resolve({ slug: 'start-a-community' }),
+    });
+    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/guides/start-a-community');
+    const languages = metadata.alternates?.languages as Record<string, string> | undefined;
+    if (languages) {
+      expect(languages.en).toBe('http://localhost:3100/guides/start-a-community');
+      expect(languages['x-default']).toBe('http://localhost:3100/guides/start-a-community');
+    }
+  });
 });
 
 describe('guide view — single H1 + FAQ mirror + cross-links', () => {

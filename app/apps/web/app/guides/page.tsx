@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 
 import { JsonLd } from '../../lib/seo/JsonLdScript';
-import { guidePageEntries } from '../../lib/seo/guides';
+import { guideHubMetadata, guidePageEntries } from '../../lib/seo/guides';
 import { breadcrumbList } from '../../lib/seo/jsonLd';
-import { createMetadata } from '../../lib/seo/metadata';
 import { GuidesHubView } from './guides-hub-view';
 
 /**
@@ -11,21 +10,10 @@ import { GuidesHubView } from './guides-hub-view';
  *
  * Server wrapper exporting hub metadata + server-rendered `BreadcrumbList`
  * JSON-LD. The view lists all 7 L1 guides, the glossary, and the flagship
- * city pages (topic-cluster backbone).
+ * city pages (topic-cluster backbone). Metadata carries the hreflang
+ * cluster for the per-locale hub surfaces (TASK-421).
  */
-export const metadata: Metadata = createMetadata({
-  title: 'Community Building Guides | JoinOrigin',
-  description:
-    'Community building how-to guides: start a community, organize a meetup, get your first 10 members, find a co-founder, stay active, run hybrid groups, and moderate well.',
-  path: '/guides',
-  keywords: [
-    'community building',
-    'how to start a community',
-    'organize a meetup',
-    'community guides',
-    'community manager',
-  ],
-});
+export const metadata: Metadata = guideHubMetadata();
 
 export default function GuidesHubPage() {
   const entries = guidePageEntries();
