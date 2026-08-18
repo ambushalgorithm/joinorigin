@@ -164,25 +164,55 @@
       "toolHeader": "工具",
       "greatAtHeader": "擅长",
       "addsHeader": "JoinOrigin 带来的增量",
-      "linkedin": {
-        "tool": "LinkedIn",
-        "strength": "寻找专业人士",
-        "gap": "但不支撑那些把联系转化为协作的社区、聊天和项目。"
+      "slack": {
+        "tool": "Slack",
+        "strength": "通过频道连接团队",
+        "gap": "但它是为单一工作区打造的——它无法在你认识的人群之间承载个人主页、社区、项目和机会。"
       },
       "discord": {
         "tool": "Discord",
         "strength": "沟通交流",
         "gap": "但没有围绕共享社交图谱上的个人主页、社区、项目和机会来组织。"
       },
-      "reddit": {
-        "tool": "Reddit",
-        "strength": "讨论话题",
-        "gap": "但它是匿名的，无法延续声誉、人际关系或项目。"
+      "whatsapp": {
+        "tool": "WhatsApp",
+        "strength": "即时消息",
+        "gap": "但它是私密聊天应用——它无法为社区提供持久的个人主页、项目，以及共享社交图谱上的发现能力。"
       },
-      "github": {
-        "tool": "GitHub",
-        "strength": "编写代码",
-        "gap": "但它是为代码仓库而生的，而不是为人类协作的全方位场景。"
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "寻找专业人士",
+        "gap": "但不支撑那些把联系转化为协作的社区、聊天和项目。"
+      },
+      "meetup": {
+        "tool": "Meetup",
+        "strength": "发现活动",
+        "gap": "但它围绕一次性的报名展开——它无法承载活动结束后继续生长的社区、项目和关系。"
+      },
+      "eventbrite": {
+        "tool": "Eventbrite",
+        "strength": "售票",
+        "gap": "但它管理的是活动，不是社区——它无法给团体一个带有个人主页、项目和机会的持久之家。"
+      },
+      "notion": {
+        "tool": "Notion",
+        "strength": "组织工作",
+        "gap": "但它是文档工具——它无法把页面背后的人连接成一个共同协作的社区。"
+      },
+      "asana": {
+        "tool": "Asana",
+        "strength": "跟踪项目",
+        "gap": "但它为任务而生，而非关系——它无法呈现让项目成真的人和社区。"
+      },
+      "patreon": {
+        "tool": "Patreon",
+        "strength": "资助创作者",
+        "gap": "但它围绕订阅展开——它无法在共享社交图谱上为会员提供个人主页、项目和社区。"
+      },
+      "facebook": {
+        "tool": "Facebook",
+        "strength": "连接群组",
+        "gap": "但它围绕广告信息流展开——它无法为社区提供一个带有个人主页、项目和机会的宁静工作空间。"
       }
     },
     "sectionRoadmap": "路线图",
@@ -528,7 +558,29 @@
       "translatePage": "翻译此页面",
       "variantVenuesTitle": "{{type}}聚集的地方",
       "variantFormatsTitle": "常见形式",
-      "variantHowToTitle": "如何开始"
+      "variantHowToTitle": "如何开始",
+      "browseLocations": "浏览地点",
+      "searchLocationsLabel": "搜索地点",
+      "searchLocationsPlaceholder": "按城市、国家或社区类型搜索",
+      "emptyState": "没有与“{{query}}”匹配的地点。",
+      "attribution": "位置数据 © GeoNames 贡献者，CC BY 4.0；城市数据 © SimpleMaps（worldcities basic），CC BY 4.0。",
+      "directoryKinds": {
+        "country": "国家",
+        "region": "地区",
+        "city": "城市",
+        "variant": "社区类型",
+        "ideas": "社区活动创意",
+        "fallback": "地点"
+      },
+      "guideCardTitles": {
+        "start-a-community": "创建社区",
+        "organize-a-meetup": "组织聚会",
+        "first-10-members": "获得前10名成员",
+        "find-a-co-founder": "寻找联合创始人",
+        "keep-a-community-active": "保持社区活跃",
+        "hybrid-communities": "运营混合社区",
+        "moderation": "审核你的社区"
+      }
     },
     "groupTypes": {
       "startup": "创业社区",
@@ -552,7 +604,19 @@
       "exploreCommunities": "探索社区",
       "howJoinOriginHelps": "JoinOrigin如何提供帮助",
       "keepLearning": "继续学习",
-      "translatePage": "翻译此页面"
+      "translatePage": "翻译此页面",
+      "hubLead": "十二个实用、常青的操作指南，教你找到、加入和创建团体——并在由创建者掌控的房间里沟通交流。从发布创意到健康的审核。",
+      "searchLabel": "搜索指南",
+      "searchPlaceholder": "按指南标题或关键词搜索",
+      "emptyState": "没有与“{{query}}”匹配的指南。",
+      "glossaryBandCopy": "在<1>{{glossary}}</1>中学习团体、房间、审核、新成员引导和参与循环背后的核心术语。",
+      "universalCopy": "指南是通用的——社区是本地的。在你附近的城市找到或创建社区：",
+      "continueBuilding": "用本系列的下一个指南继续建设。",
+      "practiceInCity": "在一个真实城市中实践这些步骤。",
+      "howJoinOriginHelpsBody": "JoinOrigin 是一个社区操作系统，帮助你找到或创建社区——上面的步骤在平台上和你已有的工具中同样适用。JoinOrigin 负责结构、发现和组织，让你专注于你的成员。点击“开始”并让自己被发现。",
+      "keepLearningGuides": "在<1>社区建设中心</1>浏览所有指南。",
+      "keepLearningGlossary": "在<1>社区操作系统术语表</1>中学习核心术语。",
+      "keepLearningLocations": "在<1>地点中心</1>找到城市页面，开始本地化。"
     },
     "glossary": {
       "eyebrow": "社区系统",
@@ -561,10 +625,63 @@
       "whyTitle": "为什么需要术语表",
       "termsTitle": "核心术语",
       "goDeeper": "深入了解",
-      "comingSoon": "请参阅指南，了解此术语的用法。"
+      "terms": {
+        "community": {
+          "name": "社区",
+          "definition": "一群因共同兴趣、行业、目标或机会而相聚并连接在一起的人。在 Origin 上，每个社区都带有一个房间，成员在这里找到彼此并共同建设。"
+        },
+        "community-manager": {
+          "name": "社区管理员",
+          "definition": "让社区保持热情、活跃并坚守使命的人——欢迎新成员、发起对话、协调项目。在 Origin 上，创建社区的人拥有并管理其房间。"
+        },
+        "community-os": {
+          "name": "社区操作系统",
+          "definition": "把个人主页、社区、聊天、项目和机会汇聚到一个有序工作空间的平台。Origin 就是 JoinOrigin 背后的社区操作系统。"
+        },
+        "moderation": {
+          "name": "审核",
+          "definition": "通过清晰的准则和一致、公平的执行，让社区保持安全与专注的实践。良好的审核保护着让社区值得加入的那些关系。"
+        },
+        "onboarding": {
+          "name": "新成员引导",
+          "definition": "欢迎新成员并帮助他们迈出第一个有意义的行动——自我介绍、加入对话或启动项目——的过程。强大的引导能把新成员变成活跃成员。"
+        },
+        "activation": {
+          "name": "激活",
+          "definition": "新成员采取让他们成为社区一部分的行动的那一刻——他们的第一条帖子、第一次活动或第一个项目。激活是介于加入与贡献之间的一步。"
+        },
+        "engagement-loop": {
+          "name": "参与循环",
+          "definition": "让社区保持活力的、不断重复的参与循环：有人发帖，其他人回应，对话创造出更多回来的理由。健康的循环是活跃社区的心跳。"
+        },
+        "hybrid-events": {
+          "name": "混合活动",
+          "definition": "融合线下与线上参与的活动，让身处不同地方的人也能参加同一场聚会。混合形式帮助社区在聚会之间保持联系。"
+        },
+        "co-founder": {
+          "name": "联合创始人",
+          "definition": "和你一起建设项目或公司并共同经历创业旅程的人。在 Origin 上，联合创始人常常通过网络被发现——那些加入你的创意页面并决定一起建设的人。"
+        }
+      }
     },
     "cta": {
       "joinWaitlist": "让自己被发现"
+    },
+    "metadata": {
+      "waitlistPhrase": "今天就加入 Origin，让自己被发现。",
+      "title": {
+        "communitiesIn": "{{name}}的社区",
+        "communitiesInWithRegion": "{{name}}（{{region}}）的社区",
+        "variantIn": "{{name}}的{{label}}",
+        "ideasIn": "{{name}}的30个社区活动创意"
+      },
+      "description": {
+        "city": "在{{city}}找到或创建社区——创业、创意、政治、聚会和小企业团体。{{waitlist}}",
+        "variant": "在{{city}}找到或创建{{label}}——真实的场地、团体和指南。{{waitlist}}",
+        "ideas": "发现{{city}}的30个社区活动创意——社交、学习、户外、职业、创意与影响力活动。{{waitlist}}",
+        "country": "在{{country}}找到或创建社区——从创业圈到小企业网络。{{waitlist}}",
+        "region": "在{{region}}找到或创建社区——遍布整个地区的聚会、团体和活动。{{waitlist}}"
+      }
     }
   }
 }
