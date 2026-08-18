@@ -83,11 +83,18 @@ describe('lib/seo locationData — tier model (§3.3)', () => {
     }
   });
 
-  it('flagships derive Tier-1, everything else Tier-3 (MVP slice deferred)', () => {
+  it('flagships derive Tier-1; the Sprint 18 55-city set Tier-2; the long tail Tier-3', () => {
     expect(tierForCitySlug('new-york')).toBe(1);
     expect(tierForCitySlug('berlin')).toBe(1);
-    expect(tierForCitySlug('austin')).toBe(3);
-    expect(tierForCitySlug('london')).toBe(3);
+    // Approved 55-city set (TASK-442) — non-flagship cities are Tier-2.
+    expect(tierForCitySlug('austin')).toBe(2);
+    expect(tierForCitySlug('london')).toBe(2);
+    expect(tierForCitySlug('tokyo')).toBe(2);
+    expect(tierForCitySlug('sao-paulo')).toBe(2);
+    expect(tierForCitySlug('dubai')).toBe(2);
+    // Long tail (not in the approved set) stays Tier-3.
+    expect(tierForCitySlug('dallas')).toBe(3);
+    expect(tierForCitySlug('oslo')).toBe(3);
   });
 });
 

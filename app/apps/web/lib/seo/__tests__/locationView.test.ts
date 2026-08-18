@@ -225,16 +225,16 @@ describe('lib/seo locationView — resolve + view model', () => {
   });
 
   it('builds the Tier-3 view model without invented prose', () => {
-    const austin = resolveLocationEntry({
+    const dallas = resolveLocationEntry({
       country: 'united-states',
       region: 'texas',
-      city: 'austin',
+      city: 'dallas',
     });
-    expect(austin).toBeDefined();
-    const data = buildLocationViewData(austin!);
+    expect(dallas).toBeDefined();
+    const data = buildLocationViewData(dallas!);
     expect(data.indexable).toBe(false);
     // No authored content → lead falls back to the registry description.
-    expect(data.lead).toBe(austin?.description);
+    expect(data.lead).toBe(dallas?.description);
     expect(data.faq).toEqual([]);
   });
 });
@@ -325,12 +325,12 @@ describe('lib/seo locationView — hreflang + metadata', () => {
     expect(meta.alternates?.canonical).toBe('http://localhost:3100/location/germany');
     expect(meta.robots).toEqual({ index: true, follow: true });
 
-    const austin = resolveLocationEntry({
+    const dallas = resolveLocationEntry({
       country: 'united-states',
       region: 'texas',
-      city: 'austin',
+      city: 'dallas',
     });
-    const noindexMeta = locationMetadata(austin!);
+    const noindexMeta = locationMetadata(dallas!);
     expect(noindexMeta.robots).toEqual({ index: false, follow: true });
   });
 

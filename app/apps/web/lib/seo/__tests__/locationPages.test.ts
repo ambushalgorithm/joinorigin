@@ -1,5 +1,5 @@
 import { indexableLocationEntries, isWarmSetEntry, locationPageEntries } from '../locationPages';
-import { FLAGSHIP_CITIES, getDatasetVersion, slugify } from '../locationData';
+import { FLAGSHIP_CITIES, TIER_2_CITY_SLUGS, getDatasetVersion, slugify } from '../locationData';
 import { getDictionary, getT } from '@joinorigin/i18n';
 
 /**
@@ -86,12 +86,19 @@ describe('lib/seo locationPages — EN canonical surface', () => {
     }
   });
 
-  it('derives non-flagship cities as Tier-3 and non-indexable (no content)', () => {
+  it('derives non-flagship Tier-2 cities as indexable and long-tail Tier-3 cities as non-indexable', () => {
+    // Austin is in the Sprint 18 55-city set → Tier-2 with content → indexable.
     const austin = entries.find((entry) => entry.kind === 'city' && entry.params.city === 'austin');
     expect(austin).toBeDefined();
-    expect(austin?.tier).toBe(3);
-    expect(austin?.indexable).toBe(false);
+    expect(austin?.tier).toBe(2);
+    expect(austin?.indexable).toBe(true);
     expect(austin?.path).toBe('/location/united-states/texas/austin');
+    // Dallas is long tail — Tier-3, no content, never indexable.
+    const dallas = entries.find((entry) => entry.kind === 'city' && entry.params.city === 'dallas');
+    expect(dallas).toBeDefined();
+    expect(dallas?.tier).toBe(3);
+    expect(dallas?.indexable).toBe(false);
+    expect(dallas?.path).toBe('/location/united-states/texas/dallas');
   });
 
   it('dedupes (regionId, slug) duplicate rows to one canonical URL', () => {
@@ -160,25 +167,43 @@ describe('lib/seo locationPages — EN canonical surface', () => {
 });
 
 describe('lib/seo locationPages — indexable set + warm set', () => {
-  it('indexable EN set is exactly the 19-page MVP location surface', () => {
+  it('indexable EN set covers the hub + 2 countries + 2 regions + all 55 approved cities + flagship variants/ideas', () => {
     const indexable = indexableLocationEntries();
-    expect(indexable).toHaveLength(19);
+    expect(indexable.length).toBeGreaterThanOrEqual(70);
     const byKind = (kind: string) => indexable.filter((entry) => entry.kind === kind);
     expect(byKind('hub')).toHaveLength(1);
     expect(byKind('country')).toHaveLength(2);
     expect(byKind('region')).toHaveLength(2);
-    expect(byKind('city')).toHaveLength(2);
+    // 55 approved cities (incl. the 2 flagships) are indexable — duplicate
+    // dataset rows sharing an approved slug (e.g. London, Ontario) are
+    // additional Tier-2 entries with the same authored content.
+    expect(byKind('city').length).toBeGreaterThanOrEqual(55);
     expect(byKind('variant')).toHaveLength(10);
     expect(byKind('ideas')).toHaveLength(2);
+    // Every approved Tier-2 city page (non-flagship) is indexable.
+    for (const slug of TIER_2_CITY_SLUGS) {
+      if (slug === 'new-york' || slug === 'berlin') continue;
+      const cityEntries = indexable.filter(
+        (entry) => entry.kind === 'city' && entry.params.city === slug,
+      );
+      expect(cityEntries.length).toBeGreaterThanOrEqual(1);
+    }
   });
 
-  it('warm set (hub + Tier-1) matches the indexable MVP surface', () => {
+  it('warm set (hub + Tier-1) is a subset of the indexable set', () => {
     const warm = locationPageEntries().filter(isWarmSetEntry);
-    expect(warm.map((entry) => entry.path).sort()).toEqual(
-      indexableLocationEntries()
-        .map((entry) => entry.path)
-        .sort(),
+    const indexablePaths = new Set(indexableLocationEntries().map((entry) => entry.path));
+    expect(warm.length).toBeGreaterThan(0);
+    for (const entry of warm) {
+      expect(indexablePaths.has(entry.path)).toBe(true);
+    }
+    // Tier-2 cities are indexable but NOT prerendered (ISR on demand).
+    const tier2City = locationPageEntries().find(
+      (entry) => entry.kind === 'city' && entry.tier === 2,
     );
+    expect(tier2City).toBeDefined();
+    expect(indexablePaths.has(tier2City!.path)).toBe(true);
+    expect(warm.some((entry) => entry.path === tier2City!.path)).toBe(false);
   });
 
   it('Tier-3 entries never appear in the indexable set', () => {

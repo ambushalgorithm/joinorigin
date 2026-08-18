@@ -59,8 +59,8 @@ describe('lib/seo llms.txt — curated sections', () => {
   });
 
   it('does NOT enumerate the long tail (Tier-3 cities never appear)', () => {
-    // Austin is a Tier-3 city in the snapshot — it must not be listed.
-    expect(text).not.toContain('/location/united-states/texas/austin');
+    // Dallas is a Tier-3 city in the snapshot — it must not be listed.
+    expect(text).not.toContain('/location/united-states/texas/dallas');
     // No locale-prefixed long-tail URLs either.
     expect(text).not.toContain('/de/location');
   });
