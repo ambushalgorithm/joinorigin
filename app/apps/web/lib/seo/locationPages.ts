@@ -216,7 +216,8 @@ function otherFlagship(flagship: FlagshipCityConfig): FlagshipCityConfig | undef
 function otherFlagshipIntro(slug: string): string | undefined {
   const other = otherFlagship(getFlagshipConfig(slug) as FlagshipCityConfig);
   if (!other) return undefined;
-  return getCityContent(other.slug, 'en')?.intro;
+  // City intros are paragraph arrays (TASK-410) — join for the G5 comparison.
+  return getCityContent(other.slug, 'en')?.intro.join(' ');
 }
 
 function otherFlagshipIdeaProse(slug: string): string | undefined {
@@ -361,7 +362,9 @@ function variantEntry(
     cityName: flagship.displayName,
     groupType: typeKey,
     typePhrase: label,
-    parentProse: content.intro,
+    // City intros are paragraph arrays (TASK-410) — join for the G5 parent-prose
+    // comparison against the variant prose.
+    parentProse: content.intro.join(' '),
     locale,
   });
 }

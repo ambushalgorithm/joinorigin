@@ -453,7 +453,9 @@ export function buildLocationViewData(
       ? content.variantIntros[entry.groupType as GroupTypeKey]
       : undefined) ??
     (entry.kind === 'ideas' && content?.kind === 'city' ? content.ideaPage.intro : undefined) ??
-    content?.intro ??
+    // City intros are paragraph arrays (TASK-410) — join them into the string
+    // render model until the view renders paragraphs (TASK-416).
+    (content?.kind === 'city' ? content.intro.join(' ') : content?.intro) ??
     '';
 
   // TASK-319 — per-variant enrichment: expose the current variant's group

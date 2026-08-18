@@ -9,8 +9,11 @@ const content: CityContent = {
   kind: 'city',
   locale: 'en',
   slug: 'new-york',
-  intro:
-    'New York City is a place where almost every interest has a group, and where starting a community is a realistic next step for most people. The five boroughs — Manhattan, Brooklyn, Queens, the Bronx, and Staten Island — each host distinct scenes: finance and media professionals in Midtown, founders and designers in SoHo and DUMBO, artists and makers in Bushwick, families and small business owners across Queens and the Bronx. Universities like NYU, Columbia, and CUNY campuses feed constant flows of students, researchers, and alumni into the meetup ecosystem. Public spaces — Central Park, Prospect Park, the High Line, hundreds of community gardens — give groups free, well-known places to gather. The subway makes cross-borough attendance practical, which means communities can grow beyond one neighborhood without losing cohesion. Venue culture is equally rich: coworking spaces, coffee shops, libraries, and even rooftops regularly host evening events. Whether you want to find a community or launch one, New York gives you density, diversity, and infrastructure that few cities can match.',
+  intro: [
+    'New York City is a place where almost every interest has a group, and where starting a community is a realistic next step for most people. The five boroughs — Manhattan, Brooklyn, Queens, the Bronx, and Staten Island — each host distinct scenes: finance and media professionals in Midtown, founders and designers in SoHo and DUMBO, artists and makers in Bushwick, families and small business owners across Queens and the Bronx.',
+    'Universities like NYU, Columbia, and CUNY campuses feed constant flows of students, researchers, and alumni into the meetup ecosystem. Public spaces — Central Park, Prospect Park, the High Line, hundreds of community gardens — give groups free, well-known places to gather. The subway makes cross-borough attendance practical, which means communities can grow beyond one neighborhood without losing cohesion.',
+    'Venue culture is equally rich: coworking spaces, coffee shops, libraries, and even rooftops regularly host evening events. Whether you want to find a community or launch one, New York gives you density, diversity, and infrastructure that few cities can match.',
+  ],
   dataPoints: [
     'Roughly 8.8 million residents across five boroughs.',
     'Home to NYU, Columbia, CUNY, Fordham, and Pratt Institute.',

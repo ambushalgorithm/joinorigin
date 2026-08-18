@@ -174,7 +174,7 @@ describe('lib/seo locationGates — G1/G2 gates', () => {
       kind: 'city',
       locale: 'en',
       slug: 'fixture',
-      intro: 'Short prose.',
+      intro: ['Short prose.'],
       dataPoints: [],
       faq: [],
       variantIntros: {},
@@ -191,7 +191,24 @@ describe('lib/seo locationGates — G1/G2 gates', () => {
       kind: 'city',
       locale: 'en',
       slug: 'fixture',
-      intro: prose,
+      intro: [prose],
+      dataPoints: [],
+      faq: [],
+      variantIntros: {},
+      ideaPage: { intro: '', categories: [], faq: [] },
+    } as never;
+    expect(gateG2('city', content).pass).toBe(true);
+  });
+
+  it('G2 sums paragraph lengths for array intros (TASK-410)', () => {
+    const paragraphs = Array.from({ length: 3 }, (_, paragraphIndex) =>
+      Array.from({ length: 50 }, (_, wordIndex) => `p${paragraphIndex}-w${wordIndex}`).join(' '),
+    );
+    const content = {
+      kind: 'city',
+      locale: 'en',
+      slug: 'fixture',
+      intro: paragraphs,
       dataPoints: [],
       faq: [],
       variantIntros: {},
@@ -250,7 +267,7 @@ describe('lib/seo locationGates — indexable flag via evaluatePageGates', () =>
         kind: 'city',
         locale: 'en',
         slug: 'fixture',
-        intro: 'Too short.',
+        intro: ['Too short.'],
         dataPoints: [],
         faq: [],
         variantIntros: {},
@@ -268,7 +285,7 @@ describe('lib/seo locationGates — indexable flag via evaluatePageGates', () =>
       kind: 'city',
       locale: 'en',
       slug: 'fixture',
-      intro: prose,
+      intro: [prose],
       dataPoints: ['a', 'b', 'c'],
       faq: [],
       variantIntros: {},
@@ -298,7 +315,7 @@ describe('lib/seo locationGates — indexable flag via evaluatePageGates', () =>
       description: 'Find or start communities in Berlin.',
       cityName: 'Berlin',
       content: city as never,
-      parentProse: getCityContent('new-york', 'en')?.intro,
+      parentProse: getCityContent('new-york', 'en')?.intro.join(' '),
     });
     expect(result.gates.map((gate) => gate.pass)).toEqual([true, true, true, true, true]);
     expect(result.indexable).toBe(true);
