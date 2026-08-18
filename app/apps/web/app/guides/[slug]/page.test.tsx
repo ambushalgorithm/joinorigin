@@ -1,10 +1,18 @@
 import type { ReactElement } from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { getDictionary, I18nProvider } from '@joinorigin/i18n';
+import { getDictionary, I18nProvider, type Locale } from '@joinorigin/i18n';
 
 import GuidePage, { generateMetadata, generateStaticParams } from './page';
 import { getGuideContent } from '../../../lib/seo/content';
+// `guidePageForLocale` is a non-configurable SWC export — replace it with a
+// call-through jest.fn (same pattern as the de guide tests TASK-421) so the
+// TASK-446 EN-fallback test can pin the locale-surface result deterministically.
+jest.mock('../../../lib/seo/guides', () => {
+  const actual = jest.requireActual('../../../lib/seo/guides');
+  return { ...actual, guidePageForLocale: jest.fn(actual.guidePageForLocale) };
+});
+import * as guides from '../../../lib/seo/guides';
 import { guidePageEntry, guidePageForLocale, guidePath } from '../../../lib/seo/guides';
 import { GuideView } from './guide-view';
 
@@ -24,7 +32,19 @@ import { GuideView } from './guide-view';
  * TASK-444: related-card links resolve through the active locale surface —
  * href via `guidePath(slug, entry.locale)` and title via
  * `guidePageEntry(slug, entry.locale)?.title` (never the humanized slug).
+ *
+ * TASK-446: the canonical page resolves the ACTIVE server locale (proxy-
+ * forwarded `x-joinorigin-locale`) with EN fallback — `getServerLocale` is
+ * mocked here. With the `de` cookie the page renders the committed German
+ * guide body; when the locale lacks committed content the loader falls back
+ * to the EN surface. SEO metadata stays EN (arch-i18n §1.2).
  */
+
+jest.mock('../../../lib/i18n-server', () => ({
+  getServerLocale: jest.fn(() => Promise.resolve(mockServerLocale.locale)),
+}));
+
+const mockServerLocale: { locale: Locale } = { locale: 'en' };
 
 /** TASK-411 guide-view footer keys (EN source values — mirror en.json after
  *  the i18n-en-keys merge; kept here so the view tests run green in
@@ -269,5 +289,58 @@ describe('guide page wrapper', () => {
     const faq = payloads.find((p) => p['@type'] === 'FAQPage');
     expect(faq?.mainEntity).toHaveLength(content.faq.length);
     expect(faq?.mainEntity?.[0]?.name).toBe(faqQ.question);
+  });
+
+  it('renders the forwarded locale’s guide body on the canonical route (TASK-446)', async () => {
+    mockServerLocale.locale = 'de';
+    try {
+      const page = await GuidePage({ params: Promise.resolve({ slug: 'start-a-community' }) });
+      renderWithGuideI18n(page);
+
+      const deContent = getGuideContent('start-a-community', 'de');
+      const enContent = getGuideContent('start-a-community', 'en');
+      if (!deContent || !enContent) throw new Error('missing guide fixtures');
+
+      // The body resolves the active locale — H1 + a step render German.
+      const headings = screen.getAllByRole('heading', { level: 1 });
+      expect(headings[0]).toHaveTextContent(deContent.title ?? '');
+      expect(headings[0]).not.toHaveTextContent(enContent.title ?? '');
+      expect(screen.getByText(deContent.steps[0].title)).toBeInTheDocument();
+
+      // The mirrored FAQ JSON-LD matches the German visible block.
+      const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
+      const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
+      const faq = payloads.find((p) => p['@type'] === 'FAQPage');
+      expect(faq?.mainEntity?.[0]?.name).toBe(deContent.faq[0].question);
+    } finally {
+      mockServerLocale.locale = 'en';
+    }
+  });
+
+  it('falls back to the EN guide body when the active locale has no committed content (TASK-446)', async () => {
+    mockServerLocale.locale = 'de';
+    const realGuides = jest.requireActual<typeof guides>('../../../lib/seo/guides');
+    const forLocaleMock = jest.mocked(guides.guidePageForLocale);
+    // Simulate a locale surface that has NOT committed this guide: the
+    // canonical route must fall back to the EN surface instead of 404ing.
+    forLocaleMock.mockImplementation((slug: string, locale = 'en') =>
+      locale === 'en' ? realGuides.guidePageForLocale(slug, 'en') : undefined,
+    );
+    try {
+      const page = await GuidePage({ params: Promise.resolve({ slug: 'start-a-community' }) });
+      renderWithGuideI18n(page);
+
+      const enContent = getGuideContent('start-a-community', 'en');
+      if (!enContent) throw new Error('missing guide content');
+      expect(screen.getAllByRole('heading', { level: 1 })[0]).toHaveTextContent(
+        enContent.title ?? '',
+      );
+      // The loader tried the locale surface first, then the EN fallback.
+      expect(forLocaleMock).toHaveBeenCalledWith('start-a-community', 'de');
+      expect(forLocaleMock).toHaveBeenCalledWith('start-a-community');
+    } finally {
+      forLocaleMock.mockRestore();
+      mockServerLocale.locale = 'en';
+    }
   });
 });

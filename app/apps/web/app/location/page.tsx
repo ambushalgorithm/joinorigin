@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { LocationView } from '../../components/location/LocationView';
+import { getServerLocale } from '../../lib/i18n-server';
 import { JsonLd } from '../../lib/seo/JsonLdScript';
 import {
   buildLocationViewData,
@@ -15,6 +16,12 @@ import {
  * metadata + server-rendered JSON-LD (`BreadcrumbList`) and renders the
  * client view. `revalidate` keeps the hub on the 30-day ISR cadence shared
  * by every location route (§8.3).
+ *
+ * Locale-aware body (TASK-446): view data resolves through the active server
+ * locale (proxy-forwarded `x-joinorigin-locale`) — chrome (breadcrumbs,
+ * guide-link card titles, directory labels) and any committed per-locale
+ * content render in the selected locale, with EN fallback via `contentFor`.
+ * SEO metadata stays EN (arch-i18n §1.2).
  */
 export const revalidate = 2592000;
 
@@ -23,12 +30,12 @@ export const metadata: Metadata = (() => {
   return entry ? locationMetadata(entry) : {};
 })();
 
-export default function LocationHubPage() {
+export default async function LocationHubPage() {
   const entry = hubEntry();
   if (!entry) {
     return null;
   }
-  const data = buildLocationViewData(entry, 'en');
+  const data = buildLocationViewData(entry, await getServerLocale());
   const jsonLd = locationJsonLd(data);
   return (
     <>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { getServerLocale } from '../../../lib/i18n-server';
 import { JsonLd } from '../../../lib/seo/JsonLdScript';
 import {
   GUIDES_HUB_PATH,
@@ -17,13 +18,17 @@ import { GuideView } from './guide-view';
  * metadata + server-rendered `BreadcrumbList` + `FAQPage` JSON-LD.
  *
  * The FAQPage JSON-LD mirrors the visible FAQ block 1:1 — both read the same
- * committed content file (`lib/seo/content/en/guide/<slug>.ts`), so the
+ * committed content file (`lib/seo/content/<locale>/guide/<slug>.ts`), so the
  * structured data can never drift from the page copy.
  *
- * Locale-aware loader (TASK-421): content resolution goes through the shared
- * `guidePageForLocale` loader, which resolves the active locale surface
- * ('en' on this canonical route) with EN fallback — the same code path the
- * per-locale surfaces (`app/<locale>/guides/[slug]/page.tsx`) use.
+ * Locale-aware loader (TASK-421 + TASK-446): content resolution goes through
+ * the shared `guidePageForLocale` loader, which resolves the ACTIVE server
+ * locale surface (proxy-forwarded `x-joinorigin-locale`) with EN fallback —
+ * the same code path the per-locale surfaces (`app/<locale>/guides/[slug]/page.tsx`)
+ * use. A visitor with e.g. a `de` cookie sees the committed German guide body
+ * on the canonical `/guides/<slug>` URL; guides without committed content in
+ * the active locale fall back to the EN surface. SEO metadata stays EN
+ * (arch-i18n §1.2).
  */
 interface GuidePageProps {
   params: Promise<{ slug: string }>;
@@ -42,7 +47,8 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
 
 export default async function GuidePage({ params }: GuidePageProps) {
   const { slug } = await params;
-  const page = guidePageForLocale(slug);
+  const locale = await getServerLocale();
+  const page = guidePageForLocale(slug, locale) ?? guidePageForLocale(slug);
   if (!page) {
     notFound();
   }

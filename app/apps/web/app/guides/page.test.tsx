@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { getDictionary, I18nProvider } from '@joinorigin/i18n';
+import { getDictionary, I18nProvider, type Locale } from '@joinorigin/i18n';
 
 import { guidePageEntries } from '../../lib/seo/guides';
 import GuidesHubPage, { metadata } from './page';
@@ -14,6 +14,12 @@ import GuidesHubPage, { metadata } from './page';
  * keyword match + empty state) and the TASK-414 localized chrome (hero lead,
  * search label/placeholder, empty state, glossary band, universal band).
  *
+ * TASK-446: the canonical hub resolves entries through the active server
+ * locale (proxy-forwarded `x-joinorigin-locale`) — `getServerLocale` is
+ * mocked here. With the `de` cookie the hub lists the committed German guide
+ * set (locale-prefixed paths + German titles); the default `en` behavior is
+ * unchanged.
+ *
  * The guides chrome keys (TASK-411) are seeded into the test dictionary so
  * the suite is deterministic regardless of merge order with the en-keys role.
  *
@@ -22,6 +28,12 @@ import GuidesHubPage, { metadata } from './page';
  * because the page mounts GSAP Reveal/ScrollTrigger, which is flaky under
  * `jest.useFakeTimers()`.
  */
+
+jest.mock('../../lib/i18n-server', () => ({
+  getServerLocale: jest.fn(() => Promise.resolve(mockServerLocale.locale)),
+}));
+
+const mockServerLocale: { locale: Locale } = { locale: 'en' };
 
 /** TASK-411 guides-hub keys (EN source values — mirror en.json after the
  *  i18n-en-keys merge; kept here so the view tests run green in isolation). */
@@ -63,27 +75,27 @@ describe('guides hub page', () => {
     expect(metadata.openGraph?.url).toBe('http://localhost:3100/guides');
   });
 
-  it('renders a single h1', () => {
-    renderWithGuidesI18n(<GuidesHubPage />);
+  it('renders a single h1', async () => {
+    renderWithGuidesI18n(await GuidesHubPage());
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Community Building Guides');
   });
 
-  it('renders the hero lead from the dictionary key (TASK-414 MenuPageShell lead plumbing)', () => {
-    renderWithGuidesI18n(<GuidesHubPage />);
+  it('renders the hero lead from the dictionary key (TASK-414 MenuPageShell lead plumbing)', async () => {
+    renderWithGuidesI18n(await GuidesHubPage());
     expect(screen.getByText(GUIDES_CHROME.hubLead as string)).toBeInTheDocument();
   });
 
-  it('links all 12 guides', () => {
-    renderWithGuidesI18n(<GuidesHubPage />);
+  it('links all 12 guides', async () => {
+    renderWithGuidesI18n(await GuidesHubPage());
     for (const entry of guidePageEntries()) {
       expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
     }
   });
 
-  it('links the glossary and the flagship city pages', () => {
-    renderWithGuidesI18n(<GuidesHubPage />);
+  it('links the glossary and the flagship city pages', async () => {
+    renderWithGuidesI18n(await GuidesHubPage());
     expect(screen.getByRole('link', { name: 'Community OS glossary' })).toHaveAttribute(
       'href',
       '/glossary',
@@ -98,23 +110,23 @@ describe('guides hub page', () => {
     );
   });
 
-  it('renders the BreadcrumbList JSON-LD', () => {
-    renderWithGuidesI18n(<GuidesHubPage />);
+  it('renders the BreadcrumbList JSON-LD', async () => {
+    renderWithGuidesI18n(await GuidesHubPage());
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     expect(payloads.some((p) => p['@type'] === 'BreadcrumbList')).toBe(true);
   });
 
-  it('renders a keyboard-accessible search input with translated label/placeholder (TASK-317 + TASK-414)', () => {
-    renderWithGuidesI18n(<GuidesHubPage />);
+  it('renders a keyboard-accessible search input with translated label/placeholder (TASK-317 + TASK-414)', async () => {
+    renderWithGuidesI18n(await GuidesHubPage());
     const search = screen.getByRole('searchbox', { name: 'Search guides' });
     expect(search).toBeInTheDocument();
     expect(search).toHaveAttribute('type', 'search');
     expect(search).toHaveAttribute('placeholder', 'Search by guide title or keyword');
   });
 
-  it('renders the localized glossary band and universal band (TASK-414)', () => {
-    renderWithGuidesI18n(<GuidesHubPage />);
+  it('renders the localized glossary band and universal band (TASK-414)', async () => {
+    renderWithGuidesI18n(await GuidesHubPage());
     expect(
       screen.getByText(/Learn the core terms behind groups, rooms, moderation/),
     ).toBeInTheDocument();
@@ -127,7 +139,7 @@ describe('guides hub page', () => {
 
   it('filters guide cards by keyword, case-insensitively, after the debounce (TASK-317)', async () => {
     const user = userEvent.setup();
-    renderWithGuidesI18n(<GuidesHubPage />);
+    renderWithGuidesI18n(await GuidesHubPage());
 
     const search = screen.getByRole('searchbox', { name: 'Search guides' });
     await user.type(search, 'meetup');
@@ -144,7 +156,7 @@ describe('guides hub page', () => {
 
   it('shows an empty state when no guide card matches (TASK-317)', async () => {
     const user = userEvent.setup();
-    renderWithGuidesI18n(<GuidesHubPage />);
+    renderWithGuidesI18n(await GuidesHubPage());
 
     const search = screen.getByRole('searchbox', { name: 'Search guides' });
     await user.type(search, 'quantum-community');
@@ -153,5 +165,31 @@ describe('guides hub page', () => {
       expect(screen.queryByTestId('guides-hub-grid')).not.toBeInTheDocument();
       expect(screen.getByTestId('guides-hub-empty')).toHaveTextContent('No guides match');
     });
+  });
+
+  it('renders the committed guide set for the active locale on the canonical route (TASK-446)', async () => {
+    mockServerLocale.locale = 'de';
+    try {
+      renderWithGuidesI18n(await GuidesHubPage());
+      // The canonical hub resolves the forwarded locale's guide set: every
+      // committed de guide card links to its locale-prefixed path with the
+      // German registry title (no EN hardcode).
+      const deEntries = guidePageEntries('de');
+      expect(deEntries.length).toBeGreaterThan(0);
+      for (const entry of deEntries) {
+        expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
+      }
+      // German titles are visibly different from EN — assert one marker.
+      const enTitle = guidePageEntries().find((e) => e.slug === 'start-a-community')?.title;
+      const deTitle = deEntries.find((e) => e.slug === 'start-a-community')?.title;
+      expect(deTitle).toBeDefined();
+      expect(deTitle).not.toBe(enTitle);
+      expect(screen.getByRole('link', { name: deTitle! })).toHaveAttribute(
+        'href',
+        '/de/guides/start-a-community',
+      );
+    } finally {
+      mockServerLocale.locale = 'en';
+    }
   });
 });
