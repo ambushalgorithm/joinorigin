@@ -103,50 +103,21 @@ export function findCityBySlug(slug: string): LocationCity | undefined {
  * The user-approved Sprint 12 MVP scope fixes the 5-type set:
  * startup · creative · political · meetup · small-business.
  * These keys are the variant URL segments and the stable join key for
- * variant content + chrome. Display labels are EN chrome; the de labels
- * below support the MVP Berlin `de` registry titles (full per-locale
- * chrome localization is TASK-310's `seoContent` namespace).
+ * variant content + chrome. Display labels are NOT hardcoded here — they
+ * resolve from the `seoContent.groupTypes.*` dictionary per locale
+ * (TASK-310 + TASK-411/TASK-416), so every surface renders localized
+ * chrome and no EN label ever drifts into another locale.
  * ------------------------------------------------------------------ */
 
 export type GroupTypeKey = 'startup' | 'creative' | 'political' | 'meetup' | 'small-business';
 
 export const GROUP_TYPES = [
-  {
-    key: 'startup',
-    label: 'Startup communities',
-    labelDe: 'Startup-Communities',
-    intent: 'startup communities',
-  },
-  {
-    key: 'creative',
-    label: 'Creative & design communities',
-    labelDe: 'Kreativ- & Design-Communities',
-    intent: 'creative and design communities',
-  },
-  {
-    key: 'political',
-    label: 'Political & civic communities',
-    labelDe: 'Politische & bürgerschaftliche Communities',
-    intent: 'political and civic communities',
-  },
-  {
-    key: 'meetup',
-    label: 'Community meetups & events',
-    labelDe: 'Community-Meetups & Veranstaltungen',
-    intent: 'community meetups and events',
-  },
-  {
-    key: 'small-business',
-    label: 'Small business communities',
-    labelDe: 'Kleinunternehmer-Communities',
-    intent: 'small business communities',
-  },
-] as const satisfies readonly {
-  key: GroupTypeKey;
-  label: string;
-  labelDe: string;
-  intent: string;
-}[];
+  { key: 'startup' },
+  { key: 'creative' },
+  { key: 'political' },
+  { key: 'meetup' },
+  { key: 'small-business' },
+] as const satisfies readonly { key: GroupTypeKey }[];
 
 export function isGroupTypeKey(value: string): value is GroupTypeKey {
   return (GROUP_TYPES as readonly { key: string }[]).some((t) => t.key === value);
@@ -160,9 +131,9 @@ export function getGroupType(key: GroupTypeKey): (typeof GROUP_TYPES)[number] {
   return type;
 }
 
-/** EN display label for a group-type key. */
+/** EN display label for a group-type key (via the `seoContent` chrome). */
 export function groupTypeLabel(key: GroupTypeKey): string {
-  return getGroupType(key).label;
+  return getT(getDictionary('en'))(`seoContent.groupTypes.${groupTypeChromeKey(key)}`);
 }
 
 /** Map a group-type key to its `seoContent.groupTypes.*` dictionary key. */
@@ -172,17 +143,11 @@ function groupTypeChromeKey(key: GroupTypeKey): string {
 
 /**
  * Per-locale display label for a group-type key — reads the `seoContent`
- * chrome namespace (TASK-310) with a fallback to the EN/de config labels so
- * registry titles + view links stay deterministic even if a key drifts.
+ * chrome namespace (TASK-310). Returns the raw key only if a locale drifts
+ * (the client provider falls back to EN, so surfaces stay localized).
  */
 export function groupTypeLabelForLocale(key: GroupTypeKey, locale: Locale): string {
-  const type = getGroupType(key);
-  const chrome = getT(getDictionary(locale))(`seoContent.groupTypes.${groupTypeChromeKey(key)}`);
-  if (chrome !== `seoContent.groupTypes.${groupTypeChromeKey(key)}`) {
-    return chrome;
-  }
-  if (locale === 'de') return type.labelDe;
-  return type.label;
+  return getT(getDictionary(locale))(`seoContent.groupTypes.${groupTypeChromeKey(key)}`);
 }
 
 /** Reserved variant slug for the idea page (design §3.4). */

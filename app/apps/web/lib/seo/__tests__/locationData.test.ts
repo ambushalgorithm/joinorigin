@@ -59,18 +59,14 @@ describe('lib/seo locationData — 5-type group-type taxonomy', () => {
     ]);
   });
 
-  it('has EN labels + de labels for the Berlin surface', () => {
-    for (const type of GROUP_TYPES) {
-      expect(type.label.length).toBeGreaterThan(0);
-      expect(type.labelDe.length).toBeGreaterThan(0);
-    }
-  });
-
-  it('is a config array, not code (design §4.4)', () => {
+  it('is a config array, not code (design §4.4) — labels resolve from the dictionary', () => {
     expect(isGroupTypeKey('startup')).toBe(true);
     expect(isGroupTypeKey('not-a-type')).toBe(false);
-    expect(getGroupType('meetup').label).toBe('Community meetups & events');
+    // Display labels come from the seoContent.groupTypes.* chrome (TASK-416),
+    // never from the config — the config carries keys only.
+    expect(getGroupType('meetup').key).toBe('meetup');
     expect(groupTypeLabel('small-business')).toBe('Small business communities');
+    expect(groupTypeLabel('startup')).toBe('Startup communities');
   });
 
   it('reserves the ideas slug for idea pages (§3.4)', () => {

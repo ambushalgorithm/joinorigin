@@ -20,7 +20,7 @@
  * No routes/pages are created here — this is data only.
  */
 
-import type { Locale } from '@joinorigin/i18n';
+import { getDictionary, getT, type Locale } from '@joinorigin/i18n';
 
 import { getCityContent, getCountryContent, getRegionContent, hasContent } from './content';
 import type { CityContent, LocationContent } from './content/types';
@@ -50,7 +50,102 @@ import type { FlagshipCityConfig, GroupTypeKey } from './locationData';
 export const LOCATION_HUB_PATH = '/location';
 
 const BRAND = 'JoinOrigin';
-const WAITLIST_PHRASE = 'Join Origin and get discovered today.';
+
+/* ------------------------------------------------------------------ *
+ * Title/description builders — metadata templates (design §8.3)
+ *
+ * All chrome strings resolve from the `seoContent.metadata.*` dictionary
+ * keys authored in TASK-411 (TASK-416 consumes them), so registry titles
+ * + descriptions are localized per surface instead of hardcoded EN.
+ * ------------------------------------------------------------------ */
+
+/** The `t` function bound to a surface locale. */
+function tFor(locale: Locale) {
+  return getT(getDictionary(locale));
+}
+
+/** Localized "Join Origin and get discovered today." CTA phrase. */
+function waitlistPhraseFor(locale: Locale): string {
+  return tFor(locale)('seoContent.metadata.waitlistPhrase');
+}
+
+function cityPageTitle(
+  displayName: string,
+  regionLabel: string | undefined,
+  locale: Locale,
+): string {
+  const suffix =
+    regionLabel && regionLabel.toLowerCase() !== displayName.toLowerCase()
+      ? `, ${regionLabel}`
+      : '';
+  const t = tFor(locale);
+  const base = suffix
+    ? t('seoContent.metadata.title.communitiesInWithRegion', {
+        name: displayName,
+        region: regionLabel as string,
+      })
+    : t('seoContent.metadata.title.communitiesIn', { name: displayName });
+  return `${base} | ${BRAND}`;
+}
+
+function variantPageTitle(label: string, displayName: string, locale: Locale): string {
+  const t = tFor(locale);
+  return `${t('seoContent.metadata.title.variantIn', { label, name: displayName })} | ${BRAND}`;
+}
+
+function ideasPageTitle(displayName: string, locale: Locale): string {
+  const t = tFor(locale);
+  return `${t('seoContent.metadata.title.ideasIn', { name: displayName })} | ${BRAND}`;
+}
+
+function countryPageTitle(name: string, locale: Locale): string {
+  const t = tFor(locale);
+  return `${t('seoContent.metadata.title.communitiesIn', { name })} | ${BRAND}`;
+}
+
+function regionPageTitle(label: string, countryLabel: string | undefined, locale: Locale): string {
+  const t = tFor(locale);
+  const base = countryLabel
+    ? t('seoContent.metadata.title.communitiesInWithRegion', { name: label, region: countryLabel })
+    : t('seoContent.metadata.title.communitiesIn', { name: label });
+  return `${base} | ${BRAND}`;
+}
+
+function cityPageDescription(displayName: string, locale: Locale): string {
+  return tFor(locale)('seoContent.metadata.description.city', {
+    city: displayName,
+    waitlist: waitlistPhraseFor(locale),
+  });
+}
+
+function variantPageDescription(label: string, displayName: string, locale: Locale): string {
+  return tFor(locale)('seoContent.metadata.description.variant', {
+    label,
+    city: displayName,
+    waitlist: waitlistPhraseFor(locale),
+  });
+}
+
+function ideasPageDescription(displayName: string, locale: Locale): string {
+  return tFor(locale)('seoContent.metadata.description.ideas', {
+    city: displayName,
+    waitlist: waitlistPhraseFor(locale),
+  });
+}
+
+function countryPageDescription(name: string, locale: Locale): string {
+  return tFor(locale)('seoContent.metadata.description.country', {
+    country: name,
+    waitlist: waitlistPhraseFor(locale),
+  });
+}
+
+function regionPageDescription(label: string, locale: Locale): string {
+  return tFor(locale)('seoContent.metadata.description.region', {
+    region: label,
+    waitlist: waitlistPhraseFor(locale),
+  });
+}
 
 export interface LocationPageEntry {
   /** Dynamic segment values (design §8.4). Hub uses an empty object. */
@@ -73,55 +168,6 @@ export interface LocationPageEntry {
   groupType?: GroupTypeKey | typeof IDEA_VARIANT;
   /** Content locale (set on per-locale entries, e.g. Berlin `de`). */
   locale?: Locale;
-}
-
-/* ------------------------------------------------------------------ *
- * Title/description builders
- * ------------------------------------------------------------------ */
-
-function cityPageTitle(displayName: string, regionLabel: string | undefined): string {
-  const suffix =
-    regionLabel && regionLabel.toLowerCase() !== displayName.toLowerCase()
-      ? `, ${regionLabel}`
-      : '';
-  return `Communities in ${displayName}${suffix} | ${BRAND}`;
-}
-
-function variantPageTitle(label: string, displayName: string): string {
-  return `${label} in ${displayName} | ${BRAND}`;
-}
-
-function ideasPageTitle(displayName: string): string {
-  return `30 community event ideas in ${displayName} | ${BRAND}`;
-}
-
-function countryPageTitle(name: string): string {
-  return `Communities in ${name} | ${BRAND}`;
-}
-
-function regionPageTitle(label: string, countryLabel?: string): string {
-  const suffix = countryLabel ? `, ${countryLabel}` : '';
-  return `Communities in ${label}${suffix} | ${BRAND}`;
-}
-
-function cityPageDescription(displayName: string): string {
-  return `Find or start communities in ${displayName} — startup, creative, political, meetup, and small business groups. ${WAITLIST_PHRASE}`;
-}
-
-function variantPageDescription(label: string, displayName: string): string {
-  return `Find or start ${label} in ${displayName} — real venues, groups, and how-tos. ${WAITLIST_PHRASE}`;
-}
-
-function ideasPageDescription(displayName: string): string {
-  return `Discover 30 community event ideas in ${displayName} — networking, learning, outdoor, professional, creative, and impact events. ${WAITLIST_PHRASE}`;
-}
-
-function countryPageDescription(name: string): string {
-  return `Find or start communities in ${name} — from startup scenes to small business networks. ${WAITLIST_PHRASE}`;
-}
-
-function regionPageDescription(label: string): string {
-  return `Find or start communities in ${label} — meetups, groups, and events across the region. ${WAITLIST_PHRASE}`;
 }
 
 const PRIORITY: Record<PageKind, number> = {
@@ -202,7 +248,7 @@ function hubEntry(locale: Locale): LocationPageEntry {
     params: {},
     path: locale === 'en' ? LOCATION_HUB_PATH : `/${locale}${LOCATION_HUB_PATH}`,
     title: 'Communities by City — Find or Start a Community Near You | JoinOrigin',
-    description: `Explore communities by city around the world — startup, creative, political, meetup, and small business groups. ${WAITLIST_PHRASE}`,
+    description: `Explore communities by city around the world — startup, creative, political, meetup, and small business groups. ${waitlistPhraseFor(locale)}`,
     tier: 1,
     locale,
   });
@@ -248,8 +294,8 @@ function countryEntry(country: LocationCountry, locale: Locale): LocationPageEnt
   const flagshipParent = FLAGSHIP_CITIES.find((flagship) => flagship.countrySlug === slug);
   const tier: 1 | 3 = flagshipParent ? 1 : 3;
   const content = getCountryContent(slug, locale);
-  const title = content?.title ?? countryPageTitle(country.asciiName);
-  const description = content?.description ?? countryPageDescription(country.asciiName);
+  const title = content?.title ?? countryPageTitle(country.asciiName, locale);
+  const description = content?.description ?? countryPageDescription(country.asciiName, locale);
   return buildEntry({
     kind: 'country',
     params: { country: slug },
@@ -275,8 +321,9 @@ function regionEntry(region: LocationRegion, locale: Locale): LocationPageEntry 
   const content = getRegionContent(slug, locale);
   const label = flagshipParent?.regionLabel ?? region.asciiName;
   const title =
-    content?.title ?? regionPageTitle(label, flagshipParent?.countryLabel ?? country.asciiName);
-  const description = content?.description ?? regionPageDescription(label);
+    content?.title ??
+    regionPageTitle(label, flagshipParent?.countryLabel ?? country.asciiName, locale);
+  const description = content?.description ?? regionPageDescription(label, locale);
   return buildEntry({
     kind: 'region',
     params: { country: countrySeg, region: slug },
@@ -309,11 +356,11 @@ function cityEntry(city: LocationCity, locale: Locale): LocationPageEntry | null
   let title: string;
   let description: string;
   if (content?.kind === 'city') {
-    title = content.title ?? cityPageTitle(displayName, regionLabel);
-    description = content.description ?? cityPageDescription(displayName);
+    title = content.title ?? cityPageTitle(displayName, regionLabel, locale);
+    description = content.description ?? cityPageDescription(displayName, locale);
   } else {
-    title = cityPageTitle(displayName, regionLabel);
-    description = cityPageDescription(displayName);
+    title = cityPageTitle(displayName, regionLabel, locale);
+    description = cityPageDescription(displayName, locale);
   }
 
   return buildEntry({
@@ -341,10 +388,11 @@ function variantEntry(
 ): LocationPageEntry {
   const label = groupTypeLabelForLocale(typeKey, locale);
   const title =
-    content.pageTitles?.variants?.[typeKey] ?? variantPageTitle(label, flagship.displayName);
+    content.pageTitles?.variants?.[typeKey] ??
+    variantPageTitle(label, flagship.displayName, locale);
   const description =
     content.pageTitles?.variantDescriptions?.[typeKey] ??
-    variantPageDescription(label, flagship.displayName);
+    variantPageDescription(label, flagship.displayName, locale);
   return buildEntry({
     kind: 'variant',
     params: {
@@ -376,9 +424,9 @@ function ideasEntry(
   content: CityContent,
   locale: Locale,
 ): LocationPageEntry {
-  const title = content.pageTitles?.ideas ?? ideasPageTitle(flagship.displayName);
+  const title = content.pageTitles?.ideas ?? ideasPageTitle(flagship.displayName, locale);
   const description =
-    content.pageTitles?.ideasDescription ?? ideasPageDescription(flagship.displayName);
+    content.pageTitles?.ideasDescription ?? ideasPageDescription(flagship.displayName, locale);
   // G4 intent phrase in the surface's language (de: "Ideen", EN title
   // template: "30 community event ideas in {city}").
   const typePhrase = locale === 'de' ? 'Ideen' : 'community event ideas';

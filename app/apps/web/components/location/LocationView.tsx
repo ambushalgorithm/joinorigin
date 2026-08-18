@@ -37,7 +37,8 @@ import type { LocationViewData } from '../../lib/seo/locationView';
  * server wrappers from the registry view model (`lib/seo/locationView.ts`).
  *
  * Template anatomy per design §6.4:
- *  1. unique city intro (hero lead — authored content),
+ *  1. unique city intro (authored content — each paragraph renders as its
+ *     own block; the short registry lead is the fallback),
  *  2. city data block (data points),
  *  3. group-type links (only committed variants + the idea page),
  *  4. related links (sibling cities + guides — internal-link mesh §8.5),
@@ -222,24 +223,6 @@ const StepList = styled.ol`
   }
 `;
 
-/** Human label for a hub-directory entry kind (TASK-317 card body). */
-function hubDirectoryKindLabel(kind: string): string {
-  switch (kind) {
-    case 'country':
-      return 'Country';
-    case 'region':
-      return 'Region';
-    case 'city':
-      return 'City';
-    case 'variant':
-      return 'Community type';
-    case 'ideas':
-      return 'Community event ideas';
-    default:
-      return 'Location';
-  }
-}
-
 export function LocationView({ data }: { data: LocationViewData }) {
   const { t } = useI18n();
   const heroTitle = data.heading;
@@ -297,6 +280,15 @@ export function LocationView({ data }: { data: LocationViewData }) {
     return link.label;
   };
 
+  /** Human label for a hub-directory entry kind (TASK-317 card body) —
+   *  resolves `seoContent.location.directoryKinds.<kind>` chrome with the
+   *  `fallback` key for unknown kinds (TASK-411/TASK-416). */
+  const directoryKindLabel = (kind: string): string => {
+    const key = `seoContent.location.directoryKinds.${kind}`;
+    const label = t(key);
+    return label === key ? t('seoContent.location.directoryKinds.fallback') : label;
+  };
+
   return (
     <MenuPageShell
       hero={{
@@ -339,7 +331,16 @@ export function LocationView({ data }: { data: LocationViewData }) {
               <SectionTitle>
                 {t('seoContent.location.presenceClaim', { city: data.entityLabel })}
               </SectionTitle>
-              <BodyCopy data-testid="location-intro">{data.intro || data.lead}</BodyCopy>
+              {/* City intros are paragraph arrays (TASK-410) — each entry
+                  renders as its own paragraph block (TASK-416); kinds without
+                  authored prose fall back to the short registry lead. */}
+              <div data-testid="location-intro">
+                {data.intro.length > 0 ? (
+                  data.intro.map((paragraph) => <BodyCopy key={paragraph}>{paragraph}</BodyCopy>)
+                ) : (
+                  <BodyCopy>{data.lead}</BodyCopy>
+                )}
+              </div>
             </Section>
           </Reveal>
 
@@ -432,12 +433,12 @@ export function LocationView({ data }: { data: LocationViewData }) {
           <PageContainer>
             <Section>
               <SectionTitle data-testid="location-hub-directory-title">
-                Browse locations
+                {t('seoContent.location.browseLocations')}
               </SectionTitle>
               <HubSearchInput
                 id="location-hub-search"
-                label="Search locations"
-                placeholder="Search by city, country, or community type"
+                label={t('seoContent.location.searchLocationsLabel')}
+                placeholder={t('seoContent.location.searchLocationsPlaceholder')}
                 value={hubQuery}
                 onChange={setHubQuery}
                 data-testid="location-hub-search"
@@ -454,13 +455,13 @@ export function LocationView({ data }: { data: LocationViewData }) {
                           {entry.name}
                         </Link>
                       </CardTitle>
-                      <CardBody>{hubDirectoryKindLabel(entry.kind)}</CardBody>
+                      <CardBody>{directoryKindLabel(entry.kind)}</CardBody>
                     </Card>
                   ))}
                 </CardGrid>
               ) : (
                 <BodyCopy data-testid="location-hub-empty" role="status">
-                  No locations match “{debouncedHubQuery}”.
+                  {t('seoContent.location.emptyState', { query: debouncedHubQuery })}
                 </BodyCopy>
               )}
             </Section>
@@ -567,7 +568,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
       ) : null}
 
       <LocationCta source={data.waitlistSource} />
-      <Attribution>{data.attribution}</Attribution>
+      <Attribution>{t('seoContent.location.attribution')}</Attribution>
     </MenuPageShell>
   );
 }
