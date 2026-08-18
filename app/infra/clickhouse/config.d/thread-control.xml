@@ -37,10 +37,18 @@
                                             of concurrent queries, so 200 is
                                             generous while capping thread
                                             growth.
-    <keep_alive_timeout>                1  — drop idle keep-alive connections
-                                            after 1s (was 10s) so churned
-                                            connections release their
-                                            server_pool thread immediately.
+    <keep_alive_timeout>               10  — KEEP at the ClickHouse default (10s).
+                                            Setting this to 1s breaks Plausible's
+                                            ecto_ch/Mint HTTP client: ClickHouse
+                                            drops the client's pooled keep-alive
+                                            connections after 1s, the client
+                                            reuses a stale one, and the
+                                            locations_sync bulk INSERT dies with
+                                            "Mint.TransportError connection reset
+                                            by peer" — crash-looping the container
+                                            on fresh deploys and producing steady
+                                            "Ch.Connection ... socket closed"
+                                            churn at runtime.
     <max_concurrent_queries>          100  — hard cap on concurrently executing
                                             queries (default 1000).
     <max_thread_pool_size>            256  — cap on the Global thread pool used
@@ -65,7 +73,7 @@
 -->
 <clickhouse>
     <max_connections>200</max_connections>
-    <keep_alive_timeout>1</keep_alive_timeout>
+    <keep_alive_timeout>10</keep_alive_timeout>
     <max_concurrent_queries>100</max_concurrent_queries>
     <max_thread_pool_size>256</max_thread_pool_size>
     <max_thread_pool_free_size>64</max_thread_pool_free_size>
