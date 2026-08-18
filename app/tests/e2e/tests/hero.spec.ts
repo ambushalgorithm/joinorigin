@@ -11,7 +11,7 @@ import { expect, test } from '@playwright/test';
  */
 
 const FULL_TEXT =
-  'Ideas, projects and community collaboration space — where teams and the best projects find their Origin.';
+  'Ideas, projects and community collaboration space — where new and existing teams find their Origin.';
 const FULL_TEXT_LENGTH = FULL_TEXT.length;
 
 test.describe('hero left — typewriter heading', () => {
