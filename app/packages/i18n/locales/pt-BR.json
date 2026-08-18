@@ -61,10 +61,10 @@
   },
   "home": {
     "hero": {
-      "headline": "Espaço de colaboração para ideias, projetos e comunidades — onde times e os melhores projetos encontram seu Origin.",
+      "headline": "Espaço de colaboração para ideias, projetos e comunidades — onde times novos e existentes encontram seu Origin.",
       "headlineAccent": "Origin.",
       "startProject": "Iniciar projeto",
-      "supporting": "Crie um perfil que funciona como seu currículo, publique sua ideia como uma página e comece ou entre em uma comunidade sobre qualquer coisa — uma pequena empresa, uma startup de IA, um clube do livro, uma corrida de 10 km.",
+      "supporting": "Crie um perfil que funciona como seu currículo, publique sua ideia como uma página e comece ou entre em uma comunidade sobre qualquer coisa — uma ideia nova, uma pequena empresa existente, uma startup de IA, um clube do livro ou uma corrida de 10 km.",
       "trustAvatarsAlt": "Membro da JoinOrigin {{number}}",
       "trustCopy": "Junte-se a mais de 2.400 criadores que já colaboram"
     },
@@ -99,7 +99,7 @@
   "waitlist": {
     "close": "Fechar",
     "heading": "Entrar na lista de espera",
-    "subcopy": "Seja o primeiro na fila da plataforma. Enviaremos um e-mail quando seu espaço de trabalho estiver pronto.",
+    "subcopy": "Seja descoberto no sistema operacional de comunidades — seja para começar algo novo ou para expandir um projeto existente. Enviaremos um e-mail quando seu espaço de trabalho estiver pronto.",
     "nameLabel": "Nome",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-mail",
@@ -120,8 +120,8 @@
     }
   },
   "ctaBand": {
-    "headline": "Encontre suas pessoas. Construa junto.",
-    "subline": "Junte-se a mais de 2.400 criadores na rede social de colaboração do Origin e seja descoberto hoje.",
+    "headline": "Encontre suas pessoas. Comece ou expanda algo juntos.",
+    "subline": "Junte-se a mais de 2.400 criadores — das primeiras ideias às empresas consolidadas — na rede social de colaboração do Origin e seja descoberto hoje.",
     "joinLabel": "Seja descoberto",
     "contactLabel": "Fale conosco"
   },
@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Objetos principais",
       "title": "Tudo o que uma comunidade precisa, em um espaço de trabalho tranquilo",
-      "lead": "O Origin é uma rede social de colaboração construída em torno de oito objetos principais: perfis, ideias, comunidades, comunicação, feed, projetos, empresas e oportunidades. Em vez de cinco ferramentas separadas, seus relacionamentos vivem em um só lugar."
+      "lead": "O Origin é uma rede social de colaboração construída em torno de oito objetos principais: perfis, ideias, comunidades, comunicação, feed, projetos, empresas e oportunidades. Esteja você começando algo novo ou expandindo uma empresa existente, seus relacionamentos vivem em um só lugar em vez de cinco ferramentas separadas."
     },
     "sectionCoreObjects": "Objetos principais",
     "coreObjects": {
@@ -164,25 +164,55 @@
       "toolHeader": "Ferramenta",
       "greatAtHeader": "É ótima em",
       "addsHeader": "O que a JoinOrigin adiciona",
-      "linkedin": {
-        "tool": "LinkedIn",
-        "strength": "encontra profissionais",
-        "gap": "mas não potencializa as comunidades, o chat e os projetos que transformam conexões em colaboração."
+      "slack": {
+        "tool": "Slack",
+        "strength": "conecta equipes em canais",
+        "gap": "mas é feito para um único espaço de trabalho — não carrega perfis, comunidades, projetos e oportunidades pelas pessoas que você já conhece."
       },
       "discord": {
         "tool": "Discord",
         "strength": "comunica",
         "gap": "mas não é organizado em torno de perfis, comunidades, projetos e oportunidades em um grafo social compartilhado."
       },
-      "reddit": {
-        "tool": "Reddit",
-        "strength": "discute",
-        "gap": "mas é anônimo e não leva reputação, relacionamentos ou projetos adiante."
+      "whatsapp": {
+        "tool": "WhatsApp",
+        "strength": "envia mensagens",
+        "gap": "mas é um aplicativo de chat privado — não dá às comunidades perfis, projetos e descoberta duradouros em um grafo social compartilhado."
       },
-      "github": {
-        "tool": "GitHub",
-        "strength": "programa",
-        "gap": "mas é feito para repositórios, não para toda a amplitude da colaboração humana."
+      "linkedin": {
+        "tool": "LinkedIn",
+        "strength": "encontra profissionais",
+        "gap": "mas não potencializa as comunidades, o chat e os projetos que transformam conexões em colaboração."
+      },
+      "meetup": {
+        "tool": "Meetup",
+        "strength": "encontra eventos",
+        "gap": "mas é construído em torno de confirmações de presença avulsas — não carrega a comunidade, os projetos e os relacionamentos que crescem depois do evento."
+      },
+      "eventbrite": {
+        "tool": "Eventbrite",
+        "strength": "vende ingressos",
+        "gap": "mas administra eventos, não comunidades — não dá ao seu grupo um lar duradouro com perfis, projetos e oportunidades."
+      },
+      "notion": {
+        "tool": "Notion",
+        "strength": "organiza o trabalho",
+        "gap": "mas é uma ferramenta de documentos — não conecta as pessoas por trás das páginas em uma comunidade que trabalha junta."
+      },
+      "asana": {
+        "tool": "Asana",
+        "strength": "acompanha projetos",
+        "gap": "mas é feita para tarefas, não para relacionamentos — não revela as pessoas e comunidades que fazem os projetos acontecerem."
+      },
+      "patreon": {
+        "tool": "Patreon",
+        "strength": "financia criadores",
+        "gap": "mas é construída em torno de assinaturas — não dá aos seus membros perfis, projetos e comunidades em um grafo social compartilhado."
+      },
+      "facebook": {
+        "tool": "Facebook",
+        "strength": "conecta grupos",
+        "gap": "mas é construído em torno de um feed de anúncios — não dá às comunidades um espaço de trabalho tranquilo com perfis, projetos e oportunidades."
       }
     },
     "sectionRoadmap": "Roadmap",
@@ -528,7 +558,29 @@
       "translatePage": "Traduzir esta página",
       "variantVenuesTitle": "Onde {{type}} se reúnem",
       "variantFormatsTitle": "Formatos típicos",
-      "variantHowToTitle": "Como começar"
+      "variantHowToTitle": "Como começar",
+      "browseLocations": "Explorar locais",
+      "searchLocationsLabel": "Pesquisar locais",
+      "searchLocationsPlaceholder": "Pesquise por cidade, país ou tipo de comunidade",
+      "emptyState": "Nenhum local corresponde a “{{query}}”.",
+      "attribution": "Dados de localização © contribuidores da GeoNames, CC BY 4.0; dados de cidades © SimpleMaps (worldcities basic), CC BY 4.0.",
+      "directoryKinds": {
+        "country": "País",
+        "region": "Região",
+        "city": "Cidade",
+        "variant": "Tipo de comunidade",
+        "ideas": "Ideias de eventos comunitários",
+        "fallback": "Local"
+      },
+      "guideCardTitles": {
+        "start-a-community": "Começar uma comunidade",
+        "organize-a-meetup": "Organizar um encontro",
+        "first-10-members": "Conseguir seus primeiros 10 membros",
+        "find-a-co-founder": "Encontrar um cofundador",
+        "keep-a-community-active": "Manter uma comunidade ativa",
+        "hybrid-communities": "Administrar comunidades híbridas",
+        "moderation": "Moderar sua comunidade"
+      }
     },
     "groupTypes": {
       "startup": "Comunidades de startups",
@@ -552,7 +604,19 @@
       "exploreCommunities": "Explore comunidades",
       "howJoinOriginHelps": "Como o JoinOrigin pode ajudar",
       "keepLearning": "Continue aprendendo",
-      "translatePage": "Traduzir esta página"
+      "translatePage": "Traduzir esta página",
+      "hubLead": "Doze guias práticos e atemporais para encontrar, participar e começar grupos — e para se comunicar em uma sala controlada pelo criador. De publicar uma ideia a uma moderação saudável.",
+      "searchLabel": "Pesquisar guias",
+      "searchPlaceholder": "Pesquise por título do guia ou palavra-chave",
+      "emptyState": "Nenhum guia corresponde a “{{query}}”.",
+      "glossaryBandCopy": "Aprenda os termos essenciais por trás de grupos, salas, moderação, integração e ciclos de engajamento no <1>{{glossary}}</1>.",
+      "universalCopy": "Os guias são universais — as comunidades são locais. Encontre ou comece uma comunidade em uma cidade perto de você:",
+      "continueBuilding": "Continue construindo com o próximo guia da série.",
+      "practiceInCity": "Coloque estas etapas em prática em uma cidade real.",
+      "howJoinOriginHelpsBody": "O JoinOrigin é um sistema operacional de comunidades que ajuda você a encontrar ou começar comunidades — as etapas acima funcionam na plataforma e com as ferramentas que você já tem. O JoinOrigin cuida da estrutura, da descoberta e da organização para que você possa se concentrar nos seus membros. Clique em Começar agora e seja descoberto.",
+      "keepLearningGuides": "Navegue por todos os guias no <1>hub de construção de comunidade</1>.",
+      "keepLearningGlossary": "Aprenda os termos essenciais no <1>glossário do sistema comunitário</1>.",
+      "keepLearningLocations": "Encontre uma página de cidade no <1>hub de locais</1> para começar localmente."
     },
     "glossary": {
       "eyebrow": "Sistema comunitário",
@@ -561,10 +625,63 @@
       "whyTitle": "Por que um glossário",
       "termsTitle": "Termos principais",
       "goDeeper": "Aprofunde-se",
-      "comingSoon": "Consulte os guias para ver como este termo é usado."
+      "terms": {
+        "community": {
+          "name": "Comunidade",
+          "definition": "Um grupo de pessoas que compartilham interesses, setores, objetivos ou oportunidades e se conectam em torno deles. No Origin, toda comunidade vem com uma sala onde os membros se encontram e constroem juntos."
+        },
+        "community-manager": {
+          "name": "Gestor de comunidade",
+          "definition": "A pessoa que mantém uma comunidade acolhedora, ativa e alinhada à missão — recebendo novos membros, estimulando conversas e coordenando projetos. No Origin, o membro que começa uma comunidade é dono e modera a sua sala."
+        },
+        "community-os": {
+          "name": "Sistema operacional de comunidades",
+          "definition": "Uma plataforma que reúne perfis, comunidades, chat, projetos e oportunidades em um único espaço de trabalho organizado. O Origin é o sistema operacional de comunidades por trás da JoinOrigin."
+        },
+        "moderation": {
+          "name": "Moderação",
+          "definition": "A prática de manter uma comunidade segura e dentro do tema por meio de diretrizes claras e de uma aplicação consistente e justa. Uma boa moderação protege os relacionamentos que fazem uma comunidade valer a pena."
+        },
+        "onboarding": {
+          "name": "Integração",
+          "definition": "O processo de receber novos membros e ajudá-los a dar uma primeira ação significativa — apresentar-se, entrar em uma conversa ou começar um projeto. Uma integração forte transforma novos membros em membros ativos."
+        },
+        "activation": {
+          "name": "Ativação",
+          "definition": "O momento em que um novo membro realiza a ação que o torna parte da comunidade — a primeira publicação, o primeiro evento ou o primeiro projeto. A ativação é o passo entre entrar e contribuir."
+        },
+        "engagement-loop": {
+          "name": "Ciclo de engajamento",
+          "definition": "O ciclo repetido de participação que mantém uma comunidade viva: alguém publica, outros respondem e a conversa cria mais motivos para voltar. Ciclos saudáveis são o coração de uma comunidade ativa."
+        },
+        "hybrid-events": {
+          "name": "Eventos híbridos",
+          "definition": "Eventos que combinam participação presencial e online, para que membros em lugares diferentes possam se juntar ao mesmo encontro. Formatos híbridos ajudam as comunidades a permanecerem conectadas entre os encontros."
+        },
+        "co-founder": {
+          "name": "Cofundador",
+          "definition": "Uma pessoa que constrói um projeto ou empresa com você e compartilha a jornada de fundação. No Origin, cofundadores costumam ser encontrados pela rede — pessoas que entram na sua página de ideia e decidem construir juntas."
+        }
+      }
     },
     "cta": {
       "joinWaitlist": "Seja descoberto"
+    },
+    "metadata": {
+      "waitlistPhrase": "Junte-se ao Origin e seja descoberto hoje.",
+      "title": {
+        "communitiesIn": "Comunidades em {{name}}",
+        "communitiesInWithRegion": "Comunidades em {{name}}, {{region}}",
+        "variantIn": "{{label}} em {{name}}",
+        "ideasIn": "30 ideias de eventos comunitários em {{name}}"
+      },
+      "description": {
+        "city": "Encontre ou comece comunidades em {{city}} — grupos de startups, criativos, políticos, encontros e pequenas empresas. {{waitlist}}",
+        "variant": "Encontre ou comece {{label}} em {{city}} — lugares, grupos e guias reais. {{waitlist}}",
+        "ideas": "Descubra 30 ideias de eventos comunitários em {{city}} — eventos de networking, aprendizado, ao ar livre, profissionais, criativos e de impacto. {{waitlist}}",
+        "country": "Encontre ou comece comunidades em {{country}} — de cenas de startups a redes de pequenas empresas. {{waitlist}}",
+        "region": "Encontre ou comece comunidades em {{region}} — encontros, grupos e eventos em toda a região. {{waitlist}}"
+      }
     }
   }
 }
