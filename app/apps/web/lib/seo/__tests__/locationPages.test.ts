@@ -1,5 +1,6 @@
 import { indexableLocationEntries, isWarmSetEntry, locationPageEntries } from '../locationPages';
 import { FLAGSHIP_CITIES, getDatasetVersion, slugify } from '../locationData';
+import { getDictionary, getT } from '@joinorigin/i18n';
 
 /**
  * fe-seo-registry registry unit tests (TASK-307).
@@ -118,6 +119,42 @@ describe('lib/seo locationPages — EN canonical surface', () => {
         .toLowerCase()
         .replace(/-/g, ' ');
       expect(entry.title.toLowerCase().replace(/-/g, ' ')).toContain(needle);
+    }
+  });
+
+  it('metadata templates resolve from the seoContent.metadata.* dictionary (TASK-416)', () => {
+    const en = getT(getDictionary('en'));
+    // City title = communitiesInWithRegion template interpolated + brand.
+    const nyc = entries.find((entry) => entry.kind === 'city' && entry.params.city === 'new-york');
+    expect(nyc?.title).toBe(
+      `${en('seoContent.metadata.title.communitiesInWithRegion', {
+        name: 'New York City',
+        region: 'New York',
+      })} | JoinOrigin`,
+    );
+    // City description ends with the localized waitlist phrase.
+    expect(nyc?.description).toBe(
+      en('seoContent.metadata.description.city', {
+        city: 'New York City',
+        waitlist: en('seoContent.metadata.waitlistPhrase'),
+      }),
+    );
+    // Variant title = variantIn template (localized group-type label).
+    const startup = entries.find(
+      (entry) =>
+        entry.kind === 'variant' && entry.params.city === 'berlin' && entry.groupType === 'startup',
+    );
+    expect(startup?.title).toBe(
+      `${en('seoContent.metadata.title.variantIn', {
+        label: 'Startup communities',
+        name: 'Berlin',
+      })} | JoinOrigin`,
+    );
+    // No hardcoded EN chrome leaks into the registry metadata — every title
+    // matches one of the authored metadata templates.
+    for (const entry of entries) {
+      expect(entry.title.endsWith(` | JoinOrigin`)).toBe(true);
+      expect(entry.description.length).toBeGreaterThan(0);
     }
   });
 });

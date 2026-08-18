@@ -97,7 +97,10 @@ describe('lib/seo locationView — resolve + view model', () => {
 
     // G1/G2 sources flow into the render model.
     expect(data.dataPoints.length).toBeGreaterThanOrEqual(3);
-    expect(data.intro.split(/\s+/).length).toBeGreaterThanOrEqual(150);
+    // City intros are paragraph arrays (TASK-410) — word counts sum paragraphs.
+    expect(Array.isArray(data.intro)).toBe(true);
+    expect(data.intro.length).toBeGreaterThan(1);
+    expect(data.intro.join(' ').split(/\s+/).length).toBeGreaterThanOrEqual(150);
     // Hero lead is the short registry description (not duplicated prose).
     expect(data.lead).toBe(entry?.description);
 
@@ -113,7 +116,6 @@ describe('lib/seo locationView — resolve + view model', () => {
     expect(data.siblingCities.length).toBeGreaterThan(0);
     expect(data.guideLinks.length).toBeGreaterThanOrEqual(2);
     expect(data.faq.length).toBeGreaterThanOrEqual(3);
-    expect(data.attribution).toContain('CC BY 4.0');
   });
 
   it('builds the variant view model with the group-type lead', () => {
@@ -126,7 +128,10 @@ describe('lib/seo locationView — resolve + view model', () => {
     const data = buildLocationViewData(entry!);
     expect(data.kind).toBe('variant');
     expect(data.heading).toBe('Startup communities in New York City');
-    expect(data.intro.split(/\s+/).length).toBeGreaterThanOrEqual(150);
+    // Variant intros wrap into a single-element paragraph array.
+    expect(Array.isArray(data.intro)).toBe(true);
+    expect(data.intro).toHaveLength(1);
+    expect(data.intro.join(' ').split(/\s+/).length).toBeGreaterThanOrEqual(150);
   });
 
   it('variant pages carry the group-type key + enrichment in the view model (TASK-319)', () => {
@@ -422,5 +427,56 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
     expect(guideLinksFor('city').length).toBeGreaterThanOrEqual(2);
     expect(guideLinksFor('hub').length).toBe(7);
     expect(guideLinksFor('ideas').length).toBeGreaterThanOrEqual(2);
+  });
+
+  it('guide card titles resolve from seoContent.location.guideCardTitles.* (TASK-416)', () => {
+    const links = guideLinksFor('hub', 'en');
+    expect(links[0]).toEqual({
+      title: 'Start a community',
+      path: '/guides/start-a-community',
+    });
+    expect(links[1]).toEqual({
+      title: 'Organize a meetup',
+      path: '/guides/organize-a-meetup',
+    });
+    expect(links.map((link) => link.title)).toEqual([
+      'Start a community',
+      'Organize a meetup',
+      'Get your first 10 members',
+      'Find a co-founder',
+      'Keep a community active',
+      'Run hybrid communities',
+      'Moderate your community',
+    ]);
+    // The same path set is exposed for the hub view model.
+    const data = buildLocationViewData(locationPageEntries().find((e) => e.kind === 'hub')!);
+    expect(data.guideLinks.map((link) => link.path)).toEqual(links.map((link) => link.path));
+  });
+
+  it('untranslated locales fall back to EN guide titles — never raw keys', () => {
+    // de.json lacks seoContent.location.guideCardTitles.* until TASK-422 lands;
+    // the server view must resolve EN titles instead of surfacing key strings.
+    for (const link of guideLinksFor('hub', 'de')) {
+      expect(link.title).not.toContain('seoContent.location.guideCardTitles.');
+      expect(link.title.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('the hub has no authored intro — the view falls back to the lead', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    const data = buildLocationViewData(hub!);
+    expect(data.intro).toEqual([]);
+  });
+
+  it('hub directory entries carry kinds for localized card labels (TASK-416)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    const data = buildLocationViewData(hub!);
+    expect(data.hubDirectory?.length).toBeGreaterThan(0);
+    const kinds = new Set(data.hubDirectory?.map((entry) => entry.kind));
+    expect(kinds.has('country')).toBe(true);
+    expect(kinds.has('region')).toBe(true);
+    expect(kinds.has('city')).toBe(true);
+    expect(kinds.has('variant')).toBe(true);
+    expect(kinds.has('ideas')).toBe(true);
   });
 });

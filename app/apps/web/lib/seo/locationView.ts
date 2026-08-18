@@ -39,7 +39,6 @@ import type {
   VariantEnrichment,
 } from './content/types';
 import type { LocationCity } from './data/types';
-import { LOCATION_ATTRIBUTION } from './data/types';
 import { breadcrumbList, faqPage, type BreadcrumbItem } from './jsonLd';
 import {
   FLAGSHIP_CITIES,
@@ -230,27 +229,42 @@ export interface GuideLink {
   path: string;
 }
 
+/**
+ * Guide cross-link paths. Card titles are NOT hardcoded — each entry's
+ * `key` is the guide slug used to resolve `seoContent.location.guideCardTitles.<key>`
+ * for the active locale (TASK-411/TASK-416), so guide links stay localized.
+ */
 const GUIDE_PATHS = [
-  { title: 'Start a community', path: '/guides/start-a-community' },
-  { title: 'Organize a meetup', path: '/guides/organize-a-meetup' },
-  { title: 'Get your first 10 members', path: '/guides/first-10-members' },
-  { title: 'Find a co-founder', path: '/guides/find-a-co-founder' },
-  { title: 'Keep a community active', path: '/guides/keep-a-community-active' },
-  { title: 'Run hybrid communities', path: '/guides/hybrid-communities' },
-  { title: 'Moderate your community', path: '/guides/moderation' },
-] as const satisfies readonly GuideLink[];
+  { key: 'start-a-community', path: '/guides/start-a-community' },
+  { key: 'organize-a-meetup', path: '/guides/organize-a-meetup' },
+  { key: 'first-10-members', path: '/guides/first-10-members' },
+  { key: 'find-a-co-founder', path: '/guides/find-a-co-founder' },
+  { key: 'keep-a-community-active', path: '/guides/keep-a-community-active' },
+  { key: 'hybrid-communities', path: '/guides/hybrid-communities' },
+  { key: 'moderation', path: '/guides/moderation' },
+] as const satisfies readonly { key: string; path: string }[];
 
 /** 2–4 relevant guides per page kind (city pages → the how-to starter set). */
-export function guideLinksFor(kind: PageKind): GuideLink[] {
-  if (kind === 'hub') return [...GUIDE_PATHS];
+export function guideLinksFor(kind: PageKind, locale: Locale = 'en'): GuideLink[] {
+  const t = getT(getDictionary(locale));
+  const enT = getT(getDictionary('en'));
+  const withTitles = (paths: readonly { key: string; path: string }[]) =>
+    paths.map(({ key, path }) => {
+      const keyPath = `seoContent.location.guideCardTitles.${key}`;
+      const title = t(keyPath);
+      // Server-side `getT` has no automatic EN fallback — resolve untranslated
+      // keys from EN (the client provider does the same via fallbackLng).
+      return { title: title === keyPath ? enT(keyPath) : title, path };
+    });
+  if (kind === 'hub') return withTitles(GUIDE_PATHS);
   if (kind === 'country' || kind === 'region') {
-    return [GUIDE_PATHS[0], GUIDE_PATHS[1]];
+    return withTitles([GUIDE_PATHS[0], GUIDE_PATHS[1]]);
   }
   if (kind === 'ideas') {
-    return [GUIDE_PATHS[0], GUIDE_PATHS[1], GUIDE_PATHS[2]];
+    return withTitles([GUIDE_PATHS[0], GUIDE_PATHS[1], GUIDE_PATHS[2]]);
   }
   // city + variant pages
-  return [GUIDE_PATHS[0], GUIDE_PATHS[1], GUIDE_PATHS[2]];
+  return withTitles([GUIDE_PATHS[0], GUIDE_PATHS[1], GUIDE_PATHS[2]]);
 }
 
 /* ------------------------------------------------------------------ *
@@ -375,8 +389,14 @@ export interface LocationViewData {
   heading: string;
   /** Hero lead — the registry description (short, keyword-rich chrome). */
   lead: string;
-  /** Full authored intro prose (unique city/variant/idea copy — G2 source). */
-  intro: string;
+  /**
+   * Full authored intro prose — an explicit array of paragraphs (G2 source).
+   * City intros are paragraph arrays (TASK-410); single-paragraph kinds
+   * (variant/ideas/country/region) wrap into a one-element array. Each entry
+   * renders as its own paragraph block on the location page (TASK-416). An
+   * empty array means no authored prose — the view falls back to the lead.
+   */
+  intro: string[];
   /**
    * Group-type key of the current variant page (TASK-319) — lets the view
    * render the "Where {type} communities gather" enrichment headings.
@@ -401,7 +421,6 @@ export interface LocationViewData {
   /** Idea listicle (ideas pages only). */
   ideaCategories?: IdeaCategory[];
   waitlistSource: string;
-  attribution: string;
   /** Country/region/city display names for the honest presence claim. */
   entityLabel: string;
 }
@@ -448,15 +467,7 @@ export function buildLocationViewData(
     flagship && entry.params.city ? findCityByGeonameId(flagship.geonameId) : undefined;
 
   const breadcrumbs = breadcrumbsFor(entry, locale);
-  const intro =
-    (entry.kind === 'variant' && content?.kind === 'city' && entry.groupType
-      ? content.variantIntros[entry.groupType as GroupTypeKey]
-      : undefined) ??
-    (entry.kind === 'ideas' && content?.kind === 'city' ? content.ideaPage.intro : undefined) ??
-    // City intros are paragraph arrays (TASK-410) — join them into the string
-    // render model until the view renders paragraphs (TASK-416).
-    (content?.kind === 'city' ? content.intro.join(' ') : content?.intro) ??
-    '';
+  const intro = introFor(entry, content);
 
   // TASK-319 — per-variant enrichment: expose the current variant's group
   // type + its committed venues/formats/howToStart so LocationView can render
@@ -506,14 +517,37 @@ export function buildLocationViewData(
         : entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas'
           ? siblingCitiesFor(cityEntity)
           : [],
-    guideLinks: guideLinksFor(entry.kind),
+    guideLinks: guideLinksFor(entry.kind, locale),
     hubDirectory: entry.kind === 'hub' ? hubDirectoryEntries() : undefined,
     ideaCategories:
       entry.kind === 'ideas' && content?.kind === 'city' ? content.ideaPage.categories : undefined,
     waitlistSource: waitlistSource(entry),
-    attribution: LOCATION_ATTRIBUTION,
     entityLabel: entityLabelFor(entry),
   };
+}
+
+/**
+ * The authored intro paragraphs for a page — an explicit array where each
+ * entry renders as its own paragraph block (TASK-410/TASK-416). City intros
+ * are paragraph arrays; variant/ideas/country/region prose is a single
+ * string wrapped into a one-element array. No authored content → `[]`.
+ */
+function introFor(
+  entry: LocationPageEntry,
+  content: CountryContent | RegionContent | CityContent | undefined,
+): string[] {
+  if (!content) return [];
+  if (entry.kind === 'variant' && content.kind === 'city' && entry.groupType) {
+    const variantIntro = content.variantIntros[entry.groupType as GroupTypeKey];
+    return variantIntro ? [variantIntro] : [];
+  }
+  if (entry.kind === 'ideas' && content.kind === 'city') {
+    return [content.ideaPage.intro];
+  }
+  if (content.kind === 'city') {
+    return content.intro;
+  }
+  return content.intro ? [content.intro] : [];
 }
 
 /** Resolve the authored content for an entry (per-locale, EN at canonical).
