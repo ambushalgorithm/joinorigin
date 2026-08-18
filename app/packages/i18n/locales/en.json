@@ -623,8 +623,12 @@
       "title": "Community OS Glossary",
       "intro": "The essential vocabulary of community building — clear definitions for the terms organizers, moderators, and founders use every day.",
       "whyTitle": "Why a glossary",
+      "whyBody": "Community building has its own language, and the terms are often used loosely. A community OS glossary gives organizers, moderators, and founders shared definitions they can rely on — from the classic concepts like moderation and onboarding to newer ideas like engagement loops and hybrid events.",
       "termsTitle": "Core terms",
+      "termsIntro": "Here are the core terms every organizer, moderator, and founder uses — each one is defined in practice across the Community Building guides:",
       "goDeeper": "Go deeper",
+      "goDeeperItem1": "Work through the <1>Community Building guides</1> — the step-by-step how-tos behind every term.",
+      "goDeeperItem2": "See the concepts in practice: <1>New York City</1> and <2>Berlin</2> city pages.",
       "terms": {
         "community": {
           "name": "Community",

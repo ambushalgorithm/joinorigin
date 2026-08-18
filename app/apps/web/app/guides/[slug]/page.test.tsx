@@ -5,7 +5,7 @@ import { getDictionary, I18nProvider } from '@joinorigin/i18n';
 
 import GuidePage, { generateMetadata, generateStaticParams } from './page';
 import { getGuideContent } from '../../../lib/seo/content';
-import { guidePageEntry } from '../../../lib/seo/guides';
+import { guidePageEntry, guidePageForLocale, guidePath } from '../../../lib/seo/guides';
 import { GuideView } from './guide-view';
 
 /**
@@ -20,6 +20,10 @@ import { GuideView } from './guide-view';
  * practice line, JoinOrigin CTA body, keep-learning bullets) renders from
  * dictionary keys. The keys are seeded into the test dictionary so the suite
  * is deterministic regardless of merge order with the en-keys role.
+ *
+ * TASK-444: related-card links resolve through the active locale surface —
+ * href via `guidePath(slug, entry.locale)` and title via
+ * `guidePageEntry(slug, entry.locale)?.title` (never the humanized slug).
  */
 
 /** TASK-411 guide-view footer keys (EN source values — mirror en.json after
@@ -161,11 +165,38 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
       content.steps.length + 1,
     );
     expect(screen.getByTestId('guide-join-button')).toBeInTheDocument();
-    // Sibling guide link.
-    expect(screen.getByText(entry.related[0]?.replace(/-/g, ' ') ?? '')).toBeInTheDocument();
+    // Sibling guide link — resolved through the registry (TASK-444): href via
+    // guidePath and title via guidePageEntry, never the humanized slug.
+    const relatedSlug = entry.related[0];
+    if (!relatedSlug) throw new Error('guide must have related entries');
+    const relatedEntry = guidePageEntry(relatedSlug, 'en');
+    expect(screen.getByRole('link', { name: relatedEntry?.title ?? relatedSlug })).toHaveAttribute(
+      'href',
+      guidePath(relatedSlug, 'en'),
+    );
+    expect(screen.queryByText(relatedSlug.replace(/-/g, ' '))).not.toBeInTheDocument();
     // City cross-links.
     expect(screen.getByText('New York City')).toBeInTheDocument();
     expect(screen.getByText('Berlin')).toBeInTheDocument();
+  });
+
+  it('renders related-card links through the active locale surface (TASK-444)', () => {
+    const dePage = guidePageForLocale('organize-a-meetup', 'de');
+    if (!dePage) {
+      throw new Error('Missing de guide fixture for locale-aware related-link tests');
+    }
+    renderWithGuideI18n(<GuideView entry={dePage.entry} content={dePage.content} />);
+
+    const firstRelated = dePage.entry.related[0];
+    if (!firstRelated) throw new Error('guide must have related entries');
+    const relatedEntry = guidePageEntry(firstRelated, 'de');
+    // The href must carry the locale prefix and the title must come from the
+    // de registry entry (not the humanized slug).
+    expect(screen.getByRole('link', { name: relatedEntry?.title ?? firstRelated })).toHaveAttribute(
+      'href',
+      guidePath(firstRelated, 'de'),
+    );
+    expect(screen.queryByText(firstRelated.replace(/-/g, ' '))).not.toBeInTheDocument();
   });
 
   it('renders the Translate this page link with the correct href (TASK-318)', () => {

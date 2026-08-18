@@ -29,7 +29,12 @@ import { trackEvent } from '../../../lib/analytics';
 import TranslatePageLink from '../../../components/TranslatePageLink';
 import type { GuideContent } from '../../../lib/seo/content/types';
 import type { GuidePageEntry } from '../../../lib/seo/guides';
-import { GUIDES_HUB_PATH, GLOSSARY_HUB_PATH } from '../../../lib/seo/guides';
+import {
+  GLOSSARY_HUB_PATH,
+  guidePageEntry,
+  guidePath,
+  GUIDES_HUB_PATH,
+} from '../../../lib/seo/guides';
 import { useWaitlist } from '../../../components/WaitlistModal/WaitlistModalProvider';
 
 /**
@@ -147,7 +152,11 @@ export function GuideView({ entry, content }: GuideViewProps) {
     .map((slug) => ({ slug }))
     .map(({ slug }) => ({
       slug,
-      href: `${GUIDES_HUB_PATH}/${slug}`,
+      // Related guides resolve through the active locale surface so the
+      // EN canonical page links `/guides/<slug>` and a `/de/...` page links
+      // `/de/guides/<slug>` (TASK-421/TASK-444).
+      href: guidePath(slug, entry.locale),
+      title: guidePageEntry(slug, entry.locale)?.title ?? slug,
     }));
 
   return (
@@ -214,9 +223,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
                 {relatedEntries.map((related) => (
                   <Card key={related.slug}>
                     <CardTitle>
-                      <RelatedLink href={related.href}>
-                        {related.slug.replace(/-/g, ' ')}
-                      </RelatedLink>
+                      <RelatedLink href={related.href}>{related.title}</RelatedLink>
                     </CardTitle>
                     <CardBody>{t('seoContent.guides.continueBuilding')}</CardBody>
                   </Card>
