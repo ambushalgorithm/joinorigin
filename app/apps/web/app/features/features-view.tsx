@@ -54,7 +54,18 @@ const CORE_OBJECT_KEYS = [
   'companies',
 ] as const;
 
-const COMPARISON_KEYS = ['linkedin', 'discord', 'reddit', 'github'] as const;
+const COMPARISON_KEYS = [
+  'slack',
+  'discord',
+  'whatsapp',
+  'linkedin',
+  'meetup',
+  'eventbrite',
+  'notion',
+  'asana',
+  'patreon',
+  'facebook',
+] as const;
 
 const ROADMAP_PHASE_KEYS = ['phase1', 'phase2', 'phase3'] as const;
 
