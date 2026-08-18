@@ -5,6 +5,7 @@ import styled, { ThemeProvider as DomThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
+import { useI18n } from '@joinorigin/i18n';
 import { Screen } from '@joinorigin/ui';
 
 import AnchorNav, { type MenuSubnavProps } from './AnchorNav';
@@ -58,6 +59,13 @@ export interface MenuPageShellProps {
   /** Alternate glass section bands behind the children (default true).
    *  Legal pages (privacy/terms) pass false to keep a plain canvas. */
   banded?: boolean;
+  /** Optional hero-lead translation key (TASK-414 lead plumbing). When set
+   *  alongside `hero`, the shell resolves the lead through the active locale
+   *  dictionary (falling back to `hero.lead` when the key is absent) instead
+   *  of pages hardcoding the lead string in the view. */
+  leadKey?: string;
+  /** Interpolation variables for `leadKey` (e.g. `{{query}}`). */
+  leadVars?: Record<string, string | number>;
 }
 
 const GlobalStyles = createGlobalStyle`
@@ -120,7 +128,13 @@ export function MenuPageShell({
   ctaOverride,
   subnav,
   banded = true,
+  leadKey,
+  leadVars,
 }: MenuPageShellProps) {
+  const { t } = useI18n();
+  const resolvedLead = leadKey ? t(leadKey, leadVars ?? {}) : undefined;
+  const heroWithLead = hero && resolvedLead ? { ...hero, lead: resolvedLead } : hero;
+
   return (
     <NativeThemeProvider theme={theme}>
       <DomThemeProvider theme={theme}>
@@ -129,7 +143,7 @@ export function MenuPageShell({
             <Screen style={{ padding: 0, backgroundColor: 'transparent' }}>
               <Header />
               <main>
-                {hero ? <MenuHero {...hero} /> : null}
+                {heroWithLead ? <MenuHero {...heroWithLead} /> : null}
                 {subnav ? <AnchorNav {...subnav} /> : null}
                 <ContentArea $banded={banded}>{children}</ContentArea>
                 {showCtaBand ? <CtaBand {...ctaOverride} /> : null}

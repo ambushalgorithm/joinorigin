@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { useI18n } from '@joinorigin/i18n';
+import { Trans, useI18n } from '@joinorigin/i18n';
 
 import HubSearchInput from '../../components/HubSearchInput';
 import MenuPageShell from '../../components/MenuPageShell';
@@ -69,11 +69,11 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
       hero={{
         eyebrow: t('seoContent.guides.hubEyebrow'),
         title: t('seoContent.guides.hubTitle'),
-        lead: 'Twelve practical, evergreen how-to guides for finding, joining, and starting groups — and communicating in a creator-controlled room. From publishing an idea to healthy moderation.',
         scene: 'community',
         accent: 'community',
         cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },
       }}
+      leadKey="seoContent.guides.hubLead"
     >
       <SectionBand variant="glass" accent="community" glow>
         <PageContainer>
@@ -82,8 +82,8 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
               <SectionTitle>{t('seoContent.guides.allGuides')}</SectionTitle>
               <HubSearchInput
                 id="guides-hub-search"
-                label="Search guides"
-                placeholder="Search by guide title or keyword"
+                label={t('seoContent.guides.searchLabel')}
+                placeholder={t('seoContent.guides.searchPlaceholder')}
                 value={guideQuery}
                 onChange={setGuideQuery}
                 data-testid="guides-hub-search"
@@ -101,7 +101,7 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
                 </CardGrid>
               ) : (
                 <BodyCopy data-testid="guides-hub-empty" role="status">
-                  No guides match “{debouncedGuideQuery}”.
+                  {t('seoContent.guides.emptyState', { query: debouncedGuideQuery })}
                 </BodyCopy>
               )}
             </Section>
@@ -115,12 +115,11 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
             <Section>
               <SectionTitle>{t('seoContent.guides.glossarySection')}</SectionTitle>
               <BodyCopy>
-                Learn the core terms behind groups, rooms, moderation, onboarding, and engagement
-                loops in the{' '}
-                <StyledLink href={GLOSSARY_HUB_PATH}>
-                  {t('seoContent.guides.glossarySection')}
-                </StyledLink>
-                .
+                <Trans
+                  i18nKey="seoContent.guides.glossaryBandCopy"
+                  values={{ glossary: t('seoContent.guides.glossarySection') }}
+                  components={[<StyledLink key="glossary" href={GLOSSARY_HUB_PATH} />]}
+                />
               </BodyCopy>
             </Section>
           </Reveal>
@@ -132,10 +131,7 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
           <Reveal>
             <Section>
               <SectionTitle>{t('seoContent.guides.startLocal')}</SectionTitle>
-              <BodyCopy>
-                Guides are universal — communities are local. Find or start a community in a city
-                near you:
-              </BodyCopy>
+              <BodyCopy>{t('seoContent.guides.universalCopy')}</BodyCopy>
               <CardGrid>
                 {entries[0]?.cities.map((city) => (
                   <Card key={city.path}>

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { useI18n } from '@joinorigin/i18n';
+import { Trans, useI18n } from '@joinorigin/i18n';
 
 import MenuPageShell from '../../../components/MenuPageShell';
 import Reveal from '../../../components/Reveal';
@@ -218,7 +218,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
                         {related.slug.replace(/-/g, ' ')}
                       </RelatedLink>
                     </CardTitle>
-                    <CardBody>Continue building with the next guide in the series.</CardBody>
+                    <CardBody>{t('seoContent.guides.continueBuilding')}</CardBody>
                   </Card>
                 ))}
               </CardGrid>
@@ -232,7 +232,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
           <Reveal>
             <Section>
               <SectionTitle>{t('seoContent.guides.exploreCommunities')}</SectionTitle>
-              <BodyCopy>Put these steps into practice in a real city.</BodyCopy>
+              <BodyCopy>{t('seoContent.guides.practiceInCity')}</BodyCopy>
               <CityLinks>
                 {entry.cities.map((city) => (
                   <RelatedLink key={city.path} href={city.path}>
@@ -250,12 +250,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
           <Reveal>
             <Section>
               <SectionTitle>{t('seoContent.guides.howJoinOriginHelps')}</SectionTitle>
-              <BodyCopy>
-                JoinOrigin is a community OS that helps you find or start communities — the steps
-                above work on the platform and with the tools you already have. JoinOrigin handles
-                the structure, discovery, and organization so you can focus on your members. Click
-                Get Started and get discovered.
-              </BodyCopy>
+              <BodyCopy>{t('seoContent.guides.howJoinOriginHelpsBody')}</BodyCopy>
               <GuideJoinCta slug={entry.slug} />
             </Section>
           </Reveal>
@@ -287,16 +282,22 @@ export function GuideView({ entry, content }: GuideViewProps) {
               <SectionTitle>{t('seoContent.guides.keepLearning')}</SectionTitle>
               <BulletList>
                 <ListItem>
-                  Browse all guides on the{' '}
-                  <RelatedLink href={GUIDES_HUB_PATH}>Community Building hub</RelatedLink>.
+                  <Trans
+                    i18nKey="seoContent.guides.keepLearningGuides"
+                    components={[<RelatedLink key="hub" href={GUIDES_HUB_PATH} />]}
+                  />
                 </ListItem>
                 <ListItem>
-                  Learn the core terms in the{' '}
-                  <RelatedLink href={GLOSSARY_HUB_PATH}>Community OS glossary</RelatedLink>.
+                  <Trans
+                    i18nKey="seoContent.guides.keepLearningGlossary"
+                    components={[<RelatedLink key="glossary" href={GLOSSARY_HUB_PATH} />]}
+                  />
                 </ListItem>
                 <ListItem>
-                  Find a city page on the <RelatedLink href="/location">locations hub</RelatedLink>{' '}
-                  to start local.
+                  <Trans
+                    i18nKey="seoContent.guides.keepLearningLocations"
+                    components={[<RelatedLink key="locations" href="/location" />]}
+                  />
                 </ListItem>
               </BulletList>
             </Section>
