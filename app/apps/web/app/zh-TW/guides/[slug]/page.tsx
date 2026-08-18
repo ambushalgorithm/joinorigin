@@ -31,9 +31,7 @@ interface ZhTWGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: ZhTWGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ZhTWGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'zh-TW');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function ZhTWGuidePage({ params }: ZhTWGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/zh-TW' },
           { name: 'Guides', path: guideHubPath('zh-TW') },
           { name: entry.title, path: entry.path },
         ])}

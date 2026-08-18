@@ -31,9 +31,7 @@ interface UkGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: UkGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: UkGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'uk');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function UkGuidePage({ params }: UkGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/uk' },
           { name: 'Guides', path: guideHubPath('uk') },
           { name: entry.title, path: entry.path },
         ])}

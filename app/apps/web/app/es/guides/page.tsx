@@ -21,7 +21,7 @@ export default function EsGuidesHubPage() {
       <GuidesHubView entries={entries} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/es' },
           { name: 'Guides', path: guideHubPath('es') },
         ])}
       />

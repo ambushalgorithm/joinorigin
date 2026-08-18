@@ -31,9 +31,7 @@ interface PtBRGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: PtBRGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PtBRGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'pt-BR');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function PtBRGuidePage({ params }: PtBRGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/pt-BR' },
           { name: 'Guides', path: guideHubPath('pt-BR') },
           { name: entry.title, path: entry.path },
         ])}

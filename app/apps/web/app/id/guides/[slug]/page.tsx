@@ -31,9 +31,7 @@ interface IdGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: IdGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: IdGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'id');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function IdGuidePage({ params }: IdGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/id' },
           { name: 'Guides', path: guideHubPath('id') },
           { name: entry.title, path: entry.path },
         ])}

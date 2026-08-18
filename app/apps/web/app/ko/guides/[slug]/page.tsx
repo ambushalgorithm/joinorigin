@@ -31,9 +31,7 @@ interface KoGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: KoGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: KoGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'ko');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function KoGuidePage({ params }: KoGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/ko' },
           { name: 'Guides', path: guideHubPath('ko') },
           { name: entry.title, path: entry.path },
         ])}

@@ -130,6 +130,37 @@ describe('/de/* forces German server-side (TASK-315 → generalized TASK-444)', 
   });
 });
 
+describe('/en/* forces English (TASK-448)', () => {
+  it('forces en for /en/features despite a conflicting cookie and Accept-Language', () => {
+    const response = runProxyAt('http://localhost/en/features', {
+      cookie: `${LOCALE_COOKIE}=de`,
+      'accept-language': 'fr',
+    });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('en');
+  });
+
+  it('forces en for the bare /en path', () => {
+    const response = runProxyAt('http://localhost/en', { 'accept-language': 'de' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('en');
+  });
+
+  it('forces en for /en/ nested location variants and forwards it on request headers', () => {
+    const response = runProxyAt('http://localhost/en/location/germany/berlin/berlin/startup', {
+      cookie: `${LOCALE_COOKIE}=ja`,
+      'accept-language': 'es',
+    });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('en');
+    expect(response.headers.get('x-middleware-request-x-joinorigin-locale')).toBe('en');
+  });
+
+  it('does not treat /events or /engineering as en prefixes', () => {
+    const response = runProxyAt('http://localhost/events', { 'accept-language': 'de' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('de');
+    const engineering = runProxyAt('http://localhost/engineering', { 'accept-language': 'fr' });
+    expect(engineering.headers.get('x-joinorigin-locale')).toBe('fr');
+  });
+});
+
 describe('non-EN locale-prefixed paths force their locale (TASK-444)', () => {
   it.each([
     ['es', '/es/guides/start-a-community'],
@@ -182,13 +213,15 @@ describe('non-EN locale-prefixed paths force their locale (TASK-444)', () => {
     expect(response.headers.get('x-middleware-request-x-joinorigin-locale')).toBe('ar');
   });
 
-  it('localeFromPathname resolves every non-EN prefix and ignores EN', () => {
+  it('localeFromPathname resolves every locale prefix incl. en and ignores non-locale paths', () => {
     expect(localeFromPathname('/es')).toBe('es');
     expect(localeFromPathname('/es/guides')).toBe('es');
     expect(localeFromPathname('/pt-BR/guides/start-a-community')).toBe('pt-BR');
     expect(localeFromPathname('/zh-CN/guides')).toBe('zh-CN');
     expect(localeFromPathname('/zh-TW/guides')).toBe('zh-TW');
-    expect(localeFromPathname('/en/guides')).toBeUndefined();
+    expect(localeFromPathname('/en')).toBe('en');
+    expect(localeFromPathname('/en/guides')).toBe('en');
+    expect(localeFromPathname('/en/location/germany/berlin/berlin')).toBe('en');
     expect(localeFromPathname('/location/germany/berlin/berlin')).toBeUndefined();
     expect(localeFromPathname('/')).toBeUndefined();
   });

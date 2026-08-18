@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "jest",
-    "geo:sync": "tsx scripts/geodata/sync.ts"
+    "geo:sync": "tsx scripts/geodata/sync.ts",
+    "locale:generate": "tsx scripts/generate-locale-routes.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

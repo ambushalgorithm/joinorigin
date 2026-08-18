@@ -31,9 +31,7 @@ interface TrGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: TrGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: TrGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'tr');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function TrGuidePage({ params }: TrGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/tr' },
           { name: 'Guides', path: guideHubPath('tr') },
           { name: entry.title, path: entry.path },
         ])}

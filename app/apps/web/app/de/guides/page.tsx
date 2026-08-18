@@ -21,7 +21,7 @@ export default function DeGuidesHubPage() {
       <GuidesHubView entries={entries} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/de' },
           { name: 'Guides', path: guideHubPath('de') },
         ])}
       />

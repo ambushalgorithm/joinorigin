@@ -31,9 +31,7 @@ interface ZhCNGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: ZhCNGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ZhCNGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'zh-CN');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function ZhCNGuidePage({ params }: ZhCNGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/zh-CN' },
           { name: 'Guides', path: guideHubPath('zh-CN') },
           { name: entry.title, path: entry.path },
         ])}
