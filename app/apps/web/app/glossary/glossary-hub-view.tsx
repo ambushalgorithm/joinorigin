@@ -26,8 +26,12 @@ import { GUIDES_HUB_PATH } from '../../lib/seo/guides';
  * Community OS Glossary hub view (design §6.3 — L2b hub).
  *
  * Sprint 12 ships the hub only (glossary term pages deferred). The hub
- * defines the glossary concept, lists the seeded term set, and cross-links
+ * defines the glossary concept, lists the glossary term set, and cross-links
  * to the guides hub + flagship city pages. Single H1 via `MenuHero`.
+ *
+ * Sprint 18 (TASK-413): hub cards show the real translated definitions from
+ * the `seoContent.glossary.terms.<slug>` dictionary keys — the "coming soon"
+ * placeholder is gone. Term pages remain deferred (hub cards only).
  */
 
 const StyledLink = styled(Link)`
@@ -40,18 +44,22 @@ const StyledLink = styled(Link)`
   }
 `;
 
-/** Seeded term set (design §6.3 — term pages deferred; hub lists them). */
-const SEEDED_TERMS = [
-  'Community',
-  'Community manager',
-  'Community OS',
-  'Moderation',
-  'Onboarding',
-  'Activation',
-  'Engagement loop',
-  'Hybrid events',
-  'Co-founder',
-];
+/**
+ * Glossary term set (design §6.3 / content-strategy §4.4). Each hub card
+ * renders the canonical term name plus the translated definition pulled from
+ * `seoContent.glossary.terms.<slug>` (TASK-411 keys).
+ */
+const GLOSSARY_TERMS = [
+  { slug: 'community', label: 'Community' },
+  { slug: 'community-manager', label: 'Community manager' },
+  { slug: 'community-os', label: 'Community OS' },
+  { slug: 'moderation', label: 'Moderation' },
+  { slug: 'onboarding', label: 'Onboarding' },
+  { slug: 'activation', label: 'Activation' },
+  { slug: 'engagement-loop', label: 'Engagement loop' },
+  { slug: 'hybrid-events', label: 'Hybrid events' },
+  { slug: 'co-founder', label: 'Co-founder' },
+] as const;
 
 export function GlossaryHubView() {
   const { t } = useI18n();
@@ -93,10 +101,10 @@ export function GlossaryHubView() {
                 defined in practice across the Community Building guides:
               </BodyCopy>
               <CardGrid>
-                {SEEDED_TERMS.map((term) => (
-                  <Card key={term}>
-                    <CardTitle>{term}</CardTitle>
-                    <CardBody>{t('seoContent.glossary.comingSoon')}</CardBody>
+                {GLOSSARY_TERMS.map(({ slug, label }) => (
+                  <Card key={slug}>
+                    <CardTitle>{label}</CardTitle>
+                    <CardBody>{t(`seoContent.glossary.terms.${slug}`)}</CardBody>
                   </Card>
                 ))}
               </CardGrid>
