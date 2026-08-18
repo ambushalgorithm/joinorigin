@@ -1,0 +1,75 @@
+import type { ReactElement } from 'react';
+import { render, screen } from '@testing-library/react';
+
+import { getDictionary, I18nProvider } from '@joinorigin/i18n';
+
+import { guidePageEntries } from '../../../lib/seo/guides';
+import DeGuidesHubPage, { metadata } from './page';
+
+/**
+ * fe-guides-locale-routes — `/de/guides` per-locale hub tests (TASK-421).
+ *
+ * The hub metadata carries the full hreflang set (de self + en + x-default
+ * → EN canonical), and the view renders exactly the committed de guide
+ * entries — untranslated guides never get locale-prefixed URLs (R5). The
+ * guides chrome keys are seeded so the suite is deterministic regardless of
+ * the Group 3 translation merge order.
+ */
+
+/** TASK-411 guides-hub chrome keys in the de surface (deterministic seed —
+ *  mirror the de.json values after the i18n-de-s18 merge). */
+const GUIDES_CHROME: Record<string, unknown> = {
+  hubEyebrow: 'Community Building',
+  hubTitle: 'Community-Building-Guides',
+  hubLead: 'Zwölf praktische, zeitlose Anleitungen für Gruppen.',
+  allGuides: 'Alle Leitfäden',
+  searchLabel: 'Leitfäden durchsuchen',
+  searchPlaceholder: 'Nach Titel oder Stichwort suchen',
+  emptyState: 'Keine Leitfäden passen auf „{{query}}“.',
+  glossarySection: 'Glossar',
+  glossaryBandCopy: 'Lernen Sie die Grundbegriffe im <1>{{glossary}}</1>.',
+  startLocal: 'Lokal starten',
+  universalCopy: 'Leitfäden sind universell — Gemeinschaften sind lokal.',
+  cityCardBody: 'Finden oder starten Sie eine Gemeinschaft in {{city}}.',
+};
+
+function renderWithDeGuideI18n(ui: ReactElement) {
+  const de = getDictionary('de');
+  const seoContent = (de.seoContent as Record<string, unknown> | undefined) ?? {};
+  const guides = (seoContent.guides as Record<string, unknown> | undefined) ?? {};
+  const dictionary = {
+    ...de,
+    seoContent: {
+      ...seoContent,
+      guides: { ...guides, ...GUIDES_CHROME },
+    },
+  };
+  return render(
+    <I18nProvider locale="de" dictionary={dictionary}>
+      {ui}
+    </I18nProvider>,
+  );
+}
+
+describe('/de/guides hub (TASK-421)', () => {
+  it('exports hub metadata with the de hreflang cluster', () => {
+    expect(metadata.title).toBe('Community Building Guides | JoinOrigin');
+    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/de/guides');
+    expect(metadata.alternates?.languages).toEqual({
+      de: 'http://localhost:3100/de/guides',
+      en: 'http://localhost:3100/guides',
+      'x-default': 'http://localhost:3100/guides',
+    });
+  });
+
+  it('renders a single h1 and links every committed de guide to its locale path', () => {
+    renderWithDeGuideI18n(<DeGuidesHubPage />);
+    const headings = screen.getAllByRole('heading', { level: 1 });
+    expect(headings).toHaveLength(1);
+    // Vacuous until de guide content is committed; once committed every card
+    // must link to the locale-prefixed path.
+    for (const entry of guidePageEntries('de')) {
+      expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
+    }
+  });
+});
