@@ -16,11 +16,11 @@ const content: GuideContent = {
   slug: 'create-a-project',
   title: 'How to Create a Project: Turn Group Momentum Into Shared Work | JoinOrigin',
   description:
-    'Create a project on JoinOrigin — publish a shared project page, open its room automatically, and turn a group’s conversation into work that ships. Practical steps from JoinOrigin.',
+    'Create a project on JoinOrigin — whether it is a brand-new idea or work that is already underway — publish a shared project page, open its room automatically, and turn a group’s conversation into work that ships. Practical steps from JoinOrigin.',
   intro: [
-    'A group that only talks eventually stalls. The difference between a community that feels alive and one that fades is shared work — a project with a name, a goal, and a place where progress is visible. Turning a conversation into a project is a connecting-people problem too: you need the right people, the right commitment, and one clear place to work together.',
+    'A group that only talks eventually stalls. The difference between a community that feels alive and one that fades is shared work — a project with a name, a goal, and a place where progress is visible. Turning a conversation into a project is a connecting-people problem too: you need the right people, the right commitment, and one clear place to work together. The same holds when the project already exists — scattered across files, messages, and one person’s to-do list — it still needs a visible home and the right people around it.',
     'The JoinOrigin flow handles that move: a formed group publishes a project, and the project page appears publicly with its room auto-created at the moment of publishing. Members join the project room through a link, the creator controls it as room owner, and updates from the room flow into the feed so the whole network can see the work. The project room opens the moment you publish — no setup step in between.',
-    'This guide walks from the first spark to a working rhythm: starting from an existing group and its room, defining a scope that can actually ship, writing the project page, publishing it and opening the room, inviting the working team, agreeing on roles and a first milestone, moving real work into the room, and sharing progress to build momentum.',
+    'This guide walks from the first spark to a working rhythm — whether the project is brand new or already underway: starting from an existing group and its room, defining a scope that can actually ship, writing the project page, publishing it and opening the room, inviting the working team, agreeing on roles and a first milestone, moving real work into the room, and sharing progress to build momentum.',
   ],
   dataPoints: [
     'Projects with a public page and a clear first milestone are easier to staff — people join work they can see.',

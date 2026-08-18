@@ -16,11 +16,11 @@ const content: GuideContent = {
   slug: 'publish-an-idea',
   title: 'How to Publish an Idea: Turn a Spark Into a Findable Idea Page | JoinOrigin',
   description:
-    'Publish an idea on JoinOrigin — write a public idea page, let its room open automatically, and invite the people who want to build it with you. Practical steps from JoinOrigin.',
+    'Publish an idea on JoinOrigin — whether it is a new spark or an existing project you want people to find — write a public idea page, let its room open automatically, and invite the people who want to build it with you. Practical steps from JoinOrigin.',
   intro: [
-    'Most ideas die in drafts — a note on a phone, a half-remembered conversation, a document no one else has ever seen. The reason is rarely that the idea is bad. It is that no one could find it, and finding the right people is the entire game. That connecting-people problem is exactly what JoinOrigin solves.',
+    'Most ideas die in drafts — a note on a phone, a half-remembered conversation, a document no one else has ever seen. The reason is rarely that the idea is bad. It is that no one could find it, and finding the right people is the entire game. That connecting-people problem is exactly what JoinOrigin solves — whether the idea is a fresh spark or an existing project that has been quietly moving forward without a findable home.',
     'The JoinOrigin loop works like this: you publish an idea, a public idea page appears, and its room is auto-created at the moment of publishing. People discover the page through Explore or follow a link you share, and joining is a single click. They land in the room — a creator-controlled Matrix room where the conversation around the idea actually happens. The creator owns the room from second zero and decides who joins and what happens inside.',
-    'This guide walks through the whole path: compressing the idea into one clear sentence, writing a page people can find, publishing it and opening the room, sharing the join link, inviting the first interested people, hosting the first conversation, refining the idea from real feedback, and keeping the idea findable as it grows. It works for any idea — a small business, a startup, a book club, a community project, or a product that does not exist yet.',
+    'This guide walks through the whole path: compressing the idea into one clear sentence, writing a page people can find, publishing it and opening the room, sharing the join link, inviting the first interested people, hosting the first conversation, refining the idea from real feedback, and keeping the idea findable as it grows. It works for any idea — a small business, a startup, a book club, a community project, a product that does not exist yet, or a project that already exists and needs more people around it.',
   ],
   dataPoints: [
     'A one-sentence idea pitch is more findable than a long document — clarity is a discovery feature.',

@@ -97,6 +97,23 @@ describe('lib/seo guides — content quality gates (§6.2)', () => {
     }
   });
 
+  it('every guide welcomes EXISTING projects/companies as well as new ones (TASK-415 reframe)', () => {
+    // The platform serves existing projects and companies, not only
+    // brand-new ones. Honest framing only — no literal phrase required.
+    // Each intro must carry at least one existing-entity signal AND at
+    // least one new-entity signal, so the guides read as serving both.
+    const existingSignals =
+      /existing|already|established|operating|running|growing|reviv|re-energ|years|underway|new home|long after|meeting informally|has been meeting|started months/i;
+    const newSignals =
+      /new|start|launch|spark|first|begin|brand|fresh|from zero|zero to|just getting/i;
+    for (const slug of GUIDE_SLUGS) {
+      const content = getGuideContent(slug, 'en');
+      const intro = (content?.intro ?? []).join(' ');
+      expect(intro).toMatch(existingSignals);
+      expect(intro).toMatch(newSignals);
+    }
+  });
+
   it('every guide carries ≥3 data points + ≥3 FAQ pairs', () => {
     for (const slug of GUIDE_SLUGS) {
       const content = getGuideContent(slug, 'en');
