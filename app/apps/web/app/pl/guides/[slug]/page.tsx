@@ -31,9 +31,7 @@ interface PlGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: PlGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PlGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'pl');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function PlGuidePage({ params }: PlGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/pl' },
           { name: 'Guides', path: guideHubPath('pl') },
           { name: entry.title, path: entry.path },
         ])}

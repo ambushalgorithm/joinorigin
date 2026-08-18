@@ -53,7 +53,7 @@ export default async function EsGuidePage({ params }: EsGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/es' },
           { name: 'Guides', path: guideHubPath('es') },
           { name: entry.title, path: entry.path },
         ])}

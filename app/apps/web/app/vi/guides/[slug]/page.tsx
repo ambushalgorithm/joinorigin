@@ -31,9 +31,7 @@ interface ViGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: ViGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ViGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'vi');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function ViGuidePage({ params }: ViGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/vi' },
           { name: 'Guides', path: guideHubPath('vi') },
           { name: entry.title, path: entry.path },
         ])}

@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
 
 import { JsonLd } from '../../../lib/seo/JsonLdScript';
-import {
-  guideHubMetadata,
-  guideHubPath,
-  guidePageEntries,
-} from '../../../lib/seo/guides';
+import { guideHubMetadata, guideHubPath, guidePageEntries } from '../../../lib/seo/guides';
 import { breadcrumbList } from '../../../lib/seo/jsonLd';
 import { GuidesHubView } from '../../guides/guides-hub-view';
 
@@ -25,7 +21,7 @@ export default function RuGuidesHubPage() {
       <GuidesHubView entries={entries} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/ru' },
           { name: 'Guides', path: guideHubPath('ru') },
         ])}
       />

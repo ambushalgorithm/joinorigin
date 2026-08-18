@@ -31,9 +31,7 @@ interface ArGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: ArGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ArGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'ar');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function ArGuidePage({ params }: ArGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/ar' },
           { name: 'Guides', path: guideHubPath('ar') },
           { name: entry.title, path: entry.path },
         ])}

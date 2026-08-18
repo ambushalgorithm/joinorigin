@@ -31,9 +31,7 @@ interface JaGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: JaGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: JaGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = guidePageEntry(slug, 'ja');
   if (!entry) {
@@ -55,7 +53,7 @@ export default async function JaGuidePage({ params }: JaGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/' },
+          { name: 'Home', path: '/ja' },
           { name: 'Guides', path: guideHubPath('ja') },
           { name: entry.title, path: entry.path },
         ])}
