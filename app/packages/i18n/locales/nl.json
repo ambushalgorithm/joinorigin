@@ -623,8 +623,12 @@
       "title": "Gemeenschaps-OS-woordenlijst",
       "intro": "De essentiële woordenschat van gemeenschapsopbouw — duidelijke definities van de termen die organisatoren, moderatoren en oprichters dagelijks gebruiken.",
       "whyTitle": "Waarom een woordenlijst",
+      "whyBody": "Gemeenschapsopbouw heeft een eigen taal en de termen worden vaak losjes gebruikt. Een gemeenschaps-OS-woordenlijst geeft organisatoren, moderatoren en oprichters gedeelde definities waar ze op kunnen rekenen — van klassieke concepten zoals moderatie en onboarding tot nieuwere ideeën zoals betrokkenheidslussen en hybride evenementen.",
       "termsTitle": "Kernbegrippen",
+      "termsIntro": "Hier zijn de kernbegrippen die elke organisator, moderator en oprichter gebruikt — elk wordt in de praktijk gedefinieerd in de Handleidingen voor gemeenschapsopbouw:",
       "goDeeper": "Ga dieper",
+      "goDeeperItem1": "Werk de <1>Handleidingen voor gemeenschapsopbouw</1> door — de stapsgewijze handleidingen achter elke term.",
+      "goDeeperItem2": "Bekijk de concepten in de praktijk: de stadspagina's van <1>New York</1> en <2>Berlijn</2>.",
       "terms": {
         "community": {
           "name": "Community",

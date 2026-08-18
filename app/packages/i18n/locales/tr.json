@@ -623,8 +623,12 @@
       "title": "Topluluk İşletim Sistemi sözlüğü",
       "intro": "Topluluk kurmanın temel sözlüğü — organizatörlerin, moderatörlerin ve kurucuların her gün kullandığı terimlerin net tanımları.",
       "whyTitle": "Neden bir sözlük",
+      "whyBody": "Topluluk kurmanın kendine özgü bir dili vardır ve terimler genellikle gevşek kullanılır. Bir topluluk işletim sistemi sözlüğü; organizatörlere, moderatörlere ve kuruculara güvenebilecekleri ortak tanımlar sunar — moderasyon ve karşılama süreci gibi klasik kavramlardan etkileşim döngüleri ve hibrit etkinlikler gibi daha yeni fikirlere kadar.",
       "termsTitle": "Temel terimler",
+      "termsIntro": "İşte her organizatör, moderatör ve kurucunun kullandığı temel terimler — her biri Topluluk Kurma Rehberleri boyunca uygulamada tanımlanıyor:",
       "goDeeper": "Daha derine inin",
+      "goDeeperItem1": "<1>Topluluk Kurma Rehberleri</1>'ni baştan sona çalışın — her terimin arkasındaki adım adım rehberler.",
+      "goDeeperItem2": "Kavramları uygulamada görün: <1>New York</1> ve <2>Berlin</2> şehir sayfaları.",
       "terms": {
         "community": {
           "name": "Topluluk",

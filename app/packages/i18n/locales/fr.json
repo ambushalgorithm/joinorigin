@@ -623,8 +623,12 @@
       "title": "Glossaire du système communautaire",
       "intro": "Le vocabulaire essentiel de la construction de communauté — des définitions claires des termes utilisés chaque jour par les organisateurs, modérateurs et fondateurs.",
       "whyTitle": "Pourquoi un glossaire",
+      "whyBody": "La construction de communauté a son propre langage, et les termes y sont souvent employés avec souplesse. Un glossaire du système communautaire donne aux organisateurs, modérateurs et fondateurs des définitions communes sur lesquelles s'appuyer — des concepts classiques comme la modération et l'onboarding aux idées plus récentes comme les boucles d'engagement et les événements hybrides.",
       "termsTitle": "Termes essentiels",
+      "termsIntro": "Voici les termes essentiels que tout organisateur, modérateur et fondateur utilise — chacun est défini en pratique dans les Guides de construction de communauté :",
       "goDeeper": "Aller plus loin",
+      "goDeeperItem1": "Parcourez les <1>Guides de construction de communauté</1> — les guides pratiques pas à pas derrière chaque terme.",
+      "goDeeperItem2": "Voyez ces concepts en pratique : les pages villes de <1>New York</1> et de <2>Berlin</2>.",
       "terms": {
         "community": {
           "name": "Communauté",
