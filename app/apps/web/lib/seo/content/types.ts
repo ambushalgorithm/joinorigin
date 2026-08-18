@@ -127,10 +127,13 @@ export interface VariantEnrichment {
 export interface CityContent extends BaseContent {
   kind: 'city';
   /**
-   * Unique, honest prose section — ≥150 words (G2). Never a name-swapped
+   * Unique, honest prose section — an explicit array of paragraphs (like
+   * GuideContent). Each entry renders as its own paragraph block on the city
+   * page. The combined paragraphs must still clear the ≥150-word prose gate
+   * (G2) — gate word counts sum the paragraph lengths. Never a name-swapped
    * template: distinct per city/region/country (G5).
    */
-  intro: string;
+  intro: string[];
   /** Per-variant unique prose — ≥150 words each (G2/G5). */
   variantIntros: Partial<Record<GroupTypeKey, string>>;
   /** Per-variant enrichment — venues/formats/how-to (TASK-319). */

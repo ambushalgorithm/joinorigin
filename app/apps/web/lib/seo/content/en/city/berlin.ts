@@ -9,8 +9,11 @@ const content: CityContent = {
   kind: 'city',
   locale: 'en',
   slug: 'berlin',
-  intro:
-    'Berlin is a city that runs on communities. Its history, its affordability compared to other European capitals, and its twelve distinct districts have produced one of the most active gathering scenes on the continent. Tech and startup people cluster in Mitte and Kreuzberg, while Neukölln and Friedrichshain host a dense mix of creatives, makers, and families who often share the same courtyards and Spätis. Public space is generous — Tempelhofer Feld, Mauerpark, Tiergarten, and the canals of Kreuzberg and Neukölln host everything from kite festivals to impromptu football games. The Stammtisch tradition gives every community a natural ritual: a regular table at a biergarten or neighborhood bar where members show up without being asked. Universities like Humboldt, TU Berlin, and FU Berlin keep a constant supply of students and researchers cycling through the scene, and the city’s international population makes English-language groups common alongside German ones. For finding or starting a community, Berlin rewards showing up consistently and choosing a district that fits your group’s personality.',
+  intro: [
+    'Berlin is a city that runs on communities. Its history, its affordability compared to other European capitals, and its twelve distinct districts have produced one of the most active gathering scenes on the continent. Tech and startup people cluster in Mitte and Kreuzberg, while Neukölln and Friedrichshain host a dense mix of creatives, makers, and families who often share the same courtyards and Spätis.',
+    'Public space is generous — Tempelhofer Feld, Mauerpark, Tiergarten, and the canals of Kreuzberg and Neukölln host everything from kite festivals to impromptu football games. The Stammtisch tradition gives every community a natural ritual: a regular table at a biergarten or neighborhood bar where members show up without being asked. Universities like Humboldt, TU Berlin, and FU Berlin keep a constant supply of students and researchers cycling through the scene, and the city’s international population makes English-language groups common alongside German ones.',
+    'For finding or starting a community, Berlin rewards showing up consistently and choosing a district that fits your group’s personality.',
+  ],
   dataPoints: [
     'Roughly 3.4 million residents; the federal capital of Germany.',
     'Twelve districts, each with a distinct community identity.',

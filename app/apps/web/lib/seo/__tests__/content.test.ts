@@ -55,12 +55,12 @@ describe('lib/seo content — registry + EN fallback', () => {
 describe('lib/seo content — quality contract (G1/G2/G5)', () => {
   it('every content file declares its kind/locale/slug and ≥150-word intro (G2)', () => {
     for (const content of listContent('en')) {
-      // Guides model the intro as a paragraph array (TASK-351) — sum the
-      // paragraph word counts so the same ≥150-word gate applies.
-      const introWords =
-        content.kind === 'guide'
-          ? content.intro.reduce((sum, paragraph) => sum + wordCount(paragraph), 0)
-          : wordCount(content.intro);
+      // Guides and cities model the intro as a paragraph array (TASK-351 /
+      // TASK-410) — sum the paragraph word counts so the same ≥150-word
+      // gate applies.
+      const introWords = Array.isArray(content.intro)
+        ? content.intro.reduce((sum, paragraph) => sum + wordCount(paragraph), 0)
+        : wordCount(content.intro);
       expect(content.intro.length).toBeGreaterThan(0);
       expect(introWords).toBeGreaterThanOrEqual(MIN_PROSE_WORDS);
       expect(content.dataPoints.length).toBeGreaterThanOrEqual(3);
@@ -142,8 +142,10 @@ describe('lib/seo content — quality contract (G1/G2/G5)', () => {
   it('NYC and Berlin city intros are not near-duplicates (G5, no reuse)', () => {
     const nyc = getCityContent('new-york', 'en');
     const berlin = getCityContent('berlin', 'en');
-    expect(nearDuplicate(nyc?.intro ?? '', berlin?.intro ?? '')).toBe(false);
-    expect(nearDuplicate(nyc?.intro ?? '', berlin?.intro ?? '')).toBe(false);
+    // City intros are paragraph arrays (TASK-410) — join before comparing.
+    const nycIntro = nyc?.intro.join(' ') ?? '';
+    const berlinIntro = berlin?.intro.join(' ') ?? '';
+    expect(nearDuplicate(nycIntro, berlinIntro)).toBe(false);
   });
 
   it('NYC and Berlin variant intros differ per group type (G5)', () => {
