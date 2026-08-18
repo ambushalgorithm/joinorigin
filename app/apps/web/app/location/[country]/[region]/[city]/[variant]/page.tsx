@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { LocationView } from '../../../../../../components/location/LocationView';
+import { getServerLocale } from '../../../../../../lib/i18n-server';
 import { JsonLd } from '../../../../../../lib/seo/JsonLdScript';
 import {
   buildLocationViewData,
@@ -20,6 +21,10 @@ import {
  * variants with committed, differentiating prose are enumerated by the
  * registry (G5); warm set = the MVP flagship variants + idea pages. Unknown
  * variants → `notFound()` (G3 enforcement).
+ *
+ * Locale-aware body (TASK-446): view data resolves through the active server
+ * locale (proxy-forwarded `x-joinorigin-locale`) with EN fallback via
+ * `contentFor`; SEO metadata stays EN (arch-i18n §1.2).
  */
 export const revalidate = 2592000;
 
@@ -48,7 +53,7 @@ export default async function VariantPage({ params }: VariantPageProps) {
   if (!entry) {
     notFound();
   }
-  const data = buildLocationViewData(entry, 'en');
+  const data = buildLocationViewData(entry, await getServerLocale());
   const jsonLd = locationJsonLd(data);
   return (
     <>
