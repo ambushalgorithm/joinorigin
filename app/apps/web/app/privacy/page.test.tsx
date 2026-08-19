@@ -1,4 +1,12 @@
-import { screen } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
+
+import {
+  I18nProvider,
+  LOCALE_COOKIE_NAME,
+  _resetI18nForTests,
+  getDictionary,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import PrivacyPage, { metadata } from './page';
 import { renderWithI18n } from '../../test-utils';
@@ -40,5 +48,79 @@ describe('privacy page', () => {
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     expect(payloads).toHaveLength(1);
     expect(payloads[0]['@type']).toBe('BreadcrumbList');
+  });
+});
+
+/**
+ * TASK-460 — the privacy view renders the contact-body internal link through
+ * the shared locale-aware path helper per the confirmed prefix table.
+ * `useLocalizePath` reads the router pathname + active i18n locale, so this
+ * suite overrides the `next/navigation` mock with a mutable `mockPathname`.
+ * External `mailto:` hrefs pass through untouched; the hero CTA href is
+ * localized by `MenuHero` (chrome), which is covered by the fe-locale-links
+ * suite.
+ */
+let mockPathname = '/';
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+  usePathname: () => mockPathname,
+}));
+
+/** Aligns the provider's post-mount auto-detect with the render locale. */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
+
+function renderPrivacyForLocale(locale: Locale) {
+  setNavigatorLanguage(locale);
+  return render(
+    <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
+      <PrivacyPage />
+    </I18nProvider>,
+  );
+}
+
+describe('privacy view — locale-aware internal links (TASK-460)', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
+    mockPathname = '/';
+  });
+
+  /** Finds a link with the exact href (Trans link text is locale-dependent). */
+  function linkByHref(href: string) {
+    return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
+  }
+
+  it('keeps the contact-body link unprefixed + mailto untouched on an unprefixed EN load (table row 1)', () => {
+    mockPathname = '/privacy';
+    renderPrivacyForLocale('en');
+    expect(linkByHref('/contact')).toBeDefined();
+    expect(screen.getByRole('link', { name: 'hello@joinorigin.co' })).toHaveAttribute(
+      'href',
+      'mailto:hello@joinorigin.co',
+    );
+  });
+
+  it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {
+    mockPathname = '/en/privacy';
+    renderPrivacyForLocale('en');
+    expect(linkByHref('/en/contact')).toBeDefined();
+  });
+
+  it('renders /de/** contact-body link on a /de/** load (table row 3)', () => {
+    mockPathname = '/de/privacy';
+    renderPrivacyForLocale('de');
+    expect(linkByHref('/de/contact')).toBeDefined();
+  });
+
+  it('renders /de/** contact-body link on an unprefixed load with a de cookie (table row 4)', () => {
+    mockPathname = '/privacy';
+    renderPrivacyForLocale('de');
+    expect(linkByHref('/de/contact')).toBeDefined();
   });
 });

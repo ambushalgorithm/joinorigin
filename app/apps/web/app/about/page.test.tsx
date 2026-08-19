@@ -1,4 +1,12 @@
-import { screen } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
+
+import {
+  I18nProvider,
+  LOCALE_COOKIE_NAME,
+  _resetI18nForTests,
+  getDictionary,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import AboutPage, { metadata } from './page';
 import { renderWithI18n } from '../../test-utils';
@@ -64,5 +72,81 @@ describe('about page', () => {
     const breadcrumb = payloads.find((p) => p['@type'] === 'BreadcrumbList');
     expect(breadcrumb?.itemListElement).toHaveLength(2);
     expect(breadcrumb?.itemListElement[1].item).toBe('http://localhost:3100/about');
+  });
+});
+
+/**
+ * TASK-460 — the about view renders the "Reading" cross-links through the
+ * shared locale-aware path helper per the confirmed prefix table.
+ * `useLocalizePath` reads the router pathname + active i18n locale, so this
+ * suite overrides the `next/navigation` mock with a mutable `mockPathname`.
+ */
+let mockPathname = '/';
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+  usePathname: () => mockPathname,
+}));
+
+/** Aligns the provider's post-mount auto-detect with the render locale. */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
+
+function renderAboutForLocale(locale: Locale) {
+  setNavigatorLanguage(locale);
+  return render(
+    <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
+      <AboutPage />
+    </I18nProvider>,
+  );
+}
+
+describe('about view — locale-aware internal links (TASK-460)', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
+    mockPathname = '/';
+  });
+
+  /** Finds a link with the exact href (reading-section links are unique by
+   *  href even though the Trans text is locale-dependent). */
+  function linkByHref(href: string) {
+    return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
+  }
+
+  it('keeps reading links unprefixed on an unprefixed EN load (table row 1)', () => {
+    mockPathname = '/about';
+    renderAboutForLocale('en');
+    expect(linkByHref('/docs')).toBeDefined();
+    expect(linkByHref('/community')).toBeDefined();
+    expect(linkByHref('/contact')).toBeDefined();
+  });
+
+  it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {
+    mockPathname = '/en/about';
+    renderAboutForLocale('en');
+    expect(linkByHref('/en/docs')).toBeDefined();
+    expect(linkByHref('/en/community')).toBeDefined();
+    expect(linkByHref('/en/contact')).toBeDefined();
+  });
+
+  it('renders /de/** reading links on a /de/** load (table row 3)', () => {
+    mockPathname = '/de/about';
+    renderAboutForLocale('de');
+    expect(linkByHref('/de/docs')).toBeDefined();
+    expect(linkByHref('/de/community')).toBeDefined();
+    expect(linkByHref('/de/contact')).toBeDefined();
+  });
+
+  it('renders /de/** reading links on an unprefixed load with a de cookie (table row 4)', () => {
+    mockPathname = '/about';
+    renderAboutForLocale('de');
+    expect(linkByHref('/de/docs')).toBeDefined();
+    expect(linkByHref('/de/community')).toBeDefined();
+    expect(linkByHref('/de/contact')).toBeDefined();
   });
 });

@@ -1,6 +1,12 @@
 import { render, screen, within } from '@testing-library/react';
 
-import { I18nProvider, getDictionary } from '@joinorigin/i18n';
+import {
+  I18nProvider,
+  LOCALE_COOKIE_NAME,
+  _resetI18nForTests,
+  getDictionary,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import GlossaryHubPage, { metadata } from './page';
 
@@ -164,5 +170,80 @@ describe('glossary hub page', () => {
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     expect(payloads.some((p) => p['@type'] === 'BreadcrumbList')).toBe(true);
+  });
+});
+
+/**
+ * TASK-460 — the glossary hub renders internal links through the shared
+ * locale-aware path helper per the confirmed prefix table. `useLocalizePath`
+ * reads the router pathname + active i18n locale, so this suite overrides the
+ * `next/navigation` mock with a mutable `mockPathname`.
+ */
+let mockPathname = '/';
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+  usePathname: () => mockPathname,
+}));
+
+/** Aligns the provider's post-mount auto-detect with the render locale. */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
+
+function renderGlossaryForLocale(locale: Locale) {
+  setNavigatorLanguage(locale);
+  return render(
+    <I18nProvider locale={locale} dictionary={glossaryDictionary()}>
+      <GlossaryHubPage />
+    </I18nProvider>,
+  );
+}
+
+describe('glossary hub — locale-aware internal links (TASK-460)', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
+    mockPathname = '/';
+  });
+
+  /** Finds a link with the exact href (Trans link text is locale-dependent). */
+  function linkByHref(href: string) {
+    return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
+  }
+
+  it('keeps cross-links unprefixed on an unprefixed EN load (table row 1)', () => {
+    mockPathname = '/glossary';
+    renderGlossaryForLocale('en');
+    expect(linkByHref('/guides')).toBeDefined();
+    expect(linkByHref('/location/united-states/new-york/new-york')).toBeDefined();
+    expect(linkByHref('/location/germany/berlin/berlin')).toBeDefined();
+  });
+
+  it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {
+    mockPathname = '/en/glossary';
+    renderGlossaryForLocale('en');
+    expect(linkByHref('/en/guides')).toBeDefined();
+    expect(linkByHref('/en/location/united-states/new-york/new-york')).toBeDefined();
+    expect(linkByHref('/en/location/germany/berlin/berlin')).toBeDefined();
+  });
+
+  it('renders /de/** cross-links on a /de/** load (table row 3)', () => {
+    mockPathname = '/de/glossary';
+    renderGlossaryForLocale('de');
+    expect(linkByHref('/de/guides')).toBeDefined();
+    expect(linkByHref('/de/location/united-states/new-york/new-york')).toBeDefined();
+    expect(linkByHref('/de/location/germany/berlin/berlin')).toBeDefined();
+  });
+
+  it('renders /de/** cross-links on an unprefixed load with a de cookie (table row 4)', () => {
+    mockPathname = '/glossary';
+    renderGlossaryForLocale('de');
+    expect(linkByHref('/de/guides')).toBeDefined();
+    expect(linkByHref('/de/location/united-states/new-york/new-york')).toBeDefined();
+    expect(linkByHref('/de/location/germany/berlin/berlin')).toBeDefined();
   });
 });

@@ -21,6 +21,7 @@ import {
   SectionTitle,
 } from '../../components/menuPagePrimitives';
 import { faqEntries, faqNamespace } from '../../lib/faq';
+import { useLocalizePath } from '../../lib/seo/localePath';
 
 /**
  * Contact view (discovery §5.7, redesign spec sprint-8 §8.5, elevated
@@ -148,6 +149,12 @@ const Row = styled.div`
 
 export function ContactView() {
   const { t, dictionary } = useI18n();
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`. External `mailto:` hrefs pass through untouched.
+  const localizePath = useLocalizePath();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -242,13 +249,13 @@ export function ContactView() {
                 <ListItem>
                   <Trans
                     i18nKey="contact.otherDocs"
-                    components={[<AccentLink key="docs" href="/docs" />]}
+                    components={[<AccentLink key="docs" href={localizePath('/docs')} />]}
                   />
                 </ListItem>
                 <ListItem>
                   <Trans
                     i18nKey="contact.otherAbout"
-                    components={[<AccentLink key="about" href="/about" />]}
+                    components={[<AccentLink key="about" href={localizePath('/about')} />]}
                   />
                 </ListItem>
               </BulletList>

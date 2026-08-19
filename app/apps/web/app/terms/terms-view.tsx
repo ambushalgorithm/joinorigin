@@ -13,6 +13,7 @@ import {
   Section,
   SectionTitle,
 } from '../../components/menuPagePrimitives';
+import { useLocalizePath } from '../../lib/seo/localePath';
 
 /**
  * Terms of service view (discovery §5.9, redesign spec sprint-8 §8.7,
@@ -31,6 +32,13 @@ const CONTACT_EMAIL = 'hello@joinorigin.co';
 
 export function TermsView() {
   const { t } = useI18n();
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`. External `mailto:` hrefs pass through untouched. The hero CTA
+  // href is localized by `MenuHero` (chrome) so it stays raw here.
+  const localizePath = useLocalizePath();
 
   return (
     <MenuPageShell
@@ -128,7 +136,7 @@ export function TermsView() {
                 values={{ email: CONTACT_EMAIL }}
                 components={[
                   <AccentLink key="mail" href={`mailto:${CONTACT_EMAIL}`} />,
-                  <AccentLink key="contact" href="/contact" />,
+                  <AccentLink key="contact" href={localizePath('/contact')} />,
                 ]}
               />
             </BodyCopy>

@@ -27,6 +27,7 @@ import {
 } from '../../../components/menuPagePrimitives';
 import { trackEvent } from '../../../lib/analytics';
 import TranslatePageLink from '../../../components/TranslatePageLink';
+import { useLocalizePath } from '../../../lib/seo/localePath';
 import type { GuideContent } from '../../../lib/seo/content/types';
 import type { GuidePageEntry } from '../../../lib/seo/guides';
 import {
@@ -147,6 +148,12 @@ function GuideJoinCta({ slug }: { slug: string }) {
 
 export function GuideView({ entry, content }: GuideViewProps) {
   const { t } = useI18n();
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`. Server-baked locale-prefixed paths pass through idempotently.
+  const localizePath = useLocalizePath();
 
   const relatedEntries = entry.related
     .map((slug) => ({ slug }))
@@ -223,7 +230,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
                 {relatedEntries.map((related) => (
                   <Card key={related.slug}>
                     <CardTitle>
-                      <RelatedLink href={related.href}>{related.title}</RelatedLink>
+                      <RelatedLink href={localizePath(related.href)}>{related.title}</RelatedLink>
                     </CardTitle>
                     <CardBody>{t('seoContent.guides.continueBuilding')}</CardBody>
                   </Card>
@@ -242,7 +249,7 @@ export function GuideView({ entry, content }: GuideViewProps) {
               <BodyCopy>{t('seoContent.guides.practiceInCity')}</BodyCopy>
               <CityLinks>
                 {entry.cities.map((city) => (
-                  <RelatedLink key={city.path} href={city.path}>
+                  <RelatedLink key={city.path} href={localizePath(city.path)}>
                     {city.name}
                   </RelatedLink>
                 ))}
@@ -291,19 +298,21 @@ export function GuideView({ entry, content }: GuideViewProps) {
                 <ListItem>
                   <Trans
                     i18nKey="seoContent.guides.keepLearningGuides"
-                    components={[<RelatedLink key="hub" href={GUIDES_HUB_PATH} />]}
+                    components={[<RelatedLink key="hub" href={localizePath(GUIDES_HUB_PATH)} />]}
                   />
                 </ListItem>
                 <ListItem>
                   <Trans
                     i18nKey="seoContent.guides.keepLearningGlossary"
-                    components={[<RelatedLink key="glossary" href={GLOSSARY_HUB_PATH} />]}
+                    components={[
+                      <RelatedLink key="glossary" href={localizePath(GLOSSARY_HUB_PATH)} />,
+                    ]}
                   />
                 </ListItem>
                 <ListItem>
                   <Trans
                     i18nKey="seoContent.guides.keepLearningLocations"
-                    components={[<RelatedLink key="locations" href="/location" />]}
+                    components={[<RelatedLink key="locations" href={localizePath('/location')} />]}
                   />
                 </ListItem>
               </BulletList>

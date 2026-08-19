@@ -1,6 +1,12 @@
-import { screen, within } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 
-import type { Locale } from '@joinorigin/i18n';
+import {
+  I18nProvider,
+  LOCALE_COOKIE_NAME,
+  _resetI18nForTests,
+  getDictionary,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import { LocationView } from '../../../../../components/location/LocationView';
 import { getCityContent } from '../../../../../lib/seo/content';
@@ -161,5 +167,89 @@ describe('/location/[country]/[region]/[city] route', () => {
     } finally {
       mockServerLocale.locale = 'en';
     }
+  });
+});
+
+/**
+ * TASK-460 — the location view renders breadcrumb / group-type / sibling /
+ * guide links through the shared locale-aware path helper per the confirmed
+ * prefix table. `useLocalizePath` reads the router pathname + active i18n
+ * locale, so this suite overrides the `next/navigation` mock with a mutable
+ * `mockPathname`.
+ */
+let mockPathname = '/';
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+  usePathname: () => mockPathname,
+}));
+
+/** Aligns the provider's post-mount auto-detect with the render locale. */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
+
+function renderLocationForLocale(locale: Locale, data: ReturnType<typeof buildLocationViewData>) {
+  setNavigatorLanguage(locale);
+  return render(
+    <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
+      <LocationView data={data} />
+    </I18nProvider>,
+  );
+}
+
+describe('location view — locale-aware internal links (TASK-460)', () => {
+  const berlinEntry = resolveLocationEntry({
+    country: 'germany',
+    region: 'berlin',
+    city: 'berlin',
+  });
+  const berlinData = buildLocationViewData(berlinEntry!);
+
+  beforeEach(() => {
+    _resetI18nForTests();
+    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
+    mockPathname = '/';
+  });
+
+  /** Finds a link with the exact href (labels are locale-dependent). */
+  function linkByHref(href: string) {
+    return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
+  }
+
+  it('keeps internal links unprefixed on an unprefixed EN load (table row 1)', () => {
+    mockPathname = '/location/germany/berlin/berlin';
+    renderLocationForLocale('en', berlinData);
+    // Breadcrumb hub link, group-type link, guide cross-link all unprefixed.
+    expect(linkByHref('/location')).toBeDefined();
+    expect(linkByHref('/location/germany/berlin/berlin/startup')).toBeDefined();
+    expect(linkByHref('/guides/start-a-community')).toBeDefined();
+  });
+
+  it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {
+    mockPathname = '/en/location/germany/berlin/berlin';
+    renderLocationForLocale('en', berlinData);
+    expect(linkByHref('/en/location')).toBeDefined();
+    expect(linkByHref('/en/location/germany/berlin/berlin/startup')).toBeDefined();
+    expect(linkByHref('/en/guides/start-a-community')).toBeDefined();
+  });
+
+  it('renders /de/** links on a /de/** load (table row 3)', () => {
+    mockPathname = '/de/location/germany/berlin/berlin';
+    renderLocationForLocale('de', berlinData);
+    expect(linkByHref('/de/location')).toBeDefined();
+    expect(linkByHref('/de/location/germany/berlin/berlin/startup')).toBeDefined();
+    expect(linkByHref('/de/guides/start-a-community')).toBeDefined();
+  });
+
+  it('renders /de/** links on an unprefixed load with a de cookie (table row 4)', () => {
+    mockPathname = '/location/germany/berlin/berlin';
+    renderLocationForLocale('de', berlinData);
+    expect(linkByHref('/de/location')).toBeDefined();
+    expect(linkByHref('/de/location/germany/berlin/berlin/startup')).toBeDefined();
+    expect(linkByHref('/de/guides/start-a-community')).toBeDefined();
   });
 });

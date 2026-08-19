@@ -22,6 +22,7 @@ import {
 } from '../../components/menuPagePrimitives';
 import { filterByKeyword } from '../../lib/search/hubFilter';
 import { useDebouncedValue } from '../../lib/search/useDebouncedValue';
+import { useLocalizePath } from '../../lib/seo/localePath';
 import type { GuidePageEntry } from '../../lib/seo/guides';
 import { GLOSSARY_HUB_PATH } from '../../lib/seo/guides';
 
@@ -55,6 +56,12 @@ const StyledLink = styled(Link)`
 
 export function GuidesHubView({ entries }: GuidesHubViewProps) {
   const { t } = useI18n();
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`. Server-baked locale-prefixed paths pass through idempotently.
+  const localizePath = useLocalizePath();
   const [guideQuery, setGuideQuery] = useState('');
   const debouncedGuideQuery = useDebouncedValue(guideQuery);
   const filteredEntries = filterByKeyword(
@@ -93,7 +100,7 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
                   {filteredEntries.map((entry) => (
                     <Card key={entry.slug}>
                       <CardTitle>
-                        <StyledLink href={entry.path}>{entry.title}</StyledLink>
+                        <StyledLink href={localizePath(entry.path)}>{entry.title}</StyledLink>
                       </CardTitle>
                       <CardBody>{entry.description}</CardBody>
                     </Card>
@@ -118,7 +125,9 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
                 <Trans
                   i18nKey="seoContent.guides.glossaryBandCopy"
                   values={{ glossary: t('seoContent.guides.glossarySection') }}
-                  components={[<StyledLink key="glossary" href={GLOSSARY_HUB_PATH} />]}
+                  components={[
+                    <StyledLink key="glossary" href={localizePath(GLOSSARY_HUB_PATH)} />,
+                  ]}
                 />
               </BodyCopy>
             </Section>
@@ -136,7 +145,7 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
                 {entries[0]?.cities.map((city) => (
                   <Card key={city.path}>
                     <CardTitle>
-                      <StyledLink href={city.path}>{city.name}</StyledLink>
+                      <StyledLink href={localizePath(city.path)}>{city.name}</StyledLink>
                     </CardTitle>
                     <CardBody>{t('seoContent.guides.cityCardBody', { city: city.name })}</CardBody>
                   </Card>

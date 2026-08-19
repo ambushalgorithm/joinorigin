@@ -21,6 +21,7 @@ import {
   SectionTitle,
 } from '../../components/menuPagePrimitives';
 import { GUIDES_HUB_PATH } from '../../lib/seo/guides';
+import { useLocalizePath } from '../../lib/seo/localePath';
 
 /**
  * Community OS Glossary hub view (design §6.3 — L2b hub).
@@ -69,6 +70,12 @@ const GLOSSARY_TERMS = [
 
 export function GlossaryHubView() {
   const { t } = useI18n();
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`.
+  const localizePath = useLocalizePath();
 
   return (
     <MenuPageShell
@@ -120,15 +127,21 @@ export function GlossaryHubView() {
                 <ListItem>
                   <Trans
                     i18nKey="seoContent.glossary.goDeeperItem1"
-                    components={[<StyledLink key="hub" href={GUIDES_HUB_PATH} />]}
+                    components={[<StyledLink key="hub" href={localizePath(GUIDES_HUB_PATH)} />]}
                   />
                 </ListItem>
                 <ListItem>
                   <Trans
                     i18nKey="seoContent.glossary.goDeeperItem2"
                     components={[
-                      <StyledLink key="nyc" href="/location/united-states/new-york/new-york" />,
-                      <StyledLink key="berlin" href="/location/germany/berlin/berlin" />,
+                      <StyledLink
+                        key="nyc"
+                        href={localizePath('/location/united-states/new-york/new-york')}
+                      />,
+                      <StyledLink
+                        key="berlin"
+                        href={localizePath('/location/germany/berlin/berlin')}
+                      />,
                     ]}
                   />
                 </ListItem>

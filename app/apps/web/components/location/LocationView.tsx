@@ -30,6 +30,7 @@ import {
 } from '../menuPagePrimitives';
 import LocationCta from './LocationCta';
 import TranslatePageLink from '../TranslatePageLink';
+import { useLocalizePath } from '../../lib/seo/localePath';
 import type { LocationViewData } from '../../lib/seo/locationView';
 
 /**
@@ -225,6 +226,12 @@ const StepList = styled.ol`
 
 export function LocationView({ data }: { data: LocationViewData }) {
   const { t } = useI18n();
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`. Server-baked locale-prefixed paths pass through idempotently.
+  const localizePath = useLocalizePath();
   const heroTitle = data.heading;
   const heroLead = data.lead;
   const isIdeas = data.kind === 'ideas';
@@ -311,7 +318,9 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 </BreadcrumbItem>
               ) : (
                 <BreadcrumbItem key={crumb.path}>
-                  <BreadcrumbLink href={crumb.path}>{crumbLabel(crumb)}</BreadcrumbLink>
+                  <BreadcrumbLink href={localizePath(crumb.path)}>
+                    {crumbLabel(crumb)}
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
               ),
             )}
@@ -368,7 +377,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 <TagList data-testid="location-group-type-links">
                   {data.groupTypeLinks.map((link) => (
                     <TagItem key={link.path}>
-                      <TagLink href={link.path} $current={link.current}>
+                      <TagLink href={localizePath(link.path)} $current={link.current}>
                         {groupLinkLabel(link)}
                       </TagLink>
                     </TagItem>
@@ -449,7 +458,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
                     <Card key={entry.path}>
                       <CardTitle>
                         <Link
-                          href={entry.path}
+                          href={localizePath(entry.path)}
                           style={{ color: 'inherit', textDecoration: 'none' }}
                         >
                           {entry.name}
@@ -509,7 +518,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
                     <Card key={sibling.path}>
                       <CardTitle>
                         <Link
-                          href={sibling.path}
+                          href={localizePath(sibling.path)}
                           style={{ color: 'inherit', textDecoration: 'none' }}
                         >
                           {sibling.name}
@@ -534,7 +543,10 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 {data.guideLinks.map((guide) => (
                   <Card key={guide.path}>
                     <CardTitle>
-                      <Link href={guide.path} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      <Link
+                        href={localizePath(guide.path)}
+                        style={{ color: 'inherit', textDecoration: 'none' }}
+                      >
                         {guide.title}
                       </Link>
                     </CardTitle>
