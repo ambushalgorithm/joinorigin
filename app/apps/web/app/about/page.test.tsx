@@ -53,15 +53,16 @@ describe('about page', () => {
   it('links to the real pages via the nav and footer', () => {
     renderWithI18n(<AboutPage />);
     // Header nav + footer both link the real pages; assert hrefs on the links.
+    // All-routes-prefixed (TASK-464): unprefixed EN loads render `/en/**`.
     const featuresLinks = screen.getAllByRole('link', { name: 'Features' });
     expect(featuresLinks.length).toBeGreaterThan(0);
-    expect(featuresLinks[0]).toHaveAttribute('href', '/features');
+    expect(featuresLinks[0]).toHaveAttribute('href', '/en/features');
     expect(screen.getAllByRole('link', { name: 'Community' })[0]).toHaveAttribute(
       'href',
-      '/community',
+      '/en/community',
     );
-    expect(screen.getAllByRole('link', { name: 'Docs' })[0]).toHaveAttribute('href', '/docs');
-    expect(screen.getAllByRole('link', { name: 'About' })[0]).toHaveAttribute('href', '/about');
+    expect(screen.getAllByRole('link', { name: 'Docs' })[0]).toHaveAttribute('href', '/en/docs');
+    expect(screen.getAllByRole('link', { name: 'About' })[0]).toHaveAttribute('href', '/en/about');
   });
 
   it('renders server-side JSON-LD: AboutPage + BreadcrumbList', () => {
@@ -118,12 +119,12 @@ describe('about view — locale-aware internal links (TASK-460)', () => {
     return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
   }
 
-  it('keeps reading links unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('renders /en/** reading links on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/about';
     renderAboutForLocale('en');
-    expect(linkByHref('/docs')).toBeDefined();
-    expect(linkByHref('/community')).toBeDefined();
-    expect(linkByHref('/contact')).toBeDefined();
+    expect(linkByHref('/en/docs')).toBeDefined();
+    expect(linkByHref('/en/community')).toBeDefined();
+    expect(linkByHref('/en/contact')).toBeDefined();
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {

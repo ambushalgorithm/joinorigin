@@ -3,18 +3,19 @@
 import { useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES, useI18n, type Locale } from '@joinorigin/i18n';
+import { SUPPORTED_LOCALES, useI18n, type Locale } from '@joinorigin/i18n';
 
 /**
  * Locale-aware path helper for internal links (Sprint 19 Goal 2, TASK-456).
  *
- * Implements the confirmed link-prefix table — the active locale's prefix is
- * applied to ALL internal links, EXCEPT a plain unprefixed EN load keeps
- * links unprefixed:
+ * All-routes-prefixed (TASK-464): the active locale's prefix is applied to
+ * ALL internal links — including EN, which always renders `/en/...` so every
+ * emitted href matches the sitemap + hreflang contract (unprefixed `/**`
+ * 307-redirects to `/<locale>/...` at the proxy):
  *
  * | Current URL           | Active locale      | Internal links render as |
  * |-----------------------|--------------------|--------------------------|
- * | unprefixed `/features`| EN (no cookie/header)| unprefixed `/guides`     |
+ * | unprefixed `/features`| EN (no cookie/header)| `/en/guides`            |
  * | `/en/features`        | EN                 | `/en/guides`             |
  * | `/de/features`        | de                 | `/de/guides`             |
  * | unprefixed + de cookie| de                 | `/de/guides`             |
@@ -22,7 +23,8 @@ import { DEFAULT_LOCALE, SUPPORTED_LOCALES, useI18n, type Locale } from '@joinor
  * The rule derives from the CURRENT pathname first (a locale-prefixed load
  * keeps that prefix on every link — including `/en/**`, which stays `/en/**`
  * and never collapses), then falls back to the active locale (so an
- * unprefixed load with a `de` cookie renders `/de/**` links).
+ * unprefixed load with a `de` cookie renders `/de/**` links and an unprefixed
+ * EN load renders `/en/**` links).
  *
  * The pure functions are unit-testable; `useLocalizePath` wires them to the
  * router pathname + i18n locale for client components. Hash-only anchors
@@ -42,18 +44,16 @@ export function localeFromPathname(pathname: string): Locale | undefined {
  * The prefix to apply to internal links for the current load.
  *
  * - Locale-prefixed pathname → that locale's prefix (`/en`, `/de`, `/vi`, …).
- * - Unprefixed pathname + non-EN active locale (cookie/header) → `/<locale>`.
- * - Unprefixed pathname + EN active locale → `''` (links stay unprefixed).
+ * - Any unprefixed pathname → the active locale's prefix (`/en` included),
+ *   so every rendered link carries `/<locale>` — never `''` for a rendered
+ *   page (all-routes-prefixed, TASK-464).
  */
 export function localeLinkPrefix(pathname: string, locale: Locale): string {
   const pathLocale = localeFromPathname(pathname);
   if (pathLocale) {
     return `/${pathLocale}`;
   }
-  if (locale !== DEFAULT_LOCALE) {
-    return `/${locale}`;
-  }
-  return '';
+  return `/${locale}`;
 }
 
 /**
@@ -63,7 +63,7 @@ export function localeLinkPrefix(pathname: string, locale: Locale): string {
  * external URLs (scheme or `//`), empty strings, and hrefs that already
  * carry a locale prefix (idempotent — avoids double-prefixing when a parent
  * and child component both localize). The home path `/` localizes to the
- * prefix itself (`/` → `/de`).
+ * prefix itself (`/` → `/en`, `/de`).
  */
 export function localizePath(path: string, pathname: string, locale: Locale): string {
   // Passthrough: hash-only anchors, external URLs (scheme or `//`), empty
@@ -75,9 +75,6 @@ export function localizePath(path: string, pathname: string, locale: Locale): st
     return path;
   }
   const prefix = localeLinkPrefix(pathname, locale);
-  if (!prefix) {
-    return path;
-  }
   return path === '/' ? prefix : `${prefix}${path}`;
 }
 

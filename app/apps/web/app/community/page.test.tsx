@@ -104,14 +104,14 @@ describe('community view — locale-aware internal links (TASK-460)', () => {
     return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
   }
 
-  it('keeps join + Explore links unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('renders /en/** join + Explore links on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/community';
     renderCommunityForLocale('en');
-    // The join band links home; on an unprefixed EN load it stays `/`.
-    expect(linkByHref('/')).toBeDefined();
-    expect(linkByHref('/location')).toBeDefined();
-    expect(linkByHref('/guides')).toBeDefined();
-    expect(linkByHref('/glossary')).toBeDefined();
+    // The join band links home; on an unprefixed EN load it becomes `/en`.
+    expect(linkByHref('/en')).toBeDefined();
+    expect(linkByHref('/en/location')).toBeDefined();
+    expect(linkByHref('/en/guides')).toBeDefined();
+    expect(linkByHref('/en/glossary')).toBeDefined();
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {

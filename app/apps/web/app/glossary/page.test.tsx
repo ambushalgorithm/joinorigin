@@ -153,15 +153,15 @@ describe('glossary hub page', () => {
     renderWithGlossaryTerms();
     expect(screen.getByRole('link', { name: 'Community Building guides' })).toHaveAttribute(
       'href',
-      '/guides',
+      '/en/guides',
     );
     expect(screen.getByRole('link', { name: 'New York City' })).toHaveAttribute(
       'href',
-      '/location/united-states/new-york/new-york',
+      '/en/location/united-states/new-york/new-york',
     );
     expect(screen.getByRole('link', { name: 'Berlin' })).toHaveAttribute(
       'href',
-      '/location/germany/berlin/berlin',
+      '/en/location/germany/berlin/berlin',
     );
   });
 
@@ -215,12 +215,12 @@ describe('glossary hub — locale-aware internal links (TASK-460)', () => {
     return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
   }
 
-  it('keeps cross-links unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('renders /en/** cross-links on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/glossary';
     renderGlossaryForLocale('en');
-    expect(linkByHref('/guides')).toBeDefined();
-    expect(linkByHref('/location/united-states/new-york/new-york')).toBeDefined();
-    expect(linkByHref('/location/germany/berlin/berlin')).toBeDefined();
+    expect(linkByHref('/en/guides')).toBeDefined();
+    expect(linkByHref('/en/location/united-states/new-york/new-york')).toBeDefined();
+    expect(linkByHref('/en/location/germany/berlin/berlin')).toBeDefined();
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {

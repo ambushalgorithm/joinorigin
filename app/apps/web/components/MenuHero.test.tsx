@@ -112,7 +112,7 @@ describe('MenuHero', () => {
       cta: { variant: 'contact', label: 'Contact us', href: '/contact' },
     });
     const link = screen.getByTestId('hero-contact-link');
-    expect(link).toHaveAttribute('href', '/contact');
+    expect(link).toHaveAttribute('href', '/en/contact');
     expect(screen.queryByTestId('hero-join-button')).not.toBeInTheDocument();
   });
 

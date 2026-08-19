@@ -136,11 +136,11 @@ describe('contact view — locale-aware internal links (TASK-460)', () => {
     return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
   }
 
-  it('keeps docs/about links unprefixed + mailto untouched on an unprefixed EN load (table row 1)', () => {
+  it('renders /en/** docs/about links + mailto untouched on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/contact';
     renderContactForLocale('en');
-    expect(linkByHref('/docs')).toBeDefined();
-    expect(linkByHref('/about')).toBeDefined();
+    expect(linkByHref('/en/docs')).toBeDefined();
+    expect(linkByHref('/en/about')).toBeDefined();
     // External mailto never gets a locale prefix.
     expect(screen.getByRole('link', { name: 'hello@joinorigin.co' })).toHaveAttribute(
       'href',

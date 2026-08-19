@@ -220,13 +220,13 @@ describe('location view — locale-aware internal links (TASK-460)', () => {
     return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
   }
 
-  it('keeps internal links unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('renders /en/** internal links on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/location/germany/berlin/berlin';
     renderLocationForLocale('en', berlinData);
-    // Breadcrumb hub link, group-type link, guide cross-link all unprefixed.
-    expect(linkByHref('/location')).toBeDefined();
-    expect(linkByHref('/location/germany/berlin/berlin/startup')).toBeDefined();
-    expect(linkByHref('/guides/start-a-community')).toBeDefined();
+    // Breadcrumb hub link, group-type link, guide cross-link all prefixed.
+    expect(linkByHref('/en/location')).toBeDefined();
+    expect(linkByHref('/en/location/germany/berlin/berlin/startup')).toBeDefined();
+    expect(linkByHref('/en/guides/start-a-community')).toBeDefined();
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {

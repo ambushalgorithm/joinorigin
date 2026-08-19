@@ -117,12 +117,12 @@ describe('docs view — locale-aware internal links (TASK-460)', () => {
     return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
   }
 
-  it('keeps Explore links unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('renders /en/** Explore links on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/docs';
     renderDocsForLocale('en');
-    expect(linkByHref('/location')).toBeDefined();
-    expect(linkByHref('/guides')).toBeDefined();
-    expect(linkByHref('/glossary')).toBeDefined();
+    expect(linkByHref('/en/location')).toBeDefined();
+    expect(linkByHref('/en/guides')).toBeDefined();
+    expect(linkByHref('/en/glossary')).toBeDefined();
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {

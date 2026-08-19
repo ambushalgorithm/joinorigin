@@ -80,7 +80,7 @@ describe('CtaBand', () => {
     expect(screen.getByRole('button', { name: 'Get Discovered' })).toBeInTheDocument();
   });
 
-  it('renders the contact override as a link to /contact (no join button)', () => {
+  it('renders the contact override as a link to /en/contact (no join button)', () => {
     renderBand({
       headline: 'Questions about Origin?',
       subline: 'Our team replies within 2 business days.',
@@ -91,11 +91,11 @@ describe('CtaBand', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Our team replies within 2 business days.')).toBeInTheDocument();
     const contactLink = screen.getByRole('link', { name: 'Contact us' });
-    expect(contactLink).toHaveAttribute('href', '/contact');
+    expect(contactLink).toHaveAttribute('href', '/en/contact');
     expect(screen.queryByRole('button', { name: 'Get Discovered' })).not.toBeInTheDocument();
   });
 
-  it('keeps the override link unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('prefixes the override link with /en on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/privacy';
     renderBand(
       {
@@ -105,7 +105,7 @@ describe('CtaBand', () => {
       },
       'en',
     );
-    expect(screen.getByRole('link', { name: 'Contact us' })).toHaveAttribute('href', '/contact');
+    expect(screen.getByRole('link', { name: 'Contact us' })).toHaveAttribute('href', '/en/contact');
   });
 
   it('prefixes the override link on a /de/** load (table row 3)', () => {
