@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "ค้นหาหรือเริ่มชุมชนใน {{city}}",
+      "hubEntity": "เมืองของคุณ",
       "communitiesIn": "ชุมชนใน {{city}}",
       "cityFacts": "ข้อเท็จจริงเกี่ยวกับเมือง",
       "exploreCommunities": "สำรวจชุมชน",

@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "Tìm hoặc bắt đầu một cộng đồng tại {{city}}",
+      "hubEntity": "thành phố của bạn",
       "communitiesIn": "Cộng đồng tại {{city}}",
       "cityFacts": "Sự thật về thành phố",
       "exploreCommunities": "Khám phá cộng đồng",

@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "{{city}} şehrinde bir topluluk bulun veya başlatın",
+      "hubEntity": "şehriniz",
       "communitiesIn": "{{city}} şehrindeki topluluklar",
       "cityFacts": "Şehir bilgileri",
       "exploreCommunities": "Toplulukları keşfedin",

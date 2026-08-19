@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "Vind of start een gemeenschap in {{city}}",
+      "hubEntity": "je stad",
       "communitiesIn": "Gemeenschappen in {{city}}",
       "cityFacts": "Stadsfeiten",
       "exploreCommunities": "Ontdek gemeenschappen",

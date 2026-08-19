@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "在{{city}}尋找或建立社群",
+      "hubEntity": "你的城市",
       "communitiesIn": "{{city}}的社群",
       "cityFacts": "城市資料",
       "exploreCommunities": "探索社群",

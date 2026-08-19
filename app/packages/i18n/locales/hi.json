@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "{{city}} में समुदाय खोजें या शुरू करें",
+      "hubEntity": "अपने शहर",
       "communitiesIn": "{{city}} में समुदाय",
       "cityFacts": "शहर के तथ्य",
       "exploreCommunities": "समुदाय देखें",
