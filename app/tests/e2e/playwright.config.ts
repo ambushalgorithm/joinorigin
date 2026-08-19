@@ -28,9 +28,13 @@ export default defineConfig({
     },
   ],
   webServer: {
-    // Start the Next.js dev server from the workspace context on a dedicated
-    // port (default 3100) to avoid collisions with other dev servers.
-    command: `PORT=${WEB_PORT} pnpm --dir ../../apps/web dev`,
+    // Run the e2e suite against a PRODUCTION server: build the Next.js app
+    // once, then serve it with `next start` on the dedicated port (default
+    // 3100). The dev server (`next dev`) ballooned to ~14 GB RSS during the
+    // locale-route spec and was OOM-killed by the kernel (journalctl Aug 19
+    // 14:51 + 15:36), taking down the whole tmux scope. The production server
+    // uses <500 MB (~270 MB measured), so the suite runs without OOM.
+    command: `pnpm --dir ../../apps/web build && PORT=${WEB_PORT} pnpm --dir ../../apps/web start`,
     url: `http://127.0.0.1:${WEB_PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
