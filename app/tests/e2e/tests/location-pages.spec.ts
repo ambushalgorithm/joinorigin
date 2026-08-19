@@ -122,8 +122,13 @@ test.describe('location canonical + robots', () => {
     });
   }
 
-  test('Tier-3 city (no content) is served noindex, follow', async ({ page }) => {
-    await page.goto('/location/united-states/texas/austin');
+  test('Tier-3 city (data-only, no promoted content) is served noindex, follow', async ({
+    page,
+  }) => {
+    // Austin was promoted to Tier-2 (Sprint 18, TASK-442 — indexable);
+    // Dallas is still Tier-3 in the registry (locationPages.test.ts),
+    // so it must be served noindex, follow.
+    await page.goto('/location/united-states/texas/dallas');
     expect(await page.locator('h1').count()).toBe(1);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, follow');
   });

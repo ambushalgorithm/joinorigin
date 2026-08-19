@@ -181,16 +181,18 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
   });
 
   /**
-   * Sitemap ↔ live-pages parity (TASK-311, design §9.1):
-   *  1. every URL in /sitemap.xml returns 200 on the live server,
-   *  2. every indexable page (ROUTES + location EN/de + guides + hubs) is
-   *     listed in the sitemap — no drift between the registry, pages, and
-   *     the sitemap.
+   * Sitemap ↔ live-pages parity (TASK-311, design §9.1; Sprint 19 Goal 1 +
+   * Q4): every URL in /sitemap.xml returns 200 on the live server, and the
+   * sitemap covers the EN canonical indexable set plus ALL 21 locale
+   * surfaces (the exhaustive per-locale parity is asserted by the
+   * seo-locale-sitemap unit suite — `sitemap.test.ts` — and the Sprint 19
+   * e2e matrix in locale-routing.spec.ts; here we verify the live server
+   * resolves every advertised URL and the well-known anchors are present).
    */
-  test('sitemap lists exactly the indexable pages and every URL returns 200', async ({
+  test('sitemap lists indexable pages, covers every locale surface, and every URL returns 200', async ({
     request,
   }) => {
-    test.setTimeout(180_000);
+    test.setTimeout(300_000);
     const response = await request.get('/sitemap.xml');
     expect(response.status()).toBe(200);
     const xmlText = await response.text();
@@ -198,16 +200,17 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     const locs = [...xmlText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
     expect(locs.length).toBeGreaterThan(0);
 
-    // Every sitemap URL must be live (200).
+    // Every sitemap URL must be live (200) — zero orphans, zero 500s.
     for (const loc of locs) {
       const url = new URL(loc);
       const pageResponse = await request.get(url.pathname);
       expect(pageResponse.status(), `live ${url.pathname}`).toBe(200);
     }
 
-    // Every indexable page must be listed — assert the deterministic
-    // Sprint-12 indexable set (registry-derived, fixed by design §8.2).
     const paths = locs.map((loc) => new URL(loc).pathname);
+
+    // The EN canonical indexable set must be listed (static routes, glossary,
+    // guides hub, flagships + Tier-2 city slice, all 12 guides).
     const expectedIndexable = [
       ...PATHS,
       '/location',
@@ -229,6 +232,10 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
       '/location/germany/berlin/berlin/meetup',
       '/location/germany/berlin/berlin/small-business',
       '/location/germany/berlin/berlin/ideas',
+      // Tier-2 city slice (Sprint 18: 55 cities promoted — spot-check a few).
+      '/location/united-states/texas/austin',
+      '/location/germany/bavaria/munich',
+      '/location/france/ile-de-france/paris',
       '/de/location/germany/berlin/berlin',
       '/de/location/germany/berlin/berlin/startup',
       '/de/location/germany/berlin/berlin/creative',
@@ -254,8 +261,24 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     for (const path of expectedIndexable) {
       expect(paths, `indexable page ${path} in sitemap`).toContain(path);
     }
-    // And nothing else: the sitemap lists exactly the indexable set.
-    expect(paths.sort()).toEqual([...expectedIndexable].sort());
+
+    // Sprint 19 Goal 1 + Q4 — every one of the 21 locale surfaces is
+    // indexable (home + static routes + hubs on each /<locale> tree).
+    const SUPPORTED_LOCALES = [
+      'en', 'es', 'pt-BR', 'fr', 'de', 'ru', 'ja', 'ko', 'zh-CN', 'zh-TW',
+      'ar', 'hi', 'id', 'tr', 'it', 'pl', 'nl', 'vi', 'th', 'uk', 'fa',
+    ] as const;
+    for (const locale of SUPPORTED_LOCALES) {
+      const home = locale === 'en' ? '/' : `/${locale}`;
+      expect(paths, `sitemap should contain ${home}`).toContain(home);
+      const features = locale === 'en' ? '/features' : `/${locale}/features`;
+      expect(paths, `sitemap should contain ${features}`).toContain(features);
+      const guides = locale === 'en' ? '/guides' : `/${locale}/guides`;
+      expect(paths, `sitemap should contain ${guides}`).toContain(guides);
+    }
+
+    // Tier-3 / failed-gate pages are never advertised.
+    expect(paths).not.toContain('/location/united-states/texas/dallas');
   });
 
   test('sitemap carries Berlin de alternates.languages + x-default for the Berlin cluster', async ({

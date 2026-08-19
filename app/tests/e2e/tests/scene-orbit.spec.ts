@@ -119,6 +119,20 @@ async function waitForSceneReady(page: Page): Promise<void> {
     await waitForHydration(page);
   }
   await expect(page.locator('[data-testid="menu-hero-scene"]')).toBeVisible({ timeout: 15_000 });
+  // GSAP starts the scene timeline (inline transform on `.scene-main-group`)
+  // after hydration. Poll for it — a fixed wait can be starved by CPU
+  // contention under parallel load, which would zero the sampling window and
+  // flake the float/spin assertions.
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => {
+          const el = document.querySelector('.scene-main-group');
+          return el ? (el.getAttribute('style') ?? '').includes('transform') : false;
+        }),
+      { timeout: 15_000 },
+    )
+    .toBe(true);
   // The scene entrance tween (autoAlpha + y) runs after hydration; wait for
   // it to settle before sampling.
   await page.waitForTimeout(1200);

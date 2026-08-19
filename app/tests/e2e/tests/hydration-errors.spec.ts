@@ -83,18 +83,29 @@ test('menu page scene still runs (ring present, main group floats)', async ({ pa
   await page.goto('/features');
   await waitForHydration(page);
   await expect(page.locator('[data-testid="menu-hero-scene"]')).toBeVisible({ timeout: 15_000 });
-  // The scene timeline registers after hydration; the ring must be present
-  // and GSAP must have started driving the main group by the time the page
-  // settles (matches scene-orbit.spec.ts sampling).
-  await page.waitForTimeout(1200);
-  const mainStyle = await page.evaluate(() => {
-    const el = document.querySelector('.scene-main-group');
-    return el ? (el.getAttribute('style') ?? '') : '';
-  });
-  const ringStyle = await page.evaluate(() => {
-    const el = document.querySelector('.scene-ring');
-    return el ? (el.getAttribute('style') ?? '') : '';
-  });
-  expect(mainStyle).toContain('transform');
-  expect(ringStyle).toContain('rotate');
+
+  // The scene timeline registers after hydration; GSAP starts driving the
+  // main group with an inline transform. Poll (not a fixed wait) so CPU
+  // contention under parallel load can't starve the requestAnimationFrame
+  // registration and flake the assertion.
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => {
+          const el = document.querySelector('.scene-main-group');
+          return el ? (el.getAttribute('style') ?? '').includes('transform') : false;
+        }),
+      { timeout: 15_000 },
+    )
+    .toBe(true);
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => {
+          const el = document.querySelector('.scene-ring');
+          return el ? (el.getAttribute('style') ?? '').includes('rotate') : false;
+        }),
+      { timeout: 15_000 },
+    )
+    .toBe(true);
 });

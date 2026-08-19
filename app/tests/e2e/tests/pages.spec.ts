@@ -135,23 +135,37 @@ test.describe('navigation reaches every menu page', () => {
   });
 
   test('Explore submenu links reach the SEO hubs (TASK-316)', async ({ page }) => {
+    // Reduced motion keeps GSAP Reveal/entrance tweens from moving the
+    // header mid-interaction (repo convention — hero/location specs do the
+    // same), so the hover-open dropdown stays deterministic.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     const header = page.getByTestId('header');
+    await expect(header).toBeVisible();
 
     // The Explore dropdown opens on hover; the submenu is desktop-only.
-    const dropdown = header.getByTestId('explore-dropdown');
-    await expect(dropdown).toBeVisible();
-    await dropdown.hover();
-    await expect(header.getByTestId('explore-menu')).toBeVisible();
+    // After a full page load the pointer can still be inside the dropdown
+    // region from a previous iteration — React only fires onMouseEnter on a
+    // pointer move INTO the element, so hover() alone would not re-open the
+    // panel (pre-Sprint-19 flake). Move the pointer out first, then hover.
+    const openMenu = async () => {
+      await page.mouse.move(2, 2);
+      await header.getByTestId('explore-dropdown').hover();
+      await expect(header.getByTestId('explore-menu')).toBeVisible();
+    };
+
+    await openMenu();
 
     for (const link of EXPLORE_NAV) {
-      const submenuLink = header.getByRole('link', { name: link.label });
+      const submenuLink = header
+        .getByTestId('explore-menu')
+        .getByRole('link', { name: link.label });
       await expect(submenuLink).toBeVisible();
       await submenuLink.click();
       await expect(page).toHaveURL(new RegExp(`${link.href.replace('/', '\\/')}/?$`));
       await expect(page.locator('h1')).toBeVisible({ timeout: 15_000 });
       await page.goto('/');
-      await header.getByTestId('explore-dropdown').hover();
+      await openMenu();
     }
 
     // Retained nav links still present next to the Explore dropdown
@@ -178,16 +192,52 @@ test.describe('navigation reaches every menu page', () => {
   });
 
   test('every sitemap URL resolves (no orphan pages, discovery §4 hierarchy rule)', async ({
-    page,
+    request,
   }) => {
-    const response = await page.goto('/sitemap.xml');
-    expect(response?.status()).toBe(200);
-    const xml = (await response?.text()) ?? '';
+    const response = await request.get('/sitemap.xml');
+    expect(response.status()).toBe(200);
+    const xml = (await response.text()) ?? '';
     const locs = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g)).map((m) => m[1]);
     expect(locs.length).toBeGreaterThanOrEqual(8);
-    for (const loc of locs) {
-      const path = new URL(loc).pathname;
-      const res = await page.request.get(path);
+
+    // Sprint 19 (Goal 1 + Q4): the sitemap now enumerates every locale
+    // surface (~1000+ URLs). The exhaustive live-200 sweep lives in
+    // seo.spec.ts (sitemap parity); here, verify a deterministic
+    // representative sample resolves so the hierarchy rule (no orphan pages
+    // reachable only from the sitemap) holds without hammering the shared
+    // server with a second full sweep.
+    const samples = new Set<string>([
+      ...MENU_PAGES.map((p) => p.path),
+      '/glossary',
+      '/guides',
+      '/es',
+      '/de',
+      '/vi',
+      '/ja',
+      '/ar',
+      '/zh-CN',
+      '/pt-BR',
+      '/fr',
+      '/it',
+      '/nl',
+      '/pl',
+      '/ru',
+      '/th',
+      '/tr',
+      '/uk',
+      '/fa',
+      '/hi',
+      '/id',
+      '/ko',
+      '/zh-TW',
+      '/en',
+    ]);
+    // First 25 sitemap URLs (deterministic order) plus the sample set.
+    for (const loc of locs.slice(0, 25)) {
+      samples.add(new URL(loc).pathname);
+    }
+    for (const path of samples) {
+      const res = await request.get(path);
       expect(res.status(), `sitemap URL ${path} should resolve 200`).toBe(200);
     }
   });
