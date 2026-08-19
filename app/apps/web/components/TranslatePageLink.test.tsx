@@ -17,9 +17,10 @@ import TranslatePageLink from './TranslatePageLink';
  * Secondary "Translate this page" link-out unit tests (TASK-318):
  * the link renders only after hydration with the Google website-translator
  * proxy href (`sl=en&tl=<locale>&u=<absolute current URL>`), derives `tl`
- * from the active client locale (default `en`), and is hidden on `/de/*`
- * paths (already-translated pages). No widget/script/SDK is added — the
- * component is a plain link-out only.
+ * from the active client locale (default `en`), and is hidden on any
+ * non-EN locale-prefixed path (already-translated pages, generalized from
+ * the original `/de/*` gate via the shared locale-path helper, TASK-456).
+ * No widget/script/SDK is added — the component is a plain link-out only.
  */
 
 function renderLink(locale: Locale = 'en', labelKey = 'seoContent.location.translatePage') {
@@ -78,6 +79,27 @@ describe('TranslatePageLink', () => {
     window.history.pushState({}, '', '/de/location/germany/berlin/berlin');
     renderLink('en');
     expect(screen.queryByTestId('translate-page-link')).not.toBeInTheDocument();
+    window.history.pushState({}, '', '/');
+  });
+
+  it('is hidden on ANY non-EN locale-prefixed path (generalized gate, TASK-456)', () => {
+    for (const path of ['/vi/features', '/es/guides', '/pt-BR/location']) {
+      window.history.pushState({}, '', path);
+      const { unmount } = renderLink('en');
+      expect(screen.queryByTestId('translate-page-link')).not.toBeInTheDocument();
+      unmount();
+    }
+    window.history.pushState({}, '', '/');
+  });
+
+  it('still renders on /en/** paths (the EN surface is canonical, not translated)', () => {
+    window.history.pushState({}, '', '/en/features');
+    renderLink('en');
+    const link = screen.getByTestId('translate-page-link');
+    expect(link).toBeInTheDocument();
+    expect(new URL(link.getAttribute('href') ?? '').searchParams.get('u')).toBe(
+      window.location.href,
+    );
     window.history.pushState({}, '', '/');
   });
 

@@ -4,14 +4,46 @@ import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
-import { I18nProvider, getDictionary } from '@joinorigin/i18n';
+import {
+  I18nProvider,
+  LOCALE_COOKIE_NAME,
+  _resetI18nForTests,
+  getDictionary,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import Header from './Header';
 import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
-function renderHeader() {
+/**
+ * `next/navigation` is mocked so the Header's `useLocalizePath` (link
+ * locale-prefix table) and the mounted LanguageSwitcher hooks work in jsdom
+ * (TASK-456). `mockPathname` drives the "current URL" for the prefix table;
+ * `mockPush` records switcher navigations.
+ */
+const mockPush = jest.fn();
+let mockPathname = '/';
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: mockPush }),
+  usePathname: () => mockPathname,
+}));
+
+/** Aligns the provider's post-mount auto-detect with the render locale so the
+ *  client correction never fires a late `setLocale` re-render. */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
+
+function renderHeader(locale: Locale = 'en') {
+  // navigator.language is the provider's post-mount auto-detect source; the
+  // locale tag itself resolves to the same locale, so no late correction.
+  setNavigatorLanguage(locale);
   return render(
-    <I18nProvider locale="en" dictionary={getDictionary('en')}>
+    <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <NativeThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
           <WaitlistModalProvider>
@@ -24,6 +56,12 @@ function renderHeader() {
 }
 
 describe('Header', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
+    mockPathname = '/';
+  });
+
   it('renders the brand, desktop nav, Explore submenu, Log In and Get Started CTA', () => {
     renderHeader();
 
@@ -148,5 +186,77 @@ describe('Header', () => {
     for (const label of ['Features', 'Docs', 'About']) {
       expect(within(menu).getByText(label)).toBeInTheDocument();
     }
+  });
+
+  it('keeps links unprefixed on an unprefixed EN load (table row 1)', () => {
+    mockPathname = '/features';
+    renderHeader('en');
+
+    // Brand + all rendered links (desktop nav + closed Explore dropdown).
+    expect(screen.getByLabelText('JoinOrigin home')).toHaveAttribute('href', '/');
+    const hrefs = screen
+      .getAllByRole('link', { hidden: true })
+      .map((link) => link.getAttribute('href'));
+    for (const href of ['/community', '/guides', '/location', '/features', '/docs', '/about']) {
+      expect(hrefs).toContain(href);
+    }
+  });
+
+  it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {
+    mockPathname = '/en/features';
+    renderHeader('en');
+
+    expect(screen.getByLabelText('JoinOrigin home')).toHaveAttribute('href', '/en');
+    const hrefs = screen
+      .getAllByRole('link', { hidden: true })
+      .map((link) => link.getAttribute('href'));
+    for (const href of ['/en/community', '/en/guides', '/en/location', '/en/features']) {
+      expect(hrefs).toContain(href);
+    }
+    expect(hrefs).not.toContain('/guides');
+  });
+
+  it('keeps the /de/** prefix on a /de/** load (table row 3)', () => {
+    mockPathname = '/de/features';
+    renderHeader('de');
+
+    expect(screen.getByLabelText('Zur Startseite von JoinOrigin')).toHaveAttribute('href', '/de');
+    const hrefs = screen
+      .getAllByRole('link', { hidden: true })
+      .map((link) => link.getAttribute('href'));
+    for (const href of ['/de/community', '/de/guides', '/de/location', '/de/features']) {
+      expect(hrefs).toContain(href);
+    }
+    expect(hrefs).not.toContain('/guides');
+  });
+
+  it('prefixes links on an unprefixed load with a de cookie (table row 4)', () => {
+    document.cookie = `${LOCALE_COOKIE_NAME}=de; path=/`;
+    mockPathname = '/features';
+    renderHeader('de');
+
+    const hrefs = screen
+      .getAllByRole('link', { hidden: true })
+      .map((link) => link.getAttribute('href'));
+    expect(hrefs).toContain('/de/guides');
+    expect(hrefs).toContain('/de/docs');
+    expect(hrefs).not.toContain('/guides');
+  });
+
+  it('prefixes mobile-panel links too', async () => {
+    const user = userEvent.setup();
+    mockPathname = '/de/features';
+    renderHeader('de');
+
+    await user.click(screen.getByTestId('mobile-menu-toggle'));
+    const menu = screen.getByTestId('mobile-menu');
+    const hrefs = within(menu)
+      .getAllByRole('link')
+      .map((link) => link.getAttribute('href'));
+    expect(hrefs).toContain('/de/community');
+    expect(hrefs).toContain('/de/guides');
+    expect(hrefs).toContain('/de/location');
+    expect(hrefs).toContain('/de/features');
+    expect(hrefs).toContain('/de/about');
   });
 });

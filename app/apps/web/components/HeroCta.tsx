@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import { useLocalizePath } from '../lib/seo/localePath';
 import RotatingBorderButton from './RotatingBorderButton';
 import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 
@@ -52,10 +53,11 @@ const ContactLink = styled(Link)`
 
 export function HeroCta({ variant, label, href = '/contact' }: HeroCtaProps) {
   const { openWaitlist } = useWaitlist();
+  const localizePath = useLocalizePath();
 
   if (variant === 'contact') {
     return (
-      <ContactLink href={href} data-testid="hero-contact-link">
+      <ContactLink href={localizePath(href)} data-testid="hero-contact-link">
         {label}
       </ContactLink>
     );

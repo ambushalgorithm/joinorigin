@@ -7,6 +7,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
 
+import { useLocalizePath } from '../lib/seo/localePath';
 import { DELAY, EASE, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
 import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
@@ -378,6 +379,7 @@ const MobileLogInButton = styled.button`
 
 function ExploreDropdown() {
   const { t } = useI18n();
+  const localizePath = useLocalizePath();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const hoveringRef = useRef(false);
@@ -451,7 +453,11 @@ function ExploreDropdown() {
       </DropdownToggle>
       <DropdownPanel $open={open} data-testid="explore-menu">
         {EXPLORE_LINKS.map((link) => (
-          <DropdownLink key={link.href} href={link.href} onClick={() => setOpen(false)}>
+          <DropdownLink
+            key={link.href}
+            href={localizePath(link.href)}
+            onClick={() => setOpen(false)}
+          >
             {t(link.key)}
           </DropdownLink>
         ))}
@@ -464,6 +470,7 @@ export function Header() {
   const entered = useEntrance();
   const { openWaitlist } = useWaitlist();
   const { t } = useI18n();
+  const localizePath = useLocalizePath();
   const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -494,7 +501,7 @@ export function Header() {
   return (
     <StyledHeader ref={headerRef} $entered={entered} data-testid="header">
       <Inner>
-        <Brand href="/" aria-label={t('header.brandAlt')}>
+        <Brand href={localizePath('/')} aria-label={t('header.brandAlt')}>
           <BrandMark src="/assets/logo/joinorigin-mark.svg" alt="" width={32} height={32} />
           <Wordmark>{t('common.brand')}</Wordmark>
         </Brand>
@@ -502,7 +509,7 @@ export function Header() {
         <Nav aria-label={t('header.navAria')}>
           <ExploreDropdown />
           {NAV_LINKS.map((link) => (
-            <NavLink key={link.href} href={link.href}>
+            <NavLink key={link.href} href={localizePath(link.href)}>
               {t(link.key)}
             </NavLink>
           ))}
@@ -554,12 +561,12 @@ export function Header() {
         <MobilePanel data-testid="mobile-menu">
           <MobileGroupLabel>{t('common.nav.explore')}</MobileGroupLabel>
           {EXPLORE_LINKS.map((link) => (
-            <MobileLink key={link.href} href={link.href} onClick={closeMobile}>
+            <MobileLink key={link.href} href={localizePath(link.href)} onClick={closeMobile}>
               {t(link.key)}
             </MobileLink>
           ))}
           {NAV_LINKS.map((link) => (
-            <MobileLink key={link.href} href={link.href} onClick={closeMobile}>
+            <MobileLink key={link.href} href={localizePath(link.href)} onClick={closeMobile}>
               {t(link.key)}
             </MobileLink>
           ))}

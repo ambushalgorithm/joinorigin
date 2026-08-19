@@ -6,6 +6,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
 
+import { useLocalizePath } from '../lib/seo/localePath';
 import LanguageSwitcher from './LanguageSwitcher';
 import { DELAY, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
@@ -205,6 +206,7 @@ export function Footer() {
   const entered = useEntrance();
   const { openWaitlist } = useWaitlist();
   const { t } = useI18n();
+  const localizePath = useLocalizePath();
 
   return (
     <StyledFooter $entered={entered} data-testid="footer">
@@ -227,7 +229,7 @@ export function Footer() {
             <Group key={group.titleKey}>
               <GroupTitle>{t(group.titleKey)}</GroupTitle>
               {group.links.map((link) => (
-                <FooterLink key={link.href} href={link.href}>
+                <FooterLink key={link.href} href={localizePath(link.href)}>
                   {t(link.labelKey)}
                 </FooterLink>
               ))}

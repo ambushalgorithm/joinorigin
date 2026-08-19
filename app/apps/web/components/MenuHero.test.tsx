@@ -3,10 +3,30 @@ import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
+import { LOCALE_COOKIE_NAME, _resetI18nForTests } from '@joinorigin/i18n';
 
 import MenuHero from './MenuHero';
 import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 import { renderWithI18n } from '../test-utils';
+
+/**
+ * `next/navigation` is mocked so the hero's `useLocalizePath` (link
+ * locale-prefix table) works in jsdom (TASK-456). `mockPathname` drives the
+ * "current URL" for the prefix table.
+ */
+let mockPathname = '/';
+
+jest.mock('next/navigation', () => ({
+  usePathname: () => mockPathname,
+}));
+
+/** Aligns the provider's post-mount auto-detect with the render locale. */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
 
 /**
  * Unit tests for the menu-page hero band (spec sprint-8 §4.1, extended
@@ -34,6 +54,12 @@ function renderHero(props: Partial<React.ComponentProps<typeof MenuHero>> = {}) 
 }
 
 describe('MenuHero', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
+    mockPathname = '/';
+  });
+
   it('renders the eyebrow, single h1, and lead', () => {
     renderHero({ eyebrow: 'Core objects' });
     expect(screen.getByText('Core objects')).toBeInTheDocument();
@@ -109,5 +135,47 @@ describe('MenuHero', () => {
     expect(screen.queryByTestId('hero-join-button')).not.toBeInTheDocument();
     expect(screen.queryByTestId('hero-contact-link')).not.toBeInTheDocument();
     expect(screen.queryByTestId('trust-row')).not.toBeInTheDocument();
+  });
+
+  it('localizes the contact CTA href on a /de/** load (table row 3)', () => {
+    mockPathname = '/de/docs';
+    setNavigatorLanguage('de');
+    renderWithI18n(
+      <ThemeProvider theme={theme}>
+        <WaitlistModalProvider>
+          <MenuHero title="T" cta={{ variant: 'contact', label: 'Kontakt', href: '/contact' }} />
+        </WaitlistModalProvider>
+      </ThemeProvider>,
+      'de',
+    );
+    expect(screen.getByTestId('hero-contact-link')).toHaveAttribute('href', '/de/contact');
+  });
+
+  it('localizes the contact CTA href on an unprefixed load with a de cookie (row 4)', () => {
+    document.cookie = `${LOCALE_COOKIE_NAME}=de; path=/`;
+    mockPathname = '/docs';
+    setNavigatorLanguage('de');
+    renderWithI18n(
+      <ThemeProvider theme={theme}>
+        <WaitlistModalProvider>
+          <MenuHero title="T" cta={{ variant: 'contact', label: 'Kontakt' }} />
+        </WaitlistModalProvider>
+      </ThemeProvider>,
+      'de',
+    );
+    expect(screen.getByTestId('hero-contact-link')).toHaveAttribute('href', '/de/contact');
+  });
+
+  it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {
+    mockPathname = '/en/docs';
+    renderWithI18n(
+      <ThemeProvider theme={theme}>
+        <WaitlistModalProvider>
+          <MenuHero title="T" cta={{ variant: 'contact', label: 'Contact us', href: '/contact' }} />
+        </WaitlistModalProvider>
+      </ThemeProvider>,
+      'en',
+    );
+    expect(screen.getByTestId('hero-contact-link')).toHaveAttribute('href', '/en/contact');
   });
 });
