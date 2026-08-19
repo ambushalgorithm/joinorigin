@@ -14,14 +14,16 @@ import { GuideView } from '../../../guides/[slug]/guide-view';
 
 /**
  * `/pl/guides/[slug]` — generated locale L1 how-to guide page
- * (TASK-453).
+ * (TASK-453, TASK-458).
  *
  * Mirrors the canonical EN guide route: the active locale's committed
  * content resolves first, EN fallback otherwise
  * (`guidePageForLocale(slug, 'pl') ?? guidePageForLocale(slug)`).
  * Unknown slugs (no locale content AND no EN content) → `notFound()`.
- * Metadata emits the hreflang set when the locale entry resolves,
- * otherwise the EN canonical metadata (arch-i18n §1.2).
+ * Metadata is per-locale with EN fallback (TASK-458): the locale entry's
+ * committed title/description/OG win when it exists; otherwise the EN
+ * copy is used while canonical + hreflang stay on
+ * `/pl/guides/[slug]` with `x-default` → EN canonical.
  */
 export const dynamicParams = true;
 
@@ -39,7 +41,7 @@ export async function generateMetadata({ params }: PlGuidePageProps): Promise<Me
   if (!entry) {
     return {};
   }
-  return guidePageMetadata(entry);
+  return guidePageMetadata(entry, 'pl');
 }
 
 export default async function PlGuidePage({ params }: PlGuidePageProps) {

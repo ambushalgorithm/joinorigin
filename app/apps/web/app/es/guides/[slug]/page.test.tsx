@@ -61,7 +61,7 @@ describe('/es/guides/[slug] route (TASK-421 + TASK-453)', () => {
     }
   });
 
-  it('generateMetadata falls back to the EN entry for untranslated guides', async () => {
+  it('generateMetadata falls back to EN copy but keeps canonical/hreflang per-locale (TASK-458)', async () => {
     const hasContentMock = contentModule.hasContent as jest.Mock;
     hasContentMock.mockImplementation(
       (kind: string, slug: string, locale: string) =>
@@ -71,8 +71,15 @@ describe('/es/guides/[slug] route (TASK-421 + TASK-453)', () => {
       const meta = await generateMetadata({
         params: Promise.resolve({ slug: 'create-a-project' }),
       });
-      expect(meta.alternates?.canonical).toBe('http://localhost:3100/guides/create-a-project');
-      expect(meta.alternates?.languages).toBeUndefined();
+      // Untranslated guide → EN copy stays…
+      expect(meta.title).toContain('JoinOrigin');
+      // …but canonical + hreflang stay per-locale with x-default → EN.
+      expect(meta.alternates?.canonical).toBe('http://localhost:3100/es/guides/create-a-project');
+      expect(meta.alternates?.languages).toEqual({
+        es: 'http://localhost:3100/es/guides/create-a-project',
+        en: 'http://localhost:3100/guides/create-a-project',
+        'x-default': 'http://localhost:3100/guides/create-a-project',
+      });
     } finally {
       hasContentMock.mockRestore();
     }

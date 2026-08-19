@@ -267,15 +267,30 @@ export function guideHubLanguagesFor(locale: Locale = 'en'): Record<string, stri
 
 /** Per-page metadata for a guide entry: canonical + OG/Twitter via the
  *  shared `createMetadata`, plus the full hreflang cluster when the locale
- *  surface has translations. */
-export function guidePageMetadata(entry: GuidePageEntry): Metadata {
+ *  surface has translations.
+ *
+ *  Locale-aware (TASK-458): `surfaceLocale` is the URL surface the page is
+ *  served on (the generated `/<locale>/guides/[slug]` wrapper passes the
+ *  active locale; it defaults to the entry's own locale for canonical EN
+ *  consumers). When a non-EN surface renders EN-fallback content
+ *  (`entry.locale === 'en'`), canonical + hreflang still point at the
+ *  per-locale URL `/<locale>/guides/<slug>` with `x-default` → EN canonical,
+ *  while the title/description/OG stay on the entry's (EN) copy. */
+export function guidePageMetadata(
+  entry: GuidePageEntry,
+  surfaceLocale: Locale = entry.locale,
+): Metadata {
+  const surfacePath =
+    surfaceLocale !== 'en' && entry.locale === 'en'
+      ? guidePath(entry.slug, surfaceLocale)
+      : entry.path;
   const meta = createMetadata({
     title: entry.title,
     description: entry.description,
-    path: entry.path,
+    path: surfacePath,
     keywords: [entry.slug.replace(/-/g, ' '), 'community', 'how to', 'guide'],
   });
-  const languages = guideLanguagesFor(entry.slug, entry.locale);
+  const languages = guideLanguagesFor(entry.slug, surfaceLocale);
   if (!languages) return meta;
   return {
     ...meta,

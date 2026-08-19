@@ -234,7 +234,7 @@ describe('route smoke tests (real apps/web/app tree)', () => {
     expect(result.skippedExisting).toHaveLength(336);
   });
 
-  it('every location wrapper is force-dynamic, resolves the EN entry, and renders the locale body', () => {
+  it('every location wrapper is force-dynamic, resolves the locale entry with EN fallback, and renders the locale body', () => {
     const locationFiles = routePlan().filter((entry) => entry.page.startsWith('location'));
     for (const entry of locationFiles) {
       const source = readFileSync(join(WEB_ROOT, entry.file), 'utf8');
@@ -244,11 +244,35 @@ describe('route smoke tests (real apps/web/app tree)', () => {
       expect(source).not.toContain('export const revalidate');
       expect(source).not.toContain('generateStaticParams');
       expect(source).not.toContain('warmParamsForLocale');
+      expect(source).toContain('localizeMetadata');
       if (entry.page !== 'location') {
-        // EN entry resolution (no per-locale arg) + active-locale view data.
+        // Locale entry resolution with EN fallback (TASK-458): per-locale
+        // metadata where committed content exists, localized EN otherwise.
+        const paramNames: Record<string, string[]> = {
+          'location-country': ['country'],
+          'location-region': ['country', 'region'],
+          'location-city': ['country', 'region', 'city'],
+          'location-variant': ['country', 'region', 'city', 'variant'],
+        };
+        const paramsObject = paramNames[entry.page].join(', ');
+        expect(source).toContain(
+          `const localeEntry = resolveLocationEntry({ ${paramsObject} }, '${entry.locale}');`,
+        );
+        expect(source).toContain(
+          `const entry = localeEntry ?? resolveLocationEntry({ ${paramsObject} });`,
+        );
+        expect(source).toContain('localeEntry');
+        expect(source).toContain('locationMetadata(localeEntry)');
+        expect(source).toContain(
+          `localizeMetadata(locationMetadata(entry), '${entry.locale}', entry.path)`,
+        );
+        // Active-locale view data stays on the locale surface.
         expect(source).toContain(`buildLocationViewData(entry, '${entry.locale}')`);
-        expect(source).toContain('resolveLocationEntry(');
-        expect(source).not.toContain(`resolveLocationEntry(params, '${entry.locale}')`);
+      } else {
+        // Hub metadata localizes the EN hub copy onto /<locale>/location.
+        expect(source).toContain(
+          `localizeMetadata(locationMetadata(entry), '${entry.locale}', entry.path)`,
+        );
       }
     }
   });
@@ -259,12 +283,15 @@ describe('route smoke tests (real apps/web/app tree)', () => {
       const detail = readFileSync(join(APP_DIR, locale, 'guides', '[slug]', 'page.tsx'), 'utf8');
       expect(hub).toContain(`guidePageEntriesWithFallback('${locale}')`);
       expect(detail).toContain(`guidePageForLocale(slug, '${locale}') ?? guidePageForLocale(slug)`);
+      // Per-locale metadata with EN fallback: the surface locale is passed
+      // to guidePageMetadata so canonical/hreflang stay on /<locale>/guides.
+      expect(detail).toContain(`guidePageMetadata(entry, '${locale}')`);
       expect(detail).toContain('export function generateStaticParams()');
       expect(detail).toContain('GUIDE_SLUGS.map');
     }
   });
 
-  it('every static wrapper carries the locale-prefixed metadata path + Home → /<locale> breadcrumb', () => {
+  it('every static wrapper carries the locale-prefixed metadata path + locale + Home → /<locale> breadcrumb', () => {
     const staticFiles = routePlan().filter(
       (entry) => !entry.page.startsWith('location') && !entry.page.startsWith('guides'),
     );
@@ -272,6 +299,9 @@ describe('route smoke tests (real apps/web/app tree)', () => {
       const source = readFileSync(join(WEB_ROOT, entry.file), 'utf8');
       const expectedPath = `path: '/${entry.locale}${entry.page === 'home' ? '' : `/${entry.page}`}'`;
       expect(source).toContain(expectedPath);
+      // Per-locale metadata (TASK-458): createMetadata receives the active
+      // locale so canonical + hreflang stay per-locale (x-default → EN).
+      expect(source).toContain(`locale: '${entry.locale}',`);
       if (entry.page !== 'home') {
         expect(source).toContain(`{ name: 'Home', path: '/${entry.locale}' }`);
       }
@@ -299,6 +329,19 @@ describe('representative generated pages render + export metadata', () => {
     expect(DeFeatures.metadata.alternates?.canonical).toBe('http://localhost:3100/de/features');
     expect(EnHome.metadata.alternates?.canonical).toBe('http://localhost:3100/en');
     expect(EsCommunity.metadata.alternates?.canonical).toBe('http://localhost:3100/es/community');
+  });
+
+  it('non-EN static metadata carries per-locale hreflang with x-default → EN canonical', () => {
+    expect(DeFeatures.metadata.alternates?.languages).toEqual({
+      de: 'http://localhost:3100/de/features',
+      en: 'http://localhost:3100/features',
+      'x-default': 'http://localhost:3100/features',
+    });
+    expect(EsCommunity.metadata.alternates?.languages).toEqual({
+      es: 'http://localhost:3100/es/community',
+      en: 'http://localhost:3100/community',
+      'x-default': 'http://localhost:3100/community',
+    });
   });
 
   it('de/features renders the shared view with a single H1', () => {

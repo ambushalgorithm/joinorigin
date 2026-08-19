@@ -14,9 +14,14 @@
  *
  * Output for every locale × page: `app/<locale>/<route>/page.tsx`
  * wrapper mirroring the EN wrapper — `createMetadata({ path:
- * '/<locale>/<route>' })` (or `locationMetadata(entry)` for location
- * pages), breadcrumb `Home` → `/<locale>`, rendering the shared view
- * (per-locale content resolves via the existing loaders).
+ * '/<locale>/<route>', locale })` (or `locationMetadata(entry)` for
+ * location pages), breadcrumb `Home` → `/<locale>`, rendering the shared
+ * view (per-locale content resolves via the existing loaders).
+ *
+ * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
+ * derive from the active locale where committed translated content exists
+ * (guide/location entries), EN otherwise; canonical + hreflang always stay
+ * per-locale (`/<locale>/...` with `x-default` → EN canonical).
  *
  * Deterministic rules:
  *   - Existing files are NEVER clobbered (`--force` overwrites) — the
@@ -365,11 +370,18 @@ ${siteImport}import { ${page.viewName} } from '${page.viewModule}';
  * rendering the shared view. The chrome + body localize through the
  * proxy-forwarded \`x-joinorigin-locale\` header (root layout) and the
  * content loaders' per-locale + EN-fallback resolution.
+ *
+ * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
+ * stay on the EN copy (no translated static-page content exists), while
+ * canonical + hreflang stay per-locale — canonical
+ * \`/${locale}${routePath}\` and \`alternates.languages\` \`${locale}\` +
+ * \`en\` + \`x-default\` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
   title: ${js(page.title)},
   description: ${description},
   path: ${js(`/${locale}${routePath}`)},
+  locale: ${js(locale)},
   keywords: ${jsArray(page.keywords)},
 });
 
@@ -411,6 +423,7 @@ function locationWrapperSource(locale: Locale, segment: LocationSegment): string
 
 import { LocationView } from '${ups(depth)}components/location/LocationView';
 import { JsonLd } from '${ups(depth)}lib/seo/JsonLdScript';
+import { localizeMetadata } from '${ups(depth)}lib/seo/metadata';
 import {
   buildLocationViewData,
   hubEntry,
@@ -424,14 +437,20 @@ import {
  * Mirrors the EN \`app/location/page.tsx\` wrapper. The hub entry is the
  * canonical EN hub; view data renders the active locale's body via
  * \`buildLocationViewData(entry, '${locale}')\` (per-locale content with
- * EN fallback — TASK-453). Rendered per-request: the root layout reads
- * \`headers()\`, so SSG/ISR would crash with DYNAMIC_SERVER_USAGE.
+ * EN fallback — TASK-453). Metadata is per-locale with EN fallback
+ * (TASK-458): the EN hub copy stays (no translated hub content), while
+ * canonical + hreflang localize to \`/${locale}/location\` with
+ * \`x-default\` → EN canonical. Rendered per-request: the root layout
+ * reads \`headers()\`, so SSG/ISR would crash with DYNAMIC_SERVER_USAGE.
  */
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = (() => {
   const entry = hubEntry();
-  return entry ? locationMetadata(entry) : {};
+  if (!entry) {
+    return {};
+  }
+  return localizeMetadata(locationMetadata(entry), '${locale}', entry.path);
 })();
 
 export default async function ${name}() {
@@ -459,6 +478,7 @@ import { notFound } from 'next/navigation';
 
 import { LocationView } from '${ups(depth)}components/location/LocationView';
 import { JsonLd } from '${ups(depth)}lib/seo/JsonLdScript';
+import { localizeMetadata } from '${ups(depth)}lib/seo/metadata';
 import {
   buildLocationViewData,
   locationJsonLd,
@@ -468,16 +488,20 @@ import {
 
 /**
  * \`/${locale}/location/${dynamic[segment]}\` — generated locale location
- * ${capitalize(segment)} page (TASK-448, TASK-453).
+ * ${capitalize(segment)} page (TASK-448, TASK-453, TASK-458).
  *
  * Mirrors the EN \`app/location/${dynamic[segment]}/page.tsx\` wrapper:
- * the EN registry entry resolves (\`resolveLocationEntry(params)\` — no
- * locale), view data renders the active locale's body via
+ * the active locale's committed entry resolves first
+ * (\`resolveLocationEntry(params, '${locale}')\`), EN entry otherwise —
+ * view data renders the active locale's body via
  * \`buildLocationViewData(entry, '${locale}')\` (per-locale content with
- * EN fallback — es content where it exists, EN otherwise), and unknown
- * slugs with no EN entry → \`notFound()\`. Rendered per-request: the
- * root layout reads \`headers()\`, so SSG/ISR would crash with
- * DYNAMIC_SERVER_USAGE.
+ * EN fallback), and unknown slugs with no EN entry → \`notFound()\`.
+ * Metadata is per-locale with EN fallback (TASK-458): the locale entry's
+ * committed title/description/OG win when it exists; otherwise the EN
+ * copy is used with canonical + hreflang localized to
+ * \`/${locale}/location/${dynamic[segment]}\` (\`x-default\` → EN
+ * canonical). Rendered per-request: the root layout reads \`headers()\`,
+ * so SSG/ISR would crash with DYNAMIC_SERVER_USAGE.
  */
 export const dynamic = 'force-dynamic';
 
@@ -487,11 +511,14 @@ interface ${interfaceName} {
 
 export async function generateMetadata({ params }: ${interfaceName}): Promise<Metadata> {
   const { ${paramsObject} } = await params;
-  const entry = resolveLocationEntry({ ${paramsObject} });
+  const localeEntry = resolveLocationEntry({ ${paramsObject} }, '${locale}');
+  const entry = localeEntry ?? resolveLocationEntry({ ${paramsObject} });
   if (!entry) {
     return {};
   }
-  return locationMetadata(entry);
+  return localeEntry
+    ? locationMetadata(localeEntry)
+    : localizeMetadata(locationMetadata(entry), '${locale}', entry.path);
 }
 
 export default async function ${name}({ params }: ${interfaceName}) {
@@ -526,14 +553,16 @@ import { breadcrumbList } from '${ups(3)}lib/seo/jsonLd';
 import { GuidesHubView } from '../../guides/guides-hub-view';
 
 /**
- * \`/${locale}/guides\` — generated locale guide hub (TASK-453).
+ * \`/${locale}/guides\` — generated locale guide hub (TASK-453, TASK-458).
  *
  * Lists EVERY guide; each card's title/description resolves the active
  * locale's committed content with EN fallback
  * (\`guidePageEntriesWithFallback('${locale}')\`), matching the
- * EN-fallback contract on every \`/<locale>/**\` page. Metadata emits the
- * hreflang set (\`guideHubMetadata\`) — SEO metadata stays EN
- * (arch-i18n §1.2).
+ * EN-fallback contract on every \`/<locale>/**\` page. Metadata is
+ * per-locale with EN fallback (TASK-458): the hub copy stays EN (no
+ * translated hub content exists), while canonical + hreflang localize to
+ * \`/${locale}/guides\` with \`x-default\` → EN canonical
+ * (\`guideHubMetadata\`).
  */
 export const metadata: Metadata = guideHubMetadata('${locale}');
 
@@ -573,14 +602,16 @@ import { GuideView } from '../../../guides/[slug]/guide-view';
 
 /**
  * \`/${locale}/guides/[slug]\` — generated locale L1 how-to guide page
- * (TASK-453).
+ * (TASK-453, TASK-458).
  *
  * Mirrors the canonical EN guide route: the active locale's committed
  * content resolves first, EN fallback otherwise
  * (\`guidePageForLocale(slug, '${locale}') ?? guidePageForLocale(slug)\`).
  * Unknown slugs (no locale content AND no EN content) → \`notFound()\`.
- * Metadata emits the hreflang set when the locale entry resolves,
- * otherwise the EN canonical metadata (arch-i18n §1.2).
+ * Metadata is per-locale with EN fallback (TASK-458): the locale entry's
+ * committed title/description/OG win when it exists; otherwise the EN
+ * copy is used while canonical + hreflang stay on
+ * \`/${locale}/guides/[slug]\` with \`x-default\` → EN canonical.
  */
 export const dynamicParams = true;
 
@@ -598,7 +629,7 @@ export async function generateMetadata({ params }: ${interfaceName}): Promise<Me
   if (!entry) {
     return {};
   }
-  return guidePageMetadata(entry);
+  return guidePageMetadata(entry, '${locale}');
 }
 
 export default async function ${name}({ params }: ${interfaceName}) {

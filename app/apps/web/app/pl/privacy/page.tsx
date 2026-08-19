@@ -14,12 +14,19 @@ import { PrivacyView } from '../../privacy/privacy-view';
  * rendering the shared view. The chrome + body localize through the
  * proxy-forwarded `x-joinorigin-locale` header (root layout) and the
  * content loaders' per-locale + EN-fallback resolution.
+ *
+ * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
+ * stay on the EN copy (no translated static-page content exists), while
+ * canonical + hreflang stay per-locale — canonical
+ * `/pl/privacy` and `alternates.languages` `pl` +
+ * `en` + `x-default` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
   title: 'Privacy Policy | JoinOrigin',
   description:
     "JoinOrigin's privacy policy: what we collect, how analytics works, your data rights, and how to contact us. Short and plain-English.",
   path: '/pl/privacy',
+  locale: 'pl',
   keywords: ['JoinOrigin privacy policy'],
 });
 

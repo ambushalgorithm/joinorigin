@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { LocationView } from '../../../../../../components/location/LocationView';
 import { JsonLd } from '../../../../../../lib/seo/JsonLdScript';
+import { localizeMetadata } from '../../../../../../lib/seo/metadata';
 import {
   buildLocationViewData,
   locationJsonLd,
@@ -12,16 +13,20 @@ import {
 
 /**
  * `/zh-CN/location/[country]/[region]/[city]` — generated locale location
- * City page (TASK-448, TASK-453).
+ * City page (TASK-448, TASK-453, TASK-458).
  *
  * Mirrors the EN `app/location/[country]/[region]/[city]/page.tsx` wrapper:
- * the EN registry entry resolves (`resolveLocationEntry(params)` — no
- * locale), view data renders the active locale's body via
+ * the active locale's committed entry resolves first
+ * (`resolveLocationEntry(params, 'zh-CN')`), EN entry otherwise —
+ * view data renders the active locale's body via
  * `buildLocationViewData(entry, 'zh-CN')` (per-locale content with
- * EN fallback — es content where it exists, EN otherwise), and unknown
- * slugs with no EN entry → `notFound()`. Rendered per-request: the
- * root layout reads `headers()`, so SSG/ISR would crash with
- * DYNAMIC_SERVER_USAGE.
+ * EN fallback), and unknown slugs with no EN entry → `notFound()`.
+ * Metadata is per-locale with EN fallback (TASK-458): the locale entry's
+ * committed title/description/OG win when it exists; otherwise the EN
+ * copy is used with canonical + hreflang localized to
+ * `/zh-CN/location/[country]/[region]/[city]` (`x-default` → EN
+ * canonical). Rendered per-request: the root layout reads `headers()`,
+ * so SSG/ISR would crash with DYNAMIC_SERVER_USAGE.
  */
 export const dynamic = 'force-dynamic';
 
@@ -31,11 +36,14 @@ interface ZhCNCityPageProps {
 
 export async function generateMetadata({ params }: ZhCNCityPageProps): Promise<Metadata> {
   const { country, region, city } = await params;
-  const entry = resolveLocationEntry({ country, region, city });
+  const localeEntry = resolveLocationEntry({ country, region, city }, 'zh-CN');
+  const entry = localeEntry ?? resolveLocationEntry({ country, region, city });
   if (!entry) {
     return {};
   }
-  return locationMetadata(entry);
+  return localeEntry
+    ? locationMetadata(localeEntry)
+    : localizeMetadata(locationMetadata(entry), 'zh-CN', entry.path);
 }
 
 export default async function ZhCNCityPage({ params }: ZhCNCityPageProps) {

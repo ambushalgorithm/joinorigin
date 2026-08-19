@@ -14,12 +14,19 @@ import { TermsView } from '../../terms/terms-view';
  * rendering the shared view. The chrome + body localize through the
  * proxy-forwarded `x-joinorigin-locale` header (root layout) and the
  * content loaders' per-locale + EN-fallback resolution.
+ *
+ * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
+ * stay on the EN copy (no translated static-page content exists), while
+ * canonical + hreflang stay per-locale — canonical
+ * `/pl/terms` and `alternates.languages` `pl` +
+ * `en` + `x-default` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
   title: 'Terms of Service | JoinOrigin',
   description:
     "JoinOrigin's terms of service: accounts, user content, acceptable use, intellectual property, disclaimers, and contact. Plain-English and short.",
   path: '/pl/terms',
+  locale: 'pl',
   keywords: ['JoinOrigin terms of service'],
 });
 

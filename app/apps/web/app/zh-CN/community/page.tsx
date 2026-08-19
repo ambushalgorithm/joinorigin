@@ -14,12 +14,19 @@ import { CommunityView } from '../../community/community-view';
  * rendering the shared view. The chrome + body localize through the
  * proxy-forwarded `x-joinorigin-locale` header (root layout) and the
  * content loaders' per-locale + EN-fallback resolution.
+ *
+ * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
+ * stay on the EN copy (no translated static-page content exists), while
+ * canonical + hreflang stay per-locale — canonical
+ * `/zh-CN/community` and `alternates.languages` `zh-CN` +
+ * `en` + `x-default` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
   title: 'Community — Find Your People & Build Together | JoinOrigin',
   description:
     "Join Origin's social collaboration network of 2,400+ builders. Start or join a community around any idea — a small business, an AI startup, a book club.",
   path: '/zh-CN/community',
+  locale: 'zh-CN',
   keywords: [
     'online communities',
     'join a community',
