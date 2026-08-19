@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "Temukan atau mulai komunitas di {{city}}",
+      "hubEntity": "kota Anda",
       "communitiesIn": "Komunitas di {{city}}",
       "cityFacts": "Fakta kota",
       "exploreCommunities": "Jelajahi komunitas",

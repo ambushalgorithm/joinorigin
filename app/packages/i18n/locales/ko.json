@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "{{city}}에서 커뮤니티 찾기 또는 시작하기",
+      "hubEntity": "당신의 도시",
       "communitiesIn": "{{city}}의 커뮤니티",
       "cityFacts": "도시 정보",
       "exploreCommunities": "커뮤니티 살펴보기",

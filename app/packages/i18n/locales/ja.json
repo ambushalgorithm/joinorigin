@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "{{city}}でコミュニティを見つけるか始める",
+      "hubEntity": "あなたの都市",
       "communitiesIn": "{{city}}のコミュニティ",
       "cityFacts": "都市データ",
       "exploreCommunities": "コミュニティを探す",

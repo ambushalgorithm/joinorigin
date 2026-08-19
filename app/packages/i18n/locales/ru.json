@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "Найдите или создайте сообщество в {{city}}",
+      "hubEntity": "своём городе",
       "communitiesIn": "Сообщества в {{city}}",
       "cityFacts": "Факты о городе",
       "exploreCommunities": "Изучить сообщества",

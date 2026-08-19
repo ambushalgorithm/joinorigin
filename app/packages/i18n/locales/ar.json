@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "ابحث عن مجتمع أو أنشئه في {{city}}",
+      "hubEntity": "مدينتك",
       "communitiesIn": "مجتمعات في {{city}}",
       "cityFacts": "حقائق عن المدينة",
       "exploreCommunities": "استكشف المجتمعات",

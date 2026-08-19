@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "Find or start a community in {{city}}",
+      "hubEntity": "your city",
       "communitiesIn": "Communities in {{city}}",
       "cityFacts": "City facts",
       "exploreCommunities": "Explore communities",

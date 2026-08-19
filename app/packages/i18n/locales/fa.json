@@ -544,6 +544,7 @@
     },
     "location": {
       "presenceClaim": "یک جامعه در {{city}} پیدا کنید یا راه‌اندازی کنید",
+      "hubEntity": "شهر خود",
       "communitiesIn": "جوامع در {{city}}",
       "cityFacts": "حقایق شهر",
       "exploreCommunities": "کاوش جوامع",
