@@ -9,7 +9,7 @@ import {
   warmParamsFor,
   warmParamsForLocale,
 } from '../locationView';
-import { locationPageEntries } from '../locationPages';
+import { locationPageEntries, type LocationPageEntry } from '../locationPages';
 
 /**
  * fe-location-pages view-layer unit tests (TASK-308).
@@ -300,6 +300,28 @@ describe('lib/seo locationView — hreflang + metadata', () => {
     const languages = languagesFor(deCity!);
     expect(languages).toEqual({
       de: 'http://localhost:3100/de/location/germany/berlin/berlin',
+      en: 'http://localhost:3100/location/germany/berlin/berlin',
+      'x-default': 'http://localhost:3100/location/germany/berlin/berlin',
+    });
+  });
+
+  it('per-locale hreflang generalizes to ANY locale surface (not just de)', () => {
+    // A synthetic es entry — no committed es content exists, but the helper
+    // must derive the cluster from the entry's own locale (TASK-457).
+    const esEntry: LocationPageEntry = {
+      params: { country: 'germany', region: 'berlin', city: 'berlin' },
+      path: '/es/location/germany/berlin/berlin',
+      title: 'Comunidades en Berlín',
+      description: 'Encuentra o crea comunidades en Berlín.',
+      tier: 1,
+      indexable: true,
+      lastModified: '2026-08-19',
+      priority: 0.5,
+      kind: 'city',
+      locale: 'es',
+    };
+    expect(languagesFor(esEntry)).toEqual({
+      es: 'http://localhost:3100/es/location/germany/berlin/berlin',
       en: 'http://localhost:3100/location/germany/berlin/berlin',
       'x-default': 'http://localhost:3100/location/germany/berlin/berlin',
     });

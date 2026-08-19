@@ -10,7 +10,7 @@
  *
  * Locale-aware surfaces (TASK-421): `guidePageEntries(locale)` /
  * `guidePageEntry(slug, locale)` enumerate the per-locale guide set for the
- * 19/20 non-EN locales, mirroring the `/de/location` wiring — a non-EN
+ * 19/20 non-EN locales, mirroring the per-locale `location` wiring — a non-EN
  * surface lists ONLY guides with committed translated content
  * (`hasContent`, exact — no EN fallback), so untranslated locale-prefixed
  * URLs resolve to `undefined` and routes `notFound()` (localization R5).
@@ -65,7 +65,7 @@ export type GuideSlug = (typeof GUIDE_SLUGS)[number];
 export interface GuidePageEntry {
   /** Dynamic segment value for `app/guides/[slug]/page.tsx`. */
   params: { slug: string };
-  /** Canonical path, e.g. '/guides/start-a-community' or '/de/guides/start-a-community'. */
+  /** Canonical path, e.g. '/guides/start-a-community' or '/<locale>/guides/start-a-community'. */
   path: string;
   /** Guide slug. */
   slug: string;
@@ -120,9 +120,9 @@ function relatedSlugs(slug: string): string[] {
  *   content — a missing file throws so the registry can never drift from
  *   the authored set.
  * - non-EN: only guides with committed translated content are enumerated
- *   (`hasContent` exact — no EN fallback), mirroring the `/de/location`
- *   surface. Untranslated guides never get locale-prefixed URLs → routes
- *   `notFound()` (localization R5).
+ *   (`hasContent` exact — no EN fallback), mirroring the per-locale
+ *   `location` surface. Untranslated guides never get locale-prefixed URLs
+ *   → routes `notFound()` (localization R5).
  */
 export function guidePageEntries(locale: Locale = 'en'): GuidePageEntry[] {
   const cities = flagshipCityLinks();

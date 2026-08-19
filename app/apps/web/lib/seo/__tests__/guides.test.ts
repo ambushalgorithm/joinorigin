@@ -226,6 +226,13 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     expect(guidePath('start-a-community', 'pt-BR')).toBe('/pt-BR/guides/start-a-community');
   });
 
+  it('path helpers generalize to ANY locale surface (not just de)', () => {
+    expect(guideHubPath('es')).toBe('/es/guides');
+    expect(guidePath('start-a-community', 'es')).toBe('/es/guides/start-a-community');
+    expect(guidePath('start-a-community', 'ja')).toBe('/ja/guides/start-a-community');
+    expect(guideHubPath('zh-CN')).toBe('/zh-CN/guides');
+  });
+
   it('registers EN entries with the en locale and unchanged canonical paths', () => {
     const entries = guidePageEntries('en');
     expect(entries).toHaveLength(12);
@@ -296,6 +303,19 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     });
     expect(guideHubLanguagesFor('de')).toEqual({
       de: 'http://localhost:3100/de/guides',
+      en: 'http://localhost:3100/guides',
+      'x-default': 'http://localhost:3100/guides',
+    });
+  });
+
+  it('hreflang clusters generalize to ANY locale surface (not just de)', () => {
+    expect(guideLanguagesFor('start-a-community', 'es')).toEqual({
+      es: 'http://localhost:3100/es/guides/start-a-community',
+      en: 'http://localhost:3100/guides/start-a-community',
+      'x-default': 'http://localhost:3100/guides/start-a-community',
+    });
+    expect(guideHubLanguagesFor('ja')).toEqual({
+      ja: 'http://localhost:3100/ja/guides',
       en: 'http://localhost:3100/guides',
       'x-default': 'http://localhost:3100/guides',
     });

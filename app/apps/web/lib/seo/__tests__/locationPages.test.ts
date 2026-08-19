@@ -251,6 +251,27 @@ describe('lib/seo locationPages — per-locale (de) Berlin surface', () => {
     const deNewYork = de.some((entry) => entry.path.includes('united-states'));
     expect(deNewYork).toBe(false);
   });
+
+  it('per-locale surfaces with no committed content enumerate zero pages (dynamic, not de-only)', () => {
+    // es/fr/etc. have no flagship content committed → the per-locale surface
+    // is empty, exactly like the de surface is a *non-empty* surface only
+    // because Berlin has committed translations.
+    for (const locale of ['es', 'fr', 'ja', 'pt-BR'] as const) {
+      expect(locationPageEntries(locale)).toEqual([]);
+    }
+  });
+
+  it('the ideas G4 intent phrase resolves per-locale from the dictionary (TASK-457)', () => {
+    const deIdeas = de.find((entry) => entry.kind === 'ideas');
+    expect(deIdeas).toBeDefined();
+    // The de ideas page title embeds the de dictionary phrase
+    // (seoContent.location.ideasLink: "30 Ideen für Community-Events").
+    expect(deIdeas!.title).toContain(getT(getDictionary('de'))('seoContent.location.ideasLink'));
+    // EN canonical uses the EN phrase — never the de literal.
+    const enIdeas = locationPageEntries().find((entry) => entry.kind === 'ideas');
+    expect(enIdeas).toBeDefined();
+    expect(enIdeas!.title).toContain(getT(getDictionary('en'))('seoContent.location.ideasLink'));
+  });
 });
 
 describe('lib/seo locationPages — determinism', () => {

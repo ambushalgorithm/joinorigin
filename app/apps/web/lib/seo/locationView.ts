@@ -8,8 +8,8 @@
  *
  *  - `resolveLocationEntry()` — params → registry entry (G3 enforcement),
  *  - `locationMetadata()` — `Metadata` from the entry (canonical + hreflang
- *    languages for the Berlin `de` surface + robots noindex for
- *    Tier-3/failed-gate pages),
+ *    languages for locale surfaces with committed translations + robots
+ *    noindex for Tier-3/failed-gate pages),
  *  - `buildLocationViewData()` — the serializable render model (hero copy,
  *    breadcrumbs, data points, FAQ, group-type links, sibling cities,
  *    guide cross-links, idea listicle, waitlist CTA source),
@@ -26,7 +26,7 @@
 
 import type { Metadata } from 'next';
 
-import { getDictionary, getT, type Locale } from '@joinorigin/i18n';
+import { SUPPORTED_LOCALES, getDictionary, getT, type Locale } from '@joinorigin/i18n';
 
 import { getCityContent, getCountryContent, getRegionContent } from './content';
 import type {
@@ -125,44 +125,65 @@ export function waitlistSource(entry: LocationPageEntry): string {
 }
 
 /* ------------------------------------------------------------------ *
- * hreflang (Berlin de surface — design §7.2)
+ * hreflang (per-locale surfaces — design §7.2)
  * ------------------------------------------------------------------ */
 
-const DE_PATHS = new Set(locationPageEntries('de').map((entry) => entry.path));
-
-/** The de counterpart path for an EN path (Berlin surface only). */
-function dePathForEn(enPath: string): string | undefined {
-  const dePath = `/de${enPath}`;
-  return DE_PATHS.has(dePath) ? dePath : undefined;
+/**
+ * Committed path sets per locale surface — the dynamic generalization of the
+ * former Berlin-only `DE_PATHS`. Each non-EN locale contributes the paths
+ * `locationPageEntries(locale)` actually enumerates (committed content only,
+ * phase A §7.1), so a counterpart is only ever reported where a translation
+ * exists. EN never appears here — the canonical tree is the origin.
+ */
+function committedPathSets(): Map<Locale, ReadonlySet<string>> {
+  const sets = new Map<Locale, ReadonlySet<string>>();
+  for (const locale of SUPPORTED_LOCALES) {
+    if (locale === 'en') continue;
+    sets.set(locale, new Set(locationPageEntries(locale).map((entry) => entry.path)));
+  }
+  return sets;
 }
 
-/** The EN counterpart path for a de path. */
-function enPathForDe(dePath: string): string {
-  return dePath.replace(/^\/de/, '');
+const COMMITTED_PATHS = committedPathSets();
+
+/** The counterpart path for an EN path on a locale surface (undefined when
+ *  the surface has no committed content for that page). */
+function localePathForEn(enPath: string, locale: Locale): string | undefined {
+  const candidate = `/${locale}${enPath}`;
+  return COMMITTED_PATHS.get(locale)?.has(candidate) ? candidate : undefined;
+}
+
+/** The EN counterpart path for a locale-surface path. */
+function enPathForLocale(localePath: string, locale: Locale): string {
+  return localePath.replace(new RegExp(`^/${locale}`), '');
 }
 
 /**
- * `alternates.languages` for a location entry. Only the Berlin surface has
- * committed de translations (phase A — EN-only pages carry no hreflang
- * cluster). EN Berlin pages list `en` + `de` + `x-default` → EN canonical;
- * de Berlin pages list `de` + `en` + `x-default` → EN canonical.
+ * `alternates.languages` for a location entry. Only surfaces with committed
+ * translations carry a hreflang cluster (phase A — EN-only pages carry no
+ * cluster). An EN page lists every locale surface with committed content for
+ * the same path; a per-locale page lists its own locale + `en` + `x-default`
+ * → EN canonical.
  */
 export function languagesFor(entry: LocationPageEntry): Record<string, string> | undefined {
-  if (entry.locale === 'de') {
-    const enUrl = absoluteUrl(enPathForDe(entry.path));
+  if (entry.locale && entry.locale !== 'en') {
+    const enUrl = absoluteUrl(enPathForLocale(entry.path, entry.locale));
     return {
-      de: absoluteUrl(entry.path),
+      [entry.locale]: absoluteUrl(entry.path),
       en: enUrl,
       'x-default': enUrl,
     };
   }
-  const dePath = dePathForEn(entry.path);
-  if (!dePath) return undefined;
-  return {
+  const alternatives: Record<string, string> = {
     en: absoluteUrl(entry.path),
-    de: absoluteUrl(dePath),
     'x-default': absoluteUrl(entry.path),
   };
+  for (const locale of SUPPORTED_LOCALES) {
+    if (locale === 'en') continue;
+    const localePath = localePathForEn(entry.path, locale);
+    if (localePath) alternatives[locale] = absoluteUrl(localePath);
+  }
+  return Object.keys(alternatives).length > 2 ? alternatives : undefined;
 }
 
 /* ------------------------------------------------------------------ *
@@ -172,7 +193,8 @@ export function languagesFor(entry: LocationPageEntry): Record<string, string> |
 /**
  * Per-page metadata for a location entry: canonical + OG/Twitter via the
  * shared `createMetadata`, robots `noindex,follow` for Tier-3 / failed-gate
- * pages, and `alternates.languages` (hreflang) for the Berlin de surface.
+ * pages, and `alternates.languages` (hreflang) for locale surfaces with
+ * committed translations.
  */
 export function locationMetadata(entry: LocationPageEntry): Metadata {
   const meta = createMetadata({
@@ -349,12 +371,13 @@ export interface GroupTypeLink {
 }
 
 /**
- * Locale prefix for surface-relative paths (`/de` for the de Berlin surface,
- * empty for EN canonical). The de surface only carries the 7 Berlin pages,
- * so surface-relative links stay inside that tree.
+ * Locale prefix for surface-relative paths — `/${locale}` for any non-EN
+ * surface (e.g. `/de` for the de Berlin surface), empty for EN canonical.
+ * Surfaces only carry committed pages, so surface-relative links stay inside
+ * that tree.
  */
 function localePathPrefix(locale: Locale): string {
-  return locale === 'de' ? '/de' : '';
+  return locale === 'en' ? '' : `/${locale}`;
 }
 
 /** Variant + ideas links for a flagship city page (only committed content). */
@@ -365,10 +388,11 @@ export function groupTypeLinksFor(
 ): GroupTypeLink[] {
   const content = getCityContent(flagship.slug, locale);
   if (!content || content.kind !== 'city') return [];
+  const prefix = localePathPrefix(locale);
   const base =
-    entryPath && entryPath.startsWith('/de/')
+    entryPath && prefix && entryPath.startsWith(`${prefix}/`)
       ? entryPath.replace(/\/[^/]+$/, '')
-      : `${localePathPrefix(locale)}${LOCATION_HUB_PATH}/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`;
+      : `${prefix}${LOCATION_HUB_PATH}/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`;
   const links: GroupTypeLink[] = [];
   const t = getT(getDictionary(locale));
   for (const type of GROUP_TYPES) {
@@ -671,14 +695,17 @@ function faqFor(entry: LocationPageEntry, content: LocationContent | undefined):
 function breadcrumbsFor(entry: LocationPageEntry, locale: Locale): BreadcrumbItem[] {
   const t = getT(getDictionary(locale));
   const hubName = t('seoContent.breadcrumb.hub');
-  // Up-links stay on the EN canonical tree for de pages (the de surface only
-  // carries the 7 Berlin pages — ancestors are EN-only, phase A §7.1).
-  const upPrefix = locale === 'de' ? '' : '';
-  const upPath = (segments: string[]) =>
-    `${upPrefix}${LOCATION_HUB_PATH}${segments.map((segment) => `/${segment}`).join('')}`;
+  // Up-links point at the per-locale surface when that ancestor has committed
+  // content there; otherwise they stay on the EN canonical tree (phase A §7.1
+  // — the de surface only carries the 7 Berlin pages, so ancestors are
+  // EN-only). The hub crumb follows the same rule.
+  const upPath = (segments: string[]) => {
+    const canonical = `${LOCATION_HUB_PATH}${segments.map((segment) => `/${segment}`).join('')}`;
+    return localePathForEn(canonical, locale) ?? canonical;
+  };
   const crumbs: BreadcrumbItem[] = [
     { name: t('seoContent.breadcrumb.home'), path: '/' },
-    { name: hubName, path: locale === 'de' ? LOCATION_HUB_PATH : LOCATION_HUB_PATH },
+    { name: hubName, path: localePathForEn(LOCATION_HUB_PATH, locale) ?? LOCATION_HUB_PATH },
   ];
   if (entry.kind === 'hub') {
     return crumbs;
