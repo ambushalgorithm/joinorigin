@@ -312,7 +312,7 @@ describe('LanguageSwitcher', () => {
       });
     });
 
-    it('navigates to the prefix-less route when switching back to English', async () => {
+    it('navigates to the /en-prefixed route when switching back to English (all-routes-prefixed)', async () => {
       const user = userEvent.setup();
       mockPathname = '/es/features';
       renderSwitcher('en');
@@ -324,7 +324,7 @@ describe('LanguageSwitcher', () => {
       await flushI18nEffects();
 
       await waitFor(() => {
-        expect(mockPush).toHaveBeenCalledWith('/features');
+        expect(mockPush).toHaveBeenCalledWith('/en/features');
       });
     });
 
@@ -341,6 +341,22 @@ describe('LanguageSwitcher', () => {
 
       await waitFor(() => {
         expect(mockPush).toHaveBeenCalledWith('/de');
+      });
+    });
+
+    it('navigates from the canonical root to the /en root when switching to English', async () => {
+      const user = userEvent.setup();
+      mockPathname = '/';
+      renderSwitcher('en');
+
+      await user.click(screen.getByRole('button', { name: 'Change language' }));
+      await act(async () => {
+        await user.click(screen.getByRole('option', { name: /English/ }));
+      });
+      await flushI18nEffects();
+
+      await waitFor(() => {
+        expect(mockPush).toHaveBeenCalledWith('/en');
       });
     });
 

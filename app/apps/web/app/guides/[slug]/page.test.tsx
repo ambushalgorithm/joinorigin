@@ -193,12 +193,13 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
     expect(screen.getByTestId('guide-join-button')).toBeInTheDocument();
     // Sibling guide link — resolved through the registry (TASK-444): href via
     // guidePath and title via guidePageEntry, never the humanized slug.
+    // All-routes-prefixed (TASK-464): the unprefixed EN render prefixes /en.
     const relatedSlug = entry.related[0];
     if (!relatedSlug) throw new Error('guide must have related entries');
     const relatedEntry = guidePageEntry(relatedSlug, 'en');
     expect(screen.getByRole('link', { name: relatedEntry?.title ?? relatedSlug })).toHaveAttribute(
       'href',
-      guidePath(relatedSlug, 'en'),
+      `/en${guidePath(relatedSlug, 'en')}`,
     );
     expect(screen.queryByText(relatedSlug.replace(/-/g, ' '))).not.toBeInTheDocument();
     // City cross-links.
@@ -253,17 +254,18 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
 
   it('renders the keep-learning links from Trans keys (TASK-414)', () => {
     renderWithGuideI18n(<GuideView entry={entry} content={content} />);
+    // All-routes-prefixed (TASK-464): unprefixed EN renders /en/** links.
     expect(screen.getByRole('link', { name: 'Community Building hub' })).toHaveAttribute(
       'href',
-      '/guides',
+      '/en/guides',
     );
     expect(screen.getByRole('link', { name: 'Community OS glossary' })).toHaveAttribute(
       'href',
-      '/glossary',
+      '/en/glossary',
     );
     expect(screen.getByRole('link', { name: 'locations hub' })).toHaveAttribute(
       'href',
-      '/location',
+      '/en/location',
     );
   });
 });
@@ -400,12 +402,12 @@ describe('guide view — locale-aware internal links (TASK-460)', () => {
     return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
   }
 
-  it('keeps the keep-learning links unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('renders /en/** keep-learning links on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = `/guides/${slug}`;
     renderGuideForLocale('en', <GuideView entry={entry} content={content} />);
-    expect(linkByHref('/guides')).toBeDefined();
-    expect(linkByHref('/glossary')).toBeDefined();
-    expect(linkByHref('/location')).toBeDefined();
+    expect(linkByHref('/en/guides')).toBeDefined();
+    expect(linkByHref('/en/glossary')).toBeDefined();
+    expect(linkByHref('/en/location')).toBeDefined();
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {

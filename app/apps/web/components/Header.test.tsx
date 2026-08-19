@@ -93,15 +93,15 @@ describe('Header', () => {
     const menu = screen.getByTestId('explore-menu');
     expect(within(menu).getByRole('link', { name: 'Community', hidden: true })).toHaveAttribute(
       'href',
-      '/community',
+      '/en/community',
     );
     expect(within(menu).getByRole('link', { name: 'Guides', hidden: true })).toHaveAttribute(
       'href',
-      '/guides',
+      '/en/guides',
     );
     expect(within(menu).getByRole('link', { name: 'Locations', hidden: true })).toHaveAttribute(
       'href',
-      '/location',
+      '/en/location',
     );
     // ESC closes the dropdown.
     await user.keyboard('{Escape}');
@@ -176,30 +176,41 @@ describe('Header', () => {
     expect(within(menu).getByText('Explore')).toBeInTheDocument();
     expect(within(menu).getByRole('link', { name: 'Community' })).toHaveAttribute(
       'href',
-      '/community',
+      '/en/community',
     );
-    expect(within(menu).getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/guides');
+    expect(within(menu).getByRole('link', { name: 'Guides' })).toHaveAttribute(
+      'href',
+      '/en/guides',
+    );
     expect(within(menu).getByRole('link', { name: 'Locations' })).toHaveAttribute(
       'href',
-      '/location',
+      '/en/location',
     );
     for (const label of ['Features', 'Docs', 'About']) {
       expect(within(menu).getByText(label)).toBeInTheDocument();
     }
   });
 
-  it('keeps links unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('prefixes links with /en on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/features';
     renderHeader('en');
 
     // Brand + all rendered links (desktop nav + closed Explore dropdown).
-    expect(screen.getByLabelText('JoinOrigin home')).toHaveAttribute('href', '/');
+    expect(screen.getByLabelText('JoinOrigin home')).toHaveAttribute('href', '/en');
     const hrefs = screen
       .getAllByRole('link', { hidden: true })
       .map((link) => link.getAttribute('href'));
-    for (const href of ['/community', '/guides', '/location', '/features', '/docs', '/about']) {
+    for (const href of [
+      '/en/community',
+      '/en/guides',
+      '/en/location',
+      '/en/features',
+      '/en/docs',
+      '/en/about',
+    ]) {
       expect(hrefs).toContain(href);
     }
+    expect(hrefs).not.toContain('/guides');
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {

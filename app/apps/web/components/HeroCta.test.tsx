@@ -79,17 +79,17 @@ describe('HeroCta', () => {
     const user = userEvent.setup();
     renderCta({ variant: 'contact', label: 'Contact us', href: '/contact' });
     const link = screen.getByTestId('hero-contact-link');
-    expect(link).toHaveAttribute('href', '/contact');
+    expect(link).toHaveAttribute('href', '/en/contact');
     expect(link).toHaveTextContent('Contact us');
     expect(screen.queryByTestId('hero-join-button')).not.toBeInTheDocument();
     await user.click(link);
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('keeps the contact href unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('prefixes the contact href with /en on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/privacy';
     renderCta({ variant: 'contact', label: 'Contact us' });
-    expect(screen.getByTestId('hero-contact-link')).toHaveAttribute('href', '/contact');
+    expect(screen.getByTestId('hero-contact-link')).toHaveAttribute('href', '/en/contact');
   });
 
   it('prefixes the contact href on a /de/** load (table row 3)', () => {

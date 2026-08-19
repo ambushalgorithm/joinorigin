@@ -99,10 +99,10 @@ describe('terms view — locale-aware internal links (TASK-460)', () => {
     return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
   }
 
-  it('keeps the contact-body link unprefixed + mailto untouched on an unprefixed EN load (table row 1)', () => {
+  it('renders the /en/** contact-body link + mailto untouched on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/terms';
     renderTermsForLocale('en');
-    expect(linkByHref('/contact')).toBeDefined();
+    expect(linkByHref('/en/contact')).toBeDefined();
     expect(screen.getByRole('link', { name: 'hello@joinorigin.co' })).toHaveAttribute(
       'href',
       'mailto:hello@joinorigin.co',

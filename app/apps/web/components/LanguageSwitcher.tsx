@@ -20,17 +20,17 @@ const LOCALE_PREFIXES: readonly string[] = SUPPORTED_LOCALES as readonly string[
 /**
  * Build the target route for a locale switch: strip any existing
  * `/<locale>/` prefix from the current pathname, then prepend `/<next>/`
- * (empty for `en`). Examples: `/features` + es → `/es/features`;
- * `/es/features` + fr → `/fr/features`; `/es/features` + en → `/features`;
- * `/` + es → `/es`.
+ * (always — all-routes-prefixed, TASK-464, so switching to EN targets
+ * `/en/<rest>`). Examples: `/features` + es → `/es/features`;
+ * `/es/features` + fr → `/fr/features`; `/es/features` + en → `/en/features`;
+ * `/` + es → `/es`; `/` + en → `/en`.
  */
 function localeTargetPath(pathname: string, next: Locale): string {
   const segments = pathname.split('/');
   const first = segments[1] ?? '';
   const stripped = LOCALE_PREFIXES.includes(first) ? `/${segments.slice(2).join('/')}` : pathname;
   const rest = stripped === '/' ? '' : stripped;
-  const prefix = next === 'en' ? '' : `/${next}`;
-  const target = `${prefix}${rest}`;
+  const target = `/${next}${rest}`;
   return target === '' ? '/' : target;
 }
 
@@ -43,8 +43,9 @@ function localeTargetPath(pathname: string, next: Locale): string {
  * (+ muted EN hints on desktop). Selecting a locale applies it immediately
  * (no reload — `setLocale` re-renders through the i18n provider and writes
  * the `joinorigin_locale` cookie) and navigates to the locale-prefixed
- * version of the current path (`/<locale>/<current-path>`; prefix-less for
- * `en`), so the target route renders in the selected locale (TASK-450).
+ * version of the current path (`/<locale>/<current-path>`, always prefixed
+ * incl. `en` → `/en/...`, TASK-464), so the target route renders in the
+ * selected locale (TASK-450).
  *
  * Responsive contract (TASK-278): the `header` variant is hidden below 768px
  * (the mobile menu carries its own `mobile-panel` switcher); the `mobile-panel`

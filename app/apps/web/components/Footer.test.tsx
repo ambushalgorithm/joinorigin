@@ -70,22 +70,25 @@ describe('Footer', () => {
   it('renders the Explore group with Locations / Guides / Glossary links (TASK-316)', () => {
     renderFooter();
 
-    expect(screen.getByRole('link', { name: 'Locations' })).toHaveAttribute('href', '/location');
-    expect(screen.getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/guides');
-    expect(screen.getByRole('link', { name: 'Glossary' })).toHaveAttribute('href', '/glossary');
+    expect(screen.getByRole('link', { name: 'Locations' })).toHaveAttribute('href', '/en/location');
+    expect(screen.getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/en/guides');
+    expect(screen.getByRole('link', { name: 'Glossary' })).toHaveAttribute('href', '/en/glossary');
 
     // Community/Docs retained in the Product group.
-    expect(screen.getByRole('link', { name: 'Community' })).toHaveAttribute('href', '/community');
-    expect(screen.getByRole('link', { name: 'Docs' })).toHaveAttribute('href', '/docs');
+    expect(screen.getByRole('link', { name: 'Community' })).toHaveAttribute(
+      'href',
+      '/en/community',
+    );
+    expect(screen.getByRole('link', { name: 'Docs' })).toHaveAttribute('href', '/en/docs');
   });
 
-  it('keeps links unprefixed on an unprefixed EN load (table row 1)', () => {
+  it('prefixes links with /en on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/features';
     renderFooter('en');
 
-    expect(screen.getByRole('link', { name: 'Locations' })).toHaveAttribute('href', '/location');
-    expect(screen.getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/guides');
-    expect(screen.getByRole('link', { name: 'Privacy' })).toHaveAttribute('href', '/privacy');
+    expect(screen.getByRole('link', { name: 'Locations' })).toHaveAttribute('href', '/en/location');
+    expect(screen.getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/en/guides');
+    expect(screen.getByRole('link', { name: 'Privacy' })).toHaveAttribute('href', '/en/privacy');
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {

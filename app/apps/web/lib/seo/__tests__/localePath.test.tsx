@@ -13,13 +13,16 @@ import {
 import { localeFromPathname, localeLinkPrefix, localizePath, useLocalizePath } from '../localePath';
 
 /**
- * Shared locale-aware path helper unit tests (Sprint 19 Goal 2, TASK-456).
+ * Shared locale-aware path helper unit tests (Sprint 19 Goal 2, TASK-456;
+ * all-routes-prefixed update TASK-464).
  *
- * The confirmed link-prefix table:
+ * The link-prefix table — every internal link ALWAYS carries a locale prefix
+ * (including EN → `/en/...`), because unprefixed `/**` 307-redirects to its
+ * `/<locale>` surface at the proxy:
  *
  * | Current URL           | Active locale | Internal links render as |
  * |-----------------------|---------------|--------------------------|
- * | unprefixed `/features`| EN            | unprefixed `/guides`      |
+ * | unprefixed `/features`| EN            | `/en/guides`              |
  * | `/en/features`        | EN            | `/en/guides`              |
  * | `/de/features`        | de            | `/de/guides`              |
  * | unprefixed + de cookie| de            | `/de/guides`              |
@@ -47,11 +50,11 @@ describe('localeFromPathname', () => {
 describe('localeLinkPrefix', () => {
   it.each([
     // [pathname, locale, expected]
-    ['/features', 'en', ''], // unprefixed EN load → unprefixed links
+    ['/features', 'en', '/en'], // unprefixed EN load → /en/ links (TASK-464)
     ['/en/features', 'en', '/en'], // /en/** load → /en/** links
     ['/de/features', 'de', '/de'], // /de/** load → /de/** links
     ['/features', 'de', '/de'], // unprefixed + de cookie → /de/** links
-    ['/', 'en', ''],
+    ['/', 'en', '/en'],
     ['/', 'vi', '/vi'],
     ['/features', 'pt-BR', '/pt-BR'],
   ] as Array<[string, Locale, string]>)(
@@ -60,11 +63,16 @@ describe('localeLinkPrefix', () => {
       expect(localeLinkPrefix(pathname, locale)).toBe(expected);
     },
   );
+
+  it('never returns an empty prefix for a rendered page (all-routes-prefixed)', () => {
+    expect(localeLinkPrefix('/features', 'en')).not.toBe('');
+    expect(localeLinkPrefix('/', 'en')).not.toBe('');
+  });
 });
 
 describe('localizePath', () => {
-  it('implements the 4-row confirmed table for internal links', () => {
-    expect(localizePath('/guides', '/features', 'en')).toBe('/guides');
+  it('implements the all-prefixed table for internal links', () => {
+    expect(localizePath('/guides', '/features', 'en')).toBe('/en/guides');
     expect(localizePath('/guides', '/en/features', 'en')).toBe('/en/guides');
     expect(localizePath('/guides', '/de/features', 'de')).toBe('/de/guides');
     expect(localizePath('/guides', '/features', 'de')).toBe('/de/guides');
@@ -73,7 +81,7 @@ describe('localizePath', () => {
   it('localizes the home path to the bare prefix', () => {
     expect(localizePath('/', '/de/features', 'de')).toBe('/de');
     expect(localizePath('/', '/features', 'de')).toBe('/de');
-    expect(localizePath('/', '/features', 'en')).toBe('/');
+    expect(localizePath('/', '/features', 'en')).toBe('/en');
   });
 
   it('applies any of the 21 locale prefixes', () => {
@@ -152,10 +160,10 @@ describe('useLocalizePath', () => {
     expect(screen.getByRole('link')).toHaveAttribute('href', '/de/guides');
   });
 
-  it('keeps links unprefixed on an unprefixed EN load', () => {
+  it('prefixes links with /en on an unprefixed EN load (all-routes-prefixed)', () => {
     mockPathname = '/features';
     renderProbe('/guides', 'en');
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/guides');
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/en/guides');
   });
 
   it('keeps the /en/** prefix on an /en/** load', () => {

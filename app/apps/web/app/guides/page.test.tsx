@@ -96,7 +96,11 @@ describe('guides hub page', () => {
   it('links all 12 guides', async () => {
     renderWithGuidesI18n(await GuidesHubPage());
     for (const entry of guidePageEntries()) {
-      expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
+      // All-routes-prefixed (TASK-464): the unprefixed EN render prefixes /en.
+      expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute(
+        'href',
+        `/en${entry.path}`,
+      );
     }
   });
 
@@ -104,15 +108,15 @@ describe('guides hub page', () => {
     renderWithGuidesI18n(await GuidesHubPage());
     expect(screen.getByRole('link', { name: 'Community OS glossary' })).toHaveAttribute(
       'href',
-      '/glossary',
+      '/en/glossary',
     );
     expect(screen.getByRole('link', { name: 'New York City' })).toHaveAttribute(
       'href',
-      '/location/united-states/new-york/new-york',
+      '/en/location/united-states/new-york/new-york',
     );
     expect(screen.getByRole('link', { name: 'Berlin' })).toHaveAttribute(
       'href',
-      '/location/germany/berlin/berlin',
+      '/en/location/germany/berlin/berlin',
     );
   });
 
@@ -156,7 +160,7 @@ describe('guides hub page', () => {
       const grid = screen.getByTestId('guides-hub-grid');
       const cards = within(grid).getAllByRole('link');
       expect(cards).toHaveLength(1);
-      expect(cards[0]).toHaveAttribute('href', '/guides/organize-a-meetup');
+      expect(cards[0]).toHaveAttribute('href', '/en/guides/organize-a-meetup');
     });
   });
 
@@ -243,13 +247,13 @@ describe('guides hub — locale-aware internal links (TASK-460)', () => {
     return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
   }
 
-  it('keeps links unprefixed on an unprefixed EN load (table row 1)', async () => {
+  it('renders /en/** links on an unprefixed EN load (all-routes-prefixed)', async () => {
     mockServerLocale.locale = 'en';
     mockPathname = '/guides';
     await renderHubForLocale('en');
-    expect(linkByHref('/glossary')).toBeDefined();
+    expect(linkByHref('/en/glossary')).toBeDefined();
     const first = guidePageEntries()[0];
-    expect(linkByHref(first.path)).toBeDefined();
+    expect(linkByHref(`/en${first.path}`)).toBeDefined();
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', async () => {
