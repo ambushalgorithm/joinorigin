@@ -84,6 +84,19 @@ jest.mock('next/image', () => {
   return { __esModule: true, default: NextImage };
 });
 
+// next/navigation hooks throw "invariant expected app router to be mounted"
+// outside the App Router context, so every suite that renders the Header or
+// Footer (which mount the LanguageSwitcher — TASK-450) needs stubs. A global
+// default keeps those suites green; tests that assert navigation behavior or
+// pathname tracking override it locally via their own jest.mock('next/navigation')
+// (e.g. LanguageSwitcher.test.tsx, the analytics provider tests), which take
+// precedence over this setup-level mock.
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+  usePathname: () => '/',
+  useServerInsertedHTML: jest.fn(),
+}));
+
 /**
  * GSAP teardown (TASK-290) — unit tests exit cleanly.
  *

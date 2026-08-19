@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
+import { usePathname, useRouter } from 'next/navigation';
 
-import { useI18n, type Locale } from '@joinorigin/i18n';
+import { SUPPORTED_LOCALES, useI18n, type Locale } from '@joinorigin/i18n';
 
 import {
   LANGUAGE_LABELS,
@@ -13,6 +14,26 @@ import {
   SWITCHER_TRIGGER_LABEL,
 } from './languageSwitcherTokens';
 
+/** Locale tags that can appear as a route prefix (`/<locale>/…`). */
+const LOCALE_PREFIXES: readonly string[] = SUPPORTED_LOCALES as readonly string[];
+
+/**
+ * Build the target route for a locale switch: strip any existing
+ * `/<locale>/` prefix from the current pathname, then prepend `/<next>/`
+ * (empty for `en`). Examples: `/features` + es → `/es/features`;
+ * `/es/features` + fr → `/fr/features`; `/es/features` + en → `/features`;
+ * `/` + es → `/es`.
+ */
+function localeTargetPath(pathname: string, next: Locale): string {
+  const segments = pathname.split('/');
+  const first = segments[1] ?? '';
+  const stripped = LOCALE_PREFIXES.includes(first) ? `/${segments.slice(2).join('/')}` : pathname;
+  const rest = stripped === '/' ? '' : stripped;
+  const prefix = next === 'en' ? '' : `/${next}`;
+  const target = `${prefix}${rest}`;
+  return target === '' ? '/' : target;
+}
+
 /**
  * Language switcher (design spec sprint-9-i18n-switcher).
  *
@@ -21,8 +42,9 @@ import {
  * locale's native autonym; the listbox lists all 21 locales with autonyms
  * (+ muted EN hints on desktop). Selecting a locale applies it immediately
  * (no reload — `setLocale` re-renders through the i18n provider and writes
- * the `joinorigin_locale` cookie), closes the list, and returns focus to the
- * trigger.
+ * the `joinorigin_locale` cookie) and navigates to the locale-prefixed
+ * version of the current path (`/<locale>/<current-path>`; prefix-less for
+ * `en`), so the target route renders in the selected locale (TASK-450).
  *
  * Responsive contract (TASK-278): the `header` variant is hidden below 768px
  * (the mobile menu carries its own `mobile-panel` switcher); the `mobile-panel`
@@ -245,6 +267,8 @@ const OptionHint = styled.span`
 
 export function LanguageSwitcher({ variant = 'header' }: LanguageSwitcherProps) {
   const { locale, setLocale } = useI18n();
+  const router = useRouter();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -293,8 +317,13 @@ export function LanguageSwitcher({ variant = 'header' }: LanguageSwitcherProps) 
 
   const select = (next: Locale) => {
     setOpen(false);
-    void setLocale(next);
     triggerRef.current?.focus();
+    // Persist the cookie + dictionary first (setLocale), then navigate to the
+    // locale-prefixed version of the current path so the target route renders
+    // with the freshly-selected locale (TASK-450).
+    void setLocale(next).finally(() => {
+      router.push(localeTargetPath(pathname, next));
+    });
   };
 
   const onTriggerKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
