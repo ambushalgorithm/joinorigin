@@ -1,17 +1,18 @@
 import { SITE } from '../site';
 import { absoluteUrl } from '../url';
 import { ROUTES } from '../routes';
-import { createMetadata } from '../metadata';
+import { createMetadata, localizeMetadata } from '../metadata';
 import { aboutPage, breadcrumbList, contactPage, faqPage, organization, website } from '../jsonLd';
 import { buildLlmsText } from '../llms';
 
 /**
  * fe-seo metadata helper unit tests (arch §3.10).
  *
- * Covers: `createMetadata` canonical/OG/Twitter resolution, `absoluteUrl`
- * root/nested handling, `ROUTES` invariants (path prefix + uniqueness),
- * JSON-LD builder shapes (Organization/WebSite/BreadcrumbList/FAQPage/
- * AboutPage/ContactPage), and the llms.txt generator.
+ * Covers: `createMetadata` canonical/OG/Twitter resolution + per-locale
+ * surface handling (TASK-458), `localizeMetadata` EN-fallback localization,
+ * `absoluteUrl` root/nested handling, `ROUTES` invariants (path prefix +
+ * uniqueness), JSON-LD builder shapes (Organization/WebSite/BreadcrumbList/
+ * FAQPage/AboutPage/ContactPage), and the llms.txt generator.
  */
 
 describe('lib/seo absoluteUrl', () => {
@@ -91,6 +92,108 @@ describe('lib/seo createMetadata', () => {
     const og = meta.openGraph as { type?: string };
     expect(og.type).toBe('website');
     expect(meta.keywords).toEqual(['contact JoinOrigin']);
+  });
+
+  it('stays per-locale for a non-EN surface: canonical + hreflang on /<locale>/... (x-default → EN)', () => {
+    const meta = createMetadata({
+      title: 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
+      description: 'Features description',
+      path: '/de/features',
+      locale: 'de',
+    });
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/de/features'));
+    expect(meta.alternates?.languages).toEqual({
+      de: absoluteUrl('/de/features'),
+      en: absoluteUrl('/features'),
+      'x-default': absoluteUrl('/features'),
+    });
+  });
+
+  it('prefixes an unprefixed EN path onto the non-EN surface', () => {
+    const meta = createMetadata({
+      title: 'T',
+      description: 'D',
+      path: '/features',
+      locale: 'pt-BR',
+    });
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/pt-BR/features'));
+    expect(meta.alternates?.languages).toEqual({
+      'pt-BR': absoluteUrl('/pt-BR/features'),
+      en: absoluteUrl('/features'),
+      'x-default': absoluteUrl('/features'),
+    });
+  });
+
+  it('keeps the home surface at /<locale> with x-default → EN root', () => {
+    const meta = createMetadata({
+      title: 'T',
+      description: 'D',
+      path: '/de',
+      locale: 'de',
+    });
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/de'));
+    expect(meta.alternates?.languages).toEqual({
+      de: absoluteUrl('/de'),
+      en: absoluteUrl('/'),
+      'x-default': absoluteUrl('/'),
+    });
+  });
+
+  it('emits no hreflang cluster for the EN surface (callers add full clusters)', () => {
+    const meta = createMetadata({
+      title: 'T',
+      description: 'D',
+      path: '/en/features',
+      locale: 'en',
+    });
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/en/features'));
+    expect(meta.alternates?.languages).toBeUndefined();
+  });
+
+  it('honors an explicit languages map over the locale-derived cluster', () => {
+    const meta = createMetadata({
+      title: 'T',
+      description: 'D',
+      path: '/de/guides/start-a-community',
+      locale: 'de',
+      languages: { ja: absoluteUrl('/ja/guides/start-a-community') },
+    });
+    expect(meta.alternates?.languages).toEqual({
+      ja: absoluteUrl('/ja/guides/start-a-community'),
+    });
+  });
+});
+
+describe('lib/seo localizeMetadata (EN-fallback surface rewrite, TASK-458)', () => {
+  const enMeta = createMetadata({
+    title: 'Berlin — Communities in Berlin | JoinOrigin',
+    description: 'Find or start a community in Berlin.',
+    path: '/location/germany/berlin',
+    robots: { index: false, follow: true },
+  });
+
+  it('localizes canonical + hreflang but preserves title/OG/robots', () => {
+    const meta = localizeMetadata(enMeta, 'de', '/location/germany/berlin');
+    expect(meta.title).toBe('Berlin — Communities in Berlin | JoinOrigin');
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/de/location/germany/berlin'));
+    expect(meta.alternates?.languages).toEqual({
+      de: absoluteUrl('/de/location/germany/berlin'),
+      en: absoluteUrl('/location/germany/berlin'),
+      'x-default': absoluteUrl('/location/germany/berlin'),
+    });
+    expect(meta.robots).toEqual({ index: false, follow: true });
+    expect(meta.openGraph?.title).toBe('Berlin — Communities in Berlin | JoinOrigin');
+  });
+
+  it('returns the metadata untouched for the EN surface', () => {
+    const meta = localizeMetadata(enMeta, 'en', '/location/germany/berlin');
+    expect(meta).toBe(enMeta);
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/location/germany/berlin'));
+  });
+
+  it('maps the EN root onto /<locale> (no trailing slash)', () => {
+    const meta = localizeMetadata(enMeta, 'de', '/');
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/de'));
   });
 });
 

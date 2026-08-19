@@ -14,12 +14,19 @@ import { DocsView } from '../../docs/docs-view';
  * rendering the shared view. The chrome + body localize through the
  * proxy-forwarded `x-joinorigin-locale` header (root layout) and the
  * content loaders' per-locale + EN-fallback resolution.
+ *
+ * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
+ * stay on the EN copy (no translated static-page content exists), while
+ * canonical + hreflang stay per-locale — canonical
+ * `/id/docs` and `alternates.languages` `id` +
+ * `en` + `x-default` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
   title: 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
   description:
     'Learn how Origin works: profiles, ideas, communities, chat, projects, and opportunities. Explore the roadmap, tech stack, Matrix standards, and FAQ.',
   path: '/id/docs',
+  locale: 'id',
   keywords: [
     'JoinOrigin docs',
     'Origin docs',

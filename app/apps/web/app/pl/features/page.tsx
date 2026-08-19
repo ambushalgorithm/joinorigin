@@ -14,12 +14,19 @@ import { FeaturesView } from '../../features/features-view';
  * rendering the shared view. The chrome + body localize through the
  * proxy-forwarded `x-joinorigin-locale` header (root layout) and the
  * content loaders' per-locale + EN-fallback resolution.
+ *
+ * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
+ * stay on the EN copy (no translated static-page content exists), while
+ * canonical + hreflang stay per-locale — canonical
+ * `/pl/features` and `alternates.languages` `pl` +
+ * `en` + `x-default` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
   title: 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
   description:
     "Explore Origin's features: profiles, ideas, communities, chat, feed, projects, and opportunities — a social collaboration network for real outcomes.",
   path: '/pl/features',
+  locale: 'pl',
   keywords: [
     'community platform features',
     'collaboration network',

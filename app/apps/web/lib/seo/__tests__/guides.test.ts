@@ -343,6 +343,36 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     });
   });
 
+  it('guidePageMetadata keeps EN-fallback copy but localizes canonical/hreflang to the surface (TASK-458)', () => {
+    const enEntry: GuidePageEntry = {
+      params: { slug: 'start-a-community' },
+      path: '/guides/start-a-community',
+      slug: 'start-a-community',
+      locale: 'en',
+      title: 'How to Start a Community | JoinOrigin',
+      description: 'Practical, evergreen steps for building and running communities.',
+      lastModified: '2026-08-14',
+      priority: 0.7,
+      related: [],
+      cities: [],
+    };
+    const meta = guidePageMetadata(enEntry, 'ja');
+    // EN copy stays (no committed ja guide content → EN fallback)…
+    expect(meta.title).toBe('How to Start a Community | JoinOrigin');
+    expect(meta.description).toContain('Practical, evergreen steps');
+    // …but canonical + hreflang stay per-locale with x-default → EN.
+    expect(meta.alternates?.canonical).toBe('http://localhost:3100/ja/guides/start-a-community');
+    expect(meta.alternates?.languages).toEqual({
+      ja: 'http://localhost:3100/ja/guides/start-a-community',
+      en: 'http://localhost:3100/guides/start-a-community',
+      'x-default': 'http://localhost:3100/guides/start-a-community',
+    });
+    // Default surface = the entry's own locale (unchanged for EN consumers).
+    expect(guidePageMetadata(enEntry).alternates?.canonical).toBe(
+      'http://localhost:3100/guides/start-a-community',
+    );
+  });
+
   it('EN canonical guide pages list every translated locale once translations exist', () => {
     const hasContentMock = contentModule.hasContent as jest.Mock;
     hasContentMock.mockImplementation(

@@ -14,12 +14,19 @@ import { AboutView } from '../../about/about-view';
  * rendering the shared view. The chrome + body localize through the
  * proxy-forwarded `x-joinorigin-locale` header (root layout) and the
  * content loaders' per-locale + EN-fallback resolution.
+ *
+ * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
+ * stay on the EN copy (no translated static-page content exists), while
+ * canonical + hreflang stay per-locale — canonical
+ * `/nl/about` and `alternates.languages` `nl` +
+ * `en` + `x-default` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
   title: 'About — The Operating System for Human Collaboration | JoinOrigin',
   description:
     "Origin's mission: a social collaboration network where people post ideas, form communities, and build projects together. The network is the product.",
   path: '/nl/about',
+  locale: 'nl',
   keywords: [
     'about JoinOrigin',
     'social collaboration network mission',
