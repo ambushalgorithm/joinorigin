@@ -15,6 +15,20 @@ import {
 import LanguageSwitcher from './LanguageSwitcher';
 
 /**
+ * `next/navigation` is mocked so the switcher's `useRouter`/`usePathname`
+ * hooks work in jsdom (TASK-450): `push` records the navigation target and
+ * `mockPathname` drives the "current path" the switcher strips/re-prefixes.
+ * Both are `mock*`-prefixed so the hoisted factory can reference them.
+ */
+const mockPush = jest.fn();
+let mockPathname = '/';
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: mockPush }),
+  usePathname: () => mockPathname,
+}));
+
+/**
  * Language switcher unit tests (design spec sprint-9-i18n-switcher §10.1):
  * renders the current autonym, opens the listbox, selects → `setLocale` +
  * cookie write, keyboard navigation, RTL dir application, and the responsive
@@ -85,6 +99,8 @@ describe('LanguageSwitcher', () => {
     _resetI18nForTests();
     document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
     setNavigatorLanguage('en-US');
+    mockPush.mockClear();
+    mockPathname = '/';
   });
 
   it('renders the current locale autonym on the trigger', () => {
@@ -256,5 +272,92 @@ describe('LanguageSwitcher', () => {
     });
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     expect(trigger).toHaveFocus();
+  });
+
+  describe('locale navigation (TASK-450)', () => {
+    it('navigates from a canonical route to the locale-prefixed route', async () => {
+      const user = userEvent.setup();
+      mockPathname = '/features';
+      renderSwitcher('en');
+
+      await user.click(screen.getByRole('button', { name: 'Change language' }));
+      await act(async () => {
+        await user.click(screen.getByRole('option', { name: /Español/ }));
+      });
+      await flushI18nEffects();
+
+      await waitFor(() => {
+        expect(mockPush).toHaveBeenCalledWith('/es/features');
+      });
+      // The cookie is synced before navigation (the target route renders in
+      // the freshly selected locale).
+      await waitFor(() => {
+        expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=es`);
+      });
+    });
+
+    it('replaces an existing locale prefix with the new locale', async () => {
+      const user = userEvent.setup();
+      mockPathname = '/es/features';
+      renderSwitcher('en');
+
+      await user.click(screen.getByRole('button', { name: 'Change language' }));
+      await act(async () => {
+        await user.click(screen.getByRole('option', { name: /Français/ }));
+      });
+      await flushI18nEffects();
+
+      await waitFor(() => {
+        expect(mockPush).toHaveBeenCalledWith('/fr/features');
+      });
+    });
+
+    it('navigates to the prefix-less route when switching back to English', async () => {
+      const user = userEvent.setup();
+      mockPathname = '/es/features';
+      renderSwitcher('en');
+
+      await user.click(screen.getByRole('button', { name: 'Change language' }));
+      await act(async () => {
+        await user.click(screen.getByRole('option', { name: /English/ }));
+      });
+      await flushI18nEffects();
+
+      await waitFor(() => {
+        expect(mockPush).toHaveBeenCalledWith('/features');
+      });
+    });
+
+    it('navigates from the canonical root to the locale root', async () => {
+      const user = userEvent.setup();
+      mockPathname = '/';
+      renderSwitcher('en');
+
+      await user.click(screen.getByRole('button', { name: 'Change language' }));
+      await act(async () => {
+        await user.click(screen.getByRole('option', { name: /Deutsch/ }));
+      });
+      await flushI18nEffects();
+
+      await waitFor(() => {
+        expect(mockPush).toHaveBeenCalledWith('/de');
+      });
+    });
+
+    it('navigates from an /en-prefixed route to a locale-prefixed route', async () => {
+      const user = userEvent.setup();
+      mockPathname = '/en/features';
+      renderSwitcher('en');
+
+      await user.click(screen.getByRole('button', { name: 'Change language' }));
+      await act(async () => {
+        await user.click(screen.getByRole('option', { name: /Español/ }));
+      });
+      await flushI18nEffects();
+
+      await waitFor(() => {
+        expect(mockPush).toHaveBeenCalledWith('/es/features');
+      });
+    });
   });
 });
