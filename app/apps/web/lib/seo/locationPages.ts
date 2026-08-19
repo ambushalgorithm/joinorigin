@@ -64,6 +64,16 @@ function tFor(locale: Locale) {
   return getT(getDictionary(locale));
 }
 
+/** The localized G4 intent phrase for an ideas page — the surface's
+ *  "30 … ideas" phrase (`seoContent.location.ideasLink`, e.g. de
+ *  "30 Ideen für Community-Events", EN "30 community event ideas"), with EN
+ *  fallback so the gate never sees a raw key (TASK-457). */
+function ideasIntentPhraseFor(locale: Locale): string {
+  const key = 'seoContent.location.ideasLink';
+  const localized = tFor(locale)(key);
+  return localized === key ? tFor('en')(key) : localized;
+}
+
 /** Localized "Join Origin and get discovered today." CTA phrase. */
 function waitlistPhraseFor(locale: Locale): string {
   return tFor(locale)('seoContent.metadata.waitlistPhrase');
@@ -231,7 +241,7 @@ function buildEntry(input: BuildEntryInput): LocationPageEntry {
   };
 }
 
-/** Path prefix for per-locale surfaces (`/de/location/...`). */
+/** Path prefix for per-locale surfaces (`/${locale}/location/...`). */
 function localePrefix(locale: Locale): string {
   return locale === 'en' ? '' : `/${locale}`;
 }
@@ -427,9 +437,10 @@ function ideasEntry(
   const title = content.pageTitles?.ideas ?? ideasPageTitle(flagship.displayName, locale);
   const description =
     content.pageTitles?.ideasDescription ?? ideasPageDescription(flagship.displayName, locale);
-  // G4 intent phrase in the surface's language (de: "Ideen", EN title
-  // template: "30 community event ideas in {city}").
-  const typePhrase = locale === 'de' ? 'Ideen' : 'community event ideas';
+  // G4 intent phrase in the surface's language — resolved per-locale from
+  // the dictionary (de: "Ideen", EN title template: "30 community event ideas
+  // in {city}") so every surface phrases its own intent.
+  const typePhrase = ideasIntentPhraseFor(locale);
   return buildEntry({
     kind: 'ideas',
     params: {
@@ -466,9 +477,9 @@ function ideasEntry(
  *
  * - `locationPageEntries()` → the EN canonical surface (hub + all
  *   countries/regions/cities + flagship variants + idea pages).
- * - `locationPageEntries('de')` → the per-locale surface where COMMITTED
- *   translated content exists (Berlin: city + 5 variants + ideas at
- *   `/de/location/germany/berlin/...`) — the EN fallback is never
+ * - `locationPageEntries(locale)` → a per-locale surface where COMMITTED
+ *   translated content exists (Berlin `de`: city + 5 variants + ideas at
+ *   `/${locale}/location/germany/berlin/...`) — the EN fallback is never
  *   enumerated for a per-locale surface (phase A, design §7.1).
  *
  * Entries are deterministic: titles/descriptions derive from the snapshot
