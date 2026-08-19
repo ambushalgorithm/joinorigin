@@ -8,25 +8,22 @@ import {
   locationJsonLd,
   locationMetadata,
   resolveLocationEntry,
-  warmParamsForLocale,
 } from '../../../../lib/seo/locationView';
 
 /**
  * `/uk/location/[country]` — generated locale location
- * Country page (TASK-448).
+ * Country page (TASK-448, TASK-453).
  *
- * Mirrors the EN `app/location/[country]/page.tsx` wrapper with
- * the locale fixed: `warmParamsForLocale` enumerates only committed
- * per-locale entries, unknown slugs → `notFound()` (localization R5),
- * and metadata comes from `locationMetadata(entry)`.
+ * Mirrors the EN `app/location/[country]/page.tsx` wrapper:
+ * the EN registry entry resolves (`resolveLocationEntry(params)` — no
+ * locale), view data renders the active locale's body via
+ * `buildLocationViewData(entry, 'uk')` (per-locale content with
+ * EN fallback — es content where it exists, EN otherwise), and unknown
+ * slugs with no EN entry → `notFound()`. Rendered per-request: the
+ * root layout reads `headers()`, so SSG/ISR would crash with
+ * DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
-
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return warmParamsForLocale('country', 'uk');
-}
+export const dynamic = 'force-dynamic';
 
 interface UkCountryPageProps {
   params: Promise<{ country: string }>;
@@ -34,7 +31,7 @@ interface UkCountryPageProps {
 
 export async function generateMetadata({ params }: UkCountryPageProps): Promise<Metadata> {
   const { country } = await params;
-  const entry = resolveLocationEntry({ country }, 'uk');
+  const entry = resolveLocationEntry({ country });
   if (!entry) {
     return {};
   }
@@ -43,7 +40,7 @@ export async function generateMetadata({ params }: UkCountryPageProps): Promise<
 
 export default async function UkCountryPage({ params }: UkCountryPageProps) {
   const { country } = await params;
-  const entry = resolveLocationEntry({ country }, 'uk');
+  const entry = resolveLocationEntry({ country });
   if (!entry) {
     notFound();
   }

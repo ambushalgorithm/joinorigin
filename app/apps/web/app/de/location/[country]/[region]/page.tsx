@@ -8,25 +8,22 @@ import {
   locationJsonLd,
   locationMetadata,
   resolveLocationEntry,
-  warmParamsForLocale,
 } from '../../../../../lib/seo/locationView';
 
 /**
  * `/de/location/[country]/[region]` — generated locale location
- * Region page (TASK-448).
+ * Region page (TASK-448, TASK-453).
  *
- * Mirrors the EN `app/location/[country]/[region]/page.tsx` wrapper with
- * the locale fixed: `warmParamsForLocale` enumerates only committed
- * per-locale entries, unknown slugs → `notFound()` (localization R5),
- * and metadata comes from `locationMetadata(entry)`.
+ * Mirrors the EN `app/location/[country]/[region]/page.tsx` wrapper:
+ * the EN registry entry resolves (`resolveLocationEntry(params)` — no
+ * locale), view data renders the active locale's body via
+ * `buildLocationViewData(entry, 'de')` (per-locale content with
+ * EN fallback — es content where it exists, EN otherwise), and unknown
+ * slugs with no EN entry → `notFound()`. Rendered per-request: the
+ * root layout reads `headers()`, so SSG/ISR would crash with
+ * DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
-
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return warmParamsForLocale('region', 'de');
-}
+export const dynamic = 'force-dynamic';
 
 interface DeRegionPageProps {
   params: Promise<{ country: string; region: string }>;
@@ -34,7 +31,7 @@ interface DeRegionPageProps {
 
 export async function generateMetadata({ params }: DeRegionPageProps): Promise<Metadata> {
   const { country, region } = await params;
-  const entry = resolveLocationEntry({ country, region }, 'de');
+  const entry = resolveLocationEntry({ country, region });
   if (!entry) {
     return {};
   }
@@ -43,7 +40,7 @@ export async function generateMetadata({ params }: DeRegionPageProps): Promise<M
 
 export default async function DeRegionPage({ params }: DeRegionPageProps) {
   const { country, region } = await params;
-  const entry = resolveLocationEntry({ country, region }, 'de');
+  const entry = resolveLocationEntry({ country, region });
   if (!entry) {
     notFound();
   }

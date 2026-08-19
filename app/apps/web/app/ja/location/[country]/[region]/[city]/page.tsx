@@ -8,25 +8,22 @@ import {
   locationJsonLd,
   locationMetadata,
   resolveLocationEntry,
-  warmParamsForLocale,
 } from '../../../../../../lib/seo/locationView';
 
 /**
  * `/ja/location/[country]/[region]/[city]` — generated locale location
- * City page (TASK-448).
+ * City page (TASK-448, TASK-453).
  *
- * Mirrors the EN `app/location/[country]/[region]/[city]/page.tsx` wrapper with
- * the locale fixed: `warmParamsForLocale` enumerates only committed
- * per-locale entries, unknown slugs → `notFound()` (localization R5),
- * and metadata comes from `locationMetadata(entry)`.
+ * Mirrors the EN `app/location/[country]/[region]/[city]/page.tsx` wrapper:
+ * the EN registry entry resolves (`resolveLocationEntry(params)` — no
+ * locale), view data renders the active locale's body via
+ * `buildLocationViewData(entry, 'ja')` (per-locale content with
+ * EN fallback — es content where it exists, EN otherwise), and unknown
+ * slugs with no EN entry → `notFound()`. Rendered per-request: the
+ * root layout reads `headers()`, so SSG/ISR would crash with
+ * DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
-
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return warmParamsForLocale('city', 'ja');
-}
+export const dynamic = 'force-dynamic';
 
 interface JaCityPageProps {
   params: Promise<{ country: string; region: string; city: string }>;
@@ -34,7 +31,7 @@ interface JaCityPageProps {
 
 export async function generateMetadata({ params }: JaCityPageProps): Promise<Metadata> {
   const { country, region, city } = await params;
-  const entry = resolveLocationEntry({ country, region, city }, 'ja');
+  const entry = resolveLocationEntry({ country, region, city });
   if (!entry) {
     return {};
   }
@@ -43,7 +40,7 @@ export async function generateMetadata({ params }: JaCityPageProps): Promise<Met
 
 export default async function JaCityPage({ params }: JaCityPageProps) {
   const { country, region, city } = await params;
-  const entry = resolveLocationEntry({ country, region, city }, 'ja');
+  const entry = resolveLocationEntry({ country, region, city });
   if (!entry) {
     notFound();
   }

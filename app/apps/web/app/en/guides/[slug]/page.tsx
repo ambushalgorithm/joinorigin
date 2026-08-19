@@ -13,12 +13,12 @@ import { breadcrumbList, faqPage } from '../../../../lib/seo/jsonLd';
 import { GuideView } from '../../../guides/[slug]/guide-view';
 
 /**
- * `/th/guides/[slug]` — generated locale L1 how-to guide page
+ * `/en/guides/[slug]` — generated locale L1 how-to guide page
  * (TASK-453).
  *
  * Mirrors the canonical EN guide route: the active locale's committed
  * content resolves first, EN fallback otherwise
- * (`guidePageForLocale(slug, 'th') ?? guidePageForLocale(slug)`).
+ * (`guidePageForLocale(slug, 'en') ?? guidePageForLocale(slug)`).
  * Unknown slugs (no locale content AND no EN content) → `notFound()`.
  * Metadata emits the hreflang set when the locale entry resolves,
  * otherwise the EN canonical metadata (arch-i18n §1.2).
@@ -29,22 +29,22 @@ export function generateStaticParams() {
   return GUIDE_SLUGS.map((slug) => ({ slug }));
 }
 
-interface ThGuidePageProps {
+interface EnGuidePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: ThGuidePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: EnGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const entry = guidePageEntry(slug, 'th') ?? guidePageEntry(slug);
+  const entry = guidePageEntry(slug, 'en') ?? guidePageEntry(slug);
   if (!entry) {
     return {};
   }
   return guidePageMetadata(entry);
 }
 
-export default async function ThGuidePage({ params }: ThGuidePageProps) {
+export default async function EnGuidePage({ params }: EnGuidePageProps) {
   const { slug } = await params;
-  const page = guidePageForLocale(slug, 'th') ?? guidePageForLocale(slug);
+  const page = guidePageForLocale(slug, 'en') ?? guidePageForLocale(slug);
   if (!page) {
     notFound();
   }
@@ -55,8 +55,8 @@ export default async function ThGuidePage({ params }: ThGuidePageProps) {
       <GuideView entry={entry} content={content} />
       <JsonLd
         data={breadcrumbList([
-          { name: 'Home', path: '/th' },
-          { name: 'Guides', path: guideHubPath('th') },
+          { name: 'Home', path: '/en' },
+          { name: 'Guides', path: guideHubPath('en') },
           { name: entry.title, path: entry.path },
         ])}
       />

@@ -26,6 +26,7 @@ import * as EnHome from '../../app/en/page';
 import * as EsCommunity from '../../app/es/community/page';
 import {
   fixGuideBreadcrumbs,
+  guideFile,
   locationFile,
   manifestFrom,
   pascalLocale,
@@ -80,6 +81,8 @@ const EXPECTED_PAGES = [
   'location-region',
   'location-city',
   'location-variant',
+  'guides',
+  'guides-slug',
 ];
 
 function makeTempDir(): string {
@@ -88,18 +91,18 @@ function makeTempDir(): string {
 }
 
 describe('route plan (input table snapshot)', () => {
-  it('plans exactly 21 locales × 14 pages = 294 wrappers', () => {
+  it('plans exactly 21 locales × 16 pages = 336 wrappers', () => {
     const plan = routePlan();
-    expect(plan).toHaveLength(294);
+    expect(plan).toHaveLength(336);
     expect(new Set(plan.map((entry) => entry.locale))).toEqual(new Set(EXPECTED_LOCALES));
     expect(new Set(plan.map((entry) => entry.page))).toEqual(new Set(EXPECTED_PAGES));
-    // Every locale has the same 14 pages (the input table is a grid).
+    // Every locale has the same 16 pages (the input table is a grid).
     const perLocale = new Map<string, number>();
     for (const entry of plan) {
       perLocale.set(entry.locale, (perLocale.get(entry.locale) ?? 0) + 1);
     }
     for (const locale of EXPECTED_LOCALES) {
-      expect(perLocale.get(locale)).toBe(14);
+      expect(perLocale.get(locale)).toBe(16);
     }
   });
 
@@ -112,6 +115,8 @@ describe('route plan (input table snapshot)', () => {
       'app/zh-CN/location/[country]/[region]/[city]/[variant]/page.tsx',
     );
     expect(locationFile('fr', 'hub')).toBe('app/fr/location/page.tsx');
+    expect(guideFile('en', 'hub')).toBe('app/en/guides/page.tsx');
+    expect(guideFile('de', 'slug')).toBe('app/de/guides/[slug]/page.tsx');
   });
 
   it('names wrapper components deterministically', () => {
@@ -129,25 +134,21 @@ describe('writer (no-clobber + idempotent + manifest)', () => {
     const temp = makeTempDir();
     try {
       const result = await writeAll(temp);
-      expect(result.generated).toHaveLength(294);
+      expect(result.generated).toHaveLength(336);
       expect(result.skippedExisting).toHaveLength(0);
       for (const file of routePlan().map((entry) => entry.file)) {
         expect(existsSync(join(temp, file))).toBe(true);
       }
-      // Manifest is a deterministic snapshot: this generator owns every
-      // planned wrapper except the two pre-existing de location files.
+      // Manifest is a deterministic snapshot: the generator owns every
+      // planned wrapper (TASK-453 regenerated the whole location + guide
+      // surface, so preExisting is empty).
       const manifest = manifestFrom(result);
       expect(manifest.locales).toEqual(EXPECTED_LOCALES);
-      expect(manifest.pageCount).toBe(294);
-      expect(manifest.generated).toHaveLength(292);
-      expect(manifest.preExisting).toEqual(
-        expect.arrayContaining([
-          'app/de/location/[country]/[region]/[city]/page.tsx',
-          'app/de/location/[country]/[region]/[city]/[variant]/page.tsx',
-        ]),
-      );
+      expect(manifest.pageCount).toBe(336);
+      expect(manifest.generated).toHaveLength(336);
+      expect(manifest.preExisting).toEqual([]);
       expect(manifest.guideBreadcrumbsFixed).toHaveLength(40);
-      expect(manifest.lastRun.generated).toBe(294);
+      expect(manifest.lastRun.generated).toBe(336);
       expect(manifest.lastRun.skippedExisting).toBe(0);
     } finally {
       rmSync(temp, { recursive: true, force: true });
@@ -164,7 +165,7 @@ describe('writer (no-clobber + idempotent + manifest)', () => {
       const result = await writeAll(temp);
       expect(result.skippedExisting).toContain('app/de/features/page.tsx');
       expect(readFileSync(existing, 'utf8')).toContain('Existing');
-      expect(result.generated).toHaveLength(293);
+      expect(result.generated).toHaveLength(335);
     } finally {
       rmSync(temp, { recursive: true, force: true });
     }
@@ -176,7 +177,7 @@ describe('writer (no-clobber + idempotent + manifest)', () => {
       await writeAll(temp);
       const second = await writeAll(temp);
       expect(second.generated).toHaveLength(0);
-      expect(second.skippedExisting).toHaveLength(294);
+      expect(second.skippedExisting).toHaveLength(336);
     } finally {
       rmSync(temp, { recursive: true, force: true });
     }
@@ -217,39 +218,56 @@ describe('guide breadcrumb fixes (TASK-448d)', () => {
 });
 
 describe('route smoke tests (real apps/web/app tree)', () => {
-  it('every planned wrapper exists — 21 locales × 14 pages, no 404 at the routing layer', () => {
+  it('every planned wrapper exists — 21 locales × 16 pages, no 404 at the routing layer', () => {
     const missing = routePlan()
       .map((entry) => entry.file)
       .filter((file) => !existsSync(join(WEB_ROOT, file)));
     expect(missing).toEqual([]);
   });
 
-  it('existing de location pages are preserved (no clobber) and listed as skipped', async () => {
+  it('a non-force re-run on the committed tree writes nothing (idempotent, no clobber)', async () => {
     const result = await writeAll(WEB_ROOT);
-    // The committed tree already carries every wrapper, so a re-run must
-    // write nothing and skip the pre-existing de location pages explicitly.
+    // The committed tree already carries every wrapper (TASK-453 regenerated
+    // the full location + guide surface), so a re-run writes nothing and
+    // skips every planned file deterministically.
     expect(result.generated).toHaveLength(0);
-    expect(result.skippedExisting).toContain('app/de/location/[country]/[region]/[city]/page.tsx');
-    expect(result.skippedExisting).toContain(
-      'app/de/location/[country]/[region]/[city]/[variant]/page.tsx',
-    );
-    // The committed de surface wrappers are untouched byte-for-byte.
-    expect(
-      readFileSync(
-        join(APP_DIR, 'de', 'location', '[country]', '[region]', '[city]', 'page.tsx'),
-        'utf8',
-      ),
-    ).toContain('DeCityPage');
-    expect(
-      readFileSync(
-        join(APP_DIR, 'de', 'location', '[country]', '[region]', '[city]', '[variant]', 'page.tsx'),
-        'utf8',
-      ),
-    ).toContain('DeVariantPage');
+    expect(result.skippedExisting).toHaveLength(336);
+  });
+
+  it('every location wrapper is force-dynamic, resolves the EN entry, and renders the locale body', () => {
+    const locationFiles = routePlan().filter((entry) => entry.page.startsWith('location'));
+    for (const entry of locationFiles) {
+      const source = readFileSync(join(WEB_ROOT, entry.file), 'utf8');
+      // DYNAMIC_SERVER_USAGE fix: no SSG/ISR contract on generated locale
+      // location wrappers (the root layout reads headers()).
+      expect(source).toContain("export const dynamic = 'force-dynamic';");
+      expect(source).not.toContain('export const revalidate');
+      expect(source).not.toContain('generateStaticParams');
+      expect(source).not.toContain('warmParamsForLocale');
+      if (entry.page !== 'location') {
+        // EN entry resolution (no per-locale arg) + active-locale view data.
+        expect(source).toContain(`buildLocationViewData(entry, '${entry.locale}')`);
+        expect(source).toContain('resolveLocationEntry(');
+        expect(source).not.toContain(`resolveLocationEntry(params, '${entry.locale}')`);
+      }
+    }
+  });
+
+  it('every guide detail wrapper EN-falls-back and every guide hub lists all guides', () => {
+    for (const locale of EXPECTED_LOCALES) {
+      const hub = readFileSync(join(APP_DIR, locale, 'guides', 'page.tsx'), 'utf8');
+      const detail = readFileSync(join(APP_DIR, locale, 'guides', '[slug]', 'page.tsx'), 'utf8');
+      expect(hub).toContain(`guidePageEntriesWithFallback('${locale}')`);
+      expect(detail).toContain(`guidePageForLocale(slug, '${locale}') ?? guidePageForLocale(slug)`);
+      expect(detail).toContain('export function generateStaticParams()');
+      expect(detail).toContain('GUIDE_SLUGS.map');
+    }
   });
 
   it('every static wrapper carries the locale-prefixed metadata path + Home → /<locale> breadcrumb', () => {
-    const staticFiles = routePlan().filter((entry) => !entry.page.startsWith('location'));
+    const staticFiles = routePlan().filter(
+      (entry) => !entry.page.startsWith('location') && !entry.page.startsWith('guides'),
+    );
     for (const entry of staticFiles) {
       const source = readFileSync(join(WEB_ROOT, entry.file), 'utf8');
       const expectedPath = `path: '/${entry.locale}${entry.page === 'home' ? '' : `/${entry.page}`}'`;
@@ -260,9 +278,8 @@ describe('route smoke tests (real apps/web/app tree)', () => {
     }
   });
 
-  it('every non-EN guide wrapper now links Home to /<locale>', () => {
+  it('every guide wrapper links Home to /<locale> (incl. the en surface)', () => {
     for (const locale of EXPECTED_LOCALES) {
-      if (locale === 'en') continue;
       for (const file of ['page.tsx', '[slug]/page.tsx']) {
         const source = readFileSync(join(APP_DIR, locale, 'guides', file), 'utf8');
         expect(source).toContain(`{ name: 'Home', path: '/${locale}' },`);

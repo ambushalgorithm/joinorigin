@@ -8,25 +8,22 @@ import {
   locationJsonLd,
   locationMetadata,
   resolveLocationEntry,
-  warmParamsForLocale,
 } from '../../../../../../../lib/seo/locationView';
 
 /**
  * `/hi/location/[country]/[region]/[city]/[variant]` — generated locale location
- * Variant page (TASK-448).
+ * Variant page (TASK-448, TASK-453).
  *
- * Mirrors the EN `app/location/[country]/[region]/[city]/[variant]/page.tsx` wrapper with
- * the locale fixed: `warmParamsForLocale` enumerates only committed
- * per-locale entries, unknown slugs → `notFound()` (localization R5),
- * and metadata comes from `locationMetadata(entry)`.
+ * Mirrors the EN `app/location/[country]/[region]/[city]/[variant]/page.tsx` wrapper:
+ * the EN registry entry resolves (`resolveLocationEntry(params)` — no
+ * locale), view data renders the active locale's body via
+ * `buildLocationViewData(entry, 'hi')` (per-locale content with
+ * EN fallback — es content where it exists, EN otherwise), and unknown
+ * slugs with no EN entry → `notFound()`. Rendered per-request: the
+ * root layout reads `headers()`, so SSG/ISR would crash with
+ * DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
-
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return warmParamsForLocale('variant', 'hi');
-}
+export const dynamic = 'force-dynamic';
 
 interface HiVariantPageProps {
   params: Promise<{ country: string; region: string; city: string; variant: string }>;
@@ -34,7 +31,7 @@ interface HiVariantPageProps {
 
 export async function generateMetadata({ params }: HiVariantPageProps): Promise<Metadata> {
   const { country, region, city, variant } = await params;
-  const entry = resolveLocationEntry({ country, region, city, variant }, 'hi');
+  const entry = resolveLocationEntry({ country, region, city, variant });
   if (!entry) {
     return {};
   }
@@ -43,7 +40,7 @@ export async function generateMetadata({ params }: HiVariantPageProps): Promise<
 
 export default async function HiVariantPage({ params }: HiVariantPageProps) {
   const { country, region, city, variant } = await params;
-  const entry = resolveLocationEntry({ country, region, city, variant }, 'hi');
+  const entry = resolveLocationEntry({ country, region, city, variant });
   if (!entry) {
     notFound();
   }

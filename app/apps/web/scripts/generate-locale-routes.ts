@@ -225,11 +225,10 @@ const LOCATION_SEGMENTS = ['hub', 'country', 'region', 'city', 'variant'] as con
 type LocationSegment = (typeof LOCATION_SEGMENTS)[number];
 
 /** Files that pre-date TASK-448 and are maintained outside this generator
- *  (the committed Berlin de location surface — never clobbered). */
-const PRE_EXISTING_FILES = new Set([
-  'app/de/location/[country]/[region]/[city]/page.tsx',
-  'app/de/location/[country]/[region]/[city]/[variant]/page.tsx',
-]);
+ *  (the committed Berlin de location surface — never clobbered). TASK-453
+ *  regenerates every location + guide wrapper (EN fallback contract), so
+ *  the generator now owns the full file set. */
+const PRE_EXISTING_FILES = new Set<string>();
 
 /** Every non-EN guide wrapper that owns the `Home` → `/<locale>` breadcrumb
  *  (TASK-448d) — hub + [slug] per non-EN locale. */
@@ -281,6 +280,12 @@ export function locationFile(locale: Locale, segment: LocationSegment): string {
   };
   const path = dynamic[segment] ?? '';
   return `app/${locale}/location/${path ? `${path}/` : ''}page.tsx`;
+}
+
+/** Guide wrapper file path — `app/<locale>/guides/page.tsx` (hub) or
+ *  `app/<locale>/guides/[slug]/page.tsx` (detail). */
+export function guideFile(locale: Locale, kind: 'hub' | 'slug'): string {
+  return kind === 'hub' ? `app/${locale}/guides/page.tsx` : `app/${locale}/guides/[slug]/page.tsx`;
 }
 
 /** Number of `../` hops from a wrapper directory up to `apps/web/`. */
@@ -417,11 +422,12 @@ import {
  * \`/${locale}/location\` — generated locale location hub (TASK-448).
  *
  * Mirrors the EN \`app/location/page.tsx\` wrapper. The hub entry is the
- * canonical EN hub (per-locale location entries exist only where committed
- * content is registered); view data renders the active locale's chrome via
- * \`buildLocationViewData(entry, '${locale}')\`.
+ * canonical EN hub; view data renders the active locale's body via
+ * \`buildLocationViewData(entry, '${locale}')\` (per-locale content with
+ * EN fallback — TASK-453). Rendered per-request: the root layout reads
+ * \`headers()\`, so SSG/ISR would crash with DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = (() => {
   const entry = hubEntry();
@@ -458,25 +464,22 @@ import {
   locationJsonLd,
   locationMetadata,
   resolveLocationEntry,
-  warmParamsForLocale,
 } from '${ups(depth)}lib/seo/locationView';
 
 /**
  * \`/${locale}/location/${dynamic[segment]}\` — generated locale location
- * ${capitalize(segment)} page (TASK-448).
+ * ${capitalize(segment)} page (TASK-448, TASK-453).
  *
- * Mirrors the EN \`app/location/${dynamic[segment]}/page.tsx\` wrapper with
- * the locale fixed: \`warmParamsForLocale\` enumerates only committed
- * per-locale entries, unknown slugs → \`notFound()\` (localization R5),
- * and metadata comes from \`locationMetadata(entry)\`.
+ * Mirrors the EN \`app/location/${dynamic[segment]}/page.tsx\` wrapper:
+ * the EN registry entry resolves (\`resolveLocationEntry(params)\` — no
+ * locale), view data renders the active locale's body via
+ * \`buildLocationViewData(entry, '${locale}')\` (per-locale content with
+ * EN fallback — es content where it exists, EN otherwise), and unknown
+ * slugs with no EN entry → \`notFound()\`. Rendered per-request: the
+ * root layout reads \`headers()\`, so SSG/ISR would crash with
+ * DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
-
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return warmParamsForLocale('${segment}', '${locale}');
-}
+export const dynamic = 'force-dynamic';
 
 interface ${interfaceName} {
   params: Promise<{ ${paramsType} }>;
@@ -484,7 +487,7 @@ interface ${interfaceName} {
 
 export async function generateMetadata({ params }: ${interfaceName}): Promise<Metadata> {
   const { ${paramsObject} } = await params;
-  const entry = resolveLocationEntry({ ${paramsObject} }, '${locale}');
+  const entry = resolveLocationEntry({ ${paramsObject} });
   if (!entry) {
     return {};
   }
@@ -493,7 +496,7 @@ export async function generateMetadata({ params }: ${interfaceName}): Promise<Me
 
 export default async function ${name}({ params }: ${interfaceName}) {
   const { ${paramsObject} } = await params;
-  const entry = resolveLocationEntry({ ${paramsObject} }, '${locale}');
+  const entry = resolveLocationEntry({ ${paramsObject} });
   if (!entry) {
     notFound();
   }
@@ -504,6 +507,120 @@ export default async function ${name}({ params }: ${interfaceName}) {
       <LocationView data={data} />
       {jsonLd.breadcrumbs ? <JsonLd data={jsonLd.breadcrumbs} /> : null}
 ${faq}${itemList}    </>
+  );
+}
+`;
+}
+
+function guideHubWrapperSource(locale: Locale): string {
+  const name = wrapperName(locale, 'GuidesHub');
+  return `import type { Metadata } from 'next';
+
+import { JsonLd } from '${ups(3)}lib/seo/JsonLdScript';
+import {
+  guideHubMetadata,
+  guideHubPath,
+  guidePageEntriesWithFallback,
+} from '${ups(3)}lib/seo/guides';
+import { breadcrumbList } from '${ups(3)}lib/seo/jsonLd';
+import { GuidesHubView } from '../../guides/guides-hub-view';
+
+/**
+ * \`/${locale}/guides\` — generated locale guide hub (TASK-453).
+ *
+ * Lists EVERY guide; each card's title/description resolves the active
+ * locale's committed content with EN fallback
+ * (\`guidePageEntriesWithFallback('${locale}')\`), matching the
+ * EN-fallback contract on every \`/<locale>/**\` page. Metadata emits the
+ * hreflang set (\`guideHubMetadata\`) — SEO metadata stays EN
+ * (arch-i18n §1.2).
+ */
+export const metadata: Metadata = guideHubMetadata('${locale}');
+
+export default function ${name}() {
+  const entries = guidePageEntriesWithFallback('${locale}');
+  return (
+    <>
+      <GuidesHubView entries={entries} />
+      <JsonLd
+        data={breadcrumbList([
+          { name: 'Home', path: '/${locale}' },
+          { name: 'Guides', path: guideHubPath('${locale}') },
+        ])}
+      />
+    </>
+  );
+}
+`;
+}
+
+function guideSlugWrapperSource(locale: Locale): string {
+  const name = wrapperName(locale, 'Guide');
+  const interfaceName = `${pascalLocale(locale)}GuidePageProps`;
+  return `import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
+import { JsonLd } from '${ups(4)}lib/seo/JsonLdScript';
+import {
+  GUIDE_SLUGS,
+  guideHubPath,
+  guidePageEntry,
+  guidePageForLocale,
+  guidePageMetadata,
+} from '${ups(4)}lib/seo/guides';
+import { breadcrumbList, faqPage } from '${ups(4)}lib/seo/jsonLd';
+import { GuideView } from '../../../guides/[slug]/guide-view';
+
+/**
+ * \`/${locale}/guides/[slug]\` — generated locale L1 how-to guide page
+ * (TASK-453).
+ *
+ * Mirrors the canonical EN guide route: the active locale's committed
+ * content resolves first, EN fallback otherwise
+ * (\`guidePageForLocale(slug, '${locale}') ?? guidePageForLocale(slug)\`).
+ * Unknown slugs (no locale content AND no EN content) → \`notFound()\`.
+ * Metadata emits the hreflang set when the locale entry resolves,
+ * otherwise the EN canonical metadata (arch-i18n §1.2).
+ */
+export const dynamicParams = true;
+
+export function generateStaticParams() {
+  return GUIDE_SLUGS.map((slug) => ({ slug }));
+}
+
+interface ${interfaceName} {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: ${interfaceName}): Promise<Metadata> {
+  const { slug } = await params;
+  const entry = guidePageEntry(slug, '${locale}') ?? guidePageEntry(slug);
+  if (!entry) {
+    return {};
+  }
+  return guidePageMetadata(entry);
+}
+
+export default async function ${name}({ params }: ${interfaceName}) {
+  const { slug } = await params;
+  const page = guidePageForLocale(slug, '${locale}') ?? guidePageForLocale(slug);
+  if (!page) {
+    notFound();
+  }
+  const { entry, content } = page;
+
+  return (
+    <>
+      <GuideView entry={entry} content={content} />
+      <JsonLd
+        data={breadcrumbList([
+          { name: 'Home', path: '/${locale}' },
+          { name: 'Guides', path: guideHubPath('${locale}') },
+          { name: entry.title, path: entry.path },
+        ])}
+      />
+      <JsonLd data={faqPage(content.faq)} />
+    </>
   );
 }
 `;
@@ -525,7 +642,8 @@ function pageNameForRoute(route: string): string {
   return route === '' ? 'home' : route;
 }
 
-/** The complete deterministic route plan — 21 locales × 14 pages. */
+/** The complete deterministic route plan — 21 locales × 16 pages
+ *  (9 static + 5 location + guide hub + guide detail). */
 export function routePlan(): PlannedRoute[] {
   const plan: PlannedRoute[] = [];
   for (const locale of LOCALES) {
@@ -543,6 +661,8 @@ export function routePlan(): PlannedRoute[] {
         file: locationFile(locale, segment),
       });
     }
+    plan.push({ locale, page: 'guides', file: guideFile(locale, 'hub') });
+    plan.push({ locale, page: 'guides-slug', file: guideFile(locale, 'slug') });
   }
   return plan;
 }
@@ -613,7 +733,11 @@ export async function writeAll(webRootPath: string, force = false): Promise<Writ
     mkdirSync(dirname(target), { recursive: true });
     const source = page.startsWith('location')
       ? locationWrapperSource(locale, segmentForPage(page))
-      : staticWrapperSource(locale, staticPageForName(page));
+      : page === 'guides'
+        ? guideHubWrapperSource(locale)
+        : page === 'guides-slug'
+          ? guideSlugWrapperSource(locale)
+          : staticWrapperSource(locale, staticPageForName(page));
     writeFileSync(target, source);
     generated.push(file);
   }
@@ -627,9 +751,9 @@ export async function writeAll(webRootPath: string, force = false): Promise<Writ
 
 /** Committed manifest — a deterministic snapshot of the route tree and its
  *  ownership (stable across runs, never a run log):
- *   - `generated`: every planned wrapper owned by this generator,
- *   - `preExisting`: files maintained outside the generator (de Berlin
- *     location surface),
+ *   - `generated`: every planned wrapper owned by this generator (TASK-453
+ *     regenerated the full location + guide surface, so the set is complete),
+ *   - `preExisting`: files maintained outside the generator (none today),
  *   - `guideBreadcrumbsFixed`: every non-EN guide wrapper with the
  *     `Home` → `/<locale>` breadcrumb. */
 export function manifestFrom(result: WriteResult) {

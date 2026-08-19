@@ -3,17 +3,20 @@ import { render, screen } from '@testing-library/react';
 
 import { getDictionary, I18nProvider } from '@joinorigin/i18n';
 
-import { guidePageEntries } from '../../../lib/seo/guides';
+import { guidePageEntries, guidePageEntriesWithFallback } from '../../../lib/seo/guides';
 import DeGuidesHubPage, { metadata } from './page';
 
 /**
- * fe-guides-locale-routes — `/de/guides` per-locale hub tests (TASK-421).
+ * fe-guides-locale-routes — `/de/guides` per-locale hub tests (TASK-421,
+ * updated TASK-453).
  *
- * The hub metadata carries the full hreflang set (de self + en + x-default
- * → EN canonical), and the view renders exactly the committed de guide
- * entries — untranslated guides never get locale-prefixed URLs (R5). The
- * guides chrome keys are seeded so the suite is deterministic regardless of
- * the Group 3 translation merge order.
+ * After the EN-fallback regeneration the hub lists EVERY guide; each
+ * card's title/description resolves the committed de content with EN
+ * fallback (`guidePageEntriesWithFallback`), matching the EN-fallback
+ * contract on every `/<locale>/**` page. The hub metadata carries the full
+ * hreflang set (de self + en + x-default → EN canonical). The guides chrome
+ * keys are seeded so the suite is deterministic regardless of the Group 3
+ * translation merge order.
  */
 
 /** TASK-411 guides-hub chrome keys in the de surface (deterministic seed —
@@ -62,13 +65,16 @@ describe('/de/guides hub (TASK-421)', () => {
     });
   });
 
-  it('renders a single h1 and links every committed de guide to its locale path', () => {
+  it('renders a single h1 and links every guide to its locale path (EN fallback)', () => {
     renderWithDeGuideI18n(<DeGuidesHubPage />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    // Vacuous until de guide content is committed; once committed every card
-    // must link to the locale-prefixed path.
+    // Every committed de guide card links to the locale-prefixed path…
     for (const entry of guidePageEntries('de')) {
+      expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
+    }
+    // …and the hub lists ALL guides (untranslated ones fall back to EN).
+    for (const entry of guidePageEntriesWithFallback('de')) {
       expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
     }
   });
