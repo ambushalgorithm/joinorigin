@@ -72,6 +72,7 @@ test.describe('language switcher responsive', () => {
 
     await page.getByTestId('mobile-menu-toggle').click();
     const menu = page.getByTestId('mobile-menu');
+    await expect(menu).toBeVisible();
     const mobileSwitcher = menu.getByTestId('language-switcher-mobile-panel');
     await mobileSwitcher.getByTestId('language-switcher-trigger').click();
     await mobileSwitcher
@@ -79,13 +80,18 @@ test.describe('language switcher responsive', () => {
       .getByRole('option', { name: /Deutsch/ })
       .click();
 
-    // The mobile panel stays open (only the switcher list closes) and the
-    // locale cookie is written.
-    await expect(menu).toBeVisible();
+    // The selection writes the locale cookie immediately (persisted
+    // preference) and closes the listbox.
     const cookie = await page.evaluate(() => document.cookie);
     expect(cookie).toContain('joinorigin_locale=de');
-    // The listbox itself closes after selection.
     await expect(mobileSwitcher.getByTestId('language-switcher-listbox')).toBeHidden();
+
+    // The switcher navigates to the locale-prefixed route (TASK-450) so the
+    // target page renders with the freshly selected locale. The mobile panel
+    // closes on navigation because the Header lives in the page subtree and
+    // remounts on the route change — assert the deterministic outcome (URL +
+    // cookie) instead of panel persistence, which is a race with navigation.
+    await expect(page).toHaveURL(/\/de(?:\/|$)/, { timeout: 15_000 });
   });
 
   test('≤768px: footer switcher still opens upward and works', async ({ page }) => {
