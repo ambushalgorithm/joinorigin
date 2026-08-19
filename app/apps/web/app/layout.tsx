@@ -5,6 +5,7 @@ import { getDictionary, getDir, resolveLocale } from '@joinorigin/i18n';
 import { I18nProvider } from '@joinorigin/i18n';
 
 import { AnalyticsProvider } from '../lib/analytics';
+import LocalePathnameSync from '../components/LocalePathnameSync';
 import { JsonLd } from '../lib/seo/JsonLdScript';
 import { organization, website } from '../lib/seo/jsonLd';
 import { SITE } from '../lib/seo/site';
@@ -139,6 +140,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {/* i18n mount — client provider seeded with the server-resolved
               locale + dictionary (arch-i18n §6.3); wraps analytics + pages. */}
           <I18nProvider locale={locale} dictionary={dictionary}>
+            {/* Client-side locale sync (TASK-465, Bug 1): the root layout's
+                `headers()` is stale during SPA navigation, so the provider
+                never receives a new locale prop; this watcher reads
+                `usePathname()` and calls `setLocale()` when a `/<locale>/`
+                prefix differs from the active locale — navigating to
+                `/vi/features` toggles the UI instantly. */}
+            <LocalePathnameSync />
             {/* fe-analytics mount contract (arch §2.7) — client provider,
                 renders children unchanged; adapters inject their own scripts. */}
             <AnalyticsProvider>{children}</AnalyticsProvider>

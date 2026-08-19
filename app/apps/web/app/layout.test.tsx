@@ -24,6 +24,14 @@ jest.mock('next/navigation', () => ({
   },
 }));
 
+// LocalePathnameSync is a client watcher with its own unit suite; the layout
+// test only asserts the mount point (inside I18nProvider, TASK-465), so the
+// component is replaced with a marker div.
+jest.mock('../components/LocalePathnameSync', () => {
+  const MockLocalePathnameSync = () => <div data-testid="locale-pathname-sync" />;
+  return { __esModule: true, default: MockLocalePathnameSync };
+});
+
 // The i18n layout reads the proxy-forwarded locale header (arch-i18n
 // §6.3). Default to English for the layout tests; the value can be overridden
 // per test via the mutable `mockLocaleHeader`.
@@ -97,6 +105,14 @@ describe('root layout', () => {
     const element = await RootLayout({ children: <main>page content</main> });
     renderLayout(element);
     expect(screen.getByText('page content')).toBeInTheDocument();
+  });
+
+  it('mounts the client locale pathname sync watcher inside the i18n tree (TASK-465)', async () => {
+    const element = await RootLayout({ children: <main>page content</main> });
+    renderLayout(element);
+    // LocalePathnameSync must sit INSIDE I18nProvider so it can useI18n();
+    // the marker mock renders within the provider's children.
+    expect(screen.getByTestId('locale-pathname-sync')).toBeInTheDocument();
   });
 
   it('renders Organization + WebSite JSON-LD once, server-side', async () => {
