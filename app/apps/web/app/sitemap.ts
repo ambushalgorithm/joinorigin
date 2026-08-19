@@ -1,9 +1,13 @@
 import type { MetadataRoute } from 'next';
 
+import { SUPPORTED_LOCALES, type Locale } from '@joinorigin/i18n';
+
 import {
   GLOSSARY_HUB_PATH,
-  GUIDES_HUB_PATH,
   GUIDES_RELEASE_DATE,
+  guideHubLanguagesFor,
+  guideHubPath,
+  guideLanguagesFor,
   guidePageEntries,
 } from '../lib/seo/guides';
 import { indexableLocationEntries } from '../lib/seo/locationPages';
@@ -19,10 +23,15 @@ import { absoluteUrl } from '../lib/seo/url';
  * pages are excluded (D8), and `lastModified` is always deterministic
  * (dataset version date / fixed release dates — never `new Date()`).
  *
- * Berlin `de` pages (`/de/location/germany/berlin/...`) are listed as their
- * own indexable URLs and every Berlin page carries the full hreflang cluster
- * via `alternates.languages` (en + de + `x-default` → EN canonical) — the
- * same helper the pages' metadata uses (phase B, design §7.2/§9.1).
+ * Sprint 19 (Goal 1 + Q4): every one of the 21 locale surfaces is covered —
+ * each page (static routes, location registry, guides, hubs) × every locale
+ * is its own indexable URL. The EN surface stays the unprefixed canonical
+ * tree (`/**`); each non-EN locale adds its `/<locale>/...` URLs. Every URL
+ * carries the full hreflang cluster via `alternates.languages` with
+ * `x-default` → EN canonical (`/**`): EN pages list every locale that has a
+ * live `/<locale>/...` counterpart, and a non-EN page lists its own locale
+ * self + `en` + `x-default` (the same helpers the pages' metadata use —
+ * phase B, design §7.2/§9.1).
  *
  * `/llms.txt` and `/docs/*.md` are not HTML pages and intentionally stay out
  * of the sitemap (discovery §8.5) — they are discovered via llms.txt /
@@ -40,62 +49,120 @@ const LOCATION_CHANGE_FREQUENCY: Record<
   ideas: 'monthly',
 };
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const routeEntries = ROUTES.map(({ path, changeFrequency, priority }) => ({
-    url: absoluteUrl(path),
-    lastModified: SITE_RELEASE_DATE,
+/** Static route sitemap spec — the `ROUTES` list plus the glossary hub,
+ *  carrying the existing values (home weekly/1.0, menu monthly/0.8, legal
+ *  monthly/0.3, glossary weekly/0.6) and a deterministic lastmod source. */
+interface StaticRouteSpec {
+  path: string;
+  changeFrequency: 'weekly' | 'monthly';
+  priority: number;
+  lastModified: string;
+}
+
+const STATIC_ROUTES: StaticRouteSpec[] = [
+  ...ROUTES.map(({ path, changeFrequency, priority }) => ({
+    path,
     changeFrequency,
     priority,
-  }));
+    lastModified: SITE_RELEASE_DATE,
+  })),
+  {
+    path: GLOSSARY_HUB_PATH,
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+    lastModified: GUIDES_RELEASE_DATE,
+  },
+];
 
-  // EN canonical location surface — exactly the indexable pages. Berlin EN
-  // pages carry alternates.languages (en + de + x-default → EN); EN-only
-  // pages emit no cluster (phase A).
-  const locationEntries = indexableLocationEntries().map((entry) => {
-    const languages = languagesFor(entry);
+/** Path of a static route on a locale surface — home `/<locale>`, others
+ *  `/<locale>/<route>`; the EN surface stays unprefixed (canonical). */
+function staticPath(locale: Locale, path: string): string {
+  if (locale === 'en') return path;
+  return path === '/' ? `/${locale}` : `/${locale}${path}`;
+}
+
+/**
+ * `alternates.languages` for a static route. An EN page lists every locale
+ * (all `/<locale>` wrappers are live generated routes); a non-EN page lists
+ * its locale self + `en` + `x-default` → EN canonical — the same shape the
+ * guide/location helpers emit.
+ */
+function staticLanguagesFor(locale: Locale, path: string): Record<string, string> {
+  if (locale !== 'en') {
+    const enUrl = absoluteUrl(staticPath('en', path));
     return {
+      [locale]: absoluteUrl(staticPath(locale, path)),
+      en: enUrl,
+      'x-default': enUrl,
+    };
+  }
+  const languages: Record<string, string> = {
+    en: absoluteUrl(path),
+    'x-default': absoluteUrl(path),
+  };
+  for (const other of SUPPORTED_LOCALES) {
+    if (other === 'en') continue;
+    languages[other] = absoluteUrl(staticPath(other, path));
+  }
+  return languages;
+}
+
+/**
+ * Every indexable page of ONE locale surface — static routes, the location
+ * registry (`indexableLocationEntries(locale)`), guide pages
+ * (`guidePageEntries(locale)`), and the guides hub — each as its own
+ * indexable URL with the full hreflang cluster and a deterministic
+ * `lastModified`. EN (`locale === 'en'`) is the unprefixed canonical surface;
+ * every non-EN locale contributes its `/<locale>/...` URLs (committed content
+ * only — phase A, design §7.1).
+ */
+function localeSurfaceEntries(locale: Locale): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+
+  for (const route of STATIC_ROUTES) {
+    entries.push({
+      url: absoluteUrl(staticPath(locale, route.path)),
+      lastModified: route.lastModified,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+      alternates: { languages: staticLanguagesFor(locale, route.path) },
+    });
+  }
+
+  for (const entry of indexableLocationEntries(locale)) {
+    const languages = languagesFor(entry);
+    entries.push({
       url: absoluteUrl(entry.path),
       lastModified: entry.lastModified,
       changeFrequency: LOCATION_CHANGE_FREQUENCY[entry.kind],
       priority: entry.priority,
       ...(languages ? { alternates: { languages } } : {}),
-    };
-  });
+    });
+  }
 
-  // Berlin `de` surface — the 7 translated pages as their own indexable
-  // URLs, each with the full hreflang cluster (de + en + x-default → EN).
-  const deEntries = indexableLocationEntries('de').map((entry) => {
-    const languages = languagesFor(entry);
-    return {
+  for (const entry of guidePageEntries(locale)) {
+    const languages = guideLanguagesFor(entry.slug, locale);
+    entries.push({
       url: absoluteUrl(entry.path),
       lastModified: entry.lastModified,
-      changeFrequency: LOCATION_CHANGE_FREQUENCY[entry.kind],
+      changeFrequency: 'monthly' as const,
       priority: entry.priority,
-      alternates: { languages: (languages ?? {}) as Record<string, string> },
-    };
+      ...(languages ? { alternates: { languages } } : {}),
+    });
+  }
+
+  const hubLanguages = guideHubLanguagesFor(locale);
+  entries.push({
+    url: absoluteUrl(guideHubPath(locale)),
+    lastModified: GUIDES_RELEASE_DATE,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+    ...(hubLanguages ? { alternates: { languages: hubLanguages } } : {}),
   });
 
-  const guideEntries = guidePageEntries().map((entry) => ({
-    url: absoluteUrl(entry.path),
-    lastModified: entry.lastModified,
-    changeFrequency: 'monthly' as const,
-    priority: entry.priority,
-  }));
+  return entries;
+}
 
-  const hubEntries = [
-    {
-      url: absoluteUrl(GUIDES_HUB_PATH),
-      lastModified: GUIDES_RELEASE_DATE,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: absoluteUrl(GLOSSARY_HUB_PATH),
-      lastModified: GUIDES_RELEASE_DATE,
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    },
-  ];
-
-  return [...routeEntries, ...locationEntries, ...deEntries, ...guideEntries, ...hubEntries];
+export default function sitemap(): MetadataRoute.Sitemap {
+  return SUPPORTED_LOCALES.flatMap((locale) => localeSurfaceEntries(locale));
 }
