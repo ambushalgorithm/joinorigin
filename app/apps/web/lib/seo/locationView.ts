@@ -209,15 +209,32 @@ export interface HubDirectoryEntry {
  * indexable location page (countries, regions, cities, group-type variants,
  * ideas) derived from the registry. The hub view filters this client-side
  * by keyword; no separate index is invented (design §8.4).
+ *
+ * Locale-aware (TASK-449): each card's name resolves from the locale
+ * surface (`indexableLocationEntries(locale)`) so Browse-locations card
+ * names (country/region/city) render in the active locale when committed
+ * content exists, EN fallback otherwise — the EN directory always stays
+ * complete. Paths stay on the canonical EN tree (locale-prefixed surfaces
+ * only enumerate committed content, design §7.1).
  */
-export function hubDirectoryEntries(): HubDirectoryEntry[] {
+export function hubDirectoryEntries(locale: Locale = 'en'): HubDirectoryEntry[] {
+  const localizedNames = new Map<string, string>();
+  for (const entry of indexableLocationEntries(locale)) {
+    if (entry.kind === 'hub') continue;
+    localizedNames.set(locationEntryKey(entry), stripBrand(entry.title));
+  }
   return indexableLocationEntries()
     .filter((entry) => entry.kind !== 'hub')
     .map((entry) => ({
-      name: entry.title.replace(/\s*\|\s*JoinOrigin\s*$/, ''),
+      name: localizedNames.get(locationEntryKey(entry)) ?? stripBrand(entry.title),
       path: entry.path,
       kind: entry.kind,
     }));
+}
+
+/** Locale-independent identity for a location entry (kind + params). */
+function locationEntryKey(entry: LocationPageEntry): string {
+  return `${entry.kind}:${entry.params.country ?? ''}/${entry.params.region ?? ''}/${entry.params.city ?? ''}/${entry.params.variant ?? ''}`;
 }
 
 /* ------------------------------------------------------------------ *
@@ -431,14 +448,91 @@ function eyebrowFor(kind: PageKind, locale: Locale): string {
   return t(`seoContent.eyebrow.${kind}`);
 }
 
+/** Strip the `| JoinOrigin` brand suffix (registry/content titles carry it). */
+function stripBrand(title: string): string {
+  return title.replace(/\s*\|\s*JoinOrigin\s*$/, '');
+}
+
 /** H1 for a location page (registry title without the brand suffix). */
 function headingFor(entry: LocationPageEntry): string {
-  return entry.title.replace(/\s*\|\s*JoinOrigin\s*$/, '');
+  return stripBrand(entry.title);
+}
+
+/**
+ * H1 for a location page — prefers the authored localized content title for
+ * the active locale (`pageTitles` per kind: city/variants/ideas; content
+ * `title` overrides for country/region), EN fallback to the registry
+ * heading. TASK-449: canonical EN routes render the selected locale's body
+ * titles when content exists (mexico-city → es), else stay EN.
+ */
+function contentHeadingFor(
+  entry: LocationPageEntry,
+  content: CountryContent | RegionContent | CityContent | undefined,
+): string {
+  if (content?.kind === 'city') {
+    const localized =
+      entry.kind === 'variant'
+        ? entry.groupType && isGroupTypeKey(entry.groupType)
+          ? content.pageTitles?.variants?.[entry.groupType as GroupTypeKey]
+          : undefined
+        : entry.kind === 'ideas'
+          ? content.pageTitles?.ideas
+          : entry.kind === 'city'
+            ? content.pageTitles?.city
+            : undefined;
+    if (localized) return stripBrand(localized);
+  }
+  if (content?.title) return stripBrand(content.title);
+  return headingFor(entry);
+}
+
+/**
+ * Hero lead — prefers the authored localized content description for the
+ * active locale (`pageTitles` descriptions per kind, then the content
+ * `description` override), else the registry description. TASK-449: mirrors
+ * the registry title/description precedence so canonical EN routes render
+ * the selected locale's lead when content exists.
+ */
+function leadFor(
+  entry: LocationPageEntry,
+  content: CountryContent | RegionContent | CityContent | undefined,
+): string {
+  if (content?.kind === 'city') {
+    const localized =
+      entry.kind === 'variant'
+        ? entry.groupType && isGroupTypeKey(entry.groupType)
+          ? content.pageTitles?.variantDescriptions?.[entry.groupType as GroupTypeKey]
+          : undefined
+        : entry.kind === 'ideas'
+          ? content.pageTitles?.ideasDescription
+          : entry.kind === 'city'
+            ? content.pageTitles?.cityDescription
+            : undefined;
+    if (localized) return localized;
+  }
+  if (content?.description) return content.description;
+  return entry.description;
+}
+
+/**
+ * Hub entity label for the honest presence claim — resolves the localized
+ * `seoContent.location.hubEntity` key (TASK-449; i18n-locale-keys-sync
+ * TASK-452 ships the key to every locale JSON), with EN + literal fallbacks
+ * so the server view never surfaces a raw key string.
+ */
+function hubEntityLabel(locale: Locale): string {
+  const t = getT(getDictionary(locale));
+  const enT = getT(getDictionary('en'));
+  const key = 'seoContent.location.hubEntity';
+  const localized = t(key);
+  if (localized !== key) return localized;
+  const enValue = enT(key);
+  return enValue === key ? 'your city' : enValue;
 }
 
 /** Entity display label for the honest presence claim (§6.4 #6). */
-function entityLabelFor(entry: LocationPageEntry): string {
-  if (entry.kind === 'hub') return 'your city';
+function entityLabelFor(entry: LocationPageEntry, locale: Locale): string {
+  if (entry.kind === 'hub') return hubEntityLabel(locale);
   if (entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas') {
     const flagship = getFlagshipConfig(entry.params.city ?? '');
     if (flagship) return flagship.displayName;
@@ -482,7 +576,9 @@ export function buildLocationViewData(
 
   // The hero lead is the registry description (short chrome); the full
   // authored intro renders as the body prose section (design §6.4 #1/#6).
-  const lead = entry.description;
+  // TASK-449: prefer the localized content description override for the
+  // active locale (pageTitles per kind), else the registry description.
+  const lead = leadFor(entry, content);
 
   return {
     kind: entry.kind,
@@ -492,7 +588,7 @@ export function buildLocationViewData(
     description: entry.description,
     indexable: entry.indexable,
     eyebrow: eyebrowFor(entry.kind, locale),
-    heading: headingFor(entry),
+    heading: contentHeadingFor(entry, content),
     lead,
     intro,
     groupType,
@@ -518,11 +614,11 @@ export function buildLocationViewData(
           ? siblingCitiesFor(cityEntity)
           : [],
     guideLinks: guideLinksFor(entry.kind, locale),
-    hubDirectory: entry.kind === 'hub' ? hubDirectoryEntries() : undefined,
+    hubDirectory: entry.kind === 'hub' ? hubDirectoryEntries(locale) : undefined,
     ideaCategories:
       entry.kind === 'ideas' && content?.kind === 'city' ? content.ideaPage.categories : undefined,
     waitlistSource: waitlistSource(entry),
-    entityLabel: entityLabelFor(entry),
+    entityLabel: entityLabelFor(entry, locale),
   };
 }
 

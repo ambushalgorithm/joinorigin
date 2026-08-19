@@ -480,3 +480,107 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
     expect(kinds.has('ideas')).toBe(true);
   });
 });
+
+describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
+  it('city heading/lead render the selected locale content titles when content exists', () => {
+    const entry = resolveLocationEntry({
+      country: 'mexico',
+      region: 'mexico-city',
+      city: 'mexico-city',
+    });
+    expect(entry).toBeDefined();
+    // EN canonical → registry title/description.
+    const en = buildLocationViewData(entry!);
+    expect(en.heading).toBe('Communities in Mexico City');
+    expect(en.lead).toBe(entry?.description);
+    // es content exists → heading/lead localize from pageTitles.
+    const es = buildLocationViewData(entry!, 'es');
+    expect(es.heading).toBe('Comunidades en Ciudad de México');
+    expect(es.lead).toContain('Encuentra o crea comunidades en Ciudad de México');
+    expect(es.heading).not.toBe(en.heading);
+  });
+
+  it('variant + ideas headings localize per kind from content pageTitles (de Berlin)', () => {
+    // Variant/ideas pages exist for the flagship surface; Berlin carries the
+    // committed de content so the per-kind pageTitles are exercised.
+    const startup = resolveLocationEntry(
+      { country: 'germany', region: 'berlin', city: 'berlin', variant: 'startup' },
+      'de',
+    );
+    expect(startup).toBeDefined();
+    expect(buildLocationViewData(startup!, 'de').heading).toBe('Startup-Communities in Berlin');
+
+    const ideas = resolveLocationEntry(
+      { country: 'germany', region: 'berlin', city: 'berlin', variant: 'ideas' },
+      'de',
+    );
+    expect(ideas).toBeDefined();
+    expect(buildLocationViewData(ideas!, 'de').heading).toBe(
+      '30 Ideen für Community-Events in Berlin',
+    );
+  });
+
+  it('EN headings stay intact when the locale has no committed content (fallback)', () => {
+    const austin = resolveLocationEntry({
+      country: 'united-states',
+      region: 'texas',
+      city: 'austin',
+    });
+    expect(austin).toBeDefined();
+    const data = buildLocationViewData(austin!, 'es');
+    // Austin has no es content → heading/lead fall back to the EN registry.
+    expect(data.heading).toBe('Communities in Austin, Texas');
+    expect(data.lead).toBe(austin?.description);
+  });
+
+  it('de Berlin variant heading localizes from the committed de pageTitles', () => {
+    const deStartup = resolveLocationEntry(
+      { country: 'germany', region: 'berlin', city: 'berlin', variant: 'startup' },
+      'de',
+    );
+    expect(deStartup).toBeDefined();
+    const data = buildLocationViewData(deStartup!, 'de');
+    expect(data.heading).toBe('Startup-Communities in Berlin');
+    expect(data.lead).toContain('Finde oder gründe Startup-Communities in Berlin');
+  });
+
+  it('hub presence-claim entity label resolves seoContent.location.hubEntity (TASK-449)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(hub).toBeDefined();
+    const data = buildLocationViewData(hub!);
+    // The key is synced by i18n-locale-keys-sync (TASK-452); until then the
+    // server view must never surface a raw key string — it keeps the literal.
+    expect(data.entityLabel).toBe('your city');
+    expect(data.entityLabel).not.toContain('seoContent.location');
+  });
+
+  it('Browse-locations card names localize from the locale surface, EN fallback otherwise', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(hub).toBeDefined();
+    // EN directory — complete set, registry names.
+    const en = buildLocationViewData(hub!);
+    expect(en.hubDirectory?.some((entry) => entry.name === 'Communities in Berlin')).toBe(true);
+    expect(
+      en.hubDirectory?.some((entry) => entry.name === 'Communities in the United States'),
+    ).toBe(true);
+    // de surface — Berlin variant cards localize; entries without de content
+    // stay EN (fallback) and the directory remains complete.
+    const de = buildLocationViewData(hub!, 'de');
+    expect(de.hubDirectory?.some((entry) => entry.name === 'Startup-Communities in Berlin')).toBe(
+      true,
+    );
+    expect(
+      de.hubDirectory?.some((entry) => entry.name === 'Kreativ- & Design-Communities in Berlin'),
+    ).toBe(true);
+    expect(
+      de.hubDirectory?.some((entry) => entry.name === 'Communities in the United States'),
+    ).toBe(true);
+    expect(de.hubDirectory?.length).toBe(en.hubDirectory?.length);
+    // es surface has no registry entries yet — every card falls back to EN.
+    const es = buildLocationViewData(hub!, 'es');
+    expect(es.hubDirectory?.length).toBe(en.hubDirectory?.length);
+    expect(
+      es.hubDirectory?.every((entry) => en.hubDirectory?.some((e) => e.name === entry.name)),
+    ).toBe(true);
+  });
+});

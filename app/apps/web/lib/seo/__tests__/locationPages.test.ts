@@ -234,6 +234,19 @@ describe('lib/seo locationPages — per-locale (de) Berlin surface', () => {
     expect(de.every((entry) => entry.indexable)).toBe(true);
   });
 
+  it('de descriptions localize from content pageTitles (TASK-449 lead source)', () => {
+    // buildLocationViewData's lead prefers these per-kind description
+    // overrides — assert the registry carries the committed German copy.
+    const startup = de.find((entry) => entry.kind === 'variant' && entry.groupType === 'startup');
+    expect(startup?.description).toBe(
+      'Finde oder gründe Startup-Communities in Berlin – Gründer:innen, Builders und frühe Teams in Mitte und Kreuzberg. JoinOrigin-Warteliste.',
+    );
+    const city = de.find((entry) => entry.kind === 'city');
+    expect(city?.description).toBe(
+      'Finde oder gründe Communities in Berlin – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
+    );
+  });
+
   it('does NOT enumerate untranslated cities for the de surface', () => {
     const deNewYork = de.some((entry) => entry.path.includes('united-states'));
     expect(deNewYork).toBe(false);
