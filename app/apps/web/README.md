@@ -121,7 +121,7 @@ apps/web/
   pnpm --filter @joinorigin/web typecheck
   pnpm --filter @joinorigin/web test
   pnpm --filter @joinorigin/web build
-  pnpm --filter @joinorigin/e2e run test:e2e   # dev server on port 3100
+  pnpm --filter @joinorigin/e2e run test:e2e   # production server on port 3100
   ```
 
 ## Docker Local Launch

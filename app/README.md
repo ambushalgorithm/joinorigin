@@ -85,7 +85,7 @@ bundle/test time:
 | Language           | TypeScript 5 (`tsconfig.base.json`, `moduleResolution: bundler`) | Strict, shared compiler options across all packages                                                       |
 | Lint / format      | ESLint 8 (root `.eslintrc.cjs`) + Prettier 3                     | One root config lints every workspace package; `prettier/prettier` rule enforces formatting               |
 | Unit tests         | Jest 29                                                          | One runner across apps and packages; web uses `next/jest`, mobile/ui use the `react-native` preset        |
-| E2E tests          | Playwright (`tests/e2e/`)                                        | Chromium against the Next.js dev server                                                                   |
+| E2E tests          | Playwright (`tests/e2e/`)                                        | Chromium against the Next.js production server (build + `next start`)                                     |
 | Styling            | styled-components (+ `styled-components/native`)                 | Primary styling system per the frontend architecture (no Tailwind)                                        |
 
 ---
@@ -140,7 +140,7 @@ pnpm build            # production build (web: next build; mobile: typecheck)
 pnpm lint             # ESLint across all packages
 pnpm typecheck        # tsc --noEmit across all packages
 pnpm test             # unit tests across all packages (Jest)
-pnpm test:e2e         # Playwright end-to-end tests (starts the web dev server)
+pnpm test:e2e         # Playwright end-to-end tests (builds + starts the web production server)
 pnpm format           # Prettier write
 pnpm format:check     # Prettier check
 ```
@@ -171,7 +171,7 @@ pnpm typecheck
 # 5. Unit tests across all packages (Jest)
 pnpm test
 
-# 6. End-to-end tests (Playwright; boots the web dev server on port 3100)
+# 6. End-to-end tests (Playwright; builds + boots the web production server on port 3100)
 pnpm test:e2e
 ```
 
@@ -239,10 +239,13 @@ packages: (design 6, ui 7, mobile 5, web 144).
 
 ### E2E tests (Playwright)
 
-`tests/e2e/tests/*.spec.ts` boots the web dev server on a dedicated port
-(default **3100**, override with `JOINORIGIN_WEB_PORT`), opens the homepage,
+`tests/e2e/tests/*.spec.ts` builds the web app once, then boots the
+Next.js **production** server (`next start`) on a dedicated port (default
+**3100**, override with `JOINORIGIN_WEB_PORT`), opens the homepage,
 and asserts the landing experience end to end: hero, waitlist modal, leads API,
-menu pages, SEO, a11y, and responsive behaviour.
+menu pages, SEO, a11y, and responsive behaviour. Running against the production
+server (instead of `next dev`) keeps the suite deterministic and avoids the
+dev server's multi-GB RSS / OOM failures.
 
 ```bash
 pnpm test:e2e
