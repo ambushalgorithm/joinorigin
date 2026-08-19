@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 
 import { JsonLd } from '../../../../lib/seo/JsonLdScript';
 import {
+  GUIDE_SLUGS,
   guideHubPath,
-  guidePageEntries,
   guidePageEntry,
   guidePageForLocale,
   guidePageMetadata,
@@ -13,18 +13,20 @@ import { breadcrumbList, faqPage } from '../../../../lib/seo/jsonLd';
 import { GuideView } from '../../../guides/[slug]/guide-view';
 
 /**
- * `/<locale>/guides/[slug]` — per-locale L1 how-to guide page (TASK-421).
+ * `/fa/guides/[slug]` — generated locale L1 how-to guide page
+ * (TASK-453).
  *
- * Mirrors the `/de/location` wiring: generateStaticParams enumerates only
- * guides with committed `<locale>` content; any untranslated slug →
- * `notFound()` (localization R5 — never publish locale-prefixed URLs with
- * untranslated body). Metadata emits the full hreflang set: `<locale>` self
- * + `en` alternate + `x-default` → EN canonical via `alternates.languages`.
+ * Mirrors the canonical EN guide route: the active locale's committed
+ * content resolves first, EN fallback otherwise
+ * (`guidePageForLocale(slug, 'fa') ?? guidePageForLocale(slug)`).
+ * Unknown slugs (no locale content AND no EN content) → `notFound()`.
+ * Metadata emits the hreflang set when the locale entry resolves,
+ * otherwise the EN canonical metadata (arch-i18n §1.2).
  */
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return guidePageEntries('fa').map((entry) => ({ slug: entry.slug }));
+  return GUIDE_SLUGS.map((slug) => ({ slug }));
 }
 
 interface FaGuidePageProps {
@@ -33,7 +35,7 @@ interface FaGuidePageProps {
 
 export async function generateMetadata({ params }: FaGuidePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const entry = guidePageEntry(slug, 'fa');
+  const entry = guidePageEntry(slug, 'fa') ?? guidePageEntry(slug);
   if (!entry) {
     return {};
   }
@@ -42,7 +44,7 @@ export async function generateMetadata({ params }: FaGuidePageProps): Promise<Me
 
 export default async function FaGuidePage({ params }: FaGuidePageProps) {
   const { slug } = await params;
-  const page = guidePageForLocale(slug, 'fa');
+  const page = guidePageForLocale(slug, 'fa') ?? guidePageForLocale(slug);
   if (!page) {
     notFound();
   }

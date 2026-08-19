@@ -1,1 +1,5 @@
 timestamp,name,email,ip,locale,userAgent,referrer
+2026-08-19T14:23:34.709Z,Ada Lovelace,home.1787149412795@example.com,::ffff:127.0.0.1,en,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.7922.34 Safari/537.36",http://127.0.0.1:3100/
+2026-08-19T14:23:48.827Z,Ada Lovelace,api.1787149428805@example.com,203.0.113.28805.11,fr,JoinOrigin-E2E/1.0 (passive capture check),https://joinorigin.example/waitlist
+2026-08-19T14:23:48.878Z,Ada Lovelace,api.ip.1787149428858@example.com,198.51.100.42,fr,JoinOrigin-E2E/1.0 (passive capture check),https://joinorigin.example/waitlist
+2026-08-19T14:30:22.244Z,E2E Tester,e2e.1787149819646@example.com,::ffff:127.0.0.1,en,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.7922.34 Safari/537.36",http://127.0.0.1:3100/

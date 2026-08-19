@@ -6,32 +6,33 @@ import {
   resolveLocationEntry,
 } from '../../../../../../lib/seo/locationView';
 import { renderWithI18n } from '../../../../../../test-utils';
-import { generateMetadata, generateStaticParams } from './page';
+import { generateMetadata } from './page';
 
 /**
- * fe-location-pages Berlin de city route tests (TASK-308).
+ * fe-location-pages Berlin de city route tests (TASK-308, updated TASK-453).
  *
- * Asserts `/de/location/[country]/[region]/[city]`: warm params = Berlin
- * only, metadata carries the full hreflang set (de self + en + x-default →
- * EN), and the page renders the committed German body content via the
- * shared `LocationView` (the route default export is an async server
- * component — params are a Promise).
+ * Asserts `/de/location/[country]/[region]/[city]`: after the EN-fallback
+ * regeneration the wrapper resolves the EN registry entry (no per-locale
+ * surface) and renders the active locale's body via
+ * `buildLocationViewData(entry, 'de')`. The route is force-dynamic (the
+ * root layout reads `headers()`, so SSG/ISR would crash with
+ * DYNAMIC_SERVER_USAGE) — no `generateStaticParams` is exported.
+ * Metadata comes from the EN entry (canonical EN + de alternate hreflang
+ * for the committed Berlin de surface).
  */
 
 describe('/de/location/[country]/[region]/[city] route', () => {
-  it('generateStaticParams returns only Berlin', () => {
-    const params = generateStaticParams();
-    expect(params).toHaveLength(1);
-    expect(params[0]).toEqual({ country: 'germany', region: 'berlin', city: 'berlin' });
+  it('does not export generateStaticParams (force-dynamic EN-fallback wrapper)', async () => {
+    const page = await import('./page');
+    expect(page.dynamic).toBe('force-dynamic');
+    expect((page as { generateStaticParams?: unknown }).generateStaticParams).toBeUndefined();
   });
 
-  it('generateMetadata emits de self + en + x-default→EN', async () => {
+  it('generateMetadata resolves the EN entry — canonical EN + de alternate hreflang', async () => {
     const meta = await generateMetadata({
       params: Promise.resolve({ country: 'germany', region: 'berlin', city: 'berlin' }),
     });
-    expect(meta.alternates?.canonical).toBe(
-      'http://localhost:3100/de/location/germany/berlin/berlin',
-    );
+    expect(meta.alternates?.canonical).toBe('http://localhost:3100/location/germany/berlin/berlin');
     expect(meta.alternates?.languages).toEqual({
       de: 'http://localhost:3100/de/location/germany/berlin/berlin',
       en: 'http://localhost:3100/location/germany/berlin/berlin',

@@ -19,6 +19,7 @@ import {
   guideHubPath,
   guideLanguagesFor,
   guidePageEntries,
+  guidePageEntriesWithFallback,
   guidePageEntry,
   guidePageForLocale,
   guidePageMetadata,
@@ -261,6 +262,30 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     expect(guidePageForLocale('not-a-guide')).toBeUndefined();
     expect(guidePageForLocale('not-a-guide', 'de')).toBeUndefined();
     expect(guidePageEntry('not-a-guide', 'de')).toBeUndefined();
+  });
+
+  it('EN-fallback surfaces list EVERY guide with locale-prefixed paths (TASK-453)', () => {
+    for (const locale of NON_EN_LOCALES) {
+      const entries = guidePageEntriesWithFallback(locale);
+      expect(entries).toHaveLength(GUIDE_SLUGS.length);
+      expect(new Set(entries.map((entry) => entry.slug))).toEqual(new Set(GUIDE_SLUGS));
+      for (const entry of entries) {
+        expect(entry.path).toBe(`/${locale}${GUIDES_HUB_PATH}/${entry.slug}`);
+        expect(entry.locale).toBe(locale);
+      }
+    }
+  });
+
+  it('EN-fallback entries resolve the locale title/description, EN otherwise (TASK-453)', () => {
+    const entries = guidePageEntriesWithFallback('de');
+    // When de content is committed the card uses the de title; when it is
+    // not, getGuideContent already EN-falls-back — the helper always has
+    // a resolvable title/description.
+    const translated = entries.find((entry) => entry.slug === 'start-a-community');
+    expect(translated?.title).toBe(getGuideContent('start-a-community', 'de')?.title);
+    const untranslated = entries.find((entry) => entry.slug === 'organize-a-meetup');
+    expect(untranslated?.title).toBe(getGuideContent('organize-a-meetup', 'de')?.title);
+    expect(untranslated?.description).toBe(getGuideContent('organize-a-meetup', 'de')?.description);
   });
 
   it('locale surfaces emit self + en + x-default → EN canonical hreflang', () => {

@@ -8,27 +8,22 @@ import {
   locationJsonLd,
   locationMetadata,
   resolveLocationEntry,
-  warmParamsForLocale,
 } from '../../../../../../lib/seo/locationView';
 
 /**
- * `/de/location/[country]/[region]/[city]` — German Berlin city page
- * (design §7.2, Sprint 12 MVP).
+ * `/de/location/[country]/[region]/[city]` — generated locale location
+ * City page (TASK-448, TASK-453).
  *
- * The de surface carries exactly the committed Berlin translations (city +
- * 5 variants + ideas, 7 pages). Only Berlin enumerates in
- * `generateStaticParams`; any other de slug → `notFound()` (never publish
- * locale-prefixed URLs with untranslated body — localization R5). Metadata
- * emits the full hreflang set: `de` self + `en` alternate + `x-default` →
- * EN canonical via `alternates.languages`.
+ * Mirrors the EN `app/location/[country]/[region]/[city]/page.tsx` wrapper:
+ * the EN registry entry resolves (`resolveLocationEntry(params)` — no
+ * locale), view data renders the active locale's body via
+ * `buildLocationViewData(entry, 'de')` (per-locale content with
+ * EN fallback — es content where it exists, EN otherwise), and unknown
+ * slugs with no EN entry → `notFound()`. Rendered per-request: the
+ * root layout reads `headers()`, so SSG/ISR would crash with
+ * DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
-
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return warmParamsForLocale('city', 'de');
-}
+export const dynamic = 'force-dynamic';
 
 interface DeCityPageProps {
   params: Promise<{ country: string; region: string; city: string }>;
@@ -36,7 +31,7 @@ interface DeCityPageProps {
 
 export async function generateMetadata({ params }: DeCityPageProps): Promise<Metadata> {
   const { country, region, city } = await params;
-  const entry = resolveLocationEntry({ country, region, city }, 'de');
+  const entry = resolveLocationEntry({ country, region, city });
   if (!entry) {
     return {};
   }
@@ -45,7 +40,7 @@ export async function generateMetadata({ params }: DeCityPageProps): Promise<Met
 
 export default async function DeCityPage({ params }: DeCityPageProps) {
   const { country, region, city } = await params;
-  const entry = resolveLocationEntry({ country, region, city }, 'de');
+  const entry = resolveLocationEntry({ country, region, city });
   if (!entry) {
     notFound();
   }

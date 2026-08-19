@@ -13,11 +13,12 @@ import {
  * `/ja/location` — generated locale location hub (TASK-448).
  *
  * Mirrors the EN `app/location/page.tsx` wrapper. The hub entry is the
- * canonical EN hub (per-locale location entries exist only where committed
- * content is registered); view data renders the active locale's chrome via
- * `buildLocationViewData(entry, 'ja')`.
+ * canonical EN hub; view data renders the active locale's body via
+ * `buildLocationViewData(entry, 'ja')` (per-locale content with
+ * EN fallback — TASK-453). Rendered per-request: the root layout reads
+ * `headers()`, so SSG/ISR would crash with DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = (() => {
   const entry = hubEntry();

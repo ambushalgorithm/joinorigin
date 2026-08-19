@@ -8,25 +8,22 @@ import {
   locationJsonLd,
   locationMetadata,
   resolveLocationEntry,
-  warmParamsForLocale,
 } from '../../../../lib/seo/locationView';
 
 /**
  * `/nl/location/[country]` — generated locale location
- * Country page (TASK-448).
+ * Country page (TASK-448, TASK-453).
  *
- * Mirrors the EN `app/location/[country]/page.tsx` wrapper with
- * the locale fixed: `warmParamsForLocale` enumerates only committed
- * per-locale entries, unknown slugs → `notFound()` (localization R5),
- * and metadata comes from `locationMetadata(entry)`.
+ * Mirrors the EN `app/location/[country]/page.tsx` wrapper:
+ * the EN registry entry resolves (`resolveLocationEntry(params)` — no
+ * locale), view data renders the active locale's body via
+ * `buildLocationViewData(entry, 'nl')` (per-locale content with
+ * EN fallback — es content where it exists, EN otherwise), and unknown
+ * slugs with no EN entry → `notFound()`. Rendered per-request: the
+ * root layout reads `headers()`, so SSG/ISR would crash with
+ * DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
-
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return warmParamsForLocale('country', 'nl');
-}
+export const dynamic = 'force-dynamic';
 
 interface NlCountryPageProps {
   params: Promise<{ country: string }>;
@@ -34,7 +31,7 @@ interface NlCountryPageProps {
 
 export async function generateMetadata({ params }: NlCountryPageProps): Promise<Metadata> {
   const { country } = await params;
-  const entry = resolveLocationEntry({ country }, 'nl');
+  const entry = resolveLocationEntry({ country });
   if (!entry) {
     return {};
   }
@@ -43,7 +40,7 @@ export async function generateMetadata({ params }: NlCountryPageProps): Promise<
 
 export default async function NlCountryPage({ params }: NlCountryPageProps) {
   const { country } = await params;
-  const entry = resolveLocationEntry({ country }, 'nl');
+  const entry = resolveLocationEntry({ country });
   if (!entry) {
     notFound();
   }

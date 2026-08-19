@@ -158,6 +158,38 @@ export function guidePageEntry(slug: string, locale: Locale = 'en'): GuidePageEn
 }
 
 /**
+ * Every guide entry for a locale surface with EN fallback (TASK-453) —
+ * used by the generated `/<locale>/guides` hubs. Unlike
+ * `guidePageEntries(locale)` (which lists ONLY guides with committed
+ * translated content), this lists ALL guides; each entry's title and
+ * description resolve the active locale's committed content first and the
+ * EN content otherwise, matching the EN-fallback contract on every
+ * `/<locale>/**` page.
+ */
+export function guidePageEntriesWithFallback(locale: Locale = 'en'): GuidePageEntry[] {
+  const cities = flagshipCityLinks();
+  return GUIDE_SLUGS.map((slug) => {
+    const content = getGuideContent(slug, locale) ?? getGuideContent(slug, 'en');
+    if (!content) {
+      throw new Error(`[guides] missing committed content for guide "${slug}" (locale ${locale})`);
+    }
+    return {
+      params: { slug },
+      path: guidePath(slug, locale),
+      slug,
+      locale,
+      title: content.title ?? defaultTitle(slug),
+      description:
+        content.description ?? 'Practical, evergreen steps for building and running communities.',
+      lastModified: GUIDES_RELEASE_DATE,
+      priority: 0.7,
+      related: relatedSlugs(slug),
+      cities,
+    };
+  });
+}
+
+/**
  * Locale-aware guide page resolution — the shared loader used by both the
  * EN canonical route and the per-locale surfaces. Resolves the active
  * locale's entry + content; returns `undefined` (→ `notFound()`) for

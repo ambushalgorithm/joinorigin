@@ -8,25 +8,22 @@ import {
   locationJsonLd,
   locationMetadata,
   resolveLocationEntry,
-  warmParamsForLocale,
 } from '../../../../../../../lib/seo/locationView';
 
 /**
- * `/de/location/[country]/[region]/[city]/[variant]` — German Berlin
- * variant + reserved `ideas` page (design §7.2, Sprint 12 MVP).
+ * `/de/location/[country]/[region]/[city]/[variant]` — generated locale location
+ * Variant page (TASK-448, TASK-453).
  *
- * De enumeration is limited to the committed Berlin variant/idea content;
- * any other de slug → `notFound()` (localization R5 — no untranslated
- * locale-prefixed URLs). Metadata emits the full hreflang set:
- * `de` self + `en` alternate + `x-default` → EN canonical.
+ * Mirrors the EN `app/location/[country]/[region]/[city]/[variant]/page.tsx` wrapper:
+ * the EN registry entry resolves (`resolveLocationEntry(params)` — no
+ * locale), view data renders the active locale's body via
+ * `buildLocationViewData(entry, 'de')` (per-locale content with
+ * EN fallback — es content where it exists, EN otherwise), and unknown
+ * slugs with no EN entry → `notFound()`. Rendered per-request: the
+ * root layout reads `headers()`, so SSG/ISR would crash with
+ * DYNAMIC_SERVER_USAGE.
  */
-export const revalidate = 2592000;
-
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return warmParamsForLocale('variant', 'de');
-}
+export const dynamic = 'force-dynamic';
 
 interface DeVariantPageProps {
   params: Promise<{ country: string; region: string; city: string; variant: string }>;
@@ -34,7 +31,7 @@ interface DeVariantPageProps {
 
 export async function generateMetadata({ params }: DeVariantPageProps): Promise<Metadata> {
   const { country, region, city, variant } = await params;
-  const entry = resolveLocationEntry({ country, region, city, variant }, 'de');
+  const entry = resolveLocationEntry({ country, region, city, variant });
   if (!entry) {
     return {};
   }
@@ -43,7 +40,7 @@ export async function generateMetadata({ params }: DeVariantPageProps): Promise<
 
 export default async function DeVariantPage({ params }: DeVariantPageProps) {
   const { country, region, city, variant } = await params;
-  const entry = resolveLocationEntry({ country, region, city, variant }, 'de');
+  const entry = resolveLocationEntry({ country, region, city, variant });
   if (!entry) {
     notFound();
   }

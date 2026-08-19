@@ -1,21 +1,28 @@
 import type { Metadata } from 'next';
 
 import { JsonLd } from '../../../lib/seo/JsonLdScript';
-import { guideHubMetadata, guideHubPath, guidePageEntries } from '../../../lib/seo/guides';
+import {
+  guideHubMetadata,
+  guideHubPath,
+  guidePageEntriesWithFallback,
+} from '../../../lib/seo/guides';
 import { breadcrumbList } from '../../../lib/seo/jsonLd';
 import { GuidesHubView } from '../../guides/guides-hub-view';
 
 /**
- * `/<locale>/guides` — per-locale Community Building hub (TASK-421).
+ * `/es/guides` — generated locale guide hub (TASK-453).
  *
- * Lists exactly the guides with committed `<locale>` content (untranslated
- * guides never get locale-prefixed URLs — localization R5). Metadata emits
- * the hreflang set: `<locale>` self + `en` + `x-default` → EN canonical.
+ * Lists EVERY guide; each card's title/description resolves the active
+ * locale's committed content with EN fallback
+ * (`guidePageEntriesWithFallback('es')`), matching the
+ * EN-fallback contract on every `/<locale>/**` page. Metadata emits the
+ * hreflang set (`guideHubMetadata`) — SEO metadata stays EN
+ * (arch-i18n §1.2).
  */
 export const metadata: Metadata = guideHubMetadata('es');
 
 export default function EsGuidesHubPage() {
-  const entries = guidePageEntries('es');
+  const entries = guidePageEntriesWithFallback('es');
   return (
     <>
       <GuidesHubView entries={entries} />
