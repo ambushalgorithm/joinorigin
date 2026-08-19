@@ -3,6 +3,7 @@ import {
   SUPPORTED_LOCALES,
   getDir,
   normalizeLocale,
+  resolveAcceptLanguage,
   resolveLocale,
   type Locale,
 } from '../resolve';
@@ -57,6 +58,76 @@ describe('normalizeLocale', () => {
     expect(normalizeLocale('PT-BR')).toBe('pt-BR');
     expect(normalizeLocale('pt_br')).toBe('pt-BR');
     expect(normalizeLocale('EN-us')).toBe('en-us');
+  });
+});
+
+describe('resolveAcceptLanguage — RFC 9110 §12.5.4 header parsing', () => {
+  it('returns en for empty / null / undefined input', () => {
+    expect(resolveAcceptLanguage(undefined)).toBe('en');
+    expect(resolveAcceptLanguage(null)).toBe('en');
+    expect(resolveAcceptLanguage('')).toBe('en');
+  });
+
+  it('resolves a single bare range', () => {
+    expect(resolveAcceptLanguage('es')).toBe('es');
+    expect(resolveAcceptLanguage('vi')).toBe('vi');
+  });
+
+  it('honors q-values — higher q wins regardless of position', () => {
+    expect(resolveAcceptLanguage('fr;q=0.9, en;q=0.8')).toBe('fr');
+    expect(resolveAcceptLanguage('en;q=0.8, fr;q=0.9')).toBe('fr');
+  });
+
+  it('drops q=0 exclusions', () => {
+    expect(resolveAcceptLanguage('en;q=0, fr;q=0.9')).toBe('fr');
+    expect(resolveAcceptLanguage('en;q=0')).toBe('en');
+  });
+
+  it('orders by quality and applies region-variant fallback (pt → pt-BR)', () => {
+    expect(resolveAcceptLanguage('en-US;q=0.5, pt;q=0.9')).toBe('pt-BR');
+  });
+
+  it('skips unmatchable ranges instead of shadowing lower-q supported ones', () => {
+    expect(resolveAcceptLanguage('xx-YY;q=1, de;q=0.8')).toBe('de');
+  });
+
+  it('ignores * wildcard entries', () => {
+    expect(resolveAcceptLanguage('*, en;q=0.5')).toBe('en');
+    expect(resolveAcceptLanguage('*')).toBe('en');
+  });
+
+  it('resolves a real-world browser header', () => {
+    expect(resolveAcceptLanguage('fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5')).toBe('fr');
+  });
+
+  it('preserves header order for equal q-values (stable sort)', () => {
+    expect(resolveAcceptLanguage('de, en;q=1')).toBe('de');
+    expect(resolveAcceptLanguage('ja, ko;q=1, fr;q=1')).toBe('ja');
+  });
+
+  it('applies language-only fallback to a region range (fr-CA → fr)', () => {
+    expect(resolveAcceptLanguage('fr-CA;q=0.9, es;q=0.8')).toBe('fr');
+  });
+
+  it('accepts an explicit en range', () => {
+    expect(resolveAcceptLanguage('en;q=0.9, de;q=0.8')).toBe('en');
+    expect(resolveAcceptLanguage('en-US, en;q=0.9')).toBe('en');
+  });
+
+  it('picks a supported lower-q language over a higher-q unsupported one', () => {
+    expect(resolveAcceptLanguage('klingon;q=1, vi;q=0.5')).toBe('vi');
+  });
+
+  it('falls back to en when nothing matches', () => {
+    expect(resolveAcceptLanguage('xx')).toBe('en');
+    expect(resolveAcceptLanguage('zz-ZZ;q=0.9, yy;q=0.5')).toBe('en');
+  });
+
+  it('tolerates malformed entries', () => {
+    // An unrecognized q param keeps the default weight (range is retained).
+    expect(resolveAcceptLanguage('fr;q=abc, en')).toBe('fr');
+    expect(resolveAcceptLanguage('fr; q = 0.9 , de')).toBe('de');
+    expect(resolveAcceptLanguage(';;, en')).toBe('en');
   });
 });
 

@@ -10,6 +10,7 @@ export {
   DEFAULT_LOCALE,
   normalizeLocale,
   resolveLocale,
+  resolveAcceptLanguage,
   getDir,
   type Locale,
   type Direction,

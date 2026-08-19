@@ -5,6 +5,8 @@
 import { NextRequest } from 'next/server';
 import { unstable_doesMiddlewareMatch } from 'next/experimental/testing/server';
 
+import { SUPPORTED_LOCALES } from '@joinorigin/i18n';
+
 import { proxy, config, LOCALE_COOKIE, localeFromPathname } from './proxy';
 
 /**
@@ -12,13 +14,17 @@ import { proxy, config, LOCALE_COOKIE, localeFromPathname } from './proxy';
  * convention — migrated from `middleware.ts` via the `middleware-to-proxy`
  * codemod). Proxy defaults to the Node.js runtime.
  *
- * Contract (arch-i18n §6.3, updated TASK-444):
+ * Contract (arch-i18n §6.3, updated TASK-455):
  *  - locale-prefixed paths (`/<locale>` or `/<locale>/...`) force that
  *    locale regardless of cookie / Accept-Language
  *  - otherwise precedence: cookie `joinorigin_locale` wins → Accept-Language
- *    → `DEFAULT_LOCALE` (`en`)
+ *    header (parsed per RFC 9110 §12.5.4: q-values, `q=0` exclusions,
+ *    region-variant fallback) → `DEFAULT_LOCALE` (`en`)
  *  - the resolved locale is forwarded as `x-joinorigin-locale` on BOTH the
  *    request (via NextResponse.next request headers) and the response
+ *  - route-stick: the first visit to a `/<locale>/...` prefixed surface with
+ *    no cookie SETS `joinorigin_locale` to the prefix locale (no EN flash);
+ *    an existing cookie is never overwritten
  *  - no URL rewrite — URLs stay clean
  */
 
@@ -85,6 +91,60 @@ describe('proxy locale resolution', () => {
     expect(unstable_doesMiddlewareMatch({ config, url: '/_next/static/chunks/x.js' })).toBe(false);
     expect(unstable_doesMiddlewareMatch({ config, url: '/_next/image?url=x' })).toBe(false);
     expect(unstable_doesMiddlewareMatch({ config, url: '/favicon.ico' })).toBe(false);
+  });
+});
+
+describe('Accept-Language header parsing (TASK-455, RFC 9110 §12.5.4)', () => {
+  it('honors q-values — higher q wins regardless of position', () => {
+    const response = runProxy({ 'accept-language': 'fr;q=0.9, en;q=0.8' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('fr');
+  });
+
+  it('drops q=0 exclusions (en explicitly not acceptable)', () => {
+    const response = runProxy({ 'accept-language': 'en;q=0, fr;q=0.9' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('fr');
+  });
+
+  it('orders by quality and applies region-variant fallback (pt → pt-BR)', () => {
+    const response = runProxy({ 'accept-language': 'en-US;q=0.5, pt;q=0.9' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('pt-BR');
+  });
+
+  it('skips unmatchable ranges instead of shadowing lower-q supported ones', () => {
+    const response = runProxy({ 'accept-language': 'xx-YY;q=1, de;q=0.8' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('de');
+  });
+
+  it('ignores * wildcard entries', () => {
+    const response = runProxy({ 'accept-language': '*, en;q=0.5' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('en');
+  });
+
+  it('resolves a real-world browser header', () => {
+    const response = runProxy({
+      'accept-language': 'fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5',
+    });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('fr');
+  });
+
+  it('preserves header order for equal q-values', () => {
+    const response = runProxy({ 'accept-language': 'de, en;q=1' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('de');
+  });
+
+  it('picks a supported lower-q language over a higher-q unsupported one', () => {
+    const response = runProxy({ 'accept-language': 'klingon;q=1, vi;q=0.5' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('vi');
+  });
+
+  it('accepts an explicit en range', () => {
+    const response = runProxy({ 'accept-language': 'en;q=0.9, de;q=0.8' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('en');
+  });
+
+  it('applies language-only fallback to a region range (fr-CA → fr)', () => {
+    const response = runProxy({ 'accept-language': 'fr-CA;q=0.9, es;q=0.8' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('fr');
   });
 });
 
@@ -262,5 +322,74 @@ describe('non-locale-prefixed routes keep cookie → Accept-Language precedence 
   it('cookie still wins on the home page', () => {
     const response = runProxy({ cookie: `${LOCALE_COOKIE}=de`, 'accept-language': 'en' });
     expect(response.headers.get('x-joinorigin-locale')).toBe('de');
+  });
+});
+
+describe('route-stick: prefixed first visit sets joinorigin_locale cookie (TASK-455)', () => {
+  it('sets the cookie to vi for a first visit to /vi/guides/... — no EN flash', () => {
+    const response = runProxyAt('http://localhost/vi/guides/start-a-community', {
+      'accept-language': 'en',
+    });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('vi');
+    expect(response.cookies.get(LOCALE_COOKIE)?.value).toBe('vi');
+  });
+
+  it('sets the cookie for the bare /vi path too', () => {
+    const response = runProxyAt('http://localhost/vi');
+    expect(response.cookies.get(LOCALE_COOKIE)?.value).toBe('vi');
+  });
+
+  it('sets the cookie for /en/ surfaces (en is a locale prefix)', () => {
+    const response = runProxyAt('http://localhost/en/features');
+    expect(response.headers.get('x-joinorigin-locale')).toBe('en');
+    expect(response.cookies.get(LOCALE_COOKIE)?.value).toBe('en');
+  });
+
+  it.each(SUPPORTED_LOCALES)(
+    'sets the cookie to %s on a first visit to /%s/guides/...',
+    (locale) => {
+      const response = runProxyAt(`http://localhost/${locale}/guides/start-a-community`);
+      expect(response.headers.get('x-joinorigin-locale')).toBe(locale);
+      expect(response.cookies.get(LOCALE_COOKIE)?.value).toBe(locale);
+    },
+  );
+
+  it('does not overwrite an existing cookie — explicit switcher selection wins', () => {
+    const response = runProxyAt('http://localhost/vi/guides/start-a-community', {
+      cookie: `${LOCALE_COOKIE}=fr`,
+      'accept-language': 'en',
+    });
+    // The prefix still forces vi for this page...
+    expect(response.headers.get('x-joinorigin-locale')).toBe('vi');
+    // ...but the fr cookie is left untouched (no new Set-Cookie for it).
+    expect(response.cookies.get(LOCALE_COOKIE)?.value).toBeUndefined();
+  });
+
+  it('does not set a cookie on unprefixed routes', () => {
+    const response = runProxy({ 'accept-language': 'fr' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('fr');
+    expect(response.cookies.get(LOCALE_COOKIE)?.value).toBeUndefined();
+  });
+
+  it('does not set a cookie on paths that merely start with a locale sequence', () => {
+    const response = runProxyAt('http://localhost/vietsnam', { 'accept-language': 'fr' });
+    expect(response.headers.get('x-joinorigin-locale')).toBe('fr');
+    expect(response.cookies.get(LOCALE_COOKIE)?.value).toBeUndefined();
+  });
+
+  it('sets the cookie with path=/, a 1-year max-age, and SameSite=Lax', () => {
+    const response = runProxyAt('http://localhost/vi/guides/start-a-community');
+    const cookie = response.cookies.get(LOCALE_COOKIE);
+    expect(cookie?.value).toBe('vi');
+    expect(cookie?.path).toBe('/');
+    expect(cookie?.maxAge).toBe(60 * 60 * 24 * 365);
+    expect(cookie?.sameSite).toBe('lax');
+  });
+
+  it('marks the cookie Secure only on https requests', () => {
+    const secure = runProxyAt('https://localhost/vi/guides/start-a-community');
+    expect(secure.cookies.get(LOCALE_COOKIE)?.secure).toBe(true);
+    const plain = runProxyAt('http://localhost/vi/guides/start-a-community');
+    expect(plain.cookies.get(LOCALE_COOKIE)?.secure).toBe(false);
   });
 });
