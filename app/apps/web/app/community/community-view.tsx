@@ -27,6 +27,7 @@ import {
 import { faqEntries, faqNamespace } from '../../lib/faq';
 import { JsonLd } from '../../lib/seo/JsonLdScript';
 import { faqPage } from '../../lib/seo/jsonLd';
+import { useLocalizePath } from '../../lib/seo/localePath';
 
 /**
  * Community view (discovery §5.3, redesign spec sprint-8 §8.2, elevated
@@ -59,6 +60,12 @@ const ExploreLinks = styled.div`
 export function CommunityView() {
   const { t, dictionary } = useI18n();
   const faq = faqEntries(faqNamespace(dictionary, 'community'));
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`.
+  const localizePath = useLocalizePath();
 
   return (
     <MenuPageShell
@@ -121,11 +128,13 @@ export function CommunityView() {
                 testID="community-members-stat"
               />
               <BodyCopy>{t('community.joinCopy')}</BodyCopy>
-              <JoinLink href="/">{t('common.joinWaitlist')}</JoinLink>
+              <JoinLink href={localizePath('/')}>{t('common.joinWaitlist')}</JoinLink>
               <ExploreLinks>
-                <AccentLink href="/location">{t('common.nav.locations')}</AccentLink>
-                <AccentLink href="/guides">{t('common.nav.guides')}</AccentLink>
-                <AccentLink href="/glossary">{t('common.nav.glossary')}</AccentLink>
+                <AccentLink href={localizePath('/location')}>
+                  {t('common.nav.locations')}
+                </AccentLink>
+                <AccentLink href={localizePath('/guides')}>{t('common.nav.guides')}</AccentLink>
+                <AccentLink href={localizePath('/glossary')}>{t('common.nav.glossary')}</AccentLink>
               </ExploreLinks>
             </Section>
           </Reveal>

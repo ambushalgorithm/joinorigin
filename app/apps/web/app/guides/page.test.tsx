@@ -2,7 +2,13 @@ import type { ReactElement } from 'react';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { getDictionary, I18nProvider, type Locale } from '@joinorigin/i18n';
+import {
+  I18nProvider,
+  LOCALE_COOKIE_NAME,
+  _resetI18nForTests,
+  getDictionary,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import { guidePageEntries } from '../../lib/seo/guides';
 import GuidesHubPage, { metadata } from './page';
@@ -191,5 +197,89 @@ describe('guides hub page', () => {
     } finally {
       mockServerLocale.locale = 'en';
     }
+  });
+});
+
+/**
+ * TASK-460 — the guides hub renders internal links through the shared
+ * locale-aware path helper per the confirmed prefix table. `useLocalizePath`
+ * reads the router pathname + active i18n locale, so this suite overrides the
+ * `next/navigation` mock with a mutable `mockPathname` (the setup-level mock
+ * returns `/` and takes no locale into account).
+ */
+let mockPathname = '/';
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+  usePathname: () => mockPathname,
+}));
+
+/** Aligns the provider's post-mount auto-detect with the render locale. */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
+
+async function renderHubForLocale(locale: Locale) {
+  setNavigatorLanguage(locale);
+  return render(
+    <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
+      {await GuidesHubPage()}
+    </I18nProvider>,
+  );
+}
+
+describe('guides hub — locale-aware internal links (TASK-460)', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
+    mockPathname = '/';
+  });
+
+  /** Finds a link with the exact href (link text is locale-dependent). */
+  function linkByHref(href: string) {
+    return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
+  }
+
+  it('keeps links unprefixed on an unprefixed EN load (table row 1)', async () => {
+    mockServerLocale.locale = 'en';
+    mockPathname = '/guides';
+    await renderHubForLocale('en');
+    expect(linkByHref('/glossary')).toBeDefined();
+    const first = guidePageEntries()[0];
+    expect(linkByHref(first.path)).toBeDefined();
+  });
+
+  it('keeps the /en/** prefix on an /en/** load (table row 2)', async () => {
+    mockServerLocale.locale = 'en';
+    mockPathname = '/en/guides';
+    await renderHubForLocale('en');
+    expect(linkByHref('/en/glossary')).toBeDefined();
+    const first = guidePageEntries()[0];
+    expect(linkByHref(`/en${first.path}`)).toBeDefined();
+  });
+
+  it('renders /de/** links on a /de/** load (table row 3)', async () => {
+    mockServerLocale.locale = 'de';
+    mockPathname = '/de/guides';
+    await renderHubForLocale('de');
+    // The de surface serves the committed German guide set (de entries are
+    // already locale-prefixed server-side; the helper passes them through).
+    const deFirst = guidePageEntries('de')[0];
+    expect(linkByHref(deFirst.path)).toBeDefined();
+    expect(linkByHref('/de/glossary')).toBeDefined();
+  });
+
+  it('renders /de/** links on an unprefixed load with a de cookie (table row 4)', async () => {
+    // Canonical route stays EN server-side (unprefixed entries); the client
+    // de cookie makes the shared helper prefix every internal link.
+    mockServerLocale.locale = 'en';
+    mockPathname = '/guides';
+    await renderHubForLocale('de');
+    const enFirst = guidePageEntries()[0];
+    expect(linkByHref(`/de${enFirst.path}`)).toBeDefined();
+    expect(linkByHref('/de/glossary')).toBeDefined();
   });
 });

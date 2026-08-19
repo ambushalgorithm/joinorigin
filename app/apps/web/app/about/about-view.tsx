@@ -25,6 +25,7 @@ import {
   SectionTitle,
 } from '../../components/menuPagePrimitives';
 import { faqEntries, faqNamespace } from '../../lib/faq';
+import { useLocalizePath } from '../../lib/seo/localePath';
 
 /**
  * About view (discovery §5.6, redesign spec sprint-8 §8.4, elevated
@@ -47,6 +48,12 @@ const PRINCIPLE_KEYS = [
 export function AboutView() {
   const { t, dictionary } = useI18n();
   const faq = faqEntries(faqNamespace(dictionary, 'about'));
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`.
+  const localizePath = useLocalizePath();
 
   return (
     <MenuPageShell
@@ -123,19 +130,19 @@ export function AboutView() {
                 <ListItem>
                   <Trans
                     i18nKey="about.readingDocs"
-                    components={[<AccentLink key="docs" href="/docs" />]}
+                    components={[<AccentLink key="docs" href={localizePath('/docs')} />]}
                   />
                 </ListItem>
                 <ListItem>
                   <Trans
                     i18nKey="about.readingCommunity"
-                    components={[<AccentLink key="community" href="/community" />]}
+                    components={[<AccentLink key="community" href={localizePath('/community')} />]}
                   />
                 </ListItem>
                 <ListItem>
                   <Trans
                     i18nKey="about.readingContact"
-                    components={[<AccentLink key="contact" href="/contact" />]}
+                    components={[<AccentLink key="contact" href={localizePath('/contact')} />]}
                   />
                 </ListItem>
               </BulletList>

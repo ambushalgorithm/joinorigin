@@ -1,7 +1,13 @@
 import type { ReactElement } from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { getDictionary, I18nProvider, type Locale } from '@joinorigin/i18n';
+import {
+  getDictionary,
+  I18nProvider,
+  LOCALE_COOKIE_NAME,
+  _resetI18nForTests,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import GuidePage, { generateMetadata, generateStaticParams } from './page';
 import { getGuideContent } from '../../../lib/seo/content';
@@ -342,5 +348,87 @@ describe('guide page wrapper', () => {
       forLocaleMock.mockRestore();
       mockServerLocale.locale = 'en';
     }
+  });
+});
+
+/**
+ * TASK-460 — the guide view renders internal links through the shared
+ * locale-aware path helper per the confirmed prefix table. `useLocalizePath`
+ * reads the router pathname + active i18n locale, so this suite overrides the
+ * `next/navigation` mock with a mutable `mockPathname`.
+ */
+let mockPathname = '/';
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+  usePathname: () => mockPathname,
+}));
+
+/** Aligns the provider's post-mount auto-detect with the render locale. */
+function setNavigatorLanguage(language: string): void {
+  Object.defineProperty(window.navigator, 'language', {
+    value: language,
+    configurable: true,
+  });
+}
+
+function renderGuideForLocale(locale: Locale, ui: ReactElement) {
+  setNavigatorLanguage(locale);
+  return render(
+    <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
+      {ui}
+    </I18nProvider>,
+  );
+}
+
+describe('guide view — locale-aware internal links (TASK-460)', () => {
+  const slug = 'start-a-community';
+  const entry = guidePageEntry(slug);
+  const content = getGuideContent(slug, 'en');
+  if (!entry || !content) {
+    throw new Error('Missing guide fixtures for locale-link tests');
+  }
+
+  beforeEach(() => {
+    _resetI18nForTests();
+    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
+    mockPathname = '/';
+  });
+
+  /** Finds a link with the exact href (Trans link text is locale-dependent). */
+  function linkByHref(href: string) {
+    return screen.getAllByRole('link').find((link) => link.getAttribute('href') === href);
+  }
+
+  it('keeps the keep-learning links unprefixed on an unprefixed EN load (table row 1)', () => {
+    mockPathname = `/guides/${slug}`;
+    renderGuideForLocale('en', <GuideView entry={entry} content={content} />);
+    expect(linkByHref('/guides')).toBeDefined();
+    expect(linkByHref('/glossary')).toBeDefined();
+    expect(linkByHref('/location')).toBeDefined();
+  });
+
+  it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {
+    mockPathname = `/en/guides/${slug}`;
+    renderGuideForLocale('en', <GuideView entry={entry} content={content} />);
+    expect(linkByHref('/en/guides')).toBeDefined();
+    expect(linkByHref('/en/glossary')).toBeDefined();
+    expect(linkByHref('/en/location')).toBeDefined();
+  });
+
+  it('renders /de/** keep-learning links on a /de/** load (table row 3)', () => {
+    mockPathname = `/de/guides/${slug}`;
+    renderGuideForLocale('de', <GuideView entry={entry} content={content} />);
+    expect(linkByHref('/de/guides')).toBeDefined();
+    expect(linkByHref('/de/glossary')).toBeDefined();
+    expect(linkByHref('/de/location')).toBeDefined();
+  });
+
+  it('renders /de/** keep-learning links on an unprefixed load with a de cookie (table row 4)', () => {
+    mockPathname = `/guides/${slug}`;
+    renderGuideForLocale('de', <GuideView entry={entry} content={content} />);
+    expect(linkByHref('/de/guides')).toBeDefined();
+    expect(linkByHref('/de/glossary')).toBeDefined();
+    expect(linkByHref('/de/location')).toBeDefined();
   });
 });

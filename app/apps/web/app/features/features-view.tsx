@@ -31,6 +31,7 @@ import {
 import { faqEntries, faqNamespace } from '../../lib/faq';
 import { JsonLd } from '../../lib/seo/JsonLdScript';
 import { faqPage } from '../../lib/seo/jsonLd';
+import { useLocalizePath } from '../../lib/seo/localePath';
 
 /**
  * Features view (discovery §5.2, redesign spec sprint-8 §8.1, elevated
@@ -81,6 +82,12 @@ const ExploreLinks = styled.div`
 export function FeaturesView() {
   const { t, dictionary } = useI18n();
   const faq = faqEntries(faqNamespace(dictionary, 'features'));
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`.
+  const localizePath = useLocalizePath();
 
   return (
     <MenuPageShell
@@ -101,9 +108,11 @@ export function FeaturesView() {
               <SectionTitle>{t('features.sectionComparison')}</SectionTitle>
               <BodyCopy>{t('features.comparisonIntro')}</BodyCopy>
               <ExploreLinks>
-                <AccentLink href="/location">{t('common.nav.locations')}</AccentLink>
-                <AccentLink href="/guides">{t('common.nav.guides')}</AccentLink>
-                <AccentLink href="/glossary">{t('common.nav.glossary')}</AccentLink>
+                <AccentLink href={localizePath('/location')}>
+                  {t('common.nav.locations')}
+                </AccentLink>
+                <AccentLink href={localizePath('/guides')}>{t('common.nav.guides')}</AccentLink>
+                <AccentLink href={localizePath('/glossary')}>{t('common.nav.glossary')}</AccentLink>
               </ExploreLinks>
               <CompareTable data-testid="features-comparison-table">
                 <TableHead>
