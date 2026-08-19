@@ -10,9 +10,12 @@ export {
   DEFAULT_LOCALE,
   normalizeLocale,
   resolveLocale,
+  resolveAcceptLanguage,
+  parseAcceptLanguage,
   getDir,
   type Locale,
   type Direction,
+  type AcceptLanguageCandidate,
 } from './resolve';
 
 export { loadDictionary, getDictionary, getT, lookup } from './loader';

@@ -3,6 +3,8 @@ import {
   SUPPORTED_LOCALES,
   getDir,
   normalizeLocale,
+  parseAcceptLanguage,
+  resolveAcceptLanguage,
   resolveLocale,
   type Locale,
 } from '../resolve';
@@ -57,6 +59,82 @@ describe('normalizeLocale', () => {
     expect(normalizeLocale('PT-BR')).toBe('pt-BR');
     expect(normalizeLocale('pt_br')).toBe('pt-BR');
     expect(normalizeLocale('EN-us')).toBe('en-us');
+  });
+});
+
+describe('parseAcceptLanguage — RFC 9110 header parsing (TASK-455)', () => {
+  it('parses segments in header order with q defaulting to 1', () => {
+    expect(parseAcceptLanguage('fr-CA, en;q=0.9, de;q=0.8')).toEqual([
+      { tag: 'fr-CA', q: 1 },
+      { tag: 'en', q: 0.9 },
+      { tag: 'de', q: 0.8 },
+    ]);
+  });
+
+  it('handles whitespace, wildcards, extra params, and malformed q-values', () => {
+    expect(parseAcceptLanguage(' de;q=0.9 ;foo=bar , *;q=0.5 , it ; q=abc ')).toEqual([
+      { tag: 'de', q: 0.9 },
+      { tag: '*', q: 0.5 },
+      { tag: 'it', q: 0 },
+    ]);
+  });
+
+  it('drops empty segments and empty tags', () => {
+    expect(parseAcceptLanguage('en, , ;q=0.5, fr')).toEqual([
+      { tag: 'en', q: 1 },
+      { tag: 'fr', q: 1 },
+    ]);
+  });
+
+  it('returns an empty list for an empty header', () => {
+    expect(parseAcceptLanguage('')).toEqual([]);
+    expect(parseAcceptLanguage('   ')).toEqual([]);
+  });
+});
+
+describe('resolveAcceptLanguage — Accept-Language → supported locale (TASK-455)', () => {
+  it('returns en for empty / null / undefined headers', () => {
+    expect(resolveAcceptLanguage(undefined)).toBe('en');
+    expect(resolveAcceptLanguage(null)).toBe('en');
+    expect(resolveAcceptLanguage('')).toBe('en');
+  });
+
+  it('honors q-values: higher weight wins over header position', () => {
+    expect(resolveAcceptLanguage('fr-CA;q=0.5, en;q=0.9')).toBe('en');
+    expect(resolveAcceptLanguage('en;q=0.5, de;q=0.9')).toBe('de');
+  });
+
+  it('resolves a full multi-tag browser header to the best supported locale', () => {
+    expect(resolveAcceptLanguage('vi-VN, vi;q=0.9, en-US, en;q=0.8, de;q=0.5')).toBe('vi');
+    expect(resolveAcceptLanguage('pt-BR, pt;q=0.9, en-US, en;q=0.8')).toBe('pt-BR');
+  });
+
+  it('applies region-variant fallback (pt → pt-BR, zh → zh-CN)', () => {
+    expect(resolveAcceptLanguage('pt;q=0.9, en;q=0.8')).toBe('pt-BR');
+    expect(resolveAcceptLanguage('zh;q=0.9, en;q=0.8')).toBe('zh-CN');
+  });
+
+  it('skips unsupported tags and picks the next supported candidate', () => {
+    expect(resolveAcceptLanguage('xx;q=0.9, de;q=0.5')).toBe('de');
+  });
+
+  it('treats q=0 entries as unacceptable and skips them', () => {
+    expect(resolveAcceptLanguage('fr;q=0, de;q=0.5')).toBe('de');
+    expect(resolveAcceptLanguage('fr;q=0, de;q=0')).toBe('en');
+  });
+
+  it('ignores wildcard * entries', () => {
+    expect(resolveAcceptLanguage('*;q=0.9')).toBe('en');
+    expect(resolveAcceptLanguage('*;q=0.5, ja;q=0.9')).toBe('ja');
+  });
+
+  it('keeps header order for equal q-values (stable sort)', () => {
+    expect(resolveAcceptLanguage('es, fr')).toBe('es');
+    expect(resolveAcceptLanguage('fr, es')).toBe('fr');
+  });
+
+  it('returns en when no candidate matches a supported locale', () => {
+    expect(resolveAcceptLanguage('xx;q=0.5, yy;q=0.3')).toBe('en');
   });
 });
 

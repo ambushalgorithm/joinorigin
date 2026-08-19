@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
-import { resolveLocale, SUPPORTED_LOCALES } from '@joinorigin/i18n';
+import { resolveAcceptLanguage, resolveLocale, SUPPORTED_LOCALES } from '@joinorigin/i18n';
 
 /**
  * Locale resolution proxy (arch-i18n §6.3) — Next.js 16 `proxy.ts`
@@ -10,13 +10,21 @@ import { resolveLocale, SUPPORTED_LOCALES } from '@joinorigin/i18n';
  * Precedence: locale-prefixed paths (`/<locale>/...`, TASK-444 + TASK-448)
  * force the prefix locale — including `/en/**` (the en surface mirrors the
  * canonical routes) → cookie `joinorigin_locale` wins → Accept-Language
- * header → `DEFAULT_LOCALE` (`en`). The resolved locale is forwarded as the
- * `x-joinorigin-locale` request header (read by the root layout and page
- * wrappers) — no URL rewrite, URLs stay clean (no `[locale]` segment in
- * Sprint 9).
+ * header (parsed with q-values + region fallback, TASK-455) → `DEFAULT_LOCALE`
+ * (`en`). The resolved locale is forwarded as the `x-joinorigin-locale`
+ * request header (read by the root layout and page wrappers) — no URL
+ * rewrite, URLs stay clean (no `[locale]` segment in Sprint 9).
+ *
+ * Route-stick (Goal 5 / TASK-455): a FIRST visit to a `/<locale>/` prefixed
+ * path without a `joinorigin_locale` cookie persists the prefix locale as the
+ * cookie so the route prefix sticks and never flashes back to EN on the
+ * client / subsequent loads.
  */
 
 export const LOCALE_COOKIE = 'joinorigin_locale';
+
+/** Cookie lifetime for route-stick persistence — mirrors storage.ts (1 year). */
+const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 /** Locale forced by a locale-prefixed pathname — `/de`, `/de/...`, `/es/...`,
  *  `/en`, `/en/...`, `/pt-BR/...`, etc. `undefined` for every other path.
@@ -39,9 +47,11 @@ export function proxy(request: NextRequest) {
   // `<html lang="<locale>">` renders server-side for crawlers and users
   // with no matching preference. All other routes keep the cookie →
   // Accept-Language → en precedence.
+  const prefixLocale = localeFromPathname(pathname);
+
   const locale =
-    localeFromPathname(pathname) ??
-    (cookieLocale ? resolveLocale(cookieLocale) : resolveLocale(acceptLanguage));
+    prefixLocale ??
+    (cookieLocale ? resolveLocale(cookieLocale) : resolveAcceptLanguage(acceptLanguage));
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-joinorigin-locale', locale);
@@ -50,6 +60,19 @@ export function proxy(request: NextRequest) {
     request: { headers: requestHeaders },
   });
   response.headers.set('x-joinorigin-locale', locale);
+
+  // Route-stick (TASK-455 / Goal 5): on first visit to a `/<locale>/` prefixed
+  // path with no cookie, persist the prefix locale so the route prefix sticks
+  // (fixes `/vi` + all languages flashing to EN). Existing cookies are never
+  // overwritten by a prefix visit — the user's explicit choice wins.
+  if (prefixLocale && !cookieLocale) {
+    response.cookies.set(LOCALE_COOKIE, prefixLocale, {
+      path: '/',
+      maxAge: LOCALE_COOKIE_MAX_AGE,
+      sameSite: 'lax',
+    });
+  }
+
   return response;
 }
 
