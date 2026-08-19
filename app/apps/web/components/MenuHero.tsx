@@ -8,6 +8,7 @@ import { gsap } from '../lib/gsap';
 
 import { useI18n } from '@joinorigin/i18n';
 
+import { useLocalizePath } from '../lib/seo/localePath';
 import CountUpStat from './CountUpStat';
 import HeroCta from './HeroCta';
 import MenuScene from './MenuScene';
@@ -184,6 +185,7 @@ export function MenuHero({
 }: MenuHeroProps) {
   const heroRef = useRef<HTMLElement>(null);
   const { t } = useI18n();
+  const localizePath = useLocalizePath();
   const pageScheme = PAGE_SCHEMES[accent];
 
   useGSAP(
@@ -269,7 +271,13 @@ export function MenuHero({
           {cta || meta?.stat ? (
             <div data-hero="actions">
               <Actions>
-                {cta ? <HeroCta variant={cta.variant} label={cta.label} href={cta.href} /> : null}
+                {cta ? (
+                  <HeroCta
+                    variant={cta.variant}
+                    label={cta.label}
+                    href={cta.href ? localizePath(cta.href) : undefined}
+                  />
+                ) : null}
                 {meta?.stat ? (
                   <CountUpStat
                     valueText={t('community.joinStatValue')}

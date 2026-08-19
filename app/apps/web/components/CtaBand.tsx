@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
 
+import { useLocalizePath } from '../lib/seo/localePath';
 import { ACCENT_GRADIENT } from './landingTokens';
 import Reveal from './Reveal';
 import RotatingBorderButton from './RotatingBorderButton';
@@ -115,6 +116,7 @@ const ContactLink = styled(Link)`
 export function CtaBand({ headline, subline, ctaLabel }: CtaBandProps) {
   const { openWaitlist } = useWaitlist();
   const { t } = useI18n();
+  const localizePath = useLocalizePath();
   const isOverride = Boolean(headline || subline || ctaLabel);
 
   const bandHeadline = headline ?? t('ctaBand.headline');
@@ -127,7 +129,7 @@ export function CtaBand({ headline, subline, ctaLabel }: CtaBandProps) {
           <Headline>{bandHeadline}</Headline>
           <Subline>{bandSubline}</Subline>
           {isOverride ? (
-            <ContactLink href={OVERRIDE_CTA_HREF} data-testid="cta-band-contact-link">
+            <ContactLink href={localizePath(OVERRIDE_CTA_HREF)} data-testid="cta-band-contact-link">
               {ctaLabel ?? t('ctaBand.contactLabel')}
             </ContactLink>
           ) : (

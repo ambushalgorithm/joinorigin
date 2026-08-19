@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { useI18n } from '@joinorigin/i18n';
+import { DEFAULT_LOCALE, useI18n } from '@joinorigin/i18n';
+
+import { localeFromPathname } from '../lib/seo/localePath';
 
 /**
  * Secondary "Translate this page" link-out (TASK-318).
@@ -15,10 +17,11 @@ import { useI18n } from '@joinorigin/i18n';
  * breadcrumbs / hero meta).
  *
  * Rules:
- *  - EN canonical pages only. `/de/*` pages are already translated, so the
- *    link is never rendered there (defense-in-depth gate on the actual
- *    pathname — the location de surface additionally gates on the route
- *    locale in `LocationView`).
+ *  - EN canonical pages only. Locale-prefixed non-EN surfaces (`/de/*`,
+ *    `/vi/*`, …) are already translated, so the link is never rendered there
+ *    (defense-in-depth gate on the actual pathname via the shared
+ *    locale-path helper — the location de surface additionally gates on the
+ *    route locale in `LocationView`).
  *  - `sl=en` is fixed (the canonical page body is English).
  *  - `tl` is the active client locale from `useI18n()` when it differs from
  *    `en`; otherwise the default `en`.
@@ -66,8 +69,11 @@ export function TranslatePageLink({
     if (typeof window === 'undefined') {
       return;
     }
-    // `/de/*` pages are already translated — no Google Translate link-out.
-    if (window.location.pathname.startsWith('/de/')) {
+    // Locale-prefixed non-EN surfaces (`/de/*`, `/vi/*`, …) are already
+    // translated — no Google Translate link-out (generalized from the
+    // original `/de/*` gate via the shared locale-path helper).
+    const pathLocale = localeFromPathname(window.location.pathname);
+    if (pathLocale && pathLocale !== DEFAULT_LOCALE) {
       return;
     }
     setPageUrl(window.location.href);

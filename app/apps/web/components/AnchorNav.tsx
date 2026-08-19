@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
+import { useLocalizePath } from '../lib/seo/localePath';
 import { useReducedMotion } from './motion';
 
 /**
@@ -87,6 +88,7 @@ const Pill = styled.a`
 
 export function AnchorNav({ label, links }: MenuSubnavProps) {
   const reduced = useReducedMotion();
+  const localizePath = useLocalizePath();
 
   // Scoped smooth scroll: add the class only while the nav is mounted, and
   // skip entirely when the user prefers reduced motion (spec §4.9).
@@ -104,7 +106,7 @@ export function AnchorNav({ label, links }: MenuSubnavProps) {
       <Nav aria-label={label} data-testid="anchor-nav">
         <Inner>
           {links.map((link) => (
-            <Pill key={link.id} href={`#${link.id}`}>
+            <Pill key={link.id} href={localizePath(`#${link.id}`)}>
               {link.label}
             </Pill>
           ))}
