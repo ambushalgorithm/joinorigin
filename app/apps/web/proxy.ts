@@ -31,6 +31,14 @@ import { resolveAcceptLanguage, SUPPORTED_LOCALES } from '@joinorigin/i18n';
  * header (read by the root layout and page wrappers) — no URL rewrite,
  * URLs stay clean (no `[locale]` segment in Sprint 9). Switching language
  * only changes the URL prefix; no cookie is ever written.
+ *
+ * Geo-country (TASK-479): Cloudflare sets the `CF-IPCountry` header on the
+ * origin request; this proxy forwards it downstream as the
+ * `x-joinorigin-ip-country` request header so server components can order
+ * location content by the visitor's country. The header is only set when
+ * Cloudflare provides a value — local/dev requests carry no country and the
+ * server-side geo helper (`lib/seo/geo.ts`) returns null, letting callers
+ * fall back to locale-language ordering.
  */
 
 /** Locale forced by a locale-prefixed pathname — `/de`, `/de/...`, `/es/...`,
@@ -42,6 +50,11 @@ export function localeFromPathname(pathname: string): string | undefined {
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
 }
+
+/** The request header this proxy sets from Cloudflare's `CF-IPCountry`
+ *  (ISO-3166-1 alpha-2) — read by the server-side geo helper in
+ *  `lib/seo/geo.ts` (TASK-479). */
+export const IP_COUNTRY_HEADER = 'x-joinorigin-ip-country';
 
 /** Paths that must never be locale-redirected (TASK-464). */
 const SYSTEM_ROUTE_PREFIXES = ['/api', '/_next', '/assets', '/fonts'];
@@ -76,6 +89,13 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const acceptLanguage = request.headers.get('accept-language') ?? undefined;
 
+  // Cloudflare sets `CF-IPCountry` on the origin request (ISO-3166-1
+  // alpha-2). Forward it downstream as `x-joinorigin-ip-country` so server
+  // components can order location content by the visitor's country
+  // (TASK-479). When absent (local dev, non-Cloudflare origin), the header
+  // is simply not set — the geo helper returns null.
+  const ipCountry = request.headers.get('cf-ipcountry')?.trim() || undefined;
+
   // A locale-prefixed path is that locale's surface (TASK-315 for /de/*,
   // TASK-444 for every non-EN prefix, TASK-448 for /en/**): the locale
   // MUST be the prefix regardless of Accept-Language so `<html
@@ -95,16 +115,25 @@ export function proxy(request: NextRequest) {
     redirectUrl.pathname = pathname === '/' ? `/${locale}` : `/${locale}${pathname}`;
     const response = NextResponse.redirect(redirectUrl, 307);
     response.headers.set('x-joinorigin-locale', locale);
+    if (ipCountry) {
+      response.headers.set(IP_COUNTRY_HEADER, ipCountry);
+    }
     return response;
   }
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-joinorigin-locale', locale);
+  if (ipCountry) {
+    requestHeaders.set(IP_COUNTRY_HEADER, ipCountry);
+  }
 
   const response = NextResponse.next({
     request: { headers: requestHeaders },
   });
   response.headers.set('x-joinorigin-locale', locale);
+  if (ipCountry) {
+    response.headers.set(IP_COUNTRY_HEADER, ipCountry);
+  }
 
   return response;
 }
