@@ -588,6 +588,102 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
   });
 });
 
+describe('lib/seo locationView — un-gated city sections (Sprint 20, TASK-474)', () => {
+  it('dubai city page returns non-empty groupTypeLinks + siblingCities (Tier-2, un-gated)', () => {
+    const entry = resolveLocationEntry({
+      country: 'united-arab-emirates',
+      region: 'dubai',
+      city: 'dubai',
+    });
+    expect(entry).toBeDefined();
+    expect(entry?.kind).toBe('city');
+    expect(entry?.tier).toBe(2);
+    const data = buildLocationViewData(entry!);
+    // Explore community types — 5 group types + ideas link.
+    expect(data.groupTypeLinks.map((link) => link.path)).toEqual([
+      '/location/united-arab-emirates/dubai/dubai/startup',
+      '/location/united-arab-emirates/dubai/dubai/creative',
+      '/location/united-arab-emirates/dubai/dubai/political',
+      '/location/united-arab-emirates/dubai/dubai/meetup',
+      '/location/united-arab-emirates/dubai/dubai/small-business',
+      '/location/united-arab-emirates/dubai/dubai/ideas',
+    ]);
+    // Communities in nearby cities — same-region sibling cards.
+    expect(data.siblingCities.length).toBeGreaterThan(0);
+    for (const sibling of data.siblingCities) {
+      expect(sibling.path).toMatch(/^\/en\/location\/united-arab-emirates\/dubai\//);
+    }
+  });
+
+  it('buenos-aires city page returns non-empty groupTypeLinks + siblingCities (un-gated)', () => {
+    const entry = resolveLocationEntry({
+      country: 'argentina',
+      region: 'buenos-aires-f-d',
+      city: 'buenos-aires',
+    });
+    expect(entry).toBeDefined();
+    expect(entry?.kind).toBe('city');
+    const data = buildLocationViewData(entry!);
+    expect(data.groupTypeLinks.map((link) => link.path)).toEqual([
+      '/location/argentina/buenos-aires-f-d/buenos-aires/startup',
+      '/location/argentina/buenos-aires-f-d/buenos-aires/creative',
+      '/location/argentina/buenos-aires-f-d/buenos-aires/political',
+      '/location/argentina/buenos-aires-f-d/buenos-aires/meetup',
+      '/location/argentina/buenos-aires-f-d/buenos-aires/small-business',
+      '/location/argentina/buenos-aires-f-d/buenos-aires/ideas',
+    ]);
+    expect(data.siblingCities.length).toBeGreaterThan(0);
+  });
+
+  it('dubai + buenos-aires /startup variant entries resolve and render the group-type view', () => {
+    const dubaiStartup = resolveLocationEntry({
+      country: 'united-arab-emirates',
+      region: 'dubai',
+      city: 'dubai',
+      variant: 'startup',
+    });
+    expect(dubaiStartup).toBeDefined();
+    expect(dubaiStartup?.kind).toBe('variant');
+    expect(dubaiStartup?.path).toBe('/en/location/united-arab-emirates/dubai/dubai/startup');
+    const dubaiData = buildLocationViewData(dubaiStartup!);
+    expect(dubaiData.groupType).toBe('startup');
+    expect(dubaiData.heading).toBe('Startup communities in Dubai');
+    // Variant pages carry the same Explore community types mesh.
+    expect(dubaiData.groupTypeLinks.length).toBeGreaterThan(0);
+
+    const buenosStartup = resolveLocationEntry({
+      country: 'argentina',
+      region: 'buenos-aires-f-d',
+      city: 'buenos-aires',
+      variant: 'startup',
+    });
+    expect(buenosStartup).toBeDefined();
+    expect(buenosStartup?.kind).toBe('variant');
+    expect(buenosStartup?.path).toBe(
+      '/en/location/argentina/buenos-aires-f-d/buenos-aires/startup',
+    );
+    const buenosData = buildLocationViewData(buenosStartup!);
+    expect(buenosData.groupType).toBe('startup');
+    expect(buenosData.heading).toBe('Startup communities in Buenos Aires');
+  });
+
+  it('un-gated city group-type links resolve in the registry (every mesh link real)', () => {
+    const cities = [
+      { country: 'united-arab-emirates', region: 'dubai', city: 'dubai' },
+      { country: 'argentina', region: 'buenos-aires-f-d', city: 'buenos-aires' },
+    ];
+    const snapshotPaths = new Set(locationPageEntries().map((entry) => entry.path));
+    for (const params of cities) {
+      const entry = resolveLocationEntry(params);
+      expect(entry).toBeDefined();
+      const data = buildLocationViewData(entry!);
+      for (const link of data.groupTypeLinks) {
+        expect(snapshotPaths.has(`/en${link.path}`)).toBe(true);
+      }
+    }
+  });
+});
+
 describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
   it('city heading/lead render the selected locale content titles when content exists', () => {
     const entry = resolveLocationEntry({
@@ -683,11 +779,16 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
       de.hubDirectory?.some((entry) => entry.name === 'Communities in the United States'),
     ).toBe(true);
     expect(de.hubDirectory?.length).toBe(en.hubDirectory?.length);
-    // es surface has no registry entries yet — every card falls back to EN.
+    // es surface now has committed content for 8 cities (Sprint 20) — those
+    // cards localize (e.g. Buenos Aires variant cards), while uncommitted
+    // entries still fall back to EN and the directory remains complete.
     const es = buildLocationViewData(hub!, 'es');
     expect(es.hubDirectory?.length).toBe(en.hubDirectory?.length);
     expect(
-      es.hubDirectory?.every((entry) => en.hubDirectory?.some((e) => e.name === entry.name)),
+      es.hubDirectory?.some((entry) => entry.name === 'Comunidades de startups en Buenos Aires'),
+    ).toBe(true);
+    expect(
+      es.hubDirectory?.some((entry) => entry.name === 'Communities in the United States'),
     ).toBe(true);
   });
 
