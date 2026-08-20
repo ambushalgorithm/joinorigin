@@ -1,6 +1,12 @@
 import { screen, render } from '@testing-library/react';
 
-import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
+import {
+  I18nProvider,
+  _resetI18nForTests,
+  getDictionary,
+  SUPPORTED_LOCALES,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import FeaturesPage, { metadata } from './page';
 import { renderWithI18n } from '../../test-utils';
@@ -198,5 +204,128 @@ describe('features view — locale-aware internal links (TASK-460)', () => {
     expect(linkByHref('/de/location')).toBeDefined();
     expect(linkByHref('/de/guides')).toBeDefined();
     expect(linkByHref('/de/glossary')).toBeDefined();
+  });
+});
+
+/**
+ * TASK-478 / TASK-481 — the /features copy reads "ten tools" equivalents in
+ * BOTH spots (`features.sectionComparison` = "Why Origin instead of ten
+ * tools" and `features.hero.lead` = "…instead of ten separate tools") across
+ * ALL 21 locale JSONs. These tests pin the exact committed strings for EN +
+ * a sample of non-EN locales (dictionary level AND rendered page level), then
+ * guard the full 21-locale regression table so the old "five tools" heading
+ * can never come back in either key. The FAQ/mission "five tools" copies are
+ * intentionally out of scope (TASK-478), so the negative assertions are
+ * scoped strictly to the two copy keys.
+ */
+
+/** Exact `features.sectionComparison` per locale (TASK-478 committed values). */
+const SECTION_COMPARISON_BY_LOCALE: Record<Locale, string> = {
+  ar: 'لماذا Origin بدلًا من عشر أدوات',
+  de: 'Warum Origin statt zehn Tools',
+  en: 'Why Origin instead of ten tools',
+  es: 'Por qué Origin en lugar de diez herramientas',
+  fa: 'چرا Origin به‌جای ده ابزار',
+  fr: 'Pourquoi Origin plutôt que dix outils',
+  hi: 'दस टूल की जगह Origin ही क्यों',
+  id: 'Mengapa Origin, bukan sepuluh alat',
+  it: 'Perché Origin invece di dieci strumenti',
+  ja: 'なぜ10のツールではなくOriginなのか',
+  ko: '열 개의 도구 대신 Origin을 선택해야 하는 이유',
+  nl: 'Waarom Origin in plaats van tien tools',
+  pl: 'Dlaczego Origin zamiast dziesięciu narzędzi',
+  'pt-BR': 'Por que o Origin em vez de dez ferramentas',
+  ru: 'Почему Origin вместо десяти инструментов',
+  th: 'ทำไมต้อง Origin แทนเครื่องมือสิบอย่าง',
+  tr: 'Neden on araç yerine Origin?',
+  uk: 'Чому Origin, а не десять інструментів',
+  vi: 'Vì sao lại là Origin thay vì mười công cụ',
+  'zh-CN': '为什么选择 Origin 而不是十个工具',
+  'zh-TW': '為什麼選擇 Origin 而非十套工具',
+};
+
+/** A "ten tools" fragment that must appear inside `features.hero.lead`. */
+const HERO_LEAD_TEN_TOOLS_MARKER: Record<Locale, string> = {
+  ar: 'عشر أدوات',
+  de: 'zehn getrennten Tools',
+  en: 'ten separate tools',
+  es: 'diez herramientas',
+  fa: 'ده ابزار',
+  fr: 'dix outils',
+  hi: 'दस अलग-अलग टूल',
+  id: 'sepuluh alat',
+  it: 'dieci strumenti',
+  ja: '10の別々のツール',
+  ko: '열 개의 분리된 도구',
+  nl: 'tien losse tools',
+  pl: 'dziesięciu osobnych narzędziach',
+  'pt-BR': 'dez ferramentas',
+  ru: 'десяти отдельных инструментов',
+  th: 'เครื่องมือแยกสิบตัว',
+  tr: 'on ayrı araç',
+  uk: 'десяти окремих інструментів',
+  vi: 'mười công cụ',
+  'zh-CN': '十个分散的工具',
+  'zh-TW': '十套分開的工具',
+};
+
+/** The two TASK-478 copy keys resolved from a locale dictionary. */
+function featuresCopyKeys(locale: Locale): { sectionComparison: string; heroLead: string } {
+  const features = getDictionary(locale).features as Record<string, unknown>;
+  return {
+    sectionComparison: features.sectionComparison as string,
+    heroLead: (features.hero as Record<string, unknown>).lead as string,
+  };
+}
+
+describe('features copy — "ten tools" in both spots (TASK-478/TASK-481)', () => {
+  it('reads the ten-tools comparison heading + hero lead in EN', () => {
+    const en = featuresCopyKeys('en');
+    expect(en.sectionComparison).toBe('Why Origin instead of ten tools');
+    expect(en.heroLead).toContain('ten separate tools');
+    // The old "five tools" copy is gone from both keys.
+    expect(en.sectionComparison).not.toContain('five');
+    expect(en.heroLead).not.toContain('five');
+  });
+
+  it('renders the ten-tools copy on the EN /features page', () => {
+    renderWithI18n(<FeaturesPage />);
+    expect(screen.getByText('Why Origin instead of ten tools')).toBeInTheDocument();
+    expect(screen.getByText(/instead of ten separate tools/)).toBeInTheDocument();
+    expect(screen.queryByText(/instead of five separate tools/)).not.toBeInTheDocument();
+    expect(screen.queryByText('Why Origin instead of five tools')).not.toBeInTheDocument();
+  });
+
+  it('reads ten-tools equivalents in a sample of non-EN locales', () => {
+    for (const locale of ['de', 'es', 'fr', 'pt-BR'] as const) {
+      const copy = featuresCopyKeys(locale);
+      expect(copy.sectionComparison).toBe(SECTION_COMPARISON_BY_LOCALE[locale]);
+      expect(copy.heroLead).toContain(HERO_LEAD_TEN_TOOLS_MARKER[locale]);
+      // No "five" equivalent left in either key (de "fünf" is the clearest
+      // marker; the other sample locales assert their exact ten-tools string).
+      if (locale === 'de') {
+        expect(copy.sectionComparison).not.toContain('fünf');
+        expect(copy.heroLead).not.toContain('fünf');
+      }
+    }
+  });
+
+  it('renders the ten-tools copy on a non-EN /features page (de)', () => {
+    renderWithI18n(<FeaturesPage />, 'de');
+    expect(screen.getByText('Warum Origin statt zehn Tools')).toBeInTheDocument();
+    expect(screen.getByText(/zehn getrennten Tools/)).toBeInTheDocument();
+    // The old "five tools" heading is gone; the FAQ/mission "five" copies are
+    // intentionally out of scope (TASK-478) and do not render on this page.
+    expect(screen.queryByText('Warum Origin statt fünf Tools')).not.toBeInTheDocument();
+    expect(screen.queryByText(/statt fünf getrennter Tools/)).not.toBeInTheDocument();
+  });
+
+  it('carries ten-tools equivalents in both copy keys for ALL 21 locales', () => {
+    expect(SUPPORTED_LOCALES).toHaveLength(21);
+    for (const locale of SUPPORTED_LOCALES) {
+      const copy = featuresCopyKeys(locale);
+      expect(copy.sectionComparison).toBe(SECTION_COMPARISON_BY_LOCALE[locale]);
+      expect(copy.heroLead).toContain(HERO_LEAD_TEN_TOOLS_MARKER[locale]);
+    }
   });
 });

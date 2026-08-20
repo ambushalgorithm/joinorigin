@@ -1,7 +1,7 @@
 import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import type { Locale } from '@joinorigin/i18n';
+import { useI18n, type Locale } from '@joinorigin/i18n';
 
 import LocationHubPage, { metadata } from './page';
 import { renderWithI18n } from '../../test-utils';
@@ -204,5 +204,125 @@ describe('/location hub page', () => {
     } finally {
       mockServerLocale.locale = 'en';
     }
+  });
+});
+
+/**
+ * TASK-477 / TASK-481 — the `/location` hub must fully re-translate when the
+ * language toggles client-side (the language switcher calls `setLocale`
+ * before navigating to the locale-prefixed route, so the provider re-renders
+ * with the new dictionary first). The hub view model (`data`) is built per
+ * route locale at request time, so the chrome keys
+ * (`seoContent.breadcrumb.hub`, `seoContent.breadcrumb.home`,
+ * `seoContent.location.hubEntity`, `seoContent.location.presenceClaim`) must
+ * resolve through the ACTIVE client dictionary — MenuHero h1, the presence
+ * claim body copy, and the breadcrumb chrome all re-translate on toggle.
+ *
+ * These page-level tests drive the real server wrapper (registry view model
+ * + JSON-LD) through the same toggle path as the component suite.
+ */
+
+/** Wraps the page element with a test button that toggles the client locale
+ *  through the provider (same path the language switcher takes). */
+function TogglePageHarness({ children }: { children: React.ReactNode }) {
+  const { setLocale } = useI18n();
+  return (
+    <>
+      {children}
+      <button onClick={() => void setLocale('de')}>switch-de</button>
+      <button onClick={() => void setLocale('en')}>switch-en</button>
+    </>
+  );
+}
+
+/** Render the (async) hub page inside the locale-toggle harness. */
+async function renderHubPageWithToggle(clientLocale: Locale = 'en') {
+  const element = await LocationHubPage();
+  if (!element) throw new Error('location hub page returned null');
+  renderWithI18n(<TogglePageHarness>{element}</TogglePageHarness>, clientLocale);
+}
+
+describe('/location hub — language toggle translation (TASK-477/TASK-481)', () => {
+  beforeEach(() => {
+    mockServerLocale.locale = 'en';
+  });
+
+  it('re-translates the hero h1, presence claim, and breadcrumbs when toggled EN → de', async () => {
+    const user = userEvent.setup();
+    // EN route data — the hub h1 + claim city are chrome, so the whole hero
+    // must re-translate through the active dictionary on toggle.
+    await renderHubPageWithToggle('en');
+
+    // Initial EN surface (MenuHero h1 + presence claim + breadcrumbs).
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Communities by City' }),
+    ).toBeInTheDocument();
+    const breadcrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(breadcrumbs).getByText('Home')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Communities by City')).toBeInTheDocument();
+    expect(screen.getByText('Find or start a community in your city')).toBeInTheDocument();
+
+    // Toggle to de — the h1, claim, and breadcrumb chrome re-translate even
+    // though the view model is still the EN route build.
+    await user.click(screen.getByText('switch-de'));
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Communities nach Stadt' }),
+      ).toBeInTheDocument();
+    });
+    expect(screen.getByText('Community in deiner Stadt finden oder gründen')).toBeInTheDocument();
+    const deCrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(deCrumbs).getByText('Startseite')).toBeInTheDocument();
+    expect(within(deCrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
+  });
+
+  it('re-translates the hero h1, presence claim, and breadcrumbs when toggled de → en', async () => {
+    const user = userEvent.setup();
+    // DE route data (server locale de) rendered with a de client locale.
+    mockServerLocale.locale = 'de';
+    await renderHubPageWithToggle('de');
+
+    // Initial de surface.
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Communities nach Stadt' }),
+    ).toBeInTheDocument();
+    const breadcrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(breadcrumbs).getByText('Startseite')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
+    expect(screen.getByText('Community in deiner Stadt finden oder gründen')).toBeInTheDocument();
+
+    // Toggle to en — chrome re-translates back with the same DE view model.
+    await user.click(screen.getByText('switch-en'));
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Communities by City' }),
+      ).toBeInTheDocument();
+    });
+    expect(screen.getByText('Find or start a community in your city')).toBeInTheDocument();
+    const enCrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(enCrumbs).getByText('Home')).toBeInTheDocument();
+    expect(within(enCrumbs).getByText('Communities by City')).toBeInTheDocument();
+  });
+
+  it('never mixes the route-locale claim city with toggled claim chrome', async () => {
+    const user = userEvent.setup();
+    // DE route data rendered with an EN client locale (the transient state
+    // after toggling from de to en, before navigation completes): the claim
+    // must render fully in the active locale — no "deiner Stadt" leftover.
+    mockServerLocale.locale = 'de';
+    await renderHubPageWithToggle('en');
+
+    expect(screen.getByText('Find or start a community in your city')).toBeInTheDocument();
+    expect(screen.queryByText('Find or start a community in deiner Stadt')).not.toBeInTheDocument();
+
+    await user.click(screen.getByText('switch-de'));
+    await waitFor(() => {
+      expect(screen.getByText('Community in deiner Stadt finden oder gründen')).toBeInTheDocument();
+    });
+    expect(
+      screen.queryByText('Community in your city finden oder gründen'),
+    ).not.toBeInTheDocument();
   });
 });
