@@ -458,16 +458,16 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
       path: '/guides/start-a-community',
     });
     expect(links[1]).toEqual({
-      title: 'Organize a meetup',
-      path: '/guides/organize-a-meetup',
+      title: 'Find a co-founder',
+      path: '/guides/find-a-co-founder',
     });
     expect(links.map((link) => link.title)).toEqual([
       'Start a community',
-      'Organize a meetup',
-      'Get your first 10 members',
       'Find a co-founder',
+      'Get your first 10 members',
       'Keep a community active',
       'Run hybrid communities',
+      'Organize a meetup',
       'Moderate your community',
     ]);
     // The same path set is exposed for the hub view model.

@@ -284,11 +284,11 @@ export interface GuideLink {
  */
 const GUIDE_PATHS = [
   { key: 'start-a-community', path: '/guides/start-a-community' },
-  { key: 'organize-a-meetup', path: '/guides/organize-a-meetup' },
-  { key: 'first-10-members', path: '/guides/first-10-members' },
   { key: 'find-a-co-founder', path: '/guides/find-a-co-founder' },
+  { key: 'first-10-members', path: '/guides/first-10-members' },
   { key: 'keep-a-community-active', path: '/guides/keep-a-community-active' },
   { key: 'hybrid-communities', path: '/guides/hybrid-communities' },
+  { key: 'organize-a-meetup', path: '/guides/organize-a-meetup' },
   { key: 'moderation', path: '/guides/moderation' },
 ] as const satisfies readonly { key: string; path: string }[];
 

@@ -333,8 +333,35 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </BreadcrumbRow>
       </BreadcrumbNav>
 
+      {/* Guides for starting a community, renders on all routes like: /en/location/... */}
       <SectionBand variant="glass" accent="community" glow>
         <PageContainer>
+          <Reveal>
+            <Section>
+              <SectionTitle>{t('seoContent.location.guidesTitle')}</SectionTitle>
+              <CardGrid data-testid="location-guide-links">
+                {data.guideLinks.map((guide) => (
+                  <Card key={guide.path}>
+                    <CardTitle>
+                      <Link
+                        href={localizePath(guide.path)}
+                        style={{ color: 'inherit', textDecoration: 'none' }}
+                      >
+                        {guide.title}
+                      </Link>
+                    </CardTitle>
+                    <CardBody>{t('seoContent.location.stepByStepGuide')}</CardBody>
+                  </Card>
+                ))}
+              </CardGrid>
+            </Section>
+          </Reveal>
+        </PageContainer>
+      </SectionBand>
+
+      <SectionBand variant="plain" accent="community" glow>
+        <PageContainer>
+          {/* Find or start a community in your city, renders on route: /en/location */}
           <Reveal>
             <Section>
               <SectionTitle>
@@ -353,6 +380,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
             </Section>
           </Reveal>
 
+          {/* City facts, renders on routes like: /en/location/germany/berlin/berlin OR /en/location/germany/berlin/berlin/berlin */}
           {data.dataPoints.length > 0 ? (
             <Reveal>
               <Section>
@@ -366,6 +394,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
             </Reveal>
           ) : null}
 
+          {/* Explore community types, renders on route: /en/location/germany/berlin/berlin/berlin */}
           {hasGroupLinks ? (
             <Reveal>
               <Section>
@@ -389,7 +418,9 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </PageContainer>
       </SectionBand>
 
-      {/* TASK-319 — variant enrichment: distinct "Where {type} communities
+      {/* Renders on routes like: /en/location/germany/berlin/berlin/small-business
+
+          TASK-319 — variant enrichment: distinct "Where {type} communities
           gather" (venues) / "Typical formats" / "How to start" sections on
           variant pages only. Body copy comes from the per-city content files;
           headings are seoContent.* chrome keys (localized via the active
@@ -397,6 +428,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
       {hasVariantEnrichment && data.variantEnrichment ? (
         <SectionBand variant="plain">
           <PageContainer>
+            {/* Where small business communities gather, etc */}
             <Reveal>
               <Section data-testid="variant-enrichment">
                 <SectionTitle data-testid="variant-enrichment-venues-title">
@@ -409,6 +441,8 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 </BulletList>
               </Section>
             </Reveal>
+
+            {/* Typical formats, etc */}
             <Reveal>
               <Section>
                 <SectionTitle data-testid="variant-enrichment-formats-title">
@@ -421,6 +455,8 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 </BulletList>
               </Section>
             </Reveal>
+
+            {/* How to start */}
             <Reveal>
               <Section>
                 <SectionTitle data-testid="variant-enrichment-howto-title">
@@ -437,6 +473,39 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
+      {/* Flagship/Nearby cities, renders on routes like: /en/location/germany/berlin/berlin/small-business */}
+      {hasSiblings ? (
+        <SectionBand variant={'plain'}>
+          <PageContainer>
+            <Reveal>
+              <Section>
+                <SectionTitle>
+                  {data.kind === 'hub'
+                    ? t('seoContent.location.flagshipCities')
+                    : t('seoContent.location.nearbyCities')}
+                </SectionTitle>
+                <CardGrid data-testid="location-flagship-cities">
+                  {data.siblingCities.map((sibling) => (
+                    <Card key={sibling.path}>
+                      <CardTitle>
+                        <Link
+                          href={localizePath(sibling.path)}
+                          style={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                          {sibling.name}
+                        </Link>
+                      </CardTitle>
+                      <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
+                    </Card>
+                  ))}
+                </CardGrid>
+              </Section>
+            </Reveal>
+          </PageContainer>
+        </SectionBand>
+      ) : null}
+
+      {/* Browse locations: renders on route: /en/location */}
       {isHub && hubDirectory.length > 0 ? (
         <SectionBand variant="plain">
           <PageContainer>
@@ -478,6 +547,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
+      {/* Explore community types: renders on routes like: /en/location/germany/berlin/berlin/small-business */}
       {isIdeas && data.ideaCategories ? (
         <SectionBand variant="plain">
           <PageContainer>
@@ -503,6 +573,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
+      {/* Flagship/Nearby cities, renders on routes like: /en/location/germany/berlin/berlin/small-business */}
       {hasSiblings ? (
         <SectionBand variant={isIdeas ? 'glass' : 'plain'}>
           <PageContainer>
@@ -533,31 +604,6 @@ export function LocationView({ data }: { data: LocationViewData }) {
           </PageContainer>
         </SectionBand>
       ) : null}
-
-      <SectionBand variant="plain">
-        <PageContainer>
-          <Reveal>
-            <Section>
-              <SectionTitle>{t('seoContent.location.guidesTitle')}</SectionTitle>
-              <CardGrid data-testid="location-guide-links">
-                {data.guideLinks.map((guide) => (
-                  <Card key={guide.path}>
-                    <CardTitle>
-                      <Link
-                        href={localizePath(guide.path)}
-                        style={{ color: 'inherit', textDecoration: 'none' }}
-                      >
-                        {guide.title}
-                      </Link>
-                    </CardTitle>
-                    <CardBody>{t('seoContent.location.stepByStepGuide')}</CardBody>
-                  </Card>
-                ))}
-              </CardGrid>
-            </Section>
-          </Reveal>
-        </PageContainer>
-      </SectionBand>
 
       {hasFaq ? (
         <SectionBand variant="glass">
