@@ -2,7 +2,8 @@ import { test, expect, type Page } from '@playwright/test';
 
 /**
  * Sprint 19 E2E validation — locale routing correctness + all-routes-prefixed
- * + client locale toggle (TASK-461 + TASK-467 follow-ups).
+ * + client locale toggle, NO-COOKIE URL-ONLY contract (TASK-461 + TASK-467 +
+ * TASK-470 follow-ups).
  *
  * Covers the Sprint 19 goals end-to-end against the PRODUCTION server
  * (playwright.config.ts builds the app and serves it with `next start`):
@@ -13,28 +14,39 @@ import { test, expect, type Page } from '@playwright/test';
  *      `/<resolved-locale>/...` (TASK-464 all-routes-prefixed),
  *   2. the always-prefixed link table — every rendered internal link carries
  *      the `/<locale>` prefix (EN surfaces render `/en/**`, never unprefixed),
- *   3. locale resolution priority: prefix > cookie > Accept-Language > en
- *      (asserted through the 307 redirect target on unprefixed routes),
- *   4. first-visit header detection (no cookie → header locale wins),
- *   5. `/vi` route-stick — the prefix locale persists, cookie is set, and
- *      the page never flashes to EN,
+ *   3. locale resolution priority: prefix > Accept-Language > en — the
+ *      `joinorigin_locale` cookie is FULLY REMOVED (TASK-468): the prefixed
+ *      path always wins, unprefixed routes resolve from the Accept-Language
+ *      header ONLY (RFC 9110 q-values), a legacy cookie is ignored, and NO
+ *      cookie is ever written,
+ *   4. first-ever unprefixed visit redirects by Accept-Language — fr/de/vi
+ *      headers → `/fr` `/de` `/vi` (asserted on the unprefixed home `/`),
+ *      `en` fallback with no header,
+ *   5. URL-only locale persistence — `/vi` never flashes to EN (raw served
+ *      HTML + post-hydration DOM), and no `joinorigin_locale` cookie is ever
+ *      written anywhere,
  *   6. no hardcoded `de` in served pages — per-locale links + the sitemap
  *      covers all 21 locale surfaces (not a de-only block),
  *   7. per-locale metadata with EN fallback — canonical + hreflang stay
  *      per-locale (`x-default` → `/en/**` canonical), copy uses committed
  *      translations where they exist and EN otherwise,
- *   8. (follow-up A, TASK-465) client-side locale sync on SPA navigation —
+ *   8. (TASK-470) the Join-the-waitlist modal renders in the URL's language —
+ *      `/es` shows Spanish modal copy, `/vi` Vietnamese, `/en` English
+ *      (URL-only: no cookie, no navigator.language guess),
+ *   9. (follow-up A, TASK-465) client-side locale sync on SPA navigation —
  *      navigating to `/<language>/**` toggles the UI language instantly
- *      (switcher label + header chrome + `<html lang>`),
- *   9. (follow-up B, TASK-464/466) all routes are locale-prefixed — unprefixed
+ *      (switcher label + header chrome + `<html lang>`); no cookie is
+ *      written by the toggle,
+ *  10. (follow-up B, TASK-464/466) all routes are locale-prefixed — unprefixed
  *      `/**` 307-redirects, `/en/**` is the EN canonical surface, system /
  *      non-HTML routes (sitemap.xml, robots.txt, llms.txt, /api) stay
  *      unprefixed and unredirected.
  *
  * Locale assertions use the RAW served HTML (the HTTP response body), not
- * the post-hydration DOM: the client `I18nProvider` re-resolves
- * `navigator.language` after hydration, so the DOM alone would not prove
- * server-side locale forcing (repo convention — location-pages.spec.ts).
+ * the post-hydration DOM: the client `I18nProvider` no longer re-resolves
+ * `navigator.language` after hydration (TASK-468 removed the override), but
+ * raw HTML still proves server-side locale forcing (repo convention —
+ * location-pages.spec.ts).
  *
  * The suite runs against the built server with workers:2; this file is
  * serial so the heavy route-matrix requests don't starve the other specs
@@ -79,22 +91,6 @@ const STATIC_PATHS = [
   '/terms',
   '/guides',
   '/glossary',
-] as const;
-
-/** The 12 L1 how-to guides (mirrors `GUIDE_SLUGS` in lib/seo/guides.ts). */
-const GUIDE_SLUGS = [
-  'publish-an-idea',
-  'create-a-project',
-  'create-a-group',
-  'publish-a-small-business-idea',
-  'publish-a-startup-concept',
-  'find-a-co-founder',
-  'start-a-community',
-  'first-10-members',
-  'keep-a-community-active',
-  'hybrid-communities',
-  'organize-a-meetup',
-  'moderation',
 ] as const;
 
 /** The `/<locale>` surface path of a public page — ALL locales incl. EN are
@@ -169,16 +165,22 @@ function expectLang(html: string, locale: string): void {
   );
 }
 
-/** The cookie value of `joinorigin_locale` from a browser context, or undefined. */
-async function localeCookie(page: Page): Promise<{ value: string; path: string; sameSite: string } | undefined> {
+/** URL-only contract (TASK-468): the `joinorigin_locale` cookie must NEVER be
+ *  written — by a prefixed visit, an unprefixed redirect chain, a SPA toggle,
+ *  or the waitlist modal. Assert the browser context has no such cookie. */
+async function expectNoLocaleCookie(page: Page): Promise<void> {
   const cookies = await page.context().cookies();
-  const cookie = cookies.find((c) => c.name === 'joinorigin_locale');
-  if (!cookie) return undefined;
-  return { value: cookie.value, path: cookie.path, sameSite: cookie.sameSite };
+  const localeCookie = cookies.find((c) => c.name === 'joinorigin_locale');
+  expect(
+    localeCookie,
+    'joinorigin_locale cookie must never be written (URL-only locale, TASK-468)',
+  ).toBeUndefined();
 }
 
 test.describe('Goal 1 — every public page at /<locale>/** for all 21 locales (zero 500s)', () => {
-  test('the full 21-locale × static-page route matrix serves 200 (zero 500s)', async ({ request }) => {
+  test('the full 21-locale × static-page route matrix serves 200 (zero 500s)', async ({
+    request,
+  }) => {
     test.setTimeout(300_000);
     for (const locale of SUPPORTED_LOCALES) {
       for (const path of STATIC_PATHS) {
@@ -204,7 +206,7 @@ test.describe('Goal 1 — every public page at /<locale>/** for all 21 locales (
       const url = unprefixedPath(path);
       const { status, location } = await redirectTarget(page, url);
       expect(status, `${url} should 307-redirect`).toBe(307);
-      // No cookie/header → resolves to the en default → /en/**.
+      // No header → resolves to the en default → /en/**.
       expect(location, `${url} should redirect to the en surface`).toBe(surfacePath('en', path));
     }
   });
@@ -219,7 +221,9 @@ test.describe('Goal 1 — every public page at /<locale>/** for all 21 locales (
     }
   });
 
-  test('every /<locale> guide hub + first guide serves the locale server-side', async ({ page }) => {
+  test('every /<locale> guide hub + first guide serves the locale server-side', async ({
+    page,
+  }) => {
     for (const locale of SUPPORTED_LOCALES) {
       const hub = await servedHtml(page, surfacePath(locale, '/guides'));
       expect(hub.status).toBe(200);
@@ -246,7 +250,9 @@ test.describe('Goal 2 — always-prefixed link table (TASK-464)', () => {
     await expect(page.locator('[data-testid="header"] a[href="/docs"]')).toHaveCount(0);
   });
 
-  test('/en/** load keeps internal links /en/** (never collapses to unprefixed)', async ({ page }) => {
+  test('/en/** load keeps internal links /en/** (never collapses to unprefixed)', async ({
+    page,
+  }) => {
     await page.goto('/en/features');
     await expect(page.locator('[data-testid="footer"] a[href="/en/guides"]').first()).toBeVisible();
     await expect(page.locator('[data-testid="footer"] a[href="/guides"]')).toHaveCount(0);
@@ -261,16 +267,29 @@ test.describe('Goal 2 — always-prefixed link table (TASK-464)', () => {
     await expect(page.locator('[data-testid="header"] a[href="/de/docs"]').first()).toBeVisible();
   });
 
-  test('unprefixed load + de cookie (307 → /de/**) renders internal links /de/**', async ({ page }) => {
-    await page.context().addCookies([
-      { name: 'joinorigin_locale', value: 'de', url: 'http://127.0.0.1:3100' },
-    ]);
-    // The unprefixed route 307-redirects to /de/features (cookie wins).
-    await page.goto('/features');
-    await expect(page).toHaveURL(/\/de\/features$/);
-    await expect(page.locator('[data-testid="footer"] a[href="/de/guides"]').first()).toBeVisible();
-    await expect(page.locator('[data-testid="footer"] a[href="/guides"]')).toHaveCount(0);
-    await expect(page.locator('[data-testid="header"] a[href="/de/docs"]').first()).toBeVisible();
+  test('unprefixed load + de Accept-Language (307 → /de/**) renders internal links /de/**', async ({
+    browser,
+  }) => {
+    // A German-locale browser context sends `Accept-Language: de-DE,de;q=0.9`
+    // (real first-visit behavior); no cookie participates (TASK-468). The
+    // unprefixed route 307-redirects to /de/features and the landed surface
+    // prefixes its internal links /de/**.
+    const context = await browser.newContext({
+      locale: 'de-DE',
+      baseURL: 'http://127.0.0.1:3100',
+    });
+    const page = await context.newPage();
+    try {
+      await page.goto('/features');
+      await expect(page).toHaveURL(/\/de\/features$/);
+      await expect(
+        page.locator('[data-testid="footer"] a[href="/de/guides"]').first(),
+      ).toBeVisible();
+      await expect(page.locator('[data-testid="footer"] a[href="/guides"]')).toHaveCount(0);
+      await expect(page.locator('[data-testid="header"] a[href="/de/docs"]').first()).toBeVisible();
+    } finally {
+      await context.close();
+    }
   });
 
   test('a non-EN locale surface prefixes its internal links with its own locale', async ({
@@ -293,7 +312,9 @@ test.describe('Goal 2 — always-prefixed link table (TASK-464)', () => {
       .evaluateAll((anchors) =>
         anchors
           .map((a) => (a as HTMLAnchorElement).getAttribute('href'))
-          .filter((href): href is string => !!href && href.startsWith('/') && !href.startsWith('#')),
+          .filter(
+            (href): href is string => !!href && href.startsWith('/') && !href.startsWith('#'),
+          ),
       );
     expect(internalHrefs.length).toBeGreaterThan(0);
     for (const href of internalHrefs) {
@@ -308,7 +329,9 @@ test.describe('Goal 2 — always-prefixed link table (TASK-464)', () => {
       .evaluateAll((anchors) =>
         anchors
           .map((a) => (a as HTMLAnchorElement).getAttribute('href'))
-          .filter((href): href is string => !!href && href.startsWith('/') && !href.startsWith('#')),
+          .filter(
+            (href): href is string => !!href && href.startsWith('/') && !href.startsWith('#'),
+          ),
       );
     expect(deHrefs.length).toBeGreaterThan(0);
     for (const href of deHrefs) {
@@ -317,27 +340,14 @@ test.describe('Goal 2 — always-prefixed link table (TASK-464)', () => {
   });
 });
 
-test.describe('Goal 3 — priority: prefix > cookie > header > en (redirect target)', () => {
-  test('explicit /de/** prefix beats cookie and Accept-Language', async ({ page }) => {
+test.describe('Goal 3 — priority: prefix > Accept-Language > en (redirect target, URL-only)', () => {
+  test('explicit /de/** prefix beats Accept-Language (200 + lang de)', async ({ page }) => {
     const { status, html, responseHeaders } = await servedHtml(page, '/de/features', {
-      cookie: 'joinorigin_locale=en',
       'accept-language': 'fr-FR,fr;q=0.9,en;q=0.8',
     });
     expect(status).toBe(200);
     expect(responseHeaders['x-joinorigin-locale']).toBe('de');
     expectLang(html, 'de');
-  });
-
-  test('cookie beats Accept-Language on unprefixed routes (307 target is the cookie locale)', async ({
-    page,
-  }) => {
-    const { status, location, responseHeaders } = await redirectTarget(page, '/features', {
-      cookie: 'joinorigin_locale=de',
-      'accept-language': 'fr-FR,fr;q=0.9,en;q=0.8',
-    });
-    expect(status).toBe(307);
-    expect(location).toBe('/de/features');
-    expect(responseHeaders['x-joinorigin-locale']).toBe('de');
   });
 
   test('Accept-Language beats the en default on unprefixed routes (307 target)', async ({
@@ -358,6 +368,21 @@ test.describe('Goal 3 — priority: prefix > cookie > header > en (redirect targ
     expect(responseHeaders['x-joinorigin-locale']).toBe('en');
   });
 
+  test('a legacy joinorigin_locale cookie is ignored — Accept-Language still wins (TASK-468)', async ({
+    page,
+  }) => {
+    // The cookie is fully removed from resolution: even if a stale
+    // joinorigin_locale cookie exists in the browser, the unprefixed 307
+    // target comes from Accept-Language ONLY.
+    const { status, location, responseHeaders } = await redirectTarget(page, '/features', {
+      cookie: 'joinorigin_locale=de',
+      'accept-language': 'fr-FR,fr;q=0.9,en;q=0.8',
+    });
+    expect(status).toBe(307);
+    expect(location).toBe('/fr/features');
+    expect(responseHeaders['x-joinorigin-locale']).toBe('fr');
+  });
+
   test('q=0 exclusion drops a high-order range (RFC 9110)', async ({ page }) => {
     const { location, responseHeaders } = await redirectTarget(page, '/features', {
       'accept-language': 'de-DE;q=0,fr-FR,fr;q=0.9,en;q=0.8',
@@ -367,17 +392,44 @@ test.describe('Goal 3 — priority: prefix > cookie > header > en (redirect targ
   });
 });
 
-test.describe('Goal 4 — first-visit header detection (307 redirect target)', () => {
-  test('first visit with no cookie resolves the Accept-Language locale (de)', async ({ page }) => {
-    const { status, location, responseHeaders } = await redirectTarget(page, '/features', {
+test.describe('Goal 4 — first-ever unprefixed visit redirects by Accept-Language (URL-only)', () => {
+  test('fr header → /fr surface on the unprefixed home', async ({ page }) => {
+    const { status, location, responseHeaders } = await redirectTarget(page, '/', {
+      'accept-language': 'fr-FR,fr;q=0.9,en;q=0.8',
+    });
+    expect(status).toBe(307);
+    expect(location).toBe('/fr');
+    expect(responseHeaders['x-joinorigin-locale']).toBe('fr');
+  });
+
+  test('de header → /de surface on the unprefixed home', async ({ page }) => {
+    const { status, location, responseHeaders } = await redirectTarget(page, '/', {
       'accept-language': 'de-DE,de;q=0.9,en;q=0.8',
     });
     expect(status).toBe(307);
-    expect(location).toBe('/de/features');
+    expect(location).toBe('/de');
     expect(responseHeaders['x-joinorigin-locale']).toBe('de');
   });
 
-  test('region-variant fallback: pt-PT resolves to the supported pt-BR surface', async ({ page }) => {
+  test('vi header → /vi surface on the unprefixed home', async ({ page }) => {
+    const { status, location, responseHeaders } = await redirectTarget(page, '/', {
+      'accept-language': 'vi-VN,vi;q=0.9,en;q=0.8',
+    });
+    expect(status).toBe(307);
+    expect(location).toBe('/vi');
+    expect(responseHeaders['x-joinorigin-locale']).toBe('vi');
+  });
+
+  test('no header at all → en fallback on the unprefixed home (307 target)', async ({ page }) => {
+    const { status, location, responseHeaders } = await redirectTarget(page, '/');
+    expect(status).toBe(307);
+    expect(location).toBe('/en');
+    expect(responseHeaders['x-joinorigin-locale']).toBe('en');
+  });
+
+  test('region-variant fallback: pt-PT resolves to the supported pt-BR surface', async ({
+    page,
+  }) => {
     const { status, location, responseHeaders } = await redirectTarget(page, '/features', {
       'accept-language': 'pt-PT,pt;q=0.9,en;q=0.8',
     });
@@ -395,61 +447,46 @@ test.describe('Goal 4 — first-visit header detection (307 redirect target)', (
   });
 });
 
-test.describe('Goal 5 — /vi route-stick (no flash to EN, cookie set)', () => {
-  test('first visit to /vi/** sets joinorigin_locale=vi and serves vi', async ({ page }) => {
-    await page.context().clearCookies();
+test.describe('Goal 5 — URL-only locale: no EN flash, no cookie ever written (TASK-468)', () => {
+  test('first visit to /vi/** serves vi and writes NO locale cookie', async ({ page }) => {
     const response = await page.goto('/vi/features');
     expect(response?.status()).toBe(200);
     // Raw served HTML is already vi — the first paint never flashes EN.
     expectLang((await response?.text()) ?? '', 'vi');
 
-    const cookie = await localeCookie(page);
-    expect(cookie).toBeDefined();
-    expect(cookie?.value).toBe('vi');
-    expect(cookie?.path).toBe('/');
-    expect(cookie?.sameSite).toBe('Lax');
-
     // Post-hydration DOM stays vi.
     await expect(page.locator('html')).toHaveAttribute('lang', 'vi');
+
+    // URL-only contract: the prefixed visit must NOT write joinorigin_locale.
+    await expectNoLocaleCookie(page);
   });
 
-  test('after the first /vi/** visit, the locale sticks on unprefixed routes (307 → /vi)', async ({
+  test('a prefixed visit cannot stick the locale — unprefixed home falls back to en (no cookie)', async ({
     page,
   }) => {
-    await page.context().clearCookies();
     await page.goto('/vi/features');
-    expect((await localeCookie(page))?.value).toBe('vi');
+    await expectNoLocaleCookie(page);
 
-    // Navigating to the unprefixed home in the same session 307-redirects to
-    // /vi (cookie wins) — no EN flash.
+    // Nothing persists across requests (no cookie): the unprefixed home
+    // resolves from Accept-Language → en fallback in this browser context.
     const homeResponse = await page.goto('/');
     expect(homeResponse?.status()).toBe(200);
-    expect(homeResponse?.url()).toMatch(/\/vi$/);
-    expectLang((await homeResponse?.text()) ?? '', 'vi');
-    await expect(page.locator('html')).toHaveAttribute('lang', 'vi');
+    expect(homeResponse?.url()).toMatch(/\/en$/);
+    expectLang((await homeResponse?.text()) ?? '', 'en');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expectNoLocaleCookie(page);
   });
 
-  test('every locale surface route-sticks (de + es + ja + ar spot checks)', async ({ page }) => {
+  test('every locale surface serves its own locale server-side (de + es + ja + ar spot checks)', async ({
+    page,
+  }) => {
     for (const locale of ['de', 'es', 'ja', 'ar'] as const) {
-      await page.context().clearCookies();
       const response = await page.goto(`/${locale}/features`);
       expect(response?.status()).toBe(200);
       expectLang((await response?.text()) ?? '', locale);
-      expect((await localeCookie(page))?.value).toBe(locale);
+      await expect(page.locator('html')).toHaveAttribute('lang', locale);
+      await expectNoLocaleCookie(page);
     }
-  });
-
-  test('an existing locale cookie is never overwritten by a prefixed visit', async ({ page }) => {
-    await page.context().clearCookies();
-    await page.context().addCookies([
-      { name: 'joinorigin_locale', value: 'vi', url: 'http://127.0.0.1:3100' },
-    ]);
-    // The prefix forces de for THIS request...
-    const response = await page.goto('/de/features');
-    expect(response?.status()).toBe(200);
-    expectLang((await response?.text()) ?? '', 'de');
-    // ...but the user's explicit cookie is preserved.
-    expect((await localeCookie(page))?.value).toBe('vi');
   });
 });
 
@@ -604,6 +641,50 @@ test.describe('Goal 7 — per-locale metadata with EN fallback', () => {
   });
 });
 
+test.describe('Goal 8 — waitlist modal renders in the URL language (URL-only, no cookie)', () => {
+  /** Open the waitlist modal from the hero CTA on the current page. */
+  async function openModal(page: Page): Promise<void> {
+    // Wait for hydration so React's event delegation is attached (repo
+    // convention — waitlist.spec.ts). The `[data-hero="actions"]` marker
+    // receives its inline GSAP opacity only when the entrance tween runs, so
+    // do NOT emulate reducedMotion here (that would skip the tween and the
+    // marker would never appear). Playwright's click auto-waits for the
+    // button to become visible once the 0.6s entrance settles.
+    await page.waitForFunction(() => {
+      const marker = document.querySelector('[data-hero="actions"]');
+      return marker instanceof HTMLElement && marker.style.opacity !== '';
+    });
+    await page.getByTestId('start-project-button').click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+  }
+
+  test('/es renders the modal in Spanish (heading + submit)', async ({ page }) => {
+    await page.goto('/es');
+    await openModal(page);
+    await expect(page.getByRole('dialog')).toContainText('Únete a la lista de espera');
+    await expect(page.getByTestId('waitlist-submit')).toContainText('Solicitar acceso');
+    await expect(page.getByRole('dialog')).toContainText('Date a conocer en el sistema operativo');
+    // The URL-only contract holds: opening the modal on /es writes no cookie.
+    await expectNoLocaleCookie(page);
+  });
+
+  test('/vi renders the modal in Vietnamese', async ({ page }) => {
+    await page.goto('/vi');
+    await openModal(page);
+    await expect(page.getByRole('dialog')).toContainText('Tham gia danh sách chờ');
+    await expect(page.getByTestId('waitlist-submit')).toContainText('Yêu cầu truy cập');
+    await expectNoLocaleCookie(page);
+  });
+
+  test('/en renders the modal in English (control)', async ({ page }) => {
+    await page.goto('/en');
+    await openModal(page);
+    await expect(page.getByRole('dialog')).toContainText('Join the waitlist');
+    await expect(page.getByTestId('waitlist-submit')).toContainText('Request access');
+    await expectNoLocaleCookie(page);
+  });
+});
+
 test.describe('Follow-up A — client locale toggle on SPA navigation (TASK-465)', () => {
   /** Select a locale in the header language switcher (desktop viewport). */
   async function switchTo(page: Page, nativeName: string): Promise<void> {
@@ -622,8 +703,8 @@ test.describe('Follow-up A — client locale toggle on SPA navigation (TASK-465)
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.getByTestId('language-switcher-header')).toContainText('English');
 
-    // Select Vietnamese — the switcher persists the cookie then router.push
-    // SPA-navigates to /vi/features (TASK-450/465). No reload.
+    // Select Vietnamese — the switcher router.push SPA-navigates to
+    // /vi/features (TASK-450/465). No reload, no cookie (TASK-468).
     await switchTo(page, 'Tiếng Việt');
 
     await expect(page).toHaveURL(/\/vi\/features$/, { timeout: 15_000 });
@@ -632,8 +713,8 @@ test.describe('Follow-up A — client locale toggle on SPA navigation (TASK-465)
     await expect(page.locator('html')).toHaveAttribute('lang', 'vi', { timeout: 15_000 });
     await expect(page.getByTestId('language-switcher-header')).toContainText('Tiếng Việt');
     await expect(page.getByTestId('header')).toContainText('Tính năng');
-    // The locale cookie was persisted.
-    expect((await localeCookie(page))?.value).toBe('vi');
+    // The toggle persists the language in the URL only — no cookie is written.
+    await expectNoLocaleCookie(page);
   });
 
   test('SPA navigation back to EN reverts the UI (vi → en) without a reload', async ({ page }) => {
@@ -647,6 +728,7 @@ test.describe('Follow-up A — client locale toggle on SPA navigation (TASK-465)
     await expect(page.locator('html')).toHaveAttribute('lang', 'en', { timeout: 15_000 });
     await expect(page.getByTestId('language-switcher-header')).toContainText('English');
     await expect(page.getByTestId('header')).toContainText('Features');
+    await expectNoLocaleCookie(page);
   });
 
   test('switching through multiple locales on SPA navigation toggles each (vi → de → es)', async ({
@@ -668,6 +750,7 @@ test.describe('Follow-up A — client locale toggle on SPA navigation (TASK-465)
     await expect(page.locator('html')).toHaveAttribute('lang', 'es', { timeout: 15_000 });
     await expect(page).toHaveURL(/\/es\/features$/);
     await expect(page.getByTestId('header')).toContainText('Funciones');
+    await expectNoLocaleCookie(page);
   });
 
   test('SPA toggle from the EN home surface: /en → /vi toggles the root path', async ({ page }) => {
@@ -680,9 +763,12 @@ test.describe('Follow-up A — client locale toggle on SPA navigation (TASK-465)
     await expect(page).toHaveURL(/\/vi(?:\/|$)/, { timeout: 15_000 });
     await expect(page.locator('html')).toHaveAttribute('lang', 'vi', { timeout: 15_000 });
     await expect(page.getByTestId('language-switcher-header')).toContainText('Tiếng Việt');
+    await expectNoLocaleCookie(page);
   });
 
-  test('browser back/forward history keeps the locale synced to the URL prefix', async ({ page }) => {
+  test('browser back/forward history keeps the locale synced to the URL prefix', async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/en/features');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
@@ -704,18 +790,21 @@ test.describe('Follow-up A — client locale toggle on SPA navigation (TASK-465)
     await page.evaluate(() => history.forward());
     await expect(page).toHaveURL(/\/vi\/features$/, { timeout: 15_000 });
     await expect(page.locator('html')).toHaveAttribute('lang', 'vi', { timeout: 15_000 });
+    await expectNoLocaleCookie(page);
   });
 });
 
 test.describe('Follow-up B — all routes are locale-prefixed (TASK-464/466)', () => {
-  test('unprefixed /** 307-redirects to /<resolved-locale>/... (cookie wins)', async ({ page }) => {
-    // With a vi cookie every unprefixed route resolves to the vi surface.
-    await page.context().addCookies([
-      { name: 'joinorigin_locale', value: 'vi', url: 'http://127.0.0.1:3100' },
-    ]);
+  test('unprefixed /** 307-redirects to /<resolved-locale>/... (Accept-Language wins)', async ({
+    page,
+  }) => {
+    // With a vi Accept-Language preference every unprefixed route resolves to
+    // the vi surface — no cookie participates (TASK-468).
     for (const path of STATIC_PATHS) {
       const url = unprefixedPath(path);
-      const { status, location } = await redirectTarget(page, url);
+      const { status, location } = await redirectTarget(page, url, {
+        'accept-language': 'vi-VN,vi;q=0.9,en;q=0.8',
+      });
       expect(status, `${url} should 307-redirect`).toBe(307);
       expect(location, `${url} should redirect to the vi surface`).toBe(surfacePath('vi', path));
     }
@@ -752,16 +841,12 @@ test.describe('Follow-up B — all routes are locale-prefixed (TASK-464/466)', (
     );
   });
 
-  test('system / non-HTML routes stay unprefixed and unredirected (TASK-464)', async ({ request }) => {
+  test('system / non-HTML routes stay unprefixed and unredirected (TASK-464)', async ({
+    request,
+  }) => {
     // The metadata files, API surface, and static trees must NEVER gain a
     // locale prefix or 307-redirect — fetch WITHOUT following redirects.
-    for (const url of [
-      '/sitemap.xml',
-      '/robots.txt',
-      '/llms.txt',
-      '/api/leads',
-      '/favicon.ico',
-    ]) {
+    for (const url of ['/sitemap.xml', '/robots.txt', '/llms.txt', '/api/leads', '/favicon.ico']) {
       const response = await request.get(url, { maxRedirects: 0 });
       expect(response.status(), `${url} must not 307-redirect`).not.toBe(307);
       expect(response.headers()['location'], `${url} must stay unprefixed`).toBeUndefined();

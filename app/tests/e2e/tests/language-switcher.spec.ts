@@ -9,6 +9,9 @@ import { expect, test } from '@playwright/test';
  *  - The mobile-menu switcher expands DOWNWARD (listbox below the trigger,
  *    in normal flow) and never overflows the viewport horizontally.
  *  - The footer switcher keeps working at every breakpoint (upward dropdown).
+ *  - Locale is URL-only (TASK-468): selecting a language navigates to the
+ *    `/<locale>` prefixed route and the target page renders in that locale —
+ *    no `joinorigin_locale` cookie is ever written.
  */
 
 test.describe('language switcher responsive', () => {
@@ -80,18 +83,16 @@ test.describe('language switcher responsive', () => {
       .getByRole('option', { name: /Deutsch/ })
       .click();
 
-    // The selection writes the locale cookie immediately (persisted
-    // preference) and closes the listbox.
-    const cookie = await page.evaluate(() => document.cookie);
-    expect(cookie).toContain('joinorigin_locale=de');
-    await expect(mobileSwitcher.getByTestId('language-switcher-listbox')).toBeHidden();
-
-    // The switcher navigates to the locale-prefixed route (TASK-450) so the
-    // target page renders with the freshly selected locale. The mobile panel
-    // closes on navigation because the Header lives in the page subtree and
-    // remounts on the route change — assert the deterministic outcome (URL +
-    // cookie) instead of panel persistence, which is a race with navigation.
+    // The selection navigates to the locale-prefixed route (TASK-450/468) so
+    // the target page renders with the freshly selected locale — the URL is
+    // the only persistence. The mobile panel closes on navigation because the
+    // Header lives in the page subtree and remounts on the route change —
+    // assert the deterministic outcome (URL + listbox hidden) instead of
+    // panel persistence, which is a race with navigation.
     await expect(page).toHaveURL(/\/de(?:\/|$)/, { timeout: 15_000 });
+    await expect(mobileSwitcher.getByTestId('language-switcher-listbox')).toBeHidden();
+    // URL-only contract (TASK-468): the toggle writes no locale cookie.
+    expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
   });
 
   test('≤768px: footer switcher still opens upward and works', async ({ page }) => {
@@ -110,8 +111,11 @@ test.describe('language switcher responsive', () => {
       .getByTestId('language-switcher-listbox')
       .getByRole('option', { name: /Español/ })
       .click();
-    const cookie = await page.evaluate(() => document.cookie);
-    expect(cookie).toContain('joinorigin_locale=es');
+
+    // URL-only locale (TASK-468): the selection navigates to /es — the URL is
+    // the only persistence; no locale cookie is written.
+    await expect(page).toHaveURL(/\/es(?:\/|$)/, { timeout: 15_000 });
     await expect(listbox).toBeHidden();
+    expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
   });
 });
