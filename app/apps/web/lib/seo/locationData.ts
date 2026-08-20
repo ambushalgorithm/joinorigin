@@ -89,6 +89,16 @@ export function findRegion(regionId: string): LocationRegion | undefined {
   return loadLocationSnapshot().regions.find((r) => r.id === regionId);
 }
 
+/** Find a country by its URL slug (the canonical `countrySlug` segment). */
+export function findCountryBySlug(slug: string): LocationCountry | undefined {
+  return loadLocationSnapshot().countries.find((c) => countrySlug(c) === slug);
+}
+
+/** Find a region by its URL slug (the canonical `regionSlug` segment). */
+export function findRegionBySlug(slug: string): LocationRegion | undefined {
+  return loadLocationSnapshot().regions.find((r) => regionSlug(r) === slug);
+}
+
 export function findCityByGeonameId(geonameId: number): LocationCity | undefined {
   return loadLocationSnapshot().cities.find((c) => c.id === geonameId);
 }
@@ -311,6 +321,121 @@ export function tierForCitySlug(slug: string): 1 | 2 | 3 {
   if (isFlagshipSlug(slug)) return 1;
   if (TIER_2_CITY_SLUGS.includes(slug)) return 2;
   return 3;
+}
+
+/* ------------------------------------------------------------------ *
+ * Content-rich city set (TASK-480 — Flagship + Start-local, tier-irrelevant)
+ *
+ * The browsable flagship/start-local lists show EVERY city with committed
+ * authored content, not just the Tier-1 flagships. The base set is the
+ * approved Tier-2 slice (which includes the two flagships); `EXTRA_...`
+ * collects additional committed-content cities outside that slice (e.g.
+ * Copenhagen — Tier-3 content that renders but stays noindex). Ordering is
+ * locale-driven (`localeCountryCodes`) — see `locationView.flagshipCities`.
+ * ------------------------------------------------------------------ */
+
+/** Committed-content cities beyond the approved Tier-2 slice (Tier-3). */
+const EXTRA_CONTENT_RICH_CITY_SLUGS = ['copenhagen'] as const;
+
+/** Every content-rich city slug (flagships + Tier-2 slice + Tier-3 content). */
+export const CONTENT_RICH_CITY_SLUGS: readonly string[] = [
+  ...TIER_2_CITY_SLUGS,
+  ...EXTRA_CONTENT_RICH_CITY_SLUGS,
+];
+
+/** The content-rich city entities in `CONTENT_RICH_CITY_SLUGS` order
+ *  (slug-resolved via the snapshot — undefined rows are skipped). */
+export function contentRichCities(): LocationCity[] {
+  return CONTENT_RICH_CITY_SLUGS.flatMap((slug) => {
+    const city = findCityBySlug(slug);
+    return city ? [city] : [];
+  });
+}
+
+/** Display name for a city card — flagship config overrides (e.g. "New York
+ *  City") keep the polished titles; every other city uses its ascii name. */
+export function cityDisplayName(city: LocationCity): string {
+  const flagship = getFlagshipConfig(citySlug(city));
+  return flagship?.displayName ?? city.asciiName;
+}
+
+/* ------------------------------------------------------------------ *
+ * Locale-driven area (TASK-480 — "active locale's country/area first")
+ *
+ * Each locale's "language area" is the set of countries whose
+ * predominant-locale cities live in that locale (mirrors the Sprint 18
+ * 55-city grouping in `TIER_2_CITY_SLUGS`). `localeCountryCodes(locale)`
+ * resolves those countries to ISO-3166-1 alpha-2 codes so ordering helpers
+ * can rank entries — Flagship/Start-local lists and every Browse-locations
+ * section — by "the active locale's country/area first".
+ * ------------------------------------------------------------------ */
+
+/** Predominant-locale city slugs per locale (mirrors the Tier-2 slice
+ *  grouping — user-approved 2026-08-17; stays in lockstep with
+ *  `TIER_2_CITY_SLUGS`). */
+export const LOCALE_CITY_SLUGS: Readonly<Record<Locale, readonly string[]>> = {
+  en: [
+    'new-york',
+    'london',
+    'san-francisco',
+    'los-angeles',
+    'chicago',
+    'austin',
+    'toronto',
+    'vancouver',
+    'dublin',
+    'nairobi',
+    'lagos',
+    'cape-town',
+    'johannesburg',
+    'sydney',
+    'singapore',
+  ],
+  de: ['berlin', 'munich'],
+  fr: ['paris', 'montreal'],
+  es: [
+    'mexico-city',
+    'buenos-aires',
+    'bogota',
+    'lima',
+    'barcelona',
+    'madrid',
+    'medellin',
+    'barranquilla',
+  ],
+  'pt-BR': ['sao-paulo', 'rio-de-janeiro', 'lisbon'],
+  it: ['milan'],
+  nl: ['amsterdam'],
+  pl: ['warsaw'],
+  tr: ['istanbul'],
+  uk: ['kyiv'],
+  ru: ['moscow'],
+  fa: ['tehran'],
+  ar: ['dubai', 'cairo', 'casablanca'],
+  hi: ['mumbai', 'delhi', 'bengaluru', 'hyderabad', 'chennai', 'pune'],
+  ja: ['tokyo', 'osaka'],
+  ko: ['seoul'],
+  'zh-TW': ['taipei', 'hong-kong'],
+  'zh-CN': ['shanghai'],
+  id: ['jakarta'],
+  th: ['bangkok'],
+  vi: ['ho-chi-minh-city'],
+};
+
+/**
+ * ISO-3166-1 alpha-2 codes of the active locale's language area — the
+ * countries whose predominant-locale content cities are committed in that
+ * locale. Used to rank Flagship/Start-local lists and Browse-locations
+ * sections "locale-language matches first". Deterministic (data-driven —
+ * never header-dependent).
+ */
+export function localeCountryCodes(locale: Locale): ReadonlySet<string> {
+  const codes = new Set<string>();
+  for (const slug of LOCALE_CITY_SLUGS[locale]) {
+    const city = findCityBySlug(slug);
+    if (city) codes.add(city.countryIso2);
+  }
+  return codes;
 }
 
 /* ------------------------------------------------------------------ *

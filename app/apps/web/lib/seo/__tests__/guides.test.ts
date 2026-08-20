@@ -77,12 +77,45 @@ describe('lib/seo guides — registry', () => {
     }
   });
 
-  it('links every guide back to the flagship city pages', () => {
+  it('links every guide to the "Start local" content-rich cities (TASK-480: all content-rich, locale area first, capped 6)', () => {
     for (const entry of entries) {
       const cityPaths = entry.cities.map((city) => city.path);
-      expect(cityPaths).toContain('/location/united-states/new-york/new-york');
-      expect(cityPaths).toContain('/location/germany/berlin/berlin');
+      // Tier-irrelevant: the list shows ALL content-rich cities (not just
+      // the two Tier-1 flagships), capped at 6.
+      expect(cityPaths).toHaveLength(6);
+      // Unprefixed `/location/...` — the client localizePath applies the
+      // active locale prefix at render time.
+      for (const path of cityPaths) {
+        expect(path).toMatch(/^\/location\/[a-z-]+\/[a-z-]+\/[a-z-]+$/);
+        expect(path).not.toMatch(/^\/en\//);
+      }
     }
+    // The active locale's country/area comes first — for the EN surface the
+    // English-speaking area ranks ahead of the rest, alphabetically by name.
+    expect(entries[0].cities.map((city) => city.name)).toEqual([
+      'Austin',
+      'Cape Town',
+      'Chicago',
+      'Dublin',
+      'Johannesburg',
+      'Lagos',
+    ]);
+  });
+
+  it('Start-local city links rank the ACTIVE locale area first (TASK-480)', () => {
+    // de surface: German cities (Berlin + Munich) lead, then alphabetical.
+    const deCities = guidePageEntries('de')[0].cities;
+    expect(deCities.map((city) => city.name).slice(0, 2)).toEqual(['Berlin', 'Munich']);
+    expect(deCities).toHaveLength(6);
+    // es surface: Spanish-speaking cities lead — Barcelona first
+    // alphabetically within the es-area set.
+    const esCities = guidePageEntries('es')[0].cities;
+    expect(esCities[0].name).toBe('Barcelona');
+    expect(esCities.map((city) => city.name).slice(0, 3)).toEqual([
+      'Barcelona',
+      'Barranquilla',
+      'Bogota',
+    ]);
   });
 
   it('resolves a single guide entry and returns undefined for unknown slugs', () => {

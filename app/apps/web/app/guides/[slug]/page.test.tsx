@@ -202,9 +202,10 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
       guidePath(relatedSlug, 'en'),
     );
     expect(screen.queryByText(relatedSlug.replace(/-/g, ' '))).not.toBeInTheDocument();
-    // City cross-links.
-    expect(screen.getByText('New York City')).toBeInTheDocument();
-    expect(screen.getByText('Berlin')).toBeInTheDocument();
+    // City cross-links (TASK-480): the Start-local content-rich list — the
+    // EN surface leads with the English-speaking area alphabetically.
+    expect(screen.getByText('Austin')).toBeInTheDocument();
+    expect(screen.getByText('Lagos')).toBeInTheDocument();
   });
 
   it('renders related-card links through the active locale surface (TASK-444)', () => {

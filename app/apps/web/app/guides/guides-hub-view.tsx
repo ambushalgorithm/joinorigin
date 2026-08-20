@@ -141,8 +141,8 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
             <Section>
               <SectionTitle>{t('seoContent.guides.startLocal')}</SectionTitle>
               <BodyCopy>{t('seoContent.guides.universalCopy')}</BodyCopy>
-              <CardGrid>
-                {entries[0]?.cities.map((city) => (
+              <CardGrid data-testid="guides-hub-start-local">
+                {entries[0]?.cities.slice(0, 6).map((city) => (
                   <Card key={city.path}>
                     <CardTitle>
                       <StyledLink href={localizePath(city.path)}>{city.name}</StyledLink>

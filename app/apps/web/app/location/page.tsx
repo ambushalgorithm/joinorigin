@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { LocationView } from '../../components/location/LocationView';
 import { getServerLocale } from '../../lib/i18n-server';
 import { JsonLd } from '../../lib/seo/JsonLdScript';
+import { getServerCountry } from '../../lib/seo/geo';
 import {
   buildLocationViewData,
   hubEntry,
@@ -35,7 +36,7 @@ export default async function LocationHubPage() {
   if (!entry) {
     return null;
   }
-  const data = buildLocationViewData(entry, await getServerLocale());
+  const data = buildLocationViewData(entry, await getServerLocale(), await getServerCountry());
   const jsonLd = locationJsonLd(data);
   return (
     <>
