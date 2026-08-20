@@ -11,6 +11,10 @@ import { test, expect } from '@playwright/test';
  *  2. EN guide pages render the link with the correct href.
  *  3. `/de/*` location pages (already translated) do NOT render the link.
  *
+ * Locale is URL-only (TASK-468): the `/en/**` surface drives the EN
+ * dictionary server-side (`<html lang="en">`), so `tl` resolves from the
+ * active URL locale — no cookie setup is needed or allowed.
+ *
  * The link is a plain link-out only — no Google Translate widget/script/SDK.
  * It renders after React hydration (the absolute URL needs `window.location`),
  * so Playwright auto-waits on visibility before reading the href.
@@ -32,13 +36,15 @@ const DE_LOCATION_PAGES = [
 ];
 
 async function expectTranslateHref(page: import('@playwright/test').Page): Promise<void> {
+  // URL-only locale (TASK-468): the /en/** surface must render EN chrome.
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   const link = page.getByTestId('translate-page-link');
   await expect(link).toBeVisible();
   const href = (await link.getAttribute('href')) ?? '';
   const url = new URL(href);
   expect(`${url.origin}${url.pathname}`).toBe('https://translate.google.com/translate');
   expect(url.searchParams.get('sl')).toBe('en');
-  // `tl` is a supported locale (default en with no cookie set).
+  // `tl` is a supported locale — resolved from the active URL locale (en).
   expect(url.searchParams.get('tl')).toMatch(/^[a-z]{2}(-[A-Z]{2})?$/);
   expect(url.searchParams.get('u')).toBe(page.url());
   // Link-out only: plain anchor, no Google Translate widget/SDK payload.
@@ -47,12 +53,6 @@ async function expectTranslateHref(page: import('@playwright/test').Page): Promi
 }
 
 test.describe('Google Translate link-out (TASK-318)', () => {
-  test.beforeEach(async ({ page }) => {
-    // No locale cookie → the client i18n locale stays `en`, so `tl` defaults
-    // to `en` deterministically.
-    await page.context().clearCookies();
-  });
-
   for (const path of EN_LOCATION_PAGES) {
     test(`EN location page ${path} renders the translate link with the correct href`, async ({
       page,

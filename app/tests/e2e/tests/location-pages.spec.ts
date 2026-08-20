@@ -11,7 +11,11 @@ import { test, expect, type Page } from '@playwright/test';
  *  4. EN Berlin pages emit the bidirectional hreflang cluster; EN-only pages
  *     (hub/country/region/NYC) emit NO hreflang (phase A),
  *  5. JSON-LD: BreadcrumbList everywhere, FAQPage on content pages, ItemList
- *     (30 ideas) on idea pages.
+ *     (30 ideas) on idea pages,
+ *  6. (TASK-469) Browse-locations directory + flagship/sibling city card hrefs
+ *     carry the ACTIVE locale surface (`/es/location/...`, `/de/location/...`)
+ *     — never the EN-canonical `/en/**` — and navigating a card lands on that
+ *     locale's chrome (`<html lang>`).
  *
  * These specs navigate several pages; keep them serial to avoid starving the
  * shared dev server (repo convention, TASK-218).
@@ -46,9 +50,7 @@ async function ldTypes(page: Page): Promise<string[]> {
 }
 
 test.describe('location internal-link mesh navigation', () => {
-  test('hub → country → region → city → variant navigates through real links', async ({
-    page,
-  }) => {
+  test('hub → country → region → city → variant navigates through real links', async ({ page }) => {
     // Reduced motion keeps GSAP Reveal/ScrollTrigger tweens from moving
     // elements mid-click (repo convention — hero/ticker specs do the same),
     // so in-page link navigation is deterministic.
@@ -209,15 +211,15 @@ test.describe('Berlin de pages + hreflang', () => {
     );
   });
 
-  test('/de/location/germany/berlin/berlin serves <html lang="de"> without a de cookie or header (TASK-315)', async ({
+  test('/de/location/germany/berlin/berlin serves <html lang="de"> (TASK-315)', async ({
     page,
   }) => {
-    // No German cookie or Accept-Language header: the /de/* prefix alone must
-    // force the server-side locale so crawlers see `<html lang="de">`. Assert
-    // the RAW served HTML (the HTTP response body) — the client
-    // I18nProvider re-resolves navigator.language after hydration, so the
-    // DOM alone would not prove server-side forcing.
-    await page.context().clearCookies();
+    // No German cookie (the joinorigin_locale cookie is fully removed,
+    // TASK-468) or Accept-Language header: the /de/* prefix alone must force
+    // the server-side locale so crawlers see `<html lang="de">`. Assert the
+    // RAW served HTML (the HTTP response body) — the client I18nProvider
+    // trusts the server locale prop, so the DOM alone would not prove
+    // server-side forcing.
     const response = await page.goto('/de/location/germany/berlin/berlin');
     expect(response?.status()).toBe(200);
     const servedHtml = (await response?.text()) ?? '';
@@ -304,7 +306,9 @@ test.describe('location variant enrichment (TASK-319)', () => {
     await expect(page.getByText('Coworking spaces in SoHo and Flatiron')).toHaveCount(0);
   });
 
-  test('startup vs creative variants within a city render distinct enrichment', async ({ page }) => {
+  test('startup vs creative variants within a city render distinct enrichment', async ({
+    page,
+  }) => {
     await page.goto('/en/location/united-states/new-york/new-york/startup');
     await expect(page.getByText(/Coworking spaces in SoHo and Flatiron/)).toBeVisible();
 
@@ -317,5 +321,105 @@ test.describe('location variant enrichment (TASK-319)', () => {
   test('city page does NOT render variant enrichment sections', async ({ page }) => {
     await page.goto('/en/location/germany/berlin/berlin');
     await expect(page.getByTestId('variant-enrichment')).toHaveCount(0);
+  });
+});
+
+test.describe('location directory + sibling cards carry the ACTIVE locale surface (TASK-469)', () => {
+  /** Collect the href of every card link inside the given card grid. */
+  async function cardHrefs(page: Page, gridTestId: string): Promise<string[]> {
+    const grid = page.getByTestId(gridTestId);
+    await expect(grid).toBeVisible();
+    return grid
+      .locator('a')
+      .evaluateAll((anchors) =>
+        anchors
+          .map((a) => (a as HTMLAnchorElement).getAttribute('href'))
+          .filter((href): href is string => !!href && href.startsWith('/')),
+      );
+  }
+
+  test('on /es/location the Browse-locations directory cards link to /es/location/... (never /en/**)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/es/location');
+    // Spanish chrome for the hub surface.
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+    await expect(page.locator('[data-testid="location-breadcrumbs"]')).toBeVisible();
+
+    const directoryHrefs = await cardHrefs(page, 'location-hub-directory');
+    expect(directoryHrefs.length).toBeGreaterThan(0);
+    for (const href of directoryHrefs) {
+      expect(href, `hub directory card must stay on the es surface: ${href}`).toMatch(
+        /^\/es\/location\//,
+      );
+      expect(
+        href,
+        `hub directory card must not leak the EN canonical surface: ${href}`,
+      ).not.toMatch(/^\/en\//);
+    }
+
+    // The flagship-city sibling block on the hub is localized the same way.
+    const flagshipHrefs = await cardHrefs(page, 'location-flagship-cities');
+    expect(flagshipHrefs.length).toBeGreaterThan(0);
+    for (const href of flagshipHrefs) {
+      expect(href, `flagship city card must stay on the es surface: ${href}`).toMatch(
+        /^\/es\/location\//,
+      );
+    }
+  });
+
+  test('clicking a /es/location directory card navigates to the es surface with Spanish chrome', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/es/location');
+    const firstCard = page.getByTestId('location-hub-directory').locator('a').first();
+    const href = (await firstCard.getAttribute('href')) ?? '';
+    expect(href).toMatch(/^\/es\/location\//);
+
+    await firstCard.click();
+    await page.waitForURL('**/es/location/**', { timeout: 120_000 });
+    // The landing page keeps the active locale chrome (URL-driven).
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+    await expect(page.locator('[data-testid="location-breadcrumbs"]')).toBeVisible();
+  });
+
+  test('sibling city cards on /es/location/germany/berlin/berlin link to /es/location/...', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/es/location/germany/berlin/berlin');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+
+    const siblingHrefs = await cardHrefs(page, 'location-sibling-cities');
+    expect(siblingHrefs.length).toBeGreaterThan(0);
+    for (const href of siblingHrefs) {
+      expect(href, `sibling city card must stay on the es surface: ${href}`).toMatch(
+        /^\/es\/location\//,
+      );
+      expect(href, `sibling city card must not leak /en/** (TASK-469): ${href}`).not.toMatch(
+        /^\/en\//,
+      );
+    }
+  });
+
+  test('sibling city cards on the committed /de Berlin surface link to /de/location/...', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/de/location/germany/berlin/berlin');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+    const siblingHrefs = await cardHrefs(page, 'location-sibling-cities');
+    expect(siblingHrefs.length).toBeGreaterThan(0);
+    for (const href of siblingHrefs) {
+      expect(href, `sibling city card must stay on the de surface: ${href}`).toMatch(
+        /^\/de\/location\//,
+      );
+      expect(href, `sibling city card must not leak /en/** (TASK-469): ${href}`).not.toMatch(
+        /^\/en\//,
+      );
+    }
   });
 });
