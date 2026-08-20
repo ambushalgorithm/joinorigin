@@ -423,3 +423,114 @@ test.describe('location directory + sibling cards carry the ACTIVE locale surfac
     }
   });
 });
+
+test.describe('full city-page mesh for content-rich cities (TASK-475)', () => {
+  /** Every content-rich city checked: city page + all group-type variants
+   *  (5 GROUP_TYPES + the ideas listicle). Tier-2 but indexable — these must
+   *  render the Sprint 20 sections AND every variant link must resolve. */
+  const MESH_CITY_PAGES: Array<{ name: string; path: string; variants: string[] }> = [
+    {
+      name: 'Dubai',
+      path: '/en/location/united-arab-emirates/dubai/dubai',
+      variants: [
+        '/en/location/united-arab-emirates/dubai/dubai/startup',
+        '/en/location/united-arab-emirates/dubai/dubai/creative',
+        '/en/location/united-arab-emirates/dubai/dubai/political',
+        '/en/location/united-arab-emirates/dubai/dubai/meetup',
+        '/en/location/united-arab-emirates/dubai/dubai/small-business',
+        '/en/location/united-arab-emirates/dubai/dubai/ideas',
+      ],
+    },
+    {
+      name: 'Buenos Aires',
+      path: '/en/location/argentina/buenos-aires-f-d/buenos-aires',
+      variants: [
+        '/en/location/argentina/buenos-aires-f-d/buenos-aires/startup',
+        '/en/location/argentina/buenos-aires-f-d/buenos-aires/creative',
+        '/en/location/argentina/buenos-aires-f-d/buenos-aires/political',
+        '/en/location/argentina/buenos-aires-f-d/buenos-aires/meetup',
+        '/en/location/argentina/buenos-aires-f-d/buenos-aires/small-business',
+        '/en/location/argentina/buenos-aires-f-d/buenos-aires/ideas',
+      ],
+    },
+  ];
+
+  /** Asserts the two Sprint 20 sections render with real links inside. */
+  async function expectMeshSections(page: Page): Promise<void> {
+    const groupLinks = page.getByTestId('location-group-type-links');
+    await expect(groupLinks).toBeVisible();
+    // 5 group-type variants + the ideas-page link (all committed content).
+    await expect(groupLinks.locator('a')).toHaveCount(6);
+    const siblingCards = page.getByTestId('location-sibling-cities');
+    await expect(siblingCards).toBeVisible();
+    expect(await siblingCards.locator('a').count()).toBeGreaterThan(0);
+  }
+
+  for (const city of MESH_CITY_PAGES) {
+    test(`${city.name} city page renders Explore community types + Communities in nearby cities (TASK-475)`, async ({
+      page,
+    }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.goto(city.path);
+      await expect(page.locator('h1')).toContainText(city.name);
+      await expect(page.getByText('Explore community types')).toBeVisible();
+      await expect(page.getByText('Communities in nearby cities')).toBeVisible();
+      await expectMeshSections(page);
+    });
+
+    test(`${city.name} group-type variant links resolve (200, not 404) on the EN surface (TASK-475)`, async ({
+      page,
+    }) => {
+      for (const variantPath of city.variants) {
+        const response = await page.goto(variantPath);
+        expect(response?.status(), `${variantPath} must resolve, not 404`).toBe(200);
+        await expect(page.locator('h1')).toHaveCount(1);
+      }
+    });
+  }
+
+  test('es Buenos Aires surface renders both sections + startup variant resolves 200 (TASK-475)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/es/location/argentina/buenos-aires-f-d/buenos-aires');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+    await expect(page.getByText('Explora tipos de comunidad')).toBeVisible();
+    await expect(page.getByText('Comunidades en ciudades cercanas')).toBeVisible();
+    await expectMeshSections(page);
+
+    const startup = await page.goto('/es/location/argentina/buenos-aires-f-d/buenos-aires/startup');
+    expect(startup?.status()).toBe(200);
+    await expect(page.locator('h1')).toContainText('startups');
+  });
+
+  test('ar Dubai surface renders both sections + startup variant resolves 200 (TASK-475)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/ar/location/united-arab-emirates/dubai/dubai');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
+    await expect(page.getByText('استكشف أنواع المجتمعات')).toBeVisible();
+    await expect(page.getByText('مجتمعات في المدن القريبة')).toBeVisible();
+    await expectMeshSections(page);
+
+    const startup = await page.goto('/ar/location/united-arab-emirates/dubai/dubai/startup');
+    expect(startup?.status()).toBe(200);
+    await expect(page.locator('h1')).toHaveCount(1);
+  });
+
+  test('NYC + Berlin flagship city pages keep both mesh sections (no regression, TASK-475)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    for (const path of [
+      '/en/location/united-states/new-york/new-york',
+      '/en/location/germany/berlin/berlin',
+    ]) {
+      await page.goto(path);
+      await expect(page.getByText('Explore community types')).toBeVisible();
+      await expect(page.getByText('Communities in nearby cities')).toBeVisible();
+      await expectMeshSections(page);
+    }
+  });
+});
