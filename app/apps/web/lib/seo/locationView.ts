@@ -146,16 +146,25 @@ function committedPathSets(): Map<Locale, ReadonlySet<string>> {
 
 const COMMITTED_PATHS = committedPathSets();
 
-/** The counterpart path for an EN path on a locale surface (undefined when
- *  the surface has no committed content for that page). */
+/**
+ * The counterpart path for an EN path on a locale surface (undefined when
+ * the surface has no committed content for that page). All-routes-prefixed
+ * (TASK-466): the EN surface is `/en/...` — an already-`/en`-prefixed input
+ * is accepted (EN entry paths now carry the prefix). The EN locale itself
+ * has no committed path set (the canonical tree is the origin), so callers
+ * fall back to the EN view-model path and the client view localizes it.
+ */
 function localePathForEn(enPath: string, locale: Locale): string | undefined {
-  const candidate = `/${locale}${enPath}`;
+  const base = enPath.startsWith('/en') ? enPath.slice(3) : enPath;
+  const candidate = `/${locale}${base}`;
   return COMMITTED_PATHS.get(locale)?.has(candidate) ? candidate : undefined;
 }
 
-/** The EN counterpart path for a locale-surface path. */
+/** The EN counterpart path for a locale-surface path — `/en/...`
+ *  (all-routes-prefixed, TASK-466). */
 function enPathForLocale(localePath: string, locale: Locale): string {
-  return localePath.replace(new RegExp(`^/${locale}`), '');
+  const stripped = localePath.replace(new RegExp(`^/${locale}`), '');
+  return stripped === '' ? '/en' : `/en${stripped}`;
 }
 
 /**
@@ -316,7 +325,8 @@ export interface SiblingCityLink {
   path: string;
 }
 
-/** Registry-exact location path for a city (mirrors `cityEntry`). */
+/** Registry-exact location path for a city (mirrors `cityEntry`) — the EN
+ *  canonical surface `/en/location/...` (all-prefixed, TASK-466). */
 export function cityLocationPath(city: LocationCity): string | undefined {
   const flagship = FLAGSHIP_CITIES.find((candidate) => candidate.geonameId === city.id);
   const region = findRegion(city.regionId);
@@ -325,7 +335,7 @@ export function cityLocationPath(city: LocationCity): string | undefined {
   const slug = flagship?.slug ?? citySlug(city);
   const regionSeg = flagship?.regionSlug ?? regionSlug(region);
   const countrySeg = flagship?.countrySlug ?? countrySlug(country);
-  return `${LOCATION_HUB_PATH}/${countrySeg}/${regionSeg}/${slug}`;
+  return `/en${LOCATION_HUB_PATH}/${countrySeg}/${regionSeg}/${slug}`;
 }
 
 /**

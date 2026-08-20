@@ -15,6 +15,12 @@ import { absoluteUrl } from './url';
  * sitemap, never here (design §9.3). Every link points to an LLM-parseable
  * HTML page; no links to the waitlist modal or `/api/*`.
  *
+ * All-routes-prefixed (TASK-464 + TASK-466): every link targets the EN
+ * canonical `/en/**` surface (the unprefixed `/**` tree 307-redirects at the
+ * proxy). `guidePageEntries()` already returns `/en/guides/...` paths, so the
+ * guide links below stay in sync automatically; static links carry the
+ * `/en` prefix explicitly.
+ *
  * Design source: `app/docs/design/sprint-4-discovery.md` §8.1,
  * `app/docs/design/sprint-11-seo-content-engine.md` §9.3.
  */
@@ -23,10 +29,17 @@ export interface LlmsEntry {
   links: Array<{ path: string; description: string }>;
 }
 
+/** The EN canonical surface path for an unprefixed route — `/en/...`. */
+function enSurfacePath(path: string): string {
+  return path === '/' ? '/en' : `/en${path}`;
+}
+
 /** Curated flagship city links — the hub + the 2 MVP flagships only. */
 function flagshipLinks(): Array<{ path: string; description: string }> {
   return FLAGSHIP_CITIES.map((flagship) => ({
-    path: `/location/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`,
+    path: enSurfacePath(
+      `/location/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`,
+    ),
     description: `Communities in ${flagship.displayName}.`,
   }));
 }
@@ -57,19 +70,19 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
   {
     heading: 'Overview',
     links: [
-      { path: '/', description: 'What Origin is and how to get started.' },
+      { path: '/en', description: 'What Origin is and how to get started.' },
       {
-        path: '/about',
+        path: '/en/about',
         description: 'Mission and principles — the operating system for human collaboration.',
       },
-      { path: '/community', description: 'Values and the 2,400+ member network.' },
+      { path: '/en/community', description: 'Values and the 2,400+ member network.' },
     ],
   },
   {
     heading: 'Features',
     links: [
       {
-        path: '/features',
+        path: '/en/features',
         description: 'Profiles, ideas, communities, chat, projects.',
       },
     ],
@@ -77,7 +90,7 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
   {
     heading: 'Locations',
     links: [
-      { path: LOCATION_HUB_PATH, description: 'Find or start communities by city.' },
+      { path: enSurfacePath(LOCATION_HUB_PATH), description: 'Find or start communities by city.' },
       ...flagshipLinks(),
     ],
   },
@@ -89,7 +102,7 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
     heading: 'Glossary',
     links: [
       {
-        path: GLOSSARY_HUB_PATH,
+        path: enSurfacePath(GLOSSARY_HUB_PATH),
         description: 'Core community-building terms.',
       },
     ],
@@ -98,20 +111,20 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
     heading: 'Docs',
     links: [
       {
-        path: '/docs',
+        path: '/en/docs',
         description: 'Concepts, roadmap, and architecture.',
       },
     ],
   },
   {
     heading: 'Contact',
-    links: [{ path: '/contact', description: 'Contact and support.' }],
+    links: [{ path: '/en/contact', description: 'Contact and support.' }],
   },
   {
     heading: 'Legal',
     links: [
-      { path: '/privacy', description: 'Privacy policy.' },
-      { path: '/terms', description: 'Terms of service.' },
+      { path: '/en/privacy', description: 'Privacy policy.' },
+      { path: '/en/terms', description: 'Terms of service.' },
     ],
   },
 ];

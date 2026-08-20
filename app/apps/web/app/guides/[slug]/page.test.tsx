@@ -112,7 +112,9 @@ describe('guides/[slug] page — static params + metadata', () => {
     });
     expect(metadata.title).toBe(entry?.title);
     expect(metadata.description).toBe(entry?.description);
-    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/guides/start-a-community');
+    expect(metadata.alternates?.canonical).toBe(
+      'http://localhost:3100/en/guides/start-a-community',
+    );
     expect(metadata.keywords).toEqual(
       expect.arrayContaining(['start a community', 'community', 'how to', 'guide']),
     );
@@ -124,11 +126,13 @@ describe('guides/[slug] page — static params + metadata', () => {
     const metadata = await generateMetadata({
       params: Promise.resolve({ slug: 'start-a-community' }),
     });
-    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/guides/start-a-community');
+    expect(metadata.alternates?.canonical).toBe(
+      'http://localhost:3100/en/guides/start-a-community',
+    );
     const languages = metadata.alternates?.languages as Record<string, string> | undefined;
     if (languages) {
-      expect(languages.en).toBe('http://localhost:3100/guides/start-a-community');
-      expect(languages['x-default']).toBe('http://localhost:3100/guides/start-a-community');
+      expect(languages.en).toBe('http://localhost:3100/en/guides/start-a-community');
+      expect(languages['x-default']).toBe('http://localhost:3100/en/guides/start-a-community');
     }
   });
 });
@@ -193,13 +197,14 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
     expect(screen.getByTestId('guide-join-button')).toBeInTheDocument();
     // Sibling guide link — resolved through the registry (TASK-444): href via
     // guidePath and title via guidePageEntry, never the humanized slug.
-    // All-routes-prefixed (TASK-464): the unprefixed EN render prefixes /en.
+    // All-routes-prefixed (TASK-464 + TASK-466): the EN registry path is
+    // already `/en/**` — the helper passes it through unchanged.
     const relatedSlug = entry.related[0];
     if (!relatedSlug) throw new Error('guide must have related entries');
     const relatedEntry = guidePageEntry(relatedSlug, 'en');
     expect(screen.getByRole('link', { name: relatedEntry?.title ?? relatedSlug })).toHaveAttribute(
       'href',
-      `/en${guidePath(relatedSlug, 'en')}`,
+      guidePath(relatedSlug, 'en'),
     );
     expect(screen.queryByText(relatedSlug.replace(/-/g, ' '))).not.toBeInTheDocument();
     // City cross-links.

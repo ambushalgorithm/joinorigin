@@ -51,10 +51,10 @@ describe('lib/seo guides — registry', () => {
     expect(new Set(paths).size).toBe(paths.length);
   });
 
-  it('derives canonical guide paths under /guides/<slug>', () => {
-    expect(entries[0]?.path).toBe('/guides/publish-an-idea');
+  it('derives canonical guide paths under /en/guides/<slug> (all-prefixed EN surface)', () => {
+    expect(entries[0]?.path).toBe('/en/guides/publish-an-idea');
     for (const entry of entries) {
-      expect(entry.path).toBe(`${GUIDES_HUB_PATH}/${entry.slug}`);
+      expect(entry.path).toBe(`/en${GUIDES_HUB_PATH}/${entry.slug}`);
       expect(entry.params).toEqual({ slug: entry.slug });
     }
   });
@@ -218,10 +218,10 @@ describe('lib/seo guides — content quality gates (§6.2)', () => {
 describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
   const NON_EN_LOCALES = SUPPORTED_LOCALES.filter((locale) => locale !== 'en');
 
-  it('exposes locale-prefixed hub + guide paths', () => {
-    expect(guideHubPath('en')).toBe('/guides');
+  it('exposes locale-prefixed hub + guide paths (EN canonical at /en/**)', () => {
+    expect(guideHubPath('en')).toBe('/en/guides');
     expect(guideHubPath('de')).toBe('/de/guides');
-    expect(guidePath('start-a-community')).toBe('/guides/start-a-community');
+    expect(guidePath('start-a-community')).toBe('/en/guides/start-a-community');
     expect(guidePath('start-a-community', 'de')).toBe('/de/guides/start-a-community');
     expect(guidePath('start-a-community', 'pt-BR')).toBe('/pt-BR/guides/start-a-community');
   });
@@ -233,12 +233,12 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     expect(guideHubPath('zh-CN')).toBe('/zh-CN/guides');
   });
 
-  it('registers EN entries with the en locale and unchanged canonical paths', () => {
+  it('registers EN entries with the en locale and /en/** canonical paths (TASK-466)', () => {
     const entries = guidePageEntries('en');
     expect(entries).toHaveLength(12);
     for (const entry of entries) {
       expect(entry.locale).toBe('en');
-      expect(entry.path).toBe(`${GUIDES_HUB_PATH}/${entry.slug}`);
+      expect(entry.path).toBe(`/en${GUIDES_HUB_PATH}/${entry.slug}`);
     }
   });
 
@@ -295,29 +295,29 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     expect(untranslated?.description).toBe(getGuideContent('organize-a-meetup', 'de')?.description);
   });
 
-  it('locale surfaces emit self + en + x-default → EN canonical hreflang', () => {
+  it('locale surfaces emit self + en + x-default → EN canonical hreflang at /en/', () => {
     expect(guideLanguagesFor('start-a-community', 'de')).toEqual({
       de: 'http://localhost:3100/de/guides/start-a-community',
-      en: 'http://localhost:3100/guides/start-a-community',
-      'x-default': 'http://localhost:3100/guides/start-a-community',
+      en: 'http://localhost:3100/en/guides/start-a-community',
+      'x-default': 'http://localhost:3100/en/guides/start-a-community',
     });
     expect(guideHubLanguagesFor('de')).toEqual({
       de: 'http://localhost:3100/de/guides',
-      en: 'http://localhost:3100/guides',
-      'x-default': 'http://localhost:3100/guides',
+      en: 'http://localhost:3100/en/guides',
+      'x-default': 'http://localhost:3100/en/guides',
     });
   });
 
   it('hreflang clusters generalize to ANY locale surface (not just de)', () => {
     expect(guideLanguagesFor('start-a-community', 'es')).toEqual({
       es: 'http://localhost:3100/es/guides/start-a-community',
-      en: 'http://localhost:3100/guides/start-a-community',
-      'x-default': 'http://localhost:3100/guides/start-a-community',
+      en: 'http://localhost:3100/en/guides/start-a-community',
+      'x-default': 'http://localhost:3100/en/guides/start-a-community',
     });
     expect(guideHubLanguagesFor('ja')).toEqual({
       ja: 'http://localhost:3100/ja/guides',
-      en: 'http://localhost:3100/guides',
-      'x-default': 'http://localhost:3100/guides',
+      en: 'http://localhost:3100/en/guides',
+      'x-default': 'http://localhost:3100/en/guides',
     });
   });
 
@@ -338,15 +338,15 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     expect(meta.alternates?.canonical).toBe('http://localhost:3100/de/guides/start-a-community');
     expect(meta.alternates?.languages).toEqual({
       de: 'http://localhost:3100/de/guides/start-a-community',
-      en: 'http://localhost:3100/guides/start-a-community',
-      'x-default': 'http://localhost:3100/guides/start-a-community',
+      en: 'http://localhost:3100/en/guides/start-a-community',
+      'x-default': 'http://localhost:3100/en/guides/start-a-community',
     });
   });
 
   it('guidePageMetadata keeps EN-fallback copy but localizes canonical/hreflang to the surface (TASK-458)', () => {
     const enEntry: GuidePageEntry = {
       params: { slug: 'start-a-community' },
-      path: '/guides/start-a-community',
+      path: '/en/guides/start-a-community',
       slug: 'start-a-community',
       locale: 'en',
       title: 'How to Start a Community | JoinOrigin',
@@ -360,16 +360,16 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     // EN copy stays (no committed ja guide content → EN fallback)…
     expect(meta.title).toBe('How to Start a Community | JoinOrigin');
     expect(meta.description).toContain('Practical, evergreen steps');
-    // …but canonical + hreflang stay per-locale with x-default → EN.
+    // …but canonical + hreflang stay per-locale with x-default → /en/.
     expect(meta.alternates?.canonical).toBe('http://localhost:3100/ja/guides/start-a-community');
     expect(meta.alternates?.languages).toEqual({
       ja: 'http://localhost:3100/ja/guides/start-a-community',
-      en: 'http://localhost:3100/guides/start-a-community',
-      'x-default': 'http://localhost:3100/guides/start-a-community',
+      en: 'http://localhost:3100/en/guides/start-a-community',
+      'x-default': 'http://localhost:3100/en/guides/start-a-community',
     });
-    // Default surface = the entry's own locale (unchanged for EN consumers).
+    // Default surface = the entry's own locale: EN canonical at /en/**.
     expect(guidePageMetadata(enEntry).alternates?.canonical).toBe(
-      'http://localhost:3100/guides/start-a-community',
+      'http://localhost:3100/en/guides/start-a-community',
     );
   });
 
@@ -381,8 +381,8 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     );
     try {
       const languages = guideLanguagesFor('start-a-community', 'en');
-      expect(languages?.en).toBe('http://localhost:3100/guides/start-a-community');
-      expect(languages?.['x-default']).toBe('http://localhost:3100/guides/start-a-community');
+      expect(languages?.en).toBe('http://localhost:3100/en/guides/start-a-community');
+      expect(languages?.['x-default']).toBe('http://localhost:3100/en/guides/start-a-community');
       expect(languages?.de).toBe('http://localhost:3100/de/guides/start-a-community');
       expect(languages?.fa).toBe('http://localhost:3100/fa/guides/start-a-community');
       // en + x-default + one entry per non-EN locale = 22 keys.
@@ -403,16 +403,16 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     }
   });
 
-  it('guideHubMetadata keeps the EN hub title/description/canonical', () => {
+  it('guideHubMetadata keeps the EN hub title/description/canonical at /en/guides', () => {
     const meta = guideHubMetadata('en');
     expect(meta.title).toBe('Community Building Guides | JoinOrigin');
-    expect(meta.alternates?.canonical).toBe('http://localhost:3100/guides');
+    expect(meta.alternates?.canonical).toBe('http://localhost:3100/en/guides');
     const deHub = guideHubMetadata('de');
     expect(deHub.alternates?.canonical).toBe('http://localhost:3100/de/guides');
     expect(deHub.alternates?.languages).toEqual({
       de: 'http://localhost:3100/de/guides',
-      en: 'http://localhost:3100/guides',
-      'x-default': 'http://localhost:3100/guides',
+      en: 'http://localhost:3100/en/guides',
+      'x-default': 'http://localhost:3100/en/guides',
     });
   });
 });

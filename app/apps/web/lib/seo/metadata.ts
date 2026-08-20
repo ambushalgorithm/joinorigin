@@ -30,31 +30,42 @@ export interface CreateMetadataInput {
   languages?: Record<string, string>;
 }
 
-/** The per-locale surface path — prefixes an EN route when the locale is
- *  non-EN and the path is not already on that surface. */
+/** The per-locale surface path — prefixes an EN route onto the active
+ *  surface for ANY locale, including EN (all-routes-prefixed, TASK-466):
+ *  the EN canonical surface is `/en/...` (never unprefixed `/**`, which
+ *  307-redirects at the proxy). Paths already on the surface are returned
+ *  unchanged. */
 function surfacePathFor(path: string, locale?: Locale): string {
-  if (!locale || locale === 'en') return path;
+  if (!locale) return path;
   if (path === `/${locale}` || path.startsWith(`/${locale}/`)) return path;
-  return `/${locale}${path}`;
+  return path === '/' ? `/${locale}` : `/${locale}${path}`;
 }
 
-/** The EN counterpart path — strips the active locale prefix. */
+/** The EN counterpart path — `/en/...` for any surface (the unprefixed
+ *  `/**` tree is no longer canonical, TASK-466). */
 function enPathFor(surfacePath: string, locale?: Locale): string {
   if (!locale || locale === 'en') return surfacePath;
-  if (surfacePath === `/${locale}`) return '/';
-  if (surfacePath.startsWith(`/${locale}/`)) return surfacePath.slice(locale.length + 1);
+  if (surfacePath === `/${locale}`) return '/en';
+  if (surfacePath.startsWith(`/${locale}/`)) return `/en${surfacePath.slice(locale.length + 1)}`;
   return surfacePath;
 }
 
-/** Locale-derived hreflang for a non-EN surface: self + EN + `x-default` →
- *  EN canonical. EN surfaces carry no cluster here (their callers add the
- *  full translated-locale set explicitly). */
+/** Locale-derived hreflang for a surface: non-EN emits self + EN +
+ *  `x-default` → EN canonical (`/en/...`); EN emits the EN surface cluster
+ *  (`en` + `x-default` → `/en/...`). Callers needing the full 21-locale set
+ *  pass an explicit `languages` map (sitemap / guide / location helpers). */
 function localeLanguages(
   locale: Locale | undefined,
   surfacePath: string,
   enPath: string,
 ): Record<string, string> | undefined {
-  if (!locale || locale === 'en') return undefined;
+  if (!locale) return undefined;
+  if (locale === 'en') {
+    return {
+      en: absoluteUrl(surfacePath),
+      'x-default': absoluteUrl(surfacePath),
+    };
+  }
   return {
     [locale]: absoluteUrl(surfacePath),
     en: absoluteUrl(enPath),
@@ -70,10 +81,13 @@ function localeLanguages(
  * pattern); the root layout supplies site-wide defaults and `metadataBase`
  * so the absolute URLs here resolve consistently.
  *
- * Locale-aware (TASK-458): when `locale` is a non-EN surface, canonical and
- * hreflang stay per-locale (`/<locale>/...`) with `x-default` → EN canonical
- * while title/description/OG pass through — the caller applies the
- * per-locale-with-EN-fallback rule for the copy.
+ * Locale-aware (TASK-458 + TASK-466): when `locale` is provided, canonical
+ * and hreflang stay per-locale (`/<locale>/...`) with `x-default` → EN
+ * canonical at `/en/...` — for non-EN surfaces the EN alternate is the
+ * `/en/...` surface (the unprefixed `/**` tree 307-redirects), and for the
+ * EN surface itself canonical is `/en/...` with the EN cluster
+ * (`en` + `x-default`). Title/description/OG pass through — the caller
+ * applies the per-locale-with-EN-fallback rule for the copy.
  */
 export function createMetadata(input: CreateMetadataInput): Metadata {
   const surfacePath = surfacePathFor(input.path, input.locale);
@@ -107,19 +121,40 @@ export function createMetadata(input: CreateMetadataInput): Metadata {
 }
 
 /**
- * Rewrite EN-canonical metadata onto a non-EN locale surface — canonical and
- * hreflang point at `/<locale>/...` (`x-default` → EN canonical) while every
- * other field (title/description/OG/Twitter/robots) passes through unchanged.
- * This is the EN-fallback arm of the per-locale metadata contract (TASK-458):
- * generated `/<locale>/**` wrappers whose content has no committed translation
- * keep the EN copy but stay canonical on their own locale URL. `enPath` is the
- * page's EN route (e.g. '/location/germany/berlin'); for the EN surface the
- * metadata is returned untouched.
+ * Rewrite EN-canonical metadata onto a locale surface — canonical and
+ * hreflang point at `/<locale>/...` (`x-default` → EN canonical at
+ * `/en/...`; TASK-466: the unprefixed `/**` tree 307-redirects) while every
+ * other field (title/description/OG/Twitter/robots) passes through
+ * unchanged. This is the EN-fallback arm of the per-locale metadata contract
+ * (TASK-458): generated `/<locale>/**` wrappers whose content has no
+ * committed translation keep the EN copy but stay canonical on their own
+ * locale URL. For the EN surface itself (`locale === 'en'`) the canonical is
+ * rewritten to `/en/...` with the EN cluster (`en` + `x-default` → `/en/...`).
+ * `enPath` is the page's EN route (e.g. '/location/germany/berlin'); an
+ * already-`/en`-prefixed EN surface path is accepted and kept as-is.
  */
 export function localizeMetadata(meta: Metadata, locale: Locale, enPath: string): Metadata {
-  if (locale === 'en') return meta;
-  const surfacePath = enPath === '/' ? `/${locale}` : `/${locale}${enPath}`;
-  const enUrl = absoluteUrl(enPath);
+  const enSurface =
+    enPath === '/' || enPath === '/en' ? '/en' : enPath.startsWith('/en') ? enPath : `/en${enPath}`;
+  const enUrl = absoluteUrl(enSurface);
+  if (locale === 'en') {
+    return {
+      ...meta,
+      alternates: {
+        canonical: enUrl,
+        languages: {
+          en: enUrl,
+          'x-default': enUrl,
+        },
+      },
+    };
+  }
+  const surfacePath =
+    enPath === '/' || enPath === '/en'
+      ? `/${locale}`
+      : enPath.startsWith('/en')
+        ? `/${locale}${enPath.slice(3)}`
+        : `/${locale}${enPath}`;
   return {
     ...meta,
     alternates: {

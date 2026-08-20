@@ -67,8 +67,8 @@ describe('/de/guides/[slug] route (TASK-421 + TASK-453)', () => {
       expect(meta.alternates?.canonical).toBe('http://localhost:3100/de/guides/start-a-community');
       expect(meta.alternates?.languages).toEqual({
         de: 'http://localhost:3100/de/guides/start-a-community',
-        en: 'http://localhost:3100/guides/start-a-community',
-        'x-default': 'http://localhost:3100/guides/start-a-community',
+        en: 'http://localhost:3100/en/guides/start-a-community',
+        'x-default': 'http://localhost:3100/en/guides/start-a-community',
       });
     } finally {
       hasContentMock.mockRestore();
@@ -91,8 +91,8 @@ describe('/de/guides/[slug] route (TASK-421 + TASK-453)', () => {
       expect(meta.alternates?.canonical).toBe('http://localhost:3100/de/guides/organize-a-meetup');
       expect(meta.alternates?.languages).toEqual({
         de: 'http://localhost:3100/de/guides/organize-a-meetup',
-        en: 'http://localhost:3100/guides/organize-a-meetup',
-        'x-default': 'http://localhost:3100/guides/organize-a-meetup',
+        en: 'http://localhost:3100/en/guides/organize-a-meetup',
+        'x-default': 'http://localhost:3100/en/guides/organize-a-meetup',
       });
     } finally {
       hasContentMock.mockRestore();

@@ -355,6 +355,13 @@ function staticWrapperSource(locale: Locale, page: StaticPageSpec): string {
           { name: '${page.crumb}', path: '/${locale}/${page.route}' },
         ])}
       />\n`;
+  // hreflang note: EN surfaces emit the EN cluster (`en` + `x-default` →
+  // EN canonical at `/en/...`); non-EN surfaces emit `[locale]` + `en` +
+  // `x-default` → EN canonical (TASK-466: all-routes-prefixed).
+  const languagesNote =
+    locale === 'en'
+      ? '`en` + `x-default` → EN canonical'
+      : `\`${locale}\` + \`en\` + \`x-default\` → EN canonical`;
 
   return `import type { Metadata } from 'next';
 
@@ -371,11 +378,10 @@ ${siteImport}import { ${page.viewName} } from '${page.viewModule}';
  * proxy-forwarded \`x-joinorigin-locale\` header (root layout) and the
  * content loaders' per-locale + EN-fallback resolution.
  *
- * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
- * stay on the EN copy (no translated static-page content exists), while
- * canonical + hreflang stay per-locale — canonical
- * \`/${locale}${routePath}\` and \`alternates.languages\` \`${locale}\` +
- * \`en\` + \`x-default\` → EN canonical.
+ * Metadata is per-locale with EN fallback (TASK-458 + TASK-466):
+ * title/description/OG stay on the EN copy (no translated static-page
+ * content exists), while canonical + hreflang stay per-locale — canonical
+ * \`/${locale}${routePath}\` and \`alternates.languages\` ${languagesNote}.
  */
 export const metadata: Metadata = createMetadata({
   title: ${js(page.title)},

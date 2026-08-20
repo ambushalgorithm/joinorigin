@@ -22,20 +22,20 @@ import { locationPageEntries, type LocationPageEntry } from '../locationPages';
  */
 
 describe('lib/seo locationView — resolve + view model', () => {
-  it('resolves the hub entry', () => {
+  it('resolves the hub entry (EN canonical at /en/location)', () => {
     const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
     expect(hub).toBeDefined();
-    expect(hub?.path).toBe('/location');
+    expect(hub?.path).toBe('/en/location');
   });
 
   it('resolves country/region/city/variant params to registry entries', () => {
     const germany = resolveLocationEntry({ country: 'germany' });
     expect(germany?.kind).toBe('country');
-    expect(germany?.path).toBe('/location/germany');
+    expect(germany?.path).toBe('/en/location/germany');
 
     const berlinRegion = resolveLocationEntry({ country: 'germany', region: 'berlin' });
     expect(berlinRegion?.kind).toBe('region');
-    expect(berlinRegion?.path).toBe('/location/germany/berlin');
+    expect(berlinRegion?.path).toBe('/en/location/germany/berlin');
 
     const berlinCity = resolveLocationEntry({
       country: 'germany',
@@ -43,7 +43,7 @@ describe('lib/seo locationView — resolve + view model', () => {
       city: 'berlin',
     });
     expect(berlinCity?.kind).toBe('city');
-    expect(berlinCity?.path).toBe('/location/germany/berlin/berlin');
+    expect(berlinCity?.path).toBe('/en/location/germany/berlin/berlin');
 
     const startup = resolveLocationEntry({
       country: 'germany',
@@ -52,7 +52,7 @@ describe('lib/seo locationView — resolve + view model', () => {
       variant: 'startup',
     });
     expect(startup?.kind).toBe('variant');
-    expect(startup?.path).toBe('/location/germany/berlin/berlin/startup');
+    expect(startup?.path).toBe('/en/location/germany/berlin/berlin/startup');
   });
 
   it('returns undefined (→ notFound) for unknown/synthetic slugs', () => {
@@ -83,7 +83,7 @@ describe('lib/seo locationView — resolve + view model', () => {
     expect(data.eyebrow).toBe('Communities in this city');
     expect(data.kind).toBe('city');
     expect(data.indexable).toBe(true);
-    expect(data.path).toBe('/location/germany/berlin/berlin');
+    expect(data.path).toBe('/en/location/germany/berlin/berlin');
 
     // Breadcrumbs: Home › Communities by City › Germany › Berlin › Berlin.
     expect(data.breadcrumbs.map((crumb) => crumb.name)).toEqual([
@@ -93,7 +93,7 @@ describe('lib/seo locationView — resolve + view model', () => {
       'Communities in Berlin, Germany',
       'Communities in Berlin',
     ]);
-    expect(data.breadcrumbs.at(-1)?.path).toBe('/location/germany/berlin/berlin');
+    expect(data.breadcrumbs.at(-1)?.path).toBe('/en/location/germany/berlin/berlin');
 
     // G1/G2 sources flow into the render model.
     expect(data.dataPoints.length).toBeGreaterThanOrEqual(3);
@@ -278,7 +278,7 @@ describe('lib/seo locationView — waitlist analytics source', () => {
 });
 
 describe('lib/seo locationView — hreflang + metadata', () => {
-  it('emits bidirectional en/de languages + x-default→EN for Berlin pages', () => {
+  it('emits bidirectional en/de languages + x-default→EN canonical at /en/ for Berlin pages', () => {
     const berlinCity = resolveLocationEntry({
       country: 'germany',
       region: 'berlin',
@@ -286,13 +286,13 @@ describe('lib/seo locationView — hreflang + metadata', () => {
     });
     const languages = languagesFor(berlinCity!);
     expect(languages).toEqual({
-      en: 'http://localhost:3100/location/germany/berlin/berlin',
+      en: 'http://localhost:3100/en/location/germany/berlin/berlin',
       de: 'http://localhost:3100/de/location/germany/berlin/berlin',
-      'x-default': 'http://localhost:3100/location/germany/berlin/berlin',
+      'x-default': 'http://localhost:3100/en/location/germany/berlin/berlin',
     });
   });
 
-  it('de pages list de self + en alternate + x-default→EN', () => {
+  it('de pages list de self + en alternate (at /en/) + x-default→EN canonical', () => {
     const deCity = resolveLocationEntry(
       { country: 'germany', region: 'berlin', city: 'berlin' },
       'de',
@@ -300,8 +300,8 @@ describe('lib/seo locationView — hreflang + metadata', () => {
     const languages = languagesFor(deCity!);
     expect(languages).toEqual({
       de: 'http://localhost:3100/de/location/germany/berlin/berlin',
-      en: 'http://localhost:3100/location/germany/berlin/berlin',
-      'x-default': 'http://localhost:3100/location/germany/berlin/berlin',
+      en: 'http://localhost:3100/en/location/germany/berlin/berlin',
+      'x-default': 'http://localhost:3100/en/location/germany/berlin/berlin',
     });
   });
 
@@ -322,8 +322,8 @@ describe('lib/seo locationView — hreflang + metadata', () => {
     };
     expect(languagesFor(esEntry)).toEqual({
       es: 'http://localhost:3100/es/location/germany/berlin/berlin',
-      en: 'http://localhost:3100/location/germany/berlin/berlin',
-      'x-default': 'http://localhost:3100/location/germany/berlin/berlin',
+      en: 'http://localhost:3100/en/location/germany/berlin/berlin',
+      'x-default': 'http://localhost:3100/en/location/germany/berlin/berlin',
     });
   });
 
@@ -344,7 +344,7 @@ describe('lib/seo locationView — hreflang + metadata', () => {
   it('metadata: canonical + robots noindex for failed gates', () => {
     const germany = resolveLocationEntry({ country: 'germany' });
     const meta = locationMetadata(germany!);
-    expect(meta.alternates?.canonical).toBe('http://localhost:3100/location/germany');
+    expect(meta.alternates?.canonical).toBe('http://localhost:3100/en/location/germany');
     expect(meta.robots).toEqual({ index: true, follow: true });
 
     const dallas = resolveLocationEntry({
@@ -364,8 +364,8 @@ describe('lib/seo locationView — hreflang + metadata', () => {
     const meta = locationMetadata(deIdeas!);
     expect(meta.alternates?.languages).toEqual({
       de: 'http://localhost:3100/de/location/germany/berlin/berlin/ideas',
-      en: 'http://localhost:3100/location/germany/berlin/berlin/ideas',
-      'x-default': 'http://localhost:3100/location/germany/berlin/berlin/ideas',
+      en: 'http://localhost:3100/en/location/germany/berlin/berlin/ideas',
+      'x-default': 'http://localhost:3100/en/location/germany/berlin/berlin/ideas',
     });
   });
 });
@@ -442,7 +442,7 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
     const berlinCity = locationPageEntries().find(
       (entry) => entry.kind === 'city' && entry.params.city === 'berlin',
     );
-    expect(berlinCity?.path).toBe('/location/germany/berlin/berlin');
+    expect(berlinCity?.path).toBe('/en/location/germany/berlin/berlin');
   });
 
   it('guide cross-links are present for every page kind', () => {

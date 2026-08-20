@@ -41,13 +41,13 @@ async function renderHubPage() {
 }
 
 describe('/location hub page', () => {
-  it('exports registry-derived metadata with canonical + robots', () => {
+  it('exports registry-derived metadata with canonical at /en/location + robots', () => {
     expect(metadata.title).toBe(
       'Communities by City — Find or Start a Community Near You | JoinOrigin',
     );
-    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/location');
+    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/en/location');
     expect(metadata.robots).toEqual({ index: true, follow: true });
-    expect(metadata.openGraph?.url).toBe('http://localhost:3100/location');
+    expect(metadata.openGraph?.url).toBe('http://localhost:3100/en/location');
   });
 
   it('renders a single h1 with the hub heading', async () => {

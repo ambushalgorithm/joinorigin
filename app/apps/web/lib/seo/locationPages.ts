@@ -241,9 +241,11 @@ function buildEntry(input: BuildEntryInput): LocationPageEntry {
   };
 }
 
-/** Path prefix for per-locale surfaces (`/${locale}/location/...`). */
+/** Path prefix for per-locale surfaces (`/en/location/...`, `/<locale>/location/...`).
+ *  All-routes-prefixed (TASK-466): EN canonical surfaces are `/en/**`, never
+ *  the unprefixed `/**` tree (which 307-redirects at the proxy). */
 function localePrefix(locale: Locale): string {
-  return locale === 'en' ? '' : `/${locale}`;
+  return `/${locale}`;
 }
 
 function locationPath(locale: Locale, segments: string[]): string {
@@ -256,7 +258,7 @@ function hubEntry(locale: Locale): LocationPageEntry {
   return buildEntry({
     kind: 'hub',
     params: {},
-    path: locale === 'en' ? LOCATION_HUB_PATH : `/${locale}${LOCATION_HUB_PATH}`,
+    path: `/${locale}${LOCATION_HUB_PATH}`,
     title: 'Communities by City — Find or Start a Community Near You | JoinOrigin',
     description: `Explore communities by city around the world — startup, creative, political, meetup, and small business groups. ${waitlistPhraseFor(locale)}`,
     tier: 1,

@@ -51,7 +51,7 @@ describe('/location/[country]/[region]/[city] route', () => {
       params: Promise.resolve({ country: 'united-states', region: 'new-york', city: 'new-york' }),
     });
     expect(meta.alternates?.canonical).toBe(
-      'http://localhost:3100/location/united-states/new-york/new-york',
+      'http://localhost:3100/en/location/united-states/new-york/new-york',
     );
     expect(meta.alternates?.languages).toBeUndefined();
     expect(meta.robots).toEqual({ index: true, follow: true });
@@ -62,9 +62,9 @@ describe('/location/[country]/[region]/[city] route', () => {
       params: Promise.resolve({ country: 'germany', region: 'berlin', city: 'berlin' }),
     });
     expect(meta.alternates?.languages).toEqual({
-      en: 'http://localhost:3100/location/germany/berlin/berlin',
+      en: 'http://localhost:3100/en/location/germany/berlin/berlin',
       de: 'http://localhost:3100/de/location/germany/berlin/berlin',
-      'x-default': 'http://localhost:3100/location/germany/berlin/berlin',
+      'x-default': 'http://localhost:3100/en/location/germany/berlin/berlin',
     });
   });
 

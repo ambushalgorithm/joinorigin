@@ -7,6 +7,13 @@
  * lists.** The set reflects `sprint-4-discovery.md` §4 (8 HTML pages; the
  * `/pricing` page was removed — money is never mentioned).
  *
+ * `ROUTES` paths are the language-neutral route definitions. All-routes-
+ * prefixed (TASK-464 + TASK-466): the EN canonical surface is `/en/**`
+ * (e.g. `/en`, `/en/features`) — the unprefixed `/**` tree 307-redirects at
+ * the proxy and is never emitted as canonical. Consumers map each path onto
+ * the active surface (`staticPath` in sitemap.ts, `surfacePathFor` in
+ * metadata.ts, `localizePath` in the chrome).
+ *
  * `title`/`description` are the discovery §5 per-page values (used by
  * sitemap.xml and llms.txt). Per-page metadata itself lives in each page's
  * server wrapper (fe-menu-pages); this module only drives URL-derived

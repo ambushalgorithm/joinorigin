@@ -25,13 +25,15 @@ import { absoluteUrl } from '../lib/seo/url';
  *
  * Sprint 19 (Goal 1 + Q4): every one of the 21 locale surfaces is covered —
  * each page (static routes, location registry, guides, hubs) × every locale
- * is its own indexable URL. The EN surface stays the unprefixed canonical
- * tree (`/**`); each non-EN locale adds its `/<locale>/...` URLs. Every URL
- * carries the full hreflang cluster via `alternates.languages` with
- * `x-default` → EN canonical (`/**`): EN pages list every locale that has a
- * live `/<locale>/...` counterpart, and a non-EN page lists its own locale
- * self + `en` + `x-default` (the same helpers the pages' metadata use —
- * phase B, design §7.2/§9.1).
+ * is its own indexable URL. All-routes-prefixed (TASK-464 + TASK-466): every
+ * URL is emitted at its `/<locale>/...` surface — including EN, which is
+ * canonical at `/en/...` (the unprefixed `/**` tree 307-redirects at the
+ * proxy and is never emitted here). Every URL carries the full hreflang
+ * cluster via `alternates.languages` with `x-default` → EN canonical
+ * (`/en/...`): EN pages list every locale that has a live `/<locale>/...`
+ * counterpart, and a non-EN page lists its own locale self + `en` +
+ * `x-default` (the same helpers the pages' metadata use — phase B,
+ * design §7.2/§9.1).
  *
  * `/llms.txt` and `/docs/*.md` are not HTML pages and intentionally stay out
  * of the sitemap (discovery §8.5) — they are discovered via llms.txt /
@@ -75,21 +77,22 @@ const STATIC_ROUTES: StaticRouteSpec[] = [
 ];
 
 /** Path of a static route on a locale surface — home `/<locale>`, others
- *  `/<locale>/<route>`; the EN surface stays unprefixed (canonical). */
+ *  `/<locale>/<route>`; EN canonical surfaces are `/en/...` (all-prefixed,
+ *  TASK-466 — the unprefixed `/**` tree 307-redirects). */
 function staticPath(locale: Locale, path: string): string {
-  if (locale === 'en') return path;
   return path === '/' ? `/${locale}` : `/${locale}${path}`;
 }
 
 /**
  * `alternates.languages` for a static route. An EN page lists every locale
- * (all `/<locale>` wrappers are live generated routes); a non-EN page lists
- * its locale self + `en` + `x-default` → EN canonical — the same shape the
- * guide/location helpers emit.
+ * (all `/<locale>` wrappers are live generated routes) with `en` +
+ * `x-default` → `/en/...`; a non-EN page lists its locale self + `en` +
+ * `x-default` → EN canonical at `/en/...` — the same shape the guide/location
+ * helpers emit.
  */
 function staticLanguagesFor(locale: Locale, path: string): Record<string, string> {
+  const enUrl = absoluteUrl(staticPath('en', path));
   if (locale !== 'en') {
-    const enUrl = absoluteUrl(staticPath('en', path));
     return {
       [locale]: absoluteUrl(staticPath(locale, path)),
       en: enUrl,
@@ -97,8 +100,8 @@ function staticLanguagesFor(locale: Locale, path: string): Record<string, string
     };
   }
   const languages: Record<string, string> = {
-    en: absoluteUrl(path),
-    'x-default': absoluteUrl(path),
+    en: enUrl,
+    'x-default': enUrl,
   };
   for (const other of SUPPORTED_LOCALES) {
     if (other === 'en') continue;
@@ -112,9 +115,9 @@ function staticLanguagesFor(locale: Locale, path: string): Record<string, string
  * registry (`indexableLocationEntries(locale)`), guide pages
  * (`guidePageEntries(locale)`), and the guides hub — each as its own
  * indexable URL with the full hreflang cluster and a deterministic
- * `lastModified`. EN (`locale === 'en'`) is the unprefixed canonical surface;
- * every non-EN locale contributes its `/<locale>/...` URLs (committed content
- * only — phase A, design §7.1).
+ * `lastModified`. Every locale (incl. EN, canonical at `/en/**`) contributes
+ * its `/<locale>/...` URLs (committed content only for non-EN — phase A,
+ * design §7.1).
  */
 function localeSurfaceEntries(locale: Locale): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];

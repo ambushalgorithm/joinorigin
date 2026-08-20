@@ -40,7 +40,7 @@ describe('/location/[country]/[region]/[city]/[variant] route', () => {
       }),
     });
     expect(meta.alternates?.canonical).toBe(
-      'http://localhost:3100/location/germany/berlin/berlin/startup',
+      'http://localhost:3100/en/location/germany/berlin/berlin/startup',
     );
     expect(meta.robots).toEqual({ index: true, follow: true });
   });
