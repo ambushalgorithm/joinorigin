@@ -2,13 +2,7 @@ import type { ReactElement } from 'react';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import { guidePageEntries } from '../../lib/seo/guides';
 import GuidesHubPage, { metadata } from './page';
@@ -22,9 +16,9 @@ import GuidesHubPage, { metadata } from './page';
  *
  * TASK-446: the canonical hub resolves entries through the active server
  * locale (proxy-forwarded `x-joinorigin-locale`) — `getServerLocale` is
- * mocked here. With the `de` cookie the hub lists the committed German guide
- * set (locale-prefixed paths + German titles); the default `en` behavior is
- * unchanged.
+ * mocked here. With the active `de` locale the hub lists the committed
+ * German guide set (locale-prefixed paths + German titles); the default `en`
+ * behavior is unchanged. Locale is URL-only (TASK-468) — no cookie.
  *
  * The guides chrome keys (TASK-411) are seeded into the test dictionary so
  * the suite is deterministic regardless of merge order with the en-keys role.
@@ -216,16 +210,7 @@ jest.mock('next/navigation', () => ({
   usePathname: () => mockPathname,
 }));
 
-/** Aligns the provider's post-mount auto-detect with the render locale. */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 async function renderHubForLocale(locale: Locale) {
-  setNavigatorLanguage(locale);
   return render(
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       {await GuidesHubPage()}
@@ -236,7 +221,6 @@ async function renderHubForLocale(locale: Locale) {
 describe('guides hub — locale-aware internal links (TASK-460)', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
     mockPathname = '/';
   });
 
@@ -274,7 +258,7 @@ describe('guides hub — locale-aware internal links (TASK-460)', () => {
     expect(linkByHref('/de/glossary')).toBeDefined();
   });
 
-  it('renders EN-canonical /en/** guide links + de chrome links on an unprefixed load with a de cookie (table row 4)', async () => {
+  it('renders EN-canonical /en/** guide links + de chrome links on an unprefixed path with an active de locale (URL-driven)', async () => {
     // Canonical route stays EN server-side; all-routes-prefixed (TASK-466):
     // the EN registry paths already carry `/en/**`, so the helper keeps them
     // (the unprefixed `/**` tree 307-redirects at the proxy). Chrome links

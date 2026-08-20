@@ -17,8 +17,9 @@ import { renderWithI18n } from '../../test-utils';
  *
  * TASK-446: the canonical hub builds its view data through the active server
  * locale (proxy-forwarded `x-joinorigin-locale`) — `getServerLocale` is
- * mocked here. With the `de` cookie the hub chrome (guide-link card titles,
- * breadcrumbs) renders German; SEO metadata stays EN (arch-i18n §1.2).
+ * mocked here. With the active `de` locale the hub chrome (guide-link card
+ * titles, breadcrumbs) renders German; SEO metadata stays EN (arch-i18n
+ * §1.2). Locale is URL-only (TASK-468) — no cookie.
  *
  * Note: the debounce itself is unit-tested in `lib/search/__tests__` with
  * fake timers; here the full page render uses real timers + `waitFor`

@@ -1,7 +1,6 @@
 import { screen, within } from '@testing-library/react';
 
 import { getDir, getDictionary, getT, _resetI18nForTests } from '@joinorigin/i18n';
-import { LOCALE_COOKIE_NAME } from '@joinorigin/i18n';
 
 import { LocationView } from '../../../components/location/LocationView';
 import { buildLocationViewData, resolveLocationEntry } from '../locationView';
@@ -17,16 +16,13 @@ import { renderWithI18n } from '../../../test-utils';
  *  2. Locale-aware number formatting: city-stat numbers format through
  *     `toLocaleString(locale)` with locale-specific separators (R7).
  *  3. Chrome follows the active locale: the presence claim / section
- *     headings render localized text (cookie-driven via `useI18n().t`),
- *     while body copy still comes from the content files (not dictionaries).
+ *     headings render localized text (URL-driven via `useI18n().t` —
+ *     `renderWithI18n` sets the locale prop; no cookie, TASK-468), while
+ *     body copy still comes from the content files (not dictionaries).
  */
 
 beforeEach(() => {
-  // The provider's post-mount auto-detect reads the persisted cookie and can
-  // override the locale prop across tests in this file (provider.test.tsx
-  // uses the same isolation pattern). Reset both so every test starts clean.
   _resetI18nForTests();
-  document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
 });
 
 describe('seoContent chrome — RTL contract (TASK-310 §7.1)', () => {
@@ -73,7 +69,7 @@ describe('seoContent chrome — locale-aware number formatting (R7)', () => {
   });
 });
 
-describe('seoContent chrome — cookie-locale chrome switching (design §7.1)', () => {
+describe('seoContent chrome — active-locale chrome switching (design §7.1)', () => {
   it('renders German chrome when the active locale is de (Berlin city page)', () => {
     const entry = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
     const data = buildLocationViewData(entry!);

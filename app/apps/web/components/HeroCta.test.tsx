@@ -4,13 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import HeroCta from './HeroCta';
 import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
@@ -18,7 +12,8 @@ import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 /**
  * `next/navigation` is mocked so the CTA's `useLocalizePath` (link
  * locale-prefix table) works in jsdom (TASK-456). `mockPathname` drives the
- * "current URL" for the prefix table.
+ * "current URL" for the prefix table. Locale is URL-only (TASK-468): tests
+ * render with `I18nProvider locale=...` — no cookie is ever written or read.
  */
 let mockPathname = '/';
 
@@ -26,16 +21,7 @@ jest.mock('next/navigation', () => ({
   usePathname: () => mockPathname,
 }));
 
-/** Aligns the provider's post-mount auto-detect with the render locale. */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 function renderCta(props: React.ComponentProps<typeof HeroCta>, locale: Locale = 'en') {
-  setNavigatorLanguage(locale);
   return render(
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <NativeThemeProvider theme={theme}>
@@ -61,7 +47,6 @@ function renderCta(props: React.ComponentProps<typeof HeroCta>, locale: Locale =
 describe('HeroCta', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
     mockPathname = '/';
   });
 
@@ -98,8 +83,7 @@ describe('HeroCta', () => {
     expect(screen.getByTestId('hero-contact-link')).toHaveAttribute('href', '/de/contact');
   });
 
-  it('prefixes the contact href on an unprefixed load with a de cookie (row 4)', () => {
-    document.cookie = `${LOCALE_COOKIE_NAME}=de; path=/`;
+  it('prefixes the contact href on an unprefixed path with an active de locale (URL-driven)', () => {
     mockPathname = '/privacy';
     renderCta({ variant: 'contact', label: 'Kontakt', href: '/contact' }, 'de');
     expect(screen.getByTestId('hero-contact-link')).toHaveAttribute('href', '/de/contact');

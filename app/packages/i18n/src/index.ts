@@ -31,5 +31,3 @@ export {
 } from './provider';
 
 export { Trans, type TransProps } from './trans';
-
-export { LOCALE_COOKIE_NAME, getStoredLocale, storeLocale } from './storage';

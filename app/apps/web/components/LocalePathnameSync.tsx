@@ -25,8 +25,8 @@ import { SUPPORTED_LOCALES, useI18n, type Locale } from '@joinorigin/i18n';
  *   locale-only re-render — e.g. the LanguageSwitcher's own
  *   `setLocale` → `router.push` sequence — is never reverted mid-navigation;
  * - the provider's `setLocale` is itself guarded (`resolved === locale` →
- *   early return), so a redundant call never rewrites the route-stick
- *   `joinorigin_locale` cookie.
+ *   early return), so a redundant call is a pure no-op. No cookie is ever
+ *   written — the language always lives in the URL (TASK-468).
  */
 
 /** Locale forced by a pathname's first segment — `/vi`, `/vi/features`,

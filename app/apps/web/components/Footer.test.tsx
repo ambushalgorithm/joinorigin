@@ -3,13 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import Footer from './Footer';
 import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
@@ -18,6 +12,8 @@ import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
  * `next/navigation` is mocked so the Footer's `useLocalizePath` (link
  * locale-prefix table) and the mounted LanguageSwitcher hooks work in jsdom
  * (TASK-456). `mockPathname` drives the "current URL" for the prefix table.
+ * Locale is URL-only (TASK-468): tests render with `I18nProvider locale=...`
+ * — no cookie is ever read.
  */
 let mockPathname = '/';
 
@@ -26,16 +22,7 @@ jest.mock('next/navigation', () => ({
   usePathname: () => mockPathname,
 }));
 
-/** Aligns the provider's post-mount auto-detect with the render locale. */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 function renderFooter(locale: Locale = 'en') {
-  setNavigatorLanguage(locale);
   return render(
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <NativeThemeProvider theme={theme}>
@@ -52,7 +39,6 @@ function renderFooter(locale: Locale = 'en') {
 describe('Footer', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
     mockPathname = '/';
   });
 
@@ -117,8 +103,7 @@ describe('Footer', () => {
     );
   });
 
-  it('prefixes links on an unprefixed load with a de cookie (table row 4)', () => {
-    document.cookie = `${LOCALE_COOKIE_NAME}=de; path=/`;
+  it('prefixes links on an unprefixed path with an active de locale (URL-driven)', () => {
     mockPathname = '/features';
     renderFooter('de');
 

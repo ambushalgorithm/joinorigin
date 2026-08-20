@@ -1,12 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import { LocationView } from '../../../../../components/location/LocationView';
 import { getCityContent } from '../../../../../lib/seo/content';
@@ -27,9 +21,10 @@ import CityPage, { generateMetadata, generateStaticParams } from './page';
  *
  * TASK-446: the canonical city page builds its view data through the active
  * server locale (proxy-forwarded `x-joinorigin-locale`) — `getServerLocale`
- * is mocked here. With the `es` cookie Mexico City renders the committed
- * Spanish intro; Austin (no es content) falls back to EN. SEO metadata stays
- * EN (arch-i18n §1.2).
+ * is mocked here. With the active `es` locale Mexico City renders the
+ * committed Spanish intro; Austin (no es content) falls back to EN. SEO
+ * metadata stays EN (arch-i18n §1.2). Locale is URL-only (TASK-468) — no
+ * cookie.
  */
 
 jest.mock('../../../../../lib/i18n-server', () => ({
@@ -184,16 +179,7 @@ jest.mock('next/navigation', () => ({
   usePathname: () => mockPathname,
 }));
 
-/** Aligns the provider's post-mount auto-detect with the render locale. */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 function renderLocationForLocale(locale: Locale, data: ReturnType<typeof buildLocationViewData>) {
-  setNavigatorLanguage(locale);
   return render(
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <LocationView data={data} />
@@ -211,7 +197,6 @@ describe('location view — locale-aware internal links (TASK-460)', () => {
 
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
     mockPathname = '/';
   });
 
@@ -245,7 +230,7 @@ describe('location view — locale-aware internal links (TASK-460)', () => {
     expect(linkByHref('/de/guides/start-a-community')).toBeDefined();
   });
 
-  it('renders /de/** links on an unprefixed load with a de cookie (table row 4)', () => {
+  it('renders /de/** links on an unprefixed path with an active de locale (URL-driven)', () => {
     mockPathname = '/location/germany/berlin/berlin';
     renderLocationForLocale('de', berlinData);
     expect(linkByHref('/de/location')).toBeDefined();

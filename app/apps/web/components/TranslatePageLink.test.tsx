@@ -3,13 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import TranslatePageLink from './TranslatePageLink';
 
@@ -21,6 +15,8 @@ import TranslatePageLink from './TranslatePageLink';
  * non-EN locale-prefixed path (already-translated pages, generalized from
  * the original `/de/*` gate via the shared locale-path helper, TASK-456).
  * No widget/script/SDK is added — the component is a plain link-out only.
+ * Locale is URL-only (TASK-468): tests render with `I18nProvider locale=...`
+ * — no cookie is ever read.
  */
 
 function renderLink(locale: Locale = 'en', labelKey = 'seoContent.location.translatePage') {
@@ -36,7 +32,6 @@ function renderLink(locale: Locale = 'en', labelKey = 'seoContent.location.trans
 describe('TranslatePageLink', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
   });
 
   it('renders nothing during SSR (the link appears only after hydration)', () => {
@@ -65,8 +60,7 @@ describe('TranslatePageLink', () => {
     expect(url.searchParams.get('u')).toBe(window.location.href);
   });
 
-  it('derives tl from the active client locale (de cookie → tl=de)', () => {
-    document.cookie = `${LOCALE_COOKIE_NAME}=de; path=/`;
+  it('derives tl from the active client locale (URL-driven de → tl=de)', () => {
     renderLink('de');
 
     const link = screen.getByTestId('translate-page-link');
