@@ -41,8 +41,11 @@ import type { LocationViewData } from '../../lib/seo/locationView';
  *  1. unique city intro (authored content — each paragraph renders as its
  *     own block; the short registry lead is the fallback),
  *  2. city data block (data points),
- *  3. group-type links (only committed variants + the idea page),
- *  4. related links (sibling cities + guides — internal-link mesh §8.5),
+ *  3. group-type links ("Explore community types" — committed variants +
+ *     the idea page; renders for every content-rich city, tier-irrelevant),
+ *  4. related links (sibling cities "Communities in nearby cities" + guides
+ *     — internal-link mesh §8.5; sibling cluster renders for every
+ *     content-rich city, tier-irrelevant),
  *  5. FAQ block (mirrored 1:1 in FAQPage JSON-LD by the server wrapper),
  *  6. honest presence claim ("Find or start a community in {city}"),
  *  7. waitlist CTA wired to `/api/leads` + `trackEvent('signup_click')`.
@@ -394,7 +397,9 @@ export function LocationView({ data }: { data: LocationViewData }) {
             </Reveal>
           ) : null}
 
-          {/* Explore community types, renders on route: /en/location/germany/berlin/berlin/berlin */}
+          {/* Explore community types — renders on every content-rich city/
+              variant/ideas page (tier-irrelevant, Sprint 20), e.g.
+              /en/location/germany/berlin/berlin/berlin */}
           {hasGroupLinks ? (
             <Reveal>
               <Section>
@@ -543,7 +548,9 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
-      {/* Explore community types: renders on routes like: /en/location/germany/berlin/berlin/small-business */}
+      {/* Idea listicle categories — renders on the ideas page of every
+          content-rich city with a committed ideaPage (Sprint 20), e.g.
+          /en/location/germany/berlin/berlin/ideas */}
       {isIdeas && data.ideaCategories ? (
         <SectionBand variant="plain">
           <PageContainer>
@@ -569,7 +576,9 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
-      {/* Communities in nearby cities, renders on routes like: /en/location/germany/berlin/berlin/small-business */}
+      {/* Communities in nearby cities — same-region siblings render on every
+          content-rich city/variant/ideas page (tier-irrelevant, Sprint 20),
+          e.g. /en/location/germany/berlin/berlin/small-business */}
       {hasSiblings && data.kind !== 'hub' ? (
         <SectionBand variant={isIdeas ? 'glass' : 'plain'}>
           <PageContainer>

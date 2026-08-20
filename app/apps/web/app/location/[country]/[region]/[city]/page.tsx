@@ -16,8 +16,12 @@ import {
  * `/location/[country]/[region]/[city]` — city page (design §8.4, §6.4).
  *
  * Warm set: the two MVP flagship cities (New York City, Berlin) are
- * prerendered; every other city renders on first request via ISR and is
- * `noindex, follow` (Tier-3 until content passes G1–G5). Unknown slugs →
+ * prerendered; every other city renders on first request via ISR. The
+ * "Explore community types" + "Communities in nearby cities" sections
+ * (and their group-type variant/idea pages) render for EVERY content-rich
+ * city — tier-irrelevant (Sprint 20, TASK-472). Indexability stays
+ * tier-gated: `indexable` = tier ≤ 2 AND G1–G5 pass; Tier-3 content pages
+ * (e.g. Copenhagen) render but stay `noindex, follow`. Unknown slugs →
  * `notFound()` (G3 enforcement).
  *
  * Locale-aware body (TASK-446): view data resolves through the active server

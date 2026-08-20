@@ -17,10 +17,11 @@ import {
  * reserved `ideas` page (design §6.5, §6.6).
  *
  * The variant segment is one of the 5 group-type keys (`startup`, `creative`,
- * `political`, `meetup`, `small-business`) or the reserved `ideas` slug. Only
- * variants with committed, differentiating prose are enumerated by the
- * registry (G5); warm set = the MVP flagship variants + idea pages. Unknown
- * variants → `notFound()` (G3 enforcement).
+ * `political`, `meetup`, `small-business`) or the reserved `ideas` slug. The
+ * registry enumerates variant + ideas entries for EVERY content-rich city,
+ * tier-irrelevant (Sprint 20, TASK-471) — committed, differentiating prose
+ * decides emission (G5); warm set = the MVP flagship variants + idea pages.
+ * Unknown variants → `notFound()` (G3 enforcement).
  *
  * Locale-aware body (TASK-446): view data resolves through the active server
  * locale (proxy-forwarded `x-joinorigin-locale`) with EN fallback via

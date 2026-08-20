@@ -9,6 +9,20 @@
 > `research/sprint-11-content-strategy.md` (TASK-299) · `research/sprint-11-localization.md` (TASK-300) ·
 > `research/sprint-11-tech-feasibility.md` (TASK-301) · `research/sprint-11-translation-services.md` (TASK-302)
 
+> **Sprint 20 implementation update (2026-08-20, user-approved):** the "Explore
+> community types" + "Communities in nearby cities" sections (§6.4 #3/#4, §8.5)
+> and the group-type variant + idea pages (§6.5, §6.6) now apply to **EVERY city
+> with committed content — tier-irrelevant** (EN 56 content cities + per-locale
+> committed content: de 2, es 8, ar 3, hi 6, …). The registry
+> (`apps/web/lib/seo/locationPages.ts`) emits variant + ideas entries for every
+> content-rich city per locale via `listContentByKind('city', locale)` →
+> `findCityBySlug`, and the view layer (`locationView.ts`) un-gated
+> `groupTypeLinksFor()`/`buildLocationViewData()` so both sections render on every
+> content city page. Indexability stays tier-gated (indexable = tier ≤ 2 AND
+> G1–G5 pass; Tier-3 content pages e.g. Copenhagen render but stay noindex); the
+> warm set is unchanged (hub + Tier-1 = NYC + Berlin). This aligns the
+> implementation with §6.4/§8.5's "every city links 5–10 sibling cities".
+
 ---
 
 ## 1. Purpose
@@ -25,18 +39,18 @@ The Sprint 12 execution roles consume this document **verbatim** as their contra
 
 ### 1.1 What this design decides (decision summary)
 
-| # | Decision | Adopted approach | Source reports reconciled |
-|---|----------|------------------|---------------------------|
-| D1 | URL namespace | `/location/<country>/<region>/<city>` + variants (user-approved brief; `singular` top-level segment) | brief vs programmatic-seo §4.3 (`/locations`) |
-| D2 | Slug form | Full English kebab-case names (`united-states`, `texas`, `san-francisco`); ISO alpha-2 retained in the data model | geodata §10 vs programmatic-seo §4.3 |
-| D3 | Dataset | GeoNames (CC BY 4.0) primary + SimpleMaps Basic overlay (CC BY 4.0) + Wikidata localization (CC0); committed repo snapshot | geodata §12 |
-| D4 | Page types | 3-layer hierarchy: L1 7 how-to guides · L2 hubs + glossary · L3 city pages + group-type variants + idea pages | content-strategy §4 |
-| D5 | Localization | EN-first phase A (Sprint 12): EN canonical URLs, chrome localized via i18n `seoContent` namespace, no hreflang; phase B (Sprint 13+): curated translated subset + full hreflang | localization R1–R8 vs translation-services §9 |
-| D6 | MT-on-demand | **Deferred.** No runtime MT in Sprint 12. Build-time MT + post-edit only for a curated phase-B subset | translation-services §3/§9 vs localization R5/R6 |
-| D7 | Routing/build | Hybrid: `generateStaticParams` warm set (hubs + Tier-1/2 flagships) + classic ISR on-demand long tail; `revalidateTag('geo')` invalidation; `cacheComponents` spike deferred | tech-feasibility §6/§10 |
-| D8 | Indexation | Tiered + quality gates G1–G5; Tier-3/noindex until gates pass; sitemap lists only indexable pages | programmatic-seo §5/§8 |
-| D9 | Single source of truth | `apps/web/lib/seo/locationPages.ts` registry consumed by `generateStaticParams`, `sitemap.ts`, metadata — ROUTES pattern extended | tech-feasibility §8.3 |
-| D10 | Rollout | Sprint 12 ships 8 Tier-1 flagship cities + ~30–50 Tier-2 + all hubs/guides/glossary; Tier-3 long tail noindexed | content-strategy §5.3, geodata §8, programmatic-seo §5.3 |
+| #   | Decision               | Adopted approach                                                                                                                                                                                                                                            | Source reports reconciled                                |
+| --- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| D1  | URL namespace          | `/location/<country>/<region>/<city>` + variants (user-approved brief; `singular` top-level segment)                                                                                                                                                        | brief vs programmatic-seo §4.3 (`/locations`)            |
+| D2  | Slug form              | Full English kebab-case names (`united-states`, `texas`, `san-francisco`); ISO alpha-2 retained in the data model                                                                                                                                           | geodata §10 vs programmatic-seo §4.3                     |
+| D3  | Dataset                | GeoNames (CC BY 4.0) primary + SimpleMaps Basic overlay (CC BY 4.0) + Wikidata localization (CC0); committed repo snapshot                                                                                                                                  | geodata §12                                              |
+| D4  | Page types             | 3-layer hierarchy: L1 7 how-to guides · L2 hubs + glossary · L3 city pages + group-type variants + idea pages                                                                                                                                               | content-strategy §4                                      |
+| D5  | Localization           | EN-first phase A (Sprint 12): EN canonical URLs, chrome localized via i18n `seoContent` namespace, no hreflang; phase B (Sprint 13+): curated translated subset + full hreflang                                                                             | localization R1–R8 vs translation-services §9            |
+| D6  | MT-on-demand           | **Deferred.** No runtime MT in Sprint 12. Build-time MT + post-edit only for a curated phase-B subset                                                                                                                                                       | translation-services §3/§9 vs localization R5/R6         |
+| D7  | Routing/build          | Hybrid: `generateStaticParams` warm set (hubs + Tier-1/2 flagships) + classic ISR on-demand long tail; `revalidateTag('geo')` invalidation; `cacheComponents` spike deferred                                                                                | tech-feasibility §6/§10                                  |
+| D8  | Indexation             | Tiered + quality gates G1–G5; Tier-3/noindex until gates pass; sitemap lists only indexable pages                                                                                                                                                           | programmatic-seo §5/§8                                   |
+| D9  | Single source of truth | `apps/web/lib/seo/locationPages.ts` registry consumed by `generateStaticParams`, `sitemap.ts`, metadata — ROUTES pattern extended                                                                                                                           | tech-feasibility §8.3                                    |
+| D10 | Rollout                | Sprint 12 ships 8 Tier-1 flagship cities + ~30–50 Tier-2 + all hubs/guides/glossary; Tier-3 long tail noindexed. **Sprint 20:** sections + variant/idea pages emitted for every content-rich city, tier-irrelevant; indexability + warm set stay tier-gated | content-strategy §5.3, geodata §8, programmatic-seo §5.3 |
 
 ---
 
@@ -66,6 +80,10 @@ translation-services §6.4).
 **Sprint 12 ships small and validates before scaling:** 8 flagship cities with manual
 polish + a small Tier-2 slice + the full L1/L2 surface, on the hybrid ISR architecture,
 extending the existing `ROUTES`/sitemap/llms.txt single-source-of-truth pattern.
+**Sprint 20:** rendering scope expanded to **every content-rich city, tier-irrelevant** —
+the "Explore community types" + "Communities in nearby cities" sections and the group-type
+variant/idea pages are emitted for all committed cities (see the update callout at the
+top).
 
 ---
 
@@ -103,13 +121,20 @@ unique data) but conflict on mechanics. The architect's resolution:
   Tier 1 ≈ 200–500 cities; programmatic-seo §5.3 says Tier 1 = 25–50, Tier 2 = 500–2000.
 - **Resolution (D10): a unified 3-tier model, sized to "validate then scale":**
 
-  | Tier | Definition | Count | Sprint 12 scope | Indexation |
-  |------|-----------|-------|-----------------|------------|
-  | **Tier 1 — Flagship** | Manual-polish cities (content-strategy §5.3 shortlist) | 8 first wave; grow on signal | **Ship 8** (NYC, SF/Bay, London, Berlin, Austin, Toronto, Singapore, Bengaluru) | `index, follow` |
-  | **Tier 2 — Major** | Auto-generated with rich template + human review | ~30–50 in Sprint 12 (then up to ~250) | Ship a **small slice (~30)** to validate the template | `index, follow` if G1–G5 pass |
-  | **Tier 3 — Long tail** | Data-only small cities | 235K in dataset | **Not published indexable**; rendered only when gates pass | `noindex, follow` until promoted |
+  | Tier                   | Definition                                             | Count                                 | Sprint 12 scope                                                                 | Indexation                       |
+  | ---------------------- | ------------------------------------------------------ | ------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------- |
+  | **Tier 1 — Flagship**  | Manual-polish cities (content-strategy §5.3 shortlist) | 8 first wave; grow on signal          | **Ship 8** (NYC, SF/Bay, London, Berlin, Austin, Toronto, Singapore, Bengaluru) | `index, follow`                  |
+  | **Tier 2 — Major**     | Auto-generated with rich template + human review       | ~30–50 in Sprint 12 (then up to ~250) | Ship a **small slice (~30)** to validate the template                           | `index, follow` if G1–G5 pass    |
+  | **Tier 3 — Long tail** | Data-only small cities                                 | 235K in dataset                       | **Not published indexable**; rendered only when gates pass                      | `noindex, follow` until promoted |
 
   Promotion path: auto→flagship on GSC/link/waitlist signals (content-strategy §5.4).
+
+  **Sprint 20 update:** tier now gates **indexability + warm-set prerendering only**, not
+  page rendering/emission. City pages, both mesh sections ("Explore community types" +
+  "Communities in nearby cities"), group-type variants, and idea pages are emitted and
+  rendered for **every city with committed content** (Tier-1, Tier-2, or Tier-3 with
+  content files) — see the Sprint 20 update callout at the top. Tier-3 content cities
+  (e.g. Copenhagen) render their full surface but stay `noindex, follow`.
 
 ### 3.4 Idea-page placement (content-strategy vs programmatic-seo variant rules)
 
@@ -153,7 +178,7 @@ unique data) but conflict on mechanics. The architect's resolution:
   (O(P) build work, Vercel 45-min ceiling) and recommends hybrid.
 - **Resolution (D7): hybrid.** `generateStaticParams` returns the warm set (all hubs,
   countries, regions, Tier-1/2 cities, all guides/glossary) at build; `dynamicParams:
-  true` (classic ISR) covers the long tail on first request then upgrades. `cacheComponents`
+true` (classic ISR) covers the long tail on first request then upgrades. `cacheComponents`
   (PPR) is evaluated on a spike branch but **not** enabled by default in Sprint 12
   (tech-feasibility §5.3/§10.2 — smaller delta, no Suspense discipline requirement).
 
@@ -166,6 +191,11 @@ unique data) but conflict on mechanics. The architect's resolution:
   group-type taxonomy (≈10–14 types) is defined; a per-(city, type) near-duplicate gate
   (G5) decides index vs canonicalize-to-parent vs noindex. Sprint 12 generates variants
   only for Tier-1/2 cities where the seed data supports them.
+  **Sprint 20 update:** the "only Tier-1/2" scoping is superseded — the registry now emits
+  variant + idea pages for **every city with committed content**, tier-irrelevant
+  (`locationPages.ts` iterates `listContentByKind('city', locale)` → `findCityBySlug`, not
+  just `FLAGSHIP_CITIES`). G5 still decides index vs noindex per page; Tier-3 variants
+  render but stay noindex.
 
 ---
 
@@ -217,22 +247,22 @@ unique data) but conflict on mechanics. The architect's resolution:
 
 ### 4.4 Group-type taxonomy (fixed; content-strategy §5.3 + whitepaper examples)
 
-| Key | Display label (EN) | Notes |
-|-----|--------------------|-------|
-| `startup-founders` | Startup founders | Whitepaper example; flagship priority |
-| `ai-builders` | AI builders | Whitepaper example; SF/Austin/London priority |
-| `local-neighborhoods` | Local & neighborhood | Universal; local intent |
-| `professional-networks` | Professional networks | Industry-specific |
-| `finance-quant` | Finance & quant | NYC/London priority |
-| `book-clubs` | Book clubs | Universal |
-| `run-clubs` | Running clubs | Universal, venue-aware |
-| `tech-meetups` | Tech meetups | Universal tech metros |
-| `creative-design` | Creative & design | Berlin/London/NYC priority |
-| `music-arts` | Music & arts | Austin/Nashville/Berlin priority |
-| `founders-cofounders` | Co-founder matching | Maps to product Core Object |
-| `impact-local` | Impact & volunteering | Local intent |
-| `families-parents` | Families & parents | Local intent |
-| `sports-fitness` | Sports & fitness | Universal |
+| Key                     | Display label (EN)    | Notes                                         |
+| ----------------------- | --------------------- | --------------------------------------------- |
+| `startup-founders`      | Startup founders      | Whitepaper example; flagship priority         |
+| `ai-builders`           | AI builders           | Whitepaper example; SF/Austin/London priority |
+| `local-neighborhoods`   | Local & neighborhood  | Universal; local intent                       |
+| `professional-networks` | Professional networks | Industry-specific                             |
+| `finance-quant`         | Finance & quant       | NYC/London priority                           |
+| `book-clubs`            | Book clubs            | Universal                                     |
+| `run-clubs`             | Running clubs         | Universal, venue-aware                        |
+| `tech-meetups`          | Tech meetups          | Universal tech metros                         |
+| `creative-design`       | Creative & design     | Berlin/London/NYC priority                    |
+| `music-arts`            | Music & arts          | Austin/Nashville/Berlin priority              |
+| `founders-cofounders`   | Co-founder matching   | Maps to product Core Object                   |
+| `impact-local`          | Impact & volunteering | Local intent                                  |
+| `families-parents`      | Families & parents    | Local intent                                  |
+| `sports-fitness`        | Sports & fitness      | Universal                                     |
 
 Sprint 12 generates variants only where seed data exists (Tier-1 flagships + small Tier-2
 slice); the taxonomy is a config array, not code.
@@ -243,14 +273,14 @@ slice); the taxonomy is a config array, not code.
 
 ### 5.1 Sources & licensing (geodata §4, §12)
 
-| Source | Use | License | Attribution |
-|--------|-----|---------|-------------|
-| **GeoNames** free dump (`cities500.zip`, `countryInfo.txt`, `admin1CodesASCII.txt`, `alternateNamesV2.zip`, `timeZones.txt`) | Primary gazetteer: 252 countries, ~4,800 admin1 regions, 235,311 cities (>500 pop) | **CC BY 4.0** (commercial use allowed) | Required — footer credit + NOTICE file |
-| **SimpleMaps World Cities Basic** (free) | Clean overlay for top 50K cities: `city_ascii`, admin names, capital flags, `ranking` 1–5 | **CC BY 4.0** | Required |
-| **Wikidata SPARQL** | 21-locale localized names (labels), joined via QID from GeoNames alternate names | **CC0** (public domain) | None required (courtesy credit optional) |
-| Natural Earth (optional, later) | Country/region outlines if maps are ever needed | Public domain | None |
-| geoBoundaries (optional, later) | Admin1/2 polygons | CC BY 4.0 | Required if used |
-| **Excluded** | GADM (non-commercial only); OSM as primary (ODbL share-alike + bulk-scrape policy) | — | — |
+| Source                                                                                                                       | Use                                                                                       | License                                | Attribution                              |
+| ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------- | ---------------------------------------- |
+| **GeoNames** free dump (`cities500.zip`, `countryInfo.txt`, `admin1CodesASCII.txt`, `alternateNamesV2.zip`, `timeZones.txt`) | Primary gazetteer: 252 countries, ~4,800 admin1 regions, 235,311 cities (>500 pop)        | **CC BY 4.0** (commercial use allowed) | Required — footer credit + NOTICE file   |
+| **SimpleMaps World Cities Basic** (free)                                                                                     | Clean overlay for top 50K cities: `city_ascii`, admin names, capital flags, `ranking` 1–5 | **CC BY 4.0**                          | Required                                 |
+| **Wikidata SPARQL**                                                                                                          | 21-locale localized names (labels), joined via QID from GeoNames alternate names          | **CC0** (public domain)                | None required (courtesy credit optional) |
+| Natural Earth (optional, later)                                                                                              | Country/region outlines if maps are ever needed                                           | Public domain                          | None                                     |
+| geoBoundaries (optional, later)                                                                                              | Admin1/2 polygons                                                                         | CC BY 4.0                              | Required if used                         |
+| **Excluded**                                                                                                                 | GADM (non-commercial only); OSM as primary (ODbL share-alike + bulk-scrape policy)        | —                                      | —                                        |
 
 **Budget: $0** for Sprint 12. Optional SimpleMaps Pro ($199 one-time) only if
 zero-attribution is ever preferred (geodata §12.3).
@@ -361,31 +391,38 @@ relevant city pages. Refresh stats/examples annually.
   hybrid events, co-founder, …). Auto template + editorial review; 150–300 words;
   definitional format wins featured snippets + AI citations.
 
-### 6.4 L3 city pages (Sprint 12 — 8 flagship + ~30 Tier-2)
+### 6.4 L3 city pages (Sprint 12 — 8 flagship + ~30 Tier-2; Sprint 20: every content-rich city)
 
 Template anatomy (content-strategy §4/§6, programmatic-seo §5):
+
 1. **Unique city intro** (from city dataset + editorial seed copy): what the city's
    community scene looks like — tech hubs, universities, industry clusters, notable
    venues/landmarks. No Wikipedia regurgitation (Ahrefs failure mode).
 2. **City data block**: population, region, languages, country (from `locations.json`),
    formatted locale-aware (`toLocaleString(locale)`).
-3. **Group-type links** to generated variants (only those that pass G5).
+3. **Group-type links** to generated variants ("Explore community types") — emitted for
+   every committed variant that passes G5, **for any content-rich city** (Sprint 20).
 4. **Related links**: hub + ≥2 guides + sibling cities in the region (5–10) + parent
-   region/country + `/location` hub (internal-link mesh, programmatic-seo §7.2).
+   region/country + `/location` hub (internal-link mesh, programmatic-seo §7.2). The
+   "Communities in nearby cities" sibling block renders for every content-rich city,
+   tier-irrelevant (Sprint 20 — aligns §8.5 "every city links 5–10 sibling cities").
 5. **FAQ** (3–5 city-relevant Q&As) + `FAQPage` JSON-LD.
 6. **Honest presence claim**: "Find or start a community in [City]" — never claims a local
    office/staff (content-strategy §6.2; doorway risk).
 7. **Waitlist CTA** wired to `/api/leads` + analytics `trackEvent('signup_click', { source:
-   'location-city-<slug>' })`.
+'location-city-<slug>' })`.
 
-### 6.5 L3 group-type variants (Sprint 12 — flagship subset)
+### 6.5 L3 group-type variants (Sprint 12 — flagship subset; Sprint 20: every content-rich city)
 
 Generated only where real differentiator exists: e.g. "Startup communities in San
 Francisco" (venues, communities, how-tos differ from "Running clubs in San Francisco").
 If the near-duplicate gate (G5) fails, the variant is **canonicalized to the parent city
 page or noindexed** — never published as near-identical copy (programmatic-seo §4.3/§5.3).
+**Sprint 20 update:** emission is no longer flagship-scoped — every city with committed
+`variantIntros` content emits variant pages (registry iterates all content-rich cities);
+Tier-2 variants are indexable (ISR), Tier-3 variants render but stay noindex.
 
-### 6.6 L3 idea pages (Sprint 12 — flagship subset)
+### 6.6 L3 idea pages (Sprint 12 — flagship subset; Sprint 20: every content-rich city)
 
 `/city/ideas` — "30 community event ideas in [City]": city intro (editorial seed), 30
 ideas grouped into 6 categories (Networking · Learning/workshops · Social/outdoor ·
@@ -393,18 +430,21 @@ Professional/industry · Creative/maker · Impact/local), each idea = 1–2 sent
 who it's for + suggested venue type; city data block; related links; 3–5 FAQ + `FAQPage`
 JSON-LD; `ItemList` JSON-LD for the listicle. Honesty gate: venue/factual claims must be
 true for any city or seeded per city with vetted copy (content-strategy §4.3).
+**Sprint 20 update:** every content-rich city with a committed `ideaPage` emits its ideas
+page — the "flagship subset" scope is superseded (idea-uniqueness rule still enforces
+no cross-city reuse).
 
 ### 6.7 Quality gates (indexable or not — enforced at generation time)
 
 Every L3 page must pass ALL of G1–G5 to be `index, follow` (programmatic-seo §5.3):
 
-| Gate | Requirement | Enforcement |
-|------|-------------|-------------|
-| G1 | ≥3 city-specific data points (population, region, languages, community signals, venue references) | Data layer check against `locations.json` |
-| G2 | ≥1 unique city-specific prose section (≥150 words) — not name-swapped template | Template seed presence + copy length check |
-| G3 | Real populated place from the dataset (never synthetic) | Dataset lookup only |
-| G4 | Intent match — page answers "communities in <city>" / "start <group-type> in <city>" | Title/H1/meta include city + type; copy covers the intent |
-| G5 | No near-duplicate vs parent template (similarity check) | Similarity threshold in registry; merge/canonicalize/noindex on failure |
+| Gate | Requirement                                                                                       | Enforcement                                                             |
+| ---- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| G1   | ≥3 city-specific data points (population, region, languages, community signals, venue references) | Data layer check against `locations.json`                               |
+| G2   | ≥1 unique city-specific prose section (≥150 words) — not name-swapped template                    | Template seed presence + copy length check                              |
+| G3   | Real populated place from the dataset (never synthetic)                                           | Dataset lookup only                                                     |
+| G4   | Intent match — page answers "communities in <city>" / "start <group-type> in <city>"              | Title/H1/meta include city + type; copy covers the intent               |
+| G5   | No near-duplicate vs parent template (similarity check)                                           | Similarity threshold in registry; merge/canonicalize/noindex on failure |
 
 Pages failing any gate are served with `robots: { index: false, follow: true }` and are
 **omitted from the sitemap** (programmatic-seo §8.1, Google-endorsed exclusion). No
@@ -450,13 +490,13 @@ Per translation-services §3/§5/§6/§7, reconciled with localization §3.5:
 
 **Cost (build-time, one-time, cached — never per-pageview):**
 
-| Scenario | Volume | Google NMT $20/1M | AWS $15/1M | Azure ~$10/1M | DeepL ~$27/1M |
-|----------|--------|-------------------|-----------|---------------|---------------|
-| Template-only chrome localization (recommended; ~1.8M chars × 20 locales) | 1.8M chars | **~$36** | ~$27 | ~$18 | n/a (locale gap) |
-| Full-catalog MT, 1,000 pages × 20 locales | 50M chars | $1,000 | $750 | ~$500 | ~$1,350 |
-| Full-catalog MT, 5,000 pages × 20 locales | 250M chars | $5,000 | $3,750 | ~$2,500 | ~$6,750 |
-| Full-catalog MT, 10,000 pages × 20 locales | 500M chars | $10,000 | $7,500 | ~$5,000 | ~$13,500 |
-| Runtime per-pageview MT (anti-pattern) | 5B chars/mo | **~$100K+/mo** | — | — | — |
+| Scenario                                                                  | Volume      | Google NMT $20/1M | AWS $15/1M | Azure ~$10/1M | DeepL ~$27/1M    |
+| ------------------------------------------------------------------------- | ----------- | ----------------- | ---------- | ------------- | ---------------- |
+| Template-only chrome localization (recommended; ~1.8M chars × 20 locales) | 1.8M chars  | **~$36**          | ~$27       | ~$18          | n/a (locale gap) |
+| Full-catalog MT, 1,000 pages × 20 locales                                 | 50M chars   | $1,000            | $750       | ~$500         | ~$1,350          |
+| Full-catalog MT, 5,000 pages × 20 locales                                 | 250M chars  | $5,000            | $3,750     | ~$2,500       | ~$6,750          |
+| Full-catalog MT, 10,000 pages × 20 locales                                | 500M chars  | $10,000           | $7,500     | ~$5,000       | ~$13,500         |
+| Runtime per-pageview MT (anti-pattern)                                    | 5B chars/mo | **~$100K+/mo**    | —          | —             | —                |
 
 Assumption: ~2,500 translatable chars per location-page-equivalent (translation-services
 §3.2). The runtime path is **never used**.
@@ -520,11 +560,14 @@ apps/web/app/
 - Segments map 1:1: `app/location/[country]/[region]/[city]/page.tsx` etc.
 - **`params` is a Promise in Next 15+/16** — pages `await params` (typed via
   `PageProps<'/location/[country]/[region]/[city]'>`).
-- **Warm set at build** (hybrid, D7):
+- **Warm set at build** (hybrid, D7; unchanged by Sprint 20):
   - `/location`, all country + region pages → **always** prerendered (they are the
     browsable hierarchy, programmatic-seo §7.2).
   - City pages + variants → prerender **Tier-1 flagships + the Tier-2 slice** (those that
     pass G1–G5); the long tail is generated on first request via ISR then upgraded.
+    **Sprint 20:** the registry now _emits_ every content-rich city's pages (tier-
+    irrelevant); the warm-set _prerender_ filter (`isWarmSetEntry` = hub + Tier-1) is
+    unchanged, so Tier-2/3 content pages render via ISR on first request.
   - All guides + glossary terms → prerendered (manual content, small fixed set).
 - `generateStaticParams` reads the committed `locations.json` snapshot (in-memory
   iteration; `fetch` memoization makes dataset reads effectively free at build,
@@ -574,12 +617,19 @@ export function locationPageEntries(): LocationPageEntry[];  // derived from loc
   same entry (canonical + OG + robots).
 - **Invariant preserved:** one definition of a URL, three outputs (page, sitemap, metadata)
   can never disagree (tech-feasibility §8.3).
+- **Sprint 20 (TASK-471):** the registry loop is generalized — variant + ideas entries are
+  emitted for **every content-rich city per locale** via `listContentByKind('city', locale)`
+  → `findCityBySlug`, not just `FLAGSHIP_CITIES`. Flagship config overrides are retained;
+  non-flagship tier = `tierForCitySlug(slug)`. All flagship paths are preserved exactly.
 
 ### 8.5 Internal-link mesh (programmatic-seo §7, derived from the hierarchy)
 
 - Up-links: city → region → country → `/location` hub (breadcrumbs + contextual).
 - Sibling cluster: every city links 5–10 sibling cities in the same region ("Communities
-  in nearby cities") — computed from `locations.json` (same regionId).
+  in nearby cities") — computed from `locations.json` (same regionId). **Sprint 20:** the
+  cluster renders for every content-rich city, tier-irrelevant (flagship or not) — the
+  implementation's `siblingCitiesFor()` + `groupTypeLinksFor()` are un-gated, so both
+  mesh sections exist on every committed city page.
 - Cross-links: every city links 2–4 relevant guides (`/guides/start-a-community`,
   `/guides/organize-a-meetup`, ...) and its idea page; guides link back to flagships.
 - No orphan pages: every generated page reachable via hierarchy or the mesh; sitemap is a
@@ -641,15 +691,15 @@ Execution roles consume this design **verbatim**. Task order matters: dataset fi
 registry, then pages, then i18n/sitemap, then validation. Each task keeps the existing
 matrix green (lint 5/5, typecheck 5/5, unit 5/5, e2e, web prod build).
 
-| # | Task (role) | Deliverable / file boundaries | Dependencies | Acceptance |
-|---|-------------|-------------------------------|--------------|------------|
-| 1 | **fe-geo-dataset** | `apps/web/scripts/geodata/` pipeline: download → clean → dedup → join → overlay → localize → snapshot. Commits `apps/web/lib/seo/data/locations.json` (+ `types.ts`, `NOTICE`, `README`). `pnpm --filter @joinorigin/web geo:sync` target. Unit tests for clean/dedup/join rules (Andorra/US/DE sample asserts per geodata §4). **No routes/pages** | — | Snapshot committed; schema matches §5.2; attribution present; tests green |
-| 2 | **fe-seo-registry** | `apps/web/lib/seo/locationPages.ts` + `apps/web/lib/seo/locationData.ts` (snapshot loader + tier config + group-type taxonomy + city seed copy model). G1–G5 gate functions + unit tests (near-duplicate check, intent-match, indexable flag). **No routes yet** | Task 1 | Registry derives from snapshot; gates tested; `locationPageEntries()` returns correct params/paths/titles |
-| 3 | **fe-location-pages** | `apps/web/app/location/**` dynamic routes: hub/country/region/city/variant pages; `generateStaticParams` (warm set), `await params`, `dynamicParams`, `revalidate = 2592000`, metadata from registry, JSON-LD (BreadcrumbList/FAQPage/ItemList), internal-link mesh, waitlist CTA, noindex enforcement for Tier-3/failed gates, `notFound()` for unknown slugs. Unit + e2e (hub→country→region→city→variant navigation; canonical; robots meta) | Task 2 | All routes render; gates enforced; e2e green; build time measured (baseline gate §8.6) |
-| 4 | **fe-guides-pages** | Author 7 L1 guides + `/guides` hub + `/glossary` hub + 20–40 glossary terms as **content files + page wrappers** (`apps/web/app/guides/**`, `apps/web/app/glossary/**`); metadata, FAQPage JSON-LD, cross-links to location pages + each other; waitlist CTA. Unit tests (content presence, ≥150 words, single H1) | — | All L1/L2 pages live; content quality gates pass; tests green |
-| 5 | **fe-i18n-seo-chrome** | Add `seoContent.*` namespace to `packages/i18n/locales/en.json` + all 20 locale files (key parity via `scripts/check-keys.ts` — extend script for the new namespace if needed); wire chrome consumption in location/guide/glossary pages; RTL/`toLocaleString` verified. **Body copy stays in content files, not locale JSONs** | Task 3, 4 | 21-locale parity green; pages render localized chrome per cookie; no body keys in dictionaries |
-| 6 | **fe-sitemap-llms** | Extend `apps/web/app/sitemap.ts` with `locationPageEntries().filter(indexable)` + deterministic `lastModified` (dataset version); extend `lib/seo/llms.ts` with curated Locations/Guides/Glossary sections; robots.ts untouched. Unit/e2e (sitemap ↔ pages parity; llms.txt curated; robots unchanged) | Task 2 | Sitemap lists exactly indexable pages; llms.txt ≤ ~2 KB curated; parity tests green |
-| 7 | **e2e-seo-engine** | Validation-only audit of merged master: full matrix (lint/typecheck/unit all packages/e2e/web prod build); live checks — Tier-1 city page renders + canonical + FAQPage JSON-LD; Tier-3 page noindexed; sitemap parity (every sitemap URL 200s, every indexable page in sitemap); llms.txt curated; hreflang absent (phase A); locale chrome switches by cookie; build-time gate recorded. Record PASS/FAIL in `agent-core/handoffs/joinorigin-dev/test-report.md` | Tasks 1–6 merged | All criteria PASS or flagged WITH routing; no source edits; leads.csv header-only |
+| #   | Task (role)            | Deliverable / file boundaries                                                                                                                                                                                                                                                                                                                                                                                                                                      | Dependencies     | Acceptance                                                                                                |
+| --- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- | --------------------------------------------------------------------------------------------------------- |
+| 1   | **fe-geo-dataset**     | `apps/web/scripts/geodata/` pipeline: download → clean → dedup → join → overlay → localize → snapshot. Commits `apps/web/lib/seo/data/locations.json` (+ `types.ts`, `NOTICE`, `README`). `pnpm --filter @joinorigin/web geo:sync` target. Unit tests for clean/dedup/join rules (Andorra/US/DE sample asserts per geodata §4). **No routes/pages**                                                                                                                | —                | Snapshot committed; schema matches §5.2; attribution present; tests green                                 |
+| 2   | **fe-seo-registry**    | `apps/web/lib/seo/locationPages.ts` + `apps/web/lib/seo/locationData.ts` (snapshot loader + tier config + group-type taxonomy + city seed copy model). G1–G5 gate functions + unit tests (near-duplicate check, intent-match, indexable flag). **No routes yet**                                                                                                                                                                                                   | Task 1           | Registry derives from snapshot; gates tested; `locationPageEntries()` returns correct params/paths/titles |
+| 3   | **fe-location-pages**  | `apps/web/app/location/**` dynamic routes: hub/country/region/city/variant pages; `generateStaticParams` (warm set), `await params`, `dynamicParams`, `revalidate = 2592000`, metadata from registry, JSON-LD (BreadcrumbList/FAQPage/ItemList), internal-link mesh, waitlist CTA, noindex enforcement for Tier-3/failed gates, `notFound()` for unknown slugs. Unit + e2e (hub→country→region→city→variant navigation; canonical; robots meta)                    | Task 2           | All routes render; gates enforced; e2e green; build time measured (baseline gate §8.6)                    |
+| 4   | **fe-guides-pages**    | Author 7 L1 guides + `/guides` hub + `/glossary` hub + 20–40 glossary terms as **content files + page wrappers** (`apps/web/app/guides/**`, `apps/web/app/glossary/**`); metadata, FAQPage JSON-LD, cross-links to location pages + each other; waitlist CTA. Unit tests (content presence, ≥150 words, single H1)                                                                                                                                                 | —                | All L1/L2 pages live; content quality gates pass; tests green                                             |
+| 5   | **fe-i18n-seo-chrome** | Add `seoContent.*` namespace to `packages/i18n/locales/en.json` + all 20 locale files (key parity via `scripts/check-keys.ts` — extend script for the new namespace if needed); wire chrome consumption in location/guide/glossary pages; RTL/`toLocaleString` verified. **Body copy stays in content files, not locale JSONs**                                                                                                                                    | Task 3, 4        | 21-locale parity green; pages render localized chrome per cookie; no body keys in dictionaries            |
+| 6   | **fe-sitemap-llms**    | Extend `apps/web/app/sitemap.ts` with `locationPageEntries().filter(indexable)` + deterministic `lastModified` (dataset version); extend `lib/seo/llms.ts` with curated Locations/Guides/Glossary sections; robots.ts untouched. Unit/e2e (sitemap ↔ pages parity; llms.txt curated; robots unchanged)                                                                                                                                                             | Task 2           | Sitemap lists exactly indexable pages; llms.txt ≤ ~2 KB curated; parity tests green                       |
+| 7   | **e2e-seo-engine**     | Validation-only audit of merged master: full matrix (lint/typecheck/unit all packages/e2e/web prod build); live checks — Tier-1 city page renders + canonical + FAQPage JSON-LD; Tier-3 page noindexed; sitemap parity (every sitemap URL 200s, every indexable page in sitemap); llms.txt curated; hreflang absent (phase A); locale chrome switches by cookie; build-time gate recorded. Record PASS/FAIL in `agent-core/handoffs/joinorigin-dev/test-report.md` | Tasks 1–6 merged | All criteria PASS or flagged WITH routing; no source edits; leads.csv header-only                         |
 
 ### 10.1 Sprint 12 sequencing & gate
 
@@ -665,22 +715,26 @@ matrix green (lint 5/5, typecheck 5/5, unit 5/5, e2e, web prod build).
    polygons; live community-data injection hooks (templates already accept it — the
    Meetup/Reddit freshness loop).
 
+> **Sprint 20 update:** the Sprint 12 scope rows above (8 flagships + Tier-2 slice) are the
+> original blueprint; the Sprint 20 user-approved change supersedes the _emission/rendering_
+> scoping — see the update callout at the top and §3.3/§3.8/§6.4–§6.6/§8.2/§8.4/§8.5.
+
 ---
 
 ## 11. Risk Register
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|-----------|--------|------------|
-| Scaled-content-abuse demotion (site-wide) | Medium if gates not enforced | **Site-wide** | G1–G5 enforced at generation; tiered indexation; noindex long tail; waves; monitor GSC Manual Actions (programmatic-seo §10) |
-| Doorway-abuse flag on city pages | Low (pages are real destinations) | High | Real unique city content; browsable hierarchy; honest presence claims; CTA secondary (programmatic-seo §6.1) |
-| Duplicate content from group-type variants | Medium | Medium | G5 near-duplicate gate; canonicalize/noindex failures (programmatic-seo §6.2) |
-| MT pages triggering scaled-content abuse (phase B) | Medium (later) | Site-wide | EN-first phase A; phase B curated + post-edit + disclosure + hreflang (translation-services §6.3) |
-| Index bloat / low indexation ratio | Medium | High | Selective indexation; sitemap hygiene; GSC Page Indexing monitoring; prune noindexed (programmatic-seo §8.3) |
-| GeoNames shutdown (2025 precedent) | HIGH (long-term) | High | Vendor-independent committed snapshot; SimpleMaps + Wikidata rebuild path (geodata §11) |
-| CC BY 4.0 attribution forgotten | Low | Legal | Automated footer credit + NOTICE file in dataset package (geodata §5) |
-| Build time explodes with warm set | Low (warm set ≈ 100 pages) | Medium | Hybrid ISR; measure at 1k/10k params; `--debug-build-paths` iteration (tech-feasibility §9.1) |
-| Multi-instance ISR staleness (self-hosted) | Low (single instance now) | Medium | Defer shared cache handler until scale-out (tech-feasibility §6.2) |
-| Fake social proof on pages | Low (never authored) | High | Hard rule: real data only; "coming soon" labels; no fabricated counts (market-competitor §8.3) |
+| Risk                                               | Likelihood                        | Impact        | Mitigation                                                                                                                   |
+| -------------------------------------------------- | --------------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Scaled-content-abuse demotion (site-wide)          | Medium if gates not enforced      | **Site-wide** | G1–G5 enforced at generation; tiered indexation; noindex long tail; waves; monitor GSC Manual Actions (programmatic-seo §10) |
+| Doorway-abuse flag on city pages                   | Low (pages are real destinations) | High          | Real unique city content; browsable hierarchy; honest presence claims; CTA secondary (programmatic-seo §6.1)                 |
+| Duplicate content from group-type variants         | Medium                            | Medium        | G5 near-duplicate gate; canonicalize/noindex failures (programmatic-seo §6.2)                                                |
+| MT pages triggering scaled-content abuse (phase B) | Medium (later)                    | Site-wide     | EN-first phase A; phase B curated + post-edit + disclosure + hreflang (translation-services §6.3)                            |
+| Index bloat / low indexation ratio                 | Medium                            | High          | Selective indexation; sitemap hygiene; GSC Page Indexing monitoring; prune noindexed (programmatic-seo §8.3)                 |
+| GeoNames shutdown (2025 precedent)                 | HIGH (long-term)                  | High          | Vendor-independent committed snapshot; SimpleMaps + Wikidata rebuild path (geodata §11)                                      |
+| CC BY 4.0 attribution forgotten                    | Low                               | Legal         | Automated footer credit + NOTICE file in dataset package (geodata §5)                                                        |
+| Build time explodes with warm set                  | Low (warm set ≈ 100 pages)        | Medium        | Hybrid ISR; measure at 1k/10k params; `--debug-build-paths` iteration (tech-feasibility §9.1)                                |
+| Multi-instance ISR staleness (self-hosted)         | Low (single instance now)         | Medium        | Defer shared cache handler until scale-out (tech-feasibility §6.2)                                                           |
+| Fake social proof on pages                         | Low (never authored)              | High          | Hard rule: real data only; "coming soon" labels; no fabricated counts (market-competitor §8.3)                               |
 
 ---
 
@@ -714,13 +768,13 @@ matrix green (lint 5/5, typecheck 5/5, unit 5/5, e2e, web prod build).
 
 ## 13. Open Questions for PM / Product (not blockers)
 
-| # | Question | Recommendation |
-|---|----------|----------------|
-| 1 | Utility generators ("community name generator") — Sprint 12 or 13? | Defer to Sprint 13 (high ROI, low risk; market-competitor §8.4) |
-| 2 | Comparison pages ("community platform alternatives")? | Needs product/brand sign-off (competitor brand names on the site); defer |
-| 3 | Waitlist CTA analytics source taxonomy | Use `trackEvent('signup_click', { source: 'location-…' | 'guide-…' | 'glossary-…' })` per content-strategy §8.6 |
-| 4 | Phase-B locale/city priority | Flagships × high-demand locales (es, pt-BR, fr, de, hi, id, ja, ko, zh-CN, ar, fa) — decide in Sprint 13 with GSC data |
-| 5 | Live-data injection hooks (real groups/members post-launch) | Templates + registry designed to accept real community data later (freshness loop); no wiring in Sprint 12 |
+| #   | Question                                                           | Recommendation                                                                                                         |
+| --- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| 1   | Utility generators ("community name generator") — Sprint 12 or 13? | Defer to Sprint 13 (high ROI, low risk; market-competitor §8.4)                                                        |
+| 2   | Comparison pages ("community platform alternatives")?              | Needs product/brand sign-off (competitor brand names on the site); defer                                               |
+| 3   | Waitlist CTA analytics source taxonomy                             | Use `trackEvent('signup_click', { source: 'location-…'                                                                 | 'guide-…' | 'glossary-…' })` per content-strategy §8.6 |
+| 4   | Phase-B locale/city priority                                       | Flagships × high-demand locales (es, pt-BR, fr, de, hi, id, ja, ko, zh-CN, ar, fa) — decide in Sprint 13 with GSC data |
+| 5   | Live-data injection hooks (real groups/members post-launch)        | Templates + registry designed to accept real community data later (freshness loop); no wiring in Sprint 12             |
 
 ---
 
