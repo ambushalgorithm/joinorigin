@@ -16,12 +16,19 @@ import { absoluteUrl } from '../lib/seo/url';
 
 /**
  * fe-sitemap-llms sitemap unit tests (TASK-311, design §9.1), extended for
- * Sprint 19 (TASK-459 + TASK-466): the sitemap covers all 21 locale surfaces —
- * every page (static routes, location registry, guides, hubs) × every locale
- * at `/<locale>/...` as its own indexable URL, each with the full hreflang
- * cluster (`x-default` → EN canonical at `/en/...`). All-routes-prefixed:
- * EN URLs are emitted at their `/en/**` surface — unprefixed `/**` is never
- * canonical (it 307-redirects at the proxy).
+ * Sprint 19 (TASK-459 + TASK-466) and Sprint 20 (TASK-473): the sitemap
+ * covers all 21 locale surfaces — every page (static routes, location
+ * registry, guides, hubs) × every locale at `/<locale>/...` as its own
+ * indexable URL, each with the full hreflang cluster (`x-default` → EN
+ * canonical at `/en/...`). All-routes-prefixed: EN URLs are emitted at
+ * their `/en/**` surface — unprefixed `/**` is never canonical (it
+ * 307-redirects at the proxy).
+ *
+ * Sprint 20: per-locale surfaces now enumerate every committed content city
+ * (de Berlin + Munich, es 8, ar 3, hi 6, …) × its variants + ideas — the de
+ * indexable set grows beyond 7, EN-only content-rich Tier-3 pages (e.g.
+ * Copenhagen) still render but never publish (D8), and the warm set remains
+ * hub + Tier-1 only (NYC + Berlin).
  *
  * Enforces the sitemap invariants:
  *  - parity: for every locale, every indexable page (static routes +
@@ -33,7 +40,7 @@ import { absoluteUrl } from '../lib/seo/url';
  *  - hreflang: every non-EN URL carries self + `en` + `x-default` → EN
  *    canonical at `/en/...`; every EN URL carries the full cluster of live
  *    alternates (all 21 locales for static routes / guides / hubs; committed
- *    content only for locations — Berlin `de`).
+ *    content only for locations — e.g. Berlin/Munich `de`, dubai `ar`).
  */
 
 type SitemapEntry = {
@@ -93,19 +100,49 @@ describe('app/sitemap — parity with live pages across all 21 locale surfaces',
     }
   });
 
-  it('lists the full EN location registry + the committed de Berlin surface', () => {
+  it('lists the full EN location registry + every committed per-locale surface', () => {
     const en = indexableLocationEntries();
     expect(en.length).toBeGreaterThan(0);
+    // de: Berlin 7 (Tier-1) + Munich city (Tier-2) = 8 indexable pages —
+    // the de indexable set grew beyond the old Berlin-only 7 (Sprint 20).
     const de = indexableLocationEntries('de');
-    expect(de).toHaveLength(7);
-    for (const entry of de) {
+    expect(de).toHaveLength(8);
+    const deBerlin = de.filter((entry) => entry.params.city === 'berlin');
+    expect(deBerlin).toHaveLength(7);
+    for (const entry of deBerlin) {
       expect(paths).toContain(entry.path);
       expect(entry.path.startsWith('/de/location/germany/berlin')).toBe(true);
     }
-    // Every other non-EN locale has committed location content → no URLs.
-    for (const locale of SUPPORTED_LOCALES) {
-      if (locale === 'en' || locale === 'de') continue;
-      expect(indexableLocationEntries(locale)).toHaveLength(0);
+    const deMunich = de.filter((entry) => entry.params.city === 'munich');
+    expect(deMunich).toHaveLength(1);
+    expect(deMunich[0].kind).toBe('city');
+    expect(paths).toContain(deMunich[0].path);
+    expect(deMunich[0].path.startsWith('/de/location/germany/bavaria')).toBe(true);
+    // Every other non-EN locale with committed content contributes indexable
+    // URLs where gates pass (es 8, hi 6, fr 2, pt-BR 3, …) — no committed
+    // surface is empty anymore (Sprint 20). Some translated surfaces (ar, ja,
+    // zh-TW) render their committed pages but their translated prose fails
+    // the gates, so they contribute zero indexable URLs — the sitemap still
+    // must not publish them (D8).
+    const committed = new Map<string, number>([
+      ['es', 8],
+      ['ar', 3],
+      ['hi', 6],
+      ['fr', 2],
+      ['pt-BR', 3],
+      ['ja', 2],
+      ['zh-TW', 2],
+    ]);
+    for (const [locale, cities] of committed) {
+      const surface = indexableLocationEntries(locale as Locale);
+      for (const entry of surface) {
+        expect(paths).toContain(entry.path);
+        expect(entry.path.startsWith(`/${locale}/location`)).toBe(true);
+      }
+      // The registry enumerates committed content for every one of these
+      // cities (city + 5 variants + ideas); indexable is the gate result.
+      const registry = locationPageEntries(locale as Locale);
+      expect(registry).toHaveLength(cities * 7);
     }
   });
 
@@ -192,12 +229,9 @@ describe('app/sitemap — hreflang clusters across all 21 locale surfaces', () =
   const entries = sitemap() as unknown as SitemapEntry[];
   const byPath = new Map(entries.map((entry) => [pathOf(entry), entry]));
   const deEntries = indexableLocationEntries('de');
-  // EN canonical surfaces are `/en/...`; the Berlin EN surface paths are the
-  // de entries with `/de` → `/en`.
-  const enBerlinPaths = new Set(deEntries.map((de) => de.path.replace(/^\/de/, '/en')));
 
-  it('emits every indexable de Berlin page as its own indexable URL with a full cluster', () => {
-    expect(deEntries).toHaveLength(7);
+  it('emits every indexable de page (Berlin 7 + Munich city) as its own indexable URL with a full cluster', () => {
+    expect(deEntries).toHaveLength(8);
     for (const entry of deEntries) {
       const sitemapEntry = byPath.get(entry.path);
       expect(sitemapEntry).toBeDefined();
@@ -274,13 +308,24 @@ describe('app/sitemap — hreflang clusters across all 21 locale surfaces', () =
   });
 
   it('EN location pages list every locale with committed content; EN-only pages carry no cluster', () => {
+    // Sprint 20: committed per-locale content exists for many cities now (de
+    // berlin/munich, es 8, ar 3, hi 6, fr 2, pt-BR 3, ja 2, zh-TW 2, …) — an
+    // EN page carries a cluster iff ANY locale surface enumerates the same
+    // path (committed content only, phase A). Recompute the committed sets
+    // exactly like locationView's COMMITTED_PATHS to stay in lockstep.
+    const committedEnPaths = new Set<string>();
+    for (const locale of SUPPORTED_LOCALES) {
+      if (locale === 'en') continue;
+      for (const entry of locationPageEntries(locale)) {
+        committedEnPaths.add(entry.path.replace(new RegExp(`^/${locale}`), '/en'));
+      }
+    }
     for (const entry of indexableLocationEntries('en')) {
       const sitemapEntry = byPath.get(entry.path) as SitemapEntry;
-      if (enBerlinPaths.has(entry.path)) {
+      if (committedEnPaths.has(entry.path)) {
         const languages = languageKeys(sitemapEntry);
         expect(languages).toBeDefined();
         expect(languages?.['en']).toBe(absoluteUrl(entry.path));
-        expect(languages?.['de']).toBe(absoluteUrl(entry.path.replace(/^\/en/, '/de')));
         expect(languages?.['x-default']).toBe(absoluteUrl(entry.path));
       } else {
         // Phase A — EN-only pages (hub/country/region/cities without
@@ -288,6 +333,23 @@ describe('app/sitemap — hreflang clusters across all 21 locale surfaces', () =
         expect(languageKeys(sitemapEntry)).toBeUndefined();
       }
     }
+    // Spot-check the new per-locale clusters: dubai → ar, buenos-aires → es,
+    // munich → de (each a content-rich Tier-2 city with a committed
+    // translation on its surface).
+    const spot = (city: string, locale: Locale, pathPart: string) => {
+      const enCity = indexableLocationEntries('en').find(
+        (entry) => entry.kind === 'city' && entry.params.city === city,
+      );
+      expect(enCity).toBeDefined();
+      const sitemapEntry = byPath.get(enCity!.path) as SitemapEntry;
+      const languages = languageKeys(sitemapEntry);
+      expect(languages).toBeDefined();
+      expect(languages?.[locale]).toBe(absoluteUrl(enCity!.path.replace(/^\/en/, `/${locale}`)));
+      expect(enCity!.path).toContain(pathPart);
+    };
+    spot('dubai', 'ar', '/united-arab-emirates/dubai/dubai');
+    spot('buenos-aires', 'es', '/buenos-aires');
+    spot('munich', 'de', '/bavaria/munich');
   });
 });
 
