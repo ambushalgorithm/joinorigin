@@ -4,13 +4,7 @@ import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet, ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -31,11 +25,12 @@ jest.mock('next/navigation', () => ({
 /**
  * Language switcher unit tests (design spec sprint-9-i18n-switcher §10.1):
  * renders the current autonym, opens the listbox, selects → `setLocale` +
- * cookie write, keyboard navigation, RTL dir application, and the responsive
- * contract (TASK-278): the header variant is hidden below 768px via a
- * `max-width: 768px` media rule, the mobile-panel variant stacks the listbox
- * below the trigger (column layout, static panel, no min-width overflow) and
- * omits EN hints, and the footer variant keeps its upward-opening dropdown.
+ * URL navigation (NO cookie write — locale is URL-only, TASK-468), keyboard
+ * navigation, RTL dir application, and the responsive contract (TASK-278):
+ * the header variant is hidden below 768px via a `max-width: 768px` media
+ * rule, the mobile-panel variant stacks the listbox below the trigger
+ * (column layout, static panel, no min-width overflow) and omits EN hints,
+ * and the footer variant keeps its upward-opening dropdown.
  */
 
 function renderSwitcher(
@@ -53,11 +48,11 @@ function renderSwitcher(
 
 /**
  * Flushes the provider's async post-mount effects + in-flight `setLocale`
- * work (client locale correction, the EN fallback dictionary load, and the
- * real dynamic-import dictionary loads) inside `act` so no "not wrapped in
- * act(...)" console noise is emitted. Dynamic `import()` resolves on a
- * macrotask, so one `setTimeout(0)` turn is needed in addition to the
- * microtask queue (TASK-290).
+ * work (the EN fallback dictionary load and the real dynamic-import
+ * dictionary loads) inside `act` so no "not wrapped in act(...)" console
+ * noise is emitted. Dynamic `import()` resolves on a macrotask, so one
+ * `setTimeout(0)` turn is needed in addition to the microtask queue
+ * (TASK-290).
  */
 async function flushI18nEffects(): Promise<void> {
   await act(async () => {
@@ -86,19 +81,9 @@ function cssForVariant(variant: 'header' | 'footer' | 'mobile-panel'): string {
   }
 }
 
-/** Sets navigator.language before a render (affects the post-mount check). */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 describe('LanguageSwitcher', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
-    setNavigatorLanguage('en-US');
     mockPush.mockClear();
     mockPathname = '/';
   });
@@ -109,10 +94,6 @@ describe('LanguageSwitcher', () => {
   });
 
   it('renders the native autonym for a non-English locale', async () => {
-    // Align the post-mount auto-detect with the prop so the provider stays on
-    // 'es' (no async setLocale → no act() noise; the trigger shows the native
-    // autonym as the initial override).
-    setNavigatorLanguage('es-ES');
     renderSwitcher('es');
     await flushI18nEffects();
     expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('Español');
@@ -136,7 +117,7 @@ describe('LanguageSwitcher', () => {
     expect(screen.getByRole('option', { name: /Deutsch/ })).toBeInTheDocument();
   });
 
-  it('selecting a locale switches immediately and writes the cookie', async () => {
+  it('selecting a locale switches immediately (no cookie write)', async () => {
     const user = userEvent.setup();
     renderSwitcher('en');
 
@@ -146,9 +127,12 @@ describe('LanguageSwitcher', () => {
     });
     await flushI18nEffects();
 
+    // The provider switched the dictionary to de: the trigger now shows the
+    // German autonym, and no cookie was written (URL-only locale).
     await waitFor(() => {
-      expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=de`);
+      expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('Deutsch');
     });
+    expect(document.cookie).not.toContain('joinorigin_locale');
     // The listbox closes after selection.
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
   });
@@ -164,10 +148,11 @@ describe('LanguageSwitcher', () => {
     await flushI18nEffects();
 
     await waitFor(() => {
-      expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=ar`);
+      expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('العربية');
     });
     expect(document.documentElement.dir).toBe('rtl');
     expect(document.documentElement.lang).toBe('ar');
+    expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
   it('supports keyboard navigation: open with Enter, ArrowDown, Enter to select', async () => {
@@ -184,7 +169,7 @@ describe('LanguageSwitcher', () => {
     await flushI18nEffects();
 
     await waitFor(() => {
-      expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=es`);
+      expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('Español');
     });
     expect(trigger).toHaveFocus();
   });
@@ -268,7 +253,7 @@ describe('LanguageSwitcher', () => {
     await act(async () => {});
     await flushI18nEffects();
     await waitFor(() => {
-      expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=fr`);
+      expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('Français');
     });
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     expect(trigger).toHaveFocus();
@@ -289,11 +274,9 @@ describe('LanguageSwitcher', () => {
       await waitFor(() => {
         expect(mockPush).toHaveBeenCalledWith('/es/features');
       });
-      // The cookie is synced before navigation (the target route renders in
-      // the freshly selected locale).
-      await waitFor(() => {
-        expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=es`);
-      });
+      // No cookie is synced — the target route itself carries the locale
+      // (URL-only, TASK-468).
+      expect(document.cookie).not.toContain('joinorigin_locale');
     });
 
     it('replaces an existing locale prefix with the new locale', async () => {

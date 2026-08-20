@@ -15,7 +15,6 @@ import { initReactI18next } from 'react-i18next';
 
 import { loadDictionary } from './loader';
 import { DEFAULT_LOCALE, getDir, resolveLocale, type Direction, type Locale } from './resolve';
-import { getStoredLocale, storeLocale } from './storage';
 import type { Dictionary } from './types';
 
 /**
@@ -26,8 +25,10 @@ import type { Dictionary } from './types';
  * - Initial locale + dictionary come from the server (web) or OS resolution
  *   (mobile) as props, so the first paint is already translated (no flash).
  * - Locale switches load the new dictionary lazily (`loadDictionary` dynamic
- *   import on web; static registry on mobile) and persist the choice via the
- *   cookie adapter (web only; mobile has no switcher in Sprint 9).
+ *   import on web; static registry on mobile).
+ * - The provider trusts the server `locale` prop (URL-derived on web) and
+ *   `LocalePathnameSync` for SPA navigation — NO cookie persistence and NO
+ *   post-hydration override (TASK-468: the language always lives in the URL).
  * - The provider keeps `document.documentElement.lang/dir` in sync (web RTL
  *   flip, arch-i18n §8.2).
  */
@@ -107,18 +108,6 @@ function applyDocumentDirection(locale: Locale): void {
   html.dataset.dir = getDir(locale);
 }
 
-function getNavigatorLanguage(): string | undefined {
-  if (typeof globalThis === 'undefined') {
-    return undefined;
-  }
-  return (globalThis as { navigator?: { language?: string } }).navigator?.language;
-}
-
-/** True in a web DOM environment (document exists). */
-function hasDocument(): boolean {
-  return typeof globalThis !== 'undefined' && 'document' in globalThis;
-}
-
 export function I18nProvider({
   locale: initialLocale,
   dictionary: initialDictionary,
@@ -148,7 +137,6 @@ export function I18nProvider({
         nextDictionary = await loadDictionary(resolved);
         setDictionary(resolved, nextDictionary);
       }
-      storeLocale(resolved);
       getInstance().changeLanguage(resolved);
       setLocaleState(resolved);
       setDirState(getDir(resolved));
@@ -169,25 +157,6 @@ export function I18nProvider({
     applyDocumentDirection(locale);
   }, [locale]);
 
-  // Post-hydration client check (web only — mobile resolves the OS locale at
-  // startup and passes it as the initial prop): cookie wins; else
-  // navigator.language may differ from the server's Accept-Language
-  // resolution (arch-i18n §6.3). Run once on mount; `locale` here is the
-  // initial server-resolved value.
-  useEffect(() => {
-    if (!hasDocument()) {
-      return; // React Native / server — the locale comes from props.
-    }
-    const stored = getStoredLocale();
-    const candidate = stored ? resolveLocale(stored) : resolveLocale(getNavigatorLanguage());
-    if (candidate !== locale) {
-      void setLocale(candidate).catch(() => {
-        // Best-effort client correction; EN fallback still applies.
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   // Ensure EN fallback resources are always available on the client.
   useEffect(() => {
     if (registered.has(DEFAULT_LOCALE)) {
@@ -204,8 +173,8 @@ export function I18nProvider({
       });
   }, []);
 
-  // Follow server-driven locale changes on client navigation (new cookie →
-  // new layout prop). Only reacts when the `locale` PROP actually changes —
+  // Follow server-driven locale changes on client navigation (new URL prefix
+  // → new layout prop). Only reacts when the `locale` PROP actually changes —
   // not when the user switches locale via `setLocale` (the prop stays the
   // same then, so the internal state must NOT be reverted).
   const prevLocalePropRef = useRef(initialLocale);

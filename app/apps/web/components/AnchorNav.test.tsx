@@ -2,13 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import AnchorNav from './AnchorNav';
 
@@ -16,21 +10,14 @@ import AnchorNav from './AnchorNav';
  * `next/navigation` is mocked so the nav's `useLocalizePath` works in jsdom
  * (TASK-456). `mockPathname` drives the "current URL"; in-page hash anchors
  * must stay `#id` on every locale surface (they are NOT internal route
- * links, so the prefix table never touches them).
+ * links, so the prefix table never touches them). Locale is URL-only
+ * (TASK-468): tests render with `I18nProvider locale=...` — no cookie.
  */
 let mockPathname = '/';
 
 jest.mock('next/navigation', () => ({
   usePathname: () => mockPathname,
 }));
-
-/** Aligns the provider's post-mount auto-detect with the render locale. */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
 
 const LINKS = [
   { id: 'concepts', label: 'Concepts' },
@@ -39,7 +26,6 @@ const LINKS = [
 ];
 
 function renderNav(locale: Locale = 'en') {
-  setNavigatorLanguage(locale);
   return render(
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <ThemeProvider theme={theme}>
@@ -52,7 +38,6 @@ function renderNav(locale: Locale = 'en') {
 describe('AnchorNav', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
     mockPathname = '/';
   });
 
@@ -80,8 +65,7 @@ describe('AnchorNav', () => {
     }
   });
 
-  it('keeps hash anchors unchanged on an unprefixed de-cookie load', () => {
-    document.cookie = `${LOCALE_COOKIE_NAME}=de; path=/`;
+  it('keeps hash anchors unchanged on an unprefixed path with an active de locale', () => {
     mockPathname = '/docs';
     renderNav('de');
     expect(screen.getByRole('link', { name: 'Roadmap' })).toHaveAttribute('href', '#roadmap');

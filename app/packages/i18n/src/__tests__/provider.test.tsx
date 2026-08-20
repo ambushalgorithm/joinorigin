@@ -3,13 +3,17 @@ import userEvent from '@testing-library/user-event';
 
 import { getDictionary } from '../loader';
 import { I18nProvider, _resetI18nForTests, useI18n } from '../provider';
-import { LOCALE_COOKIE_NAME } from '../storage';
 import { Trans } from '../trans';
 import type { Locale } from '../resolve';
 
 /**
  * Provider tests (arch-i18n §10.2): locale override rendering, immediate
- * switch via setLocale + cookie write, RTL document dir, Trans rich text.
+ * switch via setLocale, RTL document dir, Trans rich text.
+ *
+ * TASK-468 (URL-only locale): the provider trusts the server `locale` prop
+ * (URL-derived) + `LocalePathnameSync` for SPA navigation. There is NO
+ * cookie persistence and NO post-hydration cookie/navigator override — so
+ * no test asserts `document.cookie` writes or auto-correction.
  */
 
 jest.mock('../loader', () => {
@@ -50,35 +54,21 @@ function renderProvider(locale: Locale = 'en') {
 }
 
 /**
- * Flushes the provider's async post-mount effects (client locale correction
- * via `setLocale` when cookie/navigator differ from the prop, and the EN
- * fallback dictionary load). Wrapped in `act` so the state updates they
- * trigger are observed by React and no "not wrapped in act(...)" console
- * noise is emitted (TASK-290).
+ * Flushes the provider's async post-mount effects (the EN fallback dictionary
+ * load) and in-flight `setLocale` state updates. Wrapped in `act` so the
+ * state updates they trigger are observed by React and no "not wrapped in
+ * act(...)" console noise is emitted (TASK-290).
  */
 async function flushI18nEffects(): Promise<void> {
   await act(async () => {});
 }
 
-/** Sets navigator.language before a render (affects the post-mount check). */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 describe('I18nProvider', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
-    setNavigatorLanguage('en-US');
   });
 
-  it('renders translated text for the initial locale override', async () => {
-    // The post-mount auto-detect only corrects when cookie/navigator differ
-    // from the prop; align navigator so the initial override is preserved.
-    setNavigatorLanguage('es-ES');
+  it('renders translated text for the initial locale prop', async () => {
     renderProvider('es');
     await flushI18nEffects();
     expect(screen.getByTestId('probe-locale').textContent).toBe('es');
@@ -87,21 +77,36 @@ describe('I18nProvider', () => {
     expect(screen.getByTestId('probe-interp').textContent).toMatch(/7/);
   });
 
-  it('switches locale immediately and writes the cookie (no reload)', async () => {
+  it('trusts the server locale prop even when navigator.language differs (TASK-468)', async () => {
+    // The provider no longer overrides the URL-derived prop with the browser
+    // language — the prop always wins (no flash-to-EN, no auto-correction).
+    Object.defineProperty(window.navigator, 'language', {
+      value: 'en-US',
+      configurable: true,
+    });
+    renderProvider('vi');
+    await flushI18nEffects();
+    expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
+  });
+
+  it('switches locale immediately (no reload, no cookie write)', async () => {
     const user = userEvent.setup();
     renderProvider('en');
     await flushI18nEffects();
     expect(screen.getByTestId('probe-locale').textContent).toBe('en');
 
+    // Click + flush in ONE act scope: `setLocale` is async (dictionary load),
+    // so its state updates must be observed inside the same act block to
+    // avoid "not wrapped in act(...)" noise.
     await act(async () => {
       await user.click(screen.getByTestId('switch-es'));
+      await new Promise<void>((resolve) => setTimeout(resolve, 0));
     });
-    await flushI18nEffects();
 
     await waitFor(() => {
       expect(screen.getByTestId('probe-locale').textContent).toBe('es');
     });
-    expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=es`);
+    expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
   it('sets document.documentElement dir=rtl when switching to ar', async () => {
@@ -112,37 +117,21 @@ describe('I18nProvider', () => {
 
     await act(async () => {
       await user.click(screen.getByTestId('switch-ar'));
+      await new Promise<void>((resolve) => setTimeout(resolve, 0));
     });
-    await flushI18nEffects();
 
     await waitFor(() => {
       expect(screen.getByTestId('probe-dir').textContent).toBe('rtl');
     });
     expect(document.documentElement.dir).toBe('rtl');
     expect(document.documentElement.lang).toBe('ar');
-    expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=ar`);
-  });
-
-  it('does not write a cookie for auto-detected locale on first paint', async () => {
-    // The initial locale comes from props (server/OS resolution); when the
-    // post-mount auto-detect agrees with the prop, no setLocale runs and no
-    // cookie is written.
-    setNavigatorLanguage('de-DE');
-    renderProvider('de');
-    await flushI18nEffects();
-    expect(screen.getByTestId('probe-locale').textContent).toBe('de');
-    expect(document.cookie).not.toContain(LOCALE_COOKIE_NAME);
+    expect(document.cookie).not.toContain('joinorigin_locale');
   });
 });
 
 describe('Trans — rich text + interpolation (arch-i18n §4.1)', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
-    Object.defineProperty(window.navigator, 'language', {
-      value: 'en-US',
-      configurable: true,
-    });
   });
 
   it('renders numbered tags with positionally mapped components', () => {

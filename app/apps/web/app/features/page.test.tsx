@@ -1,12 +1,6 @@
 import { screen, render } from '@testing-library/react';
 
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import FeaturesPage, { metadata } from './page';
 import { renderWithI18n } from '../../test-utils';
@@ -155,16 +149,7 @@ jest.mock('next/navigation', () => ({
   usePathname: () => mockPathname,
 }));
 
-/** Aligns the provider's post-mount auto-detect with the render locale. */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 function renderFeaturesForLocale(locale: Locale) {
-  setNavigatorLanguage(locale);
   return render(
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <FeaturesPage />
@@ -175,7 +160,6 @@ function renderFeaturesForLocale(locale: Locale) {
 describe('features view — locale-aware internal links (TASK-460)', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
     mockPathname = '/';
   });
 
@@ -208,7 +192,7 @@ describe('features view — locale-aware internal links (TASK-460)', () => {
     expect(linkByHref('/de/glossary')).toBeDefined();
   });
 
-  it('renders /de/** Explore links on an unprefixed load with a de cookie (table row 4)', () => {
+  it('renders /de/** Explore links on an unprefixed path with an active de locale (URL-driven)', () => {
     mockPathname = '/features';
     renderFeaturesForLocale('de');
     expect(linkByHref('/de/location')).toBeDefined();

@@ -2,30 +2,25 @@ import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import { localeFromPathname, localeLinkPrefix, localizePath, useLocalizePath } from '../localePath';
 
 /**
  * Shared locale-aware path helper unit tests (Sprint 19 Goal 2, TASK-456;
- * all-routes-prefixed update TASK-464).
+ * all-routes-prefixed update TASK-464; URL-only TASK-468).
  *
  * The link-prefix table — every internal link ALWAYS carries a locale prefix
  * (including EN → `/en/...`), because unprefixed `/**` 307-redirects to its
- * `/<locale>` surface at the proxy:
+ * `/<locale>` surface at the proxy. The active locale is URL-derived (the
+ * `I18nProvider` prop / prefix) — no cookie participates:
  *
- * | Current URL           | Active locale | Internal links render as |
- * |-----------------------|---------------|--------------------------|
- * | unprefixed `/features`| EN            | `/en/guides`              |
- * | `/en/features`        | EN            | `/en/guides`              |
- * | `/de/features`        | de            | `/de/guides`              |
- * | unprefixed + de cookie| de            | `/de/guides`              |
+ * | Current URL    | Active locale | Internal links render as |
+ * |----------------|---------------|--------------------------|
+ * | unprefixed `/features` | EN   | `/en/guides`              |
+ * | `/en/features` | EN            | `/en/guides`              |
+ * | `/de/features` | de            | `/de/guides`              |
+ * | unprefixed path + de    | de   | `/de/guides`              |
  */
 
 describe('localeFromPathname', () => {
@@ -53,7 +48,7 @@ describe('localeLinkPrefix', () => {
     ['/features', 'en', '/en'], // unprefixed EN load → /en/ links (TASK-464)
     ['/en/features', 'en', '/en'], // /en/** load → /en/** links
     ['/de/features', 'de', '/de'], // /de/** load → /de/** links
-    ['/features', 'de', '/de'], // unprefixed + de cookie → /de/** links
+    ['/features', 'de', '/de'], // unprefixed path + active de locale (URL-driven)
     ['/', 'en', '/en'],
     ['/', 'vi', '/vi'],
     ['/features', 'pt-BR', '/pt-BR'],
@@ -137,24 +132,12 @@ function renderProbe(path: string, locale: Locale) {
   );
 }
 
-/** Aligns the provider's post-mount auto-detect with the test locale so the
- *  client correction never fires a late `setLocale` re-render. */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 describe('useLocalizePath', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
-    setNavigatorLanguage('en-US');
   });
 
   it('binds to the router pathname + active locale', () => {
-    setNavigatorLanguage('de-DE');
     mockPathname = '/features';
     renderProbe('/guides', 'de');
     expect(screen.getByRole('link')).toHaveAttribute('href', '/de/guides');

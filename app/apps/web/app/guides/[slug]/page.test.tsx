@@ -1,13 +1,7 @@
 import type { ReactElement } from 'react';
 import { render, screen } from '@testing-library/react';
 
-import {
-  getDictionary,
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  type Locale,
-} from '@joinorigin/i18n';
+import { getDictionary, I18nProvider, _resetI18nForTests, type Locale } from '@joinorigin/i18n';
 
 import GuidePage, { generateMetadata, generateStaticParams } from './page';
 import { getGuideContent } from '../../../lib/seo/content';
@@ -41,9 +35,10 @@ import { GuideView } from './guide-view';
  *
  * TASK-446: the canonical page resolves the ACTIVE server locale (proxy-
  * forwarded `x-joinorigin-locale`) with EN fallback — `getServerLocale` is
- * mocked here. With the `de` cookie the page renders the committed German
- * guide body; when the locale lacks committed content the loader falls back
- * to the EN surface. SEO metadata stays EN (arch-i18n §1.2).
+ * mocked here. With the active `de` locale the page renders the committed
+ * German guide body; when the locale lacks committed content the loader
+ * falls back to the EN surface. SEO metadata stays EN (arch-i18n §1.2).
+ * Locale is URL-only (TASK-468) — no cookie.
  */
 
 jest.mock('../../../lib/i18n-server', () => ({
@@ -371,16 +366,7 @@ jest.mock('next/navigation', () => ({
   usePathname: () => mockPathname,
 }));
 
-/** Aligns the provider's post-mount auto-detect with the render locale. */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 function renderGuideForLocale(locale: Locale, ui: ReactElement) {
-  setNavigatorLanguage(locale);
   return render(
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       {ui}
@@ -398,7 +384,6 @@ describe('guide view — locale-aware internal links (TASK-460)', () => {
 
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
     mockPathname = '/';
   });
 
@@ -431,7 +416,7 @@ describe('guide view — locale-aware internal links (TASK-460)', () => {
     expect(linkByHref('/de/location')).toBeDefined();
   });
 
-  it('renders /de/** keep-learning links on an unprefixed load with a de cookie (table row 4)', () => {
+  it('renders /de/** keep-learning links on an unprefixed path with an active de locale (URL-driven)', () => {
     mockPathname = `/guides/${slug}`;
     renderGuideForLocale('de', <GuideView entry={entry} content={content} />);
     expect(linkByHref('/de/guides')).toBeDefined();

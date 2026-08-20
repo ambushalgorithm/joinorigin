@@ -1,12 +1,6 @@
 import { screen, render } from '@testing-library/react';
 
-import {
-  I18nProvider,
-  LOCALE_COOKIE_NAME,
-  _resetI18nForTests,
-  getDictionary,
-  type Locale,
-} from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import PrivacyPage, { metadata } from './page';
 import { renderWithI18n } from '../../test-utils';
@@ -67,16 +61,7 @@ jest.mock('next/navigation', () => ({
   usePathname: () => mockPathname,
 }));
 
-/** Aligns the provider's post-mount auto-detect with the render locale. */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
-  });
-}
-
 function renderPrivacyForLocale(locale: Locale) {
-  setNavigatorLanguage(locale);
   return render(
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <PrivacyPage />
@@ -87,7 +72,6 @@ function renderPrivacyForLocale(locale: Locale) {
 describe('privacy view — locale-aware internal links (TASK-460)', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
     mockPathname = '/';
   });
 
@@ -118,7 +102,7 @@ describe('privacy view — locale-aware internal links (TASK-460)', () => {
     expect(linkByHref('/de/contact')).toBeDefined();
   });
 
-  it('renders /de/** contact-body link on an unprefixed load with a de cookie (table row 4)', () => {
+  it('renders /de/** contact-body link on an unprefixed path with an active de locale (URL-driven)', () => {
     mockPathname = '/privacy';
     renderPrivacyForLocale('de');
     expect(linkByHref('/de/contact')).toBeDefined();

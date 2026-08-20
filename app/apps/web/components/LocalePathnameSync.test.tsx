@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 
 import {
   I18nProvider,
-  LOCALE_COOKIE_NAME,
   _resetI18nForTests,
   getDictionary,
   useI18n,
@@ -16,7 +15,8 @@ import LocalePathnameSync, { pathnamePrefixLocale } from './LocalePathnameSync';
  * LocalePathnameSync tests (TASK-465, Bug 1): the pure prefix derivation and
  * the client-side watcher — SPA navigation to `/<locale>/**` must call
  * `setLocale()` so the UI language toggles instantly (the root layout's
- * `headers()` is stale during client nav).
+ * `headers()` is stale during client nav). Locale is URL-only (TASK-468):
+ * `setLocale` switches the dictionary/state but NEVER writes a cookie.
  *
  * `next/navigation` is mocked with a mutable `mockPathname` so a test can
  * simulate SPA navigation by mutating the pathname and re-rendering (the
@@ -67,14 +67,6 @@ function renderSync(initialLocale: Locale = 'en', onLocaleChange?: (locale: Loca
 async function flushI18nEffects(): Promise<void> {
   await act(async () => {
     await new Promise<void>((resolve) => setTimeout(resolve, 0));
-  });
-}
-
-/** Sets navigator.language before a render (affects the post-mount check). */
-function setNavigatorLanguage(language: string): void {
-  Object.defineProperty(window.navigator, 'language', {
-    value: language,
-    configurable: true,
   });
 }
 
@@ -140,8 +132,6 @@ describe('pathnamePrefixLocale — prefix derivation from the 21 SUPPORTED_LOCAL
 describe('LocalePathnameSync — SPA navigation locale sync', () => {
   beforeEach(() => {
     _resetI18nForTests();
-    document.cookie = `${LOCALE_COOKIE_NAME}=; path=/; max-age=0`;
-    setNavigatorLanguage('en-US');
     mockPathname = '/';
   });
 
@@ -156,15 +146,14 @@ describe('LocalePathnameSync — SPA navigation locale sync', () => {
 
   it('is a no-op on mount when the prefix matches the active locale', async () => {
     const onLocaleChange = jest.fn();
-    setNavigatorLanguage('vi-VN');
     mockPathname = '/vi/features';
     renderSync('vi', onLocaleChange);
     await flushI18nEffects();
 
     expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
     expect(onLocaleChange).not.toHaveBeenCalled();
-    // No setLocale → the route-stick cookie is never written.
-    expect(document.cookie).not.toContain(LOCALE_COOKIE_NAME);
+    // No setLocale → no state change and never a cookie write.
+    expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
   it('is a no-op on mount for an unprefixed pathname', async () => {
@@ -209,14 +198,13 @@ describe('LocalePathnameSync — SPA navigation locale sync', () => {
     });
     expect(onLocaleChange).toHaveBeenCalledTimes(1);
     expect(onLocaleChange).toHaveBeenCalledWith('vi');
-    // The provider persists the selection + keeps <html lang dir> in sync.
-    expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=vi`);
+    // The provider keeps <html lang dir> in sync; no cookie is written.
     expect(document.documentElement.lang).toBe('vi');
+    expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
   it('syncs back to en when SPA navigation lands on the /en/** surface', async () => {
     const onLocaleChange = jest.fn();
-    setNavigatorLanguage('de-DE');
     mockPathname = '/de/features';
     const { rerender } = renderSync('de', onLocaleChange);
     await flushI18nEffects();
@@ -231,7 +219,7 @@ describe('LocalePathnameSync — SPA navigation locale sync', () => {
     });
     expect(onLocaleChange).toHaveBeenCalledTimes(1);
     expect(onLocaleChange).toHaveBeenCalledWith('en');
-    expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=en`);
+    expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
   it('is idempotent: no re-sync when navigating within the same prefix', async () => {
@@ -255,7 +243,7 @@ describe('LocalePathnameSync — SPA navigation locale sync', () => {
 
     expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
     expect(onLocaleChange).toHaveBeenCalledTimes(1);
-    expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=vi`);
+    expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
   it('syncs again when SPA navigation moves to a different prefix', async () => {
@@ -280,12 +268,11 @@ describe('LocalePathnameSync — SPA navigation locale sync', () => {
     });
     expect(onLocaleChange).toHaveBeenCalledTimes(2);
     expect(onLocaleChange).toHaveBeenLastCalledWith('de');
-    expect(document.cookie).toContain(`${LOCALE_COOKIE_NAME}=de`);
+    expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
   it('does not revert a switcher-initiated locale change mid-navigation', async () => {
     const onLocaleChange = jest.fn();
-    setNavigatorLanguage('de-DE');
     mockPathname = '/de/features';
     const { rerender } = renderSync('de', onLocaleChange);
     await flushI18nEffects();
