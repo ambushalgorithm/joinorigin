@@ -42,12 +42,6 @@ import { useLocalizePath } from '../../lib/seo/localePath';
 
 const VALUE_KEYS = ['peopleFirst', 'communitiesDriveGrowth', 'collaborationCreatesValue'] as const;
 
-/** Inline CTA in the join band (spec §8.2 — AccentLink to the home waitlist). */
-const JoinLink = styled(AccentLink)`
-  display: inline-block;
-  margin-top: ${({ theme }) => theme.spacing.md}px;
-`;
-
 /** Explore hub cross-links row (TASK-316) — additive, keeps copy intact. */
 const ExploreLinks = styled.div`
   display: flex;
@@ -128,13 +122,14 @@ export function CommunityView() {
                 testID="community-members-stat"
               />
               <BodyCopy>{t('community.joinCopy')}</BodyCopy>
-              <JoinLink href={localizePath('/')}>{t('common.joinWaitlist')}</JoinLink>
               <ExploreLinks>
+                <AccentLink href={localizePath('/community')}>
+                  {t('common.nav.community')}
+                </AccentLink>
+                <AccentLink href={localizePath('/guides')}>{t('common.nav.guides')}</AccentLink>
                 <AccentLink href={localizePath('/location')}>
                   {t('common.nav.locations')}
                 </AccentLink>
-                <AccentLink href={localizePath('/guides')}>{t('common.nav.guides')}</AccentLink>
-                <AccentLink href={localizePath('/glossary')}>{t('common.nav.glossary')}</AccentLink>
               </ExploreLinks>
             </Section>
           </Reveal>

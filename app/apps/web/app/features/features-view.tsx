@@ -108,11 +108,13 @@ export function FeaturesView() {
               <SectionTitle>{t('features.sectionComparison')}</SectionTitle>
               <BodyCopy>{t('features.comparisonIntro')}</BodyCopy>
               <ExploreLinks>
+                <AccentLink href={localizePath('/community')}>
+                  {t('common.nav.community')}
+                </AccentLink>
+                <AccentLink href={localizePath('/guides')}>{t('common.nav.guides')}</AccentLink>
                 <AccentLink href={localizePath('/location')}>
                   {t('common.nav.locations')}
                 </AccentLink>
-                <AccentLink href={localizePath('/guides')}>{t('common.nav.guides')}</AccentLink>
-                <AccentLink href={localizePath('/glossary')}>{t('common.nav.glossary')}</AccentLink>
               </ExploreLinks>
               <CompareTable data-testid="features-comparison-table">
                 <TableHead>
