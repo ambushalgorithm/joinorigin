@@ -7,7 +7,7 @@ import { unstable_doesMiddlewareMatch } from 'next/experimental/testing/server';
 
 import { SUPPORTED_LOCALES } from '@joinorigin/i18n';
 
-import { proxy, config, localeFromPathname, isSystemRoute } from './proxy';
+import { proxy, config, localeFromPathname, isSystemRoute, IP_COUNTRY_HEADER } from './proxy';
 
 /**
  * Unit tests for the locale-resolution proxy (`proxy.ts`, Next.js 16
@@ -29,6 +29,9 @@ import { proxy, config, localeFromPathname, isSystemRoute } from './proxy';
  *    locale regardless of Accept-Language
  *  - the resolved locale is forwarded as `x-joinorigin-locale` on BOTH the
  *    request (via NextResponse.next request headers) and the response
+ *  - geo-country (TASK-479): Cloudflare's `CF-IPCountry` header is forwarded
+ *    as `x-joinorigin-ip-country` on the request + response when present,
+ *    and NOT set when absent (the server helper returns null)
  *  - no URL rewrite — URLs stay clean
  */
 
@@ -473,5 +476,54 @@ describe('no cookie is ever written (TASK-468)', () => {
     const response = runProxyAt('http://localhost/icon-16x16.png', { 'accept-language': 'fr' });
     expect(response.status).toBe(200);
     expect(response.cookies.getAll()).toHaveLength(0);
+  });
+});
+
+describe('CF-IPCountry geo forwarding (TASK-479)', () => {
+  it('forwards CF-IPCountry as x-joinorigin-ip-country on pass-through request headers', () => {
+    const response = runProxyAt('http://localhost/en/guides/start-a-community', {
+      'cf-ipcountry': 'DE',
+    });
+    expect(response.status).toBe(200);
+    expect(response.headers.get('x-middleware-request-x-joinorigin-ip-country')).toBe('DE');
+    expect(response.headers.get('x-middleware-override-headers')).toContain(
+      'x-joinorigin-ip-country',
+    );
+  });
+
+  it('forwards CF-IPCountry as x-joinorigin-ip-country on pass-through response headers', () => {
+    const response = runProxyAt('http://localhost/de/features', { 'cf-ipcountry': 'FR' });
+    expect(response.status).toBe(200);
+    expect(response.headers.get(IP_COUNTRY_HEADER)).toBe('FR');
+  });
+
+  it('forwards CF-IPCountry on unprefixed redirect responses too', () => {
+    const response = runProxyAt('http://localhost/features', {
+      'cf-ipcountry': 'US',
+      'accept-language': 'en',
+    });
+    expect(response.status).toBe(307);
+    expect(response.headers.get('location')).toBe('http://localhost/en/features');
+    expect(response.headers.get(IP_COUNTRY_HEADER)).toBe('US');
+  });
+
+  it('does not set x-joinorigin-ip-country when CF-IPCountry is absent', () => {
+    const passThrough = runProxyAt('http://localhost/en/guides/start-a-community');
+    expect(passThrough.headers.get(IP_COUNTRY_HEADER)).toBeNull();
+    expect(passThrough.headers.get('x-middleware-request-x-joinorigin-ip-country')).toBeNull();
+
+    const redirect = runProxy({ 'accept-language': 'fr' });
+    expect(redirect.headers.get(IP_COUNTRY_HEADER)).toBeNull();
+  });
+
+  it('trims whitespace around the CF-IPCountry value', () => {
+    const response = runProxyAt('http://localhost/en/features', { 'cf-ipcountry': '  JP  ' });
+    expect(response.headers.get(IP_COUNTRY_HEADER)).toBe('JP');
+  });
+
+  it('forwards CF-IPCountry on system routes (api pass-through)', () => {
+    const response = runProxyAt('http://localhost/api/leads', { 'cf-ipcountry': 'BR' });
+    expect(response.status).toBe(200);
+    expect(response.headers.get(IP_COUNTRY_HEADER)).toBe('BR');
   });
 });
