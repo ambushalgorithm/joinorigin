@@ -26,6 +26,7 @@ import {
   guidePath,
   type GuidePageEntry,
 } from '../guides';
+import { flagshipCities } from '../locationView';
 import { MIN_PROSE_WORDS, wordCount } from '../locationGates';
 
 /**
@@ -116,6 +117,38 @@ describe('lib/seo guides — registry', () => {
       'Barranquilla',
       'Bogota',
     ]);
+  });
+
+  it('Start-local lists stay capped at 6 on EVERY locale surface (TASK-480)', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const entries = guidePageEntries(locale);
+      expect(entries.length).toBeGreaterThan(0);
+      expect(entries[0].cities).toHaveLength(6);
+    }
+  });
+
+  it('Start-local lists mirror the /location flagshipCities list exactly (same source + order, TASK-480)', () => {
+    for (const locale of ['en', 'de', 'es', 'ja', 'ar'] as const) {
+      const guideCities = guidePageEntries(locale)[0].cities;
+      const flagship = flagshipCities(locale);
+      expect(guideCities.map((city) => city.name)).toEqual(flagship.map((city) => city.name));
+      // The guides view localizes client-side: guide hrefs are unprefixed
+      // /location/... while the hub's flagship cards bake the surface prefix.
+      expect(guideCities.map((city) => city.path)).toEqual(
+        flagship.map((city) => city.path.replace(`/${locale}`, '')),
+      );
+    }
+  });
+
+  it('Start-local hrefs stay unprefixed on every locale surface (client localizePath, TASK-480)', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const entries = guidePageEntries(locale);
+      expect(entries.length).toBeGreaterThan(0);
+      for (const city of entries[0].cities) {
+        expect(city.path).toMatch(/^\/location\//);
+        expect(city.path).not.toMatch(/^\/(en|de|es|ja|ar)\//);
+      }
+    }
   });
 
   it('resolves a single guide entry and returns undefined for unknown slugs', () => {

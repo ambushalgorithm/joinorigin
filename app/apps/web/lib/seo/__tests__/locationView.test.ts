@@ -1,3 +1,5 @@
+import { SUPPORTED_LOCALES, type Locale } from '@joinorigin/i18n';
+
 import {
   buildLocationViewData,
   cityLocationPath,
@@ -14,7 +16,15 @@ import {
   warmParamsForLocale,
 } from '../locationView';
 import { locationPageEntries, type LocationPageEntry } from '../locationPages';
-import { loadLocationSnapshot } from '../locationData';
+import {
+  CONTENT_RICH_CITY_SLUGS,
+  cityDisplayName,
+  citySlug,
+  contentRichCities,
+  loadLocationSnapshot,
+  localeCountryCodes,
+  tierForCitySlug,
+} from '../locationData';
 
 /**
  * fe-location-pages view-layer unit tests (TASK-308).
@@ -948,6 +958,205 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
       (entry) => entry.section === 'cities',
     );
     expect(fallbackCities[0].name).not.toBe('Communities in Berlin');
+  });
+});
+
+describe('lib/seo locationView — TASK-482 flagship/start-local + browse-locations ordering (extended)', () => {
+  const SECTIONS = ['countries', 'regions', 'cities', 'communityTypes', 'eventIdeas'] as const;
+
+  /** Spec rank for a directory entry (TASK-480): 0 = IP-country match,
+   *  1 = active-locale language-area match, 2 = otherwise. */
+  function directoryRank(
+    entry: { countryIso2?: string },
+    localeCountries: ReadonlySet<string>,
+    ipCountry: string | null,
+  ): number {
+    const country = entry.countryIso2 ?? '';
+    if (ipCountry && country === ipCountry) return 0;
+    if (localeCountries.has(country)) return 1;
+    return 2;
+  }
+
+  /** The expected per-section order for a surface: section order first, then
+   *  rank (IP-country → locale-language → other), then name alphabetical. */
+  function assertSectionOrder(
+    directory: ReturnType<typeof hubDirectoryEntries>,
+    localeCountries: ReadonlySet<string>,
+    ipCountry: string | null,
+  ) {
+    // Sections appear in the fixed 5-section order (no interleaving).
+    const expectedSectionOrder = SECTIONS.flatMap((section) =>
+      directory.filter((entry) => entry.section === section).map(() => section),
+    );
+    expect(directory.map((entry) => entry.section)).toEqual(expectedSectionOrder);
+    // Walk each section: ranks non-decreasing; ties alphabetical by name.
+    for (const section of SECTIONS) {
+      const entries = directory.filter((entry) => entry.section === section);
+      for (let i = 0; i < entries.length; i++) {
+        const rank = directoryRank(entries[i], localeCountries, ipCountry);
+        if (i > 0) {
+          const prevRank = directoryRank(entries[i - 1], localeCountries, ipCountry);
+          if (prevRank !== rank) {
+            expect(prevRank).toBeLessThan(rank);
+          } else {
+            expect(entries[i - 1].name.localeCompare(entries[i].name)).toBeLessThanOrEqual(0);
+          }
+        }
+      }
+    }
+  }
+
+  it('flagshipCities includes EVERY content-rich city when the cap allows (tier-irrelevant)', () => {
+    const all = flagshipCities('en', 100);
+    // 55 approved Tier-2 cities + Tier-3 Copenhagen = 56 content-rich cities.
+    expect(all).toHaveLength(CONTENT_RICH_CITY_SLUGS.length);
+    expect(CONTENT_RICH_CITY_SLUGS.length).toBe(56);
+    const names = all.map((city) => city.name);
+    // Tier-1 flagships…
+    expect(names).toContain('New York City');
+    expect(names).toContain('Berlin');
+    // …Tier-2 approved cities…
+    expect(names).toContain('Austin');
+    expect(names).toContain('Dubai');
+    // …AND Tier-3 content-rich cities (Copenhagen) — tier-irrelevant.
+    expect(names).toContain('Copenhagen');
+    // The source set spans all three tiers.
+    const tiers = new Set(contentRichCities().map((city) => tierForCitySlug(citySlug(city))));
+    expect(tiers).toEqual(new Set([1, 2, 3]));
+  });
+
+  it('flagshipCities caps at 6 by default on EVERY locale surface', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const list = flagshipCities(locale);
+      expect(list).toHaveLength(6);
+    }
+  });
+
+  it('flagshipCities orders the active locale area first, then alphabetical (more surfaces)', () => {
+    // es surface: Spanish-speaking cities lead (Barcelona … Madrid).
+    const es = flagshipCities('es');
+    expect(es.map((city) => city.name)).toEqual([
+      'Barcelona',
+      'Barranquilla',
+      'Bogota',
+      'Buenos Aires',
+      'Lima',
+      'Madrid',
+    ]);
+    // ja surface: Japanese cities lead (Osaka before Tokyo alphabetically).
+    const ja = flagshipCities('ja');
+    expect(ja.map((city) => city.name).slice(0, 2)).toEqual(['Osaka', 'Tokyo']);
+    // ar surface: Arabic-area cities lead (Cairo, Casablanca, Dubai).
+    const ar = flagshipCities('ar');
+    expect(ar.map((city) => city.name).slice(0, 3)).toEqual(['Cairo', 'Casablanca', 'Dubai']);
+  });
+
+  it('flagshipCities satisfies the ordering contract for every locale (area → alphabetical)', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const localeCountries = localeCountryCodes(locale);
+      const list = flagshipCities(locale, 100);
+      const expected = contentRichCities()
+        .slice()
+        .sort((a, b) => {
+          const aLocal = localeCountries.has(a.countryIso2) ? 0 : 1;
+          const bLocal = localeCountries.has(b.countryIso2) ? 0 : 1;
+          if (aLocal !== bLocal) return aLocal - bLocal;
+          return cityDisplayName(a).localeCompare(cityDisplayName(b));
+        })
+        .slice(0, 100);
+      expect(list.map((city) => city.name)).toEqual(expected.map((city) => cityDisplayName(city)));
+    }
+  });
+
+  it('every flagship card href resolves in the EN registry (no dead links)', () => {
+    const registryPaths = new Set(locationPageEntries().map((entry) => entry.path));
+    const enList = flagshipCities('en', 100);
+    for (const city of enList) {
+      expect(registryPaths.has(city.path)).toBe(true);
+    }
+  });
+
+  it('hubDirectoryEntries emits sections in the fixed 5-section order (no interleaving)', () => {
+    const directory = hubDirectoryEntries('en');
+    const order = directory.map((entry) => entry.section);
+    const expected = SECTIONS.flatMap((section) =>
+      directory.filter((entry) => entry.section === section).map(() => section),
+    );
+    expect(order).toEqual(expected);
+  });
+
+  it('per-section ordering: IP-country matches → locale-language → alphabetical (US IP)', () => {
+    const directory = hubDirectoryEntries('en', 'US');
+    assertSectionOrder(directory, localeCountryCodes('en'), 'US');
+    // Concrete: US entries lead every section.
+    const cities = directory.filter((entry) => entry.section === 'cities');
+    expect(cities[0].countryIso2).toBe('US');
+    expect(cities[0].name).toBe('Communities in Austin, Texas');
+    // Community types + event ideas rank via their associated city's country.
+    const types = directory.filter((entry) => entry.section === 'communityTypes');
+    expect(types[0].countryIso2).toBe('US');
+    const ideas = directory.filter((entry) => entry.section === 'eventIdeas');
+    expect(ideas[0].countryIso2).toBe('US');
+    // Countries + regions lead with the IP country too.
+    expect(directory.find((entry) => entry.section === 'countries')?.countryIso2).toBe('US');
+    expect(directory.find((entry) => entry.section === 'regions')?.countryIso2).toBe('US');
+  });
+
+  it('per-section ordering holds for a non-EN surface with IP-country (de surface, DE IP)', () => {
+    const directory = hubDirectoryEntries('de', 'DE');
+    assertSectionOrder(directory, localeCountryCodes('de'), 'DE');
+    const cities = directory.filter((entry) => entry.section === 'cities');
+    expect(cities[0].name).toBe('Communities in Berlin');
+    expect(cities[0].countryIso2).toBe('DE');
+  });
+
+  it('IP-country matches outrank locale-language matches even outside the locale area (JP IP on en)', () => {
+    // JP is not in the en language area — yet a JP visitor's country must
+    // rank first in every section (IP-country beats locale-language).
+    const directory = hubDirectoryEntries('en', 'JP');
+    assertSectionOrder(directory, localeCountryCodes('en'), 'JP');
+    const cities = directory.filter((entry) => entry.section === 'cities');
+    expect(cities[0].countryIso2).toBe('JP');
+    expect(cities[0].name).toBe('Communities in Osaka');
+    expect(cities[1].countryIso2).toBe('JP');
+    expect(cities[1].name).toBe('Communities in Tokyo');
+    // JP ideas rank first even though ja is not the active locale.
+    const ideas = directory.filter((entry) => entry.section === 'eventIdeas');
+    expect(ideas[0].countryIso2).toBe('JP');
+    expect(ideas[1].countryIso2).toBe('JP');
+  });
+
+  it('IP-country-absent fallback: locale-language ordering only, never an IP rank', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const directory = hubDirectoryEntries(locale, null);
+      const localeCountries = localeCountryCodes(locale);
+      assertSectionOrder(directory, localeCountries, null);
+      // No entry may be ranked by a (non-existent) IP country.
+      for (const entry of directory) {
+        expect(directoryRank(entry, localeCountries, null)).not.toBe(0);
+      }
+      // Locale-language matches still lead the cities section (every locale
+      // has at least one content city in its own language area).
+      const cities = directory.filter((entry) => entry.section === 'cities');
+      expect(cities.length).toBeGreaterThan(0);
+      expect(cities[0].countryIso2).toBeDefined();
+      expect(localeCountries.has(cities[0].countryIso2 ?? '')).toBe(true);
+    }
+  });
+
+  it('hub view siblingCities equals the flagship list on the ACTIVE locale surface (TASK-480)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(hub).toBeDefined();
+    for (const locale of ['en', 'de', 'es'] as Locale[]) {
+      const data = buildLocationViewData(hub!, locale);
+      const flagships = flagshipCities(locale);
+      expect(data.siblingCities.map((city) => city.name)).toEqual(
+        flagships.map((city) => city.name),
+      );
+      expect(data.siblingCities.map((city) => city.path)).toEqual(
+        flagships.map((city) => city.path),
+      );
+    }
   });
 });
 

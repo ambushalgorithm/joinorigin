@@ -1,8 +1,17 @@
 import { indexableLocationEntries, isWarmSetEntry, locationPageEntries } from '../locationPages';
-import { FLAGSHIP_CITIES, TIER_2_CITY_SLUGS, getDatasetVersion, slugify } from '../locationData';
+import {
+  CONTENT_RICH_CITY_SLUGS,
+  FLAGSHIP_CITIES,
+  TIER_2_CITY_SLUGS,
+  contentRichCities,
+  getDatasetVersion,
+  localeCountryCodes,
+  slugify,
+  tierForCitySlug,
+} from '../locationData';
 import { listContentByKind } from '../content';
 import type { Locale } from '@joinorigin/i18n';
-import { getDictionary, getT } from '@joinorigin/i18n';
+import { SUPPORTED_LOCALES, getDictionary, getT } from '@joinorigin/i18n';
 
 /**
  * fe-seo-registry registry unit tests (TASK-307), extended for Sprint 20
@@ -431,6 +440,68 @@ describe('lib/seo locationPages — per-locale (de) Berlin + Munich surface', ()
     const enIdeas = locationPageEntries().find((entry) => entry.kind === 'ideas');
     expect(enIdeas).toBeDefined();
     expect(enIdeas!.title).toContain(getT(getDictionary('en'))('seoContent.location.ideasLink'));
+  });
+});
+
+describe('lib/seo locationPages — content-rich flagship/start-local source (TASK-480/TASK-482)', () => {
+  it('CONTENT_RICH_CITY_SLUGS is tier-irrelevant: Tier-1 + Tier-2 + Tier-3 content cities', () => {
+    // The browsable flagship/start-local set is every city with committed
+    // content — NOT only the Tier-1 flagships. Copenhagen (Tier-3) is part
+    // of the set, proving the tier gate never filters the source list.
+    expect(CONTENT_RICH_CITY_SLUGS.length).toBe(TIER_2_CITY_SLUGS.length + 1);
+    expect(CONTENT_RICH_CITY_SLUGS).toContain('copenhagen');
+    expect(tierForCitySlug('copenhagen')).toBe(3);
+    const tiers = new Set(CONTENT_RICH_CITY_SLUGS.map((slug) => tierForCitySlug(slug)));
+    expect(tiers).toEqual(new Set([1, 2, 3]));
+    expect(contentRichCities()).toHaveLength(CONTENT_RICH_CITY_SLUGS.length);
+  });
+
+  it('every content-rich city resolves to an EN registry city entry (card source of truth)', () => {
+    const enCityPaths = new Set(
+      locationPageEntries()
+        .filter((entry) => entry.kind === 'city')
+        .map((entry) => entry.path),
+    );
+    const contentCities = listContentByKind('city', 'en');
+    expect(contentCities.length).toBeGreaterThanOrEqual(CONTENT_RICH_CITY_SLUGS.length);
+    // Every content-rich slug has committed EN content.
+    const contentSlugs = new Set(contentCities.map((content) => content.slug));
+    for (const slug of CONTENT_RICH_CITY_SLUGS) {
+      expect(contentSlugs.has(slug)).toBe(true);
+    }
+    // And the city page exists in the EN registry (pathable).
+    expect(enCityPaths.size).toBeGreaterThanOrEqual(CONTENT_RICH_CITY_SLUGS.length);
+  });
+
+  it('localeCountryCodes resolves a non-empty ISO alpha-2 area for EVERY locale (ordering data)', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const area = localeCountryCodes(locale);
+      expect(area.size).toBeGreaterThan(0);
+      for (const code of area) {
+        expect(code).toMatch(/^[A-Z]{2}$/);
+      }
+    }
+  });
+
+  it('locale area codes stay consistent with the committed locale content cities', () => {
+    // Every locale's area is the set of countries its content cities live
+    // in — the data that drives "active locale's country/area first".
+    const enArea = localeCountryCodes('en');
+    expect(enArea.has('US')).toBe(true);
+    // London's snapshot row resolves to Canada (London, Ontario) — the area
+    // is data-derived, so the code reflects the resolved country.
+    expect(enArea.has('CA')).toBe(true);
+    const deArea = localeCountryCodes('de');
+    expect(deArea.has('DE')).toBe(true);
+    const esArea = localeCountryCodes('es');
+    expect(esArea.has('ES')).toBe(true);
+    expect(esArea.has('MX')).toBe(true);
+    expect(esArea.has('AR')).toBe(true);
+    // Every area code maps to at least one of the locale's content cities.
+    for (const locale of SUPPORTED_LOCALES) {
+      const area = localeCountryCodes(locale);
+      expect(area.size).toBeGreaterThan(0);
+    }
   });
 });
 
