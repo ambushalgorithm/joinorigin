@@ -46,7 +46,7 @@ import {
   IDEA_VARIANT,
   citySlug,
   countrySlug,
-  findCityByGeonameId,
+  findCityBySlug,
   findCountry,
   findRegion,
   getFlagshipConfig,
@@ -54,7 +54,6 @@ import {
   isGroupTypeKey,
   loadLocationSnapshot,
   regionSlug,
-  type FlagshipCityConfig,
   type GroupTypeKey,
 } from './locationData';
 import type { PageKind } from './locationGates';
@@ -415,19 +414,20 @@ function localePathPrefix(locale: Locale): string {
   return locale === 'en' ? '' : `/${locale}`;
 }
 
-/** Variant + ideas links for a flagship city page (only committed content). */
-export function groupTypeLinksFor(
-  flagship: FlagshipCityConfig,
-  locale: Locale,
-  entryPath?: string,
-): GroupTypeLink[] {
-  const content = getCityContent(flagship.slug, locale);
+/**
+ * Variant + ideas links for a city/variant/ideas entry (only committed
+ * content). Un-gated (Sprint 20): derives from the registry entry — city
+ * identity via `entry.params` and content via
+ * `getCityContent(entry.params.city, locale)` — so the "Explore community
+ * types" section renders for EVERY content-rich city, flagship or not.
+ */
+export function groupTypeLinksFor(entry: LocationPageEntry, locale: Locale): GroupTypeLink[] {
+  const citySlugValue = entry.params.city ?? '';
+  if (!citySlugValue) return [];
+  const content = getCityContent(citySlugValue, locale);
   if (!content || content.kind !== 'city') return [];
   const prefix = localePathPrefix(locale);
-  const base =
-    entryPath && prefix && entryPath.startsWith(`${prefix}/`)
-      ? entryPath.replace(/\/[^/]+$/, '')
-      : `${prefix}${LOCATION_HUB_PATH}/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`;
+  const base = `${prefix}${LOCATION_HUB_PATH}/${entry.params.country ?? ''}/${entry.params.region ?? ''}/${citySlugValue}`;
   const links: GroupTypeLink[] = [];
   const t = getT(getDictionary(locale));
   for (const type of GROUP_TYPES) {
@@ -612,12 +612,13 @@ export function buildLocationViewData(
   locale: Locale = 'en',
 ): LocationViewData {
   const content = contentFor(entry, locale);
-  const flagship =
-    entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas'
-      ? getFlagshipConfig(entry.params.city ?? '')
-      : undefined;
+  // Sprint 20 — un-gated: the city entity resolves from the registry entry's
+  // slug for ANY city/variant/ideas entry (flagship or content-rich Tier-2/3),
+  // so sibling-cities + group-type links populate for every content city.
   const cityEntity =
-    flagship && entry.params.city ? findCityByGeonameId(flagship.geonameId) : undefined;
+    entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas'
+      ? findCityBySlug(entry.params.city ?? '')
+      : undefined;
 
   const breadcrumbs = breadcrumbsFor(entry, locale);
   const intro = introFor(entry, content);
@@ -656,8 +657,8 @@ export function buildLocationViewData(
     dataPoints: content?.dataPoints ?? [],
     faq: faqFor(entry, content),
     groupTypeLinks:
-      flagship && (entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas')
-        ? groupTypeLinksFor(flagship, locale)
+      entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas'
+        ? groupTypeLinksFor(entry, locale)
         : [],
     siblingCities:
       entry.kind === 'hub'
