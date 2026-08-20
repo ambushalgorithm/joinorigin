@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Objetos principais",
       "title": "Tudo o que uma comunidade precisa, em um espaço de trabalho tranquilo",
-      "lead": "O Origin é uma rede social de colaboração construída em torno de oito objetos principais: perfis, ideias, comunidades, comunicação, feed, projetos, empresas e oportunidades. Esteja você começando algo novo ou expandindo uma empresa existente, seus relacionamentos vivem em um só lugar em vez de cinco ferramentas separadas."
+      "lead": "O Origin é uma rede social de colaboração construída em torno de oito objetos principais: perfis, ideias, comunidades, comunicação, feed, projetos, empresas e oportunidades. Esteja você começando algo novo ou expandindo uma empresa existente, seus relacionamentos vivem em um só lugar em vez de dez ferramentas separadas."
     },
     "sectionCoreObjects": "Objetos principais",
     "coreObjects": {
@@ -158,7 +158,7 @@
         "body": "Empregos, parcerias e investimentos descobertos por meio do grafo social — a rede apresenta as oportunidades certas no momento certo."
       }
     },
-    "sectionComparison": "Por que o Origin em vez de cinco ferramentas",
+    "sectionComparison": "Por que o Origin em vez de dez ferramentas",
     "comparisonIntro": "A maioria das plataformas resolve apenas uma parte da colaboração. O Origin as combina em torno do grafo social — os relacionamentos entre os membros — para que nada se perca entre as ferramentas.",
     "comparison": {
       "toolHeader": "Ferramenta",

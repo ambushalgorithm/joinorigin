@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Đối tượng cốt lõi",
       "title": "Mọi thứ một cộng đồng cần, trong một không gian làm việc bình yên",
-      "lead": "Origin là một mạng lưới cộng tác xã hội được xây dựng quanh tám đối tượng cốt lõi: hồ sơ, ý tưởng, cộng đồng, giao tiếp, bảng tin, dự án, công ty và cơ hội. Dù bạn đang bắt đầu điều gì đó mới hay phát triển một công ty hiện hữu, các mối quan hệ của bạn nằm ở một nơi duy nhất thay vì năm công cụ riêng biệt."
+      "lead": "Origin là một mạng lưới cộng tác xã hội được xây dựng quanh tám đối tượng cốt lõi: hồ sơ, ý tưởng, cộng đồng, giao tiếp, bảng tin, dự án, công ty và cơ hội. Dù bạn đang bắt đầu điều gì đó mới hay phát triển một công ty hiện hữu, các mối quan hệ của bạn nằm ở một nơi duy nhất thay vì mười công cụ riêng biệt."
     },
     "sectionCoreObjects": "Đối tượng cốt lõi",
     "coreObjects": {
@@ -158,7 +158,7 @@
         "body": "Công việc, quan hệ đối tác và khoản đầu tư được khám phá qua đồ thị xã hội — mạng lưới hiển thị đúng cơ hội vào đúng thời điểm."
       }
     },
-    "sectionComparison": "Vì sao lại là Origin thay vì năm công cụ",
+    "sectionComparison": "Vì sao lại là Origin thay vì mười công cụ",
     "comparisonIntro": "Hầu hết các nền tảng chỉ giải quyết một phần của sự cộng tác. Origin kết hợp chúng xoay quanh đồ thị xã hội — các mối quan hệ giữa các thành viên — để không có gì bị thất lạc giữa các công cụ.",
     "comparison": {
       "toolHeader": "Công cụ",

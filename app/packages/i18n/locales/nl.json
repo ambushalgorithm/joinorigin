@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Kernobjecten",
       "title": "Alles wat een community nodig heeft, in één rustige werkruimte",
-      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is opgebouwd rond acht kernobjecten: profielen, ideeën, community's, communicatie, feed, projecten, bedrijven en kansen. Of je nu iets nieuws start of een bestaand bedrijf laat groeien, je relaties leven op één plek in plaats van in vijf losse tools."
+      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is opgebouwd rond acht kernobjecten: profielen, ideeën, community's, communicatie, feed, projecten, bedrijven en kansen. Of je nu iets nieuws start of een bestaand bedrijf laat groeien, je relaties leven op één plek in plaats van in tien losse tools."
     },
     "sectionCoreObjects": "Kernobjecten",
     "coreObjects": {
@@ -158,7 +158,7 @@
         "body": "Banen, partnerschappen en investeringen die worden ontdekt via de sociale graaf — het netwerk brengt de juiste kansen op het juiste moment naar boven."
       }
     },
-    "sectionComparison": "Waarom Origin in plaats van vijf tools",
+    "sectionComparison": "Waarom Origin in plaats van tien tools",
     "comparisonIntro": "De meeste platforms lossen slechts één deel van de samenwerking op. Origin combineert ze rondom de sociale graaf — de relaties tussen leden — zodat er niets tussen tools verloren gaat.",
     "comparison": {
       "toolHeader": "Tool",
