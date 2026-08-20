@@ -45,6 +45,21 @@ describe('/location/[country]/[region]/[city]/[variant] route', () => {
     expect(meta.robots).toEqual({ index: true, follow: true });
   });
 
+  it('generateMetadata resolves the un-gated dubai startup variant (TASK-474)', async () => {
+    const meta = await generateMetadata({
+      params: Promise.resolve({
+        country: 'united-arab-emirates',
+        region: 'dubai',
+        city: 'dubai',
+        variant: 'startup',
+      }),
+    });
+    expect(meta.alternates?.canonical).toBe(
+      'http://localhost:3100/en/location/united-arab-emirates/dubai/dubai/startup',
+    );
+    expect(meta.robots).toEqual({ index: true, follow: true });
+  });
+
   it('renders the startup variant view: single h1 + variant lead prose', () => {
     const entry = resolveLocationEntry({
       country: 'germany',
@@ -57,6 +72,38 @@ describe('/location/[country]/[region]/[city]/[variant] route', () => {
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Startup communities in Berlin');
+  });
+
+  it('renders the un-gated dubai startup variant (TASK-474)', () => {
+    const entry = resolveLocationEntry({
+      country: 'united-arab-emirates',
+      region: 'dubai',
+      city: 'dubai',
+      variant: 'startup',
+    });
+    expect(entry).toBeDefined();
+    expect(entry?.kind).toBe('variant');
+    const data = buildLocationViewData(entry!);
+    renderWithI18n(<LocationView data={data} />);
+    const headings = screen.getAllByRole('heading', { level: 1 });
+    expect(headings).toHaveLength(1);
+    expect(headings[0]).toHaveTextContent('Startup communities in Dubai');
+  });
+
+  it('renders the un-gated buenos-aires startup variant (TASK-474)', () => {
+    const entry = resolveLocationEntry({
+      country: 'argentina',
+      region: 'buenos-aires-f-d',
+      city: 'buenos-aires',
+      variant: 'startup',
+    });
+    expect(entry).toBeDefined();
+    expect(entry?.kind).toBe('variant');
+    const data = buildLocationViewData(entry!);
+    renderWithI18n(<LocationView data={data} />);
+    const headings = screen.getAllByRole('heading', { level: 1 });
+    expect(headings).toHaveLength(1);
+    expect(headings[0]).toHaveTextContent('Startup communities in Buenos Aires');
   });
 
   it('renders the ideas view: 30-idea grid in 6 categories', () => {

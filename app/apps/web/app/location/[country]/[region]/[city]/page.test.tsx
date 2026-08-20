@@ -70,6 +70,20 @@ describe('/location/[country]/[region]/[city] route', () => {
     expect(meta).toEqual({});
   });
 
+  it('generateMetadata resolves the un-gated dubai city entry (TASK-474)', async () => {
+    const meta = await generateMetadata({
+      params: Promise.resolve({
+        country: 'united-arab-emirates',
+        region: 'dubai',
+        city: 'dubai',
+      }),
+    });
+    expect(meta.alternates?.canonical).toBe(
+      'http://localhost:3100/en/location/united-arab-emirates/dubai/dubai',
+    );
+    expect(meta.robots).toEqual({ index: true, follow: true });
+  });
+
   it('renders the Berlin city view: single h1, breadcrumbs, variants, FAQ, CTA', () => {
     const entry = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
     const data = buildLocationViewData(entry!);
@@ -90,6 +104,51 @@ describe('/location/[country]/[region]/[city] route', () => {
 
     expect(screen.getByTestId('location-faq')).toBeInTheDocument();
     expect(screen.getByTestId('location-cta-band')).toBeInTheDocument();
+  });
+
+  it('renders the un-gated dubai city view: Explore community types + nearby cities (TASK-474)', () => {
+    const entry = resolveLocationEntry({
+      country: 'united-arab-emirates',
+      region: 'dubai',
+      city: 'dubai',
+    });
+    expect(entry).toBeDefined();
+    const data = buildLocationViewData(entry!);
+    renderWithI18n(<LocationView data={data} />);
+
+    const headings = screen.getAllByRole('heading', { level: 1 });
+    expect(headings).toHaveLength(1);
+    expect(headings[0]).toHaveTextContent('Communities in Dubai');
+
+    // Explore community types — un-gated for Tier-2 content cities.
+    const groupLinks = screen.getByTestId('location-group-type-links');
+    expect(within(groupLinks).getByText('Startup communities')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('30 community event ideas')).toBeInTheDocument();
+
+    // Communities in nearby cities — same-region siblings render too.
+    const siblingGrid = screen.getByTestId('location-sibling-cities');
+    expect(within(siblingGrid).getAllByRole('link').length).toBeGreaterThan(0);
+  });
+
+  it('renders the un-gated buenos-aires city view: group types + nearby cities (TASK-474)', () => {
+    const entry = resolveLocationEntry({
+      country: 'argentina',
+      region: 'buenos-aires-f-d',
+      city: 'buenos-aires',
+    });
+    expect(entry).toBeDefined();
+    const data = buildLocationViewData(entry!);
+    renderWithI18n(<LocationView data={data} />);
+
+    const headings = screen.getAllByRole('heading', { level: 1 });
+    expect(headings).toHaveLength(1);
+    expect(headings[0]).toHaveTextContent('Communities in Buenos Aires');
+
+    const groupLinks = screen.getByTestId('location-group-type-links');
+    expect(within(groupLinks).getByText('Startup communities')).toBeInTheDocument();
+
+    const siblingGrid = screen.getByTestId('location-sibling-cities');
+    expect(within(siblingGrid).getAllByRole('link').length).toBeGreaterThan(0);
   });
 
   it('renders the Translate this page link on the EN page with the correct href (TASK-318)', () => {
