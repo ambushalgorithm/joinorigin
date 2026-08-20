@@ -473,17 +473,13 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
-      {/* Flagship/Nearby cities, renders on routes like: /en/location/germany/berlin/berlin/small-business */}
-      {hasSiblings ? (
+      {/* Flagship cities, renders on route: /en/location */}
+      {hasSiblings && data.kind === 'hub' ? (
         <SectionBand variant={'plain'}>
           <PageContainer>
             <Reveal>
               <Section>
-                <SectionTitle>
-                  {data.kind === 'hub'
-                    ? t('seoContent.location.flagshipCities')
-                    : t('seoContent.location.nearbyCities')}
-                </SectionTitle>
+                <SectionTitle>{t('seoContent.location.flagshipCities')}</SectionTitle>
                 <CardGrid data-testid="location-flagship-cities">
                   {data.siblingCities.map((sibling) => (
                     <Card key={sibling.path}>
@@ -573,17 +569,13 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
-      {/* Flagship/Nearby cities, renders on routes like: /en/location/germany/berlin/berlin/small-business */}
-      {hasSiblings ? (
+      {/* Communities in nearby cities, renders on routes like: /en/location/germany/berlin/berlin/small-business */}
+      {hasSiblings && data.kind !== 'hub' ? (
         <SectionBand variant={isIdeas ? 'glass' : 'plain'}>
           <PageContainer>
             <Reveal>
               <Section>
-                <SectionTitle>
-                  {data.kind === 'hub'
-                    ? t('seoContent.location.flagshipCities')
-                    : t('seoContent.location.nearbyCities')}
-                </SectionTitle>
+                <SectionTitle>{t('seoContent.location.nearbyCities')}</SectionTitle>
                 <CardGrid data-testid="location-sibling-cities">
                   {data.siblingCities.map((sibling) => (
                     <Card key={sibling.path}>

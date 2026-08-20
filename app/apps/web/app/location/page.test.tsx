@@ -66,7 +66,7 @@ describe('/location hub page', () => {
     expect(within(breadcrumbs).getByText('Communities by City')).toBeInTheDocument();
 
     // The hub links the two flagship cities (the browsable entry points).
-    const flagshipCities = screen.getByTestId('location-sibling-cities');
+    const flagshipCities = screen.getByTestId('location-flagship-cities');
     expect(within(flagshipCities).getByText('New York City')).toBeInTheDocument();
     expect(within(flagshipCities).getByText('Berlin')).toBeInTheDocument();
 
