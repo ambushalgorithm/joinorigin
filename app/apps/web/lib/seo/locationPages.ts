@@ -22,7 +22,7 @@
 
 import { getDictionary, getT, type Locale } from '@joinorigin/i18n';
 
-import { getCityContent, getCountryContent, getRegionContent, hasContent } from './content';
+import { getCityContent, getCountryContent, getRegionContent, listContentByKind } from './content';
 import type { CityContent, LocationContent } from './content/types';
 import type { LocationCity, LocationCountry, LocationRegion } from './data/types';
 import { evaluatePageGates, ideaPageProse } from './locationGates';
@@ -33,7 +33,7 @@ import {
   IDEA_VARIANT,
   citySlug,
   countrySlug,
-  findCityByGeonameId,
+  findCityBySlug,
   findCountry,
   findRegion,
   getDatasetVersion,
@@ -266,20 +266,23 @@ function hubEntry(locale: Locale): LocationPageEntry {
   });
 }
 
-/** The other flagship's content used for G5 (no NYC↔Berlin reuse). */
-function otherFlagship(flagship: FlagshipCityConfig): FlagshipCityConfig | undefined {
+/** The other flagship's content used for G5 (no NYC↔Berlin reuse). Returns
+ *  undefined for non-flagship slugs — their idea pages only check against
+ *  their own variant prose (no cross-city comparison). */
+function otherFlagship(flagship: FlagshipCityConfig | undefined): FlagshipCityConfig | undefined {
+  if (!flagship) return undefined;
   return FLAGSHIP_CITIES.find((candidate) => candidate.slug !== flagship.slug);
 }
 
 function otherFlagshipIntro(slug: string): string | undefined {
-  const other = otherFlagship(getFlagshipConfig(slug) as FlagshipCityConfig);
+  const other = otherFlagship(getFlagshipConfig(slug));
   if (!other) return undefined;
   // City intros are paragraph arrays (TASK-410) — join for the G5 comparison.
   return getCityContent(other.slug, 'en')?.intro.join(' ');
 }
 
 function otherFlagshipIdeaProse(slug: string): string | undefined {
-  const other = otherFlagship(getFlagshipConfig(slug) as FlagshipCityConfig);
+  const other = otherFlagship(getFlagshipConfig(slug));
   if (!other) return undefined;
   const content = getCityContent(other.slug, 'en');
   return content ? ideaPageProse(content) : undefined;
@@ -390,9 +393,61 @@ function cityEntry(city: LocationCity, locale: Locale): LocationPageEntry | null
   });
 }
 
+/* ------------------------------------------------------------------ *
+ * City identity — slug/display/country/region/tier for variant + ideas
+ * entry construction (generalized to every content-rich city, not just
+ * flagships — user-approved 2026-08-20).
+ *
+ * Flagships keep their config overrides (slug/displayName/regionSlug/
+ * countrySlug/tier=1); non-flagships derive from the snapshot so Tier-2
+ * variants/ideas get tier 2 (indexable, ISR — not warm) and Tier-3
+ * content pages render but stay noindex.
+ * ------------------------------------------------------------------ */
+
+export interface CityIdentity {
+  /** City URL slug (kebab-case). */
+  slug: string;
+  /** Display name for titles/H1 (e.g. "New York City"). */
+  displayName: string;
+  /** Country URL segment. */
+  countrySlug: string;
+  /** Region URL segment. */
+  regionSlug: string;
+  /** Tier — flagship = 1, auto slice = 2, long tail = 3. */
+  tier: 1 | 2 | 3;
+}
+
+/** Resolve the city identity for variant/ideas pages. Flagship config
+ *  overrides are retained exactly; non-flagships derive from the snapshot
+ *  city/region/country rows. Returns null when a non-flagship city has no
+ *  resolvable region or country (never emits a broken path). */
+function cityIdentityFor(slug: string, city: LocationCity): CityIdentity | null {
+  const flagship = getFlagshipConfig(slug);
+  if (flagship) {
+    return {
+      slug: flagship.slug,
+      displayName: flagship.displayName,
+      countrySlug: flagship.countrySlug,
+      regionSlug: flagship.regionSlug,
+      tier: 1,
+    };
+  }
+  const region = findRegion(city.regionId);
+  const country = findCountry(city.countryIso2);
+  if (!region || !country) return null;
+  const resolvedSlug = citySlug(city);
+  return {
+    slug: resolvedSlug,
+    displayName: city.asciiName,
+    countrySlug: countrySlug(country),
+    regionSlug: regionSlug(region),
+    tier: tierForCitySlug(resolvedSlug),
+  };
+}
+
 /** Variant page entry — generated only where real differentiating prose exists. */
 function variantEntry(
-  flagship: FlagshipCityConfig,
+  identity: CityIdentity,
   city: LocationCity,
   content: CityContent,
   typeKey: GroupTypeKey,
@@ -401,25 +456,25 @@ function variantEntry(
   const label = groupTypeLabelForLocale(typeKey, locale);
   const title =
     content.pageTitles?.variants?.[typeKey] ??
-    variantPageTitle(label, flagship.displayName, locale);
+    variantPageTitle(label, identity.displayName, locale);
   const description =
     content.pageTitles?.variantDescriptions?.[typeKey] ??
-    variantPageDescription(label, flagship.displayName, locale);
+    variantPageDescription(label, identity.displayName, locale);
   return buildEntry({
     kind: 'variant',
     params: {
-      country: flagship.countrySlug,
-      region: flagship.regionSlug,
-      city: flagship.slug,
+      country: identity.countrySlug,
+      region: identity.regionSlug,
+      city: identity.slug,
       variant: typeKey,
     },
-    path: locationPath(locale, [flagship.countrySlug, flagship.regionSlug, flagship.slug, typeKey]),
+    path: locationPath(locale, [identity.countrySlug, identity.regionSlug, identity.slug, typeKey]),
     title,
     description,
-    tier: 1,
+    tier: identity.tier,
     entity: city,
     content,
-    cityName: flagship.displayName,
+    cityName: identity.displayName,
     groupType: typeKey,
     typePhrase: label,
     // City intros are paragraph arrays (TASK-410) — join for the G5 parent-prose
@@ -431,14 +486,14 @@ function variantEntry(
 
 /** Idea page entry — `/city/ideas` with the unique-listicle rule applied. */
 function ideasEntry(
-  flagship: FlagshipCityConfig,
+  identity: CityIdentity,
   city: LocationCity,
   content: CityContent,
   locale: Locale,
 ): LocationPageEntry {
-  const title = content.pageTitles?.ideas ?? ideasPageTitle(flagship.displayName, locale);
+  const title = content.pageTitles?.ideas ?? ideasPageTitle(identity.displayName, locale);
   const description =
-    content.pageTitles?.ideasDescription ?? ideasPageDescription(flagship.displayName, locale);
+    content.pageTitles?.ideasDescription ?? ideasPageDescription(identity.displayName, locale);
   // G4 intent phrase in the surface's language — resolved per-locale from
   // the dictionary (de: "Ideen", EN title template: "30 community event ideas
   // in {city}") so every surface phrases its own intent.
@@ -446,26 +501,26 @@ function ideasEntry(
   return buildEntry({
     kind: 'ideas',
     params: {
-      country: flagship.countrySlug,
-      region: flagship.regionSlug,
-      city: flagship.slug,
+      country: identity.countrySlug,
+      region: identity.regionSlug,
+      city: identity.slug,
       variant: IDEA_VARIANT,
     },
     path: locationPath(locale, [
-      flagship.countrySlug,
-      flagship.regionSlug,
-      flagship.slug,
+      identity.countrySlug,
+      identity.regionSlug,
+      identity.slug,
       IDEA_VARIANT,
     ]),
     title,
     description,
-    tier: 1,
+    tier: identity.tier,
     entity: city,
     content,
-    cityName: flagship.displayName,
+    cityName: identity.displayName,
     groupType: IDEA_VARIANT,
     typePhrase,
-    otherCityIdeaProse: locale === 'en' ? otherFlagshipIdeaProse(flagship.slug) : undefined,
+    otherCityIdeaProse: locale === 'en' ? otherFlagshipIdeaProse(identity.slug) : undefined,
     locale,
   });
 }
@@ -478,11 +533,13 @@ function ideasEntry(
  * Derive the complete location-page registry.
  *
  * - `locationPageEntries()` → the EN canonical surface (hub + all
- *   countries/regions/cities + flagship variants + idea pages).
+ *   countries/regions/cities + variants + idea pages for every content-rich
+ *   city, tier-irrelevant).
  * - `locationPageEntries(locale)` → a per-locale surface where COMMITTED
- *   translated content exists (Berlin `de`: city + 5 variants + ideas at
- *   `/${locale}/location/germany/berlin/...`) — the EN fallback is never
- *   enumerated for a per-locale surface (phase A, design §7.1).
+ *   translated content exists (Berlin + Munich `de`, 8 cities `es`, …) with
+ *   the city page + variants + ideas at `/${locale}/location/...` — the EN
+ *   fallback is never enumerated for a per-locale surface (phase A, design
+ *   §7.1).
  *
  * Entries are deterministic: titles/descriptions derive from the snapshot
  * + content files, `lastModified` = dataset version date, and `indexable`
@@ -531,26 +588,30 @@ export function locationPageEntries(locale?: Locale): LocationPageEntry[] {
     }
   }
 
-  // Flagship surface — city page (per locale) + variants + ideas, only
-  // where committed content produces real differentiating prose (§3.8).
-  // For per-locale surfaces `hasContent` (exact, no EN fallback) gates the
-  // enumeration so untranslated cities never get locale-prefixed URLs.
-  for (const flagship of FLAGSHIP_CITIES) {
-    if (!hasContent('city', flagship.slug, target)) continue;
-    const content = getCityContent(flagship.slug, target);
-    if (!content || content.kind !== 'city') continue;
-    const city = findCityByGeonameId(flagship.geonameId);
+  // Generalized city surface — city page (per-locale surfaces only) +
+  // variants + ideas for EVERY city with committed content for the target
+  // locale, not just flagships (user-approved 2026-08-20). EN city entries
+  // are already emitted by the all-cities loop above; per-locale surfaces
+  // emit their committed city entries here. `listContentByKind` is exact
+  // (no EN fallback) so untranslated cities never get locale-prefixed URLs.
+  // Indexability stays tier-gated: Tier-2 variants/ideas are indexable but
+  // ISR (not warm); Tier-3 content pages (e.g. Copenhagen) render noindex.
+  for (const content of listContentByKind('city', target)) {
+    if (content.kind !== 'city') continue;
+    const city = findCityBySlug(content.slug);
     if (!city) continue;
+    const identity = cityIdentityFor(content.slug, city);
+    if (!identity) continue;
     if (target !== 'en') {
       const entry = cityEntry(city, target);
       if (entry) entries.push(entry);
     }
     for (const type of GROUP_TYPES) {
       if (!content.variantIntros[type.key]) continue;
-      entries.push(variantEntry(flagship, city, content, type.key, target));
+      entries.push(variantEntry(identity, city, content, type.key, target));
     }
     if (content.ideaPage) {
-      entries.push(ideasEntry(flagship, city, content, target));
+      entries.push(ideasEntry(identity, city, content, target));
     }
   }
 
