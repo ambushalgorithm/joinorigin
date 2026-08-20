@@ -235,7 +235,14 @@ export function LocationView({ data }: { data: LocationViewData }) {
   // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
   // `/de/**`. Server-baked locale-prefixed paths pass through idempotently.
   const localizePath = useLocalizePath();
+  // TASK-477 — the hub H1 is chrome: the registry title is locale-
+  // independent EN ("Communities by City — Find or Start a Community Near
+  // You"), so it must resolve through the active locale dictionary
+  // (`seoContent.breadcrumb.hub`) to re-translate on language toggle. City /
+  // country / region / variant / ideas H1s are authored per-locale content
+  // and already render in the surface locale, so they stay server-baked.
   const heroTitle = data.heading;
+  const heroTitleKey = data.kind === 'hub' ? 'seoContent.breadcrumb.hub' : undefined;
   const heroLead = data.lead;
   const isIdeas = data.kind === 'ideas';
   const hasGroupLinks = data.groupTypeLinks.length > 0;
@@ -273,11 +280,23 @@ export function LocationView({ data }: { data: LocationViewData }) {
   // the route-locale values as a deterministic fallback for the JSON-LD
   // mirror and for non-hydrated rendering.
   const eyebrow = t(`seoContent.eyebrow.${data.kind}`);
+  // TASK-477 — the home + hub crumbs re-resolve through the active locale
+  // dictionary so the breadcrumb chrome fully translates on language toggle.
+  // Deeper country/region/city crumbs stay server-baked: their names are
+  // already localized per surface and the entity names are proper nouns that
+  // do not change across locales.
   const crumbLabel = (crumb: (typeof data.breadcrumbs)[number]) => {
     if (crumb.path === '/') return t('seoContent.breadcrumb.home');
     if (crumb.path === '/location') return t('seoContent.breadcrumb.hub');
     return crumb.name;
   };
+
+  // TASK-477 — the honest presence claim ("Find or start a community in
+  // {{city}}") resolves the hub entity label through the active locale
+  // dictionary (`seoContent.location.hubEntity`) so the claim never mixes
+  // the route-locale label with the toggled claim chrome; other kinds use
+  // authored/entity labels (proper nouns, unchanged across locales).
+  const presenceCity = data.kind === 'hub' ? t('seoContent.location.hubEntity') : data.entityLabel;
 
   /** Group-type link label — prefers the client chrome dictionary (cookie
    *  locale), falls back to the server-baked label. */
@@ -304,6 +323,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
       hero={{
         eyebrow,
         title: heroTitle,
+        titleKey: heroTitleKey,
         lead: heroLead,
         scene: 'community',
         accent: 'community',
@@ -368,7 +388,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
           <Reveal>
             <Section>
               <SectionTitle>
-                {t('seoContent.location.presenceClaim', { city: data.entityLabel })}
+                {t('seoContent.location.presenceClaim', { city: presenceCity })}
               </SectionTitle>
               {/* City intros are paragraph arrays (TASK-410) — each entry
                   renders as its own paragraph block (TASK-416); kinds without

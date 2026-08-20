@@ -66,6 +66,27 @@ describe('MenuHero', () => {
     ).toBeInTheDocument();
   });
 
+  it('resolves the H1 through the active locale dictionary when titleKey is set (TASK-477)', () => {
+    renderHero({ titleKey: 'seoContent.breadcrumb.hub' });
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Communities by City' }),
+    ).toBeInTheDocument();
+  });
+
+  it('re-translates the H1 through the active locale on a de load (TASK-477)', () => {
+    renderWithI18n(
+      <ThemeProvider theme={theme}>
+        <WaitlistModalProvider>
+          <MenuHero title="T" titleKey="seoContent.breadcrumb.hub" />
+        </WaitlistModalProvider>
+      </ThemeProvider>,
+      'de',
+    );
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Communities nach Stadt' }),
+    ).toBeInTheDocument();
+  });
+
   it('renders exactly one h1 and no header landmark (the top nav owns <header>)', () => {
     const { container } = renderHero();
     expect(container.querySelectorAll('h1')).toHaveLength(1);
