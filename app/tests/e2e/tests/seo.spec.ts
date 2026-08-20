@@ -18,28 +18,30 @@ import { test, expect, type Page } from '@playwright/test';
 // dev server (keeps the pre-existing mobile-nav/responsive suite stable).
 test.describe.configure({ mode: 'serial' });
 
-/** Absolute page paths under test (8 HTML pages, discovery §4; /pricing removed). */
+/** Absolute page paths under test — the EN canonical /en/** surfaces (8
+ *  HTML pages, discovery §4; /pricing removed). The unprefixed `/**`
+ *  counterparts 307-redirect to these surfaces (TASK-464/466). */
 const PATHS = [
-  '/',
-  '/features',
-  '/community',
-  '/docs',
-  '/about',
-  '/contact',
-  '/privacy',
-  '/terms',
+  '/en',
+  '/en/features',
+  '/en/community',
+  '/en/docs',
+  '/en/about',
+  '/en/contact',
+  '/en/privacy',
+  '/en/terms',
 ];
 
 /** Expected per-page <title> (discovery §5 + layout default). */
 const EXPECTED_TITLES: Record<string, string> = {
-  '/': 'JoinOrigin — Social Collaboration Network & Community OS',
-  '/features': 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
-  '/community': 'Community — Find Your People & Build Together | JoinOrigin',
-  '/docs': 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
-  '/about': 'About — The Operating System for Human Collaboration | JoinOrigin',
-  '/contact': 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
-  '/privacy': 'Privacy Policy | JoinOrigin',
-  '/terms': 'Terms of Service | JoinOrigin',
+  '/en': 'JoinOrigin — Social Collaboration Network & Community OS',
+  '/en/features': 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
+  '/en/community': 'Community — Find Your People & Build Together | JoinOrigin',
+  '/en/docs': 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
+  '/en/about': 'About — The Operating System for Human Collaboration | JoinOrigin',
+  '/en/contact': 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
+  '/en/privacy': 'Privacy Policy | JoinOrigin',
+  '/en/terms': 'Terms of Service | JoinOrigin',
 };
 
 /** Parse every `application/ld+json` block on the page → flat @type array. */
@@ -83,8 +85,8 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
         ['og:title', EXPECTED_TITLES[path]],
         ['og:type', 'website'],
         ['og:site_name', 'JoinOrigin'],
-        // og:url — home is the bare origin; subpages end with the path.
-        ['og:url', path === '/' ? /https?:\/\/[^/]+\/?$/ : new RegExp(`${path}$`)],
+        // og:url — the EN home is /en; subpages end with the /en path.
+        ['og:url', path === '/en' ? /https?:\/\/[^/]+\/en\/?$/ : new RegExp(`${path}$`)],
       ];
       for (const [property, expected] of ogChecks) {
         const tag = page.locator(`meta[property="${property}"]`);
@@ -130,7 +132,7 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
       // robots meta: index,follow from createMetadata (arch §3.3). The home
       // page is a client component with no metadata export, so it has no
       // robots <meta> — absence defaults to index,follow (acceptable).
-      if (path !== '/') {
+      if (path !== '/en') {
         await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
           'content',
           'index, follow',
@@ -142,7 +144,7 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
   test('menu pages use the arch OG image /assets/og/og-default.png (1200×630)', async ({
     page,
   }) => {
-    for (const path of PATHS.filter((p) => p !== '/')) {
+    for (const path of PATHS.filter((p) => p !== '/en')) {
       await page.goto(path);
       const ogImageUrl =
         (await page.locator('meta[property="og:image"]').getAttribute('content')) ?? '';
@@ -174,8 +176,8 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     const xmlText = (await response?.text().catch(() => '')) ?? '';
 
     for (const path of PATHS) {
-      // sitemap loc is absolute; assert the path appears.
-      const suffix = path === '/' ? '3100/' : `3100${path}`;
+      // sitemap loc is absolute; assert the /en/** surface appears.
+      const suffix = `3100${path}`;
       expect(xmlText, `sitemap should contain ${path}`).toContain(suffix);
     }
   });
@@ -210,32 +212,33 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     const paths = locs.map((loc) => new URL(loc).pathname);
 
     // The EN canonical indexable set must be listed (static routes, glossary,
-    // guides hub, flagships + Tier-2 city slice, all 12 guides).
+    // guides hub, flagships + Tier-2 city slice, all 12 guides) — every entry
+    // on its /en/** surface (all-routes-prefixed, TASK-464/466).
     const expectedIndexable = [
       ...PATHS,
-      '/location',
-      '/location/united-states',
-      '/location/united-states/new-york',
-      '/location/united-states/new-york/new-york',
-      '/location/united-states/new-york/new-york/startup',
-      '/location/united-states/new-york/new-york/creative',
-      '/location/united-states/new-york/new-york/political',
-      '/location/united-states/new-york/new-york/meetup',
-      '/location/united-states/new-york/new-york/small-business',
-      '/location/united-states/new-york/new-york/ideas',
-      '/location/germany',
-      '/location/germany/berlin',
-      '/location/germany/berlin/berlin',
-      '/location/germany/berlin/berlin/startup',
-      '/location/germany/berlin/berlin/creative',
-      '/location/germany/berlin/berlin/political',
-      '/location/germany/berlin/berlin/meetup',
-      '/location/germany/berlin/berlin/small-business',
-      '/location/germany/berlin/berlin/ideas',
+      '/en/location',
+      '/en/location/united-states',
+      '/en/location/united-states/new-york',
+      '/en/location/united-states/new-york/new-york',
+      '/en/location/united-states/new-york/new-york/startup',
+      '/en/location/united-states/new-york/new-york/creative',
+      '/en/location/united-states/new-york/new-york/political',
+      '/en/location/united-states/new-york/new-york/meetup',
+      '/en/location/united-states/new-york/new-york/small-business',
+      '/en/location/united-states/new-york/new-york/ideas',
+      '/en/location/germany',
+      '/en/location/germany/berlin',
+      '/en/location/germany/berlin/berlin',
+      '/en/location/germany/berlin/berlin/startup',
+      '/en/location/germany/berlin/berlin/creative',
+      '/en/location/germany/berlin/berlin/political',
+      '/en/location/germany/berlin/berlin/meetup',
+      '/en/location/germany/berlin/berlin/small-business',
+      '/en/location/germany/berlin/berlin/ideas',
       // Tier-2 city slice (Sprint 18: 55 cities promoted — spot-check a few).
-      '/location/united-states/texas/austin',
-      '/location/germany/bavaria/munich',
-      '/location/france/ile-de-france/paris',
+      '/en/location/united-states/texas/austin',
+      '/en/location/germany/bavaria/munich',
+      '/en/location/france/ile-de-france/paris',
       '/de/location/germany/berlin/berlin',
       '/de/location/germany/berlin/berlin/startup',
       '/de/location/germany/berlin/berlin/creative',
@@ -243,20 +246,20 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
       '/de/location/germany/berlin/berlin/meetup',
       '/de/location/germany/berlin/berlin/small-business',
       '/de/location/germany/berlin/berlin/ideas',
-      '/guides',
-      '/glossary',
-      '/guides/start-a-community',
-      '/guides/organize-a-meetup',
-      '/guides/first-10-members',
-      '/guides/find-a-co-founder',
-      '/guides/keep-a-community-active',
-      '/guides/hybrid-communities',
-      '/guides/moderation',
-      '/guides/publish-an-idea',
-      '/guides/create-a-project',
-      '/guides/create-a-group',
-      '/guides/publish-a-small-business-idea',
-      '/guides/publish-a-startup-concept',
+      '/en/guides',
+      '/en/glossary',
+      '/en/guides/start-a-community',
+      '/en/guides/organize-a-meetup',
+      '/en/guides/first-10-members',
+      '/en/guides/find-a-co-founder',
+      '/en/guides/keep-a-community-active',
+      '/en/guides/hybrid-communities',
+      '/en/guides/moderation',
+      '/en/guides/publish-an-idea',
+      '/en/guides/create-a-project',
+      '/en/guides/create-a-group',
+      '/en/guides/publish-a-small-business-idea',
+      '/en/guides/publish-a-startup-concept',
     ];
     for (const path of expectedIndexable) {
       expect(paths, `indexable page ${path} in sitemap`).toContain(path);
@@ -269,16 +272,16 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
       'ar', 'hi', 'id', 'tr', 'it', 'pl', 'nl', 'vi', 'th', 'uk', 'fa',
     ] as const;
     for (const locale of SUPPORTED_LOCALES) {
-      const home = locale === 'en' ? '/' : `/${locale}`;
+      const home = locale === 'en' ? '/en' : `/${locale}`;
       expect(paths, `sitemap should contain ${home}`).toContain(home);
-      const features = locale === 'en' ? '/features' : `/${locale}/features`;
+      const features = locale === 'en' ? '/en/features' : `/${locale}/features`;
       expect(paths, `sitemap should contain ${features}`).toContain(features);
-      const guides = locale === 'en' ? '/guides' : `/${locale}/guides`;
+      const guides = locale === 'en' ? '/en/guides' : `/${locale}/guides`;
       expect(paths, `sitemap should contain ${guides}`).toContain(guides);
     }
 
-    // Tier-3 / failed-gate pages are never advertised.
-    expect(paths).not.toContain('/location/united-states/texas/dallas');
+    // Tier-3 / failed-gate pages are never advertised (EN canonical surface).
+    expect(paths).not.toContain('/en/location/united-states/texas/dallas');
   });
 
   test('sitemap carries Berlin de alternates.languages + x-default for the Berlin cluster', async ({
@@ -332,24 +335,28 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     // Blockquote summary + H2 sections + markdown links (llms.txt v2, discovery §8.1).
     expect(text).toContain('>');
     expect(text).toContain('## ');
-    expect(text).toContain('[/about](');
-    expect(text).toContain('[/features](');
+    // All links target the /en/** canonical surface (TASK-466).
+    expect(text).toContain('[/en/about](');
+    expect(text).toContain('[/en/features](');
     // Curated sections (design §9.3) — hub + 2 flagships, all 7 guides,
     // glossary hub; never the long tail.
     expect(text).toContain('## Locations');
-    expect(text).toContain('[/location](http://localhost:3100/location)');
-    expect(text).toContain('[/location/united-states/new-york/new-york](');
-    expect(text).toContain('[/location/germany/berlin/berlin](');
+    expect(text).toContain('[/en/location](http://localhost:3100/en/location)');
+    expect(text).toContain('[/en/location/united-states/new-york/new-york](');
+    expect(text).toContain('[/en/location/germany/berlin/berlin](');
     expect(text).toContain('## Guides');
-    expect(text).toContain('[/guides/start-a-community](');
-    expect(text).toContain('[/guides/moderation](');
+    expect(text).toContain('[/en/guides/start-a-community](');
+    expect(text).toContain('[/en/guides/moderation](');
     expect(text).toContain('## Glossary');
-    expect(text).toContain('[/glossary](');
+    expect(text).toContain('[/en/glossary](');
     // ~3 KB budget so LLM crawlers hold the file in context (12-guide set, TASK-353).
     expect(Buffer.byteLength(text, 'utf8')).toBeLessThanOrEqual(3 * 1024);
     // Long tail never enumerated (Tier-3 city pages are sitemap-only).
     expect(text).not.toContain('/location/united-states/texas/austin');
     expect(text).not.toContain('/de/location');
+    // Zero unprefixed internal links (all-routes-prefixed, TASK-464).
+    expect(text).not.toContain('](http://localhost:3100/features)');
+    expect(text).not.toContain('](http://localhost:3100/guides)');
   });
 });
 
@@ -375,7 +382,7 @@ test.describe('JSON-LD structured data (arch §3.6, discovery §7)', () => {
   });
 
   test('BreadcrumbList JSON-LD on every subpage (Home › Page, discovery §4)', async ({ page }) => {
-    for (const path of PATHS.filter((p) => p !== '/')) {
+    for (const path of PATHS.filter((p) => p !== '/en')) {
       await page.goto(path);
       const types = await ldTypes(page);
       expect(types, `BreadcrumbList on ${path}`).toContain('BreadcrumbList');

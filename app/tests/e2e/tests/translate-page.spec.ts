@@ -18,11 +18,11 @@ import { test, expect } from '@playwright/test';
 test.describe.configure({ mode: 'serial' });
 
 const EN_LOCATION_PAGES = [
-  '/location/germany/berlin/berlin',
-  '/location/germany/berlin/berlin/startup',
-  '/location/germany/berlin/berlin/ideas',
-  '/location/united-states/new-york/new-york',
-  '/location/united-states/new-york/new-york/creative',
+  '/en/location/germany/berlin/berlin',
+  '/en/location/germany/berlin/berlin/startup',
+  '/en/location/germany/berlin/berlin/ideas',
+  '/en/location/united-states/new-york/new-york',
+  '/en/location/united-states/new-york/new-york/creative',
 ];
 
 const DE_LOCATION_PAGES = [
@@ -64,7 +64,7 @@ test.describe('Google Translate link-out (TASK-318)', () => {
   }
 
   test('EN guide page renders the translate link with the correct href', async ({ page }) => {
-    await page.goto('/guides/start-a-community');
+    await page.goto('/en/guides/start-a-community');
     await expectTranslateHref(page);
     await expect(page.getByTestId('translate-page-link')).toContainText('Translate this page');
   });

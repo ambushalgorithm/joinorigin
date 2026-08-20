@@ -27,7 +27,7 @@ test.describe('/location hub search/filter (TASK-317)', () => {
     // elements mid-interaction (repo convention).
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
-    await page.goto('/location');
+    await page.goto('/en/location');
     await expect(page.locator('h1')).toContainText('Communities by City');
 
     const search = page.getByRole('searchbox', { name: 'Search locations' });
@@ -35,22 +35,22 @@ test.describe('/location hub search/filter (TASK-317)', () => {
 
     // Full directory is rendered initially (registry-driven).
     await expect(
-      page.locator('[data-testid="location-hub-directory"] a[href="/location/germany/berlin/berlin"]'),
+      page.locator('[data-testid="location-hub-directory"] a[href="/en/location/germany/berlin/berlin"]'),
     ).toBeVisible();
     await expect(
       page.locator(
-        '[data-testid="location-hub-directory"] a[href="/location/united-states"]',
+        '[data-testid="location-hub-directory"] a[href="/en/location/united-states"]',
       ),
     ).toBeVisible();
 
     // Type a keyword — the visible set narrows after the debounce.
     await search.fill('berlin');
     await expect(
-      page.locator('[data-testid="location-hub-directory"] a[href="/location/germany/berlin/berlin"]'),
+      page.locator('[data-testid="location-hub-directory"] a[href="/en/location/germany/berlin/berlin"]'),
     ).toBeVisible();
     await expect(
       page.locator(
-        '[data-testid="location-hub-directory"] a[href="/location/united-states"]',
+        '[data-testid="location-hub-directory"] a[href="/en/location/united-states"]',
       ),
     ).toHaveCount(0);
 
@@ -58,11 +58,11 @@ test.describe('/location hub search/filter (TASK-317)', () => {
     await search.fill('STARTUP');
     await expect(
       page.locator(
-        '[data-testid="location-hub-directory"] a[href="/location/germany/berlin/berlin/startup"]',
+        '[data-testid="location-hub-directory"] a[href="/en/location/germany/berlin/berlin/startup"]',
       ),
     ).toBeVisible();
     await expect(
-      page.locator('[data-testid="location-hub-directory"] a[href="/location/germany/berlin/berlin"]'),
+      page.locator('[data-testid="location-hub-directory"] a[href="/en/location/germany/berlin/berlin"]'),
     ).toHaveCount(0);
 
     // No match → empty state replaces the directory.
@@ -79,7 +79,7 @@ test.describe('/guides hub search/filter (TASK-317)', () => {
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
-    await page.goto('/guides');
+    await page.goto('/en/guides');
     await expect(page.locator('h1')).toContainText('Community Building Guides');
 
     const search = page.getByRole('searchbox', { name: 'Search guides' });
@@ -92,7 +92,7 @@ test.describe('/guides hub search/filter (TASK-317)', () => {
     await search.fill('meetup');
     await expect(page.locator('[data-testid="guides-hub-grid"] a')).toHaveCount(1);
     await expect(
-      page.locator('[data-testid="guides-hub-grid"] a[href="/guides/organize-a-meetup"]'),
+      page.locator('[data-testid="guides-hub-grid"] a[href="/en/guides/organize-a-meetup"]'),
     ).toBeVisible();
 
     // No match → empty state replaces the grid.
