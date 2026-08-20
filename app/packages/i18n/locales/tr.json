@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Temel nesneler",
       "title": "Bir topluluğun ihtiyaç duyduğu her şey, tek bir sakin çalışma alanında",
-      "lead": "Origin, sekiz temel nesne etrafında kurulmuş bir sosyal iş birliği ağıdır: profiller, fikirler, topluluklar, iletişim, akış, projeler, şirketler ve fırsatlar. İster yeni bir şey başlatıyor ister mevcut bir şirketi büyütüyor olun, ilişkileriniz beş ayrı araç yerine tek bir yerde yaşar."
+      "lead": "Origin, sekiz temel nesne etrafında kurulmuş bir sosyal iş birliği ağıdır: profiller, fikirler, topluluklar, iletişim, akış, projeler, şirketler ve fırsatlar. İster yeni bir şey başlatıyor ister mevcut bir şirketi büyütüyor olun, ilişkileriniz on ayrı araç yerine tek bir yerde yaşar."
     },
     "sectionCoreObjects": "Temel nesneler",
     "coreObjects": {
@@ -158,7 +158,7 @@
         "body": "Sosyal grafik üzerinden keşfedilen işler, ortaklıklar ve yatırımlar — ağ, doğru zamanda doğru fırsatları yüzeye çıkarır."
       }
     },
-    "sectionComparison": "Neden beş araç yerine Origin?",
+    "sectionComparison": "Neden on araç yerine Origin?",
     "comparisonIntro": "Çoğu platform iş birliğinin yalnızca bir parçasını çözer. Origin, bunları sosyal grafik — üyeler arasındaki ilişkiler — etrafında birleştirir; böylece araçlar arasında hiçbir şey kaybolmaz.",
     "comparison": {
       "toolHeader": "Araç",

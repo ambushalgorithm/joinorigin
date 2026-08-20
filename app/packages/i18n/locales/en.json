@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Core objects",
       "title": "Everything a community needs, in one calm workspace",
-      "lead": "Origin is a social collaboration network built around eight core objects: profiles, ideas, communities, communication, feed, projects, companies, and opportunities. Whether you're starting something new or growing an existing company, your relationships live in one place instead of five separate tools."
+      "lead": "Origin is a social collaboration network built around eight core objects: profiles, ideas, communities, communication, feed, projects, companies, and opportunities. Whether you're starting something new or growing an existing company, your relationships live in one place instead of ten separate tools."
     },
     "sectionCoreObjects": "Core objects",
     "coreObjects": {
@@ -158,7 +158,7 @@
         "body": "Jobs, partnerships, and investments discovered through the social graph — the network surfaces the right opportunities at the right time."
       }
     },
-    "sectionComparison": "Why Origin instead of five tools",
+    "sectionComparison": "Why Origin instead of ten tools",
     "comparisonIntro": "Most platforms solve only one part of collaboration. Origin combines them around the social graph — the relationships between members — so nothing gets lost between tools.",
     "comparison": {
       "toolHeader": "Tool",

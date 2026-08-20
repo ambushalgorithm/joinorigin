@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Kernobjekte",
       "title": "Alles, was eine Community braucht, in einem ruhigen Workspace",
-      "lead": "Origin ist ein soziales Kollaborationsnetzwerk, das um acht Kernobjekte herum aufgebaut ist: Profile, Ideen, Communities, Kommunikation, Feed, Projekte, Unternehmen und Chancen. Egal, ob du etwas Neues startest oder ein bestehendes Unternehmen weiterentwickelst — deine Beziehungen leben an einem Ort statt in fünf getrennten Tools."
+      "lead": "Origin ist ein soziales Kollaborationsnetzwerk, das um acht Kernobjekte herum aufgebaut ist: Profile, Ideen, Communities, Kommunikation, Feed, Projekte, Unternehmen und Chancen. Egal, ob du etwas Neues startest oder ein bestehendes Unternehmen weiterentwickelst — deine Beziehungen leben an einem Ort statt in zehn getrennten Tools."
     },
     "sectionCoreObjects": "Kernobjekte",
     "coreObjects": {
@@ -158,7 +158,7 @@
         "body": "Jobs, Partnerschaften und Investitionen, die über den sozialen Graphen entdeckt werden — das Netzwerk zeigt die richtigen Chancen zur richtigen Zeit auf."
       }
     },
-    "sectionComparison": "Warum Origin statt fünf Tools",
+    "sectionComparison": "Warum Origin statt zehn Tools",
     "comparisonIntro": "Die meisten Plattformen lösen nur einen Teil der Zusammenarbeit. Origin vereint sie rund um den sozialen Graphen — die Beziehungen zwischen den Mitgliedern —, sodass zwischen den Tools nichts verloren geht.",
     "comparison": {
       "toolHeader": "Tool",

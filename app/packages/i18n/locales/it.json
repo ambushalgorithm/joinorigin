@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Oggetti principali",
       "title": "Tutto ciò di cui una community ha bisogno, in un unico spazio di lavoro sereno",
-      "lead": "Origin è una rete di collaborazione sociale costruita attorno a otto oggetti principali: profili, idee, community, comunicazione, feed, progetti, aziende e opportunità. Che tu stia iniziando qualcosa di nuovo o facendo crescere un'azienda esistente, le tue relazioni vivono in un unico posto invece che in cinque strumenti separati."
+      "lead": "Origin è una rete di collaborazione sociale costruita attorno a otto oggetti principali: profili, idee, community, comunicazione, feed, progetti, aziende e opportunità. Che tu stia iniziando qualcosa di nuovo o facendo crescere un'azienda esistente, le tue relazioni vivono in un unico posto invece che in dieci strumenti separati."
     },
     "sectionCoreObjects": "Oggetti principali",
     "coreObjects": {
@@ -158,7 +158,7 @@
         "body": "Lavori, partnership e investimenti scoperti attraverso il grafo sociale — la rete fa emergere le opportunità giuste al momento giusto."
       }
     },
-    "sectionComparison": "Perché Origin invece di cinque strumenti",
+    "sectionComparison": "Perché Origin invece di dieci strumenti",
     "comparisonIntro": "La maggior parte delle piattaforme risolve solo una parte della collaborazione. Origin le combina attorno al grafo sociale — le relazioni tra i membri — così nulla va perso tra gli strumenti.",
     "comparison": {
       "toolHeader": "Strumento",

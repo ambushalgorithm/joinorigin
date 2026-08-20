@@ -129,7 +129,7 @@
     "hero": {
       "eyebrow": "Objets fondamentaux",
       "title": "Tout ce dont une communauté a besoin, dans un espace de travail serein",
-      "lead": "Origin est un réseau de collaboration sociale construit autour de huit objets fondamentaux : profils, idées, communautés, communication, fil, projets, entreprises et opportunités. Que vous démarriez quelque chose de nouveau ou que vous fassiez grandir une entreprise existante, vos relations vivent dans un seul endroit au lieu de cinq outils séparés."
+      "lead": "Origin est un réseau de collaboration sociale construit autour de huit objets fondamentaux : profils, idées, communautés, communication, fil, projets, entreprises et opportunités. Que vous démarriez quelque chose de nouveau ou que vous fassiez grandir une entreprise existante, vos relations vivent dans un seul endroit au lieu de dix outils séparés."
     },
     "sectionCoreObjects": "Objets fondamentaux",
     "coreObjects": {
@@ -158,7 +158,7 @@
         "body": "Emplois, partenariats et investissements découverts grâce au graphe social — le réseau fait remonter les bonnes opportunités au bon moment."
       }
     },
-    "sectionComparison": "Pourquoi Origin plutôt que cinq outils",
+    "sectionComparison": "Pourquoi Origin plutôt que dix outils",
     "comparisonIntro": "La plupart des plateformes ne résolvent qu'une partie de la collaboration. Origin les réunit autour du graphe social — les relations entre membres — pour que rien ne se perde entre les outils.",
     "comparison": {
       "toolHeader": "Outil",
