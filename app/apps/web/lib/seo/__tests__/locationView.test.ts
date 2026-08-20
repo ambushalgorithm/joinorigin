@@ -1,15 +1,19 @@
 import {
   buildLocationViewData,
+  cityLocationPath,
   guideLinksFor,
+  hubDirectoryEntries,
   languagesFor,
   locationJsonLd,
   locationMetadata,
   resolveLocationEntry,
+  siblingCitiesFor,
   waitlistSource,
   warmParamsFor,
   warmParamsForLocale,
 } from '../locationView';
 import { locationPageEntries, type LocationPageEntry } from '../locationPages';
+import { loadLocationSnapshot } from '../locationData';
 
 /**
  * fe-location-pages view-layer unit tests (TASK-308).
@@ -438,11 +442,92 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
     }
   });
 
+  it('EN sibling + directory hrefs stay on the /en/location/... surface (TASK-469)', () => {
+    const berlin = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
+    expect(berlin).toBeDefined();
+    const data = buildLocationViewData(berlin!);
+    expect(data.siblingCities.length).toBeGreaterThan(0);
+    for (const sibling of data.siblingCities) {
+      expect(sibling.path).toMatch(/^\/en\/location\//);
+    }
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    const hubData = buildLocationViewData(hub!);
+    expect(hubData.hubDirectory?.length).toBeGreaterThan(0);
+    for (const dir of hubData.hubDirectory ?? []) {
+      expect(dir.path).toMatch(/^\/en\/location\//);
+    }
+  });
+
+  it('sibling city hrefs move to the ACTIVE locale surface (TASK-469)', () => {
+    const berlin = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
+    expect(berlin).toBeDefined();
+    const data = buildLocationViewData(berlin!, 'es');
+    expect(data.siblingCities.length).toBeGreaterThan(0);
+    for (const sibling of data.siblingCities) {
+      expect(sibling.path).toMatch(/^\/es\/location\//);
+      expect(sibling.path).not.toMatch(/^\/en\//);
+    }
+    // de — the committed Berlin surface keeps its own tree too.
+    const deData = buildLocationViewData(berlin!, 'de');
+    for (const sibling of deData.siblingCities) {
+      expect(sibling.path).toMatch(/^\/de\/location\//);
+    }
+  });
+
+  it('hub sibling (flagship city) cards point at the ACTIVE locale surface (TASK-469)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(hub).toBeDefined();
+    const esData = buildLocationViewData(hub!, 'es');
+    expect(esData.siblingCities.length).toBeGreaterThan(0);
+    for (const sibling of esData.siblingCities) {
+      expect(sibling.path).toMatch(/^\/es\/location\//);
+    }
+  });
+
   it('cityLocationPath mirrors the registry (flagship overrides)', () => {
     const berlinCity = locationPageEntries().find(
       (entry) => entry.kind === 'city' && entry.params.city === 'berlin',
     );
     expect(berlinCity?.path).toBe('/en/location/germany/berlin/berlin');
+  });
+
+  it('cityLocationPath is locale-aware — /<locale>/location/... for non-EN surfaces (TASK-469)', () => {
+    const berlinCity = loadLocationSnapshot().cities.find((city) => city.asciiName === 'Berlin');
+    expect(berlinCity).toBeDefined();
+    // EN default keeps the /en canonical surface.
+    expect(cityLocationPath(berlinCity!)).toBe('/en/location/germany/berlin/berlin');
+    expect(cityLocationPath(berlinCity!, 'es')).toBe('/es/location/germany/berlin/berlin');
+    expect(cityLocationPath(berlinCity!, 'de')).toBe('/de/location/germany/berlin/berlin');
+  });
+
+  it('siblingCitiesFor(..., locale) emits sibling hrefs on the ACTIVE locale surface (TASK-469)', () => {
+    const nyc = loadLocationSnapshot().cities.find((city) => city.asciiName === 'New York');
+    expect(nyc).toBeDefined();
+    // EN default — /en/location/... matches the registry surface.
+    for (const sibling of siblingCitiesFor(nyc, 6, 'en')) {
+      expect(sibling.path).toMatch(/^\/en\/location\//);
+    }
+    // es — every sibling href maps to the /es/location/... surface.
+    const esSiblings = siblingCitiesFor(nyc, 6, 'es');
+    expect(esSiblings.length).toBeGreaterThan(0);
+    for (const sibling of esSiblings) {
+      expect(sibling.path).toMatch(/^\/es\/location\//);
+      expect(sibling.path).not.toMatch(/^\/en\//);
+    }
+  });
+
+  it('hubDirectoryEntries(locale) emits every card path on the ACTIVE locale surface (TASK-469)', () => {
+    const enEntries = hubDirectoryEntries('en');
+    const esEntries = hubDirectoryEntries('es');
+    expect(esEntries.length).toBe(enEntries.length);
+    expect(esEntries.length).toBeGreaterThan(0);
+    for (const entry of enEntries) {
+      expect(entry.path).toMatch(/^\/en\/location\//);
+    }
+    for (const entry of esEntries) {
+      expect(entry.path).toMatch(/^\/es\/location\//);
+      expect(entry.path).not.toMatch(/^\/en\//);
+    }
   });
 
   it('guide cross-links are present for every page kind', () => {
@@ -604,5 +689,38 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     expect(
       es.hubDirectory?.every((entry) => en.hubDirectory?.some((e) => e.name === entry.name)),
     ).toBe(true);
+  });
+
+  it('Browse-locations card hrefs move to the ACTIVE locale surface (TASK-469)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(hub).toBeDefined();
+    // EN — every directory card points at the /en/location/... surface.
+    const en = buildLocationViewData(hub!);
+    expect(en.hubDirectory?.length).toBeGreaterThan(0);
+    for (const entry of en.hubDirectory ?? []) {
+      expect(entry.path).toMatch(/^\/en\/location\//);
+    }
+    // es — every card points at the /es/location/... surface (all 21 locale
+    // trees exist), never /en/** (localizePath is idempotent for prefixed
+    // hrefs, so a baked /en path would navigate the es hub to English).
+    const es = buildLocationViewData(hub!, 'es');
+    expect(es.hubDirectory?.length).toBeGreaterThan(0);
+    for (const entry of es.hubDirectory ?? []) {
+      expect(entry.path).toMatch(/^\/es\/location\//);
+      expect(entry.path).not.toMatch(/^\/en\//);
+    }
+  });
+
+  it('guide cross-links stay unprefixed so the client localizes them (TASK-469 no regression)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    const esData = buildLocationViewData(hub!, 'es');
+    expect(esData.guideLinks.length).toBeGreaterThan(0);
+    // GUIDE_PATHS are unprefixed /guides/... — the client localizePath applies
+    // the active locale prefix (e.g. /es/guides/...) at render time.
+    for (const link of esData.guideLinks) {
+      expect(link.path).toMatch(/^\/guides\//);
+      expect(link.path).not.toMatch(/^\/en\//);
+      expect(link.path).not.toMatch(/^\/es\//);
+    }
   });
 });

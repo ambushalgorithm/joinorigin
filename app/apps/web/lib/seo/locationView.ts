@@ -168,6 +168,22 @@ function enPathForLocale(localePath: string, locale: Locale): string {
 }
 
 /**
+ * Forward an EN-surface path (`/en/...`) to the ACTIVE locale surface
+ * (`/${locale}/...`). All-routes-prefixed (TASK-466): EN registry paths
+ * carry the `/en` prefix, and the generator created all 21 locale trees —
+ * every `/<locale>/location/**` route exists — so the mapping is
+ * unconditional. Unlike `localePathForEn` (which only maps surfaces with
+ * COMMITTED content, for hreflang), card hrefs must point at the surface the
+ * user is browsing: `/en/...` would navigate a `/es/location` visitor to the
+ * English surface. Unprefixed paths (guide links) and EN itself pass through
+ * unchanged.
+ */
+function forwardToLocaleSurface(enPath: string, locale: Locale): string {
+  if (locale === 'en' || !enPath.startsWith('/en')) return enPath;
+  return `/${locale}${enPath.slice('/en'.length)}`;
+}
+
+/**
  * `alternates.languages` for a location entry. Only surfaces with committed
  * translations carry a hreflang cluster (phase A — EN-only pages carry no
  * cluster). An EN page lists every locale surface with committed content for
@@ -245,8 +261,11 @@ export interface HubDirectoryEntry {
  * surface (`indexableLocationEntries(locale)`) so Browse-locations card
  * names (country/region/city) render in the active locale when committed
  * content exists, EN fallback otherwise — the EN directory always stays
- * complete. Paths stay on the canonical EN tree (locale-prefixed surfaces
- * only enumerate committed content, design §7.1).
+ * complete. Locale-aware paths (TASK-469): every card href points at the
+ * ACTIVE locale surface (`/${locale}/location/...`) — all 21 locale trees
+ * exist — never the EN-canonical `/en/...` (localizePath passes
+ * already-prefixed hrefs through idempotently, so `/en` here would navigate
+ * a non-EN hub visitor to the English surface).
  */
 export function hubDirectoryEntries(locale: Locale = 'en'): HubDirectoryEntry[] {
   const localizedNames = new Map<string, string>();
@@ -258,7 +277,7 @@ export function hubDirectoryEntries(locale: Locale = 'en'): HubDirectoryEntry[] 
     .filter((entry) => entry.kind !== 'hub')
     .map((entry) => ({
       name: localizedNames.get(locationEntryKey(entry)) ?? stripBrand(entry.title),
-      path: entry.path,
+      path: forwardToLocaleSurface(entry.path, locale),
       kind: entry.kind,
     }));
 }
@@ -325,9 +344,10 @@ export interface SiblingCityLink {
   path: string;
 }
 
-/** Registry-exact location path for a city (mirrors `cityEntry`) — the EN
- *  canonical surface `/en/location/...` (all-prefixed, TASK-466). */
-export function cityLocationPath(city: LocationCity): string | undefined {
+/** Registry-exact location path for a city (mirrors `cityEntry`) — on the
+ *  ACTIVE locale surface `/${locale}/location/...` (all-routes-prefixed,
+ *  TASK-466/TASK-469; all 21 locale trees exist). */
+export function cityLocationPath(city: LocationCity, locale: Locale = 'en'): string | undefined {
   const flagship = FLAGSHIP_CITIES.find((candidate) => candidate.geonameId === city.id);
   const region = findRegion(city.regionId);
   const country = findCountry(city.countryIso2);
@@ -335,14 +355,19 @@ export function cityLocationPath(city: LocationCity): string | undefined {
   const slug = flagship?.slug ?? citySlug(city);
   const regionSeg = flagship?.regionSlug ?? regionSlug(region);
   const countrySeg = flagship?.countrySlug ?? countrySlug(country);
-  return `/en${LOCATION_HUB_PATH}/${countrySeg}/${regionSeg}/${slug}`;
+  return `/${locale}${LOCATION_HUB_PATH}/${countrySeg}/${regionSeg}/${slug}`;
 }
 
 /**
  * Same-region sibling cities, deduped on (regionId, slug), highest
  * population first, excluding the given city — capped at `limit` (5–10).
+ * Sibling card hrefs point at the ACTIVE locale surface (TASK-469).
  */
-export function siblingCitiesFor(city: LocationCity | undefined, limit = 6): SiblingCityLink[] {
+export function siblingCitiesFor(
+  city: LocationCity | undefined,
+  limit = 6,
+  locale: Locale = 'en',
+): SiblingCityLink[] {
   if (!city) return [];
   const snapshot = loadLocationSnapshot();
   const byKey = new Map<string, LocationCity>();
@@ -363,7 +388,7 @@ export function siblingCitiesFor(city: LocationCity | undefined, limit = 6): Sib
     .sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
     .slice(0, limit)
     .flatMap((sibling) => {
-      const path = cityLocationPath(sibling);
+      const path = cityLocationPath(sibling, locale);
       return path ? [{ name: sibling.asciiName, path }] : [];
     });
 }
@@ -641,11 +666,16 @@ export function buildLocationViewData(
               (e) => e.kind === 'city' && e.params.city === flagshipCity.slug,
             );
             return cityEntryRow
-              ? [{ name: flagshipCity.displayName, path: cityEntryRow.path }]
+              ? [
+                  {
+                    name: flagshipCity.displayName,
+                    path: forwardToLocaleSurface(cityEntryRow.path, locale),
+                  },
+                ]
               : [];
           })
         : entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas'
-          ? siblingCitiesFor(cityEntity)
+          ? siblingCitiesFor(cityEntity, 6, locale)
           : [],
     guideLinks: guideLinksFor(entry.kind, locale),
     hubDirectory: entry.kind === 'hub' ? hubDirectoryEntries(locale) : undefined,

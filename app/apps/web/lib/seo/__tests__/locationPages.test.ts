@@ -261,6 +261,19 @@ describe('lib/seo locationPages — per-locale (de) Berlin surface', () => {
     }
   });
 
+  it('registry paths are all-prefixed per surface — EN /en/location/..., per-locale /<locale>/location/... (TASK-466/TASK-469)', () => {
+    // EN canonical tree is the origin for every indexable page.
+    for (const entry of indexableLocationEntries()) {
+      expect(entry.path).toMatch(/^\/en\/location/);
+    }
+    // The de surface (committed Berlin) lives under its own prefix.
+    for (const entry of locationPageEntries('de')) {
+      expect(entry.path).toMatch(/^\/de\/location/);
+    }
+    // Every per-locale committed entry stays inside its own tree — card hrefs
+    // derived from the EN directory map to the ACTIVE locale surface (TASK-469).
+  });
+
   it('the ideas G4 intent phrase resolves per-locale from the dictionary (TASK-457)', () => {
     const deIdeas = de.find((entry) => entry.kind === 'ideas');
     expect(deIdeas).toBeDefined();
