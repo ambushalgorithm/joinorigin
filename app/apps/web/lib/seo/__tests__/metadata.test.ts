@@ -94,7 +94,7 @@ describe('lib/seo createMetadata', () => {
     expect(meta.keywords).toEqual(['contact JoinOrigin']);
   });
 
-  it('stays per-locale for a non-EN surface: canonical + hreflang on /<locale>/... (x-default → EN)', () => {
+  it('stays per-locale for a non-EN surface: canonical + hreflang on /<locale>/... (x-default → /en/)', () => {
     const meta = createMetadata({
       title: 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
       description: 'Features description',
@@ -104,8 +104,8 @@ describe('lib/seo createMetadata', () => {
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/de/features'));
     expect(meta.alternates?.languages).toEqual({
       de: absoluteUrl('/de/features'),
-      en: absoluteUrl('/features'),
-      'x-default': absoluteUrl('/features'),
+      en: absoluteUrl('/en/features'),
+      'x-default': absoluteUrl('/en/features'),
     });
   });
 
@@ -119,12 +119,12 @@ describe('lib/seo createMetadata', () => {
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/pt-BR/features'));
     expect(meta.alternates?.languages).toEqual({
       'pt-BR': absoluteUrl('/pt-BR/features'),
-      en: absoluteUrl('/features'),
-      'x-default': absoluteUrl('/features'),
+      en: absoluteUrl('/en/features'),
+      'x-default': absoluteUrl('/en/features'),
     });
   });
 
-  it('keeps the home surface at /<locale> with x-default → EN root', () => {
+  it('keeps the home surface at /<locale> with x-default → /en root', () => {
     const meta = createMetadata({
       title: 'T',
       description: 'D',
@@ -134,12 +134,12 @@ describe('lib/seo createMetadata', () => {
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/de'));
     expect(meta.alternates?.languages).toEqual({
       de: absoluteUrl('/de'),
-      en: absoluteUrl('/'),
-      'x-default': absoluteUrl('/'),
+      en: absoluteUrl('/en'),
+      'x-default': absoluteUrl('/en'),
     });
   });
 
-  it('emits no hreflang cluster for the EN surface (callers add full clusters)', () => {
+  it('emits the EN surface cluster for locale=en: canonical /en/... + en + x-default → /en/', () => {
     const meta = createMetadata({
       title: 'T',
       description: 'D',
@@ -147,7 +147,38 @@ describe('lib/seo createMetadata', () => {
       locale: 'en',
     });
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/en/features'));
-    expect(meta.alternates?.languages).toBeUndefined();
+    expect(meta.alternates?.languages).toEqual({
+      en: absoluteUrl('/en/features'),
+      'x-default': absoluteUrl('/en/features'),
+    });
+  });
+
+  it('prefixes an unprefixed path onto the EN surface (canonical /en/..., never unprefixed)', () => {
+    const meta = createMetadata({
+      title: 'T',
+      description: 'D',
+      path: '/features',
+      locale: 'en',
+    });
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/en/features'));
+    expect(meta.alternates?.languages).toEqual({
+      en: absoluteUrl('/en/features'),
+      'x-default': absoluteUrl('/en/features'),
+    });
+  });
+
+  it('keeps the EN home surface at /en with the EN cluster', () => {
+    const meta = createMetadata({
+      title: 'T',
+      description: 'D',
+      path: '/en',
+      locale: 'en',
+    });
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/en'));
+    expect(meta.alternates?.languages).toEqual({
+      en: absoluteUrl('/en'),
+      'x-default': absoluteUrl('/en'),
+    });
   });
 
   it('honors an explicit languages map over the locale-derived cluster', () => {
@@ -164,7 +195,7 @@ describe('lib/seo createMetadata', () => {
   });
 });
 
-describe('lib/seo localizeMetadata (EN-fallback surface rewrite, TASK-458)', () => {
+describe('lib/seo localizeMetadata (EN-fallback surface rewrite, TASK-458 + TASK-466)', () => {
   const enMeta = createMetadata({
     title: 'Berlin — Communities in Berlin | JoinOrigin',
     description: 'Find or start a community in Berlin.',
@@ -178,22 +209,36 @@ describe('lib/seo localizeMetadata (EN-fallback surface rewrite, TASK-458)', () 
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/de/location/germany/berlin'));
     expect(meta.alternates?.languages).toEqual({
       de: absoluteUrl('/de/location/germany/berlin'),
-      en: absoluteUrl('/location/germany/berlin'),
-      'x-default': absoluteUrl('/location/germany/berlin'),
+      en: absoluteUrl('/en/location/germany/berlin'),
+      'x-default': absoluteUrl('/en/location/germany/berlin'),
     });
     expect(meta.robots).toEqual({ index: false, follow: true });
     expect(meta.openGraph?.title).toBe('Berlin — Communities in Berlin | JoinOrigin');
   });
 
-  it('returns the metadata untouched for the EN surface', () => {
+  it('rewrites the EN surface to /en/** with the EN cluster (TASK-466)', () => {
     const meta = localizeMetadata(enMeta, 'en', '/location/germany/berlin');
-    expect(meta).toBe(enMeta);
-    expect(meta.alternates?.canonical).toBe(absoluteUrl('/location/germany/berlin'));
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/en/location/germany/berlin'));
+    expect(meta.alternates?.languages).toEqual({
+      en: absoluteUrl('/en/location/germany/berlin'),
+      'x-default': absoluteUrl('/en/location/germany/berlin'),
+    });
   });
 
-  it('maps the EN root onto /<locale> (no trailing slash)', () => {
+  it('accepts an already-/en-prefixed EN surface path idempotently', () => {
+    const meta = localizeMetadata(enMeta, 'en', '/en/location/germany/berlin');
+    expect(meta.alternates?.canonical).toBe(absoluteUrl('/en/location/germany/berlin'));
+    expect(meta.alternates?.languages).toEqual({
+      en: absoluteUrl('/en/location/germany/berlin'),
+      'x-default': absoluteUrl('/en/location/germany/berlin'),
+    });
+  });
+
+  it('maps the EN root onto /<locale> (no trailing slash) and /en for the EN surface', () => {
     const meta = localizeMetadata(enMeta, 'de', '/');
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/de'));
+    const enMetaRoot = localizeMetadata(enMeta, 'en', '/');
+    expect(enMetaRoot.alternates?.canonical).toBe(absoluteUrl('/en'));
   });
 });
 
@@ -256,11 +301,11 @@ describe('lib/seo JSON-LD builders', () => {
 });
 
 describe('lib/seo llms.txt', () => {
-  it('builds a text/plain document with absolute URLs and no API links', () => {
+  it('builds a text/plain document with absolute /en/** URLs and no API links', () => {
     const text = buildLlmsText();
     expect(text).toContain('# JoinOrigin');
-    expect(text).toContain(absoluteUrl('/about'));
-    expect(text).toContain(absoluteUrl('/features'));
+    expect(text).toContain(absoluteUrl('/en/about'));
+    expect(text).toContain(absoluteUrl('/en/features'));
     expect(text).not.toMatch(/\/api\//);
     expect(text.trimEnd()).not.toMatch(/\n\n$/);
   });

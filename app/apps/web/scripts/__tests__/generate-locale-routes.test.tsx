@@ -331,16 +331,24 @@ describe('representative generated pages render + export metadata', () => {
     expect(EsCommunity.metadata.alternates?.canonical).toBe('http://localhost:3100/es/community');
   });
 
-  it('non-EN static metadata carries per-locale hreflang with x-default → EN canonical', () => {
+  it('non-EN static metadata carries per-locale hreflang with x-default → /en/ canonical', () => {
     expect(DeFeatures.metadata.alternates?.languages).toEqual({
       de: 'http://localhost:3100/de/features',
-      en: 'http://localhost:3100/features',
-      'x-default': 'http://localhost:3100/features',
+      en: 'http://localhost:3100/en/features',
+      'x-default': 'http://localhost:3100/en/features',
     });
     expect(EsCommunity.metadata.alternates?.languages).toEqual({
       es: 'http://localhost:3100/es/community',
-      en: 'http://localhost:3100/community',
-      'x-default': 'http://localhost:3100/community',
+      en: 'http://localhost:3100/en/community',
+      'x-default': 'http://localhost:3100/en/community',
+    });
+  });
+
+  it('EN static metadata emits the EN surface cluster (canonical /en/..., en + x-default → /en/)', () => {
+    expect(EnHome.metadata.alternates?.canonical).toBe('http://localhost:3100/en');
+    expect(EnHome.metadata.alternates?.languages).toEqual({
+      en: 'http://localhost:3100/en',
+      'x-default': 'http://localhost:3100/en',
     });
   });
 

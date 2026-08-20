@@ -53,8 +53,8 @@ describe('/es/guides/[slug] route (TASK-421 + TASK-453)', () => {
       expect(meta.alternates?.canonical).toBe('http://localhost:3100/es/guides/publish-an-idea');
       expect(meta.alternates?.languages).toEqual({
         es: 'http://localhost:3100/es/guides/publish-an-idea',
-        en: 'http://localhost:3100/guides/publish-an-idea',
-        'x-default': 'http://localhost:3100/guides/publish-an-idea',
+        en: 'http://localhost:3100/en/guides/publish-an-idea',
+        'x-default': 'http://localhost:3100/en/guides/publish-an-idea',
       });
     } finally {
       hasContentMock.mockRestore();
@@ -77,8 +77,8 @@ describe('/es/guides/[slug] route (TASK-421 + TASK-453)', () => {
       expect(meta.alternates?.canonical).toBe('http://localhost:3100/es/guides/create-a-project');
       expect(meta.alternates?.languages).toEqual({
         es: 'http://localhost:3100/es/guides/create-a-project',
-        en: 'http://localhost:3100/guides/create-a-project',
-        'x-default': 'http://localhost:3100/guides/create-a-project',
+        en: 'http://localhost:3100/en/guides/create-a-project',
+        'x-default': 'http://localhost:3100/en/guides/create-a-project',
       });
     } finally {
       hasContentMock.mockRestore();

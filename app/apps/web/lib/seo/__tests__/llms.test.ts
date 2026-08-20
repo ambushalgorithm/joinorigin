@@ -1,6 +1,5 @@
 import { buildLlmsText, LLMS_ENTRIES } from '../llms';
-import { guidePageEntries, GLOSSARY_HUB_PATH } from '../guides';
-import { LOCATION_HUB_PATH } from '../locationPages';
+import { guidePageEntries } from '../guides';
 import { FLAGSHIP_CITIES } from '../locationData';
 import { absoluteUrl } from '../url';
 
@@ -14,7 +13,8 @@ import { absoluteUrl } from '../url';
  *  - Glossary section = the glossary hub,
  *  - total size ≤ ~3 KB so LLM crawlers hold it in context (12-guide set,
  *    TASK-353 — the original ~2 KB budget assumed 7 guides),
- *  - every link is an absolute LLM-parseable URL; no `/api/*` links.
+ *  - every link is an absolute LLM-parseable URL at the EN canonical
+ *    `/en/**` surface (all-prefixed, TASK-466); no `/api/*` links.
  */
 
 const KB = 1024;
@@ -26,13 +26,13 @@ describe('lib/seo llms.txt — curated sections', () => {
     expect(Buffer.byteLength(text, 'utf8')).toBeLessThanOrEqual(3 * KB);
   });
 
-  it('has a Locations section listing the hub + exactly the 2 flagships', () => {
+  it('has a Locations section listing the hub + exactly the 2 flagships (at /en/)', () => {
     const section = LLMS_ENTRIES.find((entry) => entry.heading === 'Locations');
     expect(section).toBeDefined();
     const paths = section?.links.map((link) => link.path) ?? [];
-    expect(paths).toContain(LOCATION_HUB_PATH);
+    expect(paths).toContain('/en/location');
     for (const flagship of FLAGSHIP_CITIES) {
-      const expected = `/location/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`;
+      const expected = `/en/location/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`;
       expect(paths).toContain(expected);
     }
     // Hub + 2 flagships — exactly 3 links; the long tail is never enumerated.
@@ -50,17 +50,18 @@ describe('lib/seo llms.txt — curated sections', () => {
     expect(text).toContain('## Guides');
   });
 
-  it('has a Glossary section linking the glossary hub', () => {
+  it('has a Glossary section linking the glossary hub at /en/', () => {
     const section = LLMS_ENTRIES.find((entry) => entry.heading === 'Glossary');
     expect(section).toBeDefined();
     const paths = section?.links.map((link) => link.path) ?? [];
-    expect(paths).toContain(GLOSSARY_HUB_PATH);
+    expect(paths).toContain('/en/glossary');
     expect(text).toContain('## Glossary');
   });
 
   it('does NOT enumerate the long tail (Tier-3 cities never appear)', () => {
     // Dallas is a Tier-3 city in the snapshot — it must not be listed.
     expect(text).not.toContain('/location/united-states/texas/dallas');
+    expect(text).not.toContain('/en/location/united-states/texas/dallas');
     // No locale-prefixed long-tail URLs either.
     expect(text).not.toContain('/de/location');
   });
@@ -93,12 +94,12 @@ describe('lib/seo llms.txt — serialization shape', () => {
     expect(buildLlmsText()).toBe(buildLlmsText());
   });
 
-  it('renders absolute URLs via absoluteUrl', () => {
+  it('renders absolute URLs at the /en/** canonical surface via absoluteUrl', () => {
     const text = buildLlmsText();
-    expect(text).toContain(absoluteUrl('/about'));
-    expect(text).toContain(absoluteUrl('/guides/start-a-community'));
-    expect(text).toContain(absoluteUrl(LOCATION_HUB_PATH));
-    expect(text).toContain(absoluteUrl(GLOSSARY_HUB_PATH));
+    expect(text).toContain(absoluteUrl('/en/about'));
+    expect(text).toContain(absoluteUrl('/en/guides/start-a-community'));
+    expect(text).toContain(absoluteUrl('/en/location'));
+    expect(text).toContain(absoluteUrl('/en/glossary'));
   });
 
   it('keeps the H1 + blockquote summary header', () => {

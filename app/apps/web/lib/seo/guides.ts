@@ -83,9 +83,10 @@ export interface GuidePageEntry {
   cities: Array<{ name: string; path: string }>;
 }
 
-/** Hub path for a locale surface — '/guides' (EN) or '/<locale>/guides'. */
+/** Hub path for a locale surface — '/en/guides' (EN canonical, TASK-466)
+ *  or '/<locale>/guides'. The unprefixed '/guides' tree 307-redirects. */
 export function guideHubPath(locale: Locale = 'en'): string {
-  return locale === 'en' ? GUIDES_HUB_PATH : `/${locale}${GUIDES_HUB_PATH}`;
+  return locale === 'en' ? '/en/guides' : `/${locale}${GUIDES_HUB_PATH}`;
 }
 
 /** Guide detail path for a locale surface — '/guides/<slug>' or '/<locale>/guides/<slug>'. */

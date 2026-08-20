@@ -15,11 +15,10 @@ import { AboutView } from '../../about/about-view';
  * proxy-forwarded `x-joinorigin-locale` header (root layout) and the
  * content loaders' per-locale + EN-fallback resolution.
  *
- * Metadata is per-locale with EN fallback (TASK-458): title/description/OG
- * stay on the EN copy (no translated static-page content exists), while
- * canonical + hreflang stay per-locale — canonical
- * `/id/about` and `alternates.languages` `id` +
- * `en` + `x-default` → EN canonical.
+ * Metadata is per-locale with EN fallback (TASK-458 + TASK-466):
+ * title/description/OG stay on the EN copy (no translated static-page
+ * content exists), while canonical + hreflang stay per-locale — canonical
+ * `/id/about` and `alternates.languages` `id` + `en` + `x-default` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
   title: 'About — The Operating System for Human Collaboration | JoinOrigin',

@@ -55,13 +55,13 @@ function renderWithDeGuideI18n(ui: ReactElement) {
 }
 
 describe('/de/guides hub (TASK-421)', () => {
-  it('exports hub metadata with the de hreflang cluster', () => {
+  it('exports hub metadata with the de hreflang cluster (x-default → /en/guides)', () => {
     expect(metadata.title).toBe('Community Building Guides | JoinOrigin');
     expect(metadata.alternates?.canonical).toBe('http://localhost:3100/de/guides');
     expect(metadata.alternates?.languages).toEqual({
       de: 'http://localhost:3100/de/guides',
-      en: 'http://localhost:3100/guides',
-      'x-default': 'http://localhost:3100/guides',
+      en: 'http://localhost:3100/en/guides',
+      'x-default': 'http://localhost:3100/en/guides',
     });
   });
 

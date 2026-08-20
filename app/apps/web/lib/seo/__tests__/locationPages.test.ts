@@ -20,11 +20,11 @@ describe('lib/seo locationPages — EN canonical surface', () => {
     expect(new Set(paths).size).toBe(paths.length);
   });
 
-  it('includes the hub with params {} and indexable true', () => {
+  it('includes the hub with params {} and indexable true (EN canonical at /en/location)', () => {
     const hub = entries.find((entry) => entry.kind === 'hub');
     expect(hub).toMatchObject({
       params: {},
-      path: '/location',
+      path: '/en/location',
       tier: 1,
       indexable: true,
       priority: 0.9,
@@ -39,7 +39,7 @@ describe('lib/seo locationPages — EN canonical surface', () => {
       region: 'new-york',
       city: 'new-york',
     });
-    expect(nyc?.path).toBe('/location/united-states/new-york/new-york');
+    expect(nyc?.path).toBe('/en/location/united-states/new-york/new-york');
     expect(nyc?.title).toBe('Communities in New York City, New York | JoinOrigin');
     expect(nyc?.tier).toBe(1);
     expect(nyc?.indexable).toBe(true);
@@ -47,7 +47,7 @@ describe('lib/seo locationPages — EN canonical surface', () => {
 
   it('derives the Berlin city page path from the flagship region override', () => {
     const berlin = entries.find((entry) => entry.kind === 'city' && entry.params.city === 'berlin');
-    expect(berlin?.path).toBe('/location/germany/berlin/berlin');
+    expect(berlin?.path).toBe('/en/location/germany/berlin/berlin');
     expect(berlin?.title).toBe('Communities in Berlin | JoinOrigin'); // no ", Berlin" suffix
     expect(berlin?.indexable).toBe(true);
   });
@@ -65,10 +65,10 @@ describe('lib/seo locationPages — EN canonical surface', () => {
     const berlinRegion = entries.find(
       (entry) => entry.kind === 'region' && entry.params.region === 'berlin',
     );
-    expect(us?.path).toBe('/location/united-states');
-    expect(germany?.path).toBe('/location/germany');
-    expect(nyRegion?.path).toBe('/location/united-states/new-york');
-    expect(berlinRegion?.path).toBe('/location/germany/berlin');
+    expect(us?.path).toBe('/en/location/united-states');
+    expect(germany?.path).toBe('/en/location/germany');
+    expect(nyRegion?.path).toBe('/en/location/united-states/new-york');
+    expect(berlinRegion?.path).toBe('/en/location/germany/berlin');
     expect(us?.indexable).toBe(true);
     expect(germany?.indexable).toBe(true);
     expect(nyRegion?.indexable).toBe(true);
@@ -81,7 +81,7 @@ describe('lib/seo locationPages — EN canonical surface', () => {
     expect(variants).toHaveLength(FLAGSHIP_CITIES.length * 5);
     expect(ideas).toHaveLength(FLAGSHIP_CITIES.length);
     for (const variant of variants) {
-      expect(variant.path).toMatch(/\/location\/[^/]+\/[^/]+\/[^/]+\/[a-z-]+$/);
+      expect(variant.path).toMatch(/\/en\/location\/[^/]+\/[^/]+\/[^/]+\/[a-z-]+$/);
       expect(variant.indexable).toBe(true);
     }
   });
@@ -92,13 +92,13 @@ describe('lib/seo locationPages — EN canonical surface', () => {
     expect(austin).toBeDefined();
     expect(austin?.tier).toBe(2);
     expect(austin?.indexable).toBe(true);
-    expect(austin?.path).toBe('/location/united-states/texas/austin');
+    expect(austin?.path).toBe('/en/location/united-states/texas/austin');
     // Dallas is long tail — Tier-3, no content, never indexable.
     const dallas = entries.find((entry) => entry.kind === 'city' && entry.params.city === 'dallas');
     expect(dallas).toBeDefined();
     expect(dallas?.tier).toBe(3);
     expect(dallas?.indexable).toBe(false);
-    expect(dallas?.path).toBe('/location/united-states/texas/dallas');
+    expect(dallas?.path).toBe('/en/location/united-states/texas/dallas');
   });
 
   it('dedupes (regionId, slug) duplicate rows to one canonical URL', () => {

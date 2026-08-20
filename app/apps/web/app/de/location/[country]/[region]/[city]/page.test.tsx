@@ -39,11 +39,11 @@ describe('/de/location/[country]/[region]/[city] route', () => {
     expect(meta.alternates?.canonical).toBe(
       'http://localhost:3100/de/location/germany/berlin/berlin',
     );
-    // …per-locale hreflang (self + EN + x-default → EN canonical)…
+    // …per-locale hreflang (self + EN + x-default → EN canonical at /en/)…
     expect(meta.alternates?.languages).toEqual({
       de: 'http://localhost:3100/de/location/germany/berlin/berlin',
-      en: 'http://localhost:3100/location/germany/berlin/berlin',
-      'x-default': 'http://localhost:3100/location/germany/berlin/berlin',
+      en: 'http://localhost:3100/en/location/germany/berlin/berlin',
+      'x-default': 'http://localhost:3100/en/location/germany/berlin/berlin',
     });
     // …and per-locale title copy from the committed de content.
     expect(meta.title).toContain('JoinOrigin');

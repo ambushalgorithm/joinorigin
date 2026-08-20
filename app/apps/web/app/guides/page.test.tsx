@@ -74,11 +74,11 @@ function renderWithGuidesI18n(ui: ReactElement) {
 }
 
 describe('guides hub page', () => {
-  it('exports hub metadata (title, description, canonical)', () => {
+  it('exports hub metadata (title, description, canonical at /en/guides)', () => {
     expect(metadata.title).toBe('Community Building Guides | JoinOrigin');
     expect(metadata.description?.toLowerCase() ?? '').toContain('community building');
-    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/guides');
-    expect(metadata.openGraph?.url).toBe('http://localhost:3100/guides');
+    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/en/guides');
+    expect(metadata.openGraph?.url).toBe('http://localhost:3100/en/guides');
   });
 
   it('renders a single h1', async () => {
@@ -93,14 +93,12 @@ describe('guides hub page', () => {
     expect(screen.getByText(GUIDES_CHROME.hubLead as string)).toBeInTheDocument();
   });
 
-  it('links all 12 guides', async () => {
+  it('links all 12 guides at their /en/** canonical surfaces', async () => {
     renderWithGuidesI18n(await GuidesHubPage());
     for (const entry of guidePageEntries()) {
-      // All-routes-prefixed (TASK-464): the unprefixed EN render prefixes /en.
-      expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute(
-        'href',
-        `/en${entry.path}`,
-      );
+      // All-routes-prefixed (TASK-464 + TASK-466): EN registry paths are
+      // already `/en/...` — the helper passes them through unchanged.
+      expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
     }
   });
 
@@ -253,7 +251,7 @@ describe('guides hub — locale-aware internal links (TASK-460)', () => {
     await renderHubForLocale('en');
     expect(linkByHref('/en/glossary')).toBeDefined();
     const first = guidePageEntries()[0];
-    expect(linkByHref(`/en${first.path}`)).toBeDefined();
+    expect(linkByHref(first.path)).toBeDefined();
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', async () => {
@@ -262,7 +260,7 @@ describe('guides hub — locale-aware internal links (TASK-460)', () => {
     await renderHubForLocale('en');
     expect(linkByHref('/en/glossary')).toBeDefined();
     const first = guidePageEntries()[0];
-    expect(linkByHref(`/en${first.path}`)).toBeDefined();
+    expect(linkByHref(first.path)).toBeDefined();
   });
 
   it('renders /de/** links on a /de/** load (table row 3)', async () => {
@@ -276,14 +274,16 @@ describe('guides hub — locale-aware internal links (TASK-460)', () => {
     expect(linkByHref('/de/glossary')).toBeDefined();
   });
 
-  it('renders /de/** links on an unprefixed load with a de cookie (table row 4)', async () => {
-    // Canonical route stays EN server-side (unprefixed entries); the client
-    // de cookie makes the shared helper prefix every internal link.
+  it('renders EN-canonical /en/** guide links + de chrome links on an unprefixed load with a de cookie (table row 4)', async () => {
+    // Canonical route stays EN server-side; all-routes-prefixed (TASK-466):
+    // the EN registry paths already carry `/en/**`, so the helper keeps them
+    // (the unprefixed `/**` tree 307-redirects at the proxy). Chrome links
+    // built from unprefixed constants localize to the active de locale.
     mockServerLocale.locale = 'en';
     mockPathname = '/guides';
     await renderHubForLocale('de');
     const enFirst = guidePageEntries()[0];
-    expect(linkByHref(`/de${enFirst.path}`)).toBeDefined();
+    expect(linkByHref(enFirst.path)).toBeDefined();
     expect(linkByHref('/de/glossary')).toBeDefined();
   });
 });
