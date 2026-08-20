@@ -52,6 +52,12 @@ export interface MenuHeroProps {
   eyebrow?: string;
   /** Exact page H1 (unchanged strings — spec §6 copy table). Rendered as <h1>. */
   title: string;
+  /** Optional i18n key for the H1 — when set, the H1 resolves through the
+   *  active locale dictionary (so it re-translates when the language
+   *  toggles) instead of the raw `title` string (TASK-477). */
+  titleKey?: string;
+  /** Interpolation variables for `titleKey` (e.g. `{{city}}`). */
+  titleVars?: Record<string, string | number>;
   /** Lead paragraph (verbatim page-lead copy). */
   lead?: React.ReactNode;
   /** Scene key — inline React scene component (was a local SVG path). */
@@ -175,6 +181,8 @@ const SceneColumn = styled.div`
 export function MenuHero({
   eyebrow,
   title,
+  titleKey,
+  titleVars,
   lead,
   scene,
   sceneAlt = '',
@@ -187,6 +195,10 @@ export function MenuHero({
   const { t } = useI18n();
   const localizePath = useLocalizePath();
   const pageScheme = PAGE_SCHEMES[accent];
+  // TASK-477 — when a `titleKey` is provided the H1 resolves through the
+  // active locale dictionary so it re-translates on language toggle; the raw
+  // `title` string remains the pre-hydration/SSR fallback.
+  const resolvedTitle = titleKey ? t(titleKey, titleVars ?? {}) : title;
 
   useGSAP(
     () => {
@@ -261,7 +273,7 @@ export function MenuHero({
             </div>
           ) : null}
           <div data-hero="title">
-            <PageTitle>{title}</PageTitle>
+            <PageTitle>{resolvedTitle}</PageTitle>
           </div>
           {lead ? (
             <div data-hero="lead">
