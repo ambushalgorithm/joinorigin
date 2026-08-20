@@ -18,20 +18,20 @@ import { test, expect, type Page } from '@playwright/test';
  */
 test.describe.configure({ mode: 'serial' });
 
-/** Every canonical path checked for hub→country→region→city→variant. */
+/** Every canonical path checked for hub→country→region→city→variant — on
+ *  the EN canonical /en/** surface (all-routes-prefixed, TASK-464/466). */
 const MESH = [
-  '/location',
-  '/location/germany',
-  '/location/germany/berlin',
-  '/location/germany/berlin/berlin',
-  '/location/germany/berlin/berlin/startup',
+  '/en/location',
+  '/en/location/germany',
+  '/en/location/germany/berlin',
+  '/en/location/germany/berlin/berlin',
+  '/en/location/germany/berlin/berlin/startup',
 ];
 
 const EN_ONLY = [
-  '/location',
-  '/location/united-states',
-  '/location/united-states/new-york',
-  '/location/united-states/new-york/new-york',
+  '/en/location/united-states',
+  '/en/location/united-states/new-york',
+  '/en/location/united-states/new-york/new-york',
 ];
 
 async function ldTypes(page: Page): Promise<string[]> {
@@ -54,34 +54,35 @@ test.describe('location internal-link mesh navigation', () => {
     // so in-page link navigation is deterministic.
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
-    // The dev server compiles the first dynamic-route request on demand;
+    // The prod server compiles the first dynamic-route request on demand;
     // navigate directly first to warm each route (serial suite), then assert
-    // the real in-page link navigation.
-    await page.goto('/location/germany/berlin/berlin/startup');
+    // the real in-page link navigation. All internal links carry the /en/**
+    // prefix (TASK-464).
+    await page.goto('/en/location/germany/berlin/berlin/startup');
     await expect(page.locator('h1')).toContainText('Startup communities in Berlin');
-    await page.goto('/location/germany/berlin/berlin');
+    await page.goto('/en/location/germany/berlin/berlin');
     await expect(page.locator('h1')).toContainText('Communities in Berlin');
 
-    await page.goto('/location');
+    await page.goto('/en/location');
     await expect(page).toHaveTitle(/Communities by City/);
-    const berlinLink = page.locator('a[href="/location/germany/berlin/berlin"]').first();
+    const berlinLink = page.locator('a[href="/en/location/germany/berlin/berlin"]').first();
     await expect(berlinLink).toBeVisible();
     await berlinLink.click();
     await page.waitForURL('**/location/germany/berlin/berlin', { timeout: 120_000 });
 
     // City page breadcrumbs link up to the region/country/hub.
-    const regionLink = page.locator('a[href="/location/germany/berlin"]').first();
+    const regionLink = page.locator('a[href="/en/location/germany/berlin"]').first();
     await expect(regionLink).toBeVisible();
     await regionLink.click();
     await page.waitForURL('**/location/germany/berlin');
 
-    const countryLink = page.locator('a[href="/location/germany"]').first();
+    const countryLink = page.locator('a[href="/en/location/germany"]').first();
     await expect(countryLink).toBeVisible();
     await countryLink.click();
     await page.waitForURL('**/location/germany');
 
     const hubLink = page
-      .locator('[data-testid="location-breadcrumbs"] a[href="/location"]')
+      .locator('[data-testid="location-breadcrumbs"] a[href="/en/location"]')
       .first();
     await expect(hubLink).toBeVisible();
     await hubLink.click();
@@ -90,8 +91,10 @@ test.describe('location internal-link mesh navigation', () => {
     // Group-type links from the city page reach the startup variant. The
     // links sit below the fold inside a GSAP `Reveal` — scroll into view and
     // let the entrance animation settle so the native click isn't dropped.
-    await page.goto('/location/germany/berlin/berlin');
-    const startupLink = page.locator('a[href="/location/germany/berlin/berlin/startup"]').first();
+    await page.goto('/en/location/germany/berlin/berlin');
+    const startupLink = page
+      .locator('a[href="/en/location/germany/berlin/berlin/startup"]')
+      .first();
     await expect(startupLink).toBeVisible();
     await startupLink.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1200);
@@ -128,7 +131,7 @@ test.describe('location canonical + robots', () => {
     // Austin was promoted to Tier-2 (Sprint 18, TASK-442 — indexable);
     // Dallas is still Tier-3 in the registry (locationPages.test.ts),
     // so it must be served noindex, follow.
-    await page.goto('/location/united-states/texas/dallas');
+    await page.goto('/en/location/united-states/texas/dallas');
     expect(await page.locator('h1').count()).toBe(1);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, follow');
   });
@@ -163,14 +166,16 @@ test.describe('Berlin de pages + hreflang', () => {
 
       const en = page.locator('link[rel="alternate"][hreflang="en"]');
       await expect(en).toHaveCount(1);
+      // The en alternate + x-default point at the EN canonical /en/** surface
+      // (TASK-466).
       expect(new URL((await en.getAttribute('href')) ?? '').pathname).toBe(
-        path.replace(/^\/de/, ''),
+        `/en${path.replace(/^\/de/, '')}`,
       );
 
       const xDefault = page.locator('link[rel="alternate"][hreflang="x-default"]');
       await expect(xDefault).toHaveCount(1);
       expect(new URL((await xDefault.getAttribute('href')) ?? '').pathname).toBe(
-        path.replace(/^\/de/, ''),
+        `/en${path.replace(/^\/de/, '')}`,
       );
 
       // German body copy from the per-locale content file.
@@ -187,7 +192,7 @@ test.describe('Berlin de pages + hreflang', () => {
   }
 
   test('EN Berlin pages emit bidirectional hreflang (en + de + x-default)', async ({ page }) => {
-    await page.goto('/location/germany/berlin/berlin');
+    await page.goto('/en/location/germany/berlin/berlin');
     await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveCount(1);
     await expect(page.locator('link[rel="alternate"][hreflang="de"]')).toHaveCount(1);
     await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
@@ -195,6 +200,12 @@ test.describe('Berlin de pages + hreflang', () => {
     const de = page.locator('link[rel="alternate"][hreflang="de"]');
     expect(new URL((await de.getAttribute('href')) ?? '').pathname).toBe(
       '/de/location/germany/berlin/berlin',
+    );
+
+    // x-default points at the EN canonical surface (TASK-466).
+    const xDefault = page.locator('link[rel="alternate"][hreflang="x-default"]');
+    expect(new URL((await xDefault.getAttribute('href')) ?? '').pathname).toBe(
+      '/en/location/germany/berlin/berlin',
     );
   });
 
@@ -221,18 +232,27 @@ test.describe('Berlin de pages + hreflang', () => {
       await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(0);
     });
   }
+
+  test('EN location hub emits the en + x-default cluster (TASK-466)', async ({ page }) => {
+    await page.goto('/en/location');
+    await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
+    // Self-referential: the EN hub cluster points at the /en/** surface.
+    const xDefault = page.locator('link[rel="alternate"][hreflang="x-default"]');
+    expect(new URL((await xDefault.getAttribute('href')) ?? '').pathname).toBe('/en/location');
+  });
 });
 
 test.describe('location JSON-LD', () => {
   test('city page emits BreadcrumbList + FAQPage', async ({ page }) => {
-    await page.goto('/location/germany/berlin/berlin');
+    await page.goto('/en/location/germany/berlin/berlin');
     const types = await ldTypes(page);
     expect(types).toContain('BreadcrumbList');
     expect(types).toContain('FAQPage');
   });
 
   test('idea page emits BreadcrumbList + FAQPage + ItemList (30 items)', async ({ page }) => {
-    await page.goto('/location/germany/berlin/berlin/ideas');
+    await page.goto('/en/location/germany/berlin/berlin/ideas');
     const types = await ldTypes(page);
     expect(types).toContain('BreadcrumbList');
     expect(types).toContain('FAQPage');
@@ -271,13 +291,13 @@ test.describe('location variant enrichment (TASK-319)', () => {
   test('NYC startup and Berlin startup variant pages are visibly differentiated', async ({
     page,
   }) => {
-    await page.goto('/location/united-states/new-york/new-york/startup');
+    await page.goto('/en/location/united-states/new-york/new-york/startup');
     await expect(page.getByText('Where Startup communities gather')).toBeVisible();
     // NYC-specific venue copy.
     await expect(page.getByText(/Coworking spaces in SoHo and Flatiron/)).toBeVisible();
     await expect(page.getByTestId('variant-enrichment-venues')).toBeVisible();
 
-    await page.goto('/location/germany/berlin/berlin/startup');
+    await page.goto('/en/location/germany/berlin/berlin/startup');
     await expect(page.getByText('Where Startup communities gather')).toBeVisible();
     // Berlin-specific venue copy — no NYC overlap.
     await expect(page.getByText(/Coworking spaces in Mitte and Kreuzberg/)).toBeVisible();
@@ -285,17 +305,17 @@ test.describe('location variant enrichment (TASK-319)', () => {
   });
 
   test('startup vs creative variants within a city render distinct enrichment', async ({ page }) => {
-    await page.goto('/location/united-states/new-york/new-york/startup');
+    await page.goto('/en/location/united-states/new-york/new-york/startup');
     await expect(page.getByText(/Coworking spaces in SoHo and Flatiron/)).toBeVisible();
 
-    await page.goto('/location/united-states/new-york/new-york/creative');
+    await page.goto('/en/location/united-states/new-york/new-york/creative');
     await expect(page.getByText('Where Creative & design communities gather')).toBeVisible();
     await expect(page.getByText(/Chelsea gallery spaces/)).toBeVisible();
     await expect(page.getByText('Coworking spaces in SoHo and Flatiron')).toHaveCount(0);
   });
 
   test('city page does NOT render variant enrichment sections', async ({ page }) => {
-    await page.goto('/location/germany/berlin/berlin');
+    await page.goto('/en/location/germany/berlin/berlin');
     await expect(page.getByTestId('variant-enrichment')).toHaveCount(0);
   });
 });

@@ -40,10 +40,11 @@ test.describe('analytics dev guard — no Plausible script in dev/localhost (TAS
   test('does not inject the tracker script after client-side route change', async ({ page }) => {
     await page.goto('/');
 
-    const featuresLink = page.locator('a[href="/features"]').first();
+    // The header nav link targets the /en/** canonical surface (TASK-464).
+    const featuresLink = page.locator('a[href="/en/features"]').first();
     await expect(featuresLink).toBeVisible();
     await featuresLink.click();
-    await expect(page).toHaveURL(/\/features$/);
+    await expect(page).toHaveURL(/\/en\/features$/);
 
     const script = page.locator('script[data-analytics-injected]');
     await expect(script).toHaveCount(0);

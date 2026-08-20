@@ -27,44 +27,45 @@ test.describe.configure({ mode: 'serial' });
 
 export const MENU_PAGES = [
   {
-    path: '/',
+    path: '/en',
     h1: 'Ideas, projects and community collaboration space — where new and existing teams find their Origin.',
   },
-  { path: '/features', h1: 'Everything a community needs, in one calm workspace' },
-  { path: '/community', h1: 'Where people find each other' },
-  { path: '/docs', h1: 'JoinOrigin docs' },
-  { path: '/about', h1: 'The most valuable asset is your network' },
-  { path: '/contact', h1: 'Talk to us' },
-  { path: '/privacy', h1: 'Privacy Policy' },
-  { path: '/terms', h1: 'Terms of Service' },
+  { path: '/en/features', h1: 'Everything a community needs, in one calm workspace' },
+  { path: '/en/community', h1: 'Where people find each other' },
+  { path: '/en/docs', h1: 'JoinOrigin docs' },
+  { path: '/en/about', h1: 'The most valuable asset is your network' },
+  { path: '/en/contact', h1: 'Talk to us' },
+  { path: '/en/privacy', h1: 'Privacy Policy' },
+  { path: '/en/terms', h1: 'Terms of Service' },
 ] as const;
 
-/** Header primary nav labels → href (discovery §3.1; 92cd1f4 moved Community into Explore). */
+/** Header primary nav labels → href — all on the /en/** canonical surface
+ *  (all-routes-prefixed, TASK-464). */
 export const HEADER_NAV = [
-  { label: 'Features', href: '/features' },
-  { label: 'Docs', href: '/docs' },
-  { label: 'About', href: '/about' },
+  { label: 'Features', href: '/en/features' },
+  { label: 'Docs', href: '/en/docs' },
+  { label: 'About', href: '/en/about' },
 ] as const;
 
 /** Explore submenu labels → href (TASK-316; 92cd1f4 moved Community in, Glossary out). */
 export const EXPLORE_NAV = [
-  { label: 'Community', href: '/community' },
-  { label: 'Guides', href: '/guides' },
-  { label: 'Locations', href: '/location' },
+  { label: 'Community', href: '/en/community' },
+  { label: 'Guides', href: '/en/guides' },
+  { label: 'Locations', href: '/en/location' },
 ] as const;
 
 /** Footer grouped links (discovery §3.2 + Explore group TASK-316). */
 export const FOOTER_NAV = [
-  { label: 'Locations', href: '/location' },
-  { label: 'Guides', href: '/guides' },
-  { label: 'Glossary', href: '/glossary' },
-  { label: 'Features', href: '/features' },
-  { label: 'Community', href: '/community' },
-  { label: 'Docs', href: '/docs' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Privacy', href: '/privacy' },
-  { label: 'Terms', href: '/terms' },
+  { label: 'Locations', href: '/en/location' },
+  { label: 'Guides', href: '/en/guides' },
+  { label: 'Glossary', href: '/en/glossary' },
+  { label: 'Features', href: '/en/features' },
+  { label: 'Community', href: '/en/community' },
+  { label: 'Docs', href: '/en/docs' },
+  { label: 'About', href: '/en/about' },
+  { label: 'Contact', href: '/en/contact' },
+  { label: 'Privacy', href: '/en/privacy' },
+  { label: 'Terms', href: '/en/terms' },
 ] as const;
 
 test.describe('menu pages render', () => {
