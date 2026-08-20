@@ -96,19 +96,22 @@ describe('guides hub page', () => {
     }
   });
 
-  it('links the glossary and the flagship city pages', async () => {
+  it('links the glossary and the "Start local" content-rich city pages (TASK-480)', async () => {
     renderWithGuidesI18n(await GuidesHubPage());
     expect(screen.getByRole('link', { name: 'Community OS glossary' })).toHaveAttribute(
       'href',
       '/en/glossary',
     );
-    expect(screen.getByRole('link', { name: 'New York City' })).toHaveAttribute(
+    // Start-local shows ALL content-rich cities (tier-irrelevant), the
+    // active locale's country/area first, capped at 6 — the EN surface leads
+    // with the English-speaking area alphabetically.
+    expect(screen.getByRole('link', { name: 'Austin' })).toHaveAttribute(
       'href',
-      '/en/location/united-states/new-york/new-york',
+      '/en/location/united-states/texas/austin',
     );
-    expect(screen.getByRole('link', { name: 'Berlin' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Cape Town' })).toHaveAttribute(
       'href',
-      '/en/location/germany/berlin/berlin',
+      '/en/location/south-africa/western-cape/cape-town',
     );
   });
 

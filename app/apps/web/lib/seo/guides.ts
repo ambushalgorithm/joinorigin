@@ -31,7 +31,17 @@ import { SUPPORTED_LOCALES, type Locale } from '@joinorigin/i18n';
 
 import { getGuideContent, hasContent } from './content';
 import type { GuideContent } from './content/types';
-import { FLAGSHIP_CITIES } from './locationData';
+import {
+  cityDisplayName,
+  citySlug,
+  contentRichCities,
+  countrySlug,
+  findCountry,
+  findRegion,
+  getFlagshipConfig,
+  localeCountryCodes,
+  regionSlug,
+} from './locationData';
 import { createMetadata } from './metadata';
 import { absoluteUrl } from './url';
 
@@ -100,12 +110,41 @@ function defaultTitle(slug: string): string {
   return `How to ${human.charAt(0).toUpperCase()}${human.slice(1)} | JoinOrigin`;
 }
 
-/** Flagship city cross-links — the published city-page surface (MVP). */
-function flagshipCityLinks(): GuidePageEntry['cities'] {
-  return FLAGSHIP_CITIES.map((flagship) => ({
-    name: flagship.displayName,
-    path: `/location/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`,
-  }));
+/**
+ * "Start local" city cross-links (TASK-480) — the SAME ordered list as the
+ * /location "Flagship cities" section: every content-rich city
+ * (tier-irrelevant), the active locale's country/area first, capped at 6.
+ * Within the area the cities sort alphabetically by display name. Card
+ * hrefs stay UNPREFIXED (`/location/...`) so the client `localizePath`
+ * applies the active locale prefix at render time (unlike the hub's
+ * server-baked surface paths, the guides view localizes client-side).
+ */
+function flagshipCityLinks(locale: Locale = 'en', limit = 6): GuidePageEntry['cities'] {
+  const localeCountries = localeCountryCodes(locale);
+  return contentRichCities()
+    .slice()
+    .sort((a, b) => {
+      const aLocal = localeCountries.has(a.countryIso2) ? 0 : 1;
+      const bLocal = localeCountries.has(b.countryIso2) ? 0 : 1;
+      if (aLocal !== bLocal) return aLocal - bLocal;
+      return cityDisplayName(a).localeCompare(cityDisplayName(b));
+    })
+    .slice(0, limit)
+    .flatMap((city) => {
+      const flagship = getFlagshipConfig(citySlug(city));
+      const region = findRegion(city.regionId);
+      const country = findCountry(city.countryIso2);
+      if (!region || !country) return [];
+      const slug = flagship?.slug ?? citySlug(city);
+      const regionSeg = flagship?.regionSlug ?? regionSlug(region);
+      const countrySeg = flagship?.countrySlug ?? countrySlug(country);
+      return [
+        {
+          name: cityDisplayName(city),
+          path: `/location/${countrySeg}/${regionSeg}/${slug}`,
+        },
+      ];
+    });
 }
 
 /** Sibling guide slugs (all others) in display order. */
@@ -126,7 +165,7 @@ function relatedSlugs(slug: string): string[] {
  *   → routes `notFound()` (localization R5).
  */
 export function guidePageEntries(locale: Locale = 'en'): GuidePageEntry[] {
-  const cities = flagshipCityLinks();
+  const cities = flagshipCityLinks(locale);
   const slugs =
     locale === 'en'
       ? [...GUIDE_SLUGS]
@@ -168,7 +207,7 @@ export function guidePageEntry(slug: string, locale: Locale = 'en'): GuidePageEn
  * `/<locale>/**` page.
  */
 export function guidePageEntriesWithFallback(locale: Locale = 'en'): GuidePageEntry[] {
-  const cities = flagshipCityLinks();
+  const cities = flagshipCityLinks(locale);
   return GUIDE_SLUGS.map((slug) => {
     const content = getGuideContent(slug, locale) ?? getGuideContent(slug, 'en');
     if (!content) {

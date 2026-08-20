@@ -31,6 +31,15 @@ jest.mock('../../lib/i18n-server', () => ({
   getServerLocale: jest.fn(() => Promise.resolve(mockServerLocale.locale)),
 }));
 
+// TASK-480: the hub wrapper threads `getServerCountry()` into the view
+// model — a null country (no Cloudflare header in tests) exercises the
+// null-safe locale-language fallback ordering.
+jest.mock('next/headers', () => ({
+  headers: () => ({
+    get: () => null,
+  }),
+}));
+
 const mockServerLocale: { locale: Locale } = { locale: 'en' };
 
 /** Render the (async) hub page; the wrapper returns null only if the hub
@@ -65,10 +74,14 @@ describe('/location hub page', () => {
     expect(within(breadcrumbs).getByText('Home')).toBeInTheDocument();
     expect(within(breadcrumbs).getByText('Communities by City')).toBeInTheDocument();
 
-    // The hub links the two flagship cities (the browsable entry points).
+    // TASK-480: the hub links the content-rich flagship list — every
+    // content-rich city (tier-irrelevant), the active locale's country/area
+    // first, capped at 6 (EN surface → English-speaking area first).
     const flagshipCities = screen.getByTestId('location-flagship-cities');
-    expect(within(flagshipCities).getByText('New York City')).toBeInTheDocument();
-    expect(within(flagshipCities).getByText('Berlin')).toBeInTheDocument();
+    const flagshipLinks = within(flagshipCities).getAllByRole('link');
+    expect(flagshipLinks).toHaveLength(6);
+    expect(within(flagshipCities).getByText('Austin')).toBeInTheDocument();
+    expect(within(flagshipCities).getByText('Lagos')).toBeInTheDocument();
 
     // Guide cross-links.
     const guideLinks = screen.getByTestId('location-guide-links');
@@ -127,6 +140,42 @@ describe('/location hub page', () => {
       const directory = screen.getByTestId('location-hub-directory');
       expect(within(directory).getByText('Startup communities in Berlin')).toBeInTheDocument();
       expect(within(directory).queryByText('Communities in Berlin')).not.toBeInTheDocument();
+    });
+  });
+
+  it('splits Browse locations into the 5 TASK-480 sections', async () => {
+    await renderHubPage();
+    const directory = screen.getByTestId('location-hub-directory');
+    for (const section of ['countries', 'regions', 'cities', 'communityTypes', 'eventIdeas']) {
+      expect(
+        within(directory).getByTestId(`location-hub-directory-${section}`),
+      ).toBeInTheDocument();
+    }
+    // Section headers render from the localized directoryKinds chrome.
+    expect(
+      within(directory).getByRole('heading', { level: 3, name: 'Country' }),
+    ).toBeInTheDocument();
+    expect(
+      within(directory).getByRole('heading', { level: 3, name: 'Community event ideas' }),
+    ).toBeInTheDocument();
+  });
+
+  it('filters WITHIN each section — no-match sections collapse (TASK-480)', async () => {
+    const user = userEvent.setup();
+    await renderHubPage();
+
+    const search = screen.getByRole('searchbox', { name: 'Search locations' });
+    await user.type(search, 'berlin');
+
+    await waitFor(() => {
+      // The Cities section keeps its Berlin match…
+      const cities = screen.getByTestId('location-hub-directory-cities');
+      expect(within(cities).getByText('Communities in Berlin')).toBeInTheDocument();
+      // …while the Countries section collapses (no country card matches).
+      expect(screen.queryByTestId('location-hub-directory-countries')).not.toBeInTheDocument();
+      // Community types still match Berlin variants within their section.
+      const types = screen.getByTestId('location-hub-directory-communityTypes');
+      expect(within(types).getByText('Startup communities in Berlin')).toBeInTheDocument();
     });
   });
 

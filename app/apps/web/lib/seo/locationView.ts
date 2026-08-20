@@ -44,15 +44,19 @@ import {
   FLAGSHIP_CITIES,
   GROUP_TYPES,
   IDEA_VARIANT,
+  cityDisplayName,
   citySlug,
+  contentRichCities,
   countrySlug,
   findCityBySlug,
   findCountry,
+  findCountryBySlug,
   findRegion,
   getFlagshipConfig,
   groupTypeLabelForLocale,
   isGroupTypeKey,
   loadLocationSnapshot,
+  localeCountryCodes,
   regionSlug,
   type GroupTypeKey,
 } from './locationData';
@@ -239,8 +243,32 @@ export function locationMetadata(entry: LocationPageEntry): Metadata {
 }
 
 /* ------------------------------------------------------------------ *
- * Hub directory (TASK-317 — /location hub search/filter)
+ * Hub directory (TASK-317 — /location hub search/filter; TASK-480 split
+ * into 5 sections with IP-country → locale-language → alphabetical order)
  * ------------------------------------------------------------------ */
+
+/** The 5 Browse-locations directory sections (TASK-480). */
+export type HubDirectorySection =
+  'countries' | 'regions' | 'cities' | 'communityTypes' | 'eventIdeas';
+
+/** Section key for a directory entry kind (variants = community types,
+ *  ideas = event ideas). */
+const SECTION_FOR_KIND: Record<PageKind, HubDirectorySection | undefined> = {
+  hub: undefined,
+  country: 'countries',
+  region: 'regions',
+  city: 'cities',
+  variant: 'communityTypes',
+  ideas: 'eventIdeas',
+};
+
+const SECTION_ORDER: readonly HubDirectorySection[] = [
+  'countries',
+  'regions',
+  'cities',
+  'communityTypes',
+  'eventIdeas',
+];
 
 /** One browsable entry in the `/location` hub directory. */
 export interface HubDirectoryEntry {
@@ -248,13 +276,28 @@ export interface HubDirectoryEntry {
   name: string;
   path: string;
   kind: PageKind;
+  /** Browse-locations section (TASK-480) — countries/regions/cities/
+   *  communityTypes/eventIdeas. */
+  section: HubDirectorySection;
+  /** ISO-3166-1 alpha-2 code of the entry's associated country — the
+   *  geographic scope used for IP-country + locale-language ordering
+   *  (variants/ideas resolve via their associated city's country). */
+  countryIso2?: string;
 }
 
 /**
  * The complete browsable directory for the `/location` hub — every
  * indexable location page (countries, regions, cities, group-type variants,
- * ideas) derived from the registry. The hub view filters this client-side
- * by keyword; no separate index is invented (design §8.4).
+ * ideas) derived from the registry, split into 5 sections (TASK-480). The
+ * hub view filters this client-side by keyword WITHIN each section; no
+ * separate index is invented (design §8.4).
+ *
+ * Ordering (TASK-480): within every section, entries whose associated
+ * country matches the visitor's IP-country come first, then entries whose
+ * country is in the active locale's language area, then alphabetical by
+ * name. `ipCountry` is the null-safe `getServerCountry()` value — when
+ * absent (local / non-Cloudflare requests) the order falls back to
+ * locale-language → alphabetical.
  *
  * Locale-aware (TASK-449): each card's name resolves from the locale
  * surface (`indexableLocationEntries(locale)`) so Browse-locations card
@@ -266,19 +309,49 @@ export interface HubDirectoryEntry {
  * already-prefixed hrefs through idempotently, so `/en` here would navigate
  * a non-EN hub visitor to the English surface).
  */
-export function hubDirectoryEntries(locale: Locale = 'en'): HubDirectoryEntry[] {
+export function hubDirectoryEntries(
+  locale: Locale = 'en',
+  ipCountry: string | null = null,
+): HubDirectoryEntry[] {
   const localizedNames = new Map<string, string>();
   for (const entry of indexableLocationEntries(locale)) {
     if (entry.kind === 'hub') continue;
     localizedNames.set(locationEntryKey(entry), stripBrand(entry.title));
   }
+  const localeCountries = localeCountryCodes(locale);
   return indexableLocationEntries()
     .filter((entry) => entry.kind !== 'hub')
     .map((entry) => ({
       name: localizedNames.get(locationEntryKey(entry)) ?? stripBrand(entry.title),
       path: forwardToLocaleSurface(entry.path, locale),
       kind: entry.kind,
-    }));
+      section: SECTION_FOR_KIND[entry.kind] ?? 'cities',
+      countryIso2: findCountryBySlug(entry.params.country ?? '')?.iso2,
+    }))
+    .sort(
+      (a, b) =>
+        SECTION_ORDER.indexOf(a.section) - SECTION_ORDER.indexOf(b.section) ||
+        rankDirectoryEntry(a, localeCountries, ipCountry) -
+          rankDirectoryEntry(b, localeCountries, ipCountry) ||
+        a.name.localeCompare(b.name),
+    );
+}
+
+/**
+ * Ordering rank for a directory entry within its section — 0 when the
+ * associated country matches the visitor's IP-country, 1 when it is in the
+ * active locale's language area, 2 otherwise. Community types + event ideas
+ * rank via their associated city's country (the entry's parent country).
+ */
+function rankDirectoryEntry(
+  entry: HubDirectoryEntry,
+  localeCountries: ReadonlySet<string>,
+  ipCountry: string | null,
+): number {
+  const country = entry.countryIso2 ?? '';
+  if (ipCountry && country === ipCountry) return 0;
+  if (localeCountries.has(country)) return 1;
+  return 2;
 }
 
 /** Locale-independent identity for a location entry (kind + params). */
@@ -389,6 +462,30 @@ export function siblingCitiesFor(
     .flatMap((sibling) => {
       const path = cityLocationPath(sibling, locale);
       return path ? [{ name: sibling.asciiName, path }] : [];
+    });
+}
+
+/**
+ * Flagship-city cards (TASK-480) — the "Flagship cities" / "Start local"
+ * lists show EVERY content-rich city (tier-irrelevant), with the active
+ * locale's country/area first, capped at `limit` (6). Within the area the
+ * cities sort alphabetically by display name. Card hrefs point at the
+ * ACTIVE locale surface (`/${locale}/location/...`, TASK-469).
+ */
+export function flagshipCities(locale: Locale = 'en', limit = 6): SiblingCityLink[] {
+  const localeCountries = localeCountryCodes(locale);
+  return contentRichCities()
+    .slice()
+    .sort((a, b) => {
+      const aLocal = localeCountries.has(a.countryIso2) ? 0 : 1;
+      const bLocal = localeCountries.has(b.countryIso2) ? 0 : 1;
+      if (aLocal !== bLocal) return aLocal - bLocal;
+      return cityDisplayName(a).localeCompare(cityDisplayName(b));
+    })
+    .slice(0, limit)
+    .flatMap((city) => {
+      const path = cityLocationPath(city, locale);
+      return path ? [{ name: cityDisplayName(city), path }] : [];
     });
 }
 
@@ -606,10 +703,15 @@ function entityLabelFor(entry: LocationPageEntry, locale: Locale): string {
  * Build the full render model for a location page. Content resolves with
  * per-locale files (EN fallback only at canonical EN URLs — de pages use the
  * committed de content exactly, design §7.1).
+ *
+ * `ipCountry` (optional, TASK-480) is the null-safe server geo value
+ * (`getServerCountry()`) — it orders the hub's Browse-locations directory
+ * IP-country matches first. Absent on non-hub pages / fallback surfaces.
  */
 export function buildLocationViewData(
   entry: LocationPageEntry,
   locale: Locale = 'en',
+  ipCountry: string | null = null,
 ): LocationViewData {
   const content = contentFor(entry, locale);
   // Sprint 20 — un-gated: the city entity resolves from the registry entry's
@@ -662,24 +764,12 @@ export function buildLocationViewData(
         : [],
     siblingCities:
       entry.kind === 'hub'
-        ? FLAGSHIP_CITIES.flatMap((flagshipCity) => {
-            const cityEntryRow = locationPageEntries().find(
-              (e) => e.kind === 'city' && e.params.city === flagshipCity.slug,
-            );
-            return cityEntryRow
-              ? [
-                  {
-                    name: flagshipCity.displayName,
-                    path: forwardToLocaleSurface(cityEntryRow.path, locale),
-                  },
-                ]
-              : [];
-          })
+        ? flagshipCities(locale, 6)
         : entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas'
           ? siblingCitiesFor(cityEntity, 6, locale)
           : [],
     guideLinks: guideLinksFor(entry.kind, locale),
-    hubDirectory: entry.kind === 'hub' ? hubDirectoryEntries(locale) : undefined,
+    hubDirectory: entry.kind === 'hub' ? hubDirectoryEntries(locale, ipCountry) : undefined,
     ideaCategories:
       entry.kind === 'ideas' && content?.kind === 'city' ? content.ideaPage.categories : undefined,
     waitlistSource: waitlistSource(entry),

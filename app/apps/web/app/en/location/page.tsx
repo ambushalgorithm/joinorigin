@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { LocationView } from '../../../components/location/LocationView';
 import { JsonLd } from '../../../lib/seo/JsonLdScript';
+import { getServerCountry } from '../../../lib/seo/geo';
 import { localizeMetadata } from '../../../lib/seo/metadata';
 import {
   buildLocationViewData,
@@ -37,7 +38,7 @@ export default async function EnLocationHubPage() {
   if (!entry) {
     return null;
   }
-  const data = buildLocationViewData(entry, 'en');
+  const data = buildLocationViewData(entry, 'en', await getServerCountry());
   const jsonLd = locationJsonLd(data);
   return (
     <>

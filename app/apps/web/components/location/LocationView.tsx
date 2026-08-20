@@ -27,6 +27,7 @@ import {
   PageContainer,
   Section,
   SectionTitle,
+  SubTitle,
 } from '../menuPagePrimitives';
 import LocationCta from './LocationCta';
 import TranslatePageLink from '../TranslatePageLink';
@@ -268,12 +269,33 @@ export function LocationView({ data }: { data: LocationViewData }) {
   // filtered client-side by keyword with a debounced input (~180ms). No new
   // route, no server round-trip, no separate index — the registry already
   // carries the entries (`hubDirectory` is populated for the hub only).
+  //
+  // TASK-480 — the directory is split into 5 sections (Countries / Regions /
+  // Cities / Community types / Event ideas); the search filters WITHIN each
+  // section, so a keyword match in one section never hides another section's
+  // matches and sections with no matches collapse.
   const isHub = data.kind === 'hub';
   const hubDirectory = data.hubDirectory ?? [];
   const [hubQuery, setHubQuery] = useState('');
   const debouncedHubQuery = useDebouncedValue(hubQuery);
-  const filteredDirectory = filterByKeyword(hubDirectory, debouncedHubQuery, (entry) => entry.name);
-  const hasDirectoryMatches = filteredDirectory.length > 0;
+  const directorySections = (
+    [
+      { key: 'countries', kind: 'country' },
+      { key: 'regions', kind: 'region' },
+      { key: 'cities', kind: 'city' },
+      { key: 'communityTypes', kind: 'variant' },
+      { key: 'eventIdeas', kind: 'ideas' },
+    ] as const
+  ).map(({ key, kind }) => ({
+    key,
+    kind,
+    matches: filterByKeyword(
+      hubDirectory.filter((entry) => entry.section === key),
+      debouncedHubQuery,
+      (entry) => entry.name,
+    ),
+  }));
+  const hasDirectoryMatches = directorySections.some((section) => section.matches.length > 0);
 
   // Hero eyebrow + breadcrumb chrome follow the active cookie locale via the
   // `seoContent` namespace (TASK-310); the server view model still carries
@@ -543,21 +565,29 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 data-testid="location-hub-search"
               />
               {hasDirectoryMatches ? (
-                <CardGrid data-testid="location-hub-directory">
-                  {filteredDirectory.map((entry) => (
-                    <Card key={entry.path}>
-                      <CardTitle>
-                        <Link
-                          href={localizePath(entry.path)}
-                          style={{ color: 'inherit', textDecoration: 'none' }}
-                        >
-                          {entry.name}
-                        </Link>
-                      </CardTitle>
-                      <CardBody>{directoryKindLabel(entry.kind)}</CardBody>
-                    </Card>
-                  ))}
-                </CardGrid>
+                <div data-testid="location-hub-directory">
+                  {directorySections.map((section) =>
+                    section.matches.length === 0 ? null : (
+                      <div key={section.key}>
+                        <SubTitle>{directoryKindLabel(section.kind)}</SubTitle>
+                        <CardGrid data-testid={`location-hub-directory-${section.key}`}>
+                          {section.matches.map((entry) => (
+                            <Card key={entry.path}>
+                              <CardTitle>
+                                <Link
+                                  href={localizePath(entry.path)}
+                                  style={{ color: 'inherit', textDecoration: 'none' }}
+                                >
+                                  {entry.name}
+                                </Link>
+                              </CardTitle>
+                            </Card>
+                          ))}
+                        </CardGrid>
+                      </div>
+                    ),
+                  )}
+                </div>
               ) : (
                 <BodyCopy data-testid="location-hub-empty" role="status">
                   {t('seoContent.location.emptyState', { query: debouncedHubQuery })}

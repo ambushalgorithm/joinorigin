@@ -1,6 +1,7 @@
 import {
   buildLocationViewData,
   cityLocationPath,
+  flagshipCities,
   guideLinksFor,
   hubDirectoryEntries,
   languagesFor,
@@ -825,3 +826,132 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     }
   });
 });
+
+describe('lib/seo locationView — TASK-480 flagship list + 5-section directory', () => {
+  it('flagshipCities returns ALL content-rich cities, locale area first, capped at 6', () => {
+    const en = flagshipCitiesForTest('en');
+    expect(en).toHaveLength(6);
+    // EN surface → English-speaking area first, alphabetical by display name.
+    expect(en.map((city) => city.name)).toEqual([
+      'Austin',
+      'Cape Town',
+      'Chicago',
+      'Dublin',
+      'Johannesburg',
+      'Lagos',
+    ]);
+    // de surface → German cities (Berlin + Munich) lead.
+    const de = flagshipCitiesForTest('de');
+    expect(de.map((city) => city.name).slice(0, 2)).toEqual(['Berlin', 'Munich']);
+  });
+
+  it('hub siblingCities = the flagship list (content-rich, capped 6) on the hub (TASK-480)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(hub).toBeDefined();
+    const data = buildLocationViewData(hub!);
+    expect(data.siblingCities).toHaveLength(6);
+    expect(data.siblingCities[0].name).toBe('Austin');
+    for (const city of data.siblingCities) {
+      expect(city.path).toMatch(/^\/en\/location\//);
+    }
+  });
+
+  it('hubDirectoryEntries splits every entry into one of the 5 sections (TASK-480)', () => {
+    const directory = hubDirectoryEntries('en');
+    expect(directory.length).toBeGreaterThan(0);
+    const sections = new Set(directory.map((entry) => entry.section));
+    expect(sections).toEqual(
+      new Set(['countries', 'regions', 'cities', 'communityTypes', 'eventIdeas']),
+    );
+    // Section membership follows the kind mapping.
+    for (const entry of directory) {
+      const expected =
+        entry.kind === 'country'
+          ? 'countries'
+          : entry.kind === 'region'
+            ? 'regions'
+            : entry.kind === 'city'
+              ? 'cities'
+              : entry.kind === 'variant'
+                ? 'communityTypes'
+                : 'eventIdeas';
+      expect(entry.section).toBe(expected);
+    }
+  });
+
+  it('every directory entry carries its associated country for geo ordering (TASK-480)', () => {
+    const directory = hubDirectoryEntries('en');
+    const germany = directory.find((entry) => entry.name === 'Communities in Germany');
+    expect(germany?.countryIso2).toBe('DE');
+    const berlin = directory.find((entry) => entry.name === 'Communities in Berlin');
+    expect(berlin?.countryIso2).toBe('DE');
+    // Community types + Event ideas resolve via their associated city's country.
+    const berlinStartup = directory.find((entry) => entry.name === 'Startup communities in Berlin');
+    expect(berlinStartup?.countryIso2).toBe('DE');
+    const berlinIdeas = directory.find(
+      (entry) => entry.name === '30 community event ideas in Berlin',
+    );
+    expect(berlinIdeas?.countryIso2).toBe('DE');
+  });
+
+  it('orders each section: IP-country matches → locale-language matches → alphabetical (TASK-480)', () => {
+    // IP-country = DE: German entries rank first in every section.
+    const deIp = hubDirectoryEntries('en', 'DE');
+    const cityNames = deIp.filter((entry) => entry.section === 'cities').map((entry) => entry.name);
+    expect(cityNames[0]).toBe('Communities in Berlin');
+    expect(cityNames[1]).toBe('Communities in Munich, Bavaria');
+    // ...then the EN-locale-area cities, then the rest, alphabetical overall.
+    // (Only Tier-1 regions are indexable — Berlin is the sole German region.)
+    const regionNames = deIp
+      .filter((entry) => entry.section === 'regions')
+      .map((entry) => entry.name);
+    expect(regionNames[0]).toBe('Communities in Berlin, Germany');
+    expect(regionNames[0]).toContain('Berlin');
+    // Community types + event ideas rank via their city's country.
+    const types = deIp
+      .filter((entry) => entry.section === 'communityTypes')
+      .map((entry) => entry.name);
+    expect(types[0]).toBe('Community meetups & events in Berlin');
+  });
+
+  it('orders by locale-language matches first when no IP-country is present (null-safe fallback)', () => {
+    // No IP country (local request) → locale-language matches rank first.
+    const deLocale = hubDirectoryEntries('de', null);
+    const cityNames = deLocale
+      .filter((entry) => entry.section === 'cities')
+      .map((entry) => entry.name);
+    expect(cityNames[0]).toBe('Communities in Berlin');
+    expect(cityNames[1]).toBe('Communities in Munich, Bavaria');
+  });
+
+  it('keeps alphabetical order within a section when neither IP nor locale matches', () => {
+    // ja area = Japan only → Japanese ideas rank first; the remaining
+    // ideas fall back to alphabetical order.
+    const directory = hubDirectoryEntries('ja', null);
+    const ideas = directory.filter((entry) => entry.section === 'eventIdeas');
+    expect(ideas.length).toBeGreaterThan(0);
+    expect(ideas[0].countryIso2).toBe('JP');
+    const nonJp = ideas.filter((entry) => entry.countryIso2 !== 'JP').map((entry) => entry.name);
+    const sorted = [...nonJp].sort((a, b) => a.localeCompare(b));
+    expect(nonJp).toEqual(sorted);
+  });
+
+  it('buildLocationViewData threads ipCountry into the hub directory (TASK-480)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(hub).toBeDefined();
+    const data = buildLocationViewData(hub!, 'en', 'DE');
+    const cities = (data.hubDirectory ?? []).filter((entry) => entry.section === 'cities');
+    expect(cities[0].name).toBe('Communities in Berlin');
+    // Without an IP country the same surface falls back to locale ordering.
+    const fallback = buildLocationViewData(hub!, 'en');
+    const fallbackCities = (fallback.hubDirectory ?? []).filter(
+      (entry) => entry.section === 'cities',
+    );
+    expect(fallbackCities[0].name).not.toBe('Communities in Berlin');
+  });
+});
+
+/** Test-local helper — avoids the SiblingCityLink type import clash. */
+function flagshipCitiesForTest(locale: string) {
+  return flagshipCities(locale as 'en' | 'de');
+}
