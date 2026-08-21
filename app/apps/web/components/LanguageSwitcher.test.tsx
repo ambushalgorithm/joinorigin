@@ -4,7 +4,13 @@ import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet, ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
-import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
+import {
+  I18nProvider,
+  _resetI18nForTests,
+  getDictionary,
+  useI18n,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -154,6 +160,41 @@ describe('LanguageSwitcher', () => {
     expect(mockPush).toHaveBeenCalledWith('/ar');
     expect(document.documentElement.dir).toBe('ltr');
     expect(document.documentElement.lang).toBe('en');
+    expect(document.cookie).not.toContain('joinorigin_locale');
+  });
+
+  it('select() NEVER calls setLocale pre-toggle — the provider locale stays put until the pushed route derives it from the URL (TASK-488)', async () => {
+    const user = userEvent.setup();
+    // A probe inside the same provider exposes the ACTIVE provider locale.
+    // If select() performed the old setLocale-then-push toggle, this probe
+    // would flip to 'de' in place before any navigation happened.
+    function LocaleProbe() {
+      const { locale } = useI18n();
+      return <span data-testid="provider-locale">{locale}</span>;
+    }
+    render(
+      <I18nProvider locale="en" dictionary={getDictionary('en')}>
+        <ThemeProvider theme={theme}>
+          <LocaleProbe />
+          <LanguageSwitcher />
+        </ThemeProvider>
+      </I18nProvider>,
+    );
+    expect(screen.getByTestId('provider-locale')).toHaveTextContent('en');
+
+    await user.click(screen.getByRole('button', { name: 'Change language' }));
+    await act(async () => {
+      await user.click(screen.getByRole('option', { name: /Deutsch/ }));
+    });
+    await flushI18nEffects();
+
+    // Navigation only: the router receives the /de target and the provider
+    // locale remains 'en' — the /de route's locale derives from the URL
+    // prefix on arrival (LocalePathnameSync), so no in-place toggle and no
+    // cookie were involved.
+    expect(mockPush).toHaveBeenCalledWith('/de');
+    expect(screen.getByTestId('provider-locale')).toHaveTextContent('en');
+    expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('English');
     expect(document.cookie).not.toContain('joinorigin_locale');
   });
 

@@ -5,6 +5,7 @@ import { useI18n, type Locale } from '@joinorigin/i18n';
 
 import LocationHubPage, { metadata } from './page';
 import { renderWithI18n } from '../../test-utils';
+import { buildLocationViewData, hubEntry } from '../../lib/seo/locationView';
 
 /**
  * fe-location-pages hub page tests (TASK-308) + TASK-317 hub search/filter.
@@ -237,6 +238,39 @@ describe('/location hub page', () => {
     } finally {
       mockServerLocale.locale = 'en';
     }
+  });
+
+  it('renders the inventory banner band on the EN surface: heading + copy + links + stat (TASK-491)', async () => {
+    await renderHubPage();
+
+    // SectionTitle heading (mirrors the /community "Join the network" band).
+    expect(screen.getByRole('heading', { level: 2, name: 'Join the network' })).toBeInTheDocument();
+
+    // CountUpStat — the total content-rich inventory + localized label.
+    const total = buildLocationViewData(hubEntry()!).hubDirectory?.length ?? 0;
+    const banner = screen.getByTestId('location-inventory-banner');
+    expect(banner).toHaveTextContent(String(total));
+    expect(banner).toHaveTextContent('Places and Communities');
+
+    // BodyCopy explainer.
+    expect(
+      screen.getByText(
+        'Browse every place and community on the network. Find the one that fits you, or start one in your city.',
+      ),
+    ).toBeInTheDocument();
+
+    // ExploreLinks row — Locations/Guides/Community accent links on the EN
+    // all-routes-prefixed surface (TASK-466/469).
+    const explore = within(screen.getByTestId('location-inventory-explore'));
+    expect(explore.getByRole('link', { name: 'Locations' })).toHaveAttribute(
+      'href',
+      '/en/location',
+    );
+    expect(explore.getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/en/guides');
+    expect(explore.getByRole('link', { name: 'Community' })).toHaveAttribute(
+      'href',
+      '/en/community',
+    );
   });
 });
 
