@@ -101,3 +101,69 @@ describe('LocationView language toggle (TASK-477)', () => {
     ).not.toBeInTheDocument();
   });
 });
+
+describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
+  const DIRECTORY_SECTIONS = [
+    { key: 'countries', label: 'Countries' },
+    { key: 'regions', label: 'Regions' },
+    { key: 'cities', label: 'Cities' },
+    { key: 'communityTypes', label: 'Community types' },
+    { key: 'eventIdeas', label: 'Event ideas' },
+  ] as const;
+
+  beforeEach(() => {
+    _resetI18nForTests();
+    mockPathname = '/en/location';
+  });
+
+  it('renders the inventory banner stat with the total count and localized label', () => {
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    const total = data.hubDirectory?.length ?? 0;
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const banner = screen.getByTestId('location-inventory-banner');
+    expect(banner).toHaveTextContent(String(total));
+    expect(banner).toHaveTextContent('Places and Communities');
+  });
+
+  it('shows the total content-rich inventory next to the Browse locations title', () => {
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    const total = data.hubDirectory?.length ?? 0;
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const title = screen.getByTestId('location-hub-directory-title');
+    expect(title).toHaveTextContent('Browse locations');
+    expect(title).toHaveTextContent(String(total));
+  });
+
+  it('renders per-section count badges beside each section sub-title', () => {
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    const directory = data.hubDirectory ?? [];
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    for (const { key, label } of DIRECTORY_SECTIONS) {
+      const count = directory.filter((entry) => entry.section === key).length;
+      expect(screen.getByText(`${label} (${count})`)).toBeInTheDocument();
+    }
+  });
+
+  it('matches search against entry.searchText so "colombia" resolves the country card + its cities', async () => {
+    const user = userEvent.setup();
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const search = screen.getByRole('searchbox', { name: 'Search locations' });
+    await user.type(search, 'colombia');
+
+    // The countries section keeps ONLY the Colombia country card (its
+    // searchText contains the dataset country name, not just the card title).
+    await waitFor(() => {
+      expect(screen.getByTestId('location-hub-directory-countries')).toBeInTheDocument();
+    });
+    expect(screen.getByRole('link', { name: 'Communities in Colombia' })).toBeInTheDocument();
+    // Cities scoped to Colombia resolve through the country name too.
+    expect(
+      screen.getByRole('link', { name: 'Communities in Bogota, Bogota D.C.' }),
+    ).toBeInTheDocument();
+  });
+});

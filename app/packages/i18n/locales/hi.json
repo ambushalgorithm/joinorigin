@@ -561,6 +561,8 @@
       "variantFormatsTitle": "सामान्य प्रारूप",
       "variantHowToTitle": "कैसे शुरू करें",
       "browseLocations": "स्थान ब्राउज़ करें",
+      "directoryBannerLabel": "स्थान और समुदाय",
+      "directoryTotal": "स्थान ब्राउज़ करें ({{count}})",
       "searchLocationsLabel": "स्थान खोजें",
       "searchLocationsPlaceholder": "शहर, देश या समुदाय प्रकार से खोजें",
       "emptyState": "“{{query}}” से कोई स्थान मेल नहीं खाता।",
@@ -572,6 +574,13 @@
         "variant": "समुदाय प्रकार",
         "ideas": "सामुदायिक कार्यक्रम विचार",
         "fallback": "स्थान"
+      },
+      "directorySectionTitles": {
+        "countries": "देश",
+        "regions": "क्षेत्र",
+        "cities": "शहर",
+        "communityTypes": "समुदाय प्रकार",
+        "eventIdeas": "कार्यक्रम विचार"
       },
       "guideCardTitles": {
         "start-a-community": "समुदाय शुरू करें",

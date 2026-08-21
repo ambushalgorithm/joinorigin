@@ -561,6 +561,8 @@
       "variantFormatsTitle": "Typische formats",
       "variantHowToTitle": "Hoe te beginnen",
       "browseLocations": "Locaties doorbladeren",
+      "directoryBannerLabel": "Plaatsen en communities",
+      "directoryTotal": "Locaties doorbladeren ({{count}})",
       "searchLocationsLabel": "Locaties zoeken",
       "searchLocationsPlaceholder": "Zoek op stad, land of communitytype",
       "emptyState": "Geen locaties gevonden voor “{{query}}”.",
@@ -572,6 +574,13 @@
         "variant": "Communitytype",
         "ideas": "Ideeën voor community-evenementen",
         "fallback": "Locatie"
+      },
+      "directorySectionTitles": {
+        "countries": "Landen",
+        "regions": "Regio's",
+        "cities": "Steden",
+        "communityTypes": "Communitytypen",
+        "eventIdeas": "Evenementideeën"
       },
       "guideCardTitles": {
         "start-a-community": "Start een community",

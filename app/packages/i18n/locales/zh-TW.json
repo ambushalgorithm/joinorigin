@@ -561,6 +561,8 @@
       "variantFormatsTitle": "常見形式",
       "variantHowToTitle": "如何開始",
       "browseLocations": "瀏覽地點",
+      "directoryBannerLabel": "地點與社群",
+      "directoryTotal": "瀏覽地點（{{count}}）",
       "searchLocationsLabel": "搜尋地點",
       "searchLocationsPlaceholder": "依城市、國家或社群類型搜尋",
       "emptyState": "沒有符合「{{query}}」的地點。",
@@ -572,6 +574,13 @@
         "variant": "社群類型",
         "ideas": "社群活動點子",
         "fallback": "地點"
+      },
+      "directorySectionTitles": {
+        "countries": "國家",
+        "regions": "地區",
+        "cities": "城市",
+        "communityTypes": "社群類型",
+        "eventIdeas": "活動點子"
       },
       "guideCardTitles": {
         "start-a-community": "建立社群",

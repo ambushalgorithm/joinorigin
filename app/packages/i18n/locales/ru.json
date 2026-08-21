@@ -561,6 +561,8 @@
       "variantFormatsTitle": "Типичные форматы",
       "variantHowToTitle": "Как начать",
       "browseLocations": "Обзор местоположений",
+      "directoryBannerLabel": "Места и сообщества",
+      "directoryTotal": "Обзор местоположений ({{count}})",
       "searchLocationsLabel": "Поиск местоположений",
       "searchLocationsPlaceholder": "Ищите по городу, стране или типу сообщества",
       "emptyState": "Ни одно местоположение не соответствует «{{query}}».",
@@ -572,6 +574,13 @@
         "variant": "Тип сообщества",
         "ideas": "Идеи мероприятий сообщества",
         "fallback": "Местоположение"
+      },
+      "directorySectionTitles": {
+        "countries": "Страны",
+        "regions": "Регионы",
+        "cities": "Города",
+        "communityTypes": "Типы сообществ",
+        "eventIdeas": "Идеи мероприятий"
       },
       "guideCardTitles": {
         "start-a-community": "Создать сообщество",

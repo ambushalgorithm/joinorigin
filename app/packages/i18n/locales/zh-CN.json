@@ -561,6 +561,8 @@
       "variantFormatsTitle": "常见形式",
       "variantHowToTitle": "如何开始",
       "browseLocations": "浏览地点",
+      "directoryBannerLabel": "地点与社区",
+      "directoryTotal": "浏览地点（{{count}}）",
       "searchLocationsLabel": "搜索地点",
       "searchLocationsPlaceholder": "按城市、国家或社区类型搜索",
       "emptyState": "没有与“{{query}}”匹配的地点。",
@@ -572,6 +574,13 @@
         "variant": "社区类型",
         "ideas": "社区活动创意",
         "fallback": "地点"
+      },
+      "directorySectionTitles": {
+        "countries": "国家",
+        "regions": "地区",
+        "cities": "城市",
+        "communityTypes": "社区类型",
+        "eventIdeas": "活动创意"
       },
       "guideCardTitles": {
         "start-a-community": "创建社区",

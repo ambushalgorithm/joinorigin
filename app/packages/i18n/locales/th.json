@@ -561,6 +561,8 @@
       "variantFormatsTitle": "รูปแบบทั่วไป",
       "variantHowToTitle": "วิธีเริ่มต้น",
       "browseLocations": "เรียกดูสถานที่",
+      "directoryBannerLabel": "สถานที่และชุมชน",
+      "directoryTotal": "เรียกดูสถานที่ ({{count}})",
       "searchLocationsLabel": "ค้นหาสถานที่",
       "searchLocationsPlaceholder": "ค้นหาด้วยเมือง ประเทศ หรือประเภทชุมชน",
       "emptyState": "ไม่มีสถานที่ที่ตรงกับ “{{query}}”",
@@ -572,6 +574,13 @@
         "variant": "ประเภทชุมชน",
         "ideas": "ไอเดียกิจกรรมชุมชน",
         "fallback": "สถานที่"
+      },
+      "directorySectionTitles": {
+        "countries": "ประเทศ",
+        "regions": "ภูมิภาค",
+        "cities": "เมือง",
+        "communityTypes": "ประเภทชุมชน",
+        "eventIdeas": "ไอเดียกิจกรรม"
       },
       "guideCardTitles": {
         "start-a-community": "เริ่มต้นชุมชน",
