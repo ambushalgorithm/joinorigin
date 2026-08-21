@@ -784,3 +784,192 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
     );
   });
 });
+
+/**
+ * Story D (TASK-493) — country page content-rich mesh (TASK-490), the
+ * 7-guide set on every location screen (TASK-489), and the translated hub
+ * location-intro (TASK-491).
+ *
+ * 1. `/location/<country>` pages render the data-driven content-rich mesh
+ *    for ALL countries: localized country name, content-rich cities in the
+ *    country, and the region list — with registry-exact hrefs on the ACTIVE
+ *    locale surface (never `/en/**` on a non-EN surface).
+ * 2. Every location screen (hub/country/city) renders the SAME 7-guide
+ *    "Guides for starting a community" set — the /location hub and a city
+ *    page must expose identical guide links (titles + hrefs).
+ * 3. The hub location-intro (`data-testid="location-intro"`) translates on
+ *    the /de/location surface (and the EN surface renders the EN copy) —
+ *    server-rendered, not just a client toggle artifact.
+ */
+test.describe('Story D: country mesh + unified guides + translated hub intro (TASK-493)', () => {
+  test('colombia country page renders content-rich info: country name, cities, regions', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/colombia');
+    // Localized country name in the H1 (registry title, brand stripped).
+    await expect(page.locator('h1')).toContainText('Communities in Colombia');
+
+    const mesh = page.getByTestId('location-country-mesh');
+    await expect(mesh).toBeVisible();
+
+    // Content-rich cities in the country — alphabetical by localized name
+    // (Barranquilla, Bogotá, Medellín).
+    const cities = mesh.getByTestId('location-country-cities');
+    await expect(cities).toBeVisible();
+    await expect(cities.locator('a')).toHaveCount(3);
+    await expect(cities.getByRole('link', { name: 'Barranquilla' })).toBeVisible();
+    await expect(cities.getByRole('link', { name: 'Bogotá' })).toBeVisible();
+    await expect(cities.getByRole('link', { name: 'Medellín' })).toBeVisible();
+    // Registry-exact hrefs on the EN surface.
+    for (const href of await cities
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')))) {
+      expect(href).toMatch(/^\/en\/location\/colombia\//);
+    }
+    await expect(cities.locator('a[href="/en/location/colombia/bogota-d-c/bogota"]')).toBeVisible();
+    await expect(
+      cities.locator('a[href="/en/location/colombia/antioquia/medellin"]'),
+    ).toBeVisible();
+    await expect(
+      cities.locator('a[href="/en/location/colombia/atlantico/barranquilla"]'),
+    ).toBeVisible();
+
+    // Region list — distinct regions hosting content-rich cities.
+    const regions = mesh.getByTestId('location-country-regions');
+    await expect(regions).toBeVisible();
+    await expect(regions.locator('a')).toHaveCount(3);
+    await expect(regions.getByRole('link', { name: 'Antioquia' })).toBeVisible();
+    await expect(regions.getByRole('link', { name: 'Atlántico' })).toBeVisible();
+    await expect(regions.getByRole('link', { name: 'Bogotá' })).toBeVisible();
+    await expect(regions.locator('a[href="/en/location/colombia/antioquia"]')).toBeVisible();
+    await expect(regions.locator('a[href="/en/location/colombia/atlantico"]')).toBeVisible();
+    await expect(regions.locator('a[href="/en/location/colombia/bogota-d-c"]')).toBeVisible();
+  });
+
+  test('australia country page renders content-rich info: country name, cities, regions', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/australia');
+    await expect(page.locator('h1')).toContainText('Communities in Australia');
+
+    const mesh = page.getByTestId('location-country-mesh');
+    await expect(mesh).toBeVisible();
+    const cities = mesh.getByTestId('location-country-cities');
+    await expect(cities.locator('a')).toHaveCount(1);
+    await expect(cities.getByRole('link', { name: 'Sydney' })).toBeVisible();
+    await expect(
+      cities.locator('a[href="/en/location/australia/new-south-wales/sydney"]'),
+    ).toBeVisible();
+    const regions = mesh.getByTestId('location-country-regions');
+    await expect(regions.getByRole('link', { name: 'New South Wales' })).toBeVisible();
+    await expect(regions.locator('a[href="/en/location/australia/new-south-wales"]')).toBeVisible();
+  });
+
+  test('country mesh city/region hrefs stay on the ACTIVE locale surface (es)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/es/location/colombia');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+    // Colombia has no authored es content, so the H1 stays the EN fallback
+    // registry title — the mesh itself still localizes (dataset names[es])
+    // and the card hrefs move to the ACTIVE es surface (TASK-469/490).
+    await expect(page.locator('h1')).toContainText('Colombia');
+
+    const mesh = page.getByTestId('location-country-mesh');
+    await expect(mesh).toBeVisible();
+    for (const testId of ['location-country-cities', 'location-country-regions']) {
+      const hrefs = await mesh
+        .getByTestId(testId)
+        .locator('a')
+        .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')));
+      expect(hrefs.length).toBeGreaterThan(0);
+      for (const href of hrefs) {
+        expect(href, `${testId} card must stay on the es surface: ${href}`).toMatch(
+          /^\/es\/location\/colombia\//,
+        );
+        expect(href, `${testId} card must not leak /en/** (TASK-469): ${href}`).not.toMatch(
+          /^\/en\//,
+        );
+      }
+    }
+  });
+
+  test('austin city page renders the SAME 7 guides as the /location hub (TASK-489)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location');
+    const hubGuides = page.getByTestId('location-guide-links');
+    await expect(hubGuides).toBeVisible();
+    await expect(hubGuides.locator('a')).toHaveCount(7);
+    const hubTitles = await hubGuides.locator('a').allInnerTexts();
+    const hubHrefs = await hubGuides
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')));
+
+    // The city page renders the identical guide set (titles + hrefs).
+    await page.goto('/en/location/united-states/texas/austin');
+    await expect(page.locator('h1')).toContainText('Communities in Austin');
+    const cityGuides = page.getByTestId('location-guide-links');
+    await expect(cityGuides).toBeVisible();
+    await expect(cityGuides.locator('a')).toHaveCount(7);
+    expect(await cityGuides.locator('a').allInnerTexts()).toEqual(hubTitles);
+    const cityHrefs = await cityGuides
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')));
+    expect(cityHrefs).toEqual(hubHrefs);
+  });
+
+  test('the /location hub intro is translated on /de/location and EN surface (TASK-491)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location');
+    await expect(page.getByTestId('location-intro')).toContainText(
+      'Every country, region, city, community type, and event idea on the network',
+    );
+
+    await page.goto('/de/location');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    await expect(page.getByTestId('location-intro')).toContainText(
+      'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+    );
+  });
+
+  test('the inventory banner is a full band — heading + count + copy + links in one section (TASK-491/493)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location');
+
+    // The band is a single <section> containing the SectionTitle heading,
+    // the CountUpStat (count + label), the BodyCopy explainer, AND the
+    // ExploreLinks row — not a standalone stat pill.
+    const band = page.locator('section', {
+      has: page.getByTestId('location-inventory-banner'),
+    });
+    await expect(band).toHaveCount(1);
+    await expect(band.getByRole('heading', { level: 2, name: 'Join the network' })).toBeVisible();
+    await expect(band.getByTestId('location-inventory-banner')).toContainText('484');
+    await expect(band.getByTestId('location-inventory-banner')).toContainText(
+      'Places and Communities',
+    );
+    await expect(band.getByText('Browse every place and community on the network.')).toBeVisible();
+    const explore = band.getByTestId('location-inventory-explore');
+    await expect(explore.getByRole('link', { name: 'Locations' })).toHaveAttribute(
+      'href',
+      '/en/location',
+    );
+    await expect(explore.getByRole('link', { name: 'Guides' })).toHaveAttribute(
+      'href',
+      '/en/guides',
+    );
+    await expect(explore.getByRole('link', { name: 'Community' })).toHaveAttribute(
+      'href',
+      '/en/community',
+    );
+  });
+});
