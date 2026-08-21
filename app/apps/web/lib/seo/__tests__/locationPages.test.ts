@@ -1,10 +1,12 @@
 import { indexableLocationEntries, isWarmSetEntry, locationPageEntries } from '../locationPages';
 import {
+  CONTENT_RICH_CITY_GEONAME_IDS,
   CONTENT_RICH_CITY_SLUGS,
   FLAGSHIP_CITIES,
   TIER_2_CITY_SLUGS,
   contentRichCities,
   getDatasetVersion,
+  loadLocationSnapshot,
   localeCountryCodes,
   slugify,
   tierForCitySlug,
@@ -512,5 +514,75 @@ describe('lib/seo locationPages — determinism', () => {
     const first = locationPageEntries();
     const second = locationPageEntries();
     expect(first).toEqual(second);
+  });
+});
+
+describe('lib/seo locationPages — content-rich city resolution via CONTENT_RICH_CITY_GEONAME_IDS (TASK-484/TASK-486)', () => {
+  it('pins the 7 slug-collision content-rich cities to their intended GeoNames rows', () => {
+    // The GeoNames snapshot carries multiple rows sharing an ascii name
+    // across countries/regions; a bare slug scan would return the first
+    // match (London, Ontario; Madrid, Colombia; …). The explicit map pins
+    // the intended content-rich row so every consumer resolves
+    // deterministically — the 7 collisions.
+    expect(Object.keys(CONTENT_RICH_CITY_GEONAME_IDS).sort()).toEqual([
+      'barcelona',
+      'london',
+      'los-angeles',
+      'madrid',
+      'san-francisco',
+      'taipei',
+      'vancouver',
+    ]);
+    // Every pinned geonameId exists in the snapshot (no stale ids).
+    const snapshotCities = new Set(loadLocationSnapshot().cities.map((city) => city.id));
+    for (const geonameId of Object.values(CONTENT_RICH_CITY_GEONAME_IDS)) {
+      expect(snapshotCities.has(geonameId)).toBe(true);
+    }
+    // And the map covers every collision slug in the content-rich set.
+    for (const slug of Object.keys(CONTENT_RICH_CITY_GEONAME_IDS)) {
+      expect(CONTENT_RICH_CITY_SLUGS).toContain(slug);
+    }
+  });
+
+  it('the intended content-rich rows for the 7 collision slugs exist in the registry', () => {
+    const entries = locationPageEntries();
+    const cityPaths = entries.filter((entry) => entry.kind === 'city').map((entry) => entry.path);
+    // The registry enumerates every snapshot city page (including the
+    // duplicate-slug rows — they are valid pages for their own regions); the
+    // CONTENT_RICH_CITY_GEONAME_IDS pin ensures the CONTENT-RICH consumer
+    // (directory / flagship / start-local) resolves the INTENDED row. The
+    // intended content-rich city paths must exist in the registry.
+    for (const intended of [
+      '/en/location/united-kingdom/england/london',
+      '/en/location/spain/madrid/madrid',
+      '/en/location/united-states/california/los-angeles',
+      '/en/location/united-states/california/san-francisco',
+      '/en/location/canada/british-columbia/vancouver',
+      '/en/location/spain/catalonia/barcelona',
+      '/en/location/taiwan/taiwan/taipei',
+    ]) {
+      expect(cityPaths).toContain(intended);
+    }
+  });
+
+  it('contentRichCities() returns exactly 56 unique intended rows (no duplicate ids)', () => {
+    const cities = contentRichCities();
+    expect(cities).toHaveLength(56);
+    expect(new Set(cities.map((city) => city.id)).size).toBe(56);
+    // Copenhagen (Tier-3 content) is part of the content-rich set.
+    expect(cities.some((city) => city.asciiName === 'Copenhagen')).toBe(true);
+  });
+
+  it('the directory membership counts derive from the content-rich set (TASK-484)', () => {
+    // Countries = distinct countries of content-rich cities (~38); Regions =
+    // distinct regions (~54); Cities = 56; Community types = 56 × 5; Event
+    // ideas = 56. The explicit geonameId map is what makes the country count
+    // stable — without it, London, Ontario / Madrid, Colombia etc. would add
+    // phantom countries.
+    const countries = new Set(contentRichCities().map((city) => city.countryIso2));
+    const regions = new Set(contentRichCities().map((city) => city.regionId));
+    expect(countries.size).toBe(38);
+    expect(regions.size).toBe(54);
+    expect(contentRichCities()).toHaveLength(56);
   });
 });

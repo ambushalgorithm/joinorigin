@@ -25,6 +25,7 @@ import {
   localeCountryCodes,
   tierForCitySlug,
 } from '../locationData';
+import { filterByKeyword } from '../../search/hubFilter';
 
 /**
  * fe-location-pages view-layer unit tests (TASK-308).
@@ -1263,6 +1264,76 @@ describe('lib/seo locationView — TASK-484 complete content-rich inventory + se
         }
       }
     }
+  });
+
+  it('"colombia" matches Bogota/Medellin/Barranquilla + the Colombia country card (searchText)', () => {
+    const directory = hubDirectoryEntries('en');
+    const matches = filterByKeyword(directory, 'colombia', (entry) => entry.searchText);
+    // The country card resolves through its dataset country name, not the
+    // EN card title ("Communities in Colombia" would NOT match "colombia"
+    // on name alone — it matches via the searchText country name).
+    const country = matches.find((entry) => entry.section === 'countries');
+    expect(country?.name).toBe('Communities in Colombia');
+    // All 3 Colombian content-rich cities resolve through the country name.
+    const cities = matches.filter((entry) => entry.section === 'cities').map((entry) => entry.name);
+    expect(cities).toContain('Communities in Bogota, Bogota D.C.');
+    expect(cities).toContain('Communities in Medellin, Antioquia');
+    expect(cities).toContain('Communities in Barranquilla, Atlantico');
+    // Community types + event ideas scoped to Colombia resolve too (15 + 3).
+    expect(matches.filter((entry) => entry.section === 'communityTypes').length).toBe(
+      3 /* cities */ * 5,
+    );
+    expect(matches.filter((entry) => entry.section === 'eventIdeas').length).toBe(3);
+  });
+
+  it('"italy" matches Milan + the Italy country card (searchText)', () => {
+    const directory = hubDirectoryEntries('en');
+    const matches = filterByKeyword(directory, 'italy', (entry) => entry.searchText);
+    const country = matches.find((entry) => entry.section === 'countries');
+    expect(country?.name).toBe('Communities in Italy');
+    const cities = matches.filter((entry) => entry.section === 'cities').map((entry) => entry.name);
+    expect(cities).toEqual(['Communities in Milan, Lombardy']);
+    // Milan's 5 community types + ideas page resolve through the country name.
+    expect(matches.filter((entry) => entry.section === 'communityTypes').length).toBe(5);
+    expect(matches.filter((entry) => entry.section === 'eventIdeas').length).toBe(1);
+    // The region card (Lombardy) resolves too.
+    expect(
+      matches.some((entry) => entry.section === 'regions' && entry.name.includes('Lombardy')),
+    ).toBe(true);
+  });
+
+  it('searchText carries the FULL enrichment: active-locale name + EN name + country + region (TASK-484)', () => {
+    const directory = hubDirectoryEntries('en');
+    const milan = directory.find(
+      (entry) => entry.section === 'cities' && entry.name.includes('Milan'),
+    );
+    expect(milan).toBeDefined();
+    // Display name + country + region are all searchable.
+    expect(milan?.searchText).toContain('Communities in Milan, Lombardy');
+    expect(milan?.searchText).toContain('Italy');
+    expect(milan?.searchText).toContain('Lombardy');
+
+    // Active-locale surface (de): the localized country/region names appear
+    // alongside the EN names — "Deutschland" + "Berlin" for the de Berlin
+    // city card, with the EN display name retained.
+    const deDirectory = hubDirectoryEntries('de');
+    const berlin = deDirectory.find(
+      (entry) => entry.section === 'cities' && entry.name.includes('Berlin'),
+    );
+    expect(berlin).toBeDefined();
+    expect(berlin?.searchText).toContain('Communities in Berlin'); // EN name
+    expect(berlin?.searchText).toContain('Deutschland'); // de country name
+    expect(berlin?.searchText).toContain('Berlin'); // de region name
+  });
+
+  it('"colombia" on the es surface resolves through the localized country name too', () => {
+    const directory = hubDirectoryEntries('es');
+    // "Colombia" matches the country name on the es surface (same dataset
+    // name) — the localized Bogotá card name is also searchable.
+    const matches = filterByKeyword(directory, 'colombia', (entry) => entry.searchText);
+    expect(matches.some((entry) => entry.section === 'countries')).toBe(true);
+    const cities = matches.filter((entry) => entry.section === 'cities');
+    expect(cities.length).toBe(3);
   });
 });
 
