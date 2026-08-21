@@ -104,7 +104,7 @@ export const HeroScene = styled.div<{ $glow?: string }>`
     pointer-events: none;
   }
 
-  /* GSAP transforms SVG groups around their fill-box center (spec §5.3). */
+  /* GSAP rotates SVG groups around their fill-box center (spec §5.3). */
   .scene-orbit-group,
   .scene-main-group,
   .scene-node {
@@ -156,7 +156,8 @@ export const SectionTitle = styled.h2`
 `;
 
 export const SubTitle = styled.h3`
-  margin: 0 0 ${({ theme }) => theme.spacing.sm}px;
+  margin-top: ${({ theme }) => theme.spacing.lg}px;
+  margin-bottom: ${({ theme }) => theme.spacing.lg}px;
   font-family: ${({ theme }) => theme.fontFamilies.display};
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   font-size: ${({ theme }) => theme.typography.title}px;
