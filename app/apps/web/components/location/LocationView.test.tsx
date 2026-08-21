@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { _resetI18nForTests, useI18n } from '@joinorigin/i18n';
 
 import { LocationView } from './LocationView';
-import { buildLocationViewData, hubEntry } from '../../lib/seo/locationView';
+import { buildLocationViewData, hubEntry, resolveLocationEntry } from '../../lib/seo/locationView';
 import type { LocationViewData } from '../../lib/seo/locationView';
 import { renderWithI18n } from '../../test-utils';
 
@@ -165,5 +165,48 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
     expect(
       screen.getByRole('link', { name: 'Communities in Bogota, Bogota D.C.' }),
     ).toBeInTheDocument();
+  });
+});
+
+describe('LocationView country mesh (TASK-490)', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    mockPathname = '/en/location/germany';
+  });
+
+  it('renders the country mesh section with content-rich cities + regions', () => {
+    const data = buildLocationViewData(resolveLocationEntry({ country: 'germany' })!, 'en');
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const mesh = screen.getByTestId('location-country-mesh');
+    expect(mesh).toBeInTheDocument();
+
+    // City cards carry localized dataset names + registry-exact hrefs.
+    const cities = within(screen.getByTestId('location-country-cities'));
+    expect(cities.getByRole('link', { name: 'Berlin' })).toHaveAttribute(
+      'href',
+      '/en/location/germany/berlin/berlin',
+    );
+    expect(cities.getByRole('link', { name: 'Munich' })).toHaveAttribute(
+      'href',
+      '/en/location/germany/bavaria/munich',
+    );
+
+    // Region cards carry localized dataset names + registry-exact hrefs.
+    const regions = within(screen.getByTestId('location-country-regions'));
+    expect(regions.getByRole('link', { name: 'Bavaria' })).toHaveAttribute(
+      'href',
+      '/en/location/germany/bavaria',
+    );
+    expect(regions.getByRole('link', { name: 'State of Berlin' })).toHaveAttribute(
+      'href',
+      '/en/location/germany/berlin',
+    );
+  });
+
+  it('does NOT render the country mesh on non-country pages', () => {
+    const hubData = buildLocationViewData(hubEntry()!, 'en');
+    renderWithI18n(<LocationView data={hubData} />, 'en');
+    expect(screen.queryByTestId('location-country-mesh')).not.toBeInTheDocument();
   });
 });

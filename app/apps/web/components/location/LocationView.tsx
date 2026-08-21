@@ -687,6 +687,59 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
+      {/* Country mesh (TASK-490): content-rich cities + regions in the
+          country, rendered as a content section analogous to "Communities in
+          nearby cities". Data-driven for EVERY /location/<country> page —
+          tier-irrelevant (un-authored Tier-3 pages stay noindex). The mesh
+          data (countryName + dataset facts) resolves for ALL countries; the
+          section renders only when the country hosts content-rich cities.
+          Card names are the localized dataset names (names[locale], EN
+          fallback) and every card href is registry-exact on the ACTIVE
+          locale surface. */}
+      {data.kind === 'country' && data.countryMesh && data.countryMesh.cities.length > 0 ? (
+        <SectionBand variant="plain">
+          <PageContainer>
+            <Reveal>
+              <Section data-testid="location-country-mesh">
+                <SectionTitle>{t('seoContent.location.nearbyCities')}</SectionTitle>
+                <SubTitle>{t('seoContent.location.directorySectionTitles.cities')}</SubTitle>
+                <CardGrid data-testid="location-country-cities">
+                  {data.countryMesh.cities.map((city) => (
+                    <Card key={city.path}>
+                      <CardTitle>
+                        <Link
+                          href={localizePath(city.path)}
+                          style={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                          {city.name}
+                        </Link>
+                      </CardTitle>
+                      <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
+                    </Card>
+                  ))}
+                </CardGrid>
+                <SubTitle>{t('seoContent.location.directorySectionTitles.regions')}</SubTitle>
+                <CardGrid data-testid="location-country-regions">
+                  {data.countryMesh.regions.map((region) => (
+                    <Card key={region.path}>
+                      <CardTitle>
+                        <Link
+                          href={localizePath(region.path)}
+                          style={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                          {region.name}
+                        </Link>
+                      </CardTitle>
+                      <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
+                    </Card>
+                  ))}
+                </CardGrid>
+              </Section>
+            </Reveal>
+          </PageContainer>
+        </SectionBand>
+      ) : null}
+
       {hasFaq ? (
         <SectionBand variant="glass">
           <PageContainer>
