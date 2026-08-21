@@ -1367,3 +1367,142 @@ describe('lib/seo locationView — TASK-484 complete content-rich inventory + se
 function flagshipCitiesForTest(locale: string) {
   return flagshipCities(locale as 'en' | 'de');
 }
+
+describe('lib/seo locationView — country mesh (TASK-490)', () => {
+  it('country pages carry the data-driven mesh: localized name, cities, regions, facts', () => {
+    const germany = resolveLocationEntry({ country: 'germany' });
+    expect(germany).toBeDefined();
+    const data = buildLocationViewData(germany!);
+    expect(data.kind).toBe('country');
+    expect(data.countryMesh).toBeDefined();
+    const mesh = data.countryMesh!;
+
+    // Localized country display name (dataset names[locale], EN fallback).
+    expect(mesh.countryName).toBe('Germany');
+
+    // Content-rich cities in the country — alphabetical by localized name,
+    // registry-exact paths.
+    expect(mesh.cities.map((city) => city.name)).toEqual(['Berlin', 'Munich']);
+    expect(mesh.cities.map((city) => city.path)).toEqual([
+      '/en/location/germany/berlin/berlin',
+      '/en/location/germany/bavaria/munich',
+    ]);
+
+    // Region list — distinct regions hosting content-rich cities.
+    expect(mesh.regions.map((region) => region.name)).toEqual(['Bavaria', 'State of Berlin']);
+    expect(mesh.regions.map((region) => region.path)).toEqual([
+      '/en/location/germany/bavaria',
+      '/en/location/germany/berlin',
+    ]);
+
+    // Dataset country facts — population / capital / languages (G1, never
+    // hardcoded — derived from the geo snapshot).
+    expect(mesh.facts).toEqual({
+      population: 82927922,
+      capital: 'Berlin',
+      languages: ['de'],
+    });
+  });
+
+  it('mesh is data-driven for ALL countries — Tier-3 un-authored included (noindex untouched)', () => {
+    // Denmark hosts Copenhagen — Tier-3 content that renders but stays noindex.
+    const denmark = resolveLocationEntry({ country: 'denmark' });
+    expect(denmark).toBeDefined();
+    const data = buildLocationViewData(denmark!);
+    expect(data.indexable).toBe(false);
+    expect(data.countryMesh).toBeDefined();
+    expect(data.countryMesh?.countryName).toBe('Denmark');
+    expect(data.countryMesh?.cities.map((city) => city.name)).toEqual(['Copenhagen']);
+    expect(data.countryMesh?.cities[0].path).toBe('/en/location/denmark/capital-region/copenhagen');
+    expect(data.countryMesh?.facts.population).toBeGreaterThan(0);
+    expect(data.countryMesh?.facts.capital.length).toBeGreaterThan(0);
+    expect(data.countryMesh?.facts.languages.length).toBeGreaterThan(0);
+  });
+
+  it('every country page in the registry carries a data-driven mesh (name + facts always)', () => {
+    const countries = locationPageEntries().filter((entry) => entry.kind === 'country');
+    expect(countries.length).toBeGreaterThan(0);
+    const hosting = countries.filter((entry) => {
+      const mesh = buildLocationViewData(entry).countryMesh;
+      return !!mesh && mesh.cities.length > 0;
+    });
+    // The mesh is populated for ALL countries — localized name + dataset
+    // facts resolve from the geo snapshot even when no content-rich city
+    // exists (the render section gates on non-empty cities).
+    for (const entry of countries) {
+      const data = buildLocationViewData(entry);
+      expect(data.countryMesh).toBeDefined();
+      expect(data.countryMesh?.countryName.length).toBeGreaterThan(0);
+      // Dataset facts resolve from the geo snapshot row — the values reflect
+      // the dataset exactly (some GeoNames territories carry 0 population /
+      // empty capital / empty languages), so the contract is presence + type.
+      expect(typeof data.countryMesh?.facts.population).toBe('number');
+      expect(typeof data.countryMesh?.facts.capital).toBe('string');
+      expect(Array.isArray(data.countryMesh?.facts.languages)).toBe(true);
+    }
+    // Countries hosting content-rich cities — every city/region href is
+    // registry-exact (never a dead link) and the content-rich set is scoped.
+    const registryPaths = new Set(locationPageEntries().map((entry) => entry.path));
+    for (const entry of hosting) {
+      const mesh = buildLocationViewData(entry).countryMesh!;
+      expect(mesh.cities.length).toBeGreaterThan(0);
+      for (const city of mesh.cities) {
+        expect(registryPaths.has(city.path)).toBe(true);
+      }
+      for (const region of mesh.regions) {
+        expect(registryPaths.has(region.path)).toBe(true);
+      }
+    }
+  });
+
+  it('mesh names localize per surface (names[locale], EN fallback)', () => {
+    const germany = resolveLocationEntry({ country: 'germany' });
+    const de = buildLocationViewData(germany!, 'de');
+    expect(de.countryMesh?.countryName).toBe('Deutschland');
+    expect(de.countryMesh?.cities.map((city) => city.name)).toEqual(['Berlin', 'Muenchen']);
+    expect(de.countryMesh?.regions.map((region) => region.name)).toEqual(['Bayern', 'Berlin']);
+
+    // es surface — the Spain mesh resolves the localized country name.
+    const spain = resolveLocationEntry({ country: 'spain' });
+    expect(spain).toBeDefined();
+    const es = buildLocationViewData(spain!, 'es');
+    expect(es.countryMesh?.countryName).toBe('España');
+    expect(es.countryMesh?.cities.map((city) => city.name)).toEqual(['Barcelona', 'Madrid']);
+  });
+
+  it('mesh paths move to the ACTIVE locale surface (TASK-469)', () => {
+    const germany = resolveLocationEntry({ country: 'germany' });
+    const es = buildLocationViewData(germany!, 'es');
+    for (const city of es.countryMesh?.cities ?? []) {
+      expect(city.path).toMatch(/^\/es\/location\//);
+      expect(city.path).not.toMatch(/^\/en\//);
+    }
+    for (const region of es.countryMesh?.regions ?? []) {
+      expect(region.path).toMatch(/^\/es\/location\//);
+      expect(region.path).not.toMatch(/^\/en\//);
+    }
+  });
+
+  it('non-country kinds never carry the country mesh', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(buildLocationViewData(hub!).countryMesh).toBeUndefined();
+    const region = resolveLocationEntry({ country: 'germany', region: 'berlin' });
+    expect(buildLocationViewData(region!).countryMesh).toBeUndefined();
+    const city = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
+    expect(buildLocationViewData(city!).countryMesh).toBeUndefined();
+    const variant = resolveLocationEntry({
+      country: 'germany',
+      region: 'berlin',
+      city: 'berlin',
+      variant: 'startup',
+    });
+    expect(buildLocationViewData(variant!).countryMesh).toBeUndefined();
+    const ideas = resolveLocationEntry({
+      country: 'germany',
+      region: 'berlin',
+      city: 'berlin',
+      variant: 'ideas',
+    });
+    expect(buildLocationViewData(ideas!).countryMesh).toBeUndefined();
+  });
+});

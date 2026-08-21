@@ -14,8 +14,11 @@ import {
   CONTENT_RICH_CITY_GEONAME_IDS,
   cityLocalizedName,
   contentRichCities,
+  contentRichCitiesInCountry,
+  countryFactsFor,
   countryLocalizedName,
   findCityBySlug,
+  regionsForCountry,
   regionLocalizedName,
 } from '../locationData';
 import { loadLocationSnapshot } from '../locationData';
@@ -170,5 +173,43 @@ describe('lib/seo locationData — deterministic content-rich city resolution (T
     expect(regionLocalizedName(region!, 'de')).toBe('Berlin');
     expect(cityLocalizedName(city!, 'en')).toBe('Berlin');
     expect(cityLocalizedName(city!, 'en').length).toBeGreaterThan(0);
+  });
+});
+
+describe('lib/seo locationData — country mesh helpers (TASK-490)', () => {
+  it('contentRichCitiesInCountry filters the content-rich set by countryIso2', () => {
+    expect(contentRichCitiesInCountry('DE').map((city) => city.asciiName)).toEqual([
+      'Berlin',
+      'Munich',
+    ]);
+    expect(contentRichCitiesInCountry('DK').map((city) => city.asciiName)).toEqual(['Copenhagen']);
+    // Slug-collision rows resolve deterministically — london → GB, never Ontario.
+    const gb = contentRichCitiesInCountry('GB').map((city) => city.asciiName);
+    expect(gb).toContain('London');
+    expect(contentRichCitiesInCountry('CA').map((city) => city.asciiName)).not.toContain('London');
+    // Unknown country → empty (never invented rows).
+    expect(contentRichCitiesInCountry('ZZ')).toEqual([]);
+  });
+
+  it('regionsForCountry returns the distinct regions hosting content-rich cities', () => {
+    expect(regionsForCountry('DE').map((region) => region.id)).toEqual(['de-16', 'de-02']);
+    // Deduped on region id — one row per region.
+    const us = regionsForCountry('US').map((region) => region.id);
+    expect(new Set(us).size).toBe(us.length);
+    expect(us).toContain('us-ny');
+    expect(us).toContain('us-tx');
+  });
+
+  it('countryFactsFor resolves population/capital/languages from the geo snapshot', () => {
+    expect(countryFactsFor('DE')).toEqual({
+      population: 82927922,
+      capital: 'Berlin',
+      languages: ['de'],
+    });
+    expect(countryFactsFor('IT')?.population).toBe(60431283);
+    expect(countryFactsFor('IT')?.capital).toBe('Rome');
+    expect(countryFactsFor('IT')?.languages.length).toBeGreaterThan(0);
+    // Unknown ISO code → undefined (never fabricated facts).
+    expect(countryFactsFor('ZZ')).toBeUndefined();
   });
 });

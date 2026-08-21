@@ -423,6 +423,62 @@ export function cityLocalizedName(city: LocationCity, locale: Locale): string {
 }
 
 /* ------------------------------------------------------------------ *
+ * Country mesh helpers (TASK-490 — data-driven content-rich info for
+ * every `/location/<country>` page)
+ *
+ * The country page mesh is fully data-driven: content-rich cities
+ * filtered by `countryIso2` (from the deterministic `contentRichCities()`
+ * set), the distinct regions hosting them, and dataset country facts
+ * (population/capital/languages) resolved via `loadLocationSnapshot` /
+ * `findCountry` — never hardcoded.
+ * ------------------------------------------------------------------ */
+
+/** Dataset country facts for the country mesh (TASK-490) — population,
+ *  capital, and languages derived from the geo snapshot row (G1 — honest
+ *  dataset facts, never fabricated). */
+export interface CountryFacts {
+  population: number;
+  capital: string;
+  languages: string[];
+}
+
+/** Dataset country facts (population/capital/languages) for an
+ *  ISO-3166-1 alpha-2 code — resolved via `loadLocationSnapshot`/
+ *  `findCountry` (TASK-490). Returns undefined for unknown codes so
+ *  callers skip the mesh rather than render empty facts. */
+export function countryFactsFor(iso2: string): CountryFacts | undefined {
+  const country = findCountry(iso2);
+  if (!country) return undefined;
+  return {
+    population: country.population,
+    capital: country.capital,
+    languages: [...country.languages],
+  };
+}
+
+/** Content-rich cities in a country (TASK-490) — the deterministic
+ *  `contentRichCities()` set filtered by `countryIso2`, keeping
+ *  `CONTENT_RICH_CITY_SLUGS` order. Slug-collision rows resolve through
+ *  `CONTENT_RICH_CITY_GEONAME_IDS` inside `contentRichCities()`, so the
+ *  filter always sees the intended city (london → GB, never Ontario). */
+export function contentRichCitiesInCountry(countryIso2: string): LocationCity[] {
+  return contentRichCities().filter((city) => city.countryIso2 === countryIso2);
+}
+
+/** Distinct regions hosting content-rich cities in a country (TASK-490) —
+ *  the country page's region list. Deduped on region id, ordered by the
+ *  first content-rich city that hosts them (`CONTENT_RICH_CITY_SLUGS`
+ *  order). */
+export function regionsForCountry(countryIso2: string): LocationRegion[] {
+  const seen = new Map<string, LocationRegion>();
+  for (const city of contentRichCitiesInCountry(countryIso2)) {
+    const region = findRegion(city.regionId);
+    if (region && !seen.has(region.id)) seen.set(region.id, region);
+  }
+  return [...seen.values()];
+}
+
+/* ------------------------------------------------------------------ *
  * Locale-driven area (TASK-480 — "active locale's country/area first")
  *
  * Each locale's "language area" is the set of countries whose

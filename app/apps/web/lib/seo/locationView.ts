@@ -38,19 +38,23 @@ import type {
   RegionContent,
   VariantEnrichment,
 } from './content/types';
-import type { LocationCity } from './data/types';
+import type { LocationCity, LocationRegion } from './data/types';
 import { breadcrumbList, faqPage, type BreadcrumbItem } from './jsonLd';
 import {
   FLAGSHIP_CITIES,
   GROUP_TYPES,
   IDEA_VARIANT,
   cityDisplayName,
+  cityLocalizedName,
   citySlug,
   contentRichCities,
+  contentRichCitiesInCountry,
+  countryFactsFor,
   countryLocalizedName,
   countrySlug,
   findCityBySlug,
   findCountry,
+  findCountryBySlug,
   findRegion,
   getFlagshipConfig,
   groupTypeLabelForLocale,
@@ -59,6 +63,8 @@ import {
   localeCountryCodes,
   regionLocalizedName,
   regionSlug,
+  regionsForCountry,
+  type CountryFacts,
   type GroupTypeKey,
 } from './locationData';
 import type { PageKind } from './locationGates';
@@ -621,6 +627,99 @@ export function flagshipCities(locale: Locale = 'en', limit = 6): SiblingCityLin
 }
 
 /* ------------------------------------------------------------------ *
+ * Country mesh (TASK-490 — data-driven content-rich info for every
+ * `/location/<country>` page)
+ *
+ * The country page gets a content-rich mesh populated for ALL countries
+ * (indexability is untouched — un-authored Tier-3 pages stay noindex):
+ * the localized country display name, the country's content-rich cities
+ * (registry-exact paths), the region list for the country, and dataset
+ * country facts (population/capital/languages) derived from the geo
+ * snapshot. All names resolve from the dataset `names[locale]` with EN
+ * fallback — never hardcoded.
+ * ------------------------------------------------------------------ */
+
+/** One region link in the country mesh (TASK-490). */
+export interface CountryRegionLink {
+  /** Localized dataset region name (`names[locale]`, EN fallback). */
+  name: string;
+  /** Registry-exact region page path on the ACTIVE locale surface. */
+  path: string;
+}
+
+/** The country-scoped mesh for `/location/<country>` pages (TASK-490). */
+export interface CountryMesh {
+  /** Localized country display name (dataset `names[locale]`, EN fallback). */
+  countryName: string;
+  /** Dataset country facts — population / capital / languages (G1). */
+  facts: CountryFacts;
+  /** Content-rich cities in the country — localized names + registry-exact
+   *  paths, alphabetical by localized name. */
+  cities: SiblingCityLink[];
+  /** Regions hosting content-rich cities in the country — localized names
+   *  + registry-exact paths, alphabetical by localized name. */
+  regions: CountryRegionLink[];
+}
+
+/** Registry-exact location path for a region — on the ACTIVE locale surface
+ *  `/${locale}/location/...` (all-routes-prefixed, TASK-466/TASK-469).
+ *  Honors flagship region-slug/country-slug overrides (same rule as
+ *  `cityLocationPath` + `regionEntry`). */
+export function regionLocationPath(
+  region: LocationRegion,
+  locale: Locale = 'en',
+): string | undefined {
+  const country = findCountry(region.countryIso2);
+  if (!country) return undefined;
+  const flagship = FLAGSHIP_CITIES.find((candidate) => candidate.regionId === region.id);
+  const regionSeg = flagship?.regionSlug ?? regionSlug(region);
+  const countrySeg = flagship?.countrySlug ?? countrySlug(country);
+  return `/${locale}${LOCATION_HUB_PATH}/${countrySeg}/${regionSeg}`;
+}
+
+/**
+ * The country-scoped mesh for a country page (TASK-490) — localized country
+ * name, content-rich cities in the country (registry-exact paths, sorted
+ * alphabetically by localized name), the region list (regions hosting
+ * content-rich cities), and dataset facts (population/capital/languages).
+ * Data-driven for EVERY country — tier-irrelevant and noindex untouched.
+ * Returns `undefined` when the country row is unresolvable (unknown slug),
+ * so the view renders no mesh rather than empty sections.
+ */
+export function countryMeshFor(
+  entry: LocationPageEntry,
+  locale: Locale = 'en',
+): CountryMesh | undefined {
+  const country = findCountryBySlug(entry.params.country ?? '');
+  if (!country) return undefined;
+  const facts = countryFactsFor(country.iso2);
+  if (!facts) return undefined;
+
+  const cities = contentRichCitiesInCountry(country.iso2)
+    .map((city) => ({
+      name: cityLocalizedName(city, locale),
+      path: cityLocationPath(city, locale),
+    }))
+    .filter((link): link is SiblingCityLink => link.path !== undefined)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  const regions = regionsForCountry(country.iso2)
+    .map((region) => ({
+      name: regionLocalizedName(region, locale),
+      path: regionLocationPath(region, locale),
+    }))
+    .filter((link): link is CountryRegionLink => link.path !== undefined)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  return {
+    countryName: countryLocalizedName(country, locale),
+    facts,
+    cities,
+    regions,
+  };
+}
+
+/* ------------------------------------------------------------------ *
  * Group-type links (city/variant pages — design §6.4 #3)
  * ------------------------------------------------------------------ */
 
@@ -722,6 +821,13 @@ export interface LocationViewData {
   guideLinks: GuideLink[];
   /** Browsable directory for the hub (TASK-317) — populated for `hub` only. */
   hubDirectory?: HubDirectoryEntry[];
+  /**
+   * Country-scoped content-rich mesh (TASK-490) — populated for `country`
+   * pages only: localized country name, content-rich cities in the country
+   * (registry-exact paths), the region list, and dataset facts
+   * (population/capital/languages).
+   */
+  countryMesh?: CountryMesh;
   /** Idea listicle (ideas pages only). */
   ideaCategories?: IdeaCategory[];
   waitlistSource: string;
@@ -901,6 +1007,11 @@ export function buildLocationViewData(
           : [],
     guideLinks: guideLinksFor(entry.kind, locale),
     hubDirectory: entry.kind === 'hub' ? hubDirectoryEntries(locale, ipCountry) : undefined,
+    // TASK-490 — the country-scoped content-rich mesh populates for country
+    // pages only: localized country name, content-rich cities, region list,
+    // and dataset facts. Data-driven for EVERY country — indexability is
+    // untouched (un-authored Tier-3 pages stay noindex).
+    countryMesh: entry.kind === 'country' ? countryMeshFor(entry, locale) : undefined,
     ideaCategories:
       entry.kind === 'ideas' && content?.kind === 'city' ? content.ideaPage.categories : undefined,
     waitlistSource: waitlistSource(entry),
