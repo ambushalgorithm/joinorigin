@@ -40,12 +40,14 @@ function localeTargetPath(pathname: string, next: Locale): string {
  * Shared web control mounted in the header (desktop right cluster + mobile
  * panel) and the footer utility row. Trigger shows the globe icon + current
  * locale's native autonym; the listbox lists all 21 locales with autonyms
- * (+ muted EN hints on desktop). Selecting a locale applies it immediately
- * (no reload — `setLocale` re-renders through the i18n provider; locale is
- * URL-only, no cookie is written, TASK-468) and navigates to the
- * locale-prefixed version of the current path (`/<locale>/<current-path>`,
- * always prefixed incl. `en` → `/en/...`, TASK-464), so the target route
- * renders in the selected locale (TASK-450).
+ * (+ muted EN hints on desktop). Selecting a locale is NAVIGATION ONLY
+ * (TASK-488): it pushes the locale-prefixed version of the current path
+ * (`/<locale>/<current-path>`, always prefixed incl. `en` → `/en/...`,
+ * TASK-464) — there is no `setLocale` pre-toggle and no in-place remount.
+ * The active locale derives from the URL prefix at provider render time
+ * (`LocalePathnameSync` seeds `I18nProvider` from `usePathname()`), so the
+ * target route renders in the selected locale on arrival, with no post-flash.
+ * Locale is URL-only, no cookie is written (TASK-468).
  *
  * Responsive contract (TASK-278): the `header` variant is hidden below 768px
  * (the mobile menu carries its own `mobile-panel` switcher); the `mobile-panel`
@@ -267,7 +269,7 @@ const OptionHint = styled.span`
 `;
 
 export function LanguageSwitcher({ variant = 'header' }: LanguageSwitcherProps) {
-  const { locale, setLocale } = useI18n();
+  const { locale } = useI18n();
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -319,13 +321,14 @@ export function LanguageSwitcher({ variant = 'header' }: LanguageSwitcherProps) 
   const select = (next: Locale) => {
     setOpen(false);
     triggerRef.current?.focus();
-    // Switch the dictionary first (setLocale), then navigate to the
-    // locale-prefixed version of the current path so the target route renders
-    // with the freshly-selected locale (TASK-450). No cookie is written —
-    // the language always lives in the URL (TASK-468).
-    void setLocale(next).finally(() => {
-      router.push(localeTargetPath(pathname, next));
-    });
+    // Navigation only (TASK-488): the active locale derives from the URL
+    // prefix at provider render time (`LocalePathnameSync` seeds
+    // `I18nProvider` from `usePathname()`), so a plain router.push to the
+    // locale-prefixed version of the current path makes the target route
+    // render in the selected locale on arrival — no setLocale pre-toggle,
+    // no post-flash. No cookie is written — the language always lives in
+    // the URL (TASK-468).
+    router.push(localeTargetPath(pathname, next));
   };
 
   const onTriggerKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {

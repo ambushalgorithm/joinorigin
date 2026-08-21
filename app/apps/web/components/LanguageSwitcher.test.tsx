@@ -24,13 +24,14 @@ jest.mock('next/navigation', () => ({
 
 /**
  * Language switcher unit tests (design spec sprint-9-i18n-switcher §10.1):
- * renders the current autonym, opens the listbox, selects → `setLocale` +
- * URL navigation (NO cookie write — locale is URL-only, TASK-468), keyboard
- * navigation, RTL dir application, and the responsive contract (TASK-278):
- * the header variant is hidden below 768px via a `max-width: 768px` media
- * rule, the mobile-panel variant stacks the listbox below the trigger
- * (column layout, static panel, no min-width overflow) and omits EN hints,
- * and the footer variant keeps its upward-opening dropdown.
+ * renders the current autonym, opens the listbox, selects → URL navigation
+ * ONLY (TASK-488 — no in-place `setLocale` toggle, no cookie write; the
+ * locale is URL-only, TASK-468), keyboard navigation, RTL dir application
+ * on the target route, and the responsive contract (TASK-278): the header
+ * variant is hidden below 768px via a `max-width: 768px` media rule, the
+ * mobile-panel variant stacks the listbox below the trigger (column layout,
+ * static panel, no min-width overflow) and omits EN hints, and the footer
+ * variant keeps its upward-opening dropdown.
  */
 
 function renderSwitcher(
@@ -117,7 +118,7 @@ describe('LanguageSwitcher', () => {
     expect(screen.getByRole('option', { name: /Deutsch/ })).toBeInTheDocument();
   });
 
-  it('selecting a locale switches immediately (no cookie write)', async () => {
+  it('selecting a locale navigates to the locale-prefixed route (no in-place toggle, no cookie write)', async () => {
     const user = userEvent.setup();
     renderSwitcher('en');
 
@@ -127,17 +128,18 @@ describe('LanguageSwitcher', () => {
     });
     await flushI18nEffects();
 
-    // The provider switched the dictionary to de: the trigger now shows the
-    // German autonym, and no cookie was written (URL-only locale).
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('Deutsch');
-    });
+    // Navigation only (TASK-488): the switcher pushes the /de surface — it
+    // does NOT toggle the dictionary in place, so the trigger keeps the
+    // current (English) autonym; the /de route's locale derives from the URL
+    // prefix on arrival. No cookie was written (URL-only locale, TASK-468).
+    expect(mockPush).toHaveBeenCalledWith('/de');
+    expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('English');
     expect(document.cookie).not.toContain('joinorigin_locale');
     // The listbox closes after selection.
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
   });
 
-  it('sets document.documentElement dir=rtl when selecting Arabic', async () => {
+  it('selecting Arabic is navigation only — no in-place dir/lang flip', async () => {
     const user = userEvent.setup();
     renderSwitcher('en');
 
@@ -147,15 +149,15 @@ describe('LanguageSwitcher', () => {
     });
     await flushI18nEffects();
 
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('العربية');
-    });
-    expect(document.documentElement.dir).toBe('rtl');
-    expect(document.documentElement.lang).toBe('ar');
+    // The switcher targets the /ar route; the RTL flip happens on that route
+    // via the URL-derived locale (provider follows the URL), not in place.
+    expect(mockPush).toHaveBeenCalledWith('/ar');
+    expect(document.documentElement.dir).toBe('ltr');
+    expect(document.documentElement.lang).toBe('en');
     expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
-  it('supports keyboard navigation: open with Enter, ArrowDown, Enter to select', async () => {
+  it('supports keyboard navigation: open with Enter, ArrowDown, Enter to select (navigation only)', async () => {
     const user = userEvent.setup();
     renderSwitcher('en');
 
@@ -168,9 +170,10 @@ describe('LanguageSwitcher', () => {
     });
     await flushI18nEffects();
 
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('Español');
-    });
+    // Navigation only (TASK-488): Enter pushes /es — the trigger keeps the
+    // current (English) autonym; the /es route derives its locale from the URL.
+    expect(mockPush).toHaveBeenCalledWith('/es');
+    expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('English');
     expect(trigger).toHaveFocus();
   });
 
@@ -237,7 +240,7 @@ describe('LanguageSwitcher', () => {
     expect(screen.queryByText('German')).not.toBeInTheDocument();
   });
 
-  it('footer variant still opens its upward listbox and selects a locale', async () => {
+  it('footer variant still opens its upward listbox and navigates on select', async () => {
     const user = userEvent.setup();
     renderSwitcher('en', 'footer');
 
@@ -249,12 +252,16 @@ describe('LanguageSwitcher', () => {
     // Footer opens upward: the panel is absolutely positioned above the trigger.
     expect(getComputedStyle(listbox).bottom).not.toBe('auto');
 
-    await user.click(screen.getByRole('option', { name: /Français/ }));
-    await act(async () => {});
-    await flushI18nEffects();
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('Français');
+    await act(async () => {
+      await user.click(screen.getByRole('option', { name: /Français/ }));
     });
+    await flushI18nEffects();
+
+    // Navigation only (TASK-488): /fr is pushed and the listbox closes; the
+    // trigger keeps the current (English) autonym until the /fr route renders
+    // its own URL-derived locale.
+    expect(mockPush).toHaveBeenCalledWith('/fr');
+    expect(screen.getByRole('button', { name: 'Change language' })).toHaveTextContent('English');
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     expect(trigger).toHaveFocus();
   });
