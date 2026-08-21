@@ -1,32 +1,32 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 
-import { SUPPORTED_LOCALES, useI18n, type Locale } from '@joinorigin/i18n';
+import { I18nProvider, SUPPORTED_LOCALES, type Dictionary, type Locale } from '@joinorigin/i18n';
 
 /**
- * Client-side locale sync for SPA navigation (TASK-465, Bug 1).
+ * URL-locale provider wrapper (TASK-488) — the single web mount for
+ * `I18nProvider`.
  *
- * During client-side navigation the root layout's server-resolved locale is
- * stale — `headers()` reflects the initial request, so the `I18nProvider`
- * never receives a new `locale` prop and the UI keeps the old language even
- * after the URL changed to `/<locale>/...`. This watcher closes that gap: it
- * reads the current pathname (`usePathname` always reflects client nav),
- * derives the prefix locale from the 21 `SUPPORTED_LOCALES`, and calls
- * `setLocale()` when the prefix differs from the active locale — so
- * navigating to `/vi/features` toggles the UI (chrome, switcher, `<html
- * lang/dir>`) instantly, no reload.
+ * The active locale derives from the URL prefix at provider render time:
+ * this wrapper reads `usePathname()` (which reflects the current route on
+ * both the initial server render and every client-side navigation), derives
+ * the `/<locale>/` prefix, and seeds `I18nProvider` with it as the active
+ * locale. The language switcher is navigation only (`router.push` to
+ * `/<locale>/<path>`), so the provider follows the URL on arrival — no
+ * setLocale-then-push pre-toggle, no post-flash (TASK-488).
  *
- * Idempotency contract:
- * - no-op when the pathname has no locale prefix (`/`, `/features`);
- * - no-op when the prefix already equals the active locale;
- * - acts ONLY on genuine pathname changes (a `lastPathnameRef` guard), so a
- *   locale-only re-render — e.g. the LanguageSwitcher's own
- *   `setLocale` → `router.push` sequence — is never reverted mid-navigation;
- * - the provider's `setLocale` is itself guarded (`resolved === locale` →
- *   early return), so a redundant call is a pure no-op. No cookie is ever
- *   written — the language always lives in the URL (TASK-468).
+ * Precedence: the URL prefix always wins when present. Unprefixed paths
+ * (`/`, system routes, dev edge cases) fall back to the server-resolved
+ * locale from the proxy-forwarded `x-joinorigin-locale` header — the SSR
+ * initial locale, so the first paint is already translated (no flash). The
+ * server dictionary is passed through only when it matches the active
+ * locale; a URL-derived locale that differs from the server locale (the
+ * stale `headers()` case during client navigation) loads its own dictionary
+ * lazily inside the provider.
+ *
+ * Locale is URL-only (TASK-468): no cookie is ever written or read.
  */
 
 /** Locale forced by a pathname's first segment — `/vi`, `/vi/features`,
@@ -40,31 +40,32 @@ export function pathnamePrefixLocale(pathname: string): Locale | undefined {
   return (SUPPORTED_LOCALES as readonly string[]).includes(first) ? (first as Locale) : undefined;
 }
 
-export function LocalePathnameSync() {
-  const { locale, setLocale } = useI18n();
+export interface LocalePathnameSyncProps {
+  /** Server-resolved locale (proxy-forwarded `x-joinorigin-locale` header). */
+  serverLocale: Locale;
+  /** Server-provided dictionary for `serverLocale` — seeds the first paint. */
+  serverDictionary?: Dictionary;
+  children: ReactNode;
+}
+
+export function LocalePathnameSync({
+  serverLocale,
+  serverDictionary,
+  children,
+}: LocalePathnameSyncProps) {
   const pathname = usePathname();
+  const urlLocale = pathnamePrefixLocale(pathname);
+  const activeLocale = urlLocale ?? serverLocale;
+  // The server dictionary only matches the server locale; a URL-derived
+  // locale that differs (stale headers during client nav) loads its own
+  // dictionary lazily inside the provider.
+  const dictionary = activeLocale === serverLocale ? serverDictionary : undefined;
 
-  // Last-seen pathname. The watcher fires only when this changes, so locale
-  // state updates (including the sync's own `setLocale`) never re-trigger it.
-  const lastPathnameRef = useRef(pathname);
-
-  useEffect(() => {
-    if (lastPathnameRef.current === pathname) {
-      return;
-    }
-    lastPathnameRef.current = pathname;
-
-    const prefixLocale = pathnamePrefixLocale(pathname);
-    if (!prefixLocale || prefixLocale === locale) {
-      return;
-    }
-    void setLocale(prefixLocale).catch(() => {
-      // Best-effort sync; the provider keeps its current dictionary on a
-      // load failure and falls back to EN keys.
-    });
-  }, [pathname, locale, setLocale]);
-
-  return null;
+  return (
+    <I18nProvider locale={activeLocale} dictionary={dictionary}>
+      {children}
+    </I18nProvider>
+  );
 }
 
 export default LocalePathnameSync;

@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next';
 import { headers } from 'next/headers';
 
 import { getDictionary, getDir, resolveLocale } from '@joinorigin/i18n';
-import { I18nProvider } from '@joinorigin/i18n';
 
 import { AnalyticsProvider } from '../lib/analytics';
 import LocalePathnameSync from '../components/LocalePathnameSync';
@@ -30,10 +29,13 @@ import Registry from './registry';
  *   and LLMs see the structured data in the initial HTML.
  * - `AnalyticsProvider` mounts per the fe-analytics contract (§2.7) — zero
  *   visual output; adapters own script injection.
- * - i18n: the proxy resolves the locale (cookie → Accept-Language → en)
+ * - i18n: the proxy resolves the locale (URL prefix → Accept-Language → en)
  *   and forwards it as `x-joinorigin-locale`; this layout renders
- *   `<html lang dir>` and seeds the client `I18nProvider` with the active
- *   dictionary so the first paint is already translated (no flash). SEO
+ *   `<html lang dir>` from that server-resolved locale (SSR first paint) and
+ *   hands it to the `LocalePathnameSync` wrapper, which seeds the client
+ *   `I18nProvider` with the URL-derived locale (pathname prefix wins; the
+ *   server locale is the unprefixed fallback). The active locale therefore
+ *   follows the URL on every navigation (TASK-488) — no cookie. SEO
  *   metadata stays hardcoded English per arch-i18n §1.2.
  */
 export const metadata: Metadata = {
@@ -91,13 +93,13 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const headerStore = await headers();
-  const locale = resolveLocale(headerStore.get('x-joinorigin-locale') ?? undefined);
-  const dir = getDir(locale);
-  const dictionary = getDictionary(locale);
+  const serverLocale = resolveLocale(headerStore.get('x-joinorigin-locale') ?? undefined);
+  const dir = getDir(serverLocale);
+  const serverDictionary = getDictionary(serverLocale);
 
   return (
     <html
-      lang={locale}
+      lang={serverLocale}
       dir={dir}
       // Critical first-paint style: the brand canvas color is applied as an
       // inline attribute so the page never flashes white before the
@@ -137,20 +139,18 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body suppressHydrationWarning style={{ backgroundColor: 'rgb(10, 16, 34)' }}>
         <Registry>
-          {/* i18n mount — client provider seeded with the server-resolved
-              locale + dictionary (arch-i18n §6.3); wraps analytics + pages. */}
-          <I18nProvider locale={locale} dictionary={dictionary}>
-            {/* Client-side locale sync (TASK-465, Bug 1): the root layout's
-                `headers()` is stale during SPA navigation, so the provider
-                never receives a new locale prop; this watcher reads
-                `usePathname()` and calls `setLocale()` when a `/<locale>/`
-                prefix differs from the active locale — navigating to
-                `/vi/features` toggles the UI instantly. */}
-            <LocalePathnameSync />
+          {/* i18n mount — URL-locale provider wrapper (TASK-488): reads
+              `usePathname()` and seeds `I18nProvider` with the pathname-
+              derived locale (server-resolved `x-joinorigin-locale` is the
+              unprefixed fallback, arch-i18n §6.3), so the active locale
+              follows the URL on every navigation and the first paint is
+              already translated. The language switcher is navigation only —
+              no setLocale-then-push toggle. */}
+          <LocalePathnameSync serverLocale={serverLocale} serverDictionary={serverDictionary}>
             {/* fe-analytics mount contract (arch §2.7) — client provider,
                 renders children unchanged; adapters inject their own scripts. */}
             <AnalyticsProvider>{children}</AnalyticsProvider>
-          </I18nProvider>
+          </LocalePathnameSync>
         </Registry>
         {/* Site-wide JSON-LD (arch §3.6) — server-rendered, once. */}
         <JsonLd data={organization()} />

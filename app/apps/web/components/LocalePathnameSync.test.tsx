@@ -1,26 +1,22 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
-import {
-  I18nProvider,
-  _resetI18nForTests,
-  getDictionary,
-  useI18n,
-  type Locale,
-} from '@joinorigin/i18n';
+import { _resetI18nForTests, getDictionary, useI18n, type Locale } from '@joinorigin/i18n';
 
 import LocalePathnameSync, { pathnamePrefixLocale } from './LocalePathnameSync';
 
 /**
- * LocalePathnameSync tests (TASK-465, Bug 1): the pure prefix derivation and
- * the client-side watcher — SPA navigation to `/<locale>/**` must call
- * `setLocale()` so the UI language toggles instantly (the root layout's
- * `headers()` is stale during client nav). Locale is URL-only (TASK-468):
- * `setLocale` switches the dictionary/state but NEVER writes a cookie.
+ * LocalePathnameSync tests (TASK-488): the wrapper derives the active locale
+ * from the URL prefix at provider render time (`usePathname` → first segment
+ * vs the 21 `SUPPORTED_LOCALES`) and seeds `I18nProvider` with it — so the
+ * provider locale follows the URL on every navigation and the language
+ * switcher needs no `setLocale` pre-toggle (navigation only). Unprefixed
+ * paths fall back to the server-resolved locale (`x-joinorigin-locale`, SSR
+ * first paint). Locale is URL-only (TASK-468): no cookie is ever written.
  *
  * `next/navigation` is mocked with a mutable `mockPathname` so a test can
  * simulate SPA navigation by mutating the pathname and re-rendering (the
- * provider `locale` prop stays fixed — exactly the stale-layout bug).
+ * wrapper's `serverLocale` prop stays fixed — exactly the stale-layout case
+ * where the URL prefix must win).
  */
 let mockPathname = '/';
 
@@ -29,38 +25,31 @@ jest.mock('next/navigation', () => ({
 }));
 
 function Probe() {
-  const { locale, setLocale } = useI18n();
+  const { locale, t } = useI18n();
   return (
     <span>
       <span data-testid="probe-locale">{locale}</span>
-      <button type="button" onClick={() => void setLocale('fr')} data-testid="switch-fr">
-        FR
-      </button>
+      <span data-testid="probe-login">{t('header.logIn')}</span>
     </span>
   );
 }
 
-function syncElement(initialLocale: Locale = 'en', onLocaleChange?: (locale: Locale) => void) {
+function syncElement(serverLocale: Locale = 'en') {
   return (
-    <I18nProvider
-      locale={initialLocale}
-      dictionary={getDictionary(initialLocale)}
-      onLocaleChange={onLocaleChange}
-    >
-      <LocalePathnameSync />
+    <LocalePathnameSync serverLocale={serverLocale} serverDictionary={getDictionary(serverLocale)}>
       <Probe />
-    </I18nProvider>
+    </LocalePathnameSync>
   );
 }
 
-function renderSync(initialLocale: Locale = 'en', onLocaleChange?: (locale: Locale) => void) {
-  return render(syncElement(initialLocale, onLocaleChange));
+function renderSync(serverLocale: Locale = 'en') {
+  return render(syncElement(serverLocale));
 }
 
 /**
- * Flushes the provider's async post-mount effects + in-flight `setLocale`
- * work (the dynamic-import dictionary load for the target locale) inside
- * `act` so no "not wrapped in act(...)" noise is emitted. Dynamic `import()`
+ * Flushes the provider's async post-mount effects (the EN fallback dictionary
+ * load + in-flight `loadDictionary` for URL-derived locales) inside `act` so
+ * no "not wrapped in act(...)" console noise is emitted. Dynamic `import()`
  * resolves on a macrotask, so one `setTimeout(0)` turn is needed in addition
  * to the microtask queue (TASK-290).
  */
@@ -129,170 +118,110 @@ describe('pathnamePrefixLocale — prefix derivation from the 21 SUPPORTED_LOCAL
   });
 });
 
-describe('LocalePathnameSync — SPA navigation locale sync', () => {
+describe('LocalePathnameSync — URL-derived active locale provider wrapper (TASK-488)', () => {
   beforeEach(() => {
     _resetI18nForTests();
     mockPathname = '/';
   });
 
-  it('renders nothing (pure side-effect watcher)', () => {
-    const { container } = render(
-      <I18nProvider locale="en" dictionary={getDictionary('en')}>
-        <LocalePathnameSync />
-      </I18nProvider>,
+  it('renders its children inside the provider', () => {
+    mockPathname = '/en';
+    render(
+      <LocalePathnameSync serverLocale="en" serverDictionary={getDictionary('en')}>
+        <div data-testid="child" />
+      </LocalePathnameSync>,
     );
-    expect(container).toBeEmptyDOMElement();
+    expect(screen.getByTestId('child')).toBeInTheDocument();
   });
 
-  it('is a no-op on mount when the prefix matches the active locale', async () => {
-    const onLocaleChange = jest.fn();
+  it('derives the active locale from a prefixed pathname (URL prefix wins over the server locale)', async () => {
+    // The URL says vi even though the server (stale headers) resolved en —
+    // the URL prefix must win on arrival (TASK-488).
     mockPathname = '/vi/features';
-    renderSync('vi', onLocaleChange);
+    renderSync('en');
     await flushI18nEffects();
-
     expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
-    expect(onLocaleChange).not.toHaveBeenCalled();
-    // No setLocale → no state change and never a cookie write.
-    expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
-  it('is a no-op on mount for an unprefixed pathname', async () => {
-    const onLocaleChange = jest.fn();
+  it('falls back to the server locale for unprefixed pathnames (SSR first paint)', async () => {
     mockPathname = '/features';
-    renderSync('en', onLocaleChange);
+    renderSync('vi');
     await flushI18nEffects();
-
-    expect(screen.getByTestId('probe-locale').textContent).toBe('en');
-    expect(onLocaleChange).not.toHaveBeenCalled();
+    expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
   });
 
-  it('does not sync when SPA navigation stays on unprefixed paths', async () => {
-    const onLocaleChange = jest.fn();
-    mockPathname = '/features';
-    const { rerender } = renderSync('en', onLocaleChange);
+  it('seeds the server dictionary for the first paint when URL and server locale match', async () => {
+    mockPathname = '/es/features';
+    renderSync('es');
     await flushI18nEffects();
-
-    mockPathname = '/community';
-    rerender(syncElement('en', onLocaleChange));
-    await flushI18nEffects();
-
-    expect(screen.getByTestId('probe-locale').textContent).toBe('en');
-    expect(onLocaleChange).not.toHaveBeenCalled();
+    expect(screen.getByTestId('probe-locale').textContent).toBe('es');
+    // First paint is already translated from the server dictionary.
+    expect(screen.getByTestId('probe-login').textContent).toBe('Iniciar sesión');
   });
 
-  it('syncs the UI locale when SPA navigation lands on a prefixed route', async () => {
-    const onLocaleChange = jest.fn();
+  it('switches the provider locale when SPA navigation changes the URL prefix (no cookie)', async () => {
     mockPathname = '/';
-    const { rerender } = renderSync('en', onLocaleChange);
+    const { rerender } = renderSync('en');
     await flushI18nEffects();
     expect(screen.getByTestId('probe-locale').textContent).toBe('en');
 
-    // SPA navigation: the URL changes but the provider locale prop stays 'en'
-    // (the root layout headers() is stale — Bug 1).
+    // SPA navigation: the URL changes but the server locale prop stays 'en'
+    // (the root layout headers() is stale — Bug 1). The wrapper re-seeds the
+    // provider from the new prefix.
     mockPathname = '/vi/features';
-    rerender(syncElement('en', onLocaleChange));
+    rerender(syncElement('en'));
     await flushI18nEffects();
 
     await waitFor(() => {
       expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
     });
-    expect(onLocaleChange).toHaveBeenCalledTimes(1);
-    expect(onLocaleChange).toHaveBeenCalledWith('vi');
-    // The provider keeps <html lang dir> in sync; no cookie is written.
-    expect(document.documentElement.lang).toBe('vi');
+    expect(document.cookie).not.toContain('joinorigin_locale');
+  });
+
+  it('loads the URL-derived dictionary so the target route renders in the target language', async () => {
+    mockPathname = '/';
+    const { rerender } = renderSync('en');
+    await flushI18nEffects();
+
+    mockPathname = '/vi/features';
+    rerender(syncElement('en'));
+    await flushI18nEffects();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('probe-login').textContent).toBe('Đăng nhập');
+    });
     expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
   it('syncs back to en when SPA navigation lands on the /en/** surface', async () => {
-    const onLocaleChange = jest.fn();
     mockPathname = '/de/features';
-    const { rerender } = renderSync('de', onLocaleChange);
+    const { rerender } = renderSync('de');
     await flushI18nEffects();
     expect(screen.getByTestId('probe-locale').textContent).toBe('de');
 
     mockPathname = '/en/features';
-    rerender(syncElement('de', onLocaleChange));
+    rerender(syncElement('de'));
     await flushI18nEffects();
 
     await waitFor(() => {
       expect(screen.getByTestId('probe-locale').textContent).toBe('en');
     });
-    expect(onLocaleChange).toHaveBeenCalledTimes(1);
-    expect(onLocaleChange).toHaveBeenCalledWith('en');
+    expect(screen.getByTestId('probe-login').textContent).toBe('Log In');
     expect(document.cookie).not.toContain('joinorigin_locale');
   });
 
-  it('is idempotent: no re-sync when navigating within the same prefix', async () => {
-    const onLocaleChange = jest.fn();
-    mockPathname = '/';
-    const { rerender } = renderSync('en', onLocaleChange);
-    await flushI18nEffects();
-
+  it('is idempotent: re-renders on the same prefix do not change the locale', async () => {
     mockPathname = '/vi/features';
-    rerender(syncElement('en', onLocaleChange));
+    const { rerender } = renderSync('en');
     await flushI18nEffects();
-    await waitFor(() => {
-      expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
-    });
-    expect(onLocaleChange).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
 
-    // Same prefix, different page → the watcher must not call setLocale again.
+    // Same prefix, different page → the provider prop stays 'vi' (no churn).
     mockPathname = '/vi/other-page';
-    rerender(syncElement('en', onLocaleChange));
+    rerender(syncElement('en'));
     await flushI18nEffects();
 
     expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
-    expect(onLocaleChange).toHaveBeenCalledTimes(1);
     expect(document.cookie).not.toContain('joinorigin_locale');
-  });
-
-  it('syncs again when SPA navigation moves to a different prefix', async () => {
-    const onLocaleChange = jest.fn();
-    mockPathname = '/';
-    const { rerender } = renderSync('en', onLocaleChange);
-    await flushI18nEffects();
-
-    mockPathname = '/vi/features';
-    rerender(syncElement('en', onLocaleChange));
-    await flushI18nEffects();
-    await waitFor(() => {
-      expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
-    });
-
-    mockPathname = '/de/features';
-    rerender(syncElement('en', onLocaleChange));
-    await flushI18nEffects();
-
-    await waitFor(() => {
-      expect(screen.getByTestId('probe-locale').textContent).toBe('de');
-    });
-    expect(onLocaleChange).toHaveBeenCalledTimes(2);
-    expect(onLocaleChange).toHaveBeenLastCalledWith('de');
-    expect(document.cookie).not.toContain('joinorigin_locale');
-  });
-
-  it('does not revert a switcher-initiated locale change mid-navigation', async () => {
-    const onLocaleChange = jest.fn();
-    mockPathname = '/de/features';
-    const { rerender } = renderSync('de', onLocaleChange);
-    await flushI18nEffects();
-    expect(screen.getByTestId('probe-locale').textContent).toBe('de');
-
-    // LanguageSwitcher select(): setLocale(next) first, then router.push.
-    const user = userEvent.setup();
-    await act(async () => {
-      await user.click(screen.getByTestId('switch-fr'));
-    });
-    await flushI18nEffects();
-    expect(screen.getByTestId('probe-locale').textContent).toBe('fr');
-    expect(onLocaleChange).toHaveBeenCalledTimes(1);
-
-    // The navigation lands on /fr/features; the watcher must NOT flip back.
-    mockPathname = '/fr/features';
-    rerender(syncElement('de', onLocaleChange));
-    await flushI18nEffects();
-
-    expect(screen.getByTestId('probe-locale').textContent).toBe('fr');
-    expect(onLocaleChange).toHaveBeenCalledTimes(1);
   });
 });

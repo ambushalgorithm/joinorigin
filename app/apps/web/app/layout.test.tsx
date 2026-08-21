@@ -24,11 +24,14 @@ jest.mock('next/navigation', () => ({
   },
 }));
 
-// LocalePathnameSync is a client watcher with its own unit suite; the layout
-// test only asserts the mount point (inside I18nProvider, TASK-465), so the
-// component is replaced with a marker div.
+// LocalePathnameSync is the URL-locale provider wrapper with its own unit
+// suite (TASK-488); the layout test only asserts the mount point (it wraps
+// the analytics + page tree), so the component is replaced with a marker
+// div that passes children through.
 jest.mock('../components/LocalePathnameSync', () => {
-  const MockLocalePathnameSync = () => <div data-testid="locale-pathname-sync" />;
+  const MockLocalePathnameSync = ({ children }: { children?: React.ReactNode }) => (
+    <div data-testid="locale-url-provider">{children}</div>
+  );
   return { __esModule: true, default: MockLocalePathnameSync };
 });
 
@@ -107,12 +110,13 @@ describe('root layout', () => {
     expect(screen.getByText('page content')).toBeInTheDocument();
   });
 
-  it('mounts the client locale pathname sync watcher inside the i18n tree (TASK-465)', async () => {
+  it('mounts the URL-locale provider wrapper around the app tree (TASK-488)', async () => {
     const element = await RootLayout({ children: <main>page content</main> });
     renderLayout(element);
-    // LocalePathnameSync must sit INSIDE I18nProvider so it can useI18n();
-    // the marker mock renders within the provider's children.
-    expect(screen.getByTestId('locale-pathname-sync')).toBeInTheDocument();
+    // LocalePathnameSync wraps the analytics provider + pages (it owns the
+    // I18nProvider mount); the marker mock renders its children.
+    expect(screen.getByTestId('locale-url-provider')).toBeInTheDocument();
+    expect(screen.getByText('page content')).toBeInTheDocument();
   });
 
   it('renders Organization + WebSite JSON-LD once, server-side', async () => {

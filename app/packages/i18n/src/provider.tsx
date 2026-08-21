@@ -24,11 +24,18 @@ import type { Dictionary } from './types';
  *
  * - Initial locale + dictionary come from the server (web) or OS resolution
  *   (mobile) as props, so the first paint is already translated (no flash).
- * - Locale switches load the new dictionary lazily (`loadDictionary` dynamic
- *   import on web; static registry on mobile).
- * - The provider trusts the server `locale` prop (URL-derived on web) and
- *   `LocalePathnameSync` for SPA navigation — NO cookie persistence and NO
- *   post-hydration override (TASK-468: the language always lives in the URL).
+ * - The active locale derives from the URL prefix on web: the layout mounts
+ *   a thin wrapper (`LocalePathnameSync`) that reads `usePathname()` and
+ *   supplies the pathname-derived locale as the `locale` prop — so the
+ *   provider follows the URL on every navigation (TASK-488). When a new
+ *   URL-derived locale arrives whose dictionary is not registered yet, the
+ *   provider loads it lazily (`loadDictionary` dynamic import on web; static
+ *   registry on mobile) so the new route renders in the target language on
+ *   arrival (no post-flash, no setLocale-then-push).
+ * - `setLocale` remains for programmatic switches (mobile / tests).
+ * - The provider trusts the server `locale` prop (URL-derived on web) — NO
+ *   cookie persistence and NO post-hydration override (TASK-468: the
+ *   language always lives in the URL).
  * - The provider keeps `document.documentElement.lang/dir` in sync (web RTL
  *   flip, arch-i18n §8.2).
  */
@@ -79,11 +86,19 @@ export function _resetI18nForTests(): void {
 }
 
 export interface I18nProviderProps {
-  /** Active locale (server-resolved on web, OS-resolved on mobile). */
+  /**
+   * Active locale. On web this is the URL-derived locale supplied by the
+   * layout wrapper (`LocalePathnameSync` reads `usePathname()` and falls back
+   * to the proxy-forwarded `x-joinorigin-locale` header for unprefixed
+   * paths); on mobile it is the OS-resolved locale. The provider follows
+   * changes to this prop (loading the dictionary as needed) so navigation to
+   * a new `/<locale>/` prefix switches the UI on arrival.
+   */
   locale: Locale;
   /** Server-provided dictionary for the initial locale — avoids flash. */
   dictionary?: Dictionary;
-  /** Called after a manual locale change (e.g. document dir sync). */
+  /** Called after the active locale changes (setLocale or a URL-derived prop
+   *  change), e.g. to observe switches in tests. */
   onLocaleChange?: (locale: Locale) => void;
   children: ReactNode;
 }
@@ -173,25 +188,66 @@ export function I18nProvider({
       });
   }, []);
 
-  // Follow server-driven locale changes on client navigation (new URL prefix
-  // → new layout prop). Only reacts when the `locale` PROP actually changes —
-  // not when the user switches locale via `setLocale` (the prop stays the
-  // same then, so the internal state must NOT be reverted).
-  const prevLocalePropRef = useRef(initialLocale);
+  // Follow the `locale` PROP (URL-derived on web, TASK-488): the layout's
+  // wrapper reads `usePathname()` and supplies the pathname-derived locale
+  // as this prop, so on navigation to a new `/<locale>/` prefix the provider
+  // switches to the target language on arrival — no setLocale-then-push, no
+  // post-flash. Only reacts when the `locale` PROP actually changes — not
+  // when the user switches locale via `setLocale` (the prop stays the same
+  // then, so the internal state must NOT be reverted). A first-visited
+  // locale whose dictionary is not registered yet is loaded lazily, exactly
+  // like `setLocale` does.
+  const prevLocalePropRef = useRef<Locale | null>(null);
   useEffect(() => {
     if (prevLocalePropRef.current === initialLocale) {
       return;
     }
+    const isFirstApplication = prevLocalePropRef.current === null;
     prevLocalePropRef.current = initialLocale;
+
     if (initialDictionary && !registered.has(initialLocale)) {
       setDictionary(initialLocale, initialDictionary);
     }
-    getInstance().changeLanguage(initialLocale);
-    setLocaleState(initialLocale);
-    setDirState(getDir(initialLocale));
-    setDictionaryState(registered.get(initialLocale) ?? initialDictionary ?? null);
-    applyDocumentDirection(initialLocale);
-  }, [initialLocale, initialDictionary]);
+
+    const apply = (nextDictionary: Dictionary | null) => {
+      getInstance().changeLanguage(initialLocale);
+      setLocaleState(initialLocale);
+      setDirState(getDir(initialLocale));
+      setDictionaryState(nextDictionary);
+      applyDocumentDirection(initialLocale);
+      // The initial mount applies the seeded locale; only actual changes
+      // (prop switch or setLocale) are reported through onLocaleChange.
+      if (!isFirstApplication) {
+        onLocaleChange?.(initialLocale);
+      }
+    };
+
+    const existing = registered.get(initialLocale) ?? initialDictionary ?? null;
+    if (existing) {
+      apply(existing);
+      return;
+    }
+
+    // URL-derived locale whose dictionary was never loaded on this client.
+    // Load it asynchronously so the new route renders in the target language
+    // on arrival (the provider keeps the previous dictionary meanwhile, so
+    // there is no flash of untranslated/EN keys).
+    let cancelled = false;
+    loadDictionary(initialLocale)
+      .then((nextDictionary) => {
+        if (cancelled) {
+          return;
+        }
+        setDictionary(initialLocale, nextDictionary);
+        apply(nextDictionary);
+      })
+      .catch(() => {
+        // Best-effort; the EN fallback keys render on a load failure.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [initialLocale, initialDictionary, onLocaleChange]);
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
