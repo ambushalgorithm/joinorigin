@@ -130,7 +130,8 @@ describe('lib/seo locationView — resolve + view model', () => {
       '/location/germany/berlin/berlin/ideas',
     ]);
     expect(data.siblingCities.length).toBeGreaterThan(0);
-    expect(data.guideLinks.length).toBeGreaterThanOrEqual(2);
+    // Full 7-guide "Guides for starting a community" set (TASK-489).
+    expect(data.guideLinks.length).toBe(7);
     expect(data.faq.length).toBeGreaterThanOrEqual(3);
   });
 
@@ -542,10 +543,12 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
     }
   });
 
-  it('guide cross-links are present for every page kind', () => {
-    expect(guideLinksFor('city').length).toBeGreaterThanOrEqual(2);
-    expect(guideLinksFor('hub').length).toBe(7);
-    expect(guideLinksFor('ideas').length).toBeGreaterThanOrEqual(2);
+  it('guide cross-links render the full 7-guide set for every page kind (TASK-489)', () => {
+    // Every kind — hub/country/region/city/variant/ideas — returns the SAME
+    // 7-guide "Guides for starting a community" set as the /location hub.
+    for (const kind of ['hub', 'country', 'region', 'city', 'variant', 'ideas'] as const) {
+      expect(guideLinksFor(kind).length).toBe(7);
+    }
   });
 
   it('guide card titles resolve from seoContent.location.guideCardTitles.* (TASK-416)', () => {
@@ -567,6 +570,28 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
       'Organize a meetup',
       'Moderate your community',
     ]);
+    // Every kind preserves the exact 7-title list + the exact 7 paths
+    // (TASK-489) — identical to the /location hub set.
+    for (const kind of ['hub', 'country', 'region', 'city', 'variant', 'ideas'] as const) {
+      expect(guideLinksFor(kind, 'en').map((link) => link.title)).toEqual([
+        'Start a community',
+        'Find a co-founder',
+        'Get your first 10 members',
+        'Keep a community active',
+        'Run hybrid communities',
+        'Organize a meetup',
+        'Moderate your community',
+      ]);
+      expect(guideLinksFor(kind, 'en').map((link) => link.path)).toEqual([
+        '/guides/start-a-community',
+        '/guides/find-a-co-founder',
+        '/guides/first-10-members',
+        '/guides/keep-a-community-active',
+        '/guides/hybrid-communities',
+        '/guides/organize-a-meetup',
+        '/guides/moderation',
+      ]);
+    }
     // The same path set is exposed for the hub view model.
     const data = buildLocationViewData(locationPageEntries().find((e) => e.kind === 'hub')!);
     expect(data.guideLinks.map((link) => link.path)).toEqual(links.map((link) => link.path));
@@ -827,7 +852,8 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
   it('guide cross-links stay unprefixed so the client localizes them (TASK-469 no regression)', () => {
     const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
     const esData = buildLocationViewData(hub!, 'es');
-    expect(esData.guideLinks.length).toBeGreaterThan(0);
+    // The full 7-guide set renders on every surface (TASK-489).
+    expect(esData.guideLinks).toHaveLength(7);
     // GUIDE_PATHS are unprefixed /guides/... — the client localizePath applies
     // the active locale prefix (e.g. /es/guides/...) at render time.
     for (const link of esData.guideLinks) {

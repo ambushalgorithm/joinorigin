@@ -492,7 +492,8 @@ function locationEntryKey(entry: LocationPageEntry): string {
 }
 
 /* ------------------------------------------------------------------ *
- * Guide cross-links (design §8.5 — every city links 2–4 relevant guides)
+ * Guide cross-links (design §8.5 — every location page kind links the
+ * full 7-guide "Guides for starting a community" set, TASK-489)
  * ------------------------------------------------------------------ */
 
 export interface GuideLink {
@@ -515,7 +516,13 @@ const GUIDE_PATHS = [
   { key: 'moderation', path: '/guides/moderation' },
 ] as const satisfies readonly { key: string; path: string }[];
 
-/** 2–4 relevant guides per page kind (city pages → the how-to starter set). */
+/**
+ * The full 7-guide "Guides for starting a community" set — the SAME set for
+ * EVERY location page kind (hub/country/region/city/variant/ideas, TASK-489),
+ * so every location screen renders the identical guide cross-links as the
+ * `/location` hub. The `kind` parameter is retained for call-site
+ * compatibility; every kind returns `GUIDE_PATHS` with localized card titles.
+ */
 export function guideLinksFor(kind: PageKind, locale: Locale = 'en'): GuideLink[] {
   const t = getT(getDictionary(locale));
   const enT = getT(getDictionary('en'));
@@ -527,15 +534,7 @@ export function guideLinksFor(kind: PageKind, locale: Locale = 'en'): GuideLink[
       // keys from EN (the client provider does the same via fallbackLng).
       return { title: title === keyPath ? enT(keyPath) : title, path };
     });
-  if (kind === 'hub') return withTitles(GUIDE_PATHS);
-  if (kind === 'country' || kind === 'region') {
-    return withTitles([GUIDE_PATHS[0], GUIDE_PATHS[1]]);
-  }
-  if (kind === 'ideas') {
-    return withTitles([GUIDE_PATHS[0], GUIDE_PATHS[1], GUIDE_PATHS[2]]);
-  }
-  // city + variant pages
-  return withTitles([GUIDE_PATHS[0], GUIDE_PATHS[1], GUIDE_PATHS[2]]);
+  return withTitles(GUIDE_PATHS);
 }
 
 /* ------------------------------------------------------------------ *
