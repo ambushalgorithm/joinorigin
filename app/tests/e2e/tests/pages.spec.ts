@@ -175,7 +175,9 @@ test.describe('navigation reaches every menu page', () => {
     await expect(header.getByRole('link', { name: 'Docs' })).toBeVisible();
     await expect(header.getByRole('link', { name: 'About' })).toBeVisible();
     // Community is reachable from the Explore submenu (already visited above).
-    await expect(header.getByTestId('explore-menu').getByRole('link', { name: 'Community' })).toBeVisible();
+    await expect(
+      header.getByTestId('explore-menu').getByRole('link', { name: 'Community' }),
+    ).toBeVisible();
   });
 
   test('footer grouped links reach every page', async ({ page }) => {
@@ -262,4 +264,60 @@ test.describe('LLM-crawler readable copy (arch §5.2)', () => {
       expect(firstPara.length).toBeGreaterThan(40);
     });
   }
+});
+
+/**
+ * /features "ten tools" copy (TASK-478, Sprint 21 Story A).
+ *
+ * The comparison heading (`features.sectionComparison`) and the hero lead
+ * (`features.hero.lead`) must say TEN tools in BOTH spots — "Why Origin
+ * instead of ten tools" and "…instead of ten separate tools" — across every
+ * locale. Verified on EN and the committed German surface: the visible copy
+ * must contain the ten-tools phrasing and never the old five-tools phrasing.
+ * JSON-LD script blocks may still quote other pages' copy, so assertions
+ * target the visible `main` text only.
+ */
+test.describe('/features ten-tools copy (TASK-478)', () => {
+  test('EN /en/features renders ten tools in the comparison heading + hero lead', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    const response = await page.goto('/en/features');
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('h1')).toContainText(
+      'Everything a community needs, in one calm workspace',
+    );
+
+    // BOTH spots (TASK-478): comparison section heading + hero lead.
+    await expect(page.getByText('Why Origin instead of ten tools', { exact: true })).toBeVisible();
+    await expect(page.getByText(/instead of ten separate tools/)).toBeVisible();
+
+    // The old five-tools phrasing is gone from the visible page copy.
+    const mainText = await page.locator('main').innerText();
+    expect(mainText).not.toContain('five tools');
+    expect(mainText).not.toContain('five separate tools');
+    // The comparison table still enumerates the ten tools.
+    await expect(page.getByTestId('features-comparison-table')).toBeVisible();
+    expect(await page.locator('[data-testid="features-comparison-table"] tbody tr').count()).toBe(
+      10,
+    );
+  });
+
+  test('de /de/features renders the translated ten-tools copy (committed locale)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    const response = await page.goto('/de/features');
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+    // Both spots in German (committed values, TASK-478).
+    await expect(page.getByText('Warum Origin statt zehn Tools', { exact: true })).toBeVisible();
+    await expect(page.getByText(/statt in zehn getrennten Tools/)).toBeVisible();
+
+    // The old fünf-tools phrasing is gone from the visible copy.
+    const mainText = await page.locator('main').innerText();
+    expect(mainText).not.toContain('fünf Tools');
+    expect(mainText).not.toContain('fünf getrennten Tools');
+  });
 });

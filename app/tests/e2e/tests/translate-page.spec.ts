@@ -30,6 +30,10 @@ const EN_LOCATION_PAGES = [
 ];
 
 const DE_LOCATION_PAGES = [
+  // The /de/location hub is the language-toggle destination from the EN hub
+  // (TASK-477): it is already translated, so it must NOT offer the Google
+  // Translate link-out either.
+  '/de/location',
   '/de/location/germany/berlin/berlin',
   '/de/location/germany/berlin/berlin/startup',
   '/de/location/germany/berlin/berlin/ideas',
