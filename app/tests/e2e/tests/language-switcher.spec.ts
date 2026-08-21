@@ -222,3 +222,92 @@ test.describe('/location language toggle (TASK-477)', () => {
     expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
   });
 });
+
+/**
+ * Nav-only locale switch (TASK-488/TASK-493, Sprint 21 Story D).
+ *
+ * Selecting a language is NAVIGATION ONLY: `LanguageSwitcher.select()` pushes
+ * the locale-prefixed version of the current path (`router.push` to
+ * `/<locale>/<path>`) — there is no `setLocale` pre-toggle and no in-place
+ * remount, so no two-step toggle-then-reload behavior is observable. The
+ * active locale derives from the URL prefix at provider render time
+ * (`LocalePathnameSync`), so the target route renders in the selected
+ * language on arrival, with no post-flash.
+ *
+ * Observable contract asserted here:
+ *  - final URL = `/<locale>/<path>` (path preserved, locale prefix swapped),
+ *  - `<html lang>` = target locale,
+ *  - translated chrome renders (hero h1 + body copy from the active
+ *    dictionary),
+ *  - NO full page `load` event fires during the switch (a single client-side
+ *    navigation — a toggle-then-reload implementation would reload the
+ *    document and emit a `load`),
+ *  - no `joinorigin_locale` cookie is ever written (URL-only, TASK-468).
+ */
+test.describe('nav-only locale switch (TASK-488)', () => {
+  test('switching /en/features → /de/features is a single client-side navigation: final URL + lang + translated chrome', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 1440, height: 900 });
+
+    // Count full-document loads: the initial `goto` fires one `load`; a
+    // nav-only `router.push` switch must NOT fire another (no reload).
+    let loads = 0;
+    page.on('load', () => {
+      loads += 1;
+    });
+
+    await page.goto('/en/features');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('h1')).toContainText('Everything a community needs');
+    expect(loads).toBe(1);
+
+    const headerSwitcher = page.getByTestId('language-switcher-header');
+    await headerSwitcher.getByTestId('language-switcher-trigger').click();
+    await headerSwitcher
+      .getByTestId('language-switcher-listbox')
+      .getByRole('option', { name: /Deutsch/ })
+      .click();
+
+    // The switch navigates directly to the locale-prefixed path.
+    await expect(page).toHaveURL(/\/de\/features(?:\/|$)/, { timeout: 15_000 });
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    // Translated chrome renders on the de surface.
+    await expect(page.locator('h1')).toContainText('Alles, was eine Community braucht', {
+      timeout: 15_000,
+    });
+    // No two-step toggle-then-reload: the switch is a single client-side
+    // navigation — no additional full `load` event fired.
+    expect(loads).toBe(1);
+    // URL-only contract (TASK-468): no locale cookie is ever written.
+    expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
+  });
+
+  test('switching a deep path preserves the path under the new locale prefix (nav-only)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 1440, height: 900 });
+
+    await page.goto('/en/location/germany/berlin/berlin');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+
+    const footerSwitcher = page.getByTestId('language-switcher-footer');
+    await footerSwitcher.getByTestId('language-switcher-trigger').click();
+    await footerSwitcher
+      .getByTestId('language-switcher-listbox')
+      .getByRole('option', { name: /Deutsch/ })
+      .click();
+
+    // The full path is preserved; only the locale prefix swaps — the
+    // navigation lands on /de/<same-path> (TASK-488).
+    await expect(page).toHaveURL(/\/de\/location\/germany\/berlin\/berlin(?:\/|$)/, {
+      timeout: 15_000,
+    });
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    // The committed de Berlin body copy renders on arrival.
+    await expect(page.getByText(/Berlin ist eine Stadt, die von Communities lebt/)).toBeVisible();
+    expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
+  });
+});
