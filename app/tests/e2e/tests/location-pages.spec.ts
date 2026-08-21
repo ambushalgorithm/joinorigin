@@ -666,3 +666,88 @@ test.describe('guides Start local list (TASK-480)', () => {
     }
   });
 });
+
+test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
+  test('per-section count badges + grand total render beside the section titles', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location');
+
+    // The grand total renders next to the "Browse locations" title — the
+    // complete content-rich inventory (TASK-484: 38 countries + 54 regions +
+    // 56 cities + 56×5 community types + 56 event ideas = 484).
+    await expect(page.getByTestId('location-hub-directory-title')).toContainText(
+      'Browse locations (484)',
+    );
+
+    // Per-section count badges render beside each sub-title and stay static
+    // while the search filters the visible cards (TASK-485).
+    const badges = [
+      'Countries (38)',
+      'Regions (54)',
+      'Cities (56)',
+      'Community types (280)',
+      'Event ideas (56)',
+    ];
+    for (const badge of badges) {
+      await expect(page.getByText(badge, { exact: true })).toBeVisible();
+    }
+
+    // The badge numbers match the rendered card counts per section — the
+    // full directory with an empty query.
+    const directory = page.getByTestId('location-hub-directory');
+    const sections = [
+      ['location-hub-directory-countries', 38],
+      ['location-hub-directory-regions', 54],
+      ['location-hub-directory-cities', 56],
+      ['location-hub-directory-communityTypes', 280],
+      ['location-hub-directory-eventIdeas', 56],
+    ] as const;
+    for (const [testId, count] of sections) {
+      await expect(directory.getByTestId(testId).locator('a')).toHaveCount(count);
+    }
+    // The total next to the title equals the sum of all section cards.
+    await expect(directory.locator('a')).toHaveCount(484);
+  });
+
+  test('inventory banner stat renders below the hero and above the directory', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location');
+
+    const banner = page.getByTestId('location-inventory-banner');
+    await expect(banner).toBeVisible();
+    // The stat value mirrors the directory total (484) with the localized
+    // label ("Places and Communities", TASK-485).
+    await expect(banner).toContainText('484');
+    await expect(banner).toContainText('Places and Communities');
+
+    // The banner sits below the hero / above the Browse-locations directory
+    // in the DOM (LocationView renders it before the directory band).
+    const bannerBeforeDirectory = await page.evaluate(() => {
+      const bannerNode = document.querySelector('[data-testid="location-inventory-banner"]');
+      const titleNode = document.querySelector('[data-testid="location-hub-directory-title"]');
+      if (!bannerNode || !titleNode) return false;
+      return Boolean(
+        bannerNode.compareDocumentPosition(titleNode) & Node.DOCUMENT_POSITION_FOLLOWING,
+      );
+    });
+    expect(bannerBeforeDirectory).toBe(true);
+  });
+
+  test('de surface renders the localized banner label + inventory total (TASK-485)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/de/location');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+    await expect(page.getByTestId('location-hub-directory-title')).toContainText(
+      'Standorte durchsuchen (484)',
+    );
+    const banner = page.getByTestId('location-inventory-banner');
+    await expect(banner).toBeVisible();
+    await expect(banner).toContainText('484');
+    await expect(banner).toContainText('Orte und Communities');
+  });
+});
