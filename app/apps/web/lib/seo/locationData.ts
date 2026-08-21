@@ -103,7 +103,41 @@ export function findCityByGeonameId(geonameId: number): LocationCity | undefined
   return loadLocationSnapshot().cities.find((c) => c.id === geonameId);
 }
 
+/**
+ * Deterministic geonameId resolution for slug-collision content-rich cities
+ * (TASK-484). The GeoNames snapshot can carry multiple rows sharing an ascii
+ * name across different countries/regions (e.g. "London" exists as London,
+ * Ontario AND London, England; "Taipei" as the Taipei capital AND the New
+ * Taipei City district). A bare `citySlug` scan returns the FIRST snapshot
+ * match, which is not always the intended content-rich city — this map pins
+ * the intended row so every content-rich consumer (Browse-locations
+ * directory, Flagship/Start-local lists, locale-area ordering, registry
+ * variant/ideas construction) resolves deterministically. The 7 collisions:
+ * london-CA, madrid-CO, los-angeles-CL, san-francisco-SV, vancouver-US,
+ * barcelona-VE, taipei-dup.
+ */
+export const CONTENT_RICH_CITY_GEONAME_IDS: Readonly<Record<string, number>> = {
+  london: 2643743, // London, England — not London, Ontario
+  'san-francisco': 5391959, // San Francisco, US — not San Francisco, El Salvador
+  'los-angeles': 5368361, // Los Angeles, US — not Los Ángeles, Chile
+  vancouver: 6173331, // Vancouver, Canada — not Vancouver, Washington
+  barcelona: 3128760, // Barcelona, Spain — not Barcelona, Venezuela
+  madrid: 3117735, // Madrid, Spain — not Madrid, Colombia
+  taipei: 1668341, // Taipei, Taiwan — not the Shulin District / New Taipei City rows
+};
+
+/**
+ * Find a city by URL slug. Slug-collision content-rich cities resolve
+ * through `CONTENT_RICH_CITY_GEONAME_IDS` first (deterministic — the
+ * intended row wins regardless of snapshot order); all other slugs fall back
+ * to the first snapshot row whose ascii name slugs to the value.
+ */
 export function findCityBySlug(slug: string): LocationCity | undefined {
+  const pinnedId = CONTENT_RICH_CITY_GEONAME_IDS[slug];
+  if (pinnedId !== undefined) {
+    const pinned = findCityByGeonameId(pinnedId);
+    if (pinned) return pinned;
+  }
   return loadLocationSnapshot().cities.find((c) => citySlug(c) === slug);
 }
 
@@ -344,7 +378,11 @@ export const CONTENT_RICH_CITY_SLUGS: readonly string[] = [
 ];
 
 /** The content-rich city entities in `CONTENT_RICH_CITY_SLUGS` order
- *  (slug-resolved via the snapshot — undefined rows are skipped). */
+ *  (slug-resolved via the snapshot — undefined rows are skipped).
+ *  Slug-collision cities (london, madrid, los-angeles, san-francisco,
+ *  vancouver, barcelona, taipei) resolve deterministically through
+ *  `CONTENT_RICH_CITY_GEONAME_IDS` (TASK-484) — never a bare first-match
+ *  snapshot row. */
 export function contentRichCities(): LocationCity[] {
   return CONTENT_RICH_CITY_SLUGS.flatMap((slug) => {
     const city = findCityBySlug(slug);
@@ -357,6 +395,31 @@ export function contentRichCities(): LocationCity[] {
 export function cityDisplayName(city: LocationCity): string {
   const flagship = getFlagshipConfig(citySlug(city));
   return flagship?.displayName ?? city.asciiName;
+}
+
+/* ------------------------------------------------------------------ *
+ * Localized dataset names (TASK-484 — searchText source)
+ *
+ * `locations.json` carries a 21-locale `names` record per country/region/
+ * city (Wikidata → GeoNames alternates → EN). These helpers resolve the
+ * ACTIVE locale's name for a row with an EN fallback, so the
+ * Browse-locations `searchText` enrichment can include the localized
+ * country + region names ("Deutschland", "東京") instead of EN only.
+ * ------------------------------------------------------------------ */
+
+/** Active-locale dataset name for a country (`names[locale]` → EN fallback). */
+export function countryLocalizedName(country: LocationCountry, locale: Locale): string {
+  return country.names[locale] || country.names.en || country.asciiName;
+}
+
+/** Active-locale dataset name for a region (`names[locale]` → EN fallback). */
+export function regionLocalizedName(region: LocationRegion, locale: Locale): string {
+  return region.names[locale] || region.names.en || region.asciiName;
+}
+
+/** Active-locale dataset name for a city (`names[locale]` → EN fallback). */
+export function cityLocalizedName(city: LocationCity, locale: Locale): string {
+  return city.names[locale] || city.names.en || city.asciiName;
 }
 
 /* ------------------------------------------------------------------ *
@@ -427,7 +490,9 @@ export const LOCALE_CITY_SLUGS: Readonly<Record<Locale, readonly string[]>> = {
  * countries whose predominant-locale content cities are committed in that
  * locale. Used to rank Flagship/Start-local lists and Browse-locations
  * sections "locale-language matches first". Deterministic (data-driven —
- * never header-dependent).
+ * never header-dependent). Slug-collision cities resolve through
+ * `CONTENT_RICH_CITY_GEONAME_IDS` (TASK-484), so the area reflects the
+ * intended row's country (london → GB, never London, Ontario's CA).
  */
 export function localeCountryCodes(locale: Locale): ReadonlySet<string> {
   const codes = new Set<string>();
