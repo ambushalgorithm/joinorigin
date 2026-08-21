@@ -561,6 +561,8 @@
       "variantFormatsTitle": "Typowe formaty",
       "variantHowToTitle": "Jak zacząć",
       "browseLocations": "Przeglądaj lokalizacje",
+      "directoryBannerLabel": "Miejsca i społeczności",
+      "directoryTotal": "Przeglądaj lokalizacje ({{count}})",
       "searchLocationsLabel": "Szukaj lokalizacji",
       "searchLocationsPlaceholder": "Szukaj po mieście, kraju lub typie społeczności",
       "emptyState": "Brak lokalizacji pasujących do „{{query}}”.",
@@ -572,6 +574,13 @@
         "variant": "Typ społeczności",
         "ideas": "Pomysły na wydarzenia społecznościowe",
         "fallback": "Lokalizacja"
+      },
+      "directorySectionTitles": {
+        "countries": "Kraje",
+        "regions": "Regiony",
+        "cities": "Miasta",
+        "communityTypes": "Typy społeczności",
+        "eventIdeas": "Pomysły na wydarzenia"
       },
       "guideCardTitles": {
         "start-a-community": "Załóż społeczność",

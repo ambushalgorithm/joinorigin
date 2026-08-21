@@ -561,6 +561,8 @@
       "variantFormatsTitle": "よくある形式",
       "variantHowToTitle": "始め方",
       "browseLocations": "ロケーションを閲覧",
+      "directoryBannerLabel": "場所とコミュニティ",
+      "directoryTotal": "ロケーションを閲覧 ({{count}})",
       "searchLocationsLabel": "ロケーションを検索",
       "searchLocationsPlaceholder": "都市、国、またはコミュニティの種類で検索",
       "emptyState": "「{{query}}」に一致するロケーションはありません。",
@@ -572,6 +574,13 @@
         "variant": "コミュニティの種類",
         "ideas": "コミュニティイベントのアイデア",
         "fallback": "ロケーション"
+      },
+      "directorySectionTitles": {
+        "countries": "国",
+        "regions": "地域",
+        "cities": "都市",
+        "communityTypes": "コミュニティの種類",
+        "eventIdeas": "イベントのアイデア"
       },
       "guideCardTitles": {
         "start-a-community": "コミュニティを始める",

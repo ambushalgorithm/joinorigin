@@ -561,6 +561,8 @@
       "variantFormatsTitle": "Typische Formate",
       "variantHowToTitle": "So startest du",
       "browseLocations": "Standorte durchsuchen",
+      "directoryBannerLabel": "Orte und Communities",
+      "directoryTotal": "Standorte durchsuchen ({{count}})",
       "searchLocationsLabel": "Standorte durchsuchen",
       "searchLocationsPlaceholder": "Nach Stadt, Land oder Community-Typ suchen",
       "emptyState": "Keine Standorte passen zu „{{query}}“.",
@@ -572,6 +574,13 @@
         "variant": "Community-Typ",
         "ideas": "Community-Event-Ideen",
         "fallback": "Standort"
+      },
+      "directorySectionTitles": {
+        "countries": "Länder",
+        "regions": "Regionen",
+        "cities": "Städte",
+        "communityTypes": "Community-Typen",
+        "eventIdeas": "Community-Event-Ideen"
       },
       "guideCardTitles": {
         "start-a-community": "Starte eine Community",

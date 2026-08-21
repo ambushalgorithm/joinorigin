@@ -561,6 +561,8 @@
       "variantFormatsTitle": "Tipik formatlar",
       "variantHowToTitle": "Nasıl başlanır",
       "browseLocations": "Konumlara göz atın",
+      "directoryBannerLabel": "Yerler ve Topluluklar",
+      "directoryTotal": "Konumlara göz atın ({{count}})",
       "searchLocationsLabel": "Konumlarda ara",
       "searchLocationsPlaceholder": "Şehre, ülkeye veya topluluk türüne göre ara",
       "emptyState": "“{{query}}” ile eşleşen konum bulunamadı.",
@@ -572,6 +574,13 @@
         "variant": "Topluluk türü",
         "ideas": "Topluluk etkinliği fikirleri",
         "fallback": "Konum"
+      },
+      "directorySectionTitles": {
+        "countries": "Ülkeler",
+        "regions": "Bölgeler",
+        "cities": "Şehirler",
+        "communityTypes": "Topluluk türleri",
+        "eventIdeas": "Etkinlik fikirleri"
       },
       "guideCardTitles": {
         "start-a-community": "Bir topluluk başlatın",

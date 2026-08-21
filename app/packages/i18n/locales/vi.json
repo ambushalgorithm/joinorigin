@@ -561,6 +561,8 @@
       "variantFormatsTitle": "Các hình thức điển hình",
       "variantHowToTitle": "Cách bắt đầu",
       "browseLocations": "Duyệt địa điểm",
+      "directoryBannerLabel": "Địa điểm và cộng đồng",
+      "directoryTotal": "Duyệt địa điểm ({{count}})",
       "searchLocationsLabel": "Tìm kiếm địa điểm",
       "searchLocationsPlaceholder": "Tìm kiếm theo thành phố, quốc gia hoặc loại cộng đồng",
       "emptyState": "Không có địa điểm nào khớp với “{{query}}”.",
@@ -572,6 +574,13 @@
         "variant": "Loại cộng đồng",
         "ideas": "Ý tưởng sự kiện cộng đồng",
         "fallback": "Địa điểm"
+      },
+      "directorySectionTitles": {
+        "countries": "Quốc gia",
+        "regions": "Khu vực",
+        "cities": "Thành phố",
+        "communityTypes": "Loại cộng đồng",
+        "eventIdeas": "Ý tưởng sự kiện"
       },
       "guideCardTitles": {
         "start-a-community": "Bắt đầu một cộng đồng",

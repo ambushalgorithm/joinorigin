@@ -561,6 +561,8 @@
       "variantFormatsTitle": "التنسيقات النموذجية",
       "variantHowToTitle": "كيف تبدأ",
       "browseLocations": "تصفح المواقع",
+      "directoryBannerLabel": "أماكن ومجتمعات",
+      "directoryTotal": "تصفح المواقع ({{count}})",
       "searchLocationsLabel": "ابحث في المواقع",
       "searchLocationsPlaceholder": "ابحث حسب المدينة أو البلد أو نوع المجتمع",
       "emptyState": "لا توجد مواقع تطابق «{{query}}».",
@@ -572,6 +574,13 @@
         "variant": "نوع المجتمع",
         "ideas": "أفكار الفعاليات المجتمعية",
         "fallback": "موقع"
+      },
+      "directorySectionTitles": {
+        "countries": "البلدان",
+        "regions": "المناطق",
+        "cities": "المدن",
+        "communityTypes": "أنواع المجتمع",
+        "eventIdeas": "أفكار الفعاليات"
       },
       "guideCardTitles": {
         "start-a-community": "ابدأ مجتمعًا",

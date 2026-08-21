@@ -151,12 +151,14 @@ describe('/location hub page', () => {
         within(directory).getByTestId(`location-hub-directory-${section}`),
       ).toBeInTheDocument();
     }
-    // Section headers render from the localized directoryKinds chrome.
+    // Section headers render from the localized directorySectionTitles chrome
+    // with their per-section count badges (TASK-485) — membership counts come
+    // from the TASK-484 content-rich inventory (38/54/56/280/56).
     expect(
-      within(directory).getByRole('heading', { level: 3, name: 'Country' }),
+      within(directory).getByRole('heading', { level: 3, name: 'Countries (38)' }),
     ).toBeInTheDocument();
     expect(
-      within(directory).getByRole('heading', { level: 3, name: 'Community event ideas' }),
+      within(directory).getByRole('heading', { level: 3, name: 'Event ideas (56)' }),
     ).toBeInTheDocument();
   });
 

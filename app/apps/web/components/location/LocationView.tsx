@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
 
+import CountUpStat from '../CountUpStat';
 import HubSearchInput from '../HubSearchInput';
 import MenuPageShell from '../MenuPageShell';
 import Reveal from '../Reveal';
@@ -32,7 +33,7 @@ import {
 import LocationCta from './LocationCta';
 import TranslatePageLink from '../TranslatePageLink';
 import { useLocalizePath } from '../../lib/seo/localePath';
-import type { LocationViewData } from '../../lib/seo/locationView';
+import type { HubDirectorySection, LocationViewData } from '../../lib/seo/locationView';
 
 /**
  * Location page view (design §6.4, §8.5) — rendered by the `/location/**`
@@ -274,25 +275,35 @@ export function LocationView({ data }: { data: LocationViewData }) {
   // Cities / Community types / Event ideas); the search filters WITHIN each
   // section, so a keyword match in one section never hides another section's
   // matches and sections with no matches collapse.
+  //
+  // TASK-485 — the per-section filter matches the entry `searchText`
+  // (active-locale name + EN name + dataset country/region names), so
+  // "Colombia"/"Italy" resolve their country card AND the cities/variants/
+  // ideas scoped to them; per-section count badges + the grand total stay
+  // static (they describe the full inventory, not the filtered subset).
   const isHub = data.kind === 'hub';
   const hubDirectory = data.hubDirectory ?? [];
   const [hubQuery, setHubQuery] = useState('');
   const debouncedHubQuery = useDebouncedValue(hubQuery);
+  const sectionTotals = new Map<HubDirectorySection, number>();
+  for (const entry of hubDirectory) {
+    sectionTotals.set(entry.section, (sectionTotals.get(entry.section) ?? 0) + 1);
+  }
+  const directoryTotal = hubDirectory.length;
   const directorySections = (
     [
-      { key: 'countries', kind: 'country' },
-      { key: 'regions', kind: 'region' },
-      { key: 'cities', kind: 'city' },
-      { key: 'communityTypes', kind: 'variant' },
-      { key: 'eventIdeas', kind: 'ideas' },
+      { key: 'countries' },
+      { key: 'regions' },
+      { key: 'cities' },
+      { key: 'communityTypes' },
+      { key: 'eventIdeas' },
     ] as const
-  ).map(({ key, kind }) => ({
+  ).map(({ key }) => ({
     key,
-    kind,
     matches: filterByKeyword(
       hubDirectory.filter((entry) => entry.section === key),
       debouncedHubQuery,
-      (entry) => entry.name,
+      (entry) => entry.searchText,
     ),
   }));
   const hasDirectoryMatches = directorySections.some((section) => section.matches.length > 0);
@@ -331,14 +342,11 @@ export function LocationView({ data }: { data: LocationViewData }) {
     return link.label;
   };
 
-  /** Human label for a hub-directory entry kind (TASK-317 card body) —
-   *  resolves `seoContent.location.directoryKinds.<kind>` chrome with the
-   *  `fallback` key for unknown kinds (TASK-411/TASK-416). */
-  const directoryKindLabel = (kind: string): string => {
-    const key = `seoContent.location.directoryKinds.${kind}`;
-    const label = t(key);
-    return label === key ? t('seoContent.location.directoryKinds.fallback') : label;
-  };
+  /** Plural section-title key for a hub-directory section (TASK-485) —
+   *  resolves `seoContent.location.directorySectionTitles.<section>` chrome
+   *  ("Countries", "Regions", "Cities", "Community types", "Event ideas"). */
+  const directorySectionTitle = (section: HubDirectorySection): string =>
+    t(`seoContent.location.directorySectionTitles.${section}`);
 
   return (
     <MenuPageShell
@@ -548,13 +556,33 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
+      {/* Inventory banner (TASK-485): "N Places and Communities" stat below
+          the hero / above the Browse-locations directory — the total
+          content-rich inventory. The value is computed from the directory
+          data (not hardcoded) and localized via formatCount. */}
+      {isHub && hubDirectory.length > 0 ? (
+        <SectionBand variant="glass" accent="community" glow>
+          <PageContainer>
+            <Reveal>
+              <Section>
+                <CountUpStat
+                  valueText={String(directoryTotal)}
+                  label={t('seoContent.location.directoryBannerLabel')}
+                  testID="location-inventory-banner"
+                />
+              </Section>
+            </Reveal>
+          </PageContainer>
+        </SectionBand>
+      ) : null}
+
       {/* Browse locations: renders on route: /en/location */}
       {isHub && hubDirectory.length > 0 ? (
         <SectionBand variant="plain">
           <PageContainer>
             <Section>
               <SectionTitle data-testid="location-hub-directory-title">
-                {t('seoContent.location.browseLocations')}
+                {t('seoContent.location.directoryTotal', { count: directoryTotal })}
               </SectionTitle>
               <HubSearchInput
                 id="location-hub-search"
@@ -569,7 +597,10 @@ export function LocationView({ data }: { data: LocationViewData }) {
                   {directorySections.map((section) =>
                     section.matches.length === 0 ? null : (
                       <div key={section.key}>
-                        <SubTitle>{directoryKindLabel(section.kind)}</SubTitle>
+                        <SubTitle>
+                          {directorySectionTitle(section.key)} (
+                          {sectionTotals.get(section.key) ?? 0})
+                        </SubTitle>
                         <CardGrid data-testid={`location-hub-directory-${section.key}`}>
                           {section.matches.map((entry) => (
                             <Card key={entry.path}>

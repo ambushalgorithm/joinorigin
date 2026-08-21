@@ -561,6 +561,8 @@
       "variantFormatsTitle": "Format umum",
       "variantHowToTitle": "Cara memulai",
       "browseLocations": "Jelajahi lokasi",
+      "directoryBannerLabel": "Tempat dan Komunitas",
+      "directoryTotal": "Jelajahi lokasi ({{count}})",
       "searchLocationsLabel": "Cari lokasi",
       "searchLocationsPlaceholder": "Cari berdasarkan kota, negara, atau jenis komunitas",
       "emptyState": "Tidak ada lokasi yang cocok dengan “{{query}}”.",
@@ -572,6 +574,13 @@
         "variant": "Jenis komunitas",
         "ideas": "Ide acara komunitas",
         "fallback": "Lokasi"
+      },
+      "directorySectionTitles": {
+        "countries": "Negara",
+        "regions": "Wilayah",
+        "cities": "Kota",
+        "communityTypes": "Jenis komunitas",
+        "eventIdeas": "Ide acara"
       },
       "guideCardTitles": {
         "start-a-community": "Mulai sebuah komunitas",

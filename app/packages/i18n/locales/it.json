@@ -561,6 +561,8 @@
       "variantFormatsTitle": "Formati tipici",
       "variantHowToTitle": "Come iniziare",
       "browseLocations": "Sfoglia i luoghi",
+      "directoryBannerLabel": "Luoghi e community",
+      "directoryTotal": "Sfoglia i luoghi ({{count}})",
       "searchLocationsLabel": "Cerca luoghi",
       "searchLocationsPlaceholder": "Cerca per città, paese o tipo di community",
       "emptyState": "Nessun luogo corrisponde a “{{query}}”.",
@@ -572,6 +574,13 @@
         "variant": "Tipo di community",
         "ideas": "Idee per eventi di community",
         "fallback": "Luogo"
+      },
+      "directorySectionTitles": {
+        "countries": "Paesi",
+        "regions": "Regioni",
+        "cities": "Città",
+        "communityTypes": "Tipi di community",
+        "eventIdeas": "Idee per eventi"
       },
       "guideCardTitles": {
         "start-a-community": "Avvia una community",

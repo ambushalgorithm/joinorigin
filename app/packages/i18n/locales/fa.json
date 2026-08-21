@@ -561,6 +561,8 @@
       "variantFormatsTitle": "قالبهای معمول",
       "variantHowToTitle": "چگونه شروع کنیم",
       "browseLocations": "مرور مکان‌ها",
+      "directoryBannerLabel": "مکان‌ها و جوامع",
+      "directoryTotal": "مرور مکان‌ها ({{count}})",
       "searchLocationsLabel": "جستجوی مکان‌ها",
       "searchLocationsPlaceholder": "جستجو بر اساس شهر، کشور یا نوع جامعه",
       "emptyState": "هیچ مکانی با «{{query}}» مطابقت ندارد.",
@@ -572,6 +574,13 @@
         "variant": "نوع جامعه",
         "ideas": "ایده‌های رویداد جامعه",
         "fallback": "مکان"
+      },
+      "directorySectionTitles": {
+        "countries": "کشورها",
+        "regions": "منطقه‌ها",
+        "cities": "شهرها",
+        "communityTypes": "انواع جامعه",
+        "eventIdeas": "ایده‌های رویداد"
       },
       "guideCardTitles": {
         "start-a-community": "راه‌اندازی یک جامعه",
