@@ -143,6 +143,16 @@ describe('LocalePathnameSync — URL-derived active locale provider wrapper (TAS
     expect(screen.getByTestId('probe-locale').textContent).toBe('vi');
   });
 
+  it('seeds the provider from the URL prefix at FIRST render — no effect required (TASK-488)', () => {
+    // The wrapper reads usePathname() at render time and passes the prefix
+    // locale straight into I18nProvider as the `locale` prop, so the very
+    // first paint already carries the URL-derived locale synchronously —
+    // the contract that makes the language switcher navigation-only.
+    mockPathname = '/de/features';
+    renderSync('en');
+    expect(screen.getByTestId('probe-locale').textContent).toBe('de');
+  });
+
   it('falls back to the server locale for unprefixed pathnames (SSR first paint)', async () => {
     mockPathname = '/features';
     renderSync('vi');

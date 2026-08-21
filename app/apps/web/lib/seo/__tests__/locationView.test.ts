@@ -597,6 +597,30 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
     expect(data.guideLinks.map((link) => link.path)).toEqual(links.map((link) => link.path));
   });
 
+  it('every kind VIEW MODEL carries the exact 7-guide path set (TASK-489)', () => {
+    // The Story D contract at the render-model level: buildLocationViewData
+    // for hub/country/region/city/variant/ideas ALL emit the identical
+    // 7-guide "Guides for starting a community" set — the same paths as the
+    // /location hub, so every location screen renders the same cross-links.
+    const expectedPaths = [
+      '/guides/start-a-community',
+      '/guides/find-a-co-founder',
+      '/guides/first-10-members',
+      '/guides/keep-a-community-active',
+      '/guides/hybrid-communities',
+      '/guides/organize-a-meetup',
+      '/guides/moderation',
+    ];
+    const kinds = ['hub', 'country', 'region', 'city', 'variant', 'ideas'] as const;
+    for (const kind of kinds) {
+      const entry = locationPageEntries().find((e) => e.kind === kind);
+      expect(entry).toBeDefined();
+      const data = buildLocationViewData(entry!);
+      expect(data.guideLinks.map((link) => link.path)).toEqual(expectedPaths);
+      expect(data.guideLinks).toHaveLength(7);
+    }
+  });
+
   it('untranslated locales fall back to EN guide titles — never raw keys', () => {
     // de.json lacks seoContent.location.guideCardTitles.* until TASK-422 lands;
     // the server view must resolve EN titles instead of surfacing key strings.
