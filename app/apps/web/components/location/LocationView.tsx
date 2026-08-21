@@ -14,6 +14,7 @@ import SectionBand from '../SectionBand';
 import { filterByKeyword } from '../../lib/search/hubFilter';
 import { useDebouncedValue } from '../../lib/search/useDebouncedValue';
 import {
+  AccentLink,
   BodyCopy,
   BulletList,
   Card,
@@ -229,6 +230,17 @@ const StepList = styled.ol`
   }
 `;
 
+/** Explore cross-links row for the inventory banner band (TASK-491) —
+ *  mirrors the /community "Join the network" band: Locations/Guides/
+ *  Community accent links below the stat + explainer. */
+const ExploreLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.lg}px;
+  margin-top: ${({ theme }) => theme.spacing.md}px;
+  flex-wrap: wrap;
+`;
+
 export function LocationView({ data }: { data: LocationViewData }) {
   const { t } = useI18n();
   // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
@@ -250,6 +262,27 @@ export function LocationView({ data }: { data: LocationViewData }) {
   const hasGroupLinks = data.groupTypeLinks.length > 0;
   const hasSiblings = data.siblingCities.length > 0;
   const hasFaq = data.faq.length > 0;
+
+  // TASK-491 — the hub's hero lead + location-intro block resolve through
+  // the active locale dictionary (`seoContent.location.hubLead` /
+  // `hubIntro`) so `/location` and per-locale hubs fully translate on
+  // language toggle (the registry description is locale-independent EN
+  // chrome). Fall back gracefully when the keys are absent (older
+  // dictionaries / non-hub kinds): the server-baked view-model values win,
+  // and a raw key string is never rendered.
+  const HUB_LEAD_KEY = 'seoContent.location.hubLead';
+  const HUB_INTRO_KEY = 'seoContent.location.hubIntro';
+  const hubLeadResolved = data.kind === 'hub' ? t(HUB_LEAD_KEY) : undefined;
+  const hubIntroResolved = data.kind === 'hub' ? t(HUB_INTRO_KEY) : undefined;
+  const hubLead =
+    hubLeadResolved !== undefined && hubLeadResolved !== HUB_LEAD_KEY
+      ? hubLeadResolved
+      : data.hubLead;
+  const hubIntro =
+    hubIntroResolved !== undefined && hubIntroResolved !== HUB_INTRO_KEY
+      ? hubIntroResolved
+      : data.hubIntro;
+  const resolvedHeroLead = hubLead ?? heroLead;
 
   // TASK-319 — variant enrichment: only variant pages with committed
   // venues/formats/howToStart render the distinct "Where {type} communities
@@ -354,7 +387,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
         eyebrow,
         title: heroTitle,
         titleKey: heroTitleKey,
-        lead: heroLead,
+        lead: resolvedHeroLead,
         scene: 'community',
         accent: 'community',
         meta: { stat: false, avatars: false },
@@ -422,12 +455,18 @@ export function LocationView({ data }: { data: LocationViewData }) {
               </SectionTitle>
               {/* City intros are paragraph arrays (TASK-410) — each entry
                   renders as its own paragraph block (TASK-416); kinds without
-                  authored prose fall back to the short registry lead. */}
+                  authored prose fall back to the short registry lead.
+                  TASK-491 — the hub's intro resolves through the active
+                  locale dictionary (`seoContent.location.hubIntro`) so
+                  `/location` and per-locale hubs translate on toggle; absent
+                  keys fall back to the server-baked intro/lead. */}
               <div data-testid="location-intro">
-                {data.intro.length > 0 ? (
+                {isHub && hubIntro ? (
+                  <BodyCopy>{hubIntro}</BodyCopy>
+                ) : data.intro.length > 0 ? (
                   data.intro.map((paragraph) => <BodyCopy key={paragraph}>{paragraph}</BodyCopy>)
                 ) : (
-                  <BodyCopy>{data.lead}</BodyCopy>
+                  <BodyCopy>{resolvedHeroLead}</BodyCopy>
                 )}
               </div>
             </Section>
@@ -556,20 +595,35 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
-      {/* Inventory banner (TASK-485): "N Places and Communities" stat below
-          the hero / above the Browse-locations directory — the total
-          content-rich inventory. The value is computed from the directory
-          data (not hardcoded) and localized via formatCount. */}
+      {/* Inventory banner (TASK-485, elevated TASK-491): "N Places and
+          Communities" stat below the hero / above the Browse-locations
+          directory — the total content-rich inventory. The value is computed
+          from the directory data (not hardcoded) and localized via
+          formatCount. The band mirrors the /community "Join the network"
+          section: SectionTitle heading + CountUpStat + BodyCopy explainer +
+          ExploreLinks row (Locations/Guides/Community) — all in a glass
+          community-accent SectionBand. */}
       {isHub && hubDirectory.length > 0 ? (
         <SectionBand variant="glass" accent="community" glow>
           <PageContainer>
             <Reveal>
               <Section>
+                <SectionTitle>{t('seoContent.location.directoryBannerTitle')}</SectionTitle>
                 <CountUpStat
                   valueText={String(directoryTotal)}
                   label={t('seoContent.location.directoryBannerLabel')}
                   testID="location-inventory-banner"
                 />
+                <BodyCopy>{t('seoContent.location.directoryBannerCopy')}</BodyCopy>
+                <ExploreLinks data-testid="location-inventory-explore">
+                  <AccentLink href={localizePath('/location')}>
+                    {t('common.nav.locations')}
+                  </AccentLink>
+                  <AccentLink href={localizePath('/guides')}>{t('common.nav.guides')}</AccentLink>
+                  <AccentLink href={localizePath('/community')}>
+                    {t('common.nav.community')}
+                  </AccentLink>
+                </ExploreLinks>
               </Section>
             </Reveal>
           </PageContainer>

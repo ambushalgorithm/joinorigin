@@ -612,6 +612,28 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
     expect(data.intro).toEqual([]);
   });
 
+  it('the hub carries translated hubIntro/hubLead chrome (TASK-491)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    const enData = buildLocationViewData(hub!, 'en');
+    expect(enData.hubIntro).toBe(
+      'Every country, region, city, community type, and event idea on the network — find the community you are looking for or start one in your city.',
+    );
+    expect(enData.hubLead).toBe(
+      'Explore communities by city around the world — startup, creative, political, meetup, and small business groups.',
+    );
+
+    // Route-locale value: the de surface carries the German translation.
+    const deData = buildLocationViewData(hub!, 'de');
+    expect(deData.hubIntro).toContain('Jedes Land, jede Region, jede Stadt');
+    expect(deData.hubLead).toContain('Entdecke Communities in Städten');
+
+    // Non-hub kinds never carry the hub chrome keys.
+    const germany = resolveLocationEntry({ country: 'germany' })!;
+    const countryData = buildLocationViewData(germany, 'en');
+    expect(countryData.hubIntro).toBeUndefined();
+    expect(countryData.hubLead).toBeUndefined();
+  });
+
   it('hub directory entries carry kinds for localized card labels (TASK-416)', () => {
     const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
     const data = buildLocationViewData(hub!);

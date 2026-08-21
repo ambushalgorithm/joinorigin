@@ -149,6 +149,11 @@ test.describe('/location language toggle (TASK-477)', () => {
     const breadcrumbs = page.getByTestId('location-breadcrumbs');
     await expect(breadcrumbs).toContainText('Home');
     await expect(breadcrumbs).toContainText('Communities by City');
+    // TASK-491 — the hub intro resolves through the EN dictionary.
+    const enIntro = page.getByTestId('location-intro');
+    await expect(enIntro).toContainText(
+      'Every country, region, city, community type, and event idea on the network',
+    );
 
     // Toggle to German through the header switcher (URL-only locale: no
     // cookie, navigates to the /de/** surface — TASK-468).
@@ -169,6 +174,10 @@ test.describe('/location language toggle (TASK-477)', () => {
       timeout: 15_000,
     });
     await expect(page.getByText('Community in deiner Stadt finden oder gründen')).toBeVisible();
+    // TASK-491 — the hub intro + hero lead re-translate on the de surface.
+    await expect(page.getByTestId('location-intro')).toContainText(
+      'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+    );
     const deBreadcrumbs = page.getByTestId('location-breadcrumbs');
     await expect(deBreadcrumbs).toContainText('Startseite');
     await expect(deBreadcrumbs).toContainText('Communities nach Stadt');
@@ -189,6 +198,9 @@ test.describe('/location language toggle (TASK-477)', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'de');
     await expect(page.locator('h1')).toContainText('Communities nach Stadt');
     await expect(page.getByText('Community in deiner Stadt finden oder gründen')).toBeVisible();
+    await expect(page.getByTestId('location-intro')).toContainText(
+      'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+    );
 
     const footerSwitcher = page.getByTestId('language-switcher-footer');
     await footerSwitcher.getByTestId('language-switcher-trigger').click();
@@ -201,6 +213,9 @@ test.describe('/location language toggle (TASK-477)', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('h1')).toContainText('Communities by City', { timeout: 15_000 });
     await expect(page.getByText('Find or start a community in your city')).toBeVisible();
+    await expect(page.getByTestId('location-intro')).toContainText(
+      'Every country, region, city, community type, and event idea on the network',
+    );
     const enBreadcrumbs = page.getByTestId('location-breadcrumbs');
     await expect(enBreadcrumbs).toContainText('Home');
     await expect(enBreadcrumbs).toContainText('Communities by City');

@@ -822,6 +822,20 @@ export interface LocationViewData {
   /** Browsable directory for the hub (TASK-317) — populated for `hub` only. */
   hubDirectory?: HubDirectoryEntry[];
   /**
+   * Translated hub intro prose (TASK-491) — populated for `hub` only from
+   * `seoContent.location.hubIntro` (route-locale value with EN fallback).
+   * The client view re-resolves the same key through the ACTIVE dictionary
+   * on language toggle; this is the deterministic pre-hydration fallback.
+   */
+  hubIntro?: string;
+  /**
+   * Translated hub hero lead (TASK-491) — populated for `hub` only from
+   * `seoContent.location.hubLead` (route-locale value with EN fallback).
+   * The client view re-resolves the same key through the ACTIVE dictionary
+   * on language toggle; this is the deterministic pre-hydration fallback.
+   */
+  hubLead?: string;
+  /**
    * Country-scoped content-rich mesh (TASK-490) — populated for `country`
    * pages only: localized country name, content-rich cities in the country
    * (registry-exact paths), the region list, and dataset facts
@@ -923,6 +937,32 @@ function hubEntityLabel(locale: Locale): string {
   return enValue === key ? 'your city' : enValue;
 }
 
+/**
+ * TASK-491 — hub chrome for the translated intro + hero lead: resolves the
+ * localized `seoContent.location.hubIntro` / `hubLead` keys for the active
+ * locale (EN fallback, literal fallbacks for resilience) so the server view
+ * model carries route-locale values as a deterministic pre-hydration
+ * fallback, exactly like the other chrome keys. The client LocationView
+ * re-resolves the same keys through the ACTIVE dictionary on language
+ * toggle, so `/location` and per-locale hubs fully translate.
+ */
+function hubChromeFor(locale: Locale): { hubIntro?: string; hubLead?: string } {
+  const t = getT(getDictionary(locale));
+  const enT = getT(getDictionary('en'));
+  const introKey = 'seoContent.location.hubIntro';
+  const leadKey = 'seoContent.location.hubLead';
+  const resolve = (key: string, enFallback: string): string | undefined => {
+    const localized = t(key);
+    if (localized !== key) return localized;
+    const enValue = enT(key);
+    return enValue === key ? enFallback : enValue;
+  };
+  return {
+    hubIntro: resolve(introKey, ''),
+    hubLead: resolve(leadKey, ''),
+  };
+}
+
 /** Entity display label for the honest presence claim (§6.4 #6). */
 function entityLabelFor(entry: LocationPageEntry, locale: Locale): string {
   if (entry.kind === 'hub') return hubEntityLabel(locale);
@@ -961,6 +1001,12 @@ export function buildLocationViewData(
 
   const breadcrumbs = breadcrumbsFor(entry, locale);
   const intro = introFor(entry, content);
+  // TASK-491 — hub chrome: the translated intro prose + hero lead resolve
+  // from the active locale dictionary (`hubIntro` / `hubLead`). The hub's
+  // registry description is locale-independent EN chrome, so the view model
+  // carries route-locale translations as the pre-hydration fallback and the
+  // client re-resolves through the ACTIVE dictionary on language toggle.
+  const hubChrome = entry.kind === 'hub' ? hubChromeFor(locale) : undefined;
 
   // TASK-319 — per-variant enrichment: expose the current variant's group
   // type + its committed venues/formats/howToStart so LocationView can render
@@ -1007,6 +1053,8 @@ export function buildLocationViewData(
           : [],
     guideLinks: guideLinksFor(entry.kind, locale),
     hubDirectory: entry.kind === 'hub' ? hubDirectoryEntries(locale, ipCountry) : undefined,
+    hubIntro: hubChrome?.hubIntro,
+    hubLead: hubChrome?.hubLead,
     // TASK-490 — the country-scoped content-rich mesh populates for country
     // pages only: localized country name, content-rich cities, region list,
     // and dataset facts. Data-driven for EVERY country — indexability is

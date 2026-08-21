@@ -207,6 +207,37 @@ describe('/location hub page', () => {
       mockServerLocale.locale = 'en';
     }
   });
+
+  it('renders the translated hub intro + banner band for the active locale (TASK-491)', async () => {
+    mockServerLocale.locale = 'de';
+    try {
+      // Render with the de client locale (the language lives in the URL —
+      // the de surface seeds the de dictionary, TASK-468/488).
+      const element = await LocationHubPage();
+      if (!element) throw new Error('location hub page returned null');
+      renderWithI18n(element, 'de');
+
+      // The hub intro resolves through the route-locale dictionary.
+      expect(screen.getByTestId('location-intro')).toHaveTextContent(
+        'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+      );
+
+      // The inventory banner band mirrors the /community "Join the network"
+      // section with localized heading + explainer + explore links.
+      expect(
+        screen.getByRole('heading', { level: 2, name: 'Tritt dem Netzwerk bei' }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          'Durchstöbere jeden Ort und jede Community im Netzwerk. Finde die, die zu dir passt, oder gründe eine in deiner Stadt.',
+        ),
+      ).toBeInTheDocument();
+      const explore = screen.getByTestId('location-inventory-explore');
+      expect(within(explore).getByRole('link', { name: 'Standorte' })).toBeInTheDocument();
+    } finally {
+      mockServerLocale.locale = 'en';
+    }
+  });
 });
 
 /**

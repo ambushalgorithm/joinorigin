@@ -711,7 +711,9 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
     await expect(directory.locator('a')).toHaveCount(484);
   });
 
-  test('inventory banner stat renders below the hero and above the directory', async ({ page }) => {
+  test('inventory banner band renders below the hero and above the directory (TASK-491)', async ({
+    page,
+  }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location');
 
@@ -721,6 +723,24 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
     // label ("Places and Communities", TASK-485).
     await expect(banner).toContainText('484');
     await expect(banner).toContainText('Places and Communities');
+
+    // TASK-491 — the band mirrors the /community "Join the network"
+    // section: SectionTitle heading + BodyCopy explainer + ExploreLinks row.
+    await expect(page.getByRole('heading', { level: 2, name: 'Join the network' })).toBeVisible();
+    await expect(page.getByText('Browse every place and community on the network.')).toBeVisible();
+    const explore = page.getByTestId('location-inventory-explore');
+    await expect(explore.getByRole('link', { name: 'Locations' })).toHaveAttribute(
+      'href',
+      '/en/location',
+    );
+    await expect(explore.getByRole('link', { name: 'Guides' })).toHaveAttribute(
+      'href',
+      '/en/guides',
+    );
+    await expect(explore.getByRole('link', { name: 'Community' })).toHaveAttribute(
+      'href',
+      '/en/community',
+    );
 
     // The banner sits below the hero / above the Browse-locations directory
     // in the DOM (LocationView renders it before the directory band).
@@ -735,7 +755,7 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
     expect(bannerBeforeDirectory).toBe(true);
   });
 
-  test('de surface renders the localized banner label + inventory total (TASK-485)', async ({
+  test('de surface renders the localized banner band + inventory total (TASK-485/491)', async ({
     page,
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -749,5 +769,18 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
     await expect(banner).toBeVisible();
     await expect(banner).toContainText('484');
     await expect(banner).toContainText('Orte und Communities');
+
+    // The full band localizes on the de surface (TASK-491).
+    await expect(
+      page.getByRole('heading', { level: 2, name: 'Tritt dem Netzwerk bei' }),
+    ).toBeVisible();
+    await expect(
+      page.getByText('Durchstöbere jeden Ort und jede Community im Netzwerk.'),
+    ).toBeVisible();
+    const explore = page.getByTestId('location-inventory-explore');
+    await expect(explore.getByRole('link', { name: 'Standorte' })).toHaveAttribute(
+      'href',
+      '/de/location',
+    );
   });
 });
