@@ -534,3 +534,135 @@ test.describe('full city-page mesh for content-rich cities (TASK-475)', () => {
     }
   });
 });
+
+test.describe('flagship cities + Browse-locations 5 sections (TASK-480)', () => {
+  test('EN /en/location flagship cities = content-rich set, EN area first, capped at 6', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location');
+
+    const flagship = page.getByTestId('location-flagship-cities');
+    await expect(flagship).toBeVisible();
+    // Capped at 6 (TASK-480) — the EN language area (alphabetical) leads.
+    await expect(flagship.locator('a')).toHaveCount(6);
+    const names = await flagship.locator('a').allInnerTexts();
+    expect(names).toEqual(['Austin', 'Cape Town', 'Chicago', 'Dublin', 'Johannesburg', 'Lagos']);
+    // Every card stays on the ACTIVE locale surface (never /en leak is N/A
+    // here — this IS the en surface — but the hrefs must be /en/**).
+    for (const href of await flagship
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')))) {
+      expect(href).toMatch(/^\/en\/location\//);
+    }
+  });
+
+  test('de /de/location flagship cities put the German area first (Berlin, Munich)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/de/location');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+    const flagship = page.getByTestId('location-flagship-cities');
+    await expect(flagship).toBeVisible();
+    await expect(flagship.locator('a')).toHaveCount(6);
+    // Locale country/area first: the German cities lead the capped list.
+    const names = await flagship.locator('a').allInnerTexts();
+    expect(names.slice(0, 2)).toEqual(['Berlin', 'Munich']);
+    for (const href of await flagship
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')))) {
+      expect(href).toMatch(/^\/de\/location\//);
+    }
+  });
+
+  test('EN /en/location Browse locations splits into 5 sections with cards in each', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location');
+
+    await expect(page.getByText('Browse locations')).toBeVisible();
+    const directory = page.getByTestId('location-hub-directory');
+    await expect(directory).toBeVisible();
+
+    // The 5-section split (TASK-480) with the localized section labels.
+    const sections = [
+      { testId: 'location-hub-directory-countries', label: 'Country' },
+      { testId: 'location-hub-directory-regions', label: 'Region' },
+      { testId: 'location-hub-directory-cities', label: 'City' },
+      { testId: 'location-hub-directory-communityTypes', label: 'Community type' },
+      { testId: 'location-hub-directory-eventIdeas', label: 'Community event ideas' },
+    ] as const;
+    for (const section of sections) {
+      const grid = directory.getByTestId(section.testId);
+      await expect(grid).toBeVisible();
+      await expect(grid.locator('a').first()).toBeVisible();
+    }
+  });
+
+  test('de /de/location Browse locations sections render German labels', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/de/location');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+    await expect(page.getByText('Standorte durchsuchen')).toBeVisible();
+    const directory = page.getByTestId('location-hub-directory');
+    await expect(directory).toBeVisible();
+    const sections = [
+      { testId: 'location-hub-directory-countries', label: 'Land' },
+      { testId: 'location-hub-directory-regions', label: 'Region' },
+      { testId: 'location-hub-directory-cities', label: 'Stadt' },
+      { testId: 'location-hub-directory-communityTypes', label: 'Community-Typ' },
+      { testId: 'location-hub-directory-eventIdeas', label: 'Community-Event-Ideen' },
+    ] as const;
+    for (const section of sections) {
+      const grid = directory.getByTestId(section.testId);
+      await expect(grid).toBeVisible();
+      await expect(grid.locator('a').first()).toBeVisible();
+    }
+  });
+});
+
+test.describe('guides Start local list (TASK-480)', () => {
+  test('EN /en/guides Start local = content-rich cities, EN area first, capped at 6', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/guides');
+
+    await expect(page.getByText('Start local')).toBeVisible();
+    const grid = page.getByTestId('guides-hub-start-local');
+    await expect(grid).toBeVisible();
+    await expect(grid.locator('a')).toHaveCount(6);
+    const names = await grid.locator('a').allInnerTexts();
+    expect(names).toEqual(['Austin', 'Cape Town', 'Chicago', 'Dublin', 'Johannesburg', 'Lagos']);
+    // The cards localize to the active /en surface at render time.
+    for (const href of await grid
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')))) {
+      expect(href).toMatch(/^\/en\/location\//);
+    }
+  });
+
+  test('de /de/guides Start local leads with the German area and localizes hrefs', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/de/guides');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+    await expect(page.getByText('Lokal starten')).toBeVisible();
+    const grid = page.getByTestId('guides-hub-start-local');
+    await expect(grid).toBeVisible();
+    await expect(grid.locator('a')).toHaveCount(6);
+    const names = await grid.locator('a').allInnerTexts();
+    expect(names.slice(0, 2)).toEqual(['Berlin', 'Munich']);
+    for (const href of await grid
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')))) {
+      expect(href).toMatch(/^\/de\/location\//);
+    }
+  });
+});

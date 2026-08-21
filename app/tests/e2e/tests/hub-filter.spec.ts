@@ -132,6 +132,128 @@ test.describe('/location hub search/filter (TASK-317)', () => {
   });
 });
 
+test.describe('Browse-locations 5-section search filters WITHIN each section (TASK-480)', () => {
+  test('typing "berlin" keeps the matching sections and collapses the unmatched ones', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+
+    await page.goto('/en/location');
+    await expect(page.locator('h1')).toContainText('Communities by City');
+
+    const search = page.getByRole('searchbox', { name: 'Search locations' });
+    await expect(search).toBeVisible();
+
+    await search.fill('berlin');
+    const directory = page.getByTestId('location-hub-directory');
+    await expect(directory).toBeVisible();
+
+    // Sections with no matches collapse (TASK-480): no country is named
+    // "Berlin", so the countries section disappears…
+    await expect(page.getByTestId('location-hub-directory-countries')).toHaveCount(0);
+    // …while the region/city/community-type/event-idea sections keep ONLY
+    // their Berlin matches.
+    await expect(page.getByTestId('location-hub-directory-regions')).toBeVisible();
+    await expect(
+      page.getByTestId('location-hub-directory-regions').getByRole('link', {
+        name: 'Communities in Berlin, Germany',
+      }),
+    ).toBeVisible();
+    await expect(page.getByTestId('location-hub-directory-cities')).toBeVisible();
+    await expect(
+      page.getByTestId('location-hub-directory-cities').getByRole('link', {
+        name: 'Communities in Berlin',
+      }),
+    ).toBeVisible();
+    await expect(page.getByTestId('location-hub-directory-communityTypes')).toBeVisible();
+    await expect(
+      page.getByTestId('location-hub-directory-communityTypes').getByRole('link', {
+        name: 'Startup communities in Berlin',
+      }),
+    ).toBeVisible();
+    await expect(page.getByTestId('location-hub-directory-eventIdeas')).toBeVisible();
+    await expect(
+      page.getByTestId('location-hub-directory-eventIdeas').getByRole('link', {
+        name: '30 community event ideas in Berlin',
+      }),
+    ).toBeVisible();
+    // Non-Berlin entries in a matching section are filtered out too.
+    await expect(
+      page.getByTestId('location-hub-directory-cities').getByRole('link', {
+        name: 'Communities in Munich, Bavaria',
+      }),
+    ).toHaveCount(0);
+  });
+
+  test('typing a community type narrows to the communityTypes section only', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+
+    await page.goto('/en/location');
+    const search = page.getByRole('searchbox', { name: 'Search locations' });
+    await expect(search).toBeVisible();
+
+    await search.fill('startup');
+    const directory = page.getByTestId('location-hub-directory');
+    await expect(directory).toBeVisible();
+
+    // Only the community-types section matches "startup" (no country, region,
+    // city, or event-idea entry carries that keyword) — TASK-480 filters stay
+    // within each section instead of hiding the whole directory.
+    await expect(page.getByTestId('location-hub-directory-countries')).toHaveCount(0);
+    await expect(page.getByTestId('location-hub-directory-regions')).toHaveCount(0);
+    await expect(page.getByTestId('location-hub-directory-cities')).toHaveCount(0);
+    await expect(page.getByTestId('location-hub-directory-eventIdeas')).toHaveCount(0);
+    await expect(page.getByTestId('location-hub-directory-communityTypes')).toBeVisible();
+    await expect(
+      page.getByTestId('location-hub-directory-communityTypes').getByRole('link', {
+        name: 'Startup communities in Berlin',
+      }),
+    ).toBeVisible();
+  });
+
+  test('typing "germany" keeps countries + regions + cities and drops ideas', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+
+    await page.goto('/en/location');
+    const search = page.getByRole('searchbox', { name: 'Search locations' });
+    await expect(search).toBeVisible();
+
+    await search.fill('germany');
+    const directory = page.getByTestId('location-hub-directory');
+    await expect(directory).toBeVisible();
+
+    await expect(
+      page
+        .getByTestId('location-hub-directory-countries')
+        .getByRole('link', { name: 'Communities in Germany' }),
+    ).toBeVisible();
+    await expect(
+      page
+        .getByTestId('location-hub-directory-regions')
+        .getByRole('link', { name: 'Communities in Berlin, Germany' }),
+    ).toBeVisible();
+    await expect(
+      page
+        .getByTestId('location-hub-directory-cities')
+        .getByRole('link', { name: 'Communities in Berlin' }),
+    ).toBeVisible();
+    // No event-idea entry is named "Germany".
+    await expect(page.getByTestId('location-hub-directory-eventIdeas')).toHaveCount(0);
+  });
+
+  test('unmatched query collapses every section and shows the empty state', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+
+    await page.goto('/en/location');
+    const search = page.getByRole('searchbox', { name: 'Search locations' });
+    await expect(search).toBeVisible();
+
+    await search.fill('atlantis-404');
+    await expect(page.getByTestId('location-hub-empty')).toBeVisible();
+    await expect(page.getByTestId('location-hub-directory')).toHaveCount(0);
+  });
+});
+
 test.describe('/guides hub search/filter (TASK-317)', () => {
   test('typing narrows the guide cards and an unmatched query shows the empty state', async ({
     page,

@@ -119,3 +119,91 @@ test.describe('language switcher responsive', () => {
     expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
   });
 });
+
+/**
+ * /location language toggle (TASK-477, Sprint 21 Story A).
+ *
+ * The /location hub H1 is chrome (locale-independent registry EN title), so
+ * it must resolve through the active locale dictionary on toggle
+ * (`seoContent.breadcrumb.hub` via MenuHero `titleKey`). The honest presence
+ * claim ("Find or start a community in {{city}}") and the home/hub breadcrumb
+ * crumbs re-resolve through the client dictionary the same way — the whole
+ * hero + breadcrumb chrome must translate when the language is switched from
+ * the /location page (URL-only locale: /en/location → /de/location).
+ */
+test.describe('/location language toggle (TASK-477)', () => {
+  test('switching /en/location → de translates the h1, presence claim, and breadcrumbs', async ({
+    page,
+  }) => {
+    // Reduced motion keeps GSAP Reveal/ScrollTrigger tweens from moving
+    // elements mid-interaction (repo convention).
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 1440, height: 900 });
+
+    await page.goto('/en/location');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+
+    // EN chrome before the toggle.
+    await expect(page.locator('h1')).toContainText('Communities by City');
+    await expect(page.getByText('Find or start a community in your city')).toBeVisible();
+    const breadcrumbs = page.getByTestId('location-breadcrumbs');
+    await expect(breadcrumbs).toContainText('Home');
+    await expect(breadcrumbs).toContainText('Communities by City');
+
+    // Toggle to German through the header switcher (URL-only locale: no
+    // cookie, navigates to the /de/** surface — TASK-468).
+    const headerSwitcher = page.getByTestId('language-switcher-header');
+    await headerSwitcher.getByTestId('language-switcher-trigger').click();
+    await headerSwitcher
+      .getByTestId('language-switcher-listbox')
+      .getByRole('option', { name: /Deutsch/ })
+      .click();
+
+    await expect(page).toHaveURL(/\/de\/location(?:\/|$)/, { timeout: 15_000 });
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+    // TASK-477: the h1 resolves through seoContent.breadcrumb.hub (German),
+    // the presence claim city via seoContent.location.hubEntity, and the
+    // home/hub breadcrumb crumbs through the active dictionary.
+    await expect(page.locator('h1')).toContainText('Communities nach Stadt', {
+      timeout: 15_000,
+    });
+    await expect(page.getByText('Community in deiner Stadt finden oder gründen')).toBeVisible();
+    const deBreadcrumbs = page.getByTestId('location-breadcrumbs');
+    await expect(deBreadcrumbs).toContainText('Startseite');
+    await expect(deBreadcrumbs).toContainText('Communities nach Stadt');
+    // No stale EN chrome on the toggled surface.
+    await expect(page.getByText('Find or start a community in your city')).toHaveCount(0);
+    await expect(deBreadcrumbs.getByText('Home')).toHaveCount(0);
+    // URL-only contract (TASK-468): the toggle writes no locale cookie.
+    expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
+  });
+
+  test('switching /de/location → en restores the English h1, claim, and breadcrumbs', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 1440, height: 900 });
+
+    await page.goto('/de/location');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    await expect(page.locator('h1')).toContainText('Communities nach Stadt');
+    await expect(page.getByText('Community in deiner Stadt finden oder gründen')).toBeVisible();
+
+    const footerSwitcher = page.getByTestId('language-switcher-footer');
+    await footerSwitcher.getByTestId('language-switcher-trigger').click();
+    await footerSwitcher
+      .getByTestId('language-switcher-listbox')
+      .getByRole('option', { name: /English/ })
+      .click();
+
+    await expect(page).toHaveURL(/\/en\/location(?:\/|$)/, { timeout: 15_000 });
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('h1')).toContainText('Communities by City', { timeout: 15_000 });
+    await expect(page.getByText('Find or start a community in your city')).toBeVisible();
+    const enBreadcrumbs = page.getByTestId('location-breadcrumbs');
+    await expect(enBreadcrumbs).toContainText('Home');
+    await expect(enBreadcrumbs).toContainText('Communities by City');
+    expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
+  });
+});
