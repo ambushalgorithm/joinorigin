@@ -14,6 +14,11 @@ import { expect, test } from '@playwright/test';
  * server round-trip, and the registry (`locationPageEntries` /
  * `GuidePageEntry`) is the only data source.
  *
+ * TASK-485 — the `/location` per-section filter matches each entry's
+ * `searchText` (active-locale name + EN name + dataset country/region names),
+ * so geographic keywords like "Colombia"/"Italy" resolve their country card
+ * AND the cities / community types / event ideas scoped to them.
+ *
  * These specs navigate several pages; keep them serial to avoid starving the
  * shared dev server (repo convention, TASK-218).
  */
@@ -211,7 +216,9 @@ test.describe('Browse-locations 5-section search filters WITHIN each section (TA
     ).toBeVisible();
   });
 
-  test('typing "germany" keeps countries + regions + cities and drops ideas', async ({ page }) => {
+  test('typing "germany" keeps countries + regions + cities + event ideas via searchText', async ({
+    page,
+  }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
     await page.goto('/en/location');
@@ -237,8 +244,19 @@ test.describe('Browse-locations 5-section search filters WITHIN each section (TA
         .getByTestId('location-hub-directory-cities')
         .getByRole('link', { name: 'Communities in Berlin' }),
     ).toBeVisible();
-    // No event-idea entry is named "Germany".
-    await expect(page.getByTestId('location-hub-directory-eventIdeas')).toHaveCount(0);
+    // Event ideas match through the dataset country name in searchText
+    // (TASK-485) — the Berlin + Munich ideas pages resolve for "germany".
+    await expect(page.getByTestId('location-hub-directory-eventIdeas')).toBeVisible();
+    await expect(
+      page
+        .getByTestId('location-hub-directory-eventIdeas')
+        .getByRole('link', { name: '30 community event ideas in Berlin' }),
+    ).toBeVisible();
+    await expect(
+      page
+        .getByTestId('location-hub-directory-eventIdeas')
+        .getByRole('link', { name: '30 community event ideas in Munich' }),
+    ).toBeVisible();
   });
 
   test('unmatched query collapses every section and shows the empty state', async ({ page }) => {
@@ -251,6 +269,115 @@ test.describe('Browse-locations 5-section search filters WITHIN each section (TA
     await search.fill('atlantis-404');
     await expect(page.getByTestId('location-hub-empty')).toBeVisible();
     await expect(page.getByTestId('location-hub-directory')).toHaveCount(0);
+  });
+});
+
+test.describe('Browse-locations searchText inventory search (TASK-485/TASK-487)', () => {
+  test('searching "colombia" shows the Colombia country card + all 3 Colombian cities', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+
+    await page.goto('/en/location');
+    await expect(page.locator('h1')).toContainText('Communities by City');
+
+    const search = page.getByRole('searchbox', { name: 'Search locations' });
+    await expect(search).toBeVisible();
+
+    await search.fill('colombia');
+    const directory = page.getByTestId('location-hub-directory');
+    await expect(directory).toBeVisible();
+
+    // The country card matches through the dataset country name in
+    // searchText — its card title alone has no "colombia" (TASK-485).
+    await expect(
+      directory
+        .getByTestId('location-hub-directory-countries')
+        .getByRole('link', { name: 'Communities in Colombia' }),
+    ).toBeVisible();
+
+    // All 3 Colombian content-rich cities resolve (Bogota, Medellin,
+    // Barranquilla — the 56-city content-rich set, TASK-484).
+    const cities = directory.getByTestId('location-hub-directory-cities');
+    for (const city of [
+      'Communities in Bogota, Bogota D.C.',
+      'Communities in Medellin, Antioquia',
+      'Communities in Barranquilla, Atlantico',
+    ]) {
+      await expect(cities.getByRole('link', { name: city })).toBeVisible();
+    }
+
+    // Community types (3 cities × 5) + event ideas (3) are scoped to the
+    // country through the same searchText field.
+    await expect(
+      directory
+        .getByTestId('location-hub-directory-communityTypes')
+        .getByRole('link', { name: 'Startup communities in Bogota' }),
+    ).toBeVisible();
+    await expect(
+      directory
+        .getByTestId('location-hub-directory-communityTypes')
+        .getByRole('link', { name: 'Political & civic communities in Medellin' }),
+    ).toBeVisible();
+    await expect(
+      directory
+        .getByTestId('location-hub-directory-eventIdeas')
+        .getByRole('link', { name: '30 community event ideas in Barranquilla' }),
+    ).toBeVisible();
+
+    // Non-Colombian entries are filtered out.
+    await expect(cities.getByRole('link', { name: 'Communities in Milan, Lombardy' })).toHaveCount(
+      0,
+    );
+    await expect(
+      directory
+        .getByTestId('location-hub-directory-countries')
+        .getByRole('link', { name: 'Communities in Italy' }),
+    ).toHaveCount(0);
+  });
+
+  test('searching "italy" shows the Italy country card + Milan + Milan variants (case-insensitive)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+
+    await page.goto('/en/location');
+    const search = page.getByRole('searchbox', { name: 'Search locations' });
+    await expect(search).toBeVisible();
+
+    await search.fill('ITALY');
+    const directory = page.getByTestId('location-hub-directory');
+    await expect(directory).toBeVisible();
+
+    await expect(
+      directory
+        .getByTestId('location-hub-directory-countries')
+        .getByRole('link', { name: 'Communities in Italy' }),
+    ).toBeVisible();
+    const cities = directory.getByTestId('location-hub-directory-cities');
+    await expect(
+      cities.getByRole('link', { name: 'Communities in Milan, Lombardy' }),
+    ).toBeVisible();
+
+    // Exactly 5 community-type variants + the single ideas page for Milan.
+    await expect(
+      directory.getByTestId('location-hub-directory-communityTypes').locator('a'),
+    ).toHaveCount(5);
+    await expect(
+      directory
+        .getByTestId('location-hub-directory-communityTypes')
+        .getByRole('link', { name: 'Startup communities in Milan' }),
+    ).toBeVisible();
+    await expect(
+      directory
+        .getByTestId('location-hub-directory-eventIdeas')
+        .getByRole('link', { name: '30 community event ideas in Milan' }),
+    ).toBeVisible();
+
+    // Colombian entries are filtered out of the Italy view.
+    await expect(
+      cities.getByRole('link', { name: 'Communities in Bogota, Bogota D.C.' }),
+    ).toHaveCount(0);
   });
 });
 
