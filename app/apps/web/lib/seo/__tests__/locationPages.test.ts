@@ -488,8 +488,10 @@ describe('lib/seo locationPages — content-rich flagship/start-local source (TA
     // in — the data that drives "active locale's country/area first".
     const enArea = localeCountryCodes('en');
     expect(enArea.has('US')).toBe(true);
-    // London's snapshot row resolves to Canada (London, Ontario) — the area
-    // is data-derived, so the code reflects the resolved country.
+    // Slug-collision cities resolve deterministically (TASK-484): London
+    // resolves to England (GB), never London, Ontario (CA) — Canada stays
+    // in the area via Toronto + Vancouver.
+    expect(enArea.has('GB')).toBe(true);
     expect(enArea.has('CA')).toBe(true);
     const deArea = localeCountryCodes('de');
     expect(deArea.has('DE')).toBe(true);

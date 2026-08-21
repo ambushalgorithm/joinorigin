@@ -47,23 +47,23 @@ import {
   cityDisplayName,
   citySlug,
   contentRichCities,
+  countryLocalizedName,
   countrySlug,
   findCityBySlug,
   findCountry,
-  findCountryBySlug,
   findRegion,
   getFlagshipConfig,
   groupTypeLabelForLocale,
   isGroupTypeKey,
   loadLocationSnapshot,
   localeCountryCodes,
+  regionLocalizedName,
   regionSlug,
   type GroupTypeKey,
 } from './locationData';
 import type { PageKind } from './locationGates';
 import {
   LOCATION_HUB_PATH,
-  indexableLocationEntries,
   isWarmSetEntry,
   locationPageEntries,
   type LocationPageEntry,
@@ -251,17 +251,6 @@ export function locationMetadata(entry: LocationPageEntry): Metadata {
 export type HubDirectorySection =
   'countries' | 'regions' | 'cities' | 'communityTypes' | 'eventIdeas';
 
-/** Section key for a directory entry kind (variants = community types,
- *  ideas = event ideas). */
-const SECTION_FOR_KIND: Record<PageKind, HubDirectorySection | undefined> = {
-  hub: undefined,
-  country: 'countries',
-  region: 'regions',
-  city: 'cities',
-  variant: 'communityTypes',
-  ideas: 'eventIdeas',
-};
-
 const SECTION_ORDER: readonly HubDirectorySection[] = [
   'countries',
   'regions',
@@ -283,14 +272,32 @@ export interface HubDirectoryEntry {
    *  geographic scope used for IP-country + locale-language ordering
    *  (variants/ideas resolve via their associated city's country). */
   countryIso2?: string;
+  /**
+   * Searchable text (TASK-484) — the ACTIVE locale display name + the EN
+   * display name + the dataset country name + the dataset region name
+   * (`locations.json` `names[locale]`, EN fallback). The hub search matches
+   * this field so "Colombia" / "Italy" resolve their country cards and the
+   * cities/community-types/event-ideas scoped to them.
+   */
+  searchText: string;
 }
 
 /**
- * The complete browsable directory for the `/location` hub — every
- * indexable location page (countries, regions, cities, group-type variants,
- * ideas) derived from the registry, split into 5 sections (TASK-480). The
- * hub view filters this client-side by keyword WITHIN each section; no
- * separate index is invented (design §8.4).
+ * The complete browsable directory for the `/location` hub — the full
+ * CONTENT-RICH inventory (TASK-484), tier-irrelevant and noindex included:
+ * every country/region hosting a content-rich city, every content-rich city
+ * (56, incl. Copenhagen; the 7 slug-collision duplicates resolve
+ * deterministically to their intended rows via
+ * `CONTENT_RICH_CITY_GEONAME_IDS`), every group-type variant (56 × 5) and
+ * every event-ideas page (56) — split into 5 sections (TASK-480). The hub
+ * view filters this client-side by keyword WITHIN each section; no separate
+ * index is invented (design §8.4).
+ *
+ * Membership (TASK-484): countries = distinct countries of content-rich
+ * cities (~38), regions = distinct regions (~54), cities = 56, community
+ * types = 280, event ideas = 56 (total ~485) — sourced from the content-rich
+ * set, NOT the indexable set, so Tier-3/noindex pages (e.g. Copenhagen) are
+ * browsable in the directory even though they never enter the sitemap.
  *
  * Ordering (TASK-480): within every section, entries whose associated
  * country matches the visitor's IP-country come first, then entries whose
@@ -300,41 +307,166 @@ export interface HubDirectoryEntry {
  * locale-language → alphabetical.
  *
  * Locale-aware (TASK-449): each card's name resolves from the locale
- * surface (`indexableLocationEntries(locale)`) so Browse-locations card
- * names (country/region/city) render in the active locale when committed
- * content exists, EN fallback otherwise — the EN directory always stays
- * complete. Locale-aware paths (TASK-469): every card href points at the
- * ACTIVE locale surface (`/${locale}/location/...`) — all 21 locale trees
- * exist — never the EN-canonical `/en/...` (localizePath passes
- * already-prefixed hrefs through idempotently, so `/en` here would navigate
- * a non-EN hub visitor to the English surface).
+ * surface (`locationPageEntries(locale)`) so Browse-locations card names
+ * render in the active locale when committed content exists, EN fallback
+ * otherwise — the EN directory always stays complete. Locale-aware paths
+ * (TASK-469): every card href points at the ACTIVE locale surface
+ * (`/${locale}/location/...`) — all 21 locale trees exist — never the
+ * EN-canonical `/en/...` (localizePath passes already-prefixed hrefs through
+ * idempotently, so `/en` here would navigate a non-EN hub visitor to the
+ * English surface).
  */
 export function hubDirectoryEntries(
   locale: Locale = 'en',
   ipCountry: string | null = null,
 ): HubDirectoryEntry[] {
-  const localizedNames = new Map<string, string>();
-  for (const entry of indexableLocationEntries(locale)) {
-    if (entry.kind === 'hub') continue;
-    localizedNames.set(locationEntryKey(entry), stripBrand(entry.title));
+  // Registry titles/names: the EN canonical surface is the source of truth;
+  // the ACTIVE locale surface contributes committed localized titles. Keys
+  // are locale-independent (kind + params), so every content-rich card
+  // resolves its localized name when the locale surface carries the page
+  // and falls back to EN otherwise.
+  const enEntries = new Map<string, LocationPageEntry>();
+  for (const entry of locationPageEntries()) {
+    if (entry.kind !== 'hub') enEntries.set(locationEntryKey(entry), entry);
   }
+  const localeEntries = new Map<string, LocationPageEntry>();
+  for (const entry of locationPageEntries(locale)) {
+    if (entry.kind !== 'hub') localeEntries.set(locationEntryKey(entry), entry);
+  }
+
   const localeCountries = localeCountryCodes(locale);
-  return indexableLocationEntries()
-    .filter((entry) => entry.kind !== 'hub')
-    .map((entry) => ({
-      name: localizedNames.get(locationEntryKey(entry)) ?? stripBrand(entry.title),
-      path: forwardToLocaleSurface(entry.path, locale),
-      kind: entry.kind,
-      section: SECTION_FOR_KIND[entry.kind] ?? 'cities',
-      countryIso2: findCountryBySlug(entry.params.country ?? '')?.iso2,
-    }))
-    .sort(
-      (a, b) =>
-        SECTION_ORDER.indexOf(a.section) - SECTION_ORDER.indexOf(b.section) ||
-        rankDirectoryEntry(a, localeCountries, ipCountry) -
-          rankDirectoryEntry(b, localeCountries, ipCountry) ||
-        a.name.localeCompare(b.name),
+  const entries: HubDirectoryEntry[] = [];
+  const seenCountryKeys = new Set<string>();
+  const seenRegionKeys = new Set<string>();
+
+  for (const city of contentRichCities()) {
+    const region = findRegion(city.regionId);
+    const country = findCountry(city.countryIso2);
+    if (!region || !country) continue;
+
+    // URL segments honor flagship overrides (same rule as `cityLocationPath`).
+    const flagship = getFlagshipConfig(citySlug(city));
+    const citySlugValue = flagship?.slug ?? citySlug(city);
+    const regionSeg = flagship?.regionSlug ?? regionSlug(region);
+    const countrySeg = flagship?.countrySlug ?? countrySlug(country);
+
+    const countryName = countryLocalizedName(country, locale);
+    const regionName = regionLocalizedName(region, locale);
+
+    // Countries — one card per distinct country hosting a content-rich city.
+    const countryKey = `country:${countrySeg}///`;
+    if (!seenCountryKeys.has(countryKey)) {
+      seenCountryKeys.add(countryKey);
+      const card = contentRichDirectoryCard(
+        enEntries.get(countryKey),
+        localeEntries.get(countryKey),
+        locale,
+        'country',
+        'countries',
+        country.iso2,
+        [countryName],
+      );
+      if (card) entries.push(card);
+    }
+
+    // Regions — one card per distinct region hosting a content-rich city.
+    const regionKey = `region:${countrySeg}/${regionSeg}//`;
+    if (!seenRegionKeys.has(regionKey)) {
+      seenRegionKeys.add(regionKey);
+      const card = contentRichDirectoryCard(
+        enEntries.get(regionKey),
+        localeEntries.get(regionKey),
+        locale,
+        'region',
+        'regions',
+        country.iso2,
+        [countryName, regionName],
+      );
+      if (card) entries.push(card);
+    }
+
+    // Cities — one card per content-rich city (intended rows only).
+    // Registry key shape: `city:{country}/{region}/{city}/` (kind + params,
+    // trailing empty variant segment).
+    const cityKey = `city:${countrySeg}/${regionSeg}/${citySlugValue}/`;
+    const cityCard = contentRichDirectoryCard(
+      enEntries.get(cityKey),
+      localeEntries.get(cityKey),
+      locale,
+      'city',
+      'cities',
+      country.iso2,
+      [countryName, regionName],
     );
+    if (cityCard) entries.push(cityCard);
+
+    // Community types — 5 group-type variants per content-rich city.
+    for (const type of GROUP_TYPES) {
+      const variantKey = `variant:${countrySeg}/${regionSeg}/${citySlugValue}/${type.key}`;
+      const card = contentRichDirectoryCard(
+        enEntries.get(variantKey),
+        localeEntries.get(variantKey),
+        locale,
+        'variant',
+        'communityTypes',
+        country.iso2,
+        [countryName, regionName],
+      );
+      if (card) entries.push(card);
+    }
+
+    // Event ideas — the ideas page per content-rich city.
+    const ideasKey = `ideas:${countrySeg}/${regionSeg}/${citySlugValue}/${IDEA_VARIANT}`;
+    const ideasCard = contentRichDirectoryCard(
+      enEntries.get(ideasKey),
+      localeEntries.get(ideasKey),
+      locale,
+      'ideas',
+      'eventIdeas',
+      country.iso2,
+      [countryName, regionName],
+    );
+    if (ideasCard) entries.push(ideasCard);
+  }
+
+  return entries.sort(
+    (a, b) =>
+      SECTION_ORDER.indexOf(a.section) - SECTION_ORDER.indexOf(b.section) ||
+      rankDirectoryEntry(a, localeCountries, ipCountry) -
+        rankDirectoryEntry(b, localeCountries, ipCountry) ||
+      a.name.localeCompare(b.name),
+  );
+}
+
+/**
+ * Build one content-rich directory card from its registry entries. The EN
+ * canonical entry is the source of truth for the href (forwarded to the
+ * ACTIVE locale surface) and the EN name; the locale-surface entry (when
+ * present) supplies the localized name. `searchParts` carry the dataset
+ * country/region names for the `searchText` enrichment (TASK-484). Returns
+ * `undefined` when the EN registry lacks the entry — never emit a card for a
+ * path that does not exist.
+ */
+function contentRichDirectoryCard(
+  enEntry: LocationPageEntry | undefined,
+  localeEntry: LocationPageEntry | undefined,
+  locale: Locale,
+  kind: PageKind,
+  section: HubDirectorySection,
+  countryIso2: string,
+  searchParts: string[],
+): HubDirectoryEntry | undefined {
+  if (!enEntry) return undefined;
+  const active = localeEntry ?? enEntry;
+  const name = stripBrand(active.title);
+  return {
+    name,
+    path: forwardToLocaleSurface(enEntry.path, locale),
+    kind,
+    section,
+    countryIso2,
+    searchText: [name, stripBrand(enEntry.title), ...searchParts].filter(Boolean).join(' '),
+  };
 }
 
 /**

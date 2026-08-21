@@ -911,12 +911,13 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
     expect(cityNames[0]).toBe('Communities in Berlin');
     expect(cityNames[1]).toBe('Communities in Munich, Bavaria');
     // ...then the EN-locale-area cities, then the rest, alphabetical overall.
-    // (Only Tier-1 regions are indexable — Berlin is the sole German region.)
+    // TASK-484: the regions section is the full content-rich region set (54)
+    // — with a DE IP the German regions (Bavaria + Berlin) lead alphabetically.
     const regionNames = deIp
       .filter((entry) => entry.section === 'regions')
       .map((entry) => entry.name);
-    expect(regionNames[0]).toBe('Communities in Berlin, Germany');
-    expect(regionNames[0]).toContain('Berlin');
+    expect(regionNames[0]).toBe('Communities in Bavaria, Germany');
+    expect(regionNames[1]).toBe('Communities in Berlin, Germany');
     // Community types + event ideas rank via their city's country.
     const types = deIp
       .filter((entry) => entry.section === 'communityTypes')
@@ -1156,6 +1157,111 @@ describe('lib/seo locationView — TASK-482 flagship/start-local + browse-locati
       expect(data.siblingCities.map((city) => city.path)).toEqual(
         flagships.map((city) => city.path),
       );
+    }
+  });
+});
+
+describe('lib/seo locationView — TASK-484 complete content-rich inventory + searchText', () => {
+  const SECTIONS = ['countries', 'regions', 'cities', 'communityTypes', 'eventIdeas'] as const;
+
+  it('membership = the full content-rich set (noindex included), NOT the indexable set', () => {
+    const directory = hubDirectoryEntries('en');
+    // Countries = distinct countries of content-rich cities; Regions =
+    // distinct regions; Cities = 56 content-rich cities (incl. Copenhagen);
+    // Community types = 56 × 5; Event ideas = 56. Total ≈ 485.
+    const counts = Object.fromEntries(
+      SECTIONS.map((section) => [
+        section,
+        directory.filter((entry) => entry.section === section).length,
+      ]),
+    );
+    expect(counts).toEqual({
+      countries: 38,
+      regions: 54,
+      cities: 56,
+      communityTypes: 280,
+      eventIdeas: 56,
+    });
+    expect(directory).toHaveLength(38 + 54 + 56 + 280 + 56);
+    // Tier-3/noindex content is browsable — Copenhagen's city + variants + ideas.
+    const copenhagenEntries = directory.filter((entry) => entry.path.includes('/copenhagen'));
+    expect(copenhagenEntries).toHaveLength(7); // city + 5 variants + ideas
+  });
+
+  it('city cards are the 56 intended rows — the 7 slug-collision duplicates are dropped', () => {
+    const cityPaths = hubDirectoryEntries('en')
+      .filter((entry) => entry.section === 'cities')
+      .map((entry) => entry.path);
+    expect(cityPaths).toHaveLength(56);
+    expect(new Set(cityPaths).size).toBe(56);
+    // The content-rich rows resolve deterministically to their intended
+    // countries — never the first-match duplicate (London, Ontario; Madrid,
+    // Colombia; Los Ángeles, Chile; San Francisco, El Salvador; Vancouver,
+    // Washington; Barcelona, Venezuela; New Taipei City).
+    expect(cityPaths).toContain('/en/location/united-kingdom/england/london');
+    expect(cityPaths).toContain('/en/location/spain/madrid/madrid');
+    expect(cityPaths).toContain('/en/location/united-states/california/los-angeles');
+    expect(cityPaths).toContain('/en/location/united-states/california/san-francisco');
+    expect(cityPaths).toContain('/en/location/canada/british-columbia/vancouver');
+    expect(cityPaths).toContain('/en/location/spain/catalonia/barcelona');
+    expect(cityPaths).toContain('/en/location/taiwan/taiwan/taipei');
+    for (const dropped of [
+      '/en/location/canada/ontario/london',
+      '/en/location/colombia/cundinamarca/madrid',
+      '/en/location/chile/biobio/los-angeles',
+      '/en/location/el-salvador/morazan/san-francisco',
+      '/en/location/united-states/washington/vancouver',
+      '/en/location/venezuela/anzoategui/barcelona',
+      '/en/location/taiwan/taipei/taipei',
+    ]) {
+      expect(cityPaths).not.toContain(dropped);
+    }
+  });
+
+  it('every directory card carries a searchText with EN + localized country/region names', () => {
+    const directory = hubDirectoryEntries('en');
+    expect(directory.length).toBeGreaterThan(0);
+    for (const entry of directory) {
+      expect(entry.searchText.length).toBeGreaterThan(0);
+      // The active-locale name + EN name are always present.
+      expect(entry.searchText).toContain(entry.name);
+    }
+    // EN surface — dataset country/region names let "Colombia" / "Italy"
+    // resolve their cities, community types, and event ideas.
+    const bogotaIdeas = directory.find(
+      (entry) => entry.kind === 'ideas' && entry.name.includes('Bogota'),
+    );
+    expect(bogotaIdeas?.searchText).toContain('Colombia');
+    const milanCity = directory.find(
+      (entry) => entry.section === 'cities' && entry.name.includes('Milan'),
+    );
+    expect(milanCity?.searchText).toContain('Italy');
+    expect(milanCity?.searchText).toContain('Lombardy');
+  });
+
+  it('searchText uses the ACTIVE locale dataset names (names[locale], EN fallback)', () => {
+    const deDirectory = hubDirectoryEntries('de');
+    const berlinCity = deDirectory.find(
+      (entry) => entry.section === 'cities' && entry.name.includes('Berlin'),
+    );
+    expect(berlinCity).toBeDefined();
+    expect(berlinCity?.searchText).toContain('Deutschland');
+    expect(berlinCity?.searchText).toContain('Berlin');
+    // EN name is always part of the searchable text.
+    expect(berlinCity?.searchText).toContain('Communities in Berlin');
+  });
+
+  it('membership is identical across locale surfaces (paths forward to the ACTIVE surface)', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const directory = hubDirectoryEntries(locale);
+      expect(directory).toHaveLength(484);
+      for (const entry of directory) {
+        expect(entry.path).toMatch(new RegExp(`^/${locale}/location/`));
+        // Non-EN surfaces never leak the EN-canonical /en/ tree.
+        if (locale !== 'en') {
+          expect(entry.path).not.toMatch(/^\/en\//);
+        }
+      }
     }
   });
 });

@@ -10,6 +10,14 @@ import {
   slugify,
   tierForCitySlug,
 } from '../locationData';
+import {
+  CONTENT_RICH_CITY_GEONAME_IDS,
+  cityLocalizedName,
+  contentRichCities,
+  countryLocalizedName,
+  findCityBySlug,
+  regionLocalizedName,
+} from '../locationData';
 import { loadLocationSnapshot } from '../locationData';
 
 /**
@@ -123,5 +131,44 @@ describe('lib/seo locationData — city seed copy model', () => {
     );
     const overlap = [...nycWords].filter((word) => berlinWords.has(word));
     expect(overlap).toEqual([]);
+  });
+});
+
+describe('lib/seo locationData — deterministic content-rich city resolution (TASK-484)', () => {
+  it('findCityBySlug resolves the 7 slug-collision cities to their intended rows', () => {
+    expect(findCityBySlug('london')?.countryIso2).toBe('GB');
+    expect(findCityBySlug('london')?.id).toBe(2643743);
+    expect(findCityBySlug('madrid')?.countryIso2).toBe('ES');
+    expect(findCityBySlug('san-francisco')?.countryIso2).toBe('US');
+    expect(findCityBySlug('los-angeles')?.countryIso2).toBe('US');
+    expect(findCityBySlug('vancouver')?.countryIso2).toBe('CA');
+    expect(findCityBySlug('barcelona')?.countryIso2).toBe('ES');
+    expect(findCityBySlug('taipei')?.countryIso2).toBe('TW');
+  });
+
+  it('every content-rich slug in the pin map resolves (no stale ids)', () => {
+    const snapshot = loadLocationSnapshot();
+    for (const geonameId of Object.values(CONTENT_RICH_CITY_GEONAME_IDS)) {
+      const city = snapshot.cities.find((c) => c.id === geonameId);
+      expect(city).toBeDefined();
+      expect(city?.id).toBe(geonameId);
+    }
+    // contentRichCities() returns exactly one row per slug (never the dups).
+    const cities = contentRichCities();
+    expect(cities).toHaveLength(56);
+    expect(new Set(cities.map((c) => c.id)).size).toBe(56);
+  });
+
+  it('localized name helpers fall back to EN when a locale name is missing', () => {
+    const snapshot = loadLocationSnapshot();
+    const country = snapshot.countries.find((c) => c.iso2 === 'DE');
+    const region = snapshot.regions.find((r) => r.id === 'de-16');
+    const city = snapshot.cities.find((c) => c.id === 2950159); // Berlin
+    expect(country && region && city).toBeDefined();
+    expect(countryLocalizedName(country!, 'de')).toBe('Deutschland');
+    expect(countryLocalizedName(country!, 'en')).toBe('Germany');
+    expect(regionLocalizedName(region!, 'de')).toBe('Berlin');
+    expect(cityLocalizedName(city!, 'en')).toBe('Berlin');
+    expect(cityLocalizedName(city!, 'en').length).toBeGreaterThan(0);
   });
 });
