@@ -102,6 +102,60 @@ describe('LocationView language toggle (TASK-477)', () => {
   });
 });
 
+describe('LocationView hub intro translation (TASK-491)', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    mockPathname = '/en/location';
+  });
+
+  it('renders the translated hubIntro for the hub location-intro block', () => {
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const intro = screen.getByTestId('location-intro');
+    expect(intro).toHaveTextContent(
+      'Every country, region, city, community type, and event idea on the network',
+    );
+  });
+
+  it('re-translates the hub intro + hero lead when toggled to de', async () => {
+    const user = userEvent.setup();
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    renderWithI18n(<ToggleHarness data={data} />, 'en');
+
+    expect(screen.getByTestId('location-intro')).toHaveTextContent(
+      'Every country, region, city, community type, and event idea on the network',
+    );
+
+    await user.click(screen.getByText('switch-de'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location-intro')).toHaveTextContent(
+        'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+      );
+    });
+    // The hero lead re-translates through the active dictionary too.
+    expect(
+      screen.getByText(
+        'Entdecke Communities in Städten auf der ganzen Welt — Startup-, Kreativ-, Politik-, Meetup- und Kleinunternehmens-Gruppen.',
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('falls back gracefully when the hub intro key is absent (non-hub kinds)', () => {
+    // City pages have authored prose — the hub chrome keys must not leak.
+    const data = buildLocationViewData(
+      resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' })!,
+      'en',
+    );
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const intro = screen.getByTestId('location-intro');
+    expect(intro).toHaveTextContent('Berlin');
+    expect(intro.textContent).not.toContain('seoContent.location.hubIntro');
+  });
+});
+
 describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
   const DIRECTORY_SECTIONS = [
     { key: 'countries', label: 'Countries' },
@@ -116,14 +170,37 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
     mockPathname = '/en/location';
   });
 
-  it('renders the inventory banner stat with the total count and localized label', () => {
+  it('renders the inventory banner band: title, stat, explainer, and explore links (TASK-491)', () => {
     const data = buildLocationViewData(hubEntry()!, 'en');
     const total = data.hubDirectory?.length ?? 0;
     renderWithI18n(<LocationView data={data} />, 'en');
 
+    // SectionTitle heading (mirrors the /community "Join the network" band).
+    expect(screen.getByRole('heading', { level: 2, name: 'Join the network' })).toBeInTheDocument();
+
+    // CountUpStat with the total count + localized label.
     const banner = screen.getByTestId('location-inventory-banner');
     expect(banner).toHaveTextContent(String(total));
     expect(banner).toHaveTextContent('Places and Communities');
+
+    // BodyCopy explainer.
+    expect(
+      screen.getByText(
+        'Browse every place and community on the network. Find the one that fits you, or start one in your city.',
+      ),
+    ).toBeInTheDocument();
+
+    // ExploreLinks row — Locations/Guides/Community accent links.
+    const explore = within(screen.getByTestId('location-inventory-explore'));
+    expect(explore.getByRole('link', { name: 'Locations' })).toHaveAttribute(
+      'href',
+      '/en/location',
+    );
+    expect(explore.getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/en/guides');
+    expect(explore.getByRole('link', { name: 'Community' })).toHaveAttribute(
+      'href',
+      '/en/community',
+    );
   });
 
   it('shows the total content-rich inventory next to the Browse locations title', () => {
