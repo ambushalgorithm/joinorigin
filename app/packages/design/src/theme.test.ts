@@ -10,7 +10,7 @@ describe('design tokens', () => {
   });
 
   it('uses brand-consistent starter values', () => {
-    expect(theme.colors.primary).toBe('#5D7CFF');
+    expect(theme.colors.primary).toBe('#5977f5');
     expect(theme.colors.background).toBe('#0A1022');
     expect(theme.spacing.md).toBe(16);
     expect(theme.radius.md).toBe(10);
@@ -27,9 +27,9 @@ describe('design tokens', () => {
     expect(theme.colors.border).toBe('#2C3A6E');
     expect(theme.colors.borderStrong).toBe('#3E4F8F');
     // Brand core.
-    expect(theme.colors.primary).toBe('#5D7CFF');
+    expect(theme.colors.primary).toBe('#5977f5');
     expect(theme.colors.primaryHover).toBe('#4667F2');
-    expect(theme.colors.primarySoft).toBe('#9DB4FF');
+    expect(theme.colors.primarySoft).toBe('#cfdaff');
     expect(theme.colors.primaryContrast).toBe('#FFFFFF');
     // Text.
     expect(theme.colors.text).toBe('#F5F8FF');

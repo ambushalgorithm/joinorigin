@@ -18,9 +18,9 @@ export const colors = {
   borderStrong: '#3E4F8F', // strong borders, focus-companion hairlines
 
   // Brand core
-  primary: '#5D7CFF', // electric indigo
+  primary: '#5977f5', // electric indigo
   primaryHover: '#4667F2', // button/CTA hover
-  primarySoft: '#9DB4FF', // secondary gradient stop
+  primarySoft: '#cfdaff', // secondary gradient stop
   primaryContrast: '#FFFFFF', // text on primary fills
 
   // Text

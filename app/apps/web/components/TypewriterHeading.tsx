@@ -78,6 +78,7 @@ const Accent = styled.span<{ $isVisible: boolean }>`
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-transform: capitalize;
+  text-decoration: underline;
   visibility: ${({ $isVisible = true }) => ($isVisible ? 'visible' : 'hidden')};
   font-size: 68px;
   line-height: 86px;
@@ -101,7 +102,7 @@ const Accent = styled.span<{ $isVisible: boolean }>`
 const Caret = styled.span<{ $reduced: boolean }>`
   display: inline-block;
   margin-inline-start: 2px;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.textMuted};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   animation: ${({ $reduced }) =>
     $reduced
@@ -109,6 +110,23 @@ const Caret = styled.span<{ $reduced: boolean }>`
       : css`
           ${blink} 1s steps(1) infinite
         `};
+  font-size: 68px;
+  line-height: 86px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    font-size: 68px;
+    line-height: 86px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    font-size: 56px;
+    line-height: 64px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    font-size: 48px;
+    line-height: 56px;
+  }
 `;
 
 export function TypewriterHeading() {

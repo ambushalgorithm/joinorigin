@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 
-import { HERO_RADIAL_GLOW_1, HERO_RADIAL_GLOW_2, HERO_VIGNETTE } from './landingTokens';
+import { HERO_RADIAL_GLOW_1, HERO_RADIAL_GLOW_2, HERO_VIGNETTE, BRAND_MESH } from './landingTokens';
 import HeroLeft from './HeroLeft';
 import OrbitViz from './OrbitViz';
 
@@ -22,6 +22,7 @@ import OrbitViz from './OrbitViz';
  */
 
 const HeroSection = styled.section`
+  background: ${BRAND_MESH};
   position: relative;
   overflow: hidden;
   min-height: calc(100svh - 72px);
