@@ -419,7 +419,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — the Malecón, Barranco plazas, cevicherías, cultural centers, mercados — exists in Lima. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — the Malecón, Barranco plazas, cevicherías, cultural centers, mercados — exists in Lima. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Lima?',

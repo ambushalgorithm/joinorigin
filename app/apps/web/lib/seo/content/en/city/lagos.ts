@@ -423,7 +423,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — Tarkwa Bay, Lekki Conservation Centre, Yaba co-working hubs, Victoria Island rooftops, market halls — exists in Lagos. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — Tarkwa Bay, Lekki Conservation Centre, Yaba co-working hubs, Victoria Island rooftops, market halls — exists in Lagos. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Lagos?',

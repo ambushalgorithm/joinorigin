@@ -421,7 +421,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — the Botanical Garden, Parque Arví, El Poblado cafés, Comuna 13, library parks — exists in Medellín. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — the Botanical Garden, Parque Arví, El Poblado cafés, Comuna 13, library parks — exists in Medellín. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Medellín?',

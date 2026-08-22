@@ -450,7 +450,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — park pavilions, food halls, chess clubs, courtyard ateliers, banyas — exists in Moscow. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — park pavilions, food halls, chess clubs, courtyard ateliers, banyas — exists in Moscow. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Moscow?',

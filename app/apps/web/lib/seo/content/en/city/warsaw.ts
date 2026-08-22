@@ -446,7 +446,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — riverbank cafés, milk bars, food halls, board game cafés, community centres — exists in Warsaw. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — riverbank cafés, milk bars, food halls, board game cafés, community centres — exists in Warsaw. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Warsaw?',

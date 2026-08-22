@@ -420,7 +420,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — Shilin night market, Daan Forest Park, Huashan 1914, Yongkang Street cafés — exists in Taipei. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — Shilin night market, Daan Forest Park, Huashan 1914, Yongkang Street cafés — exists in Taipei. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Taipei?',
