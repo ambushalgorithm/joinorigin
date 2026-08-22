@@ -594,6 +594,40 @@
         "keep-a-community-active": "Houd een community actief",
         "hybrid-communities": "Draai hybride community's",
         "moderation": "Modereer je community"
+      },
+      "countryFacts": "Feiten over het land",
+      "regionFacts": "Feiten over de regio",
+      "factsTemplates": {
+        "population": "Bevolking: {{value}}",
+        "capital": "Hoofdstad: {{value}}",
+        "languages": "Talen: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "Onderdeel van {{country}}"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "Hoe vind ik communities in {{country}}?",
+          "communitiesAnswer": "De /location-hub vermeldt alle communities in {{country}}. Verken de communitytypen — startup, creatief, politiek, meetup en klein bedrijf — ook in {{cities}}.",
+          "populationQuestion": "Hoeveel mensen wonen er in {{country}}?",
+          "populationAnswer": "De dataset registreert een bevolking van {{population}} voor {{country}}.",
+          "capitalQuestion": "Wat is de hoofdstad van {{country}}?",
+          "capitalAnswer": "De hoofdstad van {{country}} is {{capital}}.",
+          "languageQuestion": "Welke talen worden er in {{country}} gesproken?",
+          "languageAnswer": "De talen die in {{country}} worden gesproken, omvatten {{languages}}.",
+          "operationQuestion": "Is JoinOrigin actief in {{country}}?",
+          "operationAnswer": "Ja. JoinOrigin heeft geen lokale kantoren. Het platform helpt mensen om overal in {{country}} communities te vinden of te starten."
+        },
+        "region": {
+          "communitiesQuestion": "Hoe vind ik communities in {{region}}?",
+          "communitiesAnswer": "Verken de stadspagina's in {{region}} — {{cities}} — of start je eigen community. De /location-hub vermeldt alle communitytypen in {{region}}.",
+          "countryQuestion": "In welk land ligt {{region}}?",
+          "countryAnswer": "{{region}} is onderdeel van {{country}}, met als hoofdstad {{capital}}.",
+          "languageQuestion": "Welke talen worden er in {{region}} gesproken?",
+          "languageAnswer": "De talen die in {{region}} worden gesproken, omvatten {{languages}}.",
+          "operationQuestion": "Is JoinOrigin actief in {{region}}?",
+          "operationAnswer": "Ja. JoinOrigin heeft geen lokale kantoren. Het platform helpt mensen om overal in {{region}} communities te vinden of te starten."
+        }
       }
     },
     "groupTypes": {

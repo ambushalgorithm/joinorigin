@@ -381,6 +381,18 @@ export function LocationView({ data }: { data: LocationViewData }) {
   const directorySectionTitle = (section: HubDirectorySection): string =>
     t(`seoContent.location.directorySectionTitles.${section}`);
 
+  // TASK-496 — the facts data-block label is kind-appropriate: "Country
+  // facts" on country pages, "Region facts" on region pages, and "City
+  // facts" on city/variant/ideas pages (never a wrong-kind label). The
+  // points themselves are authored for committed content and dataset-driven
+  // (population/capital/languages) for un-authored country/region pages.
+  const factsTitle =
+    data.kind === 'country'
+      ? t('seoContent.location.countryFacts')
+      : data.kind === 'region'
+        ? t('seoContent.location.regionFacts')
+        : t('seoContent.location.cityFacts');
+
   return (
     <MenuPageShell
       hero={{
@@ -472,11 +484,15 @@ export function LocationView({ data }: { data: LocationViewData }) {
             </Section>
           </Reveal>
 
-          {/* City facts, renders on routes like: /en/location/germany/berlin/berlin OR /en/location/germany/berlin/berlin/berlin */}
+          {/* City facts, renders on routes like: /en/location/germany/berlin/berlin OR /en/location/germany/berlin/berlin/berlin
+              TASK-496 — the label is kind-appropriate ("Country facts" /
+              "Region facts" / "City facts") and the points are authored or
+              dataset-driven (population/capital/languages), so EVERY
+              country/region/city page renders this data block. */}
           {data.dataPoints.length > 0 ? (
             <Reveal>
               <Section>
-                <SectionTitle>{t('seoContent.location.cityFacts')}</SectionTitle>
+                <SectionTitle>{factsTitle}</SectionTitle>
                 <BulletList data-testid="location-data-points">
                   {data.dataPoints.map((point) => (
                     <ListItem key={point}>{point}</ListItem>
@@ -741,21 +757,25 @@ export function LocationView({ data }: { data: LocationViewData }) {
         </SectionBand>
       ) : null}
 
-      {/* Country mesh (TASK-490): content-rich cities + regions in the
-          country, rendered as a content section analogous to "Communities in
+      {/* Country mesh (TASK-490, TASK-496): content-rich cities + regions in
+          the country, rendered as a content section analogous to "Communities in
           nearby cities". Data-driven for EVERY /location/<country> page —
-          tier-irrelevant (un-authored Tier-3 pages stay noindex). The mesh
-          data (countryName + dataset facts) resolves for ALL countries; the
-          section renders only when the country hosts content-rich cities.
-          Card names are the localized dataset names (names[locale], EN
-          fallback) and every card href is registry-exact on the ACTIVE
-          locale surface. */}
+          tier-irrelevant (un-authored Tier-3 pages stay noindex). The section
+          renders only when the country hosts content-rich cities. Card names
+          are the localized dataset names (names[locale], EN fallback) and every
+          card href is registry-exact on the ACTIVE locale surface. TASK-496 —
+          the section heading IS the localized country name (countryMesh.countryName,
+          previously computed but never rendered) and the dataset facts
+          (countryMesh.facts) render in the "Country facts" data block above
+          (same countryFactsFor source). */}
       {data.kind === 'country' && data.countryMesh && data.countryMesh.cities.length > 0 ? (
         <SectionBand variant="plain">
           <PageContainer>
             <Reveal>
               <Section data-testid="location-country-mesh">
-                <SectionTitle>{t('seoContent.location.nearbyCities')}</SectionTitle>
+                <SectionTitle data-testid="location-country-name">
+                  {data.countryMesh.countryName}
+                </SectionTitle>
                 <SubTitle>{t('seoContent.location.directorySectionTitles.cities')}</SubTitle>
                 <CardGrid data-testid="location-country-cities">
                   {data.countryMesh.cities.map((city) => (
@@ -782,6 +802,44 @@ export function LocationView({ data }: { data: LocationViewData }) {
                           style={{ color: 'inherit', textDecoration: 'none' }}
                         >
                           {region.name}
+                        </Link>
+                      </CardTitle>
+                      <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
+                    </Card>
+                  ))}
+                </CardGrid>
+              </Section>
+            </Reveal>
+          </PageContainer>
+        </SectionBand>
+      ) : null}
+
+      {/* Region mesh (TASK-496): the data-driven content-rich equivalent of
+          the country mesh for EVERY /location/<country>/<region> page —
+          un-authored regions (e.g. /location/japan/osaka) included. The
+          section heading is the localized region name (regionMesh.regionName),
+          the city cards are the region's content-rich cities (registry-exact
+          paths — the "Communities in nearby cities" list) and the dataset
+          facts (regionMesh.facts) render in the "Region facts" data block
+          above. Renders only when the region hosts content-rich cities. */}
+      {data.kind === 'region' && data.regionMesh && data.regionMesh.cities.length > 0 ? (
+        <SectionBand variant="plain">
+          <PageContainer>
+            <Reveal>
+              <Section data-testid="location-region-mesh">
+                <SectionTitle data-testid="location-region-name">
+                  {data.regionMesh.regionName}
+                </SectionTitle>
+                <SubTitle>{t('seoContent.location.nearbyCities')}</SubTitle>
+                <CardGrid data-testid="location-region-cities">
+                  {data.regionMesh.cities.map((city) => (
+                    <Card key={city.path}>
+                      <CardTitle>
+                        <Link
+                          href={localizePath(city.path)}
+                          style={{ color: 'inherit', textDecoration: 'none' }}
+                        >
+                          {city.name}
                         </Link>
                       </CardTitle>
                       <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>

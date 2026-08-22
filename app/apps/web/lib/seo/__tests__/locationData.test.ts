@@ -15,9 +15,12 @@ import {
   cityLocalizedName,
   contentRichCities,
   contentRichCitiesInCountry,
+  contentRichCitiesInRegion,
   countryFactsFor,
   countryLocalizedName,
   findCityBySlug,
+  languageName,
+  languageNamesFor,
   regionsForCountry,
   regionLocalizedName,
 } from '../locationData';
@@ -211,5 +214,30 @@ describe('lib/seo locationData — country mesh helpers (TASK-490)', () => {
     expect(countryFactsFor('IT')?.languages.length).toBeGreaterThan(0);
     // Unknown ISO code → undefined (never fabricated facts).
     expect(countryFactsFor('ZZ')).toBeUndefined();
+  });
+});
+
+describe('lib/seo locationData — region mesh + language helpers (TASK-496)', () => {
+  it('contentRichCitiesInRegion filters the content-rich set by regionId', () => {
+    // Osaka region (jp-32) — one content-rich city.
+    expect(contentRichCitiesInRegion('jp-32').map((city) => city.asciiName)).toEqual(['Osaka']);
+    // Unknown region → empty (never invented rows).
+    expect(contentRichCitiesInRegion('zz-nope')).toEqual([]);
+  });
+
+  it('languageName maps ISO-639 codes (region suffixes stripped) to English names', () => {
+    expect(languageName('de')).toBe('German');
+    expect(languageName('es-PE')).toBe('Spanish');
+    expect(languageName('cmn')).toBe('Mandarin Chinese');
+    expect(languageName('en-SG')).toBe('English');
+    // Unknown codes fall back to the raw code — never a fabricated name.
+    expect(languageName('xyz')).toBe('xyz');
+  });
+
+  it('languageNamesFor joins mapped names with a comma', () => {
+    expect(languageNamesFor(['de'])).toBe('German');
+    expect(languageNamesFor(['es-PE', 'qu', 'ay'])).toBe('Spanish, Quechua, Aymara');
+    expect(languageNamesFor(['id', 'en', 'nl', 'jv'])).toBe('Indonesian, English, Dutch, Javanese');
+    expect(languageNamesFor([])).toBe('');
   });
 });

@@ -594,6 +594,40 @@
         "keep-a-community-active": "Jaga komunitas tetap aktif",
         "hybrid-communities": "Jalankan komunitas hibrida",
         "moderation": "Moderasi komunitas Anda"
+      },
+      "countryFacts": "Fakta negara",
+      "regionFacts": "Fakta wilayah",
+      "factsTemplates": {
+        "population": "Populasi: {{value}}",
+        "capital": "Ibu kota: {{value}}",
+        "languages": "Bahasa: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "Bagian dari {{country}}"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "Bagaimana cara menemukan komunitas di {{country}}?",
+          "communitiesAnswer": "Hub /location mencantumkan semua komunitas di {{country}}. Jelajahi jenis komunitas — startup, kreatif, politik, meetup, dan usaha kecil — termasuk di {{cities}}.",
+          "populationQuestion": "Berapa jumlah penduduk di {{country}}?",
+          "populationAnswer": "Dataset mencatat populasi {{population}} untuk {{country}}.",
+          "capitalQuestion": "Apa ibu kota {{country}}?",
+          "capitalAnswer": "Ibu kota {{country}} adalah {{capital}}.",
+          "languageQuestion": "Bahasa apa yang digunakan di {{country}}?",
+          "languageAnswer": "Bahasa yang digunakan di {{country}} meliputi {{languages}}.",
+          "operationQuestion": "Apakah JoinOrigin beroperasi di {{country}}?",
+          "operationAnswer": "Ya. JoinOrigin tidak memiliki kantor lokal. Platform ini membantu orang menemukan atau memulai komunitas di mana pun di {{country}}."
+        },
+        "region": {
+          "communitiesQuestion": "Bagaimana cara menemukan komunitas di {{region}}?",
+          "communitiesAnswer": "Jelajahi halaman kota di {{region}} — {{cities}} — atau mulai komunitas Anda sendiri. Hub /location mencantumkan semua jenis komunitas di {{region}}.",
+          "countryQuestion": "{{region}} berada di negara apa?",
+          "countryAnswer": "{{region}} adalah bagian dari {{country}} yang ibu kotanya {{capital}}.",
+          "languageQuestion": "Bahasa apa yang digunakan di {{region}}?",
+          "languageAnswer": "Bahasa yang digunakan di {{region}} meliputi {{languages}}.",
+          "operationQuestion": "Apakah JoinOrigin beroperasi di {{region}}?",
+          "operationAnswer": "Ya. JoinOrigin tidak memiliki kantor lokal. Platform ini membantu orang menemukan atau memulai komunitas di mana pun di {{region}}."
+        }
       }
     },
     "groupTypes": {

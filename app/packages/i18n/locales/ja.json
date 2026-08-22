@@ -594,6 +594,40 @@
         "keep-a-community-active": "コミュニティを活発に保つ",
         "hybrid-communities": "ハイブリッドコミュニティを運営する",
         "moderation": "コミュニティをモデレートする"
+      },
+      "countryFacts": "国の基本情報",
+      "regionFacts": "地域の基本情報",
+      "factsTemplates": {
+        "population": "人口: {{value}}",
+        "capital": "首都: {{value}}",
+        "languages": "言語: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "{{country}}の一部"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "{{country}}でコミュニティを見つけるにはどうすればよいですか?",
+          "communitiesAnswer": "/locationハブには{{country}}のすべてのコミュニティが掲載されています。スタートアップ、クリエイティブ、政治、ミートアップ、小規模ビジネスなど、{{cities}}のコミュニティタイプを探索できます。",
+          "populationQuestion": "{{country}}には何人の人が住んでいますか?",
+          "populationAnswer": "データセットによると、{{country}}の人口は{{population}}人です。",
+          "capitalQuestion": "{{country}}の首都はどこですか?",
+          "capitalAnswer": "{{country}}の首都は{{capital}}です。",
+          "languageQuestion": "{{country}}では何語が話されていますか?",
+          "languageAnswer": "{{country}}で話されている言語には{{languages}}が含まれます。",
+          "operationQuestion": "JoinOriginは{{country}}で活動していますか?",
+          "operationAnswer": "はい。JoinOriginには現地オフィスはありません。このプラットフォームは、{{country}}のどこでもコミュニティを見つけたり立ち上げたりするのに役立ちます。"
+        },
+        "region": {
+          "communitiesQuestion": "{{region}}でコミュニティを見つけるにはどうすればよいですか?",
+          "communitiesAnswer": "{{region}}の都市ページ — {{cities}} — を探索するか、自分でコミュニティを立ち上げてください。/locationハブには{{region}}のすべてのコミュニティタイプが掲載されています。",
+          "countryQuestion": "{{region}}はどの国にありますか?",
+          "countryAnswer": "{{region}}は{{country}}の一部で、首都は{{capital}}です。",
+          "languageQuestion": "{{region}}では何語が話されていますか?",
+          "languageAnswer": "{{region}}で話されている言語には{{languages}}が含まれます。",
+          "operationQuestion": "JoinOriginは{{region}}で活動していますか?",
+          "operationAnswer": "はい。JoinOriginには現地オフィスはありません。このプラットフォームは、{{region}}のどこでもコミュニティを見つけたり立ち上げたりするのに役立ちます。"
+        }
       }
     },
     "groupTypes": {

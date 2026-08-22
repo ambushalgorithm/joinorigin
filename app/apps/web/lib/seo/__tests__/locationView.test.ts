@@ -9,6 +9,7 @@ import {
   languagesFor,
   locationJsonLd,
   locationMetadata,
+  regionMeshFor,
   resolveLocationEntry,
   siblingCitiesFor,
   waitlistSource,
@@ -21,6 +22,7 @@ import {
   cityDisplayName,
   citySlug,
   contentRichCities,
+  findRegionBySlug,
   loadLocationSnapshot,
   localeCountryCodes,
   tierForCitySlug,
@@ -1550,5 +1552,286 @@ describe('lib/seo locationView — country mesh (TASK-490)', () => {
       variant: 'ideas',
     });
     expect(buildLocationViewData(ideas!).countryMesh).toBeUndefined();
+  });
+});
+
+describe('lib/seo locationView — country data points + FAQ templates (TASK-496)', () => {
+  it('un-authored country pages get dataset-driven "Country facts" data points', () => {
+    const colombia = resolveLocationEntry({ country: 'colombia' });
+    expect(colombia).toBeDefined();
+    const data = buildLocationViewData(colombia!);
+    // No authored content → the dataset facts (population/capital/languages)
+    // render through the localized facts templates — the same countryFactsFor
+    // source that feeds countryMesh.facts.
+    expect(data.dataPoints.length).toBeGreaterThanOrEqual(3);
+    expect(data.dataPoints[0]).toMatch(/^Population: /);
+    expect(data.dataPoints[0]).toContain('49,648,685');
+    expect(data.dataPoints[1]).toBe('Capital: Bogota');
+    expect(data.dataPoints[2]).toBe('Languages: Spanish');
+  });
+
+  it('authored country pages keep their authored data points (no dataset override)', () => {
+    const germany = resolveLocationEntry({ country: 'germany' });
+    const data = buildLocationViewData(germany!);
+    expect(data.dataPoints.length).toBe(4);
+    expect(data.dataPoints[0]).toBe('Population of roughly 83 million across 16 states.');
+    expect(data.dataPoints.some((p) => p.startsWith('Population: '))).toBe(false);
+  });
+
+  it('un-authored country pages get the data-driven FAQ template (5 entries, dataset values)', () => {
+    const colombia = resolveLocationEntry({ country: 'colombia' })!;
+    const data = buildLocationViewData(colombia);
+    expect(data.faq.length).toBe(5);
+    expect(data.faq[0]).toEqual({
+      question: 'How do I find communities in Colombia?',
+      answer:
+        'The /location hub lists every community in Colombia. Browse the group-type pages for startup, creative, political, meetup, and small business communities, including in Barranquilla, Bogotá, Medellín.',
+    });
+    // Dataset values flow into the template.
+    expect(data.faq[1].question).toBe('How many people live in Colombia?');
+    expect(data.faq[1].answer).toContain('49,648,685');
+    expect(data.faq[2].answer).toBe('The capital of Colombia is Bogota.');
+    expect(data.faq[3].answer).toBe('The languages spoken in Colombia include Spanish.');
+    expect(data.faq[4].answer).toContain('JoinOrigin has no local offices');
+  });
+
+  it('authored country FAQ stays the source of truth', () => {
+    const germany = resolveLocationEntry({ country: 'germany' })!;
+    const data = buildLocationViewData(germany);
+    expect(data.faq.length).toBe(3);
+    expect(data.faq[0].question).toBe('How do I find communities in Germany?');
+    // The authored FAQ is NOT replaced by the template (no duplicate
+    // template entries are appended).
+    expect(data.faq.some((entry) => entry.question === 'How many people live in Germany?')).toBe(
+      false,
+    );
+  });
+
+  it('the country FAQ template localizes per surface (localized template + dataset names)', () => {
+    // Colombia has no authored content — the data-driven FAQ renders through
+    // the es template with the localized dataset country name.
+    const colombia = resolveLocationEntry({ country: 'colombia' })!;
+    const esData = buildLocationViewData(colombia, 'es');
+    expect(esData.faq.length).toBe(5);
+    expect(esData.faq[0].question).toBe('¿Cómo encuentro comunidades en Colombia?');
+    expect(esData.faq[2].answer).toBe('La capital de Colombia es Bogota.');
+    // EN surface keeps the EN template.
+    const enData = buildLocationViewData(colombia, 'en');
+    expect(enData.faq[0].question).toBe('How do I find communities in Colombia?');
+  });
+
+  it('every country page carries dataset facts + a data-driven FAQ when un-authored', () => {
+    const countries = locationPageEntries().filter((entry) => entry.kind === 'country');
+    for (const entry of countries) {
+      const data = buildLocationViewData(entry);
+      expect(data.dataPoints.length).toBeGreaterThan(0);
+      expect(data.faq.length).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe('lib/seo locationView — region mesh (TASK-496)', () => {
+  it('un-authored region pages carry the data-driven region mesh', () => {
+    const osaka = resolveLocationEntry({ country: 'japan', region: 'osaka' });
+    expect(osaka).toBeDefined();
+    expect(osaka?.kind).toBe('region');
+    const data = buildLocationViewData(osaka!);
+
+    // Region facts — dataset-driven "Region facts" data points (part-of +
+    // parent-country population/capital/languages).
+    expect(data.dataPoints).toEqual([
+      'Part of Japan',
+      'Population: 126,529,100',
+      'Capital: Tokyo',
+      'Languages: Japanese',
+    ]);
+
+    // The region mesh mirrors the country mesh: localized region name,
+    // parent-country facts, content-rich cities (registry-exact paths).
+    const mesh = data.regionMesh;
+    expect(mesh).toBeDefined();
+    expect(mesh?.regionName).toBe('Osaka Prefecture');
+    expect(mesh?.countryName).toBe('Japan');
+    expect(mesh?.facts).toEqual({
+      population: 126529100,
+      capital: 'Tokyo',
+      languages: ['ja'],
+    });
+    expect(mesh?.cities).toEqual([{ name: 'Osaka', path: '/en/location/japan/osaka/osaka' }]);
+
+    // Data-driven FAQ — the localized template populated from the mesh.
+    expect(mesh?.faq).toEqual(data.faq);
+    expect(data.faq.length).toBeGreaterThanOrEqual(3);
+    expect(data.faq[0].question).toBe('How do I find communities in Osaka Prefecture?');
+    expect(data.faq[1].answer).toBe('Osaka Prefecture is part of Japan, whose capital is Tokyo.');
+    expect(data.faq[2].answer).toContain('Japanese');
+    expect(data.faq[3].answer).toContain('JoinOrigin has no local offices');
+  });
+
+  it('authored region pages keep authored data points + FAQ and still carry the mesh', () => {
+    const berlinRegion = resolveLocationEntry({ country: 'germany', region: 'berlin' });
+    expect(berlinRegion).toBeDefined();
+    const data = buildLocationViewData(berlinRegion!);
+    // Authored region data points are NOT replaced by the dataset template.
+    expect(data.dataPoints[0]).toBe(
+      'Berlin is a city-state (Land) of roughly 3.4 million residents.',
+    );
+    // Authored FAQ stays the source of truth.
+    expect(data.faq[0].question).toBe('Is the Berlin region different from the Berlin city scene?');
+    // The mesh still resolves (region name + parent-country facts + cities).
+    // The region heading is the honest dataset name ("State of Berlin" — the
+    // same dataset row the country mesh region list uses).
+    expect(data.regionMesh?.regionName).toBe('State of Berlin');
+    expect(data.regionMesh?.countryName).toBe('Germany');
+    expect(data.regionMesh?.cities.map((city) => city.name)).toEqual(['Berlin']);
+  });
+
+  it('region mesh city hrefs are registry-exact + move to the ACTIVE locale surface', () => {
+    const osaka = resolveLocationEntry({ country: 'japan', region: 'osaka' })!;
+    const registryPaths = new Set(locationPageEntries().map((entry) => entry.path));
+    const en = buildLocationViewData(osaka, 'en');
+    for (const city of en.regionMesh?.cities ?? []) {
+      expect(registryPaths.has(city.path)).toBe(true);
+      expect(city.path).toMatch(/^\/en\/location\//);
+    }
+    const es = buildLocationViewData(osaka, 'es');
+    for (const city of es.regionMesh?.cities ?? []) {
+      expect(city.path).toMatch(/^\/es\/location\//);
+      expect(city.path).not.toMatch(/^\/en\//);
+    }
+  });
+
+  it('every region page carries the mesh + dataset facts + FAQ (un-authored included)', () => {
+    // Sample authored + un-authored regions across continents — full-registry
+    // rebuilds inside breadcrumbsFor make iterating ALL ~3.8k regions too
+    // slow, so the invariant is asserted on a representative sample.
+    const sample = [
+      { country: 'japan', region: 'osaka' }, // un-authored
+      { country: 'germany', region: 'berlin' }, // authored flagship
+      { country: 'united-states', region: 'new-york' }, // authored flagship
+      { country: 'france', region: 'ile-de-france' }, // un-authored (paris)
+      { country: 'brazil', region: 'sao-paulo' }, // un-authored (sao-paulo)
+      { country: 'australia', region: 'new-south-wales' }, // un-authored (sydney)
+      { country: 'denmark', region: 'capital-region' }, // un-authored (copenhagen)
+    ];
+    for (const params of sample) {
+      const entry = resolveLocationEntry(params);
+      expect(entry).toBeDefined();
+      expect(entry?.kind).toBe('region');
+      const data = buildLocationViewData(entry!);
+      // Every region page renders facts + FAQ — authored or dataset-driven.
+      expect(data.dataPoints.length).toBeGreaterThan(0);
+      expect(data.faq.length).toBeGreaterThan(0);
+      // The mesh resolves when the region hosts a content-rich city.
+      if (data.regionMesh?.cities.length) {
+        expect(data.regionMesh?.regionName.length).toBeGreaterThan(0);
+        expect(data.regionMesh?.countryName.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('region mesh city hrefs are registry-exact for every content-rich hosting region', () => {
+    const registryPaths = new Set(locationPageEntries().map((entry) => entry.path));
+    // Content-rich regions only (the section renders when cities exist).
+    const contentRichRegionIds = new Set(contentRichCities().map((city) => city.regionId));
+    const regions = locationPageEntries().filter(
+      (entry) =>
+        entry.kind === 'region' &&
+        contentRichRegionIds.has(findRegionBySlug(entry.params.region ?? '')?.id ?? ''),
+    );
+    expect(regions.length).toBeGreaterThan(0);
+    for (const entry of regions.slice(0, 12)) {
+      const mesh = regionMeshFor(entry);
+      expect(mesh).toBeDefined();
+      expect(mesh?.cities.length).toBeGreaterThan(0);
+      for (const city of mesh?.cities ?? []) {
+        expect(registryPaths.has(city.path)).toBe(true);
+      }
+    }
+  });
+
+  it('regionMesh populates for region pages only', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub')!;
+    expect(buildLocationViewData(hub).regionMesh).toBeUndefined();
+    const germany = resolveLocationEntry({ country: 'germany' })!;
+    expect(buildLocationViewData(germany).regionMesh).toBeUndefined();
+    const berlinCity = resolveLocationEntry({
+      country: 'germany',
+      region: 'berlin',
+      city: 'berlin',
+    })!;
+    expect(buildLocationViewData(berlinCity).regionMesh).toBeUndefined();
+  });
+});
+
+describe('lib/seo locationView — sibling city fallback (TASK-496)', () => {
+  it('lima falls back to same-country cities (no same-region siblings)', () => {
+    const lima = resolveLocationEntry({ country: 'peru', region: 'lima-province', city: 'lima' });
+    expect(lima).toBeDefined();
+    const data = buildLocationViewData(lima!);
+    expect(data.siblingCities.length).toBeGreaterThan(0);
+    const names = data.siblingCities.map((s) => s.name);
+    expect(names).toContain('Arequipa');
+    expect(names).toContain('Trujillo');
+    // Every fallback href stays on the /en/location/peru/... surface.
+    for (const sibling of data.siblingCities) {
+      expect(sibling.path).toMatch(/^\/en\/location\/peru\//);
+    }
+  });
+
+  it('jakarta falls back to same-country cities (no same-region siblings)', () => {
+    const jakarta = resolveLocationEntry({
+      country: 'indonesia',
+      region: 'jakarta',
+      city: 'jakarta',
+    });
+    expect(jakarta).toBeDefined();
+    const data = buildLocationViewData(jakarta!);
+    expect(data.siblingCities.length).toBeGreaterThan(0);
+    const names = data.siblingCities.map((s) => s.name);
+    expect(names).toContain('Surabaya');
+    expect(names).toContain('Bandung');
+    for (const sibling of data.siblingCities) {
+      expect(sibling.path).toMatch(/^\/en\/location\/indonesia\//);
+    }
+  });
+
+  it('singapore falls back to the global content-rich set (city-state with no country siblings)', () => {
+    const singapore = resolveLocationEntry({
+      country: 'singapore',
+      region: 'singapore',
+      city: 'singapore',
+    });
+    expect(singapore).toBeDefined();
+    const data = buildLocationViewData(singapore!);
+    expect(data.siblingCities.length).toBeGreaterThan(0);
+    // Every fallback href is a real registry page (never a dead link).
+    const registryPaths = new Set(locationPageEntries().map((entry) => entry.path));
+    for (const sibling of data.siblingCities) {
+      expect(registryPaths.has(sibling.path)).toBe(true);
+    }
+  });
+
+  it('cities WITH same-region siblings keep the same-region set (no fallback)', () => {
+    const berlin = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
+    const data = buildLocationViewData(berlin!);
+    expect(data.siblingCities.length).toBeGreaterThan(0);
+    // Same-region siblings stay inside Germany (sibling city paths use the
+    // dataset region slug for non-flagship rows — "state-of-berlin" — so the
+    // country prefix is the stable part).
+    for (const sibling of data.siblingCities) {
+      expect(sibling.path).toMatch(/^\/en\/location\/germany\//);
+      expect(sibling.name).not.toBe('Shanghai');
+    }
+  });
+
+  it('sibling fallback hrefs move to the ACTIVE locale surface', () => {
+    const lima = resolveLocationEntry({ country: 'peru', region: 'lima-province', city: 'lima' });
+    const es = buildLocationViewData(lima!, 'es');
+    expect(es.siblingCities.length).toBeGreaterThan(0);
+    for (const sibling of es.siblingCities) {
+      expect(sibling.path).toMatch(/^\/es\/location\/peru\//);
+      expect(sibling.path).not.toMatch(/^\/en\//);
+    }
   });
 });

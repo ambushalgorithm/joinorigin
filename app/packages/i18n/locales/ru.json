@@ -594,6 +594,40 @@
         "keep-a-community-active": "Поддерживать активность сообщества",
         "hybrid-communities": "Развивать гибридные сообщества",
         "moderation": "Модерировать своё сообщество"
+      },
+      "countryFacts": "О стране",
+      "regionFacts": "О регионе",
+      "factsTemplates": {
+        "population": "Население: {{value}}",
+        "capital": "Столица: {{value}}",
+        "languages": "Языки: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "Часть {{country}}"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "Как найти сообщества в {{country}}?",
+          "communitiesAnswer": "Центр /location перечисляет все сообщества в {{country}}. Изучите типы сообществ — стартапы, креативные, политические, встречи и малый бизнес — в том числе в {{cities}}.",
+          "populationQuestion": "Сколько человек живёт в {{country}}?",
+          "populationAnswer": "В наборе данных указано население {{population}} для {{country}}.",
+          "capitalQuestion": "Какова столица {{country}}?",
+          "capitalAnswer": "Столица {{country}} — {{capital}}.",
+          "languageQuestion": "На каких языках говорят в {{country}}?",
+          "languageAnswer": "Среди языков {{country}} — {{languages}}.",
+          "operationQuestion": "Работает ли JoinOrigin в {{country}}?",
+          "operationAnswer": "Да. У JoinOrigin нет местных офисов. Платформа помогает людям находить или создавать сообщества в любом месте {{country}}."
+        },
+        "region": {
+          "communitiesQuestion": "Как найти сообщества в {{region}}?",
+          "communitiesAnswer": "Изучите страницы городов в {{region}} — {{cities}} — или создайте собственное сообщество. Центр /location перечисляет все типы сообществ в {{region}}.",
+          "countryQuestion": "В какой стране находится {{region}}?",
+          "countryAnswer": "{{region}} — часть {{country}}, столица которой {{capital}}.",
+          "languageQuestion": "На каких языках говорят в {{region}}?",
+          "languageAnswer": "Среди языков {{region}} — {{languages}}.",
+          "operationQuestion": "Работает ли JoinOrigin в {{region}}?",
+          "operationAnswer": "Да. У JoinOrigin нет местных офисов. Платформа помогает людям находить или создавать сообщества в любом месте {{region}}."
+        }
       }
     },
     "groupTypes": {

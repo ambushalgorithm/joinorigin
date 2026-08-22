@@ -99,6 +99,22 @@ export function findRegionBySlug(slug: string): LocationRegion | undefined {
   return loadLocationSnapshot().regions.find((r) => regionSlug(r) === slug);
 }
 
+/**
+ * Find a region by its URL segment, honoring flagship `regionSlug`
+ * overrides (TASK-496). Flagships pin a polished region segment (e.g.
+ * "berlin" for the dataset row "State of Berlin"), so a bare
+ * `regionSlug(region)` scan misses them; this resolves the flagship
+ * override first (via `regionId`), then falls back to the dataset slug.
+ */
+export function findRegionBySlugOrFlagship(slug: string): LocationRegion | undefined {
+  const flagship = FLAGSHIP_CITIES.find((candidate) => candidate.regionSlug === slug);
+  if (flagship) {
+    const region = findRegion(flagship.regionId);
+    if (region) return region;
+  }
+  return findRegionBySlug(slug);
+}
+
 export function findCityByGeonameId(geonameId: number): LocationCity | undefined {
   return loadLocationSnapshot().cities.find((c) => c.id === geonameId);
 }
@@ -423,6 +439,231 @@ export function cityLocalizedName(city: LocationCity, locale: Locale): string {
 }
 
 /* ------------------------------------------------------------------ *
+ * Dataset language names (TASK-496 — honest display names for the
+ * GeoNames ISO-639 language codes in country/region facts + FAQ)
+ *
+ * The geo snapshot carries language codes (ISO-639 base, sometimes with a
+ * region suffix — `de`, `es-PE`, `cmn`), which are honest but not
+ * human-friendly. This map resolves the codes that actually appear in the
+ * content-rich countries to English display names so the data-driven
+ * country facts / FAQ templates read naturally; any unmapped code falls
+ * back to the raw code (never a fabricated name). English display names
+ * are dataset data rendered through the localized template — the same
+ * EN-fallback rule as the dataset `names[locale]` fields.
+ * ------------------------------------------------------------------ */
+
+const LANGUAGE_NAMES: Readonly<Record<string, string>> = {
+  aa: 'Afar',
+  ab: 'Abkhazian',
+  ady: 'Adyghe',
+  af: 'Afrikaans',
+  ak: 'Akan',
+  am: 'Amharic',
+  ar: 'Arabic',
+  as: 'Assamese',
+  av: 'Avaric',
+  ay: 'Aymara',
+  az: 'Azerbaijani',
+  ba: 'Bashkir',
+  bal: 'Baluchi',
+  be: 'Belarusian',
+  bem: 'Bemba',
+  ber: 'Berber',
+  bg: 'Bulgarian',
+  bh: 'Bihari',
+  bn: 'Bengali',
+  bo: 'Tibetan',
+  br: 'Breton',
+  bs: 'Bosnian',
+  bua: 'Buryat',
+  ca: 'Catalan',
+  ce: 'Chechen',
+  chm: 'Mari',
+  cmn: 'Mandarin Chinese',
+  co: 'Corsican',
+  cs: 'Czech',
+  cu: 'Church Slavic',
+  cv: 'Chuvash',
+  cy: 'Welsh',
+  da: 'Danish',
+  de: 'German',
+  diq: 'Dimli',
+  doi: 'Dogri',
+  dv: 'Divehi',
+  dz: 'Dzongkha',
+  ee: 'Ewe',
+  el: 'Greek',
+  en: 'English',
+  eo: 'Esperanto',
+  es: 'Spanish',
+  et: 'Estonian',
+  eu: 'Basque',
+  fa: 'Persian',
+  ff: 'Fulah',
+  fi: 'Finnish',
+  fj: 'Fijian',
+  fo: 'Faroese',
+  fr: 'French',
+  frp: 'Franco-Provençal',
+  fy: 'Western Frisian',
+  ga: 'Irish',
+  gd: 'Scottish Gaelic',
+  gl: 'Galician',
+  gn: 'Guarani',
+  gu: 'Gujarati',
+  gv: 'Manx',
+  ha: 'Hausa',
+  hak: 'Hakka',
+  haw: 'Hawaiian',
+  he: 'Hebrew',
+  hi: 'Hindi',
+  hif: 'Fiji Hindi',
+  hr: 'Croatian',
+  ht: 'Haitian Creole',
+  hu: 'Hungarian',
+  hy: 'Armenian',
+  id: 'Indonesian',
+  ig: 'Igbo',
+  inc: 'Indic languages',
+  is: 'Icelandic',
+  it: 'Italian',
+  iu: 'Inuktitut',
+  ja: 'Japanese',
+  jv: 'Javanese',
+  ka: 'Georgian',
+  kbd: 'Kabardian',
+  kk: 'Kazakh',
+  kl: 'Kalaallisut',
+  km: 'Khmer',
+  kn: 'Kannada',
+  ko: 'Korean',
+  kok: 'Konkani',
+  krc: 'Karachay-Balkar',
+  ks: 'Kashmiri',
+  ku: 'Kurdish',
+  kv: 'Komi',
+  ky: 'Kyrgyz',
+  la: 'Latin',
+  lb: 'Luxembourgish',
+  lg: 'Ganda',
+  ln: 'Lingala',
+  lo: 'Lao',
+  lt: 'Lithuanian',
+  lus: 'Mizo',
+  lv: 'Latvian',
+  mg: 'Malagasy',
+  mi: 'Maori',
+  mk: 'Macedonian',
+  ml: 'Malayalam',
+  mn: 'Mongolian',
+  mni: 'Meitei',
+  mr: 'Marathi',
+  mrj: 'Western Mari',
+  ms: 'Malay',
+  mt: 'Maltese',
+  my: 'Burmese',
+  myv: 'Erzya',
+  mdf: 'Moksha',
+  nan: 'Min Nan Chinese',
+  nb: 'Norwegian Bokmål',
+  nd: 'North Ndebele',
+  ne: 'Nepali',
+  nl: 'Dutch',
+  nn: 'Norwegian Nynorsk',
+  no: 'Norwegian',
+  nog: 'Nogai',
+  nr: 'South Ndebele',
+  nso: 'Northern Sotho',
+  ny: 'Chichewa',
+  oc: 'Occitan',
+  om: 'Oromo',
+  or: 'Oriya',
+  os: 'Ossetian',
+  pa: 'Punjabi',
+  pl: 'Polish',
+  ps: 'Pashto',
+  pt: 'Portuguese',
+  qu: 'Quechua',
+  rm: 'Romansh',
+  rn: 'Kirundi',
+  ro: 'Romanian',
+  ru: 'Russian',
+  rw: 'Kinyarwanda',
+  sa: 'Sanskrit',
+  sat: 'Santali',
+  sc: 'Sardinian',
+  sd: 'Sindhi',
+  se: 'Northern Sami',
+  si: 'Sinhala',
+  sit: 'Sino-Tibetan languages',
+  sk: 'Slovak',
+  sl: 'Slovenian',
+  sm: 'Samoan',
+  sn: 'Shona',
+  so: 'Somali',
+  sq: 'Albanian',
+  sr: 'Serbian',
+  ss: 'Swati',
+  st: 'Southern Sotho',
+  su: 'Sundanese',
+  sv: 'Swedish',
+  sw: 'Swahili',
+  ta: 'Tamil',
+  te: 'Telugu',
+  tg: 'Tajik',
+  th: 'Thai',
+  ti: 'Tigrinya',
+  tk: 'Turkmen',
+  tl: 'Tagalog',
+  tn: 'Tswana',
+  to: 'Tongan',
+  tr: 'Turkish',
+  ts: 'Tsonga',
+  tt: 'Tatar',
+  tut: 'Altaic languages',
+  tw: 'Twi',
+  ty: 'Tahitian',
+  tyv: 'Tuvan',
+  udm: 'Udmurt',
+  ug: 'Uyghur',
+  uk: 'Ukrainian',
+  ur: 'Urdu',
+  uz: 'Uzbek',
+  ve: 'Venda',
+  vi: 'Vietnamese',
+  vo: 'Volapük',
+  wa: 'Walloon',
+  wo: 'Wolof',
+  wuu: 'Wu Chinese',
+  xal: 'Kalmyk',
+  xh: 'Xhosa',
+  yi: 'Yiddish',
+  yo: 'Yoruba',
+  yue: 'Cantonese',
+  za: 'Zhuang',
+  zh: 'Chinese',
+  zu: 'Zulu',
+};
+
+/** Human-readable display name for a GeoNames language code (ISO-639 base
+ *  with region suffix stripped — `es-PE` → Spanish); unknown codes fall
+ *  back to the raw code (honest — never fabricated). */
+export function languageName(code: string): string {
+  const base = code.split('-')[0];
+  return LANGUAGE_NAMES[base] ?? code;
+}
+
+/** Comma-joined human-readable display names for a language-code list. */
+export function languageNamesFor(languages: string[]): string {
+  return languages.map(languageName).join(', ');
+}
+
+/** Locale-aware grouped number for a dataset population value. */
+export function formatPopulation(population: number, locale: Locale = 'en'): string {
+  return population.toLocaleString(locale);
+}
+
+/* ------------------------------------------------------------------ *
  * Country mesh helpers (TASK-490 — data-driven content-rich info for
  * every `/location/<country>` page)
  *
@@ -463,6 +704,13 @@ export function countryFactsFor(iso2: string): CountryFacts | undefined {
  *  filter always sees the intended city (london → GB, never Ontario). */
 export function contentRichCitiesInCountry(countryIso2: string): LocationCity[] {
   return contentRichCities().filter((city) => city.countryIso2 === countryIso2);
+}
+
+/** Content-rich cities in a region (TASK-496) — the deterministic
+ *  `contentRichCities()` set filtered by `regionId` (the region page mesh's
+ *  "Communities in nearby cities" list + the region FAQ template). */
+export function contentRichCitiesInRegion(regionId: string): LocationCity[] {
+  return contentRichCities().filter((city) => city.regionId === regionId);
 }
 
 /** Distinct regions hosting content-rich cities in a country (TASK-490) —

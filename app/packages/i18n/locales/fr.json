@@ -594,6 +594,40 @@
         "keep-a-community-active": "Garder une communauté active",
         "hybrid-communities": "Animer des communautés hybrides",
         "moderation": "Modérer votre communauté"
+      },
+      "countryFacts": "À propos du pays",
+      "regionFacts": "À propos de la région",
+      "factsTemplates": {
+        "population": "Population : {{value}}",
+        "capital": "Capitale : {{value}}",
+        "languages": "Langues : {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "Partie de {{country}}"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "Comment trouver des communautés en {{country}} ?",
+          "communitiesAnswer": "Le hub /location répertorie toutes les communautés en {{country}}. Explorez les types de communauté — startup, créative, politique, meetup et petite entreprise — y compris à {{cities}}.",
+          "populationQuestion": "Combien de personnes vivent en {{country}} ?",
+          "populationAnswer": "Le jeu de données enregistre une population de {{population}} en {{country}}.",
+          "capitalQuestion": "Quelle est la capitale de {{country}} ?",
+          "capitalAnswer": "La capitale de {{country}} est {{capital}}.",
+          "languageQuestion": "Quelles langues parle-t-on en {{country}} ?",
+          "languageAnswer": "Les langues parlées en {{country}} incluent {{languages}}.",
+          "operationQuestion": "JoinOrigin opère-t-il en {{country}} ?",
+          "operationAnswer": "Oui. JoinOrigin n'a pas de bureaux locaux. La plateforme aide les personnes à trouver ou créer des communautés partout en {{country}}."
+        },
+        "region": {
+          "communitiesQuestion": "Comment trouver des communautés dans {{region}} ?",
+          "communitiesAnswer": "Explorez les pages des villes de {{region}} — {{cities}} — ou créez votre propre communauté. Le hub /location répertorie tous les types de communauté dans {{region}}.",
+          "countryQuestion": "Dans quel pays se trouve {{region}} ?",
+          "countryAnswer": "{{region}} fait partie de {{country}}, dont la capitale est {{capital}}.",
+          "languageQuestion": "Quelles langues parle-t-on dans {{region}} ?",
+          "languageAnswer": "Les langues parlées dans {{region}} incluent {{languages}}.",
+          "operationQuestion": "JoinOrigin opère-t-il dans {{region}} ?",
+          "operationAnswer": "Oui. JoinOrigin n'a pas de bureaux locaux. La plateforme aide les personnes à trouver ou créer des communautés partout dans {{region}}."
+        }
       }
     },
     "groupTypes": {

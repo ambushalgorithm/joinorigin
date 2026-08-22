@@ -594,6 +594,40 @@
         "keep-a-community-active": "समुदाय को सक्रिय रखें",
         "hybrid-communities": "हाइब्रिड समुदाय चलाएँ",
         "moderation": "अपने समुदाय को मॉडरेट करें"
+      },
+      "countryFacts": "देश के तथ्य",
+      "regionFacts": "क्षेत्र के तथ्य",
+      "factsTemplates": {
+        "population": "जनसंख्या: {{value}}",
+        "capital": "राजधानी: {{value}}",
+        "languages": "भाषाएँ: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "{{country}} का हिस्सा"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "{{country}} में समुदाय कैसे खोजें?",
+          "communitiesAnswer": "/location हब {{country}} के सभी समुदायों को सूचीबद्ध करता है। स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समुदायों के प्रकार देखें, जिनमें {{cities}} भी शामिल हैं।",
+          "populationQuestion": "{{country}} में कितने लोग रहते हैं?",
+          "populationAnswer": "डेटासेट {{country}} की जनसंख्या {{population}} दर्ज करता है।",
+          "capitalQuestion": "{{country}} की राजधानी क्या है?",
+          "capitalAnswer": "{{country}} की राजधानी {{capital}} है।",
+          "languageQuestion": "{{country}} में कौन सी भाषाएँ बोली जाती हैं?",
+          "languageAnswer": "{{country}} में बोली जाने वाली भाषाओं में {{languages}} शामिल हैं।",
+          "operationQuestion": "क्या JoinOrigin {{country}} में काम करता है?",
+          "operationAnswer": "हाँ। JoinOrigin के कोई स्थानीय कार्यालय नहीं हैं। यह प्लेटफ़ॉर्म {{country}} में कहीं भी समुदाय खोजने या शुरू करने में मदद करता है।"
+        },
+        "region": {
+          "communitiesQuestion": "{{region}} में समुदाय कैसे खोजें?",
+          "communitiesAnswer": "{{region}} के शहर पृष्ठ — {{cities}} — देखें या अपना समुदाय शुरू करें। /location हब {{region}} के सभी समुदाय प्रकारों को सूचीबद्ध करता है।",
+          "countryQuestion": "{{region}} किस देश में है?",
+          "countryAnswer": "{{region}} {{country}} का हिस्सा है, जिसकी राजधानी {{capital}} है।",
+          "languageQuestion": "{{region}} में कौन सी भाषाएँ बोली जाती हैं?",
+          "languageAnswer": "{{region}} में बोली जाने वाली भाषाओं में {{languages}} शामिल हैं।",
+          "operationQuestion": "क्या JoinOrigin {{region}} में काम करता है?",
+          "operationAnswer": "हाँ। JoinOrigin के कोई स्थानीय कार्यालय नहीं हैं। यह प्लेटफ़ॉर्म {{region}} में कहीं भी समुदाय खोजने या शुरू करने में मदद करता है।"
+        }
       }
     },
     "groupTypes": {
