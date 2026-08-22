@@ -594,6 +594,40 @@
         "keep-a-community-active": "保持社区活跃",
         "hybrid-communities": "运营混合社区",
         "moderation": "审核你的社区"
+      },
+      "countryFacts": "国家概况",
+      "regionFacts": "地区概况",
+      "factsTemplates": {
+        "population": "人口：{{value}}",
+        "capital": "首都：{{value}}",
+        "languages": "语言：{{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "属于{{country}}"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "如何在{{country}}找到社群？",
+          "communitiesAnswer": "/location中心列出了{{country}}的所有社群。探索创业、创意、政治、聚会和小型企业等社群类型，包括{{cities}}。",
+          "populationQuestion": "{{country}}有多少人口？",
+          "populationAnswer": "数据集显示{{country}}的人口为{{population}}。",
+          "capitalQuestion": "{{country}}的首都是哪里？",
+          "capitalAnswer": "{{country}}的首都是{{capital}}。",
+          "languageQuestion": "{{country}}使用什么语言？",
+          "languageAnswer": "{{country}}使用的语言包括{{languages}}。",
+          "operationQuestion": "JoinOrigin在{{country}}运营吗？",
+          "operationAnswer": "是的。JoinOrigin没有当地办事处。该平台帮助人们在{{country}}的任何地方找到或创建社群。"
+        },
+        "region": {
+          "communitiesQuestion": "如何在{{region}}找到社群？",
+          "communitiesAnswer": "浏览{{region}}的城市页面 — {{cities}} — 或创建自己的社群。/location中心列出了{{region}}的所有社群类型。",
+          "countryQuestion": "{{region}}位于哪个国家？",
+          "countryAnswer": "{{region}}属于{{country}}，首都是{{capital}}。",
+          "languageQuestion": "{{region}}使用什么语言？",
+          "languageAnswer": "{{region}}使用的语言包括{{languages}}。",
+          "operationQuestion": "JoinOrigin在{{region}}运营吗？",
+          "operationAnswer": "是的。JoinOrigin没有当地办事处。该平台帮助人们在{{region}}的任何地方找到或创建社群。"
+        }
       }
     },
     "groupTypes": {

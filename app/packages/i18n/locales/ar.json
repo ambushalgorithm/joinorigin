@@ -594,6 +594,40 @@
         "keep-a-community-active": "أبقِ المجتمع نشطًا",
         "hybrid-communities": "إدارة المجتمعات الهجينة",
         "moderation": "الإشراف على مجتمعك"
+      },
+      "countryFacts": "حقائق عن الدولة",
+      "regionFacts": "حقائق عن المنطقة",
+      "factsTemplates": {
+        "population": "عدد السكان: {{value}}",
+        "capital": "العاصمة: {{value}}",
+        "languages": "اللغات: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "جزء من {{country}}"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "كيف أجد المجتمعات في {{country}}؟",
+          "communitiesAnswer": "يعرض مركز /location جميع المجتمعات في {{country}}. استكشف أنواع المجتمعات — الشركات الناشئة والإبداعية والسياسية واللقاءات والأعمال الصغيرة — بما في ذلك في {{cities}}.",
+          "populationQuestion": "كم عدد السكان في {{country}}؟",
+          "populationAnswer": "يسجل مجموعة البيانات عدد سكان يبلغ {{population}} في {{country}}.",
+          "capitalQuestion": "ما هي عاصمة {{country}}؟",
+          "capitalAnswer": "عاصمة {{country}} هي {{capital}}.",
+          "languageQuestion": "ما اللغات المستخدمة في {{country}}؟",
+          "languageAnswer": "تشمل اللغات المستخدمة في {{country}} {{languages}}.",
+          "operationQuestion": "هل تعمل JoinOrigin في {{country}}؟",
+          "operationAnswer": "نعم. لا توجد مكاتب محلية لـ JoinOrigin. تساعد المنصة الأشخاص في العثور على المجتمعات أو إنشائها في أي مكان في {{country}}."
+        },
+        "region": {
+          "communitiesQuestion": "كيف أجد المجتمعات في {{region}}؟",
+          "communitiesAnswer": "استكشف صفحات المدن في {{region}} — {{cities}} — أو ابدأ مجتمعك الخاص. يعرض مركز /location جميع أنواع المجتمعات في {{region}}.",
+          "countryQuestion": "في أي دولة تقع {{region}}؟",
+          "countryAnswer": "{{region}} جزء من {{country}}، وعاصمتها {{capital}}.",
+          "languageQuestion": "ما اللغات المستخدمة في {{region}}؟",
+          "languageAnswer": "تشمل اللغات المستخدمة في {{region}} {{languages}}.",
+          "operationQuestion": "هل تعمل JoinOrigin في {{region}}؟",
+          "operationAnswer": "نعم. لا توجد مكاتب محلية لـ JoinOrigin. تساعد المنصة الأشخاص في العثور على المجتمعات أو إنشائها في أي مكان في {{region}}."
+        }
       }
     },
     "groupTypes": {

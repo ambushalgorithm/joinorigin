@@ -38,7 +38,7 @@ import type {
   RegionContent,
   VariantEnrichment,
 } from './content/types';
-import type { LocationCity, LocationRegion } from './data/types';
+import type { LocationCity, LocationCountry, LocationRegion } from './data/types';
 import { breadcrumbList, faqPage, type BreadcrumbItem } from './jsonLd';
 import {
   FLAGSHIP_CITIES,
@@ -49,6 +49,7 @@ import {
   citySlug,
   contentRichCities,
   contentRichCitiesInCountry,
+  contentRichCitiesInRegion,
   countryFactsFor,
   countryLocalizedName,
   countrySlug,
@@ -56,9 +57,12 @@ import {
   findCountry,
   findCountryBySlug,
   findRegion,
+  findRegionBySlugOrFlagship,
+  formatPopulation,
   getFlagshipConfig,
   groupTypeLabelForLocale,
   isGroupTypeKey,
+  languageNamesFor,
   loadLocationSnapshot,
   localeCountryCodes,
   regionLocalizedName,
@@ -571,6 +575,16 @@ export function cityLocationPath(city: LocationCity, locale: Locale = 'en'): str
  * Same-region sibling cities, deduped on (regionId, slug), highest
  * population first, excluding the given city — capped at `limit` (5–10).
  * Sibling card hrefs point at the ACTIVE locale surface (TASK-469).
+ *
+ * TASK-496 sibling fallback — every content-rich city renders a nearby
+ * section even when its region has no other cities (jakarta/lima/singapore):
+ *   1. same-region siblings (the original set),
+ *   2. if the region yields none → same-COUNTRY cities (other cities in the
+ *      parent country, deduped + population-sorted; the section would
+ *      otherwise vanish for jakarta/lima),
+ *   3. if the country yields none too (singapore — a city-state with a
+ *      single content-rich city) → the global content-rich set sorted by
+ *      population (every card is a real registry page).
  */
 export function siblingCitiesFor(
   city: LocationCity | undefined,
@@ -578,11 +592,44 @@ export function siblingCitiesFor(
   locale: Locale = 'en',
 ): SiblingCityLink[] {
   if (!city) return [];
+  const regionCandidates = siblingCandidates(city.regionId, city.id);
+  // TASK-496 — same-region first; fall back to same-country when the region
+  // hosts no sibling cities, then to the global content-rich set (the only
+  // cases where the nearby section would otherwise be empty).
+  let candidates = regionCandidates;
+  if (candidates.length === 0) {
+    candidates = siblingCandidates(city.countryIso2, city.id, true);
+  }
+  if (candidates.length === 0) {
+    candidates = contentRichCities()
+      .filter((candidate) => candidate.id !== city.id)
+      .sort((a, b) => (b.population ?? 0) - (a.population ?? 0));
+  }
+  return candidates.slice(0, limit).flatMap((sibling) => {
+    const path = cityLocationPath(sibling, locale);
+    return path ? [{ name: sibling.asciiName, path }] : [];
+  });
+}
+
+/**
+ * Deduped sibling candidates for a city — by region (default) or by country
+ * (`byCountry`). Excludes the given city id. Same population-order + dedupe
+ * rule as the original sibling logic: keep the highest-population row per
+ * (scope, slug) with the lowest geonameId as a deterministic tiebreak.
+ */
+function siblingCandidates(
+  scope: string,
+  excludeCityId: number,
+  byCountry = false,
+): LocationCity[] {
   const snapshot = loadLocationSnapshot();
   const byKey = new Map<string, LocationCity>();
   for (const candidate of snapshot.cities) {
-    if (candidate.regionId !== city.regionId || candidate.id === city.id) continue;
-    const key = `${candidate.regionId}:${citySlug(candidate)}`;
+    const inScope = byCountry ? candidate.countryIso2 === scope : candidate.regionId === scope;
+    if (!inScope || candidate.id === excludeCityId) continue;
+    const key = byCountry
+      ? `${candidate.countryIso2}:${citySlug(candidate)}`
+      : `${candidate.regionId}:${citySlug(candidate)}`;
     const existing = byKey.get(key);
     const candidatePopulation = candidate.population ?? 0;
     if (
@@ -593,13 +640,7 @@ export function siblingCitiesFor(
       byKey.set(key, candidate);
     }
   }
-  return [...byKey.values()]
-    .sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
-    .slice(0, limit)
-    .flatMap((sibling) => {
-      const path = cityLocationPath(sibling, locale);
-      return path ? [{ name: sibling.asciiName, path }] : [];
-    });
+  return [...byKey.values()].sort((a, b) => (b.population ?? 0) - (a.population ?? 0));
 }
 
 /**
@@ -716,6 +757,272 @@ export function countryMeshFor(
     facts,
     cities,
     regions,
+  };
+}
+
+/* ------------------------------------------------------------------ *
+ * Region mesh (TASK-496 — the data-driven content-rich equivalent of the
+ * country mesh for every `/location/<country>/<region>` page)
+ *
+ * Un-authored region pages (e.g. `/location/japan/osaka`) currently render
+ * an empty shell: no prose, no data points, no FAQ, no nearby-city mesh.
+ * The region mesh mirrors the country mesh + big-city page pattern —
+ * localized region name, the parent country's dataset facts (regions carry
+ * no population/capital/languages in the snapshot, so "region facts" are
+ * the parent country's honest dataset facts), the content-rich cities in
+ * the region (registry-exact paths — the "Communities in nearby cities"
+ * list), and a data-driven FAQ template. Authored region content (Berlin/
+ * New York) still wins for intro/dataPoints/FAQ; the mesh fills the gap for
+ * the ~50 un-authored regions.
+ * ------------------------------------------------------------------ */
+
+/** The region-scoped mesh for `/location/<country>/<region>` pages
+ *  (TASK-496). */
+export interface RegionMesh {
+  /** Localized region display name (dataset `names[locale]`, EN fallback). */
+  regionName: string;
+  /** Localized parent-country display name (dataset names, EN fallback). */
+  countryName: string;
+  /** Parent-country dataset facts — population / capital / languages. */
+  facts: CountryFacts;
+  /** Content-rich cities in the region — localized names + registry-exact
+   *  paths, sorted by population descending (the "Communities in nearby
+   *  cities" list). */
+  cities: SiblingCityLink[];
+  /** Data-driven FAQ for the region (localized template + dataset data). */
+  faq: LocationFaq[];
+}
+
+/**
+ * The region-scoped mesh for a region page (TASK-496) — localized region
+ * name, parent-country dataset facts, content-rich cities in the region
+ * (registry-exact paths), and a data-driven FAQ. Data-driven for EVERY
+ * region — tier-irrelevant and noindex untouched. Returns `undefined` when
+ * the region row is unresolvable (unknown slug), so the view renders no
+ * mesh rather than empty sections.
+ */
+export function regionMeshFor(
+  entry: LocationPageEntry,
+  locale: Locale = 'en',
+): RegionMesh | undefined {
+  const region = findRegionBySlugOrFlagship(entry.params.region ?? '');
+  if (!region) return undefined;
+  const country = findCountry(region.countryIso2);
+  const facts = country ? countryFactsFor(country.iso2) : undefined;
+  if (!country || !facts) return undefined;
+
+  const cities = contentRichCitiesInRegion(region.id)
+    .slice()
+    .sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
+    .map((city) => ({
+      name: cityLocalizedName(city, locale),
+      path: cityLocationPath(city, locale),
+    }))
+    .filter((link): link is SiblingCityLink => link.path !== undefined);
+
+  return {
+    regionName: regionLocalizedName(region, locale),
+    countryName: countryLocalizedName(country, locale),
+    facts,
+    cities,
+    faq: regionFaqFor(locale, {
+      regionName: regionLocalizedName(region, locale),
+      countryName: countryLocalizedName(country, locale),
+      facts,
+      cities,
+    }),
+  };
+}
+
+/* ------------------------------------------------------------------ *
+ * Dataset-driven country/region data points (TASK-496)
+ *
+ * Un-authored country/region pages have no `content.dataPoints`, so their
+ * "Country facts" / "Region facts" sections would render empty. These
+ * builders derive honest data point strings from the geo snapshot
+ * (population/capital/languages) through the localized
+ * `seoContent.location.factsTemplates.*` / `regionFactsTemplates.*` keys —
+ * the same `countryFactsFor` source that feeds `countryMesh.facts` /
+ * `regionMesh.facts`, so the mesh facts are always rendered.
+ * ------------------------------------------------------------------ */
+
+/** Dataset-driven "Country facts" data points from a resolved country row
+ *  (TASK-496) — population/capital/languages via localized templates.
+ *  Returns `[]` when the country row is unresolvable. */
+export function countryDataPointsFor(country: LocationCountry, locale: Locale = 'en'): string[] {
+  const facts = countryFactsFor(country.iso2);
+  return facts ? countryFactsDataPoints(facts, locale) : [];
+}
+
+/** Dataset-driven "Country facts" data points from resolved country facts
+ *  (TASK-496) — population/capital/languages via localized templates. The
+ *  same source (`countryFactsFor`) that feeds `countryMesh.facts`, so the
+ *  mesh facts are always rendered on screen. */
+export function countryFactsDataPoints(facts: CountryFacts, locale: Locale = 'en'): string[] {
+  const t = factsTemplateFor(locale);
+  return [
+    t('seoContent.location.factsTemplates.population', {
+      value: formatPopulation(facts.population, locale),
+    }),
+    t('seoContent.location.factsTemplates.capital', { value: facts.capital }),
+    t('seoContent.location.factsTemplates.languages', {
+      value: languageNamesFor(facts.languages),
+    }),
+  ];
+}
+
+/** Dataset-driven "Region facts" data points from a resolved region row
+ *  (TASK-496) — parent-country context (part-of + population/capital/
+ *  languages) via localized templates. Returns `[]` when the parent country
+ *  row is unresolvable. */
+export function regionDataPointsFor(region: LocationRegion, locale: Locale = 'en'): string[] {
+  const country = findCountry(region.countryIso2);
+  if (!country) return [];
+  const facts = countryFactsFor(country.iso2);
+  if (!facts) return [];
+  return regionFactsDataPoints(countryLocalizedName(country, locale), facts, locale);
+}
+
+/** Dataset-driven "Region facts" data points from the localized country
+ *  name + the parent-country facts (TASK-496). */
+export function regionFactsDataPoints(
+  countryName: string,
+  facts: CountryFacts,
+  locale: Locale = 'en',
+): string[] {
+  const t = factsTemplateFor(locale);
+  return [
+    t('seoContent.location.regionFactsTemplates.partOfCountry', { country: countryName }),
+    t('seoContent.location.factsTemplates.population', {
+      value: formatPopulation(facts.population, locale),
+    }),
+    t('seoContent.location.factsTemplates.capital', { value: facts.capital }),
+    t('seoContent.location.factsTemplates.languages', {
+      value: languageNamesFor(facts.languages),
+    }),
+  ];
+}
+
+/** Locale-aware `t` for the facts templates with EN fallback (the client
+ *  provider falls back the same way, so surfaces never show raw keys). */
+function factsTemplateFor(locale: Locale) {
+  const t = getT(getDictionary(locale));
+  const enT = getT(getDictionary('en'));
+  return (key: string, vars: Record<string, string | number>): string => {
+    const localized = t(key, vars);
+    return localized === key ? enT(key, vars) : localized;
+  };
+}
+
+/* ------------------------------------------------------------------ *
+ * Data-driven FAQ templates (TASK-496 — genuinely useful, dataset-driven
+ * FAQ for ALL country/region pages, un-authored included)
+ *
+ * Authored country/region FAQ (Germany, United States, Berlin, New York)
+ * stays the source of truth; every OTHER country/region page derives a
+ * localized FAQ from the geo dataset — population, capital, languages,
+ * content-rich cities and regions — through the
+ * `seoContent.location.faqTemplates.*` keys. No fabricated claims: every
+ * value is the dataset's own, and the operation answer mirrors the honest
+ * "no local offices" line used across the authored content.
+ * ------------------------------------------------------------------ */
+
+/** Data-driven FAQ for a country page (TASK-496) — the localized template
+ *  populated from the country mesh (dataset facts + content-rich cities +
+ *  regions). Falls back to authored content FAQ when present (higher
+ *  quality, hand-written); this fills the gap for un-authored countries. */
+export function countryFaqFor(locale: Locale, mesh: CountryMesh): LocationFaq[] {
+  const t = faqTemplateFor(locale);
+  const country = mesh.countryName;
+  const cities = mesh.cities.map((city) => city.name).slice(0, 3);
+  const cityList = cities.length > 0 ? cities.join(', ') : country;
+  const { population, capital, languages } = mesh.facts;
+  return [
+    {
+      question: t('seoContent.location.faqTemplates.country.communitiesQuestion', { country }),
+      answer: t('seoContent.location.faqTemplates.country.communitiesAnswer', {
+        country,
+        cities: cityList,
+      }),
+    },
+    {
+      question: t('seoContent.location.faqTemplates.country.populationQuestion', { country }),
+      answer: t('seoContent.location.faqTemplates.country.populationAnswer', {
+        country,
+        population: formatPopulation(population, locale),
+      }),
+    },
+    {
+      question: t('seoContent.location.faqTemplates.country.capitalQuestion', { country }),
+      answer: t('seoContent.location.faqTemplates.country.capitalAnswer', {
+        country,
+        capital,
+      }),
+    },
+    {
+      question: t('seoContent.location.faqTemplates.country.languageQuestion', { country }),
+      answer: t('seoContent.location.faqTemplates.country.languageAnswer', {
+        country,
+        languages: languageNamesFor(languages),
+      }),
+    },
+    {
+      question: t('seoContent.location.faqTemplates.country.operationQuestion', { country }),
+      answer: t('seoContent.location.faqTemplates.country.operationAnswer', { country }),
+    },
+  ];
+}
+
+/** Data-driven FAQ for a region page (TASK-496) — the localized template
+ *  populated from the region mesh (parent-country facts + content-rich
+ *  cities in the region). */
+export function regionFaqFor(
+  locale: Locale,
+  mesh: Pick<RegionMesh, 'regionName' | 'countryName' | 'facts' | 'cities'>,
+): LocationFaq[] {
+  const t = faqTemplateFor(locale);
+  const region = mesh.regionName;
+  const country = mesh.countryName;
+  const cities = mesh.cities.map((city) => city.name).slice(0, 3);
+  const cityList = cities.length > 0 ? cities.join(', ') : region;
+  const { capital, languages } = mesh.facts;
+  return [
+    {
+      question: t('seoContent.location.faqTemplates.region.communitiesQuestion', { region }),
+      answer: t('seoContent.location.faqTemplates.region.communitiesAnswer', {
+        region,
+        cities: cityList,
+      }),
+    },
+    {
+      question: t('seoContent.location.faqTemplates.region.countryQuestion', { region }),
+      answer: t('seoContent.location.faqTemplates.region.countryAnswer', {
+        region,
+        country,
+        capital,
+      }),
+    },
+    {
+      question: t('seoContent.location.faqTemplates.region.languageQuestion', { region }),
+      answer: t('seoContent.location.faqTemplates.region.languageAnswer', {
+        region,
+        languages: languageNamesFor(languages),
+      }),
+    },
+    {
+      question: t('seoContent.location.faqTemplates.region.operationQuestion', { region }),
+      answer: t('seoContent.location.faqTemplates.region.operationAnswer', { region }),
+    },
+  ];
+}
+
+/** Locale-aware `t` for the FAQ templates with EN fallback. */
+function faqTemplateFor(locale: Locale) {
+  const t = getT(getDictionary(locale));
+  const enT = getT(getDictionary('en'));
+  return (key: string, vars: Record<string, string | number>): string => {
+    const localized = t(key, vars);
+    return localized === key ? enT(key, vars) : localized;
   };
 }
 
@@ -842,6 +1149,14 @@ export interface LocationViewData {
    * (population/capital/languages).
    */
   countryMesh?: CountryMesh;
+  /**
+   * Region-scoped content-rich mesh (TASK-496) — populated for `region`
+   * pages only: localized region name, parent-country dataset facts,
+   * content-rich cities in the region (registry-exact paths), and a
+   * data-driven FAQ. Data-driven for EVERY region (un-authored regions
+   * included); authored region content still wins for prose/dataPoints/FAQ.
+   */
+  regionMesh?: RegionMesh;
   /** Idea listicle (ideas pages only). */
   ideaCategories?: IdeaCategory[];
   waitlistSource: string;
@@ -1025,6 +1340,37 @@ export function buildLocationViewData(
   // active locale (pageTitles per kind), else the registry description.
   const lead = leadFor(entry, content);
 
+  // TASK-496 — country/region data points + FAQ are data-driven for
+  // un-authored pages: the authored content fields win when present (they
+  // are higher quality), and the dataset fills the gap so EVERY country/
+  // region page renders the same sections as the big-city pages. The
+  // dataset data points derive from the same `countryFactsFor` source that
+  // feeds `countryMesh.facts` / `regionMesh.facts`, so the mesh facts are
+  // always rendered on screen.
+  const countryMesh = entry.kind === 'country' ? countryMeshFor(entry, locale) : undefined;
+  const regionMeshData = entry.kind === 'region' ? regionMeshFor(entry, locale) : undefined;
+  const dataPoints =
+    content?.dataPoints ??
+    (entry.kind === 'country' && countryMesh
+      ? countryFactsDataPoints(countryMesh.facts, locale)
+      : entry.kind === 'region' && regionMeshData
+        ? regionFactsDataPoints(regionMeshData.countryName, regionMeshData.facts, locale)
+        : []);
+  const faq =
+    entry.kind === 'country'
+      ? content?.faq && content.faq.length > 0
+        ? content.faq
+        : countryMesh
+          ? countryFaqFor(locale, countryMesh)
+          : []
+      : entry.kind === 'region'
+        ? content?.faq && content.faq.length > 0
+          ? content.faq
+          : regionMeshData
+            ? regionMeshData.faq
+            : []
+        : faqFor(entry, content);
+
   return {
     kind: entry.kind,
     locale,
@@ -1039,8 +1385,8 @@ export function buildLocationViewData(
     groupType,
     variantEnrichment,
     breadcrumbs,
-    dataPoints: content?.dataPoints ?? [],
-    faq: faqFor(entry, content),
+    dataPoints,
+    faq,
     groupTypeLinks:
       entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas'
         ? groupTypeLinksFor(entry, locale)
@@ -1059,7 +1405,13 @@ export function buildLocationViewData(
     // pages only: localized country name, content-rich cities, region list,
     // and dataset facts. Data-driven for EVERY country — indexability is
     // untouched (un-authored Tier-3 pages stay noindex).
-    countryMesh: entry.kind === 'country' ? countryMeshFor(entry, locale) : undefined,
+    countryMesh,
+    // TASK-496 — the region-scoped content-rich mesh populates for region
+    // pages only: localized region name, parent-country facts, content-rich
+    // cities in the region, and a data-driven FAQ. Data-driven for EVERY
+    // region — indexability is untouched (un-authored Tier-3 pages stay
+    // noindex).
+    regionMesh: regionMeshData,
     ideaCategories:
       entry.kind === 'ideas' && content?.kind === 'city' ? content.ideaPage.categories : undefined,
     waitlistSource: waitlistSource(entry),

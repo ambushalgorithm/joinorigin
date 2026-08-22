@@ -594,6 +594,40 @@
         "keep-a-community-active": "جامعه را فعال نگه دارید",
         "hybrid-communities": "جوامع ترکیبی بسازید",
         "moderation": "جامعهٔ خود را مدیریت کنید"
+      },
+      "countryFacts": "حقایق کشور",
+      "regionFacts": "حقایق منطقه",
+      "factsTemplates": {
+        "population": "جمعیت: {{value}}",
+        "capital": "پایتخت: {{value}}",
+        "languages": "زبان‌ها: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "بخشی از {{country}}"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "چگونه جوامع را در {{country}} پیدا کنم؟",
+          "communitiesAnswer": "مرکز /location همه جوامع را در {{country}} فهرست می‌کند. انواع جامعه — استارتاپ، خلاق، سیاسی، دیدار و کسب‌وکار کوچک — را از جمله در {{cities}} بررسی کنید.",
+          "populationQuestion": "چند نفر در {{country}} زندگی می‌کنند؟",
+          "populationAnswer": "مجموعه داده جمعیت {{population}} را برای {{country}} ثبت می‌کند.",
+          "capitalQuestion": "پایتخت {{country}} چیست؟",
+          "capitalAnswer": "پایتخت {{country}} {{capital}} است.",
+          "languageQuestion": "در {{country}} چه زبان‌هایی صحبت می‌شود؟",
+          "languageAnswer": "زبان‌های رایج در {{country}} شامل {{languages}} است.",
+          "operationQuestion": "آیا JoinOrigin در {{country}} فعالیت می‌کند؟",
+          "operationAnswer": "بله. JoinOrigin دفتر محلی ندارد. این پلتفرم به افراد کمک می‌کند در هر جای {{country}} جامعه‌ای پیدا کنند یا ایجاد کنند."
+        },
+        "region": {
+          "communitiesQuestion": "چگونه جوامع را در {{region}} پیدا کنم؟",
+          "communitiesAnswer": "صفحه‌های شهرها را در {{region}} — {{cities}} — بررسی کنید یا جامعه خود را ایجاد کنید. مرکز /location همه انواع جامعه را در {{region}} فهرست می‌کند.",
+          "countryQuestion": "{{region}} در کدام کشور قرار دارد؟",
+          "countryAnswer": "{{region}} بخشی از {{country}} است که پایتخت آن {{capital}} است.",
+          "languageQuestion": "در {{region}} چه زبان‌هایی صحبت می‌شود؟",
+          "languageAnswer": "زبان‌های رایج در {{region}} شامل {{languages}} است.",
+          "operationQuestion": "آیا JoinOrigin در {{region}} فعالیت می‌کند؟",
+          "operationAnswer": "بله. JoinOrigin دفتر محلی ندارد. این پلتفرم به افراد کمک می‌کند در هر جای {{region}} جامعه‌ای پیدا کنند یا ایجاد کنند."
+        }
       }
     },
     "groupTypes": {

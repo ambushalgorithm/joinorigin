@@ -594,6 +594,40 @@
         "keep-a-community-active": "รักษาชุมชนให้กระตือรือร้น",
         "hybrid-communities": "ดำเนินชุมชนแบบไฮบริด",
         "moderation": "กลั่นกรองชุมชนของคุณ"
+      },
+      "countryFacts": "ข้อมูลประเทศ",
+      "regionFacts": "ข้อมูลภูมิภาค",
+      "factsTemplates": {
+        "population": "ประชากร: {{value}}",
+        "capital": "เมืองหลวง: {{value}}",
+        "languages": "ภาษา: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "ส่วนหนึ่งของ{{country}}"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "จะหาชุมชนใน{{country}}ได้อย่างไร?",
+          "communitiesAnswer": "ศูนย์กลาง /location แสดงรายการชุมชนทั้งหมดใน{{country}} สำรวจประเภทชุมชน — สตาร์ทอัพ ครีเอทีฟ การเมือง มีตอัป และธุรกิจขนาดเล็ก — รวมถึงใน{{cities}}",
+          "populationQuestion": "มีคนอาศัยอยู่ใน{{country}}กี่คน?",
+          "populationAnswer": "ชุดข้อมูลบันทึกประชากร {{population}} คนใน{{country}}",
+          "capitalQuestion": "เมืองหลวงของ{{country}}คืออะไร?",
+          "capitalAnswer": "เมืองหลวงของ{{country}}คือ{{capital}}",
+          "languageQuestion": "มีภาษาอะไรบ้างที่ใช้ใน{{country}}?",
+          "languageAnswer": "ภาษาที่ใช้ใน{{country}}รวมถึง{{languages}}",
+          "operationQuestion": "JoinOrigin ดำเนินงานใน{{country}}หรือไม่?",
+          "operationAnswer": "ใช่ JoinOrigin ไม่มีสำนักงานท้องถิ่น แพลตฟอร์มช่วยให้ผู้คนค้นหาหรือเริ่มต้นชุมชนได้ทุกที่ใน{{country}}"
+        },
+        "region": {
+          "communitiesQuestion": "จะหาชุมชนใน{{region}}ได้อย่างไร?",
+          "communitiesAnswer": "สำรวจหน้าของเมืองใน{{region}} — {{cities}} — หรือเริ่มชุมชนของคุณเอง ศูนย์กลาง /location แสดงรายการชุมชนทุกประเภทใน{{region}}",
+          "countryQuestion": "{{region}}อยู่ในประเทศใด?",
+          "countryAnswer": "{{region}}เป็นส่วนหนึ่งของ{{country}} โดยมีเมืองหลวงคือ{{capital}}",
+          "languageQuestion": "มีภาษาอะไรบ้างที่ใช้ใน{{region}}?",
+          "languageAnswer": "ภาษาที่ใช้ใน{{region}}รวมถึง{{languages}}",
+          "operationQuestion": "JoinOrigin ดำเนินงานใน{{region}}หรือไม่?",
+          "operationAnswer": "ใช่ JoinOrigin ไม่มีสำนักงานท้องถิ่น แพลตฟอร์มช่วยให้ผู้คนค้นหาหรือเริ่มต้นชุมชนได้ทุกที่ใน{{region}}"
+        }
       }
     },
     "groupTypes": {

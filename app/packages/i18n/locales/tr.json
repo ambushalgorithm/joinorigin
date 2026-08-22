@@ -594,6 +594,40 @@
         "keep-a-community-active": "Bir topluluğu aktif tutun",
         "hybrid-communities": "Hibrit topluluklar yürütün",
         "moderation": "Topluluğunuzu moderasyonla yönetin"
+      },
+      "countryFacts": "Ülke hakkında",
+      "regionFacts": "Bölge hakkında",
+      "factsTemplates": {
+        "population": "Nüfus: {{value}}",
+        "capital": "Başkent: {{value}}",
+        "languages": "Diller: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "{{country}}'nin parçası"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "{{country}}'de toplulukları nasıl bulurum?",
+          "communitiesAnswer": "/location merkezi {{country}}'deki tüm toplulukları listeler. Startup, yaratıcı, siyasi, buluşma ve küçük işletme topluluk türlerini — {{cities}} dahil — keşfedin.",
+          "populationQuestion": "{{country}}'de kaç kişi yaşıyor?",
+          "populationAnswer": "Veri seti {{country}} için {{population}} nüfus kaydediyor.",
+          "capitalQuestion": "{{country}}'nin başkenti neresidir?",
+          "capitalAnswer": "{{country}}'nin başkenti {{capital}}'dir.",
+          "languageQuestion": "{{country}}'de hangi diller konuşuluyor?",
+          "languageAnswer": "{{country}}'de konuşulan diller arasında {{languages}} bulunur.",
+          "operationQuestion": "JoinOrigin {{country}}'de faaliyet gösteriyor mu?",
+          "operationAnswer": "Evet. JoinOrigin'in yerel ofisleri yoktur. Platform, insanların {{country}}'nin her yerinde topluluk bulmasına veya başlatmasına yardımcı olur."
+        },
+        "region": {
+          "communitiesQuestion": "{{region}}'de toplulukları nasıl bulurum?",
+          "communitiesAnswer": "{{region}}'deki şehir sayfalarını — {{cities}} — keşfedin veya kendi topluluğunuzu başlatın. /location merkezi {{region}}'deki tüm topluluk türlerini listeler.",
+          "countryQuestion": "{{region}} hangi ülkededir?",
+          "countryAnswer": "{{region}}, başkenti {{capital}} olan {{country}}'nin bir parçasıdır.",
+          "languageQuestion": "{{region}}'de hangi diller konuşuluyor?",
+          "languageAnswer": "{{region}}'de konuşulan diller arasında {{languages}} bulunur.",
+          "operationQuestion": "JoinOrigin {{region}}'de faaliyet gösteriyor mu?",
+          "operationAnswer": "Evet. JoinOrigin'in yerel ofisleri yoktur. Platform, insanların {{region}}'nin her yerinde topluluk bulmasına veya başlatmasına yardımcı olur."
+        }
       }
     },
     "groupTypes": {

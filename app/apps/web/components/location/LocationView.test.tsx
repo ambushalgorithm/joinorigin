@@ -258,6 +258,10 @@ describe('LocationView country mesh (TASK-490)', () => {
     const mesh = screen.getByTestId('location-country-mesh');
     expect(mesh).toBeInTheDocument();
 
+    // TASK-496 — the mesh heading IS the localized country name
+    // (countryMesh.countryName, previously computed but never rendered).
+    expect(screen.getByTestId('location-country-name')).toHaveTextContent('Germany');
+
     // City cards carry localized dataset names + registry-exact hrefs.
     const cities = within(screen.getByTestId('location-country-cities'));
     expect(cities.getByRole('link', { name: 'Berlin' })).toHaveAttribute(
@@ -281,9 +285,71 @@ describe('LocationView country mesh (TASK-490)', () => {
     );
   });
 
-  it('does NOT render the country mesh on non-country pages', () => {
+  it('renders the "Country facts" label + dataset-driven data points on un-authored country pages (TASK-496)', () => {
+    const data = buildLocationViewData(resolveLocationEntry({ country: 'colombia' })!, 'en');
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    // Country-appropriate label — never "City facts" on a country page.
+    expect(screen.getByRole('heading', { level: 2, name: 'Country facts' })).toBeInTheDocument();
+    expect(screen.queryByText('City facts')).not.toBeInTheDocument();
+
+    // Dataset-driven data points render the population/capital/languages.
+    const points = within(screen.getByTestId('location-data-points'));
+    expect(points.getByText('Population: 49,648,685')).toBeInTheDocument();
+    expect(points.getByText('Capital: Bogota')).toBeInTheDocument();
+    expect(points.getByText('Languages: Spanish')).toBeInTheDocument();
+  });
+
+  it('renders the region mesh + "Region facts" label on un-authored region pages (TASK-496)', () => {
+    const data = buildLocationViewData(
+      resolveLocationEntry({ country: 'japan', region: 'osaka' })!,
+      'en',
+    );
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    // Region-appropriate facts label.
+    expect(screen.getByRole('heading', { level: 2, name: 'Region facts' })).toBeInTheDocument();
+    const points = within(screen.getByTestId('location-data-points'));
+    expect(points.getByText('Part of Japan')).toBeInTheDocument();
+
+    // The region mesh section — regionName heading + content-rich city cards.
+    const mesh = screen.getByTestId('location-region-mesh');
+    expect(mesh).toBeInTheDocument();
+    expect(screen.getByTestId('location-region-name')).toHaveTextContent('Osaka Prefecture');
+    const cities = within(screen.getByTestId('location-region-cities'));
+    expect(cities.getByRole('link', { name: 'Osaka' })).toHaveAttribute(
+      'href',
+      '/en/location/japan/osaka/osaka',
+    );
+  });
+
+  it('renders the data-driven FAQ on un-authored country pages (TASK-496)', () => {
+    const data = buildLocationViewData(resolveLocationEntry({ country: 'colombia' })!, 'en');
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const faq = screen.getByTestId('location-faq');
+    expect(within(faq).getByText('How do I find communities in Colombia?')).toBeInTheDocument();
+    expect(within(faq).getByText('What is the capital of Colombia?')).toBeInTheDocument();
+  });
+
+  it('renders the data-driven FAQ on un-authored region pages (TASK-496)', () => {
+    const data = buildLocationViewData(
+      resolveLocationEntry({ country: 'japan', region: 'osaka' })!,
+      'en',
+    );
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const faq = screen.getByTestId('location-faq');
+    expect(
+      within(faq).getByText('How do I find communities in Osaka Prefecture?'),
+    ).toBeInTheDocument();
+    expect(within(faq).getByText('What country is Osaka Prefecture in?')).toBeInTheDocument();
+  });
+
+  it('does NOT render the country/region mesh on non-matching pages', () => {
     const hubData = buildLocationViewData(hubEntry()!, 'en');
     renderWithI18n(<LocationView data={hubData} />, 'en');
     expect(screen.queryByTestId('location-country-mesh')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('location-region-mesh')).not.toBeInTheDocument();
   });
 });

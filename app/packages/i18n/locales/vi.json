@@ -594,6 +594,40 @@
         "keep-a-community-active": "Giữ cho cộng đồng hoạt động",
         "hybrid-communities": "Vận hành cộng đồng kết hợp",
         "moderation": "Điều hành cộng đồng của bạn"
+      },
+      "countryFacts": "Thông tin về quốc gia",
+      "regionFacts": "Thông tin về khu vực",
+      "factsTemplates": {
+        "population": "Dân số: {{value}}",
+        "capital": "Thủ đô: {{value}}",
+        "languages": "Ngôn ngữ: {{value}}"
+      },
+      "regionFactsTemplates": {
+        "partOfCountry": "Một phần của {{country}}"
+      },
+      "faqTemplates": {
+        "country": {
+          "communitiesQuestion": "Làm cách nào để tìm cộng đồng tại {{country}}?",
+          "communitiesAnswer": "Trung tâm /location liệt kê mọi cộng đồng tại {{country}}. Khám phá các loại cộng đồng — khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ — bao gồm tại {{cities}}.",
+          "populationQuestion": "Có bao nhiêu người sống tại {{country}}?",
+          "populationAnswer": "Bộ dữ liệu ghi nhận dân số {{population}} cho {{country}}.",
+          "capitalQuestion": "Thủ đô của {{country}} là gì?",
+          "capitalAnswer": "Thủ đô của {{country}} là {{capital}}.",
+          "languageQuestion": "Những ngôn ngữ nào được sử dụng tại {{country}}?",
+          "languageAnswer": "Các ngôn ngữ được sử dụng tại {{country}} bao gồm {{languages}}.",
+          "operationQuestion": "JoinOrigin có hoạt động tại {{country}} không?",
+          "operationAnswer": "Có. JoinOrigin không có văn phòng địa phương. Nền tảng giúp mọi người tìm hoặc bắt đầu cộng đồng ở bất kỳ đâu tại {{country}}."
+        },
+        "region": {
+          "communitiesQuestion": "Làm cách nào để tìm cộng đồng tại {{region}}?",
+          "communitiesAnswer": "Khám phá các trang thành phố tại {{region}} — {{cities}} — hoặc bắt đầu cộng đồng của riêng bạn. Trung tâm /location liệt kê mọi loại cộng đồng tại {{region}}.",
+          "countryQuestion": "{{region}} nằm ở quốc gia nào?",
+          "countryAnswer": "{{region}} là một phần của {{country}}, thủ đô là {{capital}}.",
+          "languageQuestion": "Những ngôn ngữ nào được sử dụng tại {{region}}?",
+          "languageAnswer": "Các ngôn ngữ được sử dụng tại {{region}} bao gồm {{languages}}.",
+          "operationQuestion": "JoinOrigin có hoạt động tại {{region}} không?",
+          "operationAnswer": "Có. JoinOrigin không có văn phòng địa phương. Nền tảng giúp mọi người tìm hoặc bắt đầu cộng đồng ở bất kỳ đâu tại {{region}}."
+        }
       }
     },
     "groupTypes": {
