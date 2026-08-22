@@ -241,3 +241,47 @@ describe('lib/seo locationData — region mesh + language helpers (TASK-496)', (
     expect(languageNamesFor([])).toBe('');
   });
 });
+
+describe('lib/seo locationData — Story E facts + region mesh data (TASK-497)', () => {
+  it('countryFactsFor resolves the sibling-fallback countries used by the mesh/FAQ', () => {
+    // Jakarta (ID), Lima (PE), Singapore (SG) drive the sibling fallback;
+    // their country facts must resolve so the country/region mesh + FAQ
+    // templates render honest dataset values.
+    expect(countryFactsFor('ID')).toEqual({
+      population: 267663435,
+      capital: 'Jakarta',
+      languages: ['id', 'en', 'nl', 'jv'],
+    });
+    expect(countryFactsFor('PE')).toEqual({
+      population: 31989256,
+      capital: 'Lima',
+      languages: ['es-PE', 'qu', 'ay'],
+    });
+    expect(countryFactsFor('SG')).toEqual({
+      population: 5638676,
+      capital: 'Singapore',
+      languages: ['cmn', 'en-SG', 'ms-SG', 'ta-SG', 'zh-SG'],
+    });
+  });
+
+  it('contentRichCitiesInRegion lists every content-rich city in a multi-city region', () => {
+    // California (us-ca) hosts Los Angeles + San Francisco — the region mesh
+    // city list must include both, not just a single flagship row. Order
+    // follows `CONTENT_RICH_CITY_SLUGS` (the deterministic content-rich set).
+    const california = contentRichCitiesInRegion('us-ca').map((city) => city.asciiName);
+    expect(california).toHaveLength(2);
+    expect(california).toContain('Los Angeles');
+    expect(california).toContain('San Francisco');
+    // Maharashtra (in-16) hosts Mumbai + Pune.
+    const maharashtra = contentRichCitiesInRegion('in-16').map((city) => city.asciiName);
+    expect(maharashtra).toHaveLength(2);
+    expect(maharashtra).toContain('Mumbai');
+    expect(maharashtra).toContain('Pune');
+  });
+
+  it('contentRichCitiesInCountry resolves the fallback countries for the sibling tests', () => {
+    expect(contentRichCitiesInCountry('ID').map((city) => city.asciiName)).toEqual(['Jakarta']);
+    expect(contentRichCitiesInCountry('PE').map((city) => city.asciiName)).toEqual(['Lima']);
+    expect(contentRichCitiesInCountry('SG').map((city) => city.asciiName)).toEqual(['Singapore']);
+  });
+});

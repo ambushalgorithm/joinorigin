@@ -28,6 +28,7 @@ import {
   tierForCitySlug,
 } from '../locationData';
 import { filterByKeyword } from '../../search/hubFilter';
+import { getCityContent, listContent } from '../content';
 
 /**
  * fe-location-pages view-layer unit tests (TASK-308).
@@ -37,6 +38,12 @@ import { filterByKeyword } from '../../search/hubFilter';
  * `location-…` contract, the EN↔de hreflang mapping is bidirectional and
  * absent on EN-only pages, `noindex` applies to Tier-3/failed gates, and the
  * warm-set static params match the MVP surface.
+ *
+ * Story E (TASK-497): the FAQ copy replacement (TASK-495) is asserted at the
+ * content-file level — the corny "We never fabricate member counts…" line is
+ * gone from every authored FAQ answer and the sourcing statement is present —
+ * plus un-authored country mesh facts / data points / FAQ and the multi-city
+ * region mesh.
  */
 
 describe('lib/seo locationView — resolve + view model', () => {
@@ -1833,5 +1840,109 @@ describe('lib/seo locationView — sibling city fallback (TASK-496)', () => {
       expect(sibling.path).toMatch(/^\/es\/location\/peru\//);
       expect(sibling.path).not.toMatch(/^\/en\//);
     }
+  });
+});
+
+describe('lib/seo locationView — FAQ copy replacement (TASK-495 / TASK-497)', () => {
+  const OLD_FAQ_LINE = 'We never fabricate member counts, ratings, or local offices';
+  const REPLACEMENT_PHRASE = 'compiled from real, publicly known community spaces';
+
+  it('every EN content-rich city venue-suggestion FAQ answer carries the replacement line', () => {
+    for (const slug of CONTENT_RICH_CITY_SLUGS) {
+      const content = getCityContent(slug, 'en');
+      expect(content).toBeDefined();
+      const venueFaq = content?.faq.find((entry) =>
+        entry.question.includes('venue suggestions on this page real'),
+      );
+      expect(venueFaq).toBeDefined();
+      expect(venueFaq?.answer).toContain(REPLACEMENT_PHRASE);
+      expect(venueFaq?.answer).not.toContain(OLD_FAQ_LINE);
+    }
+  });
+
+  it('no authored FAQ answer in any EN content file contains the old fabrication line', () => {
+    const offenders: string[] = [];
+    for (const content of listContent('en')) {
+      for (const entry of content.faq) {
+        if (entry.answer.includes(OLD_FAQ_LINE)) {
+          offenders.push(entry.question);
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  it('the rendered city view-model FAQ never contains the old line (buildLocationViewData)', () => {
+    for (const slug of ['jakarta', 'lima', 'berlin', 'new-york', 'tokyo']) {
+      const entry = locationPageEntries().find((e) => e.kind === 'city' && e.params.city === slug);
+      expect(entry).toBeDefined();
+      const data = buildLocationViewData(entry!);
+      expect(data.faq.length).toBeGreaterThan(0);
+      for (const faqEntry of data.faq) {
+        expect(faqEntry.answer).not.toContain(OLD_FAQ_LINE);
+      }
+    }
+  });
+});
+
+describe('lib/seo locationView — un-authored country mesh facts + FAQ (TASK-497)', () => {
+  it('buildLocationViewData for an un-authored country exposes countryMesh facts + countryName', () => {
+    // Italy has no authored country content (only germany + united-states do)
+    // but hosts the content-rich city Milan — the mesh must be data-driven.
+    const italy = resolveLocationEntry({ country: 'italy' });
+    expect(italy).toBeDefined();
+    const data = buildLocationViewData(italy!);
+    expect(data.kind).toBe('country');
+    expect(data.countryMesh).toBeDefined();
+    expect(data.countryMesh?.countryName).toBe('Italy');
+    expect(data.countryMesh?.facts).toEqual({
+      population: 60431283,
+      capital: 'Rome',
+      languages: ['it-IT', 'de-IT', 'fr-IT', 'sc', 'ca', 'co', 'sl'],
+    });
+    // Dataset-driven country data points (localized templates).
+    expect(data.dataPoints).toEqual([
+      'Population: 60,431,283',
+      'Capital: Rome',
+      'Languages: Italian, German, French, Sardinian, Catalan, Corsican, Slovenian',
+    ]);
+    // Data-driven FAQ — non-empty for an un-authored country.
+    expect(data.faq.length).toBe(5);
+    expect(data.faq[0].question).toBe('How do I find communities in Italy?');
+    expect(data.faq[1].answer).toContain('60,431,283');
+  });
+});
+
+describe('lib/seo locationView — multi-city region mesh (TASK-497)', () => {
+  it('region pages expose region mesh cities, facts, and FAQ for multi-city regions', () => {
+    // California hosts Los Angeles + San Francisco — a multi-city region
+    // exercises the "cities in the region" mesh beyond the single-city Osaka.
+    const california = resolveLocationEntry({ country: 'united-states', region: 'california' });
+    expect(california).toBeDefined();
+    expect(california?.kind).toBe('region');
+    const data = buildLocationViewData(california!);
+    expect(data.regionMesh).toBeDefined();
+    expect(data.regionMesh?.regionName).toBe('California');
+    expect(data.regionMesh?.countryName).toBe('United States');
+    expect(data.regionMesh?.facts).toEqual({
+      population: 327167434,
+      capital: 'Washington',
+      languages: ['en-US', 'es-US', 'haw', 'fr'],
+    });
+    // Cities sorted by population descending (LA before SF).
+    expect(data.regionMesh?.cities).toEqual([
+      { name: 'Los Angeles', path: '/en/location/united-states/california/los-angeles' },
+      { name: 'San Francisco', path: '/en/location/united-states/california/san-francisco' },
+    ]);
+    // Region facts data points + data-driven FAQ.
+    expect(data.dataPoints).toEqual([
+      'Part of United States',
+      'Population: 327,167,434',
+      'Capital: Washington',
+      'Languages: English, Spanish, Hawaiian, French',
+    ]);
+    expect(data.faq.length).toBeGreaterThanOrEqual(3);
+    expect(data.faq[0].question).toBe('How do I find communities in California?');
+    expect(data.faq[0].answer).toContain('Los Angeles, San Francisco');
   });
 });
