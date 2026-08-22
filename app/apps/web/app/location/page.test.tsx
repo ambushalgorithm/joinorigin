@@ -4,8 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { useI18n, type Locale } from '@joinorigin/i18n';
 
 import LocationHubPage, { metadata } from './page';
+import { LocationView } from '../../components/location/LocationView';
 import { renderWithI18n } from '../../test-utils';
-import { buildLocationViewData, hubEntry } from '../../lib/seo/locationView';
+import { buildLocationViewData, hubEntry, resolveLocationEntry } from '../../lib/seo/locationView';
 
 /**
  * fe-location-pages hub page tests (TASK-308) + TASK-317 hub search/filter.
@@ -391,5 +392,112 @@ describe('/location hub — language toggle translation (TASK-477/TASK-481)', ()
     expect(
       screen.queryByText('Community in your city finden oder gründen'),
     ).not.toBeInTheDocument();
+  });
+});
+
+/**
+ * Story E (TASK-497) — page-level render assertions for the location page
+ * completeness work (TASK-496). These drive the real `LocationView` fed with
+ * the same registry view data the country/region/city route wrappers build
+ * (`buildLocationViewData`), so the country mesh (facts + countryName), the
+ * region mesh (cities + FAQ), the city sibling fallback, and the FAQ copy
+ * replacement all render through the actual page surface.
+ */
+describe('/location page — Story E country/region/city render (TASK-497)', () => {
+  beforeEach(() => {
+    mockServerLocale.locale = 'en';
+  });
+
+  it('renders the un-authored country page: Country facts label + dataset points + mesh + FAQ', () => {
+    const colombia = resolveLocationEntry({ country: 'colombia' });
+    expect(colombia).toBeDefined();
+    const data = buildLocationViewData(colombia!);
+    renderWithI18n(<LocationView data={data} />);
+
+    // Kind-appropriate "Country facts" label — never "City facts".
+    expect(screen.getByRole('heading', { level: 2, name: 'Country facts' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2, name: 'City facts' })).not.toBeInTheDocument();
+
+    // Dataset-driven data points (population/capital/languages).
+    const points = screen.getByTestId('location-data-points');
+    expect(within(points).getByText('Population: 49,648,685')).toBeInTheDocument();
+    expect(within(points).getByText('Capital: Bogota')).toBeInTheDocument();
+
+    // The country mesh section: countryName heading + content-rich city cards.
+    const mesh = screen.getByTestId('location-country-mesh');
+    expect(within(mesh).getByTestId('location-country-name')).toHaveTextContent('Colombia');
+    const cityCards = within(within(mesh).getByTestId('location-country-cities')).getAllByRole(
+      'link',
+    );
+    expect(cityCards.length).toBeGreaterThan(0);
+
+    // Data-driven FAQ renders (5 entries for an un-authored country).
+    const faq = screen.getByTestId('location-faq');
+    expect(within(faq).getByText('How do I find communities in Colombia?')).toBeInTheDocument();
+    expect(within(faq).getByText('How many people live in Colombia?')).toBeInTheDocument();
+  });
+
+  it('renders the region page (japan/osaka): Region facts + region mesh + FAQ', () => {
+    const osaka = resolveLocationEntry({ country: 'japan', region: 'osaka' });
+    expect(osaka).toBeDefined();
+    const data = buildLocationViewData(osaka!);
+    renderWithI18n(<LocationView data={data} />);
+
+    expect(screen.getByRole('heading', { level: 2, name: 'Region facts' })).toBeInTheDocument();
+    const points = screen.getByTestId('location-data-points');
+    expect(within(points).getByText('Part of Japan')).toBeInTheDocument();
+    expect(within(points).getByText('Population: 126,529,100')).toBeInTheDocument();
+
+    const mesh = screen.getByTestId('location-region-mesh');
+    expect(within(mesh).getByTestId('location-region-name')).toHaveTextContent('Osaka Prefecture');
+    const cityLinks = within(within(mesh).getByTestId('location-region-cities')).getAllByRole(
+      'link',
+    );
+    expect(cityLinks.some((link) => link.textContent === 'Osaka')).toBe(true);
+
+    const faq = screen.getByTestId('location-faq');
+    expect(
+      within(faq).getByText('How do I find communities in Osaka Prefecture?'),
+    ).toBeInTheDocument();
+  });
+
+  it('renders the jakarta nearby section from same-country fallback cities', () => {
+    const jakarta = resolveLocationEntry({
+      country: 'indonesia',
+      region: 'jakarta',
+      city: 'jakarta',
+    });
+    expect(jakarta).toBeDefined();
+    const data = buildLocationViewData(jakarta!);
+    renderWithI18n(<LocationView data={data} />);
+
+    const siblingGrid = screen.getByTestId('location-sibling-cities');
+    const links = within(siblingGrid).getAllByRole('link');
+    expect(links.length).toBeGreaterThan(0);
+    // Jakarta has no same-region siblings — the fallback renders same-country
+    // cities (Surabaya/Bandung/Bekasi) on the ACTIVE locale surface.
+    const hrefs = links.map((link) => link.getAttribute('href'));
+    expect(hrefs.every((href) => href?.startsWith('/en/location/indonesia/'))).toBe(true);
+    const names = links.map((link) => link.textContent);
+    expect(names.some((name) => name === 'Surabaya')).toBe(true);
+    expect(names.some((name) => name === 'Bandung')).toBe(true);
+  });
+
+  it('renders FAQ answers with the sourcing statement — never the old fabrication line', () => {
+    const jakarta = resolveLocationEntry({
+      country: 'indonesia',
+      region: 'jakarta',
+      city: 'jakarta',
+    });
+    const data = buildLocationViewData(jakarta!);
+    renderWithI18n(<LocationView data={data} />);
+
+    const faq = screen.getByTestId('location-faq');
+    const faqText = within(faq)
+      .getAllByRole('paragraph')
+      .map((p) => p.textContent)
+      .join(' ');
+    expect(faqText).not.toContain('We never fabricate member counts, ratings, or local offices');
+    expect(faqText).toContain('compiled from real, publicly known community spaces');
   });
 });
