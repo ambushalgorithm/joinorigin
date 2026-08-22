@@ -117,9 +117,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     >
       <head>
         {/* Hosted fonts — no Google Fonts network request at runtime (spec §2.3).
-            Latin subsets are preloaded (critical path) so `font-display: optional`
-            faces are available at first paint; the CSS files declare the full
-            @font-face + unicode-range set. */}
+            Latin + latin-ext subsets are preloaded (critical path) so the
+            `font-display: swap` faces are ready near first paint (TASK-494);
+            the CSS files declare the full @font-face + unicode-range set and
+            /fonts/* is served with immutable cache headers. */}
         <link
           rel="preload"
           as="font"
@@ -132,7 +133,21 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
+          href="/fonts/inter/inter-latin-ext.woff2"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
           href="/fonts/urbanist/urbanist-latin.woff2"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          href="/fonts/urbanist/urbanist-latin-ext.woff2"
         />
         <link rel="stylesheet" href="/fonts/inter.css" />
         <link rel="stylesheet" href="/fonts/urbanist.css" />
