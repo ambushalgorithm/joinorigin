@@ -49,6 +49,26 @@ const nextConfig = {
       '.json',
     ],
   },
+  // Immutable caching for locally-hosted webfonts (fe-fonts, TASK-494):
+  // `/fonts/*` files are content-addressed by build/version (they never
+  // change in place), so browsers and CDNs may cache them for a year
+  // without revalidation. Combined with `font-display: swap` + the
+  // latin/latin-ext preloads in the root layout, this removes the
+  // intermittent first-visit font load failures: the woff2 is either
+  // already in cache or fetched once and reused forever.
+  async headers() {
+    return [
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
