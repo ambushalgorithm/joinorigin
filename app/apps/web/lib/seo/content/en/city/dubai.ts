@@ -423,7 +423,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — Kite Beach, Alserkal Avenue, d3 studios, DIFC event floors, district cafés — exists in Dubai. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — Kite Beach, Alserkal Avenue, d3 studios, DIFC event floors, district cafés — exists in Dubai. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Dubai?',

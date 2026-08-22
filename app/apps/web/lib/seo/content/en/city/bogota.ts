@@ -421,7 +421,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — Simón Bolívar Park, the ciclovía routes, Usaquén plaza, La Candelaria cafés, cultural centers — exists in Bogotá. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — Simón Bolívar Park, the ciclovía routes, Usaquén plaza, La Candelaria cafés, cultural centers — exists in Bogotá. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Bogotá?',

@@ -422,7 +422,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — hawker centres, Marina Bay, Gillman Barracks, Tiong Bahru cafés — exists in Singapore. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — hawker centres, Marina Bay, Gillman Barracks, Tiong Bahru cafés — exists in Singapore. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Singapore?',

@@ -423,7 +423,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — Marine Drive, Juhu Beach, Kala Ghoda galleries, BKC coworking floors, street-food lanes — exists in Mumbai. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — Marine Drive, Juhu Beach, Kala Ghoda galleries, BKC coworking floors, street-food lanes — exists in Mumbai. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Mumbai?',

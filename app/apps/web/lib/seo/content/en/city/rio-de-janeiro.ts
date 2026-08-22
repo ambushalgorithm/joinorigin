@@ -420,7 +420,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — Copacabana beach kiosks, Tijuca Forest trails, Lapa samba circles, Santa Teresa studios — exists in Rio de Janeiro. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — Copacabana beach kiosks, Tijuca Forest trails, Lapa samba circles, Santa Teresa studios — exists in Rio de Janeiro. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Rio de Janeiro?',

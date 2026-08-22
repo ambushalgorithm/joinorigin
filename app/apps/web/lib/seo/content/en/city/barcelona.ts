@@ -450,7 +450,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — plazas, vermuterías, market halls, centres cívics, the beach — exists in Barcelona. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — plazas, vermuterías, market halls, centres cívics, the beach — exists in Barcelona. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Barcelona?',

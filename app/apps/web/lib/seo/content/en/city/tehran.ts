@@ -422,7 +422,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — Tochal trailheads, Mellat Park, Valiasr cafés, the Grand Bazaar, central co-working spaces — exists in Tehran. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — Tochal trailheads, Mellat Park, Valiasr cafés, the Grand Bazaar, central co-working spaces — exists in Tehran. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Tehran?',

@@ -450,7 +450,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — bruin cafés, NDSM studios, the Vondelpark, Albert Cuyp market, public libraries — exists in Amsterdam. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — bruin cafés, NDSM studios, the Vondelpark, Albert Cuyp market, public libraries — exists in Amsterdam. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Amsterdam?',

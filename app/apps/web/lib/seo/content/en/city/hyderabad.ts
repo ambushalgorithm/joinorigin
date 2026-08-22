@@ -421,7 +421,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — Necklace Road, Charminar lanes, T-Hub floors, Jubilee Hills cafés — exists in Hyderabad. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — Necklace Road, Charminar lanes, T-Hub floors, Jubilee Hills cafés — exists in Hyderabad. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Hyderabad?',

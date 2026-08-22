@@ -422,7 +422,7 @@ const content: CityContent = {
     {
       question: 'Are the venue suggestions on this page real?',
       answer:
-        'Yes. Every venue type mentioned — the Sea Wall, Granville Island, Kitsilano Beach, Commercial Drive cafés, North Shore trailheads — exists in Vancouver. We never fabricate member counts, ratings, or local offices.',
+        'Yes. Every venue type mentioned — the Sea Wall, Granville Island, Kitsilano Beach, Commercial Drive cafés, North Shore trailheads — exists in Vancouver. Venue suggestions are compiled from real, publicly known community spaces and current community reporting.',
     },
     {
       question: 'Does JoinOrigin have an office in Vancouver?',
