@@ -973,3 +973,225 @@ test.describe('Story D: country mesh + unified guides + translated hub intro (TA
     );
   });
 });
+
+/**
+ * Story E (TASK-498) — location page completeness (TASK-496) + FAQ copy
+ * replacement (TASK-495) + first-visit font swap (TASK-494, fouc-load.spec).
+ *
+ * 1. Country pages (authored `/location/united-states` + un-authored
+ *    `/location/italy`) render the full country content: kind-appropriate
+ *    "Country facts" data block, content-rich cities + regions sub-sections,
+ *    and a FAQ (authored OR data-driven).
+ * 2. Region pages (`/location/japan/osaka`) list the region's content-rich
+ *    cities under a "Communities in nearby cities" section and render a
+ *    data-driven FAQ.
+ * 3. Content-rich cities with NO same-region siblings (jakarta/lima/
+ *    singapore) still render the nearby-cities section via the sibling
+ *    fallback (same-country → global content-rich set).
+ * 4. The FAQ answer for "Are the venue suggestions on this page real?" no
+ *    longer contains "We never fabricate member counts, ratings, or local
+ *    offices." and shows the replacement sourcing line.
+ */
+test.describe('Story E: country/region content + city sibling fallback + FAQ line (TASK-498)', () => {
+  test('authored country page (united-states) renders facts, cities + regions, and FAQ', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/united-states');
+    await expect(page.locator('h1')).toContainText('Communities in the United States');
+
+    // Kind-appropriate "Country facts" label (never "City facts").
+    await expect(page.getByRole('heading', { level: 2, name: 'Country facts' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 2, name: 'City facts' })).toHaveCount(0);
+    // Authored country data points render.
+    await expect(page.getByTestId('location-data-points')).toBeVisible();
+    await expect(page.getByText(/Federal capital is Washington, D\.C\./)).toBeVisible();
+
+    // Content-rich cities + regions sub-sections.
+    const mesh = page.getByTestId('location-country-mesh');
+    await expect(mesh).toBeVisible();
+    const cities = mesh.getByTestId('location-country-cities');
+    await expect(cities).toBeVisible();
+    await expect(cities.locator('a').first()).toBeVisible();
+    const regions = mesh.getByTestId('location-country-regions');
+    await expect(regions).toBeVisible();
+    await expect(regions.locator('a').first()).toBeVisible();
+
+    // FAQ renders on the country page.
+    await expect(page.getByTestId('location-faq')).toBeVisible();
+    await expect(page.getByTestId('location-faq').locator('h3').first()).toBeVisible();
+  });
+
+  test('un-authored country page (italy) renders dataset facts, cities + regions, and data-driven FAQ', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/italy');
+    await expect(page.locator('h1')).toContainText('Communities in Italy');
+
+    // Country facts label + dataset-driven data points (TASK-496).
+    await expect(page.getByRole('heading', { level: 2, name: 'Country facts' })).toBeVisible();
+    const points = page.getByTestId('location-data-points');
+    await expect(points).toBeVisible();
+    await expect(points).toContainText('Population: 60,431,283');
+    await expect(points).toContainText('Capital: Rome');
+
+    // Data-driven country mesh — Milan city + Lombardy region.
+    const mesh = page.getByTestId('location-country-mesh');
+    await expect(mesh).toBeVisible();
+    await expect(mesh.getByTestId('location-country-name')).toContainText('Italy');
+    const cities = mesh.getByTestId('location-country-cities');
+    await expect(cities.getByRole('link', { name: 'Milan' })).toBeVisible();
+    const regions = mesh.getByTestId('location-country-regions');
+    await expect(regions.getByRole('link', { name: 'Lombardy' })).toBeVisible();
+
+    // Data-driven FAQ for an un-authored country (TASK-496).
+    const faq = page.getByTestId('location-faq');
+    await expect(faq).toBeVisible();
+    await expect(faq.getByText('How do I find communities in Italy?')).toBeVisible();
+    await expect(faq.getByText('How many people live in Italy?')).toBeVisible();
+    await expect(faq.getByText(/The dataset records a population of 60,431,283/)).toBeVisible();
+  });
+
+  test('region page (japan/osaka) lists its cities + Communities in nearby cities + FAQ', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/japan/osaka');
+    await expect(page.locator('h1')).toContainText('Communities in Osaka');
+
+    // Region facts label + dataset-driven region data points.
+    await expect(page.getByRole('heading', { level: 2, name: 'Region facts' })).toBeVisible();
+    const points = page.getByTestId('location-data-points');
+    await expect(points).toBeVisible();
+    await expect(points).toContainText('Part of Japan');
+    await expect(points).toContainText('Population: 126,529,100');
+
+    // Region mesh — content-rich cities in the region under the localized
+    // "Communities in nearby cities" subtitle (TASK-496).
+    const mesh = page.getByTestId('location-region-mesh');
+    await expect(mesh).toBeVisible();
+    await expect(mesh.getByTestId('location-region-name')).toContainText('Osaka Prefecture');
+    await expect(mesh.getByText('Communities in nearby cities')).toBeVisible();
+    const cityCards = mesh.getByTestId('location-region-cities');
+    await expect(cityCards.getByRole('link', { name: 'Osaka' })).toBeVisible();
+    await expect(cityCards.locator('a[href="/en/location/japan/osaka/osaka"]')).toBeVisible();
+
+    // Data-driven FAQ for the un-authored region.
+    const faq = page.getByTestId('location-faq');
+    await expect(faq).toBeVisible();
+    await expect(faq.getByText('How do I find communities in Osaka Prefecture?')).toBeVisible();
+    await expect(faq.getByText('What country is Osaka Prefecture in?')).toBeVisible();
+  });
+
+  test('jakarta (no same-region siblings) still renders nearby cities via same-country fallback', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/indonesia/jakarta/jakarta');
+    await expect(page.locator('h1')).toContainText('Communities in Jakarta');
+
+    const siblings = page.getByTestId('location-sibling-cities');
+    await expect(siblings).toBeVisible();
+    // Jakarta's region has no sibling content-rich cities → same-country
+    // fallback (Surabaya/Bandung/Bekasi…), registry-exact on the EN surface.
+    const hrefs = await siblings
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')));
+    expect(hrefs.length).toBeGreaterThan(0);
+    for (const href of hrefs) {
+      expect(href).toMatch(/^\/en\/location\/indonesia\//);
+    }
+    await expect(siblings.getByRole('link', { name: 'Surabaya' })).toBeVisible();
+    await expect(siblings.getByRole('link', { name: 'Bandung' })).toBeVisible();
+  });
+
+  test('lima (no same-region siblings) still renders nearby cities via same-country fallback', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/peru/lima-province/lima');
+    await expect(page.locator('h1')).toContainText('Communities in Lima');
+
+    const siblings = page.getByTestId('location-sibling-cities');
+    await expect(siblings).toBeVisible();
+    const hrefs = await siblings
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')));
+    expect(hrefs.length).toBeGreaterThan(0);
+    for (const href of hrefs) {
+      expect(href).toMatch(/^\/en\/location\/peru\//);
+    }
+    await expect(siblings.getByRole('link', { name: 'Arequipa' })).toBeVisible();
+    await expect(siblings.getByRole('link', { name: 'Trujillo' })).toBeVisible();
+  });
+
+  test('singapore (city-state, no country siblings) still renders nearby cities via global fallback', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/singapore/singapore/singapore');
+    await expect(page.locator('h1')).toContainText('Communities in Singapore');
+
+    const siblings = page.getByTestId('location-sibling-cities');
+    await expect(siblings).toBeVisible();
+    // Every fallback card is a real registry page (never a dead link).
+    const hrefs = await siblings
+      .locator('a')
+      .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).getAttribute('href')));
+    expect(hrefs.length).toBeGreaterThan(0);
+    for (const href of hrefs) {
+      expect(href).toMatch(/^\/en\/location\//);
+      expect(href).toMatch(/^\/en\/location\/(?!singapore\/singapore\/singapore$).+$/);
+    }
+  });
+
+  test('city FAQ venue answer shows the sourcing line — never the old fabrication line', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    // Berlin + Jakarta both carry the committed venue-suggestion FAQ; assert
+    // the replacement copy (TASK-495) on both an EN city and a fallback city.
+    for (const path of [
+      '/en/location/germany/berlin/berlin',
+      '/en/location/indonesia/jakarta/jakarta',
+    ]) {
+      await page.goto(path);
+      const faq = page.getByTestId('location-faq');
+      await expect(faq).toBeVisible();
+      const venueCard = faq
+        .locator('h3', { hasText: 'Are the venue suggestions on this page real?' })
+        .locator('..');
+      await expect(venueCard).toBeVisible();
+      const answerText = (await venueCard.innerText()) ?? '';
+      expect(answerText).not.toContain(
+        'We never fabricate member counts, ratings, or local offices',
+      );
+      expect(answerText).toContain('compiled from real, publicly known community spaces');
+    }
+  });
+
+  test('FAQ answer line is gone across authored + fallback cities (TASK-495)', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    // The old fabrication line must not appear anywhere in the rendered FAQ
+    // on a spread of city pages (committed EN + sibling-fallback cities).
+    const paths = [
+      '/en/location/germany/berlin/berlin',
+      '/en/location/united-states/new-york/new-york',
+      '/en/location/indonesia/jakarta/jakarta',
+      '/en/location/peru/lima-province/lima',
+      '/en/location/singapore/singapore/singapore',
+      '/en/location/japan/osaka/osaka',
+    ];
+    for (const path of paths) {
+      const response = await page.goto(path);
+      expect(response?.status(), `${path} must resolve, not 404`).toBe(200);
+      const faq = page.getByTestId('location-faq');
+      await expect(faq).toBeVisible();
+      const faqText = (await faq.innerText()) ?? '';
+      expect(faqText, `${path} must not contain the old fabrication line`).not.toContain(
+        'We never fabricate member counts, ratings, or local offices',
+      );
+    }
+  });
+});
