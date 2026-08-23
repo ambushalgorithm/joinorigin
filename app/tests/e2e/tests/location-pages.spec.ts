@@ -1022,19 +1022,21 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
     await expect(page.getByTestId('location-faq').locator('h3').first()).toBeVisible();
   });
 
-  test('un-authored country page (italy) renders dataset facts, cities + regions, and data-driven FAQ', async ({
+  test('authored country page (italy) renders authored facts, cities + regions, and authored FAQ', async ({
     page,
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/italy');
     await expect(page.locator('h1')).toContainText('Communities in Italy');
 
-    // Country facts label + dataset-driven data points (TASK-496).
+    // Country facts label — italy now has authored content (TASK-503), so
+    // the data points are the authored prose facts (richer than the dataset
+    // fallback asserted by the pre-Story-G version of this test).
     await expect(page.getByRole('heading', { level: 2, name: 'Country facts' })).toBeVisible();
     const points = page.getByTestId('location-data-points');
     await expect(points).toBeVisible();
-    await expect(points).toContainText('Population: 60,431,283');
-    await expect(points).toContainText('Capital: Rome');
+    await expect(points).toContainText('Population of roughly 60.4 million');
+    await expect(points).toContainText('Capital is Rome');
 
     // Data-driven country mesh — Milan city + Lombardy region.
     const mesh = page.getByTestId('location-country-mesh');
@@ -1045,12 +1047,35 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
     const regions = mesh.getByTestId('location-country-regions');
     await expect(regions.getByRole('link', { name: 'Lombardy' })).toBeVisible();
 
-    // Data-driven FAQ for an un-authored country (TASK-496).
+    // Authored FAQ for the country page (TASK-503 content wins over the
+    // data-driven template).
     const faq = page.getByTestId('location-faq');
     await expect(faq).toBeVisible();
     await expect(faq.getByText('How do I find communities in Italy?')).toBeVisible();
-    await expect(faq.getByText('How many people live in Italy?')).toBeVisible();
-    await expect(faq.getByText(/The dataset records a population of 60,431,283/)).toBeVisible();
+    await expect(faq.getByText('Can I start a community in an Italian city?')).toBeVisible();
+    await expect(faq.getByText('Does JoinOrigin operate in Italy?')).toBeVisible();
+  });
+
+  test('dataset-driven country facts + FAQ still render on a genuinely un-authored country (norway)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/norway');
+    await expect(page.locator('h1')).toContainText('Communities in Norway');
+
+    // Norway has no authored content: the page must still render the
+    // dataset-driven "Country facts" data points (TASK-496) and the
+    // data-driven FAQ template — never an empty shell.
+    await expect(page.getByRole('heading', { level: 2, name: 'Country facts' })).toBeVisible();
+    const points = page.getByTestId('location-data-points');
+    await expect(points).toBeVisible();
+    await expect(points).toContainText('Population: 5,314,336');
+    await expect(points).toContainText('Capital: Oslo');
+
+    const faq = page.getByTestId('location-faq');
+    await expect(faq).toBeVisible();
+    await expect(faq.getByText('How do I find communities in Norway?')).toBeVisible();
+    await expect(faq.getByText('How many people live in Norway?')).toBeVisible();
   });
 
   test('region page (japan/osaka) lists its cities + Communities in nearby cities + FAQ', async ({
@@ -1060,12 +1085,14 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
     await page.goto('/en/location/japan/osaka');
     await expect(page.locator('h1')).toContainText('Communities in Osaka');
 
-    // Region facts label + dataset-driven region data points.
+    // Region facts label + authored region data points (osaka region content
+    // was authored in Story G TASK-505, so the authored prose facts win over
+    // the dataset fallback the pre-Story-G test asserted).
     await expect(page.getByRole('heading', { level: 2, name: 'Region facts' })).toBeVisible();
     const points = page.getByTestId('location-data-points');
     await expect(points).toBeVisible();
-    await expect(points).toContainText('Part of Japan');
-    await expect(points).toContainText('Population: 126,529,100');
+    await expect(points).toContainText('Osaka Prefecture hosts Osaka');
+    await expect(points).toContainText('more than eight million');
 
     // Region mesh — content-rich cities in the region under the localized
     // "Communities in nearby cities" subtitle (TASK-496).
@@ -1077,11 +1104,16 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
     await expect(cityCards.getByRole('link', { name: 'Osaka' })).toBeVisible();
     await expect(cityCards.locator('a[href="/en/location/japan/osaka/osaka"]')).toBeVisible();
 
-    // Data-driven FAQ for the un-authored region.
+    // Authored FAQ for the region (TASK-505 content wins over the data-driven
+    // template).
     const faq = page.getByTestId('location-faq');
     await expect(faq).toBeVisible();
-    await expect(faq.getByText('How do I find communities in Osaka Prefecture?')).toBeVisible();
-    await expect(faq.getByText('What country is Osaka Prefecture in?')).toBeVisible();
+    await expect(
+      faq.getByText('Is the Osaka region different from the Osaka city scene?'),
+    ).toBeVisible();
+    await expect(
+      faq.getByText('Which Osaka districts have the most active communities?'),
+    ).toBeVisible();
   });
 
   test('jakarta (no same-region siblings) still renders nearby cities via same-country fallback', async ({
@@ -1193,5 +1225,188 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
         'We never fabricate member counts, ratings, or local offices',
       );
     }
+  });
+});
+
+/**
+ * Story G (TASK-510) — content-rich country/region prose + predominant-locale
+ * translations (TASK-502..508 authored content).
+ *
+ * 1. `/location/mexico` renders the authored content-rich intro (≥150 words —
+ *    the G2 gate — NOT the short fallback hero lead), the "Country facts"
+ *    data block, and the authored FAQ.
+ * 2. `/location/japan/osaka` renders the authored region intro (≥150 words),
+ *    the region mesh (cities in the region), and the authored FAQ.
+ * 3. Predominant-locale surfaces render translated content: the
+ *    `/es/location/colombia` intro is Spanish and `/de/location/germany` is
+ *    German (the country pages now carry predominant-locale content files).
+ * 4. Country-page FAQ cross-checks Story E: the old "We never fabricate…"
+ *    line is gone and the venue-suggestion answer shows the replacement
+ *    sourcing line on the country's city surface.
+ */
+test.describe('Story G: content-rich country/region prose + predominant-locale content (TASK-510)', () => {
+  /** Count whitespace-delimited words in a rendered text block. */
+  async function wordCount(locator: ReturnType<Page['getByTestId']>): Promise<number> {
+    const text = ((await locator.innerText()) ?? '').trim();
+    return text.length === 0 ? 0 : text.split(/\s+/).length;
+  }
+
+  test('mexico country page renders a content-rich intro (≥150 words, not the fallback lead) + facts + FAQ', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/mexico');
+    await expect(page.locator('h1')).toContainText('Communities in Mexico');
+
+    // The authored intro (G2: ≥150 words) renders in the location-intro
+    // block — never the short fallback hero lead.
+    const intro = page.getByTestId('location-intro');
+    await expect(intro).toBeVisible();
+    const introWords = await wordCount(intro);
+    expect(introWords, 'mexico intro must meet the G2 ≥150-word gate').toBeGreaterThanOrEqual(150);
+    await expect(intro).toContainText('Mexico is one of the most community-oriented countries');
+
+    // The intro block is distinct from the short hero lead (the fallback
+    // that renders when no authored prose exists).
+    const heroLead = page.locator('[data-hero="lead"]');
+    await expect(heroLead).toBeVisible();
+    const leadWords = await wordCount(heroLead);
+    expect(introWords).toBeGreaterThan(leadWords);
+
+    // Country facts block with the authored data points.
+    await expect(page.getByRole('heading', { level: 2, name: 'Country facts' })).toBeVisible();
+    const points = page.getByTestId('location-data-points');
+    await expect(points).toBeVisible();
+    await expect(points).toContainText('Capital is Mexico City');
+    await expect(points).toContainText('126 million');
+
+    // Authored FAQ on the country page.
+    const faq = page.getByTestId('location-faq');
+    await expect(faq).toBeVisible();
+    await expect(faq.getByText('How do I find communities in Mexico?')).toBeVisible();
+    await expect(
+      faq.getByText('How does regional identity shape Mexican communities?'),
+    ).toBeVisible();
+  });
+
+  test('osaka region page renders a content-rich intro (≥150 words) + region mesh + FAQ', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/japan/osaka');
+    await expect(page.locator('h1')).toContainText('Communities in Osaka');
+
+    // The authored region intro (G2: ≥150 words).
+    const intro = page.getByTestId('location-intro');
+    await expect(intro).toBeVisible();
+    const introWords = await wordCount(intro);
+    expect(introWords, 'osaka intro must meet the G2 ≥150-word gate').toBeGreaterThanOrEqual(150);
+    await expect(intro).toContainText(
+      'Osaka Prefecture is the compact but enormously energetic home of Osaka city',
+    );
+
+    // Region facts block.
+    await expect(page.getByRole('heading', { level: 2, name: 'Region facts' })).toBeVisible();
+    const points = page.getByTestId('location-data-points');
+    await expect(points).toBeVisible();
+    await expect(points).toContainText('Osaka Prefecture hosts Osaka');
+
+    // Region mesh — the region's content-rich cities.
+    const mesh = page.getByTestId('location-region-mesh');
+    await expect(mesh).toBeVisible();
+    await expect(mesh.getByTestId('location-region-name')).toContainText('Osaka Prefecture');
+    await expect(
+      mesh.getByTestId('location-region-cities').getByRole('link', { name: 'Osaka' }),
+    ).toBeVisible();
+
+    // Authored FAQ.
+    const faq = page.getByTestId('location-faq');
+    await expect(faq).toBeVisible();
+    await expect(
+      faq.getByText('Is the Osaka region different from the Osaka city scene?'),
+    ).toBeVisible();
+  });
+
+  test('es colombia country page renders the Spanish intro (predominant-locale content)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/es/location/colombia');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+    await expect(page.locator('h1')).toContainText('Comunidades en Colombia');
+
+    // The Spanish-authored intro (G2: ≥150 words) — the predominant-locale
+    // content file (TASK-502), not the EN fallback.
+    const intro = page.getByTestId('location-intro');
+    await expect(intro).toBeVisible();
+    const introWords = await wordCount(intro);
+    expect(introWords, 'es colombia intro must meet the G2 ≥150-word gate').toBeGreaterThanOrEqual(
+      150,
+    );
+    await expect(intro).toContainText('Colombia es un país de identidades regionales fuertes');
+
+    // Spanish data points + FAQ.
+    const points = page.getByTestId('location-data-points');
+    await expect(points).toContainText('La capital es Bogotá');
+    const faq = page.getByTestId('location-faq');
+    await expect(faq).toBeVisible();
+    await expect(faq.getByText('¿Cómo encuentro comunidades en Colombia?')).toBeVisible();
+  });
+
+  test('de germany country page renders the German intro (predominant-locale content)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/de/location/germany');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    await expect(page.locator('h1')).toContainText('Communities in Deutschland');
+
+    // The German-authored intro (G2: ≥150 words) — TASK-507 translated the
+    // flagship Germany country page.
+    const intro = page.getByTestId('location-intro');
+    await expect(intro).toBeVisible();
+    const introWords = await wordCount(intro);
+    expect(introWords, 'de germany intro must meet the G2 ≥150-word gate').toBeGreaterThanOrEqual(
+      150,
+    );
+    await expect(intro).toContainText(
+      'Deutschland verbindet eine tiefe Tradition organisierten Gemeinschaftslebens',
+    );
+
+    // German data points + FAQ.
+    const points = page.getByTestId('location-data-points');
+    await expect(points).toContainText('Die Bundeshauptstadt ist Berlin');
+    const faq = page.getByTestId('location-faq');
+    await expect(faq).toBeVisible();
+    await expect(faq.getByText('Wie finde ich Communities in Deutschland?')).toBeVisible();
+  });
+
+  test('country page FAQ shows the replacement sourcing line — never the fabrication line (cross-check Story E)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+
+    // On the country page the FAQ is visible and no answer carries the old
+    // fabrication line (Story G content + TASK-495 replacement are both in).
+    await page.goto('/en/location/mexico');
+    const faq = page.getByTestId('location-faq');
+    await expect(faq).toBeVisible();
+    const countryFaqText = (await faq.innerText()) ?? '';
+    expect(countryFaqText).not.toContain(
+      'We never fabricate member counts, ratings, or local offices',
+    );
+
+    // Cross-check Story E on the country's city surface: the venue-suggestion
+    // answer shows the replacement sourcing line.
+    await page.goto('/en/location/mexico/mexico-city/mexico-city');
+    const cityFaq = page.getByTestId('location-faq');
+    await expect(cityFaq).toBeVisible();
+    const venueCard = cityFaq
+      .locator('h3', { hasText: 'Are the venue suggestions on this page real?' })
+      .locator('..');
+    await expect(venueCard).toBeVisible();
+    const answerText = (await venueCard.innerText()) ?? '';
+    expect(answerText).not.toContain('We never fabricate member counts, ratings, or local offices');
+    expect(answerText).toContain('compiled from real, publicly known community spaces');
   });
 });
