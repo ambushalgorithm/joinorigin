@@ -408,7 +408,7 @@ describe('/location page — Story E country/region/city render (TASK-497)', () 
     mockServerLocale.locale = 'en';
   });
 
-  it('renders the un-authored country page: Country facts label + dataset points + mesh + FAQ', () => {
+  it('renders the country page: Country facts label + authored points + mesh + FAQ (Story G)', () => {
     const colombia = resolveLocationEntry({ country: 'colombia' });
     expect(colombia).toBeDefined();
     const data = buildLocationViewData(colombia!);
@@ -418,10 +418,13 @@ describe('/location page — Story E country/region/city render (TASK-497)', () 
     expect(screen.getByRole('heading', { level: 2, name: 'Country facts' })).toBeInTheDocument();
     expect(screen.queryByRole('heading', { level: 2, name: 'City facts' })).not.toBeInTheDocument();
 
-    // Dataset-driven data points (population/capital/languages).
+    // Authored data points render (Story G authored every content-rich country).
     const points = screen.getByTestId('location-data-points');
-    expect(within(points).getByText('Population: 49,648,685')).toBeInTheDocument();
-    expect(within(points).getByText('Capital: Bogota')).toBeInTheDocument();
+    expect(
+      within(points).getByText(
+        'Population of roughly 49.6 million across 32 departments plus the capital district.',
+      ),
+    ).toBeInTheDocument();
 
     // The country mesh section: countryName heading + content-rich city cards.
     const mesh = screen.getByTestId('location-country-mesh');
@@ -431,13 +434,15 @@ describe('/location page — Story E country/region/city render (TASK-497)', () 
     );
     expect(cityCards.length).toBeGreaterThan(0);
 
-    // Data-driven FAQ renders (5 entries for an un-authored country).
+    // Authored FAQ renders (Story G authored every content-rich country).
     const faq = screen.getByTestId('location-faq');
     expect(within(faq).getByText('How do I find communities in Colombia?')).toBeInTheDocument();
-    expect(within(faq).getByText('How many people live in Colombia?')).toBeInTheDocument();
+    expect(
+      within(faq).getByText('What makes Colombian community culture distinctive?'),
+    ).toBeInTheDocument();
   });
 
-  it('renders the region page (japan/osaka): Region facts + region mesh + FAQ', () => {
+  it('renders the region page (japan/osaka): Region facts + region mesh + FAQ (Story G)', () => {
     const osaka = resolveLocationEntry({ country: 'japan', region: 'osaka' });
     expect(osaka).toBeDefined();
     const data = buildLocationViewData(osaka!);
@@ -445,8 +450,9 @@ describe('/location page — Story E country/region/city render (TASK-497)', () 
 
     expect(screen.getByRole('heading', { level: 2, name: 'Region facts' })).toBeInTheDocument();
     const points = screen.getByTestId('location-data-points');
-    expect(within(points).getByText('Part of Japan')).toBeInTheDocument();
-    expect(within(points).getByText('Population: 126,529,100')).toBeInTheDocument();
+    expect(
+      within(points).getByText('Osaka Prefecture hosts Osaka, the commercial heart of Kansai.'),
+    ).toBeInTheDocument();
 
     const mesh = screen.getByTestId('location-region-mesh');
     expect(within(mesh).getByTestId('location-region-name')).toHaveTextContent('Osaka Prefecture');
@@ -457,7 +463,7 @@ describe('/location page — Story E country/region/city render (TASK-497)', () 
 
     const faq = screen.getByTestId('location-faq');
     expect(
-      within(faq).getByText('How do I find communities in Osaka Prefecture?'),
+      within(faq).getByText('Is the Osaka region different from the Osaka city scene?'),
     ).toBeInTheDocument();
   });
 

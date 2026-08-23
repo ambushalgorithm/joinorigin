@@ -285,7 +285,7 @@ describe('LocationView country mesh (TASK-490)', () => {
     );
   });
 
-  it('renders the "Country facts" label + dataset-driven data points on un-authored country pages (TASK-496)', () => {
+  it('renders the "Country facts" label + authored data points on country pages (TASK-496)', () => {
     const data = buildLocationViewData(resolveLocationEntry({ country: 'colombia' })!, 'en');
     renderWithI18n(<LocationView data={data} />, 'en');
 
@@ -293,14 +293,16 @@ describe('LocationView country mesh (TASK-490)', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'Country facts' })).toBeInTheDocument();
     expect(screen.queryByText('City facts')).not.toBeInTheDocument();
 
-    // Dataset-driven data points render the population/capital/languages.
+    // Authored data points render (Story G authored every content-rich country).
     const points = within(screen.getByTestId('location-data-points'));
-    expect(points.getByText('Population: 49,648,685')).toBeInTheDocument();
-    expect(points.getByText('Capital: Bogota')).toBeInTheDocument();
-    expect(points.getByText('Languages: Spanish')).toBeInTheDocument();
+    expect(
+      points.getByText(
+        'Population of roughly 49.6 million across 32 departments plus the capital district.',
+      ),
+    ).toBeInTheDocument();
   });
 
-  it('renders the region mesh + "Region facts" label on un-authored region pages (TASK-496)', () => {
+  it('renders the region mesh + "Region facts" label on region pages (TASK-496)', () => {
     const data = buildLocationViewData(
       resolveLocationEntry({ country: 'japan', region: 'osaka' })!,
       'en',
@@ -310,7 +312,9 @@ describe('LocationView country mesh (TASK-490)', () => {
     // Region-appropriate facts label.
     expect(screen.getByRole('heading', { level: 2, name: 'Region facts' })).toBeInTheDocument();
     const points = within(screen.getByTestId('location-data-points'));
-    expect(points.getByText('Part of Japan')).toBeInTheDocument();
+    expect(
+      points.getByText('Osaka Prefecture hosts Osaka, the commercial heart of Kansai.'),
+    ).toBeInTheDocument();
 
     // The region mesh section — regionName heading + content-rich city cards.
     const mesh = screen.getByTestId('location-region-mesh');
@@ -323,16 +327,18 @@ describe('LocationView country mesh (TASK-490)', () => {
     );
   });
 
-  it('renders the data-driven FAQ on un-authored country pages (TASK-496)', () => {
+  it('renders the authored FAQ on country pages (Story G)', () => {
     const data = buildLocationViewData(resolveLocationEntry({ country: 'colombia' })!, 'en');
     renderWithI18n(<LocationView data={data} />, 'en');
 
     const faq = screen.getByTestId('location-faq');
     expect(within(faq).getByText('How do I find communities in Colombia?')).toBeInTheDocument();
-    expect(within(faq).getByText('What is the capital of Colombia?')).toBeInTheDocument();
+    expect(
+      within(faq).getByText('What makes Colombian community culture distinctive?'),
+    ).toBeInTheDocument();
   });
 
-  it('renders the data-driven FAQ on un-authored region pages (TASK-496)', () => {
+  it('renders the authored FAQ on region pages (Story G)', () => {
     const data = buildLocationViewData(
       resolveLocationEntry({ country: 'japan', region: 'osaka' })!,
       'en',
@@ -341,9 +347,11 @@ describe('LocationView country mesh (TASK-490)', () => {
 
     const faq = screen.getByTestId('location-faq');
     expect(
-      within(faq).getByText('How do I find communities in Osaka Prefecture?'),
+      within(faq).getByText('Is the Osaka region different from the Osaka city scene?'),
     ).toBeInTheDocument();
-    expect(within(faq).getByText('What country is Osaka Prefecture in?')).toBeInTheDocument();
+    expect(
+      within(faq).getByText('Which Osaka districts have the most active communities?'),
+    ).toBeInTheDocument();
   });
 
   it('does NOT render the country/region mesh on non-matching pages', () => {

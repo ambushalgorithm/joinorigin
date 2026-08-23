@@ -24,6 +24,159 @@ import germanyCountryEn from './en/country/germany';
 import unitedStatesCountryEn from './en/country/united-states';
 import berlinRegionEn from './en/region/berlin';
 import newYorkRegionEn from './en/region/new-york';
+// Story G (TASK-507) — flagship country/region translations.
+import germanyCountryDe from './de/country/germany';
+import berlinRegionDe from './de/region/berlin';
+// Story G (TASK-502..507) — EN country pages.
+import argentinaCountryEn from './en/country/argentina';
+import australiaCountryEn from './en/country/australia';
+import brazilCountryEn from './en/country/brazil';
+import canadaCountryEn from './en/country/canada';
+import chinaCountryEn from './en/country/china';
+import colombiaCountryEn from './en/country/colombia';
+import denmarkCountryEn from './en/country/denmark';
+import egyptCountryEn from './en/country/egypt';
+import franceCountryEn from './en/country/france';
+import hongKongCountryEn from './en/country/hong-kong';
+import indiaCountryEn from './en/country/india';
+import indonesiaCountryEn from './en/country/indonesia';
+import iranCountryEn from './en/country/iran';
+import irelandCountryEn from './en/country/ireland';
+import italyCountryEn from './en/country/italy';
+import japanCountryEn from './en/country/japan';
+import kenyaCountryEn from './en/country/kenya';
+import mexicoCountryEn from './en/country/mexico';
+import moroccoCountryEn from './en/country/morocco';
+import nigeriaCountryEn from './en/country/nigeria';
+import peruCountryEn from './en/country/peru';
+import polandCountryEn from './en/country/poland';
+import portugalCountryEn from './en/country/portugal';
+import russiaCountryEn from './en/country/russia';
+import singaporeCountryEn from './en/country/singapore';
+import southAfricaCountryEn from './en/country/south-africa';
+import southKoreaCountryEn from './en/country/south-korea';
+import spainCountryEn from './en/country/spain';
+import taiwanCountryEn from './en/country/taiwan';
+import thailandCountryEn from './en/country/thailand';
+import theNetherlandsCountryEn from './en/country/the-netherlands';
+import turkeyCountryEn from './en/country/turkey';
+import ukraineCountryEn from './en/country/ukraine';
+import unitedArabEmiratesCountryEn from './en/country/united-arab-emirates';
+import unitedKingdomCountryEn from './en/country/united-kingdom';
+import vietnamCountryEn from './en/country/vietnam';
+// Story G (TASK-502..507) — EN region pages.
+import antioquiaRegionEn from './en/region/antioquia';
+import atlanticoRegionEn from './en/region/atlantico';
+import bangkokRegionEn from './en/region/bangkok';
+import bogotaDCRegionEn from './en/region/bogota-d-c';
+import britishColumbiaRegionEn from './en/region/british-columbia';
+import buenosAiresFDRegionEn from './en/region/buenos-aires-f-d';
+import cairoRegionEn from './en/region/cairo';
+import capitalRegionRegionEn from './en/region/capital-region';
+import casablancaSettatRegionEn from './en/region/casablanca-settat';
+import cataloniaRegionEn from './en/region/catalonia';
+import centralAndWesternRegionEn from './en/region/central-and-western';
+import delhiRegionEn from './en/region/delhi';
+import dubaiRegionEn from './en/region/dubai';
+import englandRegionEn from './en/region/england';
+import gautengRegionEn from './en/region/gauteng';
+import hoChiMinhCityHcmcRegionEn from './en/region/ho-chi-minh-city-hcmc';
+import ileDeFranceRegionEn from './en/region/ile-de-france';
+import istanbulRegionEn from './en/region/istanbul';
+import jakartaRegionEn from './en/region/jakarta';
+import karnatakaRegionEn from './en/region/karnataka';
+import kyivCityRegionEn from './en/region/kyiv-city';
+import lagosRegionEn from './en/region/lagos';
+import leinsterRegionEn from './en/region/leinster';
+import limaProvinceRegionEn from './en/region/lima-province';
+import lisbonRegionEn from './en/region/lisbon';
+import lombardyRegionEn from './en/region/lombardy';
+import madridRegionEn from './en/region/madrid';
+import maharashtraRegionEn from './en/region/maharashtra';
+import mazoviaRegionEn from './en/region/mazovia';
+import mexicoCityRegionEn from './en/region/mexico-city';
+import moscowRegionEn from './en/region/moscow';
+import nairobiCountyRegionEn from './en/region/nairobi-county';
+import newSouthWalesRegionEn from './en/region/new-south-wales';
+import northHollandRegionEn from './en/region/north-holland';
+import ontarioRegionEn from './en/region/ontario';
+import osakaRegionEn from './en/region/osaka';
+import quebecRegionEn from './en/region/quebec';
+import rioDeJaneiroRegionEn from './en/region/rio-de-janeiro';
+import saoPauloRegionEn from './en/region/sao-paulo';
+import seoulRegionEn from './en/region/seoul';
+import shanghaiRegionEn from './en/region/shanghai';
+import singaporeRegionEn from './en/region/singapore';
+import taiwanRegionEn from './en/region/taiwan';
+import tamilNaduRegionEn from './en/region/tamil-nadu';
+import tehranRegionEn from './en/region/tehran';
+import telanganaRegionEn from './en/region/telangana';
+import tokyoRegionEn from './en/region/tokyo';
+import westernCapeRegionEn from './en/region/western-cape';
+// Story G (TASK-502..507) — predominant-locale country/region translations.
+import egyptCountryAr from './ar/country/egypt';
+import moroccoCountryAr from './ar/country/morocco';
+import unitedArabEmiratesCountryAr from './ar/country/united-arab-emirates';
+import cairoRegionAr from './ar/region/cairo';
+import casablancaSettatRegionAr from './ar/region/casablanca-settat';
+import dubaiRegionAr from './ar/region/dubai';
+import argentinaCountryEs from './es/country/argentina';
+import colombiaCountryEs from './es/country/colombia';
+import mexicoCountryEs from './es/country/mexico';
+import peruCountryEs from './es/country/peru';
+import spainCountryEs from './es/country/spain';
+import antioquiaRegionEs from './es/region/antioquia';
+import atlanticoRegionEs from './es/region/atlantico';
+import bogotaDCRegionEs from './es/region/bogota-d-c';
+import buenosAiresFDRegionEs from './es/region/buenos-aires-f-d';
+import cataloniaRegionEs from './es/region/catalonia';
+import limaProvinceRegionEs from './es/region/lima-province';
+import madridRegionEs from './es/region/madrid';
+import mexicoCityRegionEs from './es/region/mexico-city';
+import iranCountryFa from './fa/country/iran';
+import tehranRegionFa from './fa/region/tehran';
+import franceCountryFr from './fr/country/france';
+import ileDeFranceRegionFr from './fr/region/ile-de-france';
+import indiaCountryHi from './hi/country/india';
+import delhiRegionHi from './hi/region/delhi';
+import karnatakaRegionHi from './hi/region/karnataka';
+import maharashtraRegionHi from './hi/region/maharashtra';
+import tamilNaduRegionHi from './hi/region/tamil-nadu';
+import telanganaRegionHi from './hi/region/telangana';
+import indonesiaCountryId from './id/country/indonesia';
+import jakartaRegionId from './id/region/jakarta';
+import italyCountryIt from './it/country/italy';
+import lombardyRegionIt from './it/region/lombardy';
+import japanCountryJa from './ja/country/japan';
+import osakaRegionJa from './ja/region/osaka';
+import tokyoRegionJa from './ja/region/tokyo';
+import southKoreaCountryKo from './ko/country/south-korea';
+import seoulRegionKo from './ko/region/seoul';
+import theNetherlandsCountryNl from './nl/country/the-netherlands';
+import northHollandRegionNl from './nl/region/north-holland';
+import polandCountryPl from './pl/country/poland';
+import mazoviaRegionPl from './pl/region/mazovia';
+import brazilCountryPtbr from './pt-BR/country/brazil';
+import portugalCountryPtbr from './pt-BR/country/portugal';
+import lisbonRegionPtbr from './pt-BR/region/lisbon';
+import rioDeJaneiroRegionPtbr from './pt-BR/region/rio-de-janeiro';
+import saoPauloRegionPtbr from './pt-BR/region/sao-paulo';
+import russiaCountryRu from './ru/country/russia';
+import moscowRegionRu from './ru/region/moscow';
+import thailandCountryTh from './th/country/thailand';
+import bangkokRegionTh from './th/region/bangkok';
+import turkeyCountryTr from './tr/country/turkey';
+import istanbulRegionTr from './tr/region/istanbul';
+import ukraineCountryUk from './uk/country/ukraine';
+import kyivCityRegionUk from './uk/region/kyiv-city';
+import vietnamCountryVi from './vi/country/vietnam';
+import hoChiMinhCityHcmcRegionVi from './vi/region/ho-chi-minh-city-hcmc';
+import chinaCountryZhcn from './zh-CN/country/china';
+import shanghaiRegionZhcn from './zh-CN/region/shanghai';
+import hongKongCountryZhtw from './zh-TW/country/hong-kong';
+import taiwanCountryZhtw from './zh-TW/country/taiwan';
+import centralAndWesternRegionZhtw from './zh-TW/region/central-and-western';
+import taiwanRegionZhtw from './zh-TW/region/taiwan';
 import cairoCityAr from './ar/city/cairo';
 import casablancaCityAr from './ar/city/casablanca';
 import dubaiCityAr from './ar/city/dubai';
@@ -410,6 +563,337 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'region', slug: 'berlin', locale: 'en', content: berlinRegionEn },
   // region new-york (EN source of truth).
   { kind: 'region', slug: 'new-york', locale: 'en', content: newYorkRegionEn },
+
+  // Story G (TASK-507) — flagship country/region translations.
+  // country germany (de translation).
+  { kind: 'country', slug: 'germany', locale: 'de', content: germanyCountryDe },
+  // region berlin (de translation).
+  { kind: 'region', slug: 'berlin', locale: 'de', content: berlinRegionDe },
+
+  // Story G (TASK-502..507) — EN country pages.
+  // country argentina (EN source of truth).
+  { kind: 'country', slug: 'argentina', locale: 'en', content: argentinaCountryEn },
+  // country australia (EN source of truth).
+  { kind: 'country', slug: 'australia', locale: 'en', content: australiaCountryEn },
+  // country brazil (EN source of truth).
+  { kind: 'country', slug: 'brazil', locale: 'en', content: brazilCountryEn },
+  // country canada (EN source of truth).
+  { kind: 'country', slug: 'canada', locale: 'en', content: canadaCountryEn },
+  // country china (EN source of truth).
+  { kind: 'country', slug: 'china', locale: 'en', content: chinaCountryEn },
+  // country colombia (EN source of truth).
+  { kind: 'country', slug: 'colombia', locale: 'en', content: colombiaCountryEn },
+  // country denmark (EN source of truth).
+  { kind: 'country', slug: 'denmark', locale: 'en', content: denmarkCountryEn },
+  // country egypt (EN source of truth).
+  { kind: 'country', slug: 'egypt', locale: 'en', content: egyptCountryEn },
+  // country france (EN source of truth).
+  { kind: 'country', slug: 'france', locale: 'en', content: franceCountryEn },
+  // country hong-kong (EN source of truth).
+  { kind: 'country', slug: 'hong-kong', locale: 'en', content: hongKongCountryEn },
+  // country india (EN source of truth).
+  { kind: 'country', slug: 'india', locale: 'en', content: indiaCountryEn },
+  // country indonesia (EN source of truth).
+  { kind: 'country', slug: 'indonesia', locale: 'en', content: indonesiaCountryEn },
+  // country iran (EN source of truth).
+  { kind: 'country', slug: 'iran', locale: 'en', content: iranCountryEn },
+  // country ireland (EN source of truth).
+  { kind: 'country', slug: 'ireland', locale: 'en', content: irelandCountryEn },
+  // country italy (EN source of truth).
+  { kind: 'country', slug: 'italy', locale: 'en', content: italyCountryEn },
+  // country japan (EN source of truth).
+  { kind: 'country', slug: 'japan', locale: 'en', content: japanCountryEn },
+  // country kenya (EN source of truth).
+  { kind: 'country', slug: 'kenya', locale: 'en', content: kenyaCountryEn },
+  // country mexico (EN source of truth).
+  { kind: 'country', slug: 'mexico', locale: 'en', content: mexicoCountryEn },
+  // country morocco (EN source of truth).
+  { kind: 'country', slug: 'morocco', locale: 'en', content: moroccoCountryEn },
+  // country nigeria (EN source of truth).
+  { kind: 'country', slug: 'nigeria', locale: 'en', content: nigeriaCountryEn },
+  // country peru (EN source of truth).
+  { kind: 'country', slug: 'peru', locale: 'en', content: peruCountryEn },
+  // country poland (EN source of truth).
+  { kind: 'country', slug: 'poland', locale: 'en', content: polandCountryEn },
+  // country portugal (EN source of truth).
+  { kind: 'country', slug: 'portugal', locale: 'en', content: portugalCountryEn },
+  // country russia (EN source of truth).
+  { kind: 'country', slug: 'russia', locale: 'en', content: russiaCountryEn },
+  // country singapore (EN source of truth).
+  { kind: 'country', slug: 'singapore', locale: 'en', content: singaporeCountryEn },
+  // country south-africa (EN source of truth).
+  { kind: 'country', slug: 'south-africa', locale: 'en', content: southAfricaCountryEn },
+  // country south-korea (EN source of truth).
+  { kind: 'country', slug: 'south-korea', locale: 'en', content: southKoreaCountryEn },
+  // country spain (EN source of truth).
+  { kind: 'country', slug: 'spain', locale: 'en', content: spainCountryEn },
+  // country taiwan (EN source of truth).
+  { kind: 'country', slug: 'taiwan', locale: 'en', content: taiwanCountryEn },
+  // country thailand (EN source of truth).
+  { kind: 'country', slug: 'thailand', locale: 'en', content: thailandCountryEn },
+  // country the-netherlands (EN source of truth).
+  { kind: 'country', slug: 'the-netherlands', locale: 'en', content: theNetherlandsCountryEn },
+  // country turkey (EN source of truth).
+  { kind: 'country', slug: 'turkey', locale: 'en', content: turkeyCountryEn },
+  // country ukraine (EN source of truth).
+  { kind: 'country', slug: 'ukraine', locale: 'en', content: ukraineCountryEn },
+  // country united-arab-emirates (EN source of truth).
+  {
+    kind: 'country',
+    slug: 'united-arab-emirates',
+    locale: 'en',
+    content: unitedArabEmiratesCountryEn,
+  },
+  // country united-kingdom (EN source of truth).
+  { kind: 'country', slug: 'united-kingdom', locale: 'en', content: unitedKingdomCountryEn },
+  // country vietnam (EN source of truth).
+  { kind: 'country', slug: 'vietnam', locale: 'en', content: vietnamCountryEn },
+
+  // Story G (TASK-502..507) — EN region pages.
+  // region antioquia (EN source of truth).
+  { kind: 'region', slug: 'antioquia', locale: 'en', content: antioquiaRegionEn },
+  // region atlantico (EN source of truth).
+  { kind: 'region', slug: 'atlantico', locale: 'en', content: atlanticoRegionEn },
+  // region bangkok (EN source of truth).
+  { kind: 'region', slug: 'bangkok', locale: 'en', content: bangkokRegionEn },
+  // region bogota-d-c (EN source of truth).
+  { kind: 'region', slug: 'bogota-d-c', locale: 'en', content: bogotaDCRegionEn },
+  // region british-columbia (EN source of truth).
+  { kind: 'region', slug: 'british-columbia', locale: 'en', content: britishColumbiaRegionEn },
+  // region buenos-aires-f-d (EN source of truth).
+  { kind: 'region', slug: 'buenos-aires-f-d', locale: 'en', content: buenosAiresFDRegionEn },
+  // region cairo (EN source of truth).
+  { kind: 'region', slug: 'cairo', locale: 'en', content: cairoRegionEn },
+  // region capital-region (EN source of truth).
+  { kind: 'region', slug: 'capital-region', locale: 'en', content: capitalRegionRegionEn },
+  // region casablanca-settat (EN source of truth).
+  { kind: 'region', slug: 'casablanca-settat', locale: 'en', content: casablancaSettatRegionEn },
+  // region catalonia (EN source of truth).
+  { kind: 'region', slug: 'catalonia', locale: 'en', content: cataloniaRegionEn },
+  // region central-and-western (EN source of truth).
+  { kind: 'region', slug: 'central-and-western', locale: 'en', content: centralAndWesternRegionEn },
+  // region delhi (EN source of truth).
+  { kind: 'region', slug: 'delhi', locale: 'en', content: delhiRegionEn },
+  // region dubai (EN source of truth).
+  { kind: 'region', slug: 'dubai', locale: 'en', content: dubaiRegionEn },
+  // region england (EN source of truth).
+  { kind: 'region', slug: 'england', locale: 'en', content: englandRegionEn },
+  // region gauteng (EN source of truth).
+  { kind: 'region', slug: 'gauteng', locale: 'en', content: gautengRegionEn },
+  // region ho-chi-minh-city-hcmc (EN source of truth).
+  {
+    kind: 'region',
+    slug: 'ho-chi-minh-city-hcmc',
+    locale: 'en',
+    content: hoChiMinhCityHcmcRegionEn,
+  },
+  // region ile-de-france (EN source of truth).
+  { kind: 'region', slug: 'ile-de-france', locale: 'en', content: ileDeFranceRegionEn },
+  // region istanbul (EN source of truth).
+  { kind: 'region', slug: 'istanbul', locale: 'en', content: istanbulRegionEn },
+  // region jakarta (EN source of truth).
+  { kind: 'region', slug: 'jakarta', locale: 'en', content: jakartaRegionEn },
+  // region karnataka (EN source of truth).
+  { kind: 'region', slug: 'karnataka', locale: 'en', content: karnatakaRegionEn },
+  // region kyiv-city (EN source of truth).
+  { kind: 'region', slug: 'kyiv-city', locale: 'en', content: kyivCityRegionEn },
+  // region lagos (EN source of truth).
+  { kind: 'region', slug: 'lagos', locale: 'en', content: lagosRegionEn },
+  // region leinster (EN source of truth).
+  { kind: 'region', slug: 'leinster', locale: 'en', content: leinsterRegionEn },
+  // region lima-province (EN source of truth).
+  { kind: 'region', slug: 'lima-province', locale: 'en', content: limaProvinceRegionEn },
+  // region lisbon (EN source of truth).
+  { kind: 'region', slug: 'lisbon', locale: 'en', content: lisbonRegionEn },
+  // region lombardy (EN source of truth).
+  { kind: 'region', slug: 'lombardy', locale: 'en', content: lombardyRegionEn },
+  // region madrid (EN source of truth).
+  { kind: 'region', slug: 'madrid', locale: 'en', content: madridRegionEn },
+  // region maharashtra (EN source of truth).
+  { kind: 'region', slug: 'maharashtra', locale: 'en', content: maharashtraRegionEn },
+  // region mazovia (EN source of truth).
+  { kind: 'region', slug: 'mazovia', locale: 'en', content: mazoviaRegionEn },
+  // region mexico-city (EN source of truth).
+  { kind: 'region', slug: 'mexico-city', locale: 'en', content: mexicoCityRegionEn },
+  // region moscow (EN source of truth).
+  { kind: 'region', slug: 'moscow', locale: 'en', content: moscowRegionEn },
+  // region nairobi-county (EN source of truth).
+  { kind: 'region', slug: 'nairobi-county', locale: 'en', content: nairobiCountyRegionEn },
+  // region new-south-wales (EN source of truth).
+  { kind: 'region', slug: 'new-south-wales', locale: 'en', content: newSouthWalesRegionEn },
+  // region north-holland (EN source of truth).
+  { kind: 'region', slug: 'north-holland', locale: 'en', content: northHollandRegionEn },
+  // region ontario (EN source of truth).
+  { kind: 'region', slug: 'ontario', locale: 'en', content: ontarioRegionEn },
+  // region osaka (EN source of truth).
+  { kind: 'region', slug: 'osaka', locale: 'en', content: osakaRegionEn },
+  // region quebec (EN source of truth).
+  { kind: 'region', slug: 'quebec', locale: 'en', content: quebecRegionEn },
+  // region rio-de-janeiro (EN source of truth).
+  { kind: 'region', slug: 'rio-de-janeiro', locale: 'en', content: rioDeJaneiroRegionEn },
+  // region sao-paulo (EN source of truth).
+  { kind: 'region', slug: 'sao-paulo', locale: 'en', content: saoPauloRegionEn },
+  // region seoul (EN source of truth).
+  { kind: 'region', slug: 'seoul', locale: 'en', content: seoulRegionEn },
+  // region shanghai (EN source of truth).
+  { kind: 'region', slug: 'shanghai', locale: 'en', content: shanghaiRegionEn },
+  // region singapore (EN source of truth).
+  { kind: 'region', slug: 'singapore', locale: 'en', content: singaporeRegionEn },
+  // region taiwan (EN source of truth).
+  { kind: 'region', slug: 'taiwan', locale: 'en', content: taiwanRegionEn },
+  // region tamil-nadu (EN source of truth).
+  { kind: 'region', slug: 'tamil-nadu', locale: 'en', content: tamilNaduRegionEn },
+  // region tehran (EN source of truth).
+  { kind: 'region', slug: 'tehran', locale: 'en', content: tehranRegionEn },
+  // region telangana (EN source of truth).
+  { kind: 'region', slug: 'telangana', locale: 'en', content: telanganaRegionEn },
+  // region tokyo (EN source of truth).
+  { kind: 'region', slug: 'tokyo', locale: 'en', content: tokyoRegionEn },
+  // region western-cape (EN source of truth).
+  { kind: 'region', slug: 'western-cape', locale: 'en', content: westernCapeRegionEn },
+
+  // Story G (TASK-502..507) — predominant-locale country/region translations.
+  // country egypt (ar translation).
+  { kind: 'country', slug: 'egypt', locale: 'ar', content: egyptCountryAr },
+  // country morocco (ar translation).
+  { kind: 'country', slug: 'morocco', locale: 'ar', content: moroccoCountryAr },
+  // country united-arab-emirates (ar translation).
+  {
+    kind: 'country',
+    slug: 'united-arab-emirates',
+    locale: 'ar',
+    content: unitedArabEmiratesCountryAr,
+  },
+  // region cairo (ar translation).
+  { kind: 'region', slug: 'cairo', locale: 'ar', content: cairoRegionAr },
+  // region casablanca-settat (ar translation).
+  { kind: 'region', slug: 'casablanca-settat', locale: 'ar', content: casablancaSettatRegionAr },
+  // region dubai (ar translation).
+  { kind: 'region', slug: 'dubai', locale: 'ar', content: dubaiRegionAr },
+  // country argentina (es translation).
+  { kind: 'country', slug: 'argentina', locale: 'es', content: argentinaCountryEs },
+  // country colombia (es translation).
+  { kind: 'country', slug: 'colombia', locale: 'es', content: colombiaCountryEs },
+  // country mexico (es translation).
+  { kind: 'country', slug: 'mexico', locale: 'es', content: mexicoCountryEs },
+  // country peru (es translation).
+  { kind: 'country', slug: 'peru', locale: 'es', content: peruCountryEs },
+  // country spain (es translation).
+  { kind: 'country', slug: 'spain', locale: 'es', content: spainCountryEs },
+  // region antioquia (es translation).
+  { kind: 'region', slug: 'antioquia', locale: 'es', content: antioquiaRegionEs },
+  // region atlantico (es translation).
+  { kind: 'region', slug: 'atlantico', locale: 'es', content: atlanticoRegionEs },
+  // region bogota-d-c (es translation).
+  { kind: 'region', slug: 'bogota-d-c', locale: 'es', content: bogotaDCRegionEs },
+  // region buenos-aires-f-d (es translation).
+  { kind: 'region', slug: 'buenos-aires-f-d', locale: 'es', content: buenosAiresFDRegionEs },
+  // region catalonia (es translation).
+  { kind: 'region', slug: 'catalonia', locale: 'es', content: cataloniaRegionEs },
+  // region lima-province (es translation).
+  { kind: 'region', slug: 'lima-province', locale: 'es', content: limaProvinceRegionEs },
+  // region madrid (es translation).
+  { kind: 'region', slug: 'madrid', locale: 'es', content: madridRegionEs },
+  // region mexico-city (es translation).
+  { kind: 'region', slug: 'mexico-city', locale: 'es', content: mexicoCityRegionEs },
+  // country iran (fa translation).
+  { kind: 'country', slug: 'iran', locale: 'fa', content: iranCountryFa },
+  // region tehran (fa translation).
+  { kind: 'region', slug: 'tehran', locale: 'fa', content: tehranRegionFa },
+  // country france (fr translation).
+  { kind: 'country', slug: 'france', locale: 'fr', content: franceCountryFr },
+  // region ile-de-france (fr translation).
+  { kind: 'region', slug: 'ile-de-france', locale: 'fr', content: ileDeFranceRegionFr },
+  // country india (hi translation).
+  { kind: 'country', slug: 'india', locale: 'hi', content: indiaCountryHi },
+  // region delhi (hi translation).
+  { kind: 'region', slug: 'delhi', locale: 'hi', content: delhiRegionHi },
+  // region karnataka (hi translation).
+  { kind: 'region', slug: 'karnataka', locale: 'hi', content: karnatakaRegionHi },
+  // region maharashtra (hi translation).
+  { kind: 'region', slug: 'maharashtra', locale: 'hi', content: maharashtraRegionHi },
+  // region tamil-nadu (hi translation).
+  { kind: 'region', slug: 'tamil-nadu', locale: 'hi', content: tamilNaduRegionHi },
+  // region telangana (hi translation).
+  { kind: 'region', slug: 'telangana', locale: 'hi', content: telanganaRegionHi },
+  // country indonesia (id translation).
+  { kind: 'country', slug: 'indonesia', locale: 'id', content: indonesiaCountryId },
+  // region jakarta (id translation).
+  { kind: 'region', slug: 'jakarta', locale: 'id', content: jakartaRegionId },
+  // country italy (it translation).
+  { kind: 'country', slug: 'italy', locale: 'it', content: italyCountryIt },
+  // region lombardy (it translation).
+  { kind: 'region', slug: 'lombardy', locale: 'it', content: lombardyRegionIt },
+  // country japan (ja translation).
+  { kind: 'country', slug: 'japan', locale: 'ja', content: japanCountryJa },
+  // region osaka (ja translation).
+  { kind: 'region', slug: 'osaka', locale: 'ja', content: osakaRegionJa },
+  // region tokyo (ja translation).
+  { kind: 'region', slug: 'tokyo', locale: 'ja', content: tokyoRegionJa },
+  // country south-korea (ko translation).
+  { kind: 'country', slug: 'south-korea', locale: 'ko', content: southKoreaCountryKo },
+  // region seoul (ko translation).
+  { kind: 'region', slug: 'seoul', locale: 'ko', content: seoulRegionKo },
+  // country the-netherlands (nl translation).
+  { kind: 'country', slug: 'the-netherlands', locale: 'nl', content: theNetherlandsCountryNl },
+  // region north-holland (nl translation).
+  { kind: 'region', slug: 'north-holland', locale: 'nl', content: northHollandRegionNl },
+  // country poland (pl translation).
+  { kind: 'country', slug: 'poland', locale: 'pl', content: polandCountryPl },
+  // region mazovia (pl translation).
+  { kind: 'region', slug: 'mazovia', locale: 'pl', content: mazoviaRegionPl },
+  // country brazil (pt-BR translation).
+  { kind: 'country', slug: 'brazil', locale: 'pt-BR', content: brazilCountryPtbr },
+  // country portugal (pt-BR translation).
+  { kind: 'country', slug: 'portugal', locale: 'pt-BR', content: portugalCountryPtbr },
+  // region lisbon (pt-BR translation).
+  { kind: 'region', slug: 'lisbon', locale: 'pt-BR', content: lisbonRegionPtbr },
+  // region rio-de-janeiro (pt-BR translation).
+  { kind: 'region', slug: 'rio-de-janeiro', locale: 'pt-BR', content: rioDeJaneiroRegionPtbr },
+  // region sao-paulo (pt-BR translation).
+  { kind: 'region', slug: 'sao-paulo', locale: 'pt-BR', content: saoPauloRegionPtbr },
+  // country russia (ru translation).
+  { kind: 'country', slug: 'russia', locale: 'ru', content: russiaCountryRu },
+  // region moscow (ru translation).
+  { kind: 'region', slug: 'moscow', locale: 'ru', content: moscowRegionRu },
+  // country thailand (th translation).
+  { kind: 'country', slug: 'thailand', locale: 'th', content: thailandCountryTh },
+  // region bangkok (th translation).
+  { kind: 'region', slug: 'bangkok', locale: 'th', content: bangkokRegionTh },
+  // country turkey (tr translation).
+  { kind: 'country', slug: 'turkey', locale: 'tr', content: turkeyCountryTr },
+  // region istanbul (tr translation).
+  { kind: 'region', slug: 'istanbul', locale: 'tr', content: istanbulRegionTr },
+  // country ukraine (uk translation).
+  { kind: 'country', slug: 'ukraine', locale: 'uk', content: ukraineCountryUk },
+  // region kyiv-city (uk translation).
+  { kind: 'region', slug: 'kyiv-city', locale: 'uk', content: kyivCityRegionUk },
+  // country vietnam (vi translation).
+  { kind: 'country', slug: 'vietnam', locale: 'vi', content: vietnamCountryVi },
+  // region ho-chi-minh-city-hcmc (vi translation).
+  {
+    kind: 'region',
+    slug: 'ho-chi-minh-city-hcmc',
+    locale: 'vi',
+    content: hoChiMinhCityHcmcRegionVi,
+  },
+  // country china (zh-CN translation).
+  { kind: 'country', slug: 'china', locale: 'zh-CN', content: chinaCountryZhcn },
+  // region shanghai (zh-CN translation).
+  { kind: 'region', slug: 'shanghai', locale: 'zh-CN', content: shanghaiRegionZhcn },
+  // country hong-kong (zh-TW translation).
+  { kind: 'country', slug: 'hong-kong', locale: 'zh-TW', content: hongKongCountryZhtw },
+  // country taiwan (zh-TW translation).
+  { kind: 'country', slug: 'taiwan', locale: 'zh-TW', content: taiwanCountryZhtw },
+  // region central-and-western (zh-TW translation).
+  {
+    kind: 'region',
+    slug: 'central-and-western',
+    locale: 'zh-TW',
+    content: centralAndWesternRegionZhtw,
+  },
+  // region taiwan (zh-TW translation).
+  { kind: 'region', slug: 'taiwan', locale: 'zh-TW', content: taiwanRegionZhtw },
 
   // EN source of truth — flagship city pages (city + variants + ideas).
   // city amsterdam (EN source of truth).

@@ -1564,17 +1564,16 @@ describe('lib/seo locationView — country mesh (TASK-490)', () => {
 
 describe('lib/seo locationView — country data points + FAQ templates (TASK-496)', () => {
   it('un-authored country pages get dataset-driven "Country facts" data points', () => {
-    const colombia = resolveLocationEntry({ country: 'colombia' });
-    expect(colombia).toBeDefined();
-    const data = buildLocationViewData(colombia!);
-    // No authored content → the dataset facts (population/capital/languages)
-    // render through the localized facts templates — the same countryFactsFor
-    // source that feeds countryMesh.facts.
+    // Story G authored all content-rich countries — Austria has no authored
+    // content, so the dataset facts render through the localized templates.
+    const austria = resolveLocationEntry({ country: 'austria' });
+    expect(austria).toBeDefined();
+    const data = buildLocationViewData(austria!);
     expect(data.dataPoints.length).toBeGreaterThanOrEqual(3);
     expect(data.dataPoints[0]).toMatch(/^Population: /);
-    expect(data.dataPoints[0]).toContain('49,648,685');
-    expect(data.dataPoints[1]).toBe('Capital: Bogota');
-    expect(data.dataPoints[2]).toBe('Languages: Spanish');
+    expect(data.dataPoints[0]).toContain('8,847,037');
+    expect(data.dataPoints[1]).toBe('Capital: Vienna');
+    expect(data.dataPoints[2]).toBe('Languages: German, Croatian, Hungarian, Slovenian');
   });
 
   it('authored country pages keep their authored data points (no dataset override)', () => {
@@ -1586,19 +1585,21 @@ describe('lib/seo locationView — country data points + FAQ templates (TASK-496
   });
 
   it('un-authored country pages get the data-driven FAQ template (5 entries, dataset values)', () => {
-    const colombia = resolveLocationEntry({ country: 'colombia' })!;
-    const data = buildLocationViewData(colombia);
+    const austria = resolveLocationEntry({ country: 'austria' })!;
+    const data = buildLocationViewData(austria);
     expect(data.faq.length).toBe(5);
     expect(data.faq[0]).toEqual({
-      question: 'How do I find communities in Colombia?',
+      question: 'How do I find communities in Austria?',
       answer:
-        'The /location hub lists every community in Colombia. Browse the group-type pages for startup, creative, political, meetup, and small business communities, including in Barranquilla, Bogotá, Medellín.',
+        'The /location hub lists every community in Austria. Browse the group-type pages for startup, creative, political, meetup, and small business communities, including in Austria.',
     });
     // Dataset values flow into the template.
-    expect(data.faq[1].question).toBe('How many people live in Colombia?');
-    expect(data.faq[1].answer).toContain('49,648,685');
-    expect(data.faq[2].answer).toBe('The capital of Colombia is Bogota.');
-    expect(data.faq[3].answer).toBe('The languages spoken in Colombia include Spanish.');
+    expect(data.faq[1].question).toBe('How many people live in Austria?');
+    expect(data.faq[1].answer).toContain('8,847,037');
+    expect(data.faq[2].answer).toBe('The capital of Austria is Vienna.');
+    expect(data.faq[3].answer).toBe(
+      'The languages spoken in Austria include German, Croatian, Hungarian, Slovenian.',
+    );
     expect(data.faq[4].answer).toContain('JoinOrigin has no local offices');
   });
 
@@ -1615,16 +1616,16 @@ describe('lib/seo locationView — country data points + FAQ templates (TASK-496
   });
 
   it('the country FAQ template localizes per surface (localized template + dataset names)', () => {
-    // Colombia has no authored content — the data-driven FAQ renders through
+    // Austria has no authored content — the data-driven FAQ renders through
     // the es template with the localized dataset country name.
-    const colombia = resolveLocationEntry({ country: 'colombia' })!;
-    const esData = buildLocationViewData(colombia, 'es');
+    const austria = resolveLocationEntry({ country: 'austria' })!;
+    const esData = buildLocationViewData(austria, 'es');
     expect(esData.faq.length).toBe(5);
-    expect(esData.faq[0].question).toBe('¿Cómo encuentro comunidades en Colombia?');
-    expect(esData.faq[2].answer).toBe('La capital de Colombia es Bogota.');
+    expect(esData.faq[0].question).toBe('¿Cómo encuentro comunidades en Austria?');
+    expect(esData.faq[2].answer).toBe('La capital de Austria es Vienna.');
     // EN surface keeps the EN template.
-    const enData = buildLocationViewData(colombia, 'en');
-    expect(enData.faq[0].question).toBe('How do I find communities in Colombia?');
+    const enData = buildLocationViewData(austria, 'en');
+    expect(enData.faq[0].question).toBe('How do I find communities in Austria?');
   });
 
   it('every country page carries dataset facts + a data-driven FAQ when un-authored', () => {
@@ -1639,39 +1640,44 @@ describe('lib/seo locationView — country data points + FAQ templates (TASK-496
 
 describe('lib/seo locationView — region mesh (TASK-496)', () => {
   it('un-authored region pages carry the data-driven region mesh', () => {
-    const osaka = resolveLocationEntry({ country: 'japan', region: 'osaka' });
-    expect(osaka).toBeDefined();
-    expect(osaka?.kind).toBe('region');
-    const data = buildLocationViewData(osaka!);
+    // Story G authored every content-rich region (Osaka included) — the
+    // data-driven region mesh still renders for regions with no authored
+    // content (Andorra's Sant Julià de Lòria).
+    const region = resolveLocationEntry({ country: 'andorra', region: 'sant-julia-de-loria' });
+    expect(region).toBeDefined();
+    expect(region?.kind).toBe('region');
+    const data = buildLocationViewData(region!);
 
     // Region facts — dataset-driven "Region facts" data points (part-of +
     // parent-country population/capital/languages).
     expect(data.dataPoints).toEqual([
-      'Part of Japan',
-      'Population: 126,529,100',
-      'Capital: Tokyo',
-      'Languages: Japanese',
+      'Part of Andorra',
+      'Population: 77,006',
+      'Capital: Andorra la Vella',
+      'Languages: Catalan',
     ]);
 
     // The region mesh mirrors the country mesh: localized region name,
     // parent-country facts, content-rich cities (registry-exact paths).
     const mesh = data.regionMesh;
     expect(mesh).toBeDefined();
-    expect(mesh?.regionName).toBe('Osaka Prefecture');
-    expect(mesh?.countryName).toBe('Japan');
+    expect(mesh?.regionName).toBe('Sant Julià de Lòria');
+    expect(mesh?.countryName).toBe('Andorra');
     expect(mesh?.facts).toEqual({
-      population: 126529100,
-      capital: 'Tokyo',
-      languages: ['ja'],
+      population: 77006,
+      capital: 'Andorra la Vella',
+      languages: ['ca'],
     });
-    expect(mesh?.cities).toEqual([{ name: 'Osaka', path: '/en/location/japan/osaka/osaka' }]);
+    expect(mesh?.cities).toEqual([]);
 
     // Data-driven FAQ — the localized template populated from the mesh.
     expect(mesh?.faq).toEqual(data.faq);
     expect(data.faq.length).toBeGreaterThanOrEqual(3);
-    expect(data.faq[0].question).toBe('How do I find communities in Osaka Prefecture?');
-    expect(data.faq[1].answer).toBe('Osaka Prefecture is part of Japan, whose capital is Tokyo.');
-    expect(data.faq[2].answer).toContain('Japanese');
+    expect(data.faq[0].question).toBe('How do I find communities in Sant Julià de Lòria?');
+    expect(data.faq[1].answer).toBe(
+      'Sant Julià de Lòria is part of Andorra, whose capital is Andorra la Vella.',
+    );
+    expect(data.faq[2].answer).toContain('Catalan');
     expect(data.faq[3].answer).toContain('JoinOrigin has no local offices');
   });
 
@@ -1713,13 +1719,13 @@ describe('lib/seo locationView — region mesh (TASK-496)', () => {
     // rebuilds inside breadcrumbsFor make iterating ALL ~3.8k regions too
     // slow, so the invariant is asserted on a representative sample.
     const sample = [
-      { country: 'japan', region: 'osaka' }, // un-authored
+      { country: 'japan', region: 'osaka' }, // authored (Story G)
       { country: 'germany', region: 'berlin' }, // authored flagship
       { country: 'united-states', region: 'new-york' }, // authored flagship
-      { country: 'france', region: 'ile-de-france' }, // un-authored (paris)
-      { country: 'brazil', region: 'sao-paulo' }, // un-authored (sao-paulo)
-      { country: 'australia', region: 'new-south-wales' }, // un-authored (sydney)
-      { country: 'denmark', region: 'capital-region' }, // un-authored (copenhagen)
+      { country: 'france', region: 'ile-de-france' }, // authored (paris)
+      { country: 'brazil', region: 'sao-paulo' }, // authored (sao-paulo)
+      { country: 'australia', region: 'new-south-wales' }, // authored (sydney)
+      { country: 'andorra', region: 'sant-julia-de-loria' }, // un-authored
     ];
     for (const params of sample) {
       const entry = resolveLocationEntry(params);
@@ -1887,29 +1893,29 @@ describe('lib/seo locationView — FAQ copy replacement (TASK-495 / TASK-497)', 
 
 describe('lib/seo locationView — un-authored country mesh facts + FAQ (TASK-497)', () => {
   it('buildLocationViewData for an un-authored country exposes countryMesh facts + countryName', () => {
-    // Italy has no authored country content (only germany + united-states do)
-    // but hosts the content-rich city Milan — the mesh must be data-driven.
-    const italy = resolveLocationEntry({ country: 'italy' });
-    expect(italy).toBeDefined();
-    const data = buildLocationViewData(italy!);
+    // Story G authored every content-rich country (Italy included) — Austria
+    // has no authored country content but still gets the data-driven mesh.
+    const austria = resolveLocationEntry({ country: 'austria' });
+    expect(austria).toBeDefined();
+    const data = buildLocationViewData(austria!);
     expect(data.kind).toBe('country');
     expect(data.countryMesh).toBeDefined();
-    expect(data.countryMesh?.countryName).toBe('Italy');
+    expect(data.countryMesh?.countryName).toBe('Austria');
     expect(data.countryMesh?.facts).toEqual({
-      population: 60431283,
-      capital: 'Rome',
-      languages: ['it-IT', 'de-IT', 'fr-IT', 'sc', 'ca', 'co', 'sl'],
+      population: 8847037,
+      capital: 'Vienna',
+      languages: ['de-AT', 'hr', 'hu', 'sl'],
     });
     // Dataset-driven country data points (localized templates).
     expect(data.dataPoints).toEqual([
-      'Population: 60,431,283',
-      'Capital: Rome',
-      'Languages: Italian, German, French, Sardinian, Catalan, Corsican, Slovenian',
+      'Population: 8,847,037',
+      'Capital: Vienna',
+      'Languages: German, Croatian, Hungarian, Slovenian',
     ]);
     // Data-driven FAQ — non-empty for an un-authored country.
     expect(data.faq.length).toBe(5);
-    expect(data.faq[0].question).toBe('How do I find communities in Italy?');
-    expect(data.faq[1].answer).toContain('60,431,283');
+    expect(data.faq[0].question).toBe('How do I find communities in Austria?');
+    expect(data.faq[1].answer).toContain('8,847,037');
   });
 });
 
