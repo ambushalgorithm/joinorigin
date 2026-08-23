@@ -998,7 +998,7 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
     const regionNames = deIp
       .filter((entry) => entry.section === 'regions')
       .map((entry) => entry.name);
-    expect(regionNames[0]).toBe('Communities in Bavaria, Germany');
+    expect(regionNames[0]).toBe('Communities in Bavaria');
     expect(regionNames[1]).toBe('Communities in Berlin, Germany');
     // Community types + event ideas rank via their city's country.
     const types = deIp
@@ -1940,15 +1940,17 @@ describe('lib/seo locationView — multi-city region mesh (TASK-497)', () => {
       { name: 'Los Angeles', path: '/en/location/united-states/california/los-angeles' },
       { name: 'San Francisco', path: '/en/location/united-states/california/san-francisco' },
     ]);
-    // Region facts data points + data-driven FAQ.
+    // Region facts data points + data-driven FAQ — authored content wins
+    // over the dataset fallback once the region content is registered
+    // (TASK-511/TASK-513).
     expect(data.dataPoints).toEqual([
-      'Part of United States',
-      'Population: 327,167,434',
-      'Capital: Washington',
-      'Languages: English, Spanish, Hawaiian, French',
+      'California is the most populous US state, with roughly 39 million residents.',
+      'State capital is Sacramento; largest cities are Los Angeles and San Diego.',
+      'Bay Area tech scene and Southern California entertainment scene are both world-scale.',
+      'Home to Stanford, the UC system, and a network of research universities.',
     ]);
     expect(data.faq.length).toBeGreaterThanOrEqual(3);
-    expect(data.faq[0].question).toBe('How do I find communities in California?');
-    expect(data.faq[0].answer).toContain('Los Angeles, San Francisco');
+    expect(data.faq[0].question).toBe('Is California one community scene or several?');
+    expect(data.faq[0].answer).toContain('Los Angeles');
   });
 });

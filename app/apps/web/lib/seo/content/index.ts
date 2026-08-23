@@ -27,6 +27,8 @@ import newYorkRegionEn from './en/region/new-york';
 // Story G (TASK-507) — flagship country/region translations.
 import germanyCountryDe from './de/country/germany';
 import berlinRegionDe from './de/region/berlin';
+// Story G remediation (TASK-512) — de/bavaria region translation.
+import bavariaRegionDe from './de/region/bavaria';
 // Story G (TASK-502..507) — EN country pages.
 import argentinaCountryEn from './en/country/argentina';
 import australiaCountryEn from './en/country/australia';
@@ -68,10 +70,12 @@ import vietnamCountryEn from './en/country/vietnam';
 import antioquiaRegionEn from './en/region/antioquia';
 import atlanticoRegionEn from './en/region/atlantico';
 import bangkokRegionEn from './en/region/bangkok';
+import bavariaRegionEn from './en/region/bavaria';
 import bogotaDCRegionEn from './en/region/bogota-d-c';
 import britishColumbiaRegionEn from './en/region/british-columbia';
 import buenosAiresFDRegionEn from './en/region/buenos-aires-f-d';
 import cairoRegionEn from './en/region/cairo';
+import californiaRegionEn from './en/region/california';
 import capitalRegionRegionEn from './en/region/capital-region';
 import casablancaSettatRegionEn from './en/region/casablanca-settat';
 import cataloniaRegionEn from './en/region/catalonia';
@@ -82,6 +86,7 @@ import englandRegionEn from './en/region/england';
 import gautengRegionEn from './en/region/gauteng';
 import hoChiMinhCityHcmcRegionEn from './en/region/ho-chi-minh-city-hcmc';
 import ileDeFranceRegionEn from './en/region/ile-de-france';
+import illinoisRegionEn from './en/region/illinois';
 import istanbulRegionEn from './en/region/istanbul';
 import jakartaRegionEn from './en/region/jakarta';
 import karnatakaRegionEn from './en/region/karnataka';
@@ -111,6 +116,7 @@ import taiwanRegionEn from './en/region/taiwan';
 import tamilNaduRegionEn from './en/region/tamil-nadu';
 import tehranRegionEn from './en/region/tehran';
 import telanganaRegionEn from './en/region/telangana';
+import texasRegionEn from './en/region/texas';
 import tokyoRegionEn from './en/region/tokyo';
 import westernCapeRegionEn from './en/region/western-cape';
 // Story G (TASK-502..507) — predominant-locale country/region translations.
@@ -569,6 +575,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'country', slug: 'germany', locale: 'de', content: germanyCountryDe },
   // region berlin (de translation).
   { kind: 'region', slug: 'berlin', locale: 'de', content: berlinRegionDe },
+  // region bavaria (de translation).
+  { kind: 'region', slug: 'bavaria', locale: 'de', content: bavariaRegionDe },
 
   // Story G (TASK-502..507) — EN country pages.
   // country argentina (EN source of truth).
@@ -656,6 +664,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'region', slug: 'atlantico', locale: 'en', content: atlanticoRegionEn },
   // region bangkok (EN source of truth).
   { kind: 'region', slug: 'bangkok', locale: 'en', content: bangkokRegionEn },
+  // region bavaria (EN source of truth).
+  { kind: 'region', slug: 'bavaria', locale: 'en', content: bavariaRegionEn },
   // region bogota-d-c (EN source of truth).
   { kind: 'region', slug: 'bogota-d-c', locale: 'en', content: bogotaDCRegionEn },
   // region british-columbia (EN source of truth).
@@ -664,6 +674,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'region', slug: 'buenos-aires-f-d', locale: 'en', content: buenosAiresFDRegionEn },
   // region cairo (EN source of truth).
   { kind: 'region', slug: 'cairo', locale: 'en', content: cairoRegionEn },
+  // region california (EN source of truth).
+  { kind: 'region', slug: 'california', locale: 'en', content: californiaRegionEn },
   // region capital-region (EN source of truth).
   { kind: 'region', slug: 'capital-region', locale: 'en', content: capitalRegionRegionEn },
   // region casablanca-settat (EN source of truth).
@@ -689,6 +701,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // region ile-de-france (EN source of truth).
   { kind: 'region', slug: 'ile-de-france', locale: 'en', content: ileDeFranceRegionEn },
+  // region illinois (EN source of truth).
+  { kind: 'region', slug: 'illinois', locale: 'en', content: illinoisRegionEn },
   // region istanbul (EN source of truth).
   { kind: 'region', slug: 'istanbul', locale: 'en', content: istanbulRegionEn },
   // region jakarta (EN source of truth).
@@ -747,6 +761,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'region', slug: 'tehran', locale: 'en', content: tehranRegionEn },
   // region telangana (EN source of truth).
   { kind: 'region', slug: 'telangana', locale: 'en', content: telanganaRegionEn },
+  // region texas (EN source of truth).
+  { kind: 'region', slug: 'texas', locale: 'en', content: texasRegionEn },
   // region tokyo (EN source of truth).
   { kind: 'region', slug: 'tokyo', locale: 'en', content: tokyoRegionEn },
   // region western-cape (EN source of truth).
