@@ -1,3 +1,5 @@
+import type { Locale } from '@joinorigin/i18n';
+
 import { SITE } from './site';
 import { absoluteUrl } from './url';
 
@@ -19,6 +21,11 @@ import { absoluteUrl } from './url';
 export interface BreadcrumbItem {
   name: string;
   path: string;
+  /** Per-locale display names for the crumb (TASK-516) — populated for
+   *  country/region/city crumbs so the client LocationView re-resolves the
+   *  ACTIVE locale's name on language toggle. The server-baked `name` stays
+   *  the pre-hydration/SSR fallback; JSON-LD mirrors `name` only. */
+  nameLocalized?: Partial<Record<Locale, string>>;
 }
 
 export interface FaqEntry {

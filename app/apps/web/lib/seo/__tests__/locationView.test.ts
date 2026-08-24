@@ -110,14 +110,21 @@ describe('lib/seo locationView — resolve + view model', () => {
     expect(data.indexable).toBe(true);
     expect(data.path).toBe('/en/location/germany/berlin/berlin');
 
-    // Breadcrumbs: Home › Communities by City › Germany › Berlin › Berlin.
+    // Breadcrumbs: Home › Communities by City › Germany › State of Berlin ›
+    // Berlin. TASK-516 — country/region/city crumbs use the localized dataset
+    // names (names[locale], EN fallback) instead of the EN registry titles.
     expect(data.breadcrumbs.map((crumb) => crumb.name)).toEqual([
       'Home',
       'Communities by City',
-      'Communities in Germany',
-      'Communities in Berlin, Germany',
-      'Communities in Berlin',
+      'Germany',
+      'State of Berlin',
+      'Berlin',
     ]);
+    // Every entity crumb carries the per-locale name map (TASK-516) so the
+    // client re-resolves the ACTIVE locale's name on language toggle.
+    expect(data.breadcrumbs[2]?.nameLocalized?.de).toBe('Deutschland');
+    expect(data.breadcrumbs[3]?.nameLocalized?.de).toBe('Berlin');
+    expect(data.breadcrumbs[4]?.nameLocalized?.es).toBe('Berlín');
     expect(data.breadcrumbs.at(-1)?.path).toBe('/en/location/germany/berlin/berlin');
 
     // G1/G2 sources flow into the render model.
@@ -822,10 +829,97 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
       city: 'austin',
     });
     expect(austin).toBeDefined();
+    // EN canonical — no committed content gap: EN content exists, so the
+    // heading stays the authored EN title.
+    expect(buildLocationViewData(austin!).heading).toBe('Communities in Austin, Texas');
+    // Non-EN surface without committed content → TASK-516 falls back to the
+    // localized dataset name (Austin has no es translation, so it stays the
+    // EN dataset name), never the EN registry title. The lead keeps the
+    // registry description.
     const data = buildLocationViewData(austin!, 'es');
-    // Austin has no es content → heading/lead fall back to the EN registry.
-    expect(data.heading).toBe('Communities in Austin, Texas');
+    expect(data.heading).toBe('Austin');
     expect(data.lead).toBe(austin?.description);
+  });
+
+  it('TASK-516 — non-EN headings + breadcrumbs use committed per-locale titles → localized dataset names', () => {
+    // /de/location/united-arab-emirates — AE has no de content, so the hero
+    // H1 + the current-page breadcrumb crumb resolve the de dataset name
+    // instead of the EN "Communities in United Arab Emirates".
+    const uae = resolveLocationEntry({ country: 'united-arab-emirates' });
+    expect(uae).toBeDefined();
+    const de = buildLocationViewData(uae!, 'de');
+    expect(de.heading).toBe('Vereinigte Arabische Emirate');
+    expect(de.breadcrumbs.map((crumb) => crumb.name)).toEqual([
+      'Startseite',
+      'Communities nach Stadt',
+      'Vereinigte Arabische Emirate',
+    ]);
+    // EN canonical surface keeps the authored registry heading.
+    expect(buildLocationViewData(uae!).heading).toBe('Communities in United Arab Emirates');
+    // headingLocalized resolves the ACTIVE locale's H1 for the client toggle.
+    expect(de.headingLocalized?.de).toBe('Vereinigte Arabische Emirate');
+    expect(de.headingLocalized?.en).toBe('Communities in United Arab Emirates');
+    expect(de.headingLocalized?.['zh-TW']).toBe('阿拉伯联合酋长国');
+
+    // A committed per-locale title still wins over the dataset name
+    // (es/country/colombia.ts "Comunidades en Colombia").
+    const colombia = resolveLocationEntry({ country: 'colombia' });
+    expect(colombia).toBeDefined();
+    const es = buildLocationViewData(colombia!, 'es');
+    expect(es.heading).toBe('Comunidades en Colombia');
+    expect(es.headingLocalized?.es).toBe('Comunidades en Colombia');
+    // de country surface with committed content (de/country/germany.ts).
+    const germany = resolveLocationEntry({ country: 'germany' });
+    expect(germany).toBeDefined();
+    const deGermany = buildLocationViewData(germany!, 'de');
+    expect(deGermany.heading).toBe('Communities in Deutschland');
+    expect(deGermany.breadcrumbs.at(-1)?.name).toBe('Deutschland');
+    expect(deGermany.breadcrumbs.at(-1)?.nameLocalized?.de).toBe('Deutschland');
+    expect(deGermany.breadcrumbs.at(-1)?.nameLocalized?.es).toBe('Alemania');
+
+    // Region current crumb localizes through the dataset (de region name).
+    const bavaria = resolveLocationEntry({ country: 'germany', region: 'bavaria' });
+    expect(bavaria).toBeDefined();
+    const deBavaria = buildLocationViewData(bavaria!, 'de');
+    expect(deBavaria.heading).toBe('Communities in Bayern');
+    expect(deBavaria.breadcrumbs.map((crumb) => crumb.name)).toEqual([
+      'Startseite',
+      'Communities nach Stadt',
+      'Deutschland',
+      'Bayern',
+    ]);
+  });
+
+  it('TASK-516 — city/variant/ideas breadcrumbs localize on non-EN surfaces', () => {
+    // de Berlin city page — ancestors + current crumb carry the de dataset
+    // names ("Deutschland", "Berlin").
+    const berlin = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
+    expect(berlin).toBeDefined();
+    const de = buildLocationViewData(berlin!, 'de');
+    expect(de.breadcrumbs.map((crumb) => crumb.name)).toEqual([
+      'Startseite',
+      'Communities nach Stadt',
+      'Deutschland',
+      'Berlin',
+      'Berlin',
+    ]);
+    // es surface — region "Estado de Berlín", country "Alemania".
+    const es = buildLocationViewData(berlin!, 'es');
+    expect(es.breadcrumbs.map((crumb) => crumb.name)).toEqual([
+      'Inicio',
+      'Comunidades por Ciudad',
+      'Alemania',
+      'Estado de Berlín',
+      'Berlín',
+    ]);
+    // variant current crumb mirrors the localized H1 (de pageTitles).
+    const startup = resolveLocationEntry(
+      { country: 'germany', region: 'berlin', city: 'berlin', variant: 'startup' },
+      'de',
+    );
+    expect(startup).toBeDefined();
+    const deStartup = buildLocationViewData(startup!, 'de');
+    expect(deStartup.breadcrumbs.at(-1)?.name).toBe('Startup-Communities in Berlin');
   });
 
   it('de Berlin variant heading localizes from the committed de pageTitles', () => {

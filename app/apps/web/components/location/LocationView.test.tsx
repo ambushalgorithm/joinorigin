@@ -102,6 +102,74 @@ describe('LocationView language toggle (TASK-477)', () => {
   });
 });
 
+describe('LocationView non-hub H1 + breadcrumb localization (TASK-516)', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    mockPathname = '/en/location';
+  });
+
+  it('re-resolves the country H1 + country crumb through the ACTIVE locale on toggle', async () => {
+    const user = userEvent.setup();
+    // EN route data — the country heading + crumb must re-translate through
+    // the ACTIVE locale (headingLocalized + crumb.nameLocalized) on toggle,
+    // even though the view model is still the EN route build.
+    const data = buildLocationViewData(
+      resolveLocationEntry({ country: 'united-arab-emirates' })!,
+      'en',
+    );
+    renderWithI18n(<ToggleHarness data={data} />, 'en');
+
+    // Initial EN surface — registry heading + EN dataset crumb.
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Communities in United Arab Emirates' }),
+    ).toBeInTheDocument();
+    const breadcrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(breadcrumbs).getByText('United Arab Emirates')).toBeInTheDocument();
+
+    // Toggle to de — the H1 + current-page crumb resolve the de dataset name
+    // ("Vereinigte Arabische Emirate") instead of the EN registry title.
+    await user.click(screen.getByText('switch-de'));
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Vereinigte Arabische Emirate' }),
+      ).toBeInTheDocument();
+    });
+    const deCrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(deCrumbs).getByText('Vereinigte Arabische Emirate')).toBeInTheDocument();
+  });
+
+  it('re-resolves city page H1 + all country/region/city crumbs on toggle', async () => {
+    const user = userEvent.setup();
+    const data = buildLocationViewData(
+      resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' })!,
+      'en',
+    );
+    renderWithI18n(<ToggleHarness data={data} />, 'en');
+
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Communities in Berlin' }),
+    ).toBeInTheDocument();
+    const breadcrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(breadcrumbs).getByText('Germany')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('State of Berlin')).toBeInTheDocument();
+
+    await user.click(screen.getByText('switch-de'));
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Communities in Berlin' }),
+      ).toBeInTheDocument();
+    });
+    const deCrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(deCrumbs).getByText('Startseite')).toBeInTheDocument();
+    expect(within(deCrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
+    expect(within(deCrumbs).getByText('Deutschland')).toBeInTheDocument();
+    // Region + city crumbs both localize to "Berlin" on the de surface.
+    expect(within(deCrumbs).getAllByText('Berlin')).toHaveLength(2);
+  });
+});
+
 describe('LocationView hub intro translation (TASK-491)', () => {
   beforeEach(() => {
     _resetI18nForTests();

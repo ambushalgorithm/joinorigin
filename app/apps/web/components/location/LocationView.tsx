@@ -242,7 +242,7 @@ const ExploreLinks = styled.div`
 `;
 
 export function LocationView({ data }: { data: LocationViewData }) {
-  const { t } = useI18n();
+  const { t, locale: activeLocale } = useI18n();
   // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
   // helper applies the active locale's prefix per the confirmed table —
   // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
@@ -252,10 +252,14 @@ export function LocationView({ data }: { data: LocationViewData }) {
   // TASK-477 — the hub H1 is chrome: the registry title is locale-
   // independent EN ("Communities by City — Find or Start a Community Near
   // You"), so it must resolve through the active locale dictionary
-  // (`seoContent.breadcrumb.hub`) to re-translate on language toggle. City /
-  // country / region / variant / ideas H1s are authored per-locale content
-  // and already render in the surface locale, so they stay server-baked.
-  const heroTitle = data.heading;
+  // (`seoContent.breadcrumb.hub`) to re-translate on language toggle.
+  // TASK-516 — non-hub kinds (country/region/city/variant/ideas) resolve the
+  // hero H1 through the ACTIVE locale via the per-locale `headingLocalized`
+  // map (committed content title → localized dataset name → EN registry
+  // heading) — a titleKey/titleVars-style re-resolution that needs no new
+  // i18n dictionary keys (entity names live in the dataset). The server-baked
+  // `data.heading` stays the pre-hydration/SSR fallback.
+  const heroTitle = data.headingLocalized?.[activeLocale] ?? data.heading;
   const heroTitleKey = data.kind === 'hub' ? 'seoContent.breadcrumb.hub' : undefined;
   const heroLead = data.lead;
   const isIdeas = data.kind === 'ideas';
@@ -348,13 +352,13 @@ export function LocationView({ data }: { data: LocationViewData }) {
   const eyebrow = t(`seoContent.eyebrow.${data.kind}`);
   // TASK-477 — the home + hub crumbs re-resolve through the active locale
   // dictionary so the breadcrumb chrome fully translates on language toggle.
-  // Deeper country/region/city crumbs stay server-baked: their names are
-  // already localized per surface and the entity names are proper nouns that
-  // do not change across locales.
+  // TASK-516 — country/region/city crumbs re-resolve through the ACTIVE
+  // locale via the per-crumb `nameLocalized` map (localized dataset names);
+  // the server-baked `crumb.name` stays the pre-hydration fallback.
   const crumbLabel = (crumb: (typeof data.breadcrumbs)[number]) => {
     if (crumb.path === '/') return t('seoContent.breadcrumb.home');
     if (crumb.path === '/location') return t('seoContent.breadcrumb.hub');
-    return crumb.name;
+    return crumb.nameLocalized?.[activeLocale] ?? crumb.name;
   };
 
   // TASK-477 — the honest presence claim ("Find or start a community in
