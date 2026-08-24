@@ -858,8 +858,11 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     expect(
       en.hubDirectory?.some((entry) => entry.name === 'Communities in the United States'),
     ).toBe(true);
-    // de surface — Berlin variant cards localize; entries without de content
-    // stay EN (fallback) and the directory remains complete.
+    // de surface — committed per-locale titles resolve (TASK-515): Germany +
+    // its regions/cities/variants/ideas from the committed de content, while
+    // uncommitted country/region/city cards fall back to the localized
+    // dataset name (e.g. "Vereinigte Staaten") and the directory stays
+    // complete.
     const de = buildLocationViewData(hub!, 'de');
     expect(de.hubDirectory?.some((entry) => entry.name === 'Startup-Communities in Berlin')).toBe(
       true,
@@ -867,21 +870,62 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     expect(
       de.hubDirectory?.some((entry) => entry.name === 'Kreativ- & Design-Communities in Berlin'),
     ).toBe(true);
-    expect(
-      de.hubDirectory?.some((entry) => entry.name === 'Communities in the United States'),
-    ).toBe(true);
+    expect(de.hubDirectory?.some((entry) => entry.name === 'Communities in Deutschland')).toBe(
+      true,
+    );
+    expect(de.hubDirectory?.some((entry) => entry.name === 'Communities in Bayern')).toBe(true);
+    expect(de.hubDirectory?.some((entry) => entry.name === 'Vereinigte Staaten')).toBe(true);
     expect(de.hubDirectory?.length).toBe(en.hubDirectory?.length);
     // es surface now has committed content for 8 cities (Sprint 20) — those
-    // cards localize (e.g. Buenos Aires variant cards), while uncommitted
-    // entries still fall back to EN and the directory remains complete.
+    // cards localize (e.g. Buenos Aires variant cards + the committed
+    // country/region titles like Colombia), while uncommitted entries fall
+    // back to the localized dataset names ("Estados Unidos") and the
+    // directory remains complete.
     const es = buildLocationViewData(hub!, 'es');
     expect(es.hubDirectory?.length).toBe(en.hubDirectory?.length);
     expect(
       es.hubDirectory?.some((entry) => entry.name === 'Comunidades de startups en Buenos Aires'),
     ).toBe(true);
-    expect(
-      es.hubDirectory?.some((entry) => entry.name === 'Communities in the United States'),
-    ).toBe(true);
+    expect(es.hubDirectory?.some((entry) => entry.name === 'Comunidades en Colombia')).toBe(true);
+    expect(es.hubDirectory?.some((entry) => entry.name === 'Estados Unidos')).toBe(true);
+  });
+
+  it('directory card names resolve committed title → localized dataset name → EN fallback (TASK-515)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(hub).toBeDefined();
+    const de = hubDirectoryEntries('de');
+    const es = hubDirectoryEntries('es');
+    // 1) Committed per-locale page title wins on its own locale surface —
+    //    country + region content is enumerated into the locale map even
+    //    though `locationPageEntries(locale)` only emits city/variant/ideas.
+    expect(de.some((entry) => entry.name === 'Communities in Deutschland')).toBe(true);
+    expect(de.some((entry) => entry.name === 'Communities in Bayern')).toBe(true);
+    expect(es.some((entry) => entry.name === 'Comunidades en Colombia')).toBe(true);
+    expect(es.some((entry) => entry.name === 'Comunidades en Antioquia')).toBe(true);
+    // 2) No committed title → localized dataset name for country/region/city.
+    expect(de.some((entry) => entry.name === 'Vereinigte Staaten')).toBe(true); // US de name
+    expect(de.some((entry) => entry.name === 'Antioquia')).toBe(true); // region de dataset name
+    expect(es.some((entry) => entry.name === 'Estados Unidos')).toBe(true); // US es name
+    // 3) Variant/ideas keep the localized pageTitles template with the
+    //    localized city name — never the bare dataset city name.
+    expect(de.some((entry) => entry.name === 'Community-Meetups & Veranstaltungen in Berlin')).toBe(
+      true,
+    );
+    expect(de.some((entry) => entry.name === '30 Ideen für Community-Events in Berlin')).toBe(true);
+    // 4) EN surface stays on registry titles (committed EN titles win).
+    const en = hubDirectoryEntries('en');
+    expect(en.some((entry) => entry.name === 'Communities in Germany')).toBe(true);
+    expect(en.some((entry) => entry.name === 'Communities in the United States')).toBe(true);
+    expect(en.some((entry) => entry.name === 'Communities in Bavaria')).toBe(true);
+    expect(en.some((entry) => entry.name === '30 community event ideas in Berlin')).toBe(true);
+    // searchText is unchanged by the display-name localization — it still
+    // carries the EN title + the dataset country/region names (TASK-484).
+    const deGermany = de.find((entry) => entry.name === 'Communities in Deutschland');
+    expect(deGermany?.searchText).toContain('Communities in Germany'); // EN name
+    expect(deGermany?.searchText).toContain('Deutschland'); // de dataset country name
+    const esColombia = es.find((entry) => entry.name === 'Comunidades en Colombia');
+    expect(esColombia?.searchText).toContain('Communities in Colombia'); // EN name
+    expect(esColombia?.searchText).toContain('Colombia'); // es dataset country name
   });
 
   it('Browse-locations card hrefs move to the ACTIVE locale surface (TASK-469)', () => {
