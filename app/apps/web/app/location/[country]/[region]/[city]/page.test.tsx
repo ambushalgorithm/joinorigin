@@ -95,8 +95,9 @@ describe('/location/[country]/[region]/[city] route', () => {
 
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('Communities by City')).toBeInTheDocument();
-    expect(within(breadcrumbs).getByText('Communities in Germany')).toBeInTheDocument();
-    expect(within(breadcrumbs).getByText('Communities in Berlin, Germany')).toBeInTheDocument();
+    // TASK-516 — country/region/city crumbs use localized dataset names.
+    expect(within(breadcrumbs).getByText('Germany')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('State of Berlin')).toBeInTheDocument();
 
     const groupLinks = screen.getByTestId('location-group-type-links');
     expect(within(groupLinks).getByText('Startup communities')).toBeInTheDocument();

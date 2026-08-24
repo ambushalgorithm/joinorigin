@@ -1163,6 +1163,17 @@ export interface LocationViewData {
    */
   variantEnrichment?: VariantEnrichment;
   breadcrumbs: BreadcrumbItem[];
+  /**
+   * Per-locale H1 values (TASK-516) — populated for non-hub kinds: the hero
+   * heading resolved for EVERY supported locale (committed per-locale content
+   * title → localized dataset name → EN registry heading). The client view
+   * picks the ACTIVE locale's value on language toggle (a titleKey/titleVars
+   * style re-resolution that works without new i18n dictionary keys — entity
+   * names live in the dataset, not the chrome dictionaries); the server-baked
+   * `heading` stays the pre-hydration/SSR fallback. Hub stays undefined — its
+   * H1 resolves through the `seoContent.breadcrumb.hub` chrome key.
+   */
+  headingLocalized?: Partial<Record<Locale, string>>;
   dataPoints: string[];
   faq: LocationFaq[];
   groupTypeLinks: GroupTypeLink[];
@@ -1223,31 +1234,116 @@ function headingFor(entry: LocationPageEntry): string {
 }
 
 /**
+ * The dataset entities behind a location entry (TASK-516) — resolved once per
+ * build and shared by every per-locale resolution so the hot per-locale loops
+ * never re-scan the ~50k-row city snapshot (findCityBySlug is a slug scan).
+ */
+interface DatasetEntities {
+  city?: LocationCity;
+  region?: LocationRegion;
+  country?: LocationCountry;
+}
+
+/** Resolve the dataset entities for an entry (kind-scoped, once). */
+function datasetEntitiesFor(entry: LocationPageEntry): DatasetEntities {
+  if (entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas') {
+    return { city: findCityBySlug(entry.params.city ?? '') };
+  }
+  if (entry.kind === 'region') {
+    return { region: findRegionBySlugOrFlagship(entry.params.region ?? '') };
+  }
+  if (entry.kind === 'country') {
+    return { country: findCountryBySlug(entry.params.country ?? '') };
+  }
+  return {};
+}
+
+/**
  * H1 for a location page — prefers the authored localized content title for
- * the active locale (`pageTitles` per kind: city/variants/ideas; content
- * `title` overrides for country/region), EN fallback to the registry
- * heading. TASK-449: canonical EN routes render the selected locale's body
- * titles when content exists (mexico-city → es), else stay EN.
+ * the ACTIVE locale (`pageTitles` per kind: city/variants/ideas; content
+ * `title` overrides for country/region), else the localized dataset name
+ * (country/region/city `names[locale]`) for non-EN surfaces, EN fallback to
+ * the registry heading. TASK-449: canonical EN routes render the selected
+ * locale's body titles when content exists (mexico-city → es), else stay EN.
+ *
+ * TASK-516: the content-title branch only applies to EXACT per-locale content
+ * (`content.locale === locale`). EN-fallback content (see `getContent`) must
+ * not leak EN chrome titles onto non-EN surfaces — e.g.
+ * `/de/location/united-arab-emirates` renders "Vereinigte Arabische Emirate"
+ * (the de dataset name) instead of the EN "Communities in United Arab
+ * Emirates". The EN canonical surface keeps the registry heading fallback.
  */
 function contentHeadingFor(
   entry: LocationPageEntry,
   content: CountryContent | RegionContent | CityContent | undefined,
+  locale: Locale,
+  entities: DatasetEntities = datasetEntitiesFor(entry),
 ): string {
-  if (content?.kind === 'city') {
-    const localized =
-      entry.kind === 'variant'
-        ? entry.groupType && isGroupTypeKey(entry.groupType)
-          ? content.pageTitles?.variants?.[entry.groupType as GroupTypeKey]
-          : undefined
-        : entry.kind === 'ideas'
-          ? content.pageTitles?.ideas
-          : entry.kind === 'city'
-            ? content.pageTitles?.city
-            : undefined;
-    if (localized) return stripBrand(localized);
+  if (content && content.locale === locale) {
+    if (content.kind === 'city') {
+      const localized =
+        entry.kind === 'variant'
+          ? entry.groupType && isGroupTypeKey(entry.groupType)
+            ? content.pageTitles?.variants?.[entry.groupType as GroupTypeKey]
+            : undefined
+          : entry.kind === 'ideas'
+            ? content.pageTitles?.ideas
+            : entry.kind === 'city'
+              ? content.pageTitles?.city
+              : undefined;
+      if (localized) return stripBrand(localized);
+    }
+    if (content.title) return stripBrand(content.title);
   }
-  if (content?.title) return stripBrand(content.title);
-  return headingFor(entry);
+  const datasetName =
+    locale !== 'en' ? localizedDatasetNameFor(entry, locale, entities) : undefined;
+  return datasetName ?? headingFor(entry);
+}
+
+/**
+ * The localized dataset display name for a country/region/city entry
+ * (`names[locale]`, EN fallback — TASK-516). Used as the hero H1 fallback on
+ * non-EN surfaces when no committed per-locale content title exists, and for
+ * breadcrumb labels. `undefined` when the dataset entity cannot be resolved.
+ * `entities` (optional) carries the pre-resolved dataset rows so hot
+ * per-locale loops skip the ~50k-row city slug scan.
+ */
+function localizedDatasetNameFor(
+  entry: LocationPageEntry,
+  locale: Locale,
+  entities: DatasetEntities = datasetEntitiesFor(entry),
+): string | undefined {
+  if (entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas') {
+    const city = entities.city;
+    if (city) return cityLocalizedName(city, locale);
+  }
+  if (entry.kind === 'region') {
+    const region = entities.region;
+    if (region) return regionLocalizedName(region, locale);
+  }
+  if (entry.kind === 'country') {
+    const country = entities.country;
+    if (country) return countryLocalizedName(country, locale);
+  }
+  return undefined;
+}
+
+/**
+ * The hero H1 resolved for EVERY supported locale (TASK-516) — populated on
+ * the view model as `headingLocalized` so the client LocationView re-resolves
+ * the ACTIVE locale's H1 on language toggle without new i18n dictionary keys
+ * (entity names live in the dataset, not the chrome dictionaries). The hub
+ * skips the map — its H1 resolves through the `seoContent.breadcrumb.hub`
+ * chrome key.
+ */
+function headingLocalizedFor(entry: LocationPageEntry): Partial<Record<Locale, string>> {
+  const byLocale: Partial<Record<Locale, string>> = {};
+  // Resolve the dataset rows once — the per-locale loop reuses them.
+  const entities = datasetEntitiesFor(entry);
+  for (const locale of SUPPORTED_LOCALES) {
+    byLocale[locale] = contentHeadingFor(entry, contentFor(entry, locale), locale, entities);
+  }
+  return byLocale;
 }
 
 /**
@@ -1371,7 +1467,11 @@ export function buildLocationViewData(
       ? findCityBySlug(entry.params.city ?? '')
       : undefined;
 
-  const breadcrumbs = breadcrumbsFor(entry, locale);
+  // TASK-516 — the per-locale hero H1 map (non-hub kinds) is computed once
+  // and shared by the view model + the variant/ideas current-page breadcrumb
+  // crumb, so the client can re-resolve the ACTIVE locale on language toggle.
+  const headingLocalized = entry.kind === 'hub' ? undefined : headingLocalizedFor(entry);
+  const breadcrumbs = breadcrumbsFor(entry, locale, headingLocalized);
   const intro = introFor(entry, content);
   // TASK-491 — hub chrome: the translated intro prose + hero lead resolve
   // from the active locale dictionary (`hubIntro` / `hubLead`). The hub's
@@ -1436,7 +1536,12 @@ export function buildLocationViewData(
     description: entry.description,
     indexable: entry.indexable,
     eyebrow: eyebrowFor(entry.kind, locale),
-    heading: contentHeadingFor(entry, content),
+    heading: contentHeadingFor(entry, content, locale),
+    // TASK-516 — the hero H1 resolves through the ACTIVE locale on language
+    // toggle via the per-locale map (non-hub kinds; the hub keeps its chrome
+    // titleKey). The map carries committed per-locale content titles → else
+    // localized dataset names → else EN registry headings.
+    headingLocalized,
     lead,
     intro,
     groupType,
@@ -1522,7 +1627,11 @@ function faqFor(entry: LocationPageEntry, content: LocationContent | undefined):
  * Breadcrumbs (design §8.5 up-links)
  * ------------------------------------------------------------------ */
 
-function breadcrumbsFor(entry: LocationPageEntry, locale: Locale): BreadcrumbItem[] {
+function breadcrumbsFor(
+  entry: LocationPageEntry,
+  locale: Locale,
+  headingLocalized?: Partial<Record<Locale, string>>,
+): BreadcrumbItem[] {
   const t = getT(getDictionary(locale));
   const hubName = t('seoContent.breadcrumb.hub');
   // Up-links point at the per-locale surface when that ancestor has committed
@@ -1540,23 +1649,63 @@ function breadcrumbsFor(entry: LocationPageEntry, locale: Locale): BreadcrumbIte
   if (entry.kind === 'hub') {
     return crumbs;
   }
+
+  // TASK-516 — country/region/city crumbs use the localized dataset name
+  // (`countryLocalizedName` / `regionLocalizedName` / `cityLocalizedName` —
+  // `names[locale]` with an EN dataset fallback, EN registry title as the
+  // last resort) instead of the EN `headingFor(entry)` titles. Each entity
+  // crumb also carries the full per-locale map (`nameLocalized`) so the
+  // client LocationView re-resolves the ACTIVE locale's name on language
+  // toggle; the server-baked `name` stays the pre-hydration fallback. Home +
+  // the `/location` hub crumb already resolve through the chrome dictionary —
+  // they are kept unchanged.
+  const country = findCountryBySlug(entry.params.country ?? '');
+  const region = findRegionBySlugOrFlagship(entry.params.region ?? '');
+  const city = findCityBySlug(entry.params.city ?? '');
+
+  const pushEntityCrumb = (
+    resolve: (l: Locale) => string | undefined,
+    fallback: string,
+    path: string,
+  ) => {
+    const nameLocalized: NonNullable<BreadcrumbItem['nameLocalized']> = {};
+    for (const l of SUPPORTED_LOCALES) {
+      nameLocalized[l] = resolve(l) ?? fallback;
+    }
+    crumbs.push({ name: nameLocalized[locale] ?? fallback, path, nameLocalized });
+  };
+
   if (entry.kind === 'country') {
-    crumbs.push({ name: headingFor(entry), path: entry.path });
+    pushEntityCrumb(
+      (l) => (country ? countryLocalizedName(country, l) : undefined),
+      headingFor(entry),
+      entry.path,
+    );
     return crumbs;
   }
+
   if (entry.kind === 'region') {
+    // Ancestor registry rows are looked up lazily per kind — building the
+    // full EN registry (`locationPageEntries()`) is expensive, so country
+    // pages (0 rows) and region pages (1 row) never pay the city-row scan.
     const countryEntry = locationPageEntries().find(
       (e) => e.kind === 'country' && e.params.country === entry.params.country,
     );
     if (countryEntry) {
-      crumbs.push({
-        name: countryEntry.title.replace(/\s*\|\s*JoinOrigin\s*$/, ''),
-        path: upPath([entry.params.country ?? '']),
-      });
+      pushEntityCrumb(
+        (l) => (country ? countryLocalizedName(country, l) : undefined),
+        stripBrand(countryEntry.title),
+        upPath([entry.params.country ?? '']),
+      );
     }
-    crumbs.push({ name: headingFor(entry), path: entry.path });
+    pushEntityCrumb(
+      (l) => (region ? regionLocalizedName(region, l) : undefined),
+      headingFor(entry),
+      entry.path,
+    );
     return crumbs;
   }
+
   // city / variant / ideas — up-links through country + region.
   const countryEntry = locationPageEntries().find(
     (e) => e.kind === 'country' && e.params.country === entry.params.country,
@@ -1575,30 +1724,49 @@ function breadcrumbsFor(entry: LocationPageEntry, locale: Locale): BreadcrumbIte
       e.params.city === entry.params.city,
   );
   if (countryEntry) {
-    crumbs.push({
-      name: countryEntry.title.replace(/\s*\|\s*JoinOrigin\s*$/, ''),
-      path: upPath([entry.params.country ?? '']),
-    });
+    pushEntityCrumb(
+      (l) => (country ? countryLocalizedName(country, l) : undefined),
+      stripBrand(countryEntry.title),
+      upPath([entry.params.country ?? '']),
+    );
   }
   if (regionEntry) {
-    crumbs.push({
-      name: regionEntry.title.replace(/\s*\|\s*JoinOrigin\s*$/, ''),
-      path: upPath([entry.params.country ?? '', entry.params.region ?? '']),
-    });
+    pushEntityCrumb(
+      (l) => (region ? regionLocalizedName(region, l) : undefined),
+      stripBrand(regionEntry.title),
+      upPath([entry.params.country ?? '', entry.params.region ?? '']),
+    );
   }
   // The city crumb is only an ancestor for variant/ideas pages — on the city
   // page itself the current crumb IS the city, so no duplicate is emitted.
   if (cityEntryRow && entry.kind !== 'city') {
+    pushEntityCrumb(
+      (l) => (city ? cityLocalizedName(city, l) : undefined),
+      stripBrand(cityEntryRow.title),
+      upPath([entry.params.country ?? '', entry.params.region ?? '', entry.params.city ?? '']),
+    );
+  }
+  if (entry.kind === 'city') {
+    // Current crumb = the localized city dataset name (TASK-516).
+    pushEntityCrumb(
+      (l) => (city ? cityLocalizedName(city, l) : undefined),
+      headingFor(entry),
+      entry.path,
+    );
+  } else {
+    // variant / ideas — the current crumb mirrors the localized H1 (committed
+    // per-locale pageTitles → localized city dataset name → EN registry
+    // heading) so it re-translates on language toggle like the hero title.
+    const currentNameLocalized: NonNullable<BreadcrumbItem['nameLocalized']> = {};
+    for (const l of SUPPORTED_LOCALES) {
+      currentNameLocalized[l] = headingLocalized?.[l] ?? headingFor(entry);
+    }
     crumbs.push({
-      name: cityEntryRow.title.replace(/\s*\|\s*JoinOrigin\s*$/, ''),
-      path: upPath([
-        entry.params.country ?? '',
-        entry.params.region ?? '',
-        entry.params.city ?? '',
-      ]),
+      name: currentNameLocalized[locale] ?? headingFor(entry),
+      path: entry.path,
+      nameLocalized: currentNameLocalized,
     });
   }
-  crumbs.push({ name: headingFor(entry), path: entry.path });
   return crumbs;
 }
 
