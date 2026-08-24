@@ -601,12 +601,15 @@ test.describe('Goal 7 — per-locale metadata with EN fallback', () => {
     await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
   });
 
-  test('location page EN fallback: /es/location/... keeps EN copy with /es canonical', async ({
+  test('location page non-EN surface: /es/location/... renders the localized dataset H1 with /es canonical', async ({
     page,
   }) => {
     await page.goto('/es/location/germany/berlin/berlin');
-    // es has no committed Berlin content — EN copy serves, canonical stays /es.
-    await expect(page.locator('h1')).toContainText('Communities in Berlin');
+    // TASK-516 — non-EN surfaces resolve the hero H1 through the localized
+    // dataset name when no committed es content exists ("Berlín"), never the
+    // EN registry title; canonical stays /es.
+    await expect(page.locator('h1')).toContainText('Berlín');
+    await expect(page.locator('h1')).not.toContainText('Communities in Berlin');
     const canonical = page.locator('link[rel="canonical"]');
     expect(new URL((await canonical.getAttribute('href')) ?? '').pathname).toBe(
       '/es/location/germany/berlin/berlin',

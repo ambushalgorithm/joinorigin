@@ -311,3 +311,56 @@ test.describe('nav-only locale switch (TASK-488)', () => {
     expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
   });
 });
+
+/**
+ * Story H — deep non-hub location page toggle (TASK-516/519).
+ *
+ * A country page with NO committed de content (/en/location/united-arab-
+ * emirates) must still fully translate on the nav-only switch: the hero H1
+ * resolves the de dataset name via the `headingLocalized` map and the
+ * country breadcrumb crumb re-resolves through its `nameLocalized` map —
+ * both carried server-side and re-resolved client-side on the ACTIVE locale,
+ * exactly like the hub chrome toggle.
+ */
+test.describe('/location country page toggle — German H1 + localized crumb (TASK-519)', () => {
+  test('switching /en/location/united-arab-emirates → de renders the German H1 + de country crumb', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 1440, height: 900 });
+
+    await page.goto('/en/location/united-arab-emirates');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('h1')).toContainText('Communities in United Arab Emirates');
+    // The EN country crumb is the dataset display name ("United Arab
+    // Emirates") — TASK-516 replaced the EN registry title crumb.
+    const enBreadcrumbs = page.getByTestId('location-breadcrumbs');
+    await expect(enBreadcrumbs).toContainText('United Arab Emirates');
+
+    const headerSwitcher = page.getByTestId('language-switcher-header');
+    await headerSwitcher.getByTestId('language-switcher-trigger').click();
+    await headerSwitcher
+      .getByTestId('language-switcher-listbox')
+      .getByRole('option', { name: /Deutsch/ })
+      .click();
+
+    // The nav-only switch preserves the deep path under the new locale.
+    await expect(page).toHaveURL(/\/de\/location\/united-arab-emirates(?:\/|$)/, {
+      timeout: 15_000,
+    });
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+    // TASK-516 — the hero H1 re-resolves the de dataset name client-side.
+    await expect(page.locator('h1')).toContainText('Vereinigte Arabische Emirate', {
+      timeout: 15_000,
+    });
+    // The country breadcrumb crumb re-resolves through its nameLocalized map.
+    const deBreadcrumbs = page.getByTestId('location-breadcrumbs');
+    await expect(deBreadcrumbs).toContainText('Startseite');
+    await expect(deBreadcrumbs).toContainText('Communities nach Stadt');
+    await expect(deBreadcrumbs).toContainText('Vereinigte Arabische Emirate');
+    // No stale EN chrome.
+    await expect(page.locator('h1')).not.toContainText('Communities in United Arab Emirates');
+    expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
+  });
+});
