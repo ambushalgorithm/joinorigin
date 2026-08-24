@@ -1320,12 +1320,27 @@ function hubChromeFor(locale: Locale): { hubIntro?: string; hubLead?: string } {
   };
 }
 
-/** Entity display label for the honest presence claim (§6.4 #6). */
+/** Entity display label for the honest presence claim (§6.4 #6). TASK-517:
+ *  proper-cased dataset display names — the flagship override for flagship
+ *  cities, else the localized dataset name (EN fallback) for city/variant/
+ *  ideas/region/country — never the lowercase slug-spaced params. */
 function entityLabelFor(entry: LocationPageEntry, locale: Locale): string {
   if (entry.kind === 'hub') return hubEntityLabel(locale);
   if (entry.kind === 'city' || entry.kind === 'variant' || entry.kind === 'ideas') {
-    const flagship = getFlagshipConfig(entry.params.city ?? '');
-    if (flagship) return flagship.displayName;
+    const city = findCityBySlug(entry.params.city ?? '');
+    if (city) {
+      const flagship = getFlagshipConfig(citySlug(city));
+      if (flagship) return cityDisplayName(city);
+      return cityLocalizedName(city, locale);
+    }
+  }
+  if (entry.kind === 'region') {
+    const region = findRegionBySlugOrFlagship(entry.params.region ?? '');
+    if (region) return regionLocalizedName(region, locale);
+  }
+  if (entry.kind === 'country') {
+    const country = findCountryBySlug(entry.params.country ?? '');
+    if (country) return countryLocalizedName(country, locale);
   }
   return (entry.params.city ?? entry.params.region ?? entry.params.country ?? 'your city').replace(
     /-/g,
