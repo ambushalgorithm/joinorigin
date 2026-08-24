@@ -705,6 +705,9 @@ export function LocationView({ data }: { data: LocationViewData }) {
       {isIdeas && data.ideaCategories ? (
         <SectionBand variant="plain">
           <PageContainer>
+            <Section>
+              <SectionTitle>{t('seoContent.location.ideasLink')}</SectionTitle>
+            </Section>
             {data.ideaCategories.map((category, categoryIndex) => (
               <Reveal key={category.name}>
                 <Section>
