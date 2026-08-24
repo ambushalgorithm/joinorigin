@@ -1057,6 +1057,220 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
   });
 });
 
+describe('lib/seo locationView — Story H i18n completeness (TASK-518)', () => {
+  /* ------------------------------------------------------------------ *
+   * entityLabelFor — proper-cased presence-claim labels (TASK-517/518)
+   * ------------------------------------------------------------------ */
+
+  it('entityLabel proper-cases the city presence claim: ho-chi-minh-city → "Ho Chi Minh City"', () => {
+    // The pre-TASK-517 fallback rendered the lowercase slug-spaced params
+    // ("ho chi minh city"); the label must be the proper-cased dataset name.
+    const entry = resolveLocationEntry({
+      country: 'vietnam',
+      region: 'ho-chi-minh-city-hcmc',
+      city: 'ho-chi-minh-city',
+    });
+    expect(entry).toBeDefined();
+    const data = buildLocationViewData(entry!);
+    expect(data.entityLabel).toBe('Ho Chi Minh City');
+    expect(data.entityLabel).not.toBe('ho chi minh city');
+  });
+
+  it('variant + ideas entries inherit the proper-cased city label', () => {
+    const variant = resolveLocationEntry({
+      country: 'vietnam',
+      region: 'ho-chi-minh-city-hcmc',
+      city: 'ho-chi-minh-city',
+      variant: 'startup',
+    });
+    const ideas = resolveLocationEntry({
+      country: 'vietnam',
+      region: 'ho-chi-minh-city-hcmc',
+      city: 'ho-chi-minh-city',
+      variant: 'ideas',
+    });
+    expect(variant).toBeDefined();
+    expect(ideas).toBeDefined();
+    expect(buildLocationViewData(variant!).entityLabel).toBe('Ho Chi Minh City');
+    expect(buildLocationViewData(ideas!).entityLabel).toBe('Ho Chi Minh City');
+  });
+
+  it('entityLabel proper-cases the city: osaka → "Osaka"', () => {
+    const osaka = resolveLocationEntry({ country: 'japan', region: 'osaka', city: 'osaka' });
+    expect(osaka).toBeDefined();
+    expect(buildLocationViewData(osaka!).entityLabel).toBe('Osaka');
+  });
+
+  it('entityLabel proper-cases the country: colombia → "Colombia", localized per surface', () => {
+    const colombia = resolveLocationEntry({ country: 'colombia' });
+    expect(colombia).toBeDefined();
+    expect(buildLocationViewData(colombia!).entityLabel).toBe('Colombia');
+    expect(buildLocationViewData(colombia!, 'es').entityLabel).toBe('Colombia');
+    // de surface resolves the de dataset name — never the lowercase slug.
+    expect(buildLocationViewData(colombia!, 'de').entityLabel).toBe('Kolumbien');
+  });
+
+  it('flagship city display-name overrides are preserved (Berlin / New York City)', () => {
+    const berlin = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
+    const nyc = resolveLocationEntry({
+      country: 'united-states',
+      region: 'new-york',
+      city: 'new-york',
+    });
+    expect(berlin).toBeDefined();
+    expect(nyc).toBeDefined();
+    expect(buildLocationViewData(berlin!).entityLabel).toBe('Berlin');
+    expect(buildLocationViewData(nyc!).entityLabel).toBe('New York City');
+    // Flagship displayName is locale-independent — never the dataset fallback.
+    expect(buildLocationViewData(nyc!, 'de').entityLabel).toBe('New York City');
+  });
+
+  it('entityLabel never surfaces the lowercase slug-spaced params (regression guard)', () => {
+    const cases = [
+      resolveLocationEntry({
+        country: 'vietnam',
+        region: 'ho-chi-minh-city-hcmc',
+        city: 'ho-chi-minh-city',
+      }),
+      resolveLocationEntry({ country: 'japan', region: 'osaka', city: 'osaka' }),
+      resolveLocationEntry({ country: 'colombia' }),
+    ];
+    for (const entry of cases) {
+      expect(entry).toBeDefined();
+      const label = buildLocationViewData(entry!).entityLabel;
+      const slugParams = (entry!.params.city ?? entry!.params.region ?? entry!.params.country)!;
+      // The label is never the raw lowercase slug-spaced param string
+      // ("ho chi minh city", "osaka", "colombia") — it is title-cased.
+      expect(label).not.toBe(slugParams.replace(/-/g, ' '));
+      expect(label[0]).toBe(label[0].toUpperCase());
+    }
+  });
+
+  /* ------------------------------------------------------------------ *
+   * MenuHero H1 — resolves through the ACTIVE locale (TASK-516/518)
+   * ------------------------------------------------------------------ */
+
+  it('H1 for a country without committed de content uses the localized dataset name (/de/location/colombia)', () => {
+    // Colombia has no committed de country content → the hero H1 falls back
+    // to the de dataset name ("Kolumbien"), never the EN registry title.
+    const colombia = resolveLocationEntry({ country: 'colombia' });
+    expect(colombia).toBeDefined();
+    const de = buildLocationViewData(colombia!, 'de');
+    expect(de.heading).toBe('Kolumbien');
+    expect(de.heading).not.toBe('Communities in Colombia');
+    expect(de.headingLocalized?.de).toBe('Kolumbien');
+    // The committed es title still wins on its own surface; EN canonical
+    // keeps the authored registry heading.
+    expect(buildLocationViewData(colombia!, 'es').heading).toBe('Comunidades en Colombia');
+    expect(buildLocationViewData(colombia!).heading).toBe('Communities in Colombia');
+  });
+
+  it('H1 for a city resolves committed content → localized dataset name (ho-chi-minh-city)', () => {
+    const hcmc = resolveLocationEntry({
+      country: 'vietnam',
+      region: 'ho-chi-minh-city-hcmc',
+      city: 'ho-chi-minh-city',
+    });
+    expect(hcmc).toBeDefined();
+    // vi has committed content → the committed pageTitles title wins.
+    const vi = buildLocationViewData(hcmc!, 'vi');
+    expect(vi.heading).toBe('Cộng đồng tại TP. Hồ Chí Minh');
+    expect(vi.headingLocalized?.vi).toBe('Cộng đồng tại TP. Hồ Chí Minh');
+    // de has no committed content → the de dataset city name ("Ho-Chi-Minh-
+    // Stadt"), never the EN dataset name or the EN registry heading.
+    const de = buildLocationViewData(hcmc!, 'de');
+    expect(de.heading).toBe('Ho-Chi-Minh-Stadt');
+    expect(de.heading).not.toBe('Ho Chi Minh City');
+    expect(de.heading).not.toContain('Communities in');
+  });
+
+  it('H1 for a region resolves the localized dataset name (/de/location/japan/osaka)', () => {
+    const osaka = resolveLocationEntry({ country: 'japan', region: 'osaka' });
+    expect(osaka).toBeDefined();
+    const de = buildLocationViewData(osaka!, 'de');
+    expect(de.heading).toBe('Präfektur Osaka');
+    expect(de.headingLocalized?.de).toBe('Präfektur Osaka');
+    expect(de.heading).not.toBe('Communities in Osaka Prefecture');
+  });
+
+  /* ------------------------------------------------------------------ *
+   * breadcrumbsFor — localized dataset names, Home + hub stay translated
+   * ------------------------------------------------------------------ */
+
+  it('breadcrumbs localize the country crumb via the dataset name while Home + hub stay translated (de UAE)', () => {
+    const uae = resolveLocationEntry({ country: 'united-arab-emirates' });
+    expect(uae).toBeDefined();
+    const de = buildLocationViewData(uae!, 'de');
+    expect(de.breadcrumbs.map((crumb) => crumb.name)).toEqual([
+      'Startseite',
+      'Communities nach Stadt',
+      'Vereinigte Arabische Emirate',
+    ]);
+    // Home + hub crumbs stay chrome-translated (dictionary); the country
+    // crumb is the de dataset name — never the EN registry title.
+    expect(de.breadcrumbs[0].path).toBe('/');
+    expect(de.breadcrumbs[1].path).toBe('/location');
+    expect(de.breadcrumbs[2].name).not.toBe('Communities in United Arab Emirates');
+    // Every entity crumb carries the full per-locale map for client toggle.
+    expect(de.breadcrumbs[2].nameLocalized?.de).toBe('Vereinigte Arabische Emirate');
+    expect(de.breadcrumbs[2].nameLocalized?.es).toBe('Emiratos Árabes Unidos');
+  });
+
+  it('breadcrumbs localize region/city dataset names on non-EN surfaces (de Bavaria)', () => {
+    const bavaria = resolveLocationEntry({ country: 'germany', region: 'bavaria' });
+    expect(bavaria).toBeDefined();
+    const de = buildLocationViewData(bavaria!, 'de');
+    expect(de.breadcrumbs.map((crumb) => crumb.name)).toEqual([
+      'Startseite',
+      'Communities nach Stadt',
+      'Deutschland',
+      'Bayern',
+    ]);
+  });
+
+  /* ------------------------------------------------------------------ *
+   * hubDirectoryEntries — card names localize (TASK-515/518)
+   * ------------------------------------------------------------------ */
+
+  it('es countries section shows the committed Colombia card — never the EN registry title', () => {
+    const es = hubDirectoryEntries('es');
+    const card = es.find(
+      (entry) => entry.kind === 'country' && entry.path === '/es/location/colombia',
+    );
+    expect(card).toBeDefined();
+    expect(card?.name).toBe('Comunidades en Colombia');
+    expect(card?.name).not.toBe('Communities in Colombia');
+  });
+
+  it('de directory localizes the Bavaria region card + dataset names for uncommitted entries', () => {
+    const de = hubDirectoryEntries('de');
+    // Bavaria has committed de content → its committed title wins.
+    expect(de.some((entry) => entry.name === 'Communities in Bayern')).toBe(true);
+    // Colombia has no committed de content → the de dataset name, not EN.
+    const colombia = de.find(
+      (entry) => entry.kind === 'country' && entry.path === '/de/location/colombia',
+    );
+    expect(colombia).toBeDefined();
+    expect(colombia?.name).toBe('Kolumbien');
+    expect(colombia?.name).not.toBe('Communities in Colombia');
+  });
+
+  it('a locale without committed content falls back to EN registry titles (fr)', () => {
+    const fr = hubDirectoryEntries('fr');
+    // fr has no committed Berlin city content — variant/ideas cards keep the
+    // EN registry titles, never the de translations or the bare dataset name.
+    expect(fr.some((entry) => entry.name === 'Startup communities in Berlin')).toBe(true);
+    expect(fr.some((entry) => entry.name === '30 community event ideas in Berlin')).toBe(true);
+    expect(fr.some((entry) => entry.name === 'Startup-Communities in Berlin')).toBe(false);
+    // Country cards still resolve the localized dataset name when present.
+    const germany = fr.find(
+      (entry) => entry.kind === 'country' && entry.path === '/fr/location/germany',
+    );
+    expect(germany).toBeDefined();
+    expect(germany?.name).toBe('Allemagne');
+  });
+});
+
 describe('lib/seo locationView — TASK-480 flagship list + 5-section directory', () => {
   it('flagshipCities returns ALL content-rich cities, locale area first, capped at 6', () => {
     const en = flagshipCitiesForTest('en');

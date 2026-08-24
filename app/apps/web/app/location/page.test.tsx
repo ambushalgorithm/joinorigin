@@ -507,3 +507,103 @@ describe('/location page — Story E country/region/city render (TASK-497)', () 
     expect(faqText).toContain('compiled from real, publicly known community spaces');
   });
 });
+
+/**
+ * Story H (TASK-518) — page-level render assertions for /location i18n
+ * completeness (TASK-515/516/517): the directory card names, the MenuHero H1,
+ * the breadcrumbs, and the presence-claim entity label all resolve through
+ * the ACTIVE locale. Country/city/region pages render through the real
+ * `LocationView` fed with the same registry view data the route wrappers
+ * build (`buildLocationViewData`), and the hub directory is exercised through
+ * the real hub page wrapper on the es surface.
+ */
+describe('/location page — Story H i18n completeness (TASK-518)', () => {
+  beforeEach(() => {
+    mockServerLocale.locale = 'en';
+  });
+
+  it('renders the German H1 + breadcrumbs for a country without committed de content (UAE)', () => {
+    // /de/location/united-arab-emirates — AE has no de country content, so
+    // the MenuHero H1 + current crumb resolve the de dataset name.
+    const uae = resolveLocationEntry({ country: 'united-arab-emirates' });
+    expect(uae).toBeDefined();
+    const data = buildLocationViewData(uae!, 'de');
+    renderWithI18n(<LocationView data={data} />, 'de');
+
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Vereinigte Arabische Emirate' }),
+    ).toBeInTheDocument();
+    const breadcrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(breadcrumbs).getByText('Startseite')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Vereinigte Arabische Emirate')).toBeInTheDocument();
+    expect(
+      within(breadcrumbs).queryByText('Communities in United Arab Emirates'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('renders the German H1 via the localized dataset name when no committed de title exists (Colombia)', () => {
+    // /de/location/colombia — no committed de content → the hero H1 resolves
+    // the de dataset name ("Kolumbien"), never the EN registry heading.
+    const colombia = resolveLocationEntry({ country: 'colombia' });
+    expect(colombia).toBeDefined();
+    const data = buildLocationViewData(colombia!, 'de');
+    renderWithI18n(<LocationView data={data} />, 'de');
+
+    expect(screen.getByRole('heading', { level: 1, name: 'Kolumbien' })).toBeInTheDocument();
+    expect(
+      screen.queryByRole('heading', { level: 1, name: 'Communities in Colombia' }),
+    ).not.toBeInTheDocument();
+    const breadcrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(breadcrumbs).getByText('Kolumbien')).toBeInTheDocument();
+  });
+
+  it('renders the German H1 + breadcrumbs for a region page (osaka)', () => {
+    // /de/location/japan/osaka — the region H1 resolves the de dataset name.
+    const osaka = resolveLocationEntry({ country: 'japan', region: 'osaka' });
+    expect(osaka).toBeDefined();
+    const data = buildLocationViewData(osaka!, 'de');
+    renderWithI18n(<LocationView data={data} />, 'de');
+
+    expect(screen.getByRole('heading', { level: 1, name: 'Präfektur Osaka' })).toBeInTheDocument();
+    const breadcrumbs = screen.getByTestId('location-breadcrumbs');
+    expect(within(breadcrumbs).getByText('Startseite')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Japan')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Präfektur Osaka')).toBeInTheDocument();
+  });
+
+  it('renders the proper-cased presence-claim city for ho-chi-minh-city (TASK-517/518)', () => {
+    // The presence-claim SectionTitle must use the proper-cased dataset name
+    // ("Ho Chi Minh City"), never the lowercase slug-spaced params.
+    const hcmc = resolveLocationEntry({
+      country: 'vietnam',
+      region: 'ho-chi-minh-city-hcmc',
+      city: 'ho-chi-minh-city',
+    });
+    expect(hcmc).toBeDefined();
+    const data = buildLocationViewData(hcmc!);
+    renderWithI18n(<LocationView data={data} />);
+
+    expect(screen.getByText('Find or start a community in Ho Chi Minh City')).toBeInTheDocument();
+    expect(
+      screen.queryByText('Find or start a community in ho chi minh city'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('renders the localized directory card names on the es hub surface (TASK-518)', async () => {
+    // The /es/location hub directory shows the committed es card name
+    // ("Comunidades en Colombia") — never the EN registry title.
+    mockServerLocale.locale = 'es';
+    try {
+      const element = await LocationHubPage();
+      if (!element) throw new Error('location hub page returned null');
+      renderWithI18n(element, 'es');
+
+      const directory = screen.getByTestId('location-hub-directory');
+      expect(within(directory).getByText('Comunidades en Colombia')).toBeInTheDocument();
+      expect(within(directory).queryByText('Communities in Colombia')).not.toBeInTheDocument();
+    } finally {
+      mockServerLocale.locale = 'en';
+    }
+  });
+});
