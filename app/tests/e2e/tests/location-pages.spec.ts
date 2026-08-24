@@ -1410,3 +1410,123 @@ test.describe('Story G: content-rich country/region prose + predominant-locale c
     expect(answerText).toContain('compiled from real, publicly known community spaces');
   });
 });
+
+test.describe('Story H: /location i18n completeness (TASK-519)', () => {
+  test('/es/location Browse-locations directory cards show localized names — Colombia card in Spanish', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/es/location');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+
+    // The Countries section (TASK-480 section keys render per-locale) shows
+    // the Colombia card with its committed Spanish title (TASK-515) — never
+    // the EN registry title.
+    const countries = page.getByTestId('location-hub-directory-countries');
+    await expect(countries).toBeVisible();
+    const colombiaCard = countries.getByRole('link', { name: 'Comunidades en Colombia' });
+    await expect(colombiaCard).toBeVisible();
+    await expect(colombiaCard).toHaveAttribute('href', '/es/location/colombia');
+    await expect(countries.getByText('Communities in Colombia')).toHaveCount(0);
+
+    // The directory as a whole carries no stale EN country card titles.
+    const directory = page.getByTestId('location-hub-directory');
+    await expect(directory.getByText('Communities in Colombia')).toHaveCount(0);
+  });
+
+  test('/es/location directory cards fall back to the localized dataset name for uncommitted countries', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/es/location');
+
+    // Germany has no committed es content → the es dataset name wins
+    // ("Alemania"), never the EN registry title.
+    const countries = page.getByTestId('location-hub-directory-countries');
+    await expect(countries).toBeVisible();
+    await expect(countries.getByRole('link', { name: 'Alemania' })).toBeVisible();
+    await expect(countries.getByText('Communities in Germany')).toHaveCount(0);
+
+    // A country without committed es content (united-arab-emirates) still
+    // shows the es dataset name ("Emiratos Árabes Unidos"), never the EN
+    // registry title.
+    await expect(countries.getByRole('link', { name: 'Emiratos Árabes Unidos' })).toBeVisible();
+    await expect(countries.getByText('Communities in United Arab Emirates')).toHaveCount(0);
+  });
+
+  test('/de/location/united-arab-emirates H1 renders German + breadcrumb shows the localized country crumb', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/de/location/united-arab-emirates');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+    // TASK-516 — the hero H1 resolves the de dataset name for a country with
+    // no committed de content, never the EN "Communities in United Arab
+    // Emirates" registry title. (The hero LEAD stays the EN registry
+    // description for uncommitted countries — that's expected.)
+    await expect(page.locator('h1')).toContainText('Vereinigte Arabische Emirate');
+    await expect(page.locator('h1')).not.toContainText('Communities in United Arab Emirates');
+
+    // Breadcrumbs: Home + hub resolve through the de chrome dictionary and
+    // the country crumb carries the localized de dataset name.
+    const breadcrumbs = page.getByTestId('location-breadcrumbs');
+    await expect(breadcrumbs).toContainText('Startseite');
+    await expect(breadcrumbs).toContainText('Communities nach Stadt');
+    await expect(breadcrumbs).toContainText('Vereinigte Arabische Emirate');
+    await expect(breadcrumbs.getByText('Home')).toHaveCount(0);
+    await expect(breadcrumbs).not.toContainText('Communities in United Arab Emirates');
+  });
+
+  test('/en/location/vietnam/ho-chi-minh-city-hcmc/ho-chi-minh-city presence-claim SectionTitle shows the proper-cased city', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    // The region slug for Ho Chi Minh City is `ho-chi-minh-city-hcmc`
+    // (dataset asciiName "Ho Chi Minh City (HCMC)").
+    await page.goto('/en/location/vietnam/ho-chi-minh-city-hcmc/ho-chi-minh-city');
+
+    // TASK-517 — the honest presence claim renders the proper-cased dataset
+    // display name, never the lowercase slug-spaced params ("ho chi minh
+    // city").
+    await expect(
+      page.getByRole('heading', {
+        level: 2,
+        name: 'Find or start a community in Ho Chi Minh City',
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('heading', {
+        level: 2,
+        name: 'Find or start a community in ho chi minh city',
+        exact: true,
+      }),
+    ).toHaveCount(0);
+  });
+
+  test('region page presence claim shows the proper-cased region name (japan/osaka)', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/en/location/japan/osaka');
+
+    // TASK-517 — the region page presence claim resolves the dataset region
+    // display name ("Osaka Prefecture") — proper-cased, never the lowercase
+    // slug "osaka".
+    await expect(
+      page.getByRole('heading', {
+        level: 2,
+        name: 'Find or start a community in Osaka Prefecture',
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('heading', {
+        level: 2,
+        name: 'Find or start a community in osaka',
+        exact: true,
+      }),
+    ).toHaveCount(0);
+  });
+});
