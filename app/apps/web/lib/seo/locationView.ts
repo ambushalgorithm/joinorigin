@@ -28,7 +28,7 @@ import type { Metadata } from 'next';
 
 import { SUPPORTED_LOCALES, getDictionary, getT, type Locale } from '@joinorigin/i18n';
 
-import { getCityContent, getCountryContent, getRegionContent } from './content';
+import { getCityContent, getCountryContent, getRegionContent, listContentByKind } from './content';
 import type {
   CityContent,
   CountryContent,
@@ -316,32 +316,65 @@ export interface HubDirectoryEntry {
  * absent (local / non-Cloudflare requests) the order falls back to
  * locale-language → alphabetical.
  *
- * Locale-aware (TASK-449): each card's name resolves from the locale
- * surface (`locationPageEntries(locale)`) so Browse-locations card names
- * render in the active locale when committed content exists, EN fallback
- * otherwise — the EN directory always stays complete. Locale-aware paths
- * (TASK-469): every card href points at the ACTIVE locale surface
- * (`/${locale}/location/...`) — all 21 locale trees exist — never the
- * EN-canonical `/en/...` (localizePath passes already-prefixed hrefs through
- * idempotently, so `/en` here would navigate a non-EN hub visitor to the
- * English surface).
+ * Locale-aware (TASK-515): each card's display name resolves through the
+ * ACTIVE locale — committed per-locale page title (the locale-surface
+ * registry entry, plus per-locale country/region content enumerated
+ * explicitly) → else the localized dataset name for the card's own kind
+ * (`countryLocalizedName` / `regionLocalizedName` / `cityLocalizedName`) →
+ * else the EN registry title — the EN directory always stays complete.
+ * Variant/ideas cards keep their (localized) pageTitles template with the
+ * localized city name. Locale-aware paths (TASK-469): every card href points
+ * at the ACTIVE locale surface (`/${locale}/location/...`) — all 21 locale
+ * trees exist — never the EN-canonical `/en/...` (localizePath passes
+ * already-prefixed hrefs through idempotently, so `/en` here would navigate
+ * a non-EN hub visitor to the English surface).
  */
 export function hubDirectoryEntries(
   locale: Locale = 'en',
   ipCountry: string | null = null,
 ): HubDirectoryEntry[] {
-  // Registry titles/names: the EN canonical surface is the source of truth;
-  // the ACTIVE locale surface contributes committed localized titles. Keys
-  // are locale-independent (kind + params), so every content-rich card
-  // resolves its localized name when the locale surface carries the page
-  // and falls back to EN otherwise.
+  // Registry titles/names: the EN canonical surface is the source of truth
+  // for hrefs + EN fallback names; the ACTIVE locale contributes committed
+  // localized titles (registry city/variant/ideas entries + enumerated
+  // country/region content, TASK-515). Keys are locale-independent
+  // (kind + params), so every content-rich card resolves its localized name
+  // when the locale carries a committed title, else the localized dataset
+  // name, and falls back to EN otherwise.
   const enEntries = new Map<string, LocationPageEntry>();
   for (const entry of locationPageEntries()) {
     if (entry.kind !== 'hub') enEntries.set(locationEntryKey(entry), entry);
   }
-  const localeEntries = new Map<string, LocationPageEntry>();
+  // Committed per-locale page titles for the ACTIVE surface. The registry
+  // `locationPageEntries(locale)` only emits city/variant/ideas for non-EN
+  // locales (locationPages.ts city loop), so country/region keys are always
+  // absent there — enumerate committed per-locale country/region content into
+  // the locale title map explicitly so a committed title (e.g.
+  // es/country/colombia.ts "Comunidades en Colombia", de/country/germany.ts
+  // "Communities in Deutschland") resolves as the card name on its locale
+  // surface (TASK-515). Keys reuse `locationEntryKey` shape (kind + params).
+  const localeTitles = new Map<string, string>();
   for (const entry of locationPageEntries(locale)) {
-    if (entry.kind !== 'hub') localeEntries.set(locationEntryKey(entry), entry);
+    if (entry.kind !== 'hub') localeTitles.set(locationEntryKey(entry), entry.title);
+  }
+  if (locale !== 'en') {
+    for (const content of listContentByKind('country', locale)) {
+      if (content.kind !== 'country' || !content.title) continue;
+      const country = findCountryBySlug(content.slug);
+      if (!country) continue;
+      localeTitles.set(`country:${countrySlug(country)}///`, content.title);
+    }
+    for (const content of listContentByKind('region', locale)) {
+      if (content.kind !== 'region' || !content.title) continue;
+      const region = findRegionBySlugOrFlagship(content.slug);
+      if (!region) continue;
+      const country = findCountry(region.countryIso2);
+      if (!country) continue;
+      // URL segments honor flagship overrides (same rule as the city loop).
+      const flagshipParent = FLAGSHIP_CITIES.find((flagship) => flagship.regionId === region.id);
+      const regionSeg = flagshipParent?.regionSlug ?? regionSlug(region);
+      const countrySeg = flagshipParent?.countrySlug ?? countrySlug(country);
+      localeTitles.set(`region:${countrySeg}/${regionSeg}//`, content.title);
+    }
   }
 
   const localeCountries = localeCountryCodes(locale);
@@ -369,12 +402,13 @@ export function hubDirectoryEntries(
       seenCountryKeys.add(countryKey);
       const card = contentRichDirectoryCard(
         enEntries.get(countryKey),
-        localeEntries.get(countryKey),
+        localeTitles.get(countryKey),
         locale,
         'country',
         'countries',
         country.iso2,
         [countryName],
+        countryName,
       );
       if (card) entries.push(card);
     }
@@ -385,12 +419,13 @@ export function hubDirectoryEntries(
       seenRegionKeys.add(regionKey);
       const card = contentRichDirectoryCard(
         enEntries.get(regionKey),
-        localeEntries.get(regionKey),
+        localeTitles.get(regionKey),
         locale,
         'region',
         'regions',
         country.iso2,
         [countryName, regionName],
+        regionName,
       );
       if (card) entries.push(card);
     }
@@ -401,12 +436,13 @@ export function hubDirectoryEntries(
     const cityKey = `city:${countrySeg}/${regionSeg}/${citySlugValue}/`;
     const cityCard = contentRichDirectoryCard(
       enEntries.get(cityKey),
-      localeEntries.get(cityKey),
+      localeTitles.get(cityKey),
       locale,
       'city',
       'cities',
       country.iso2,
       [countryName, regionName],
+      cityLocalizedName(city, locale),
     );
     if (cityCard) entries.push(cityCard);
 
@@ -415,7 +451,7 @@ export function hubDirectoryEntries(
       const variantKey = `variant:${countrySeg}/${regionSeg}/${citySlugValue}/${type.key}`;
       const card = contentRichDirectoryCard(
         enEntries.get(variantKey),
-        localeEntries.get(variantKey),
+        localeTitles.get(variantKey),
         locale,
         'variant',
         'communityTypes',
@@ -429,7 +465,7 @@ export function hubDirectoryEntries(
     const ideasKey = `ideas:${countrySeg}/${regionSeg}/${citySlugValue}/${IDEA_VARIANT}`;
     const ideasCard = contentRichDirectoryCard(
       enEntries.get(ideasKey),
-      localeEntries.get(ideasKey),
+      localeTitles.get(ideasKey),
       locale,
       'ideas',
       'eventIdeas',
@@ -451,24 +487,30 @@ export function hubDirectoryEntries(
 /**
  * Build one content-rich directory card from its registry entries. The EN
  * canonical entry is the source of truth for the href (forwarded to the
- * ACTIVE locale surface) and the EN name; the locale-surface entry (when
- * present) supplies the localized name. `searchParts` carry the dataset
- * country/region names for the `searchText` enrichment (TASK-484). Returns
- * `undefined` when the EN registry lacks the entry — never emit a card for a
- * path that does not exist.
+ * ACTIVE locale surface); the display name resolves through the ACTIVE
+ * locale (TASK-515): the committed per-locale page title (`localeTitle`,
+ * e.g. es/country/colombia.ts "Comunidades en Colombia") when present →
+ * else the localized dataset name (`localizedName` — country/region/city
+ * kinds) → else the EN registry title. Variant/ideas cards keep their
+ * (localized) pageTitles template with the localized city name — they never
+ * substitute the bare dataset city name. `searchParts` carry the dataset
+ * country/region names for the `searchText` enrichment (TASK-484 — the
+ * search text is unchanged by TASK-515; only the display name localizes).
+ * Returns `undefined` when the EN registry lacks the entry — never emit a
+ * card for a path that does not exist.
  */
 function contentRichDirectoryCard(
   enEntry: LocationPageEntry | undefined,
-  localeEntry: LocationPageEntry | undefined,
+  localeTitle: string | undefined,
   locale: Locale,
   kind: PageKind,
   section: HubDirectorySection,
   countryIso2: string,
   searchParts: string[],
+  localizedName?: string,
 ): HubDirectoryEntry | undefined {
   if (!enEntry) return undefined;
-  const active = localeEntry ?? enEntry;
-  const name = stripBrand(active.title);
+  const name = stripBrand(localeTitle ?? localizedName ?? enEntry.title);
   return {
     name,
     path: forwardToLocaleSurface(enEntry.path, locale),
