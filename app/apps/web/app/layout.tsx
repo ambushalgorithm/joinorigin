@@ -5,6 +5,7 @@ import { getDictionary, getDir, resolveLocale } from '@joinorigin/i18n';
 
 import { AnalyticsProvider } from '../lib/analytics';
 import LocalePathnameSync from '../components/LocalePathnameSync';
+import NavigationProgress from '../components/NavigationProgress';
 import { JsonLd } from '../lib/seo/JsonLdScript';
 import { organization, website } from '../lib/seo/jsonLd';
 import { SITE } from '../lib/seo/site';
@@ -166,6 +167,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 renders children unchanged; adapters inject their own scripts. */}
             <AnalyticsProvider>{children}</AnalyticsProvider>
           </LocalePathnameSync>
+          {/* fe-nav-progress global mount (Story G / TASK-538): thin top
+              progress bar shown ONLY when a route transition exceeds ~100ms,
+              hidden when the new route's content renders. Fixed overlay —
+              zero layout/content semantics; rendered inside Registry so its
+              styled-components styles are SSR-collected. */}
+          <NavigationProgress />
         </Registry>
         {/* Site-wide JSON-LD (arch §3.6) — server-rendered, once. */}
         <JsonLd data={organization()} />
