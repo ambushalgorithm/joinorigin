@@ -1,9 +1,10 @@
 import { screen } from '@testing-library/react';
+import { renderToString } from 'react-dom/server';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
+import { ServerStyleSheet, ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
-import { _resetI18nForTests } from '@joinorigin/i18n';
+import { I18nProvider, _resetI18nForTests, getDictionary } from '@joinorigin/i18n';
 
 import MenuHero from './MenuHero';
 import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
@@ -187,5 +188,126 @@ describe('MenuHero', () => {
       'en',
     );
     expect(screen.getByTestId('hero-contact-link')).toHaveAttribute('href', '/en/contact');
+  });
+});
+
+/**
+ * Story A (Sprint 22): MenuHero is mobile-first at the researched 320px
+ * minimum viewport (TASK-526). Base styles (no media query) are the
+ * 320px-floor layout; every enhancement is a `min-width` rule at
+ * `theme.breakpoints`. jsdom does not apply `@media` to layout, so the
+ * breakpoint behavior is asserted on the generated stylesheet.
+ */
+describe('Story A: MenuHero mobile-first breakpoints (min viewport = 320px)', () => {
+  /** Renders the hero server-side and returns the generated CSS text. */
+  function cssForHero(props: Partial<React.ComponentProps<typeof MenuHero>> = {}): string {
+    const sheet = new ServerStyleSheet();
+    try {
+      renderToString(
+        sheet.collectStyles(
+          <I18nProvider locale="en" dictionary={getDictionary('en')}>
+            <ThemeProvider theme={theme}>
+              <WaitlistModalProvider>
+                <MenuHero title="T" {...props} />
+              </WaitlistModalProvider>
+            </ThemeProvider>
+          </I18nProvider>,
+        ),
+      );
+      return sheet.getStyleTags();
+    } finally {
+      sheet.seal();
+    }
+  }
+
+  it('uses the compact 480px band min-height at the 320px floor', () => {
+    const css = cssForHero();
+    // Base (320px floor): a fixed 480px band minimum keeps the stacked
+    // CTA/trust content breathing room on small screens.
+    expect(css).toContain('min-height:480px');
+    // From the first enhancement breakpoint upward the desktop spec floor
+    // (HERO_BAND_MIN_HEIGHT 560px / 60vh) applies.
+    expect(css).toContain('@media (min-width:480px)');
+    expect(css).toContain('min-height:max(560px,60vh)');
+  });
+
+  it('keeps the content grid single-column at the 320px floor', () => {
+    const css = cssForHero();
+    // Base rule is 1fr; the two-column split only appears inside the
+    // min-width:1024px media block (styled-components emits the base rule
+    // unwrapped and the enhancement inside @media).
+    expect(css).toContain('grid-template-columns:1fr');
+    expect(css).toContain('@media (min-width:1024px)');
+    expect(css).toContain('grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr)');
+  });
+
+  it('switches to the two-column content layout at desktop (1024px)', () => {
+    const css = cssForHero();
+    expect(css).toContain('@media (min-width:1024px)');
+    expect(css).toContain('grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr)');
+  });
+
+  it('stacks the CTA/stat actions full-width at the 320px floor', () => {
+    const css = cssForHero({ cta: { variant: 'waitlist', label: 'Join' }, meta: { stat: true } });
+    // Base: the CTA + stat pill stretch to the full content width and stack
+    // (the stat's long label wraps rather than overflowing the viewport).
+    expect(css).toContain('flex-direction:column');
+    expect(css).toContain('align-items:stretch');
+    // From the first enhancement breakpoint upward items return to natural
+    // width (flex-start + wrap).
+    expect(css).toContain('@media (min-width:480px)');
+    expect(css).toContain('align-items:flex-start');
+    expect(css).toContain('flex-wrap:wrap');
+  });
+
+  it('uses compact content gutters at the 320px floor and widens at breakpoints', () => {
+    const css = cssForHero();
+    expect(css).toContain('padding:48px 20px 32px');
+    expect(css).toContain('@media (min-width:480px)');
+    expect(css).toContain('padding:64px 32px 32px');
+    expect(css).toContain('padding:72px 64px 48px');
+  });
+
+  it('centers the scene column below desktop and pins it to the end at desktop', () => {
+    const css = cssForHero({ scene: 'features' });
+    expect(css).toContain('justify-content:center');
+    expect(css).toContain('max-width:320px');
+    expect(css).toContain('@media (min-width:1024px)');
+    expect(css).toContain('justify-content:flex-end');
+  });
+});
+
+/**
+ * Story B (Sprint 22): the GSAP entrance timeline is gated behind
+ * `gsap.matchMedia()` under `(prefers-reduced-motion: no-preference)` —
+ * reduced-motion users (and SSR/no-JS) get the final static state instantly.
+ * jsdom's default matchMedia reports the no-preference query as NOT
+ * matching, so rendering exercises the reduced-motion path: no GSAP inline
+ * styles may be written to the `data-hero` hooks.
+ */
+describe('Story B: MenuHero reduced-motion settled state', () => {
+  it('renders the hero static (no GSAP-written styles) under prefers-reduced-motion: reduce', async () => {
+    const { container } = renderWithI18n(
+      <ThemeProvider theme={theme}>
+        <WaitlistModalProvider>
+          <MenuHero
+            title="Everything a community needs"
+            lead="Origin is a social collaboration network."
+            cta={{ variant: 'waitlist', label: 'Join the waitlist' }}
+          />
+        </WaitlistModalProvider>
+      </ThemeProvider>,
+    );
+
+    // Let any GSAP work run — the matchMedia gate must keep everything static.
+    await new Promise((resolve) => setTimeout(resolve, 40));
+
+    for (const attr of ['eyebrow', 'title', 'lead', 'actions']) {
+      const hooks = container.querySelectorAll(`[data-hero="${attr}"]`);
+      for (const hook of Array.from(hooks)) {
+        // Settled state: no inline opacity/transform/visibility tweens.
+        expect(hook.getAttribute('style')).toBeNull();
+      }
+    }
   });
 });

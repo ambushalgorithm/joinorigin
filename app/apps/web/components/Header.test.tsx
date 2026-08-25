@@ -1,6 +1,7 @@
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
+import { renderToString } from 'react-dom/server';
+import { ServerStyleSheet, ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
@@ -250,5 +251,134 @@ describe('Header', () => {
     expect(hrefs).toContain('/de/location');
     expect(hrefs).toContain('/de/features');
     expect(hrefs).toContain('/de/about');
+  });
+});
+
+/**
+ * Story A (Sprint 22): the Header is mobile-first at the researched 320px
+ * minimum viewport (TASK-526) — compact gutters, 44px hamburger tap target,
+ * shrinkable right cluster — enhanced at `theme.breakpoints`. jsdom does not
+ * apply `@media` to layout, so breakpoint behavior is asserted on the
+ * generated stylesheet (same pattern as LanguageSwitcher.test.tsx).
+ */
+describe('Story A: Header mobile-first breakpoints (min viewport = 320px)', () => {
+  /** Renders the header server-side and returns the generated CSS text. */
+  function cssForHeader(): string {
+    const sheet = new ServerStyleSheet();
+    try {
+      renderToString(
+        sheet.collectStyles(
+          <I18nProvider locale="en" dictionary={getDictionary('en')}>
+            <NativeThemeProvider theme={theme}>
+              <ThemeProvider theme={theme}>
+                <WaitlistModalProvider>
+                  <Header />
+                </WaitlistModalProvider>
+              </ThemeProvider>
+            </NativeThemeProvider>
+          </I18nProvider>,
+        ),
+      );
+      return sheet.getStyleTags();
+    } finally {
+      sheet.seal();
+    }
+  }
+
+  it('uses compact 16px gutters at the 320px floor and widens at mobile+', () => {
+    const css = cssForHeader();
+    expect(css).toContain('padding:16px');
+    expect(css).toContain('@media (min-width:480px)');
+    expect(css).toContain('padding:16px 32px');
+  });
+
+  it('keeps the right cluster shrinkable (min-width:0) at the 320px floor', () => {
+    // D2 graceful degradation below 320px: the cluster must never force
+    // horizontal page overflow.
+    expect(cssForHeader()).toContain('min-width:0');
+  });
+
+  it('shows the 44px hamburger at the 320px floor and hides it at desktop+', () => {
+    const css = cssForHeader();
+    expect(css).toContain('width:44px');
+    expect(css).toContain('height:44px');
+    expect(css).toContain('@media (min-width:1024px)');
+    expect(css).toContain('display:none');
+  });
+
+  it('hides the desktop nav below desktop (base display:none)', () => {
+    const css = cssForHeader();
+    // The `<nav>` is `display:none` at the mobile base and flex at 1024px+.
+    expect(css).toContain('display:none');
+    expect(css).toContain('@media (min-width:1024px)');
+    expect(css).toContain('display:flex');
+  });
+
+  it('hides the wordmark below 480px (compact brand on the smallest screens)', () => {
+    const css = cssForHeader();
+    expect(css).toContain('@media (max-width:480px)');
+    expect(css).toContain('display:none');
+  });
+
+  it('hides the desktop Log In control below 768px', () => {
+    const css = cssForHeader();
+    expect(css).toContain('@media (max-width:768px)');
+    expect(css).toContain('display:none');
+  });
+
+  it('uses 16px mobile-panel gutters at the 320px floor', async () => {
+    // The panel only renders when the mobile menu is open, so computed
+    // styles exercise the base (no media query = 320px floor) rules.
+    const user = userEvent.setup();
+    renderHeader();
+    await user.click(screen.getByTestId('mobile-menu-toggle'));
+
+    const panel = screen.getByTestId('mobile-menu');
+    const style = getComputedStyle(panel);
+    expect(style.marginLeft).toBe('16px');
+    expect(style.marginRight).toBe('16px');
+    expect(style.marginBottom).toBe('16px');
+  });
+});
+
+/**
+ * Story C (Sprint 22): hover/focus animation ONLY on clickable/interactive
+ * elements + a visible keyboard focus indicator. The hamburger is the
+ * primary mobile navigation control and must expose a focus-visible ring.
+ */
+describe('Story C: Header interactive focus indicators', () => {
+  it('gives the hamburger a visible focus-visible ring (Story C)', () => {
+    const sheet = new ServerStyleSheet();
+    try {
+      renderToString(
+        sheet.collectStyles(
+          <I18nProvider locale="en" dictionary={getDictionary('en')}>
+            <NativeThemeProvider theme={theme}>
+              <ThemeProvider theme={theme}>
+                <WaitlistModalProvider>
+                  <Header />
+                </WaitlistModalProvider>
+              </ThemeProvider>
+            </NativeThemeProvider>
+          </I18nProvider>,
+        ),
+      );
+      const css = sheet.getStyleTags();
+      expect(css).toContain(':focus-visible');
+      expect(css).toContain('outline:2px solid #7C9CFF');
+      expect(css).toContain('outline-offset:2px');
+    } finally {
+      sheet.seal();
+    }
+  });
+
+  it('keeps focus on the hamburger after opening the mobile menu', async () => {
+    const user = userEvent.setup();
+    renderHeader();
+
+    const toggle = screen.getByTestId('mobile-menu-toggle');
+    await user.click(toggle);
+    expect(screen.getByTestId('mobile-menu')).toBeInTheDocument();
+    expect(toggle).toHaveFocus();
   });
 });
