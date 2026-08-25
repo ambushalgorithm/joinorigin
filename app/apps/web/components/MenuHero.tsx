@@ -35,12 +35,22 @@ import type { SceneKey } from './scenes/sceneTypes';
  * body. Two columns on desktop: eyebrow + H1 + lead + hero CTA (+ optional
  * social-proof meta) on the left; the upgraded inline scene art on the right.
  *
- * GSAP staggered entrance: `data-hero` hooks on each column piece (eyebrow /
- * title wrapper / lead / actions / meta / scene) animate via a single
- * timeline inside `gsap.matchMedia()` under
- * `(prefers-reduced-motion: no-preference)` — reduced-motion users and
- * no-JS/SSR see the final static state (progressive enhancement). The `<h1>`
- * (PageTitle) is animated through its wrapper, never the tag.
+ * Sprint 22 Story A (mobile-first): base styles target the researched 320px
+ * minimum viewport (TASK-526) — single-column content, compact band
+ * min-height, mobile typography (via PageTitle), and full-width stacked
+ * CTA/stat with the TrustRow below; every larger breakpoint is a
+ * `min-width` enhancement at `theme.breakpoints` (mobile 480 / desktop
+ * 1024). Below 320px the fluid layout degrades gracefully (D2) — nothing is
+ * hidden behind a sub-320 query.
+ *
+ * Sprint 22 Story B (reduced-motion): the GSAP staggered entrance is gated
+ * behind `gsap.matchMedia()` under `(prefers-reduced-motion: no-preference)`
+ * — `data-hero` hooks on each column piece (eyebrow / title wrapper / lead /
+ * actions / meta / scene) animate via a single timeline ONLY for users who
+ * do not prefer reduced motion; reduced-motion users, no-JS, and SSR all see
+ * the final static state instantly (progressive enhancement, `fromTo()`
+ * never hides content by CSS alone). The `<h1>` (PageTitle) is animated
+ * through its wrapper, never the tag.
  *
  * Semantics: a `section` (NOT a `header` — the sticky top nav `Header` is the
  * only `header` landmark per arch §5.1). The scene is decorative
@@ -84,7 +94,11 @@ export interface MenuHeroProps {
 const Hero = styled.section<{ $ambient: boolean; $glow: string }>`
   position: relative;
   overflow: hidden;
-  min-height: max(${HERO_BAND_MIN_HEIGHT}, 60vh);
+  /* Mobile-first base (320px floor): a fixed 480px band minimum keeps the
+     stacked CTA/trust content breathing room on small screens (Story A).
+     From the first enhancement breakpoint upward the desktop spec floor
+     applies. */
+  min-height: 480px;
 
   /* Layer 1: ambient texture (pointer-events: none, aria-hidden) */
   &::before {
@@ -109,8 +123,8 @@ const Hero = styled.section<{ $ambient: boolean; $glow: string }>`
     pointer-events: none;
   }
 
-  @media (max-width: 480px) {
-    min-height: 480px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    min-height: max(${HERO_BAND_MIN_HEIGHT}, 60vh);
   }
 `;
 
@@ -130,20 +144,19 @@ const Content = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 72px 64px 48px;
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-columns: 1fr;
   gap: ${({ theme }) => theme.spacing.xl}px;
   align-items: center;
+  padding: 48px 20px 32px;
 
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-    gap: ${({ theme }) => theme.spacing.xl}px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     padding: 64px 32px 32px;
   }
 
-  @media (max-width: 480px) {
-    padding: 48px 20px 32px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    padding: 72px 64px 48px;
   }
 `;
 
@@ -156,25 +169,35 @@ const HeroLead = styled(PageLead)`
   max-width: 640px;
 `;
 
-/** Hero CTA + optional stat meta. */
+/** Hero CTA + optional stat meta. Mobile-first (Story A): on the 320px floor
+ *  the CTA and stat pill stretch to the full content width and stack (the
+ *  stat's long label wraps rather than overflowing the viewport); from the
+ *  first enhancement breakpoint upward items return to natural width. */
 const Actions = styled.div`
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: stretch;
   gap: ${({ theme }) => theme.spacing.lg}px;
   margin-top: ${({ theme }) => theme.spacing.xl}px;
-  flex-wrap: wrap;
-  flex-direction: column;
+  min-width: 0;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
 `;
 
 const SceneColumn = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  max-width: 320px;
+  margin: 0 auto;
   min-width: 0;
 
-  @media (max-width: 1024px) {
-    justify-content: center;
-    max-width: 320px;
-    margin: 0 auto;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    justify-content: flex-end;
+    max-width: none;
+    margin: 0;
   }
 `;
 
