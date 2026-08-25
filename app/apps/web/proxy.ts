@@ -44,11 +44,23 @@ import { resolveAcceptLanguage, SUPPORTED_LOCALES } from '@joinorigin/i18n';
 /** Locale forced by a locale-prefixed pathname — `/de`, `/de/...`, `/es/...`,
  *  `/en`, `/en/...`, `/pt-BR/...`, etc. `undefined` for every other path.
  *  All 21 `SUPPORTED_LOCALES` are surfaces (TASK-448 created the full
- *  `/<locale>/**` route trees, incl. `/en/**`). */
+ *  `/<locale>/**` route trees, incl. `/en/**`).
+ *
+ *  Story F (TASK-537): O(1) resolution instead of a 21-element array scan per
+ *  request — the proxy runs on every page/RSC request, so this is the
+ *  per-navigation hot path. The first pathname segment IS the locale prefix
+ *  when it names a supported locale (exact `/de` or `/de/...`), so a single
+ *  Set lookup replaces the linear `SUPPORTED_LOCALES.find(...)`. Semantics are
+ *  identical: `/deutschland`, `/de-features` and `/events` are NOT locales
+ *  (their first segment is not a member), and `/` has no segment. */
+const LOCALE_SEGMENTS = new Set<string>(SUPPORTED_LOCALES);
+
 export function localeFromPathname(pathname: string): string | undefined {
-  return SUPPORTED_LOCALES.find(
-    (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
-  );
+  const segment = pathname.split('/')[1];
+  if (segment === undefined || !LOCALE_SEGMENTS.has(segment)) {
+    return undefined;
+  }
+  return segment;
 }
 
 /** The request header this proxy sets from Cloudflare's `CF-IPCountry`
@@ -139,9 +151,17 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Run on all routes except Next internals + static assets (fonts/images).
-  // Non-HTML system routes that still match here (api, sitemap.xml, icon,
-  // file-extension URLs) are excluded from the redirect inside `proxy` via
-  // `isSystemRoute`, so they keep their canonical unprefixed URLs.
-  matcher: ['/((?!_next/static|_next/image|assets|fonts|favicon.ico).*)'],
+  // Run on all routes except Next internals + static assets (fonts/images)
+  // and system routes that never need locale resolution (metadata files,
+  // icons, manifests — they pass through untouched via `isSystemRoute`, so
+  // skipping the middleware hop entirely is the Story F per-navigation trim,
+  // F6). Non-HTML system routes that still match here (api, file-extension
+  // URLs) are excluded from the redirect inside `proxy` via `isSystemRoute`,
+  // so they keep their canonical unprefixed URLs. Note: RSC/prefetch
+  // requests intentionally still match — they carry the same page pathnames
+  // and the layout reads `x-joinorigin-locale` from them, so locale
+  // resolution IS needed there.
+  matcher: [
+    '/((?!_next/static|_next/image|assets|fonts|favicon.ico|icon|apple-icon|manifest.webmanifest|sitemap.xml|robots.txt|llms.txt).*)',
+  ],
 };
