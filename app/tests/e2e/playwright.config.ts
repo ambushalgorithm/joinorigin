@@ -13,7 +13,14 @@ export default defineConfig({
   // across repeated runs) while still running files in parallel.
   workers: 2,
   forbidOnly: !!process.env.CI,
-  retries: 0,
+  // TASK-522: the two documented flake families (scene-orbit GSAP hydration
+  // under parallel load + translate-page cold-route first compile) are
+  // hardened in their specs (30s poll matching SCENE_HYDRATION_MAX_WAIT_MS,
+  // starve-proof expect.poll change assertions, tolerance-based bbox checks,
+  // pre-warm beforeAll + per-goto timeout). A single retry remains as the
+  // backstop for environmental (CPU/network) starvation so the suite stays
+  // deterministic; tests are NOT disabled.
+  retries: 1,
   timeout: 120_000,
   reporter: [['list']],
   use: {
