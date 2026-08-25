@@ -6,17 +6,22 @@ import styled from 'styled-components';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '../lib/gsap';
 
+import { SCROLL_TRIGGER_START } from './motion';
+
 /**
  * Scroll-reveal wrapper (design spec sprint-8 §4.3, GSAP elevation
- * sprint-10-menu-anim §5.6).
+ * sprint-10-menu-anim §5.6, Story B sprint-22 pre-entry trigger).
  *
  * Uses GSAP ScrollTrigger (`once: true` matches the old fire-once
- * IntersectionObserver). Content starts visible (progressive enhancement —
- * never hidden by CSS alone on the server or first paint); a
- * `fromTo(autoAlpha: 0, y: 24)` reveal runs when the element enters the
- * viewport. Reduced-motion users get no tween — the element stays at its
- * final visible state. Purely visual: children stay in the DOM and readable
- * by assistive technology.
+ * IntersectionObserver). The trigger fires at `SCROLL_TRIGGER_START`
+ * (`top bottom+=150px`) — i.e. when the element's top is still ~150px BELOW
+ * the viewport bottom — so the reveal starts pre-entry and may be mid-flight
+ * by the time the element scrolls into view (~90% viewport height entry).
+ * Content starts visible (progressive enhancement — never hidden by CSS alone
+ * on the server or first paint); a `fromTo(autoAlpha: 0, y: 24)` reveal runs
+ * when the pre-entry trigger fires. Reduced-motion users get no tween — the
+ * element stays at its final visible state. Purely visual: children stay in
+ * the DOM and readable by assistive technology.
  */
 
 export interface RevealProps {
@@ -51,7 +56,14 @@ export function Reveal({ children, delay = '0s', as = 'div', className }: Reveal
             duration: 0.6,
             ease: 'power3.out',
             delay: delaySec,
-            scrollTrigger: { trigger: elRef.current, start: 'top 85%', once: true },
+            scrollTrigger: {
+              trigger: elRef.current,
+              // Story B: fire when the element's top is ~150px BELOW the
+              // viewport bottom (pre-entry) so the reveal is mid-flight when
+              // the element becomes visible.
+              start: SCROLL_TRIGGER_START,
+              once: true,
+            },
           },
         );
       });
