@@ -18,6 +18,13 @@ import { test, expect } from '@playwright/test';
  * The link is a plain link-out only — no Google Translate widget/script/SDK.
  * It renders after React hydration (the absolute URL needs `window.location`),
  * so Playwright auto-waits on visibility before reading the href.
+ *
+ * Flake hardening (TASK-522): the `/en/guides/start-a-community` route is
+ * compiled on demand by the prod server, so its first navigation can blow the
+ * 60s navigationTimeout. The suite pre-warms the route with an API
+ * `request.get` in a serial `beforeAll` (same pattern as the seo/locale-routing
+ * cold-route warming), and the guide-page goto carries an explicit 2min
+ * timeout as a belt-and-suspenders margin.
  */
 test.describe.configure({ mode: 'serial' });
 
@@ -57,6 +64,14 @@ async function expectTranslateHref(page: import('@playwright/test').Page): Promi
 }
 
 test.describe('Google Translate link-out (TASK-318)', () => {
+  // Pre-warm the cold `/en/guides/start-a-community` route so the browser
+  // navigation below does not pay the prod server's first-compile cost inside
+  // the 60s navigationTimeout (the documented TASK-522 flake family).
+  test.beforeAll(async ({ request }) => {
+    const response = await request.get('/en/guides/start-a-community');
+    expect(response.ok(), 'pre-warm GET /en/guides/start-a-community should succeed').toBe(true);
+  });
+
   for (const path of EN_LOCATION_PAGES) {
     test(`EN location page ${path} renders the translate link with the correct href`, async ({
       page,
@@ -68,7 +83,9 @@ test.describe('Google Translate link-out (TASK-318)', () => {
   }
 
   test('EN guide page renders the translate link with the correct href', async ({ page }) => {
-    await page.goto('/en/guides/start-a-community');
+    // Explicit 2min timeout: even with the beforeAll pre-warm, a recompile or
+    // cache miss must not exceed the 60s navigationTimeout.
+    await page.goto('/en/guides/start-a-community', { timeout: 120_000 });
     await expectTranslateHref(page);
     await expect(page.getByTestId('translate-page-link')).toContainText('Translate this page');
   });

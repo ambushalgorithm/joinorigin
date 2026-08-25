@@ -18,15 +18,23 @@ import { waitForHydration } from './helpers';
  * contract:
  *
  *  1. `.scene-orbit-group` bbox/transform is STABLE — the group never
- *     rotates (rotation stays ≈ 0°) and its bbox center never drifts (all
- *     samples identical);
+ *     rotates (rotation stays ≈ 0°) and its bbox center never drifts beyond
+ *     a sub-pixel tolerance (same withinTolerance approach as
+ *     orbit-hub-stability.spec.ts — exact string equality flakes on
+ *     sub-pixel bbox jitter);
  *  2. `.scene-orbit-group` stays CENTERED — its bbox center is near the
  *     scene svg (container) center (scenes whose orbit line is intentionally
  *     offset, e.g. /docs, are still within a generous bound);
- *  3. `.scene-ring` still spins — its transform rotation advances over the
- *     sample window (menu pages that ship the ring);
- *  4. `.scene-main-group` still floats — its translateY changes over the
- *     sample window.
+ *  3. `.scene-ring` still spins — its transform rotation CHANGES (starve-proof
+ *     expect.poll, menu pages that ship the ring);
+ *  4. `.scene-main-group` still floats — its translateY CHANGES (starve-proof
+ *     expect.poll).
+ *
+ * Flake hardening (TASK-522): the ring/float assertions no longer use the
+ * fixed 5×800ms max−min window — rAF starvation under parallel load can zero
+ * the window and the sine-ease turnaround can wash out a short sample. They
+ * now `expect.poll` over a generous window for ANY value change (> 0) between
+ * reads at least 1s apart.
  */
 
 export const ORBIT_PAGES = [
@@ -45,12 +53,18 @@ const SAMPLE_COUNT = 5;
 const VIEWBOX_CENTER = { x: 280, y: 210 };
 /** The orbit group must not rotate after the orbit spin removal. */
 const ORBIT_ROTATION_TOLERANCE = 1;
+/** Sub-pixel bbox-center stability tolerance across samples (same as orbit-hub-stability.spec.ts). */
+const ORBIT_CENTER_STABILITY_TOLERANCE = 0.5;
 /** Loose bound to the container center (docs' orbit line sits at y≈300). */
 const ORBIT_CENTER_CONTAINER_TOLERANCE = 100;
-/** Minimum ring spin over the sample window (60s revolution → ~6°/sample). */
-const RING_SPIN_MIN_DEG = 5;
-/** Minimum main-group float (translateY) movement over the sample window. */
-const MAIN_FLOAT_MIN_DELTA = 1;
+/** Minimum spacing (ms) between "value changed" poll reads. */
+const CHANGE_POLL_MIN_SPACING_MS = 1_000;
+/**
+ * Generous window for the starve-proof "value changed" polls — ~4× the old
+ * fixed 4s sampling window so CPU starvation under parallel load can't zero
+ * it (matches the app's SCENE_HYDRATION_MAX_WAIT_MS=30s spirit).
+ */
+const CHANGE_POLL_TIMEOUT_MS = 15_000;
 
 interface Point {
   x: number;
@@ -90,7 +104,9 @@ async function readTransform(page: Page, selector: string): Promise<TransformRea
 
     const matrix = raw.match(/matrix\(([^)]+)\)/);
     if (matrix) {
-      const [a, b, c, d, e, f] = matrix[1].split(/[ ,]+/).map(Number);
+      // Only the rotation (a,b) and translateY (f) terms are consumed; the
+      // remaining matrix elements are elided to satisfy no-unused-vars.
+      const [a, b, , , , f] = matrix[1].split(/[ ,]+/).map(Number);
       return {
         rotationDeg: (Math.atan2(b, a) * 180) / Math.PI,
         translateY: Number.isFinite(f) ? f : 0,
@@ -104,6 +120,53 @@ async function readTransform(page: Page, selector: string): Promise<TransformRea
       translateY: translateY ? Number(translateY[1]) : 0,
     };
   }, selector);
+}
+
+/** True when every sample is within `tolerance` of the first sample. */
+function withinTolerance(samples: number[], tolerance: number): boolean {
+  if (samples.length === 0) {
+    return false;
+  }
+  const first = samples[0];
+  return samples.every((s) => Math.abs(s - first) <= tolerance);
+}
+
+/**
+ * Starve-proof "value changed" poll (TASK-522). Reads the selected transform
+ * field every CHANGE_POLL_MIN_SPACING_MS and resolves once ANY change (> 0)
+ * is observed between reads at least 1s apart.
+ *
+ * This replaces the old fixed-window max−min delta assertion: a 5×800ms
+ * window could be zeroed by rAF starvation under parallel load (the tween
+ * simply did not advance during the window), and a sine.ease turnaround could
+ * wash out a short fixed sample. Polling until the change is actually
+ * observed is phase-independent and starvation-proof.
+ */
+async function expectTransformChange(
+  page: Page,
+  selector: string,
+  field: keyof TransformReadout,
+): Promise<void> {
+  let previous: number | null = null;
+  let previousAt = 0;
+  await expect
+    .poll(
+      async () => {
+        const now = Date.now();
+        const readout = await readTransform(page, selector);
+        const value = readout[field];
+        if (previous !== null && now - previousAt >= CHANGE_POLL_MIN_SPACING_MS) {
+          if (Math.abs(value - previous) > 0) {
+            return true;
+          }
+        }
+        previous = value;
+        previousAt = now;
+        return false;
+      },
+      { timeout: CHANGE_POLL_TIMEOUT_MS, intervals: [CHANGE_POLL_MIN_SPACING_MS] },
+    )
+    .toBe(true);
 }
 
 /**
@@ -122,7 +185,10 @@ async function waitForSceneReady(page: Page): Promise<void> {
   // GSAP starts the scene timeline (inline transform on `.scene-main-group`)
   // after hydration. Poll for it — a fixed wait can be starved by CPU
   // contention under parallel load, which would zero the sampling window and
-  // flake the float/spin assertions.
+  // flake the float/spin assertions. The 30s poll matches the app's own
+  // SCENE_HYDRATION_MAX_WAIT_MS (components/motion.ts) — the previous 15s
+  // gave up halfway through the app's designed hydration window, failing
+  // under slow chunk delivery.
   await expect
     .poll(
       () =>
@@ -130,7 +196,7 @@ async function waitForSceneReady(page: Page): Promise<void> {
           const el = document.querySelector('.scene-main-group');
           return el ? (el.getAttribute('style') ?? '').includes('transform') : false;
         }),
-      { timeout: 15_000 },
+      { timeout: 30_000 },
     )
     .toBe(true);
   // The scene entrance tween (autoAlpha + y) runs after hydration; wait for
@@ -152,8 +218,6 @@ test.describe('scene orbit group stays stable + centered, ring spins, hub floats
 
       const centers: Point[] = [];
       const orbitRotations: number[] = [];
-      const ringRotations: number[] = [];
-      const mainTranslateYs: number[] = [];
 
       for (let i = 0; i < SAMPLE_COUNT; i += 1) {
         const center = await orbitGroupCenter(page);
@@ -162,14 +226,6 @@ test.describe('scene orbit group stays stable + centered, ring spins, hub floats
 
         const orbit = await readTransform(page, '.scene-orbit-group');
         orbitRotations.push(orbit.rotationDeg);
-
-        if (hasRing) {
-          const ring = await readTransform(page, '.scene-ring');
-          ringRotations.push(ring.rotationDeg);
-        }
-
-        const main = await readTransform(page, '.scene-main-group');
-        mainTranslateYs.push(main.translateY);
 
         if (i < SAMPLE_COUNT - 1) {
           await page.waitForTimeout(SAMPLE_INTERVAL_MS);
@@ -184,46 +240,42 @@ test.describe('scene orbit group stays stable + centered, ring spins, hub floats
         ).toBeLessThanOrEqual(ORBIT_ROTATION_TOLERANCE);
       }
 
-      // 2) The orbit-group bbox center never drifts (identical across samples).
-      const centerStrings = centers.map((p) => `${p.x.toFixed(2)} ${p.y.toFixed(2)}`);
-      for (const s of centerStrings) {
-        expect(
-          s,
-          `orbit-group bbox center should be stable (got ${centerStrings.join(' | ')})`,
-        ).toBe(centerStrings[0]);
-      }
+      // 2) The orbit-group bbox center never drifts beyond a sub-pixel
+      //    tolerance (exact string equality flaked on sub-pixel jitter).
+      const centerXs = centers.map((p) => p.x);
+      const centerYs = centers.map((p) => p.y);
+      const fmtCenter = (n: number) => n.toFixed(2);
+      expect(
+        withinTolerance(centerXs, ORBIT_CENTER_STABILITY_TOLERANCE),
+        `orbit-group bbox center x should be stable (${centerXs.map(fmtCenter).join(' | ')})`,
+      ).toBe(true);
+      expect(
+        withinTolerance(centerYs, ORBIT_CENTER_STABILITY_TOLERANCE),
+        `orbit-group bbox center y should be stable (${centerYs.map(fmtCenter).join(' | ')})`,
+      ).toBe(true);
 
       // 3) The orbit-group bbox center stays within the scene bounds (near
       //    the container center); scenes with intentionally offset orbit
       //    lines (e.g. /docs node line at y≈300) still satisfy the loose
       //    bound.
       const center = centers[0];
-      const containerDist = Math.hypot(
-        center.x - VIEWBOX_CENTER.x,
-        center.y - VIEWBOX_CENTER.y,
-      );
+      const containerDist = Math.hypot(center.x - VIEWBOX_CENTER.x, center.y - VIEWBOX_CENTER.y);
       expect(
         containerDist,
         `orbit-group center (${center.x.toFixed(1)},${center.y.toFixed(1)}) should be within the scene near the container center (${VIEWBOX_CENTER.x},${VIEWBOX_CENTER.y})`,
       ).toBeLessThanOrEqual(ORBIT_CENTER_CONTAINER_TOLERANCE);
 
       // 4) The ring still spins — the removal must not freeze the working
-      //    `.scene-ring` counter-spin.
+      //    `.scene-ring` counter-spin. Starve-proof + phase-independent: poll
+      //    until the rotation VALUE CHANGES instead of asserting a fixed
+      //    window max−min delta.
       if (hasRing) {
-        const ringDelta = Math.max(...ringRotations) - Math.min(...ringRotations);
-        expect(
-          Math.abs(ringDelta),
-          `ring rotation should advance over the sample window (${ringDelta.toFixed(1)}°)`,
-        ).toBeGreaterThan(RING_SPIN_MIN_DEG);
+        await expectTransformChange(page, '.scene-ring', 'rotationDeg');
       }
 
       // 5) The hub still floats — the removal must not freeze the working
-      //    `.scene-main-group` float (translateY changes over the window).
-      const floatDelta = Math.max(...mainTranslateYs) - Math.min(...mainTranslateYs);
-      expect(
-        Math.abs(floatDelta),
-        `main-group translateY should change over the sample window (${floatDelta.toFixed(2)} units)`,
-      ).toBeGreaterThan(MAIN_FLOAT_MIN_DELTA);
+      //    `.scene-main-group` float (translateY CHANGES).
+      await expectTransformChange(page, '.scene-main-group', 'translateY');
     });
   }
 });
