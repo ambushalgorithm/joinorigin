@@ -1,5 +1,8 @@
 import '@testing-library/jest-dom';
 
+import fs from 'fs';
+import path from 'path';
+
 import React from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -146,4 +149,43 @@ afterEach(() => {
 
 afterAll(() => {
   teardownGtween();
+});
+
+/**
+ * TASK-523 — HARD 600-line cap on unit test files (jest tripwire).
+ *
+ * ESLint `max-lines` (root .eslintrc.cjs overrides) blocks oversized test
+ * files at lint time (pre-commit + `pnpm lint`), but lint never runs inside
+ * the jest process. This hook reads the currently-executing test file path
+ * from the jest global state and fails the suite BEFORE any of its tests
+ * execute — a file that outgrew the cap is caught in milliseconds instead
+ * of after a multi-minute run.
+ *
+ * Counting matches ESLint's max-lines default: every physical line in the
+ * file counts (blank lines included, the trailing newline's empty line
+ * excluded), so a file that passes lint also passes this tripwire and vice
+ * versa. The 2308-line locationView.test.ts was split into 7 concern files
+ * (TASK-521) that are all under the limit; this guard keeps future test
+ * files from growing back. e2e specs (*.spec.ts) run under Playwright, not
+ * jest, so they are inherently exempt.
+ */
+beforeAll(() => {
+  const testPath = expect.getState().testPath ?? '';
+  if (!testPath) {
+    return;
+  }
+  const source = fs.readFileSync(testPath, 'utf8');
+  const lines = source.split('\n');
+  // ESLint's max-lines pops the trailing empty line produced by a final
+  // newline before counting, so mirror that here for identical semantics.
+  if (lines.length > 1 && lines[lines.length - 1] === '') {
+    lines.pop();
+  }
+  const lineCount = lines.length;
+  if (lineCount > 600) {
+    throw new Error(
+      `Test file exceeds the 600-line limit (${lineCount} lines): ${path.relative(process.cwd(), testPath)}. ` +
+        'Split the file into focused suites by concern (see TASK-521 for the pattern).',
+    );
+  }
 });
