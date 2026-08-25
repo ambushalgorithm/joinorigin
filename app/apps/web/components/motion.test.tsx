@@ -1,11 +1,18 @@
-import { act, render } from '@testing-library/react';
+import { act, render, renderHook } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import { useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
 
-import { useSceneMotion } from './motion';
+import {
+  SCROLL_TRIGGER_BUFFER_PX,
+  SCROLL_TRIGGER_ROOT_MARGIN,
+  SCROLL_TRIGGER_START,
+  useEntrance,
+  useReducedMotion,
+  useSceneMotion,
+} from './motion';
 import { FeaturesScene } from './scenes/FeaturesScene';
 
 /**
@@ -115,5 +122,119 @@ describe('useSceneMotion hydration deferral (TASK-407)', () => {
     } finally {
       restore();
     }
+  });
+});
+
+/**
+ * Story B (Sprint 22) — scroll-trigger ~90% viewport entry + reduced-motion
+ * settled state (TASK-530 contract, asserted at the unit level).
+ *
+ * The pre-entry buffer constants power BOTH the ScrollTrigger start string
+ * (`top bottom+=150px`) and the IntersectionObserver rootMargin used by
+ * `useInView`, so the unit tests pin the shared numbers exactly once here.
+ */
+describe('Story B: pre-entry scroll-trigger contract (~90% viewport entry)', () => {
+  it('buffers the scroll trigger ~100–150px BELOW the viewport bottom (pre-entry)', () => {
+    // Research decision (TASK-526/530): the animation must start while the
+    // element is still ~150px below the fold so it is mid-flight when the
+    // element becomes visible (~90% viewport height entry).
+    expect(SCROLL_TRIGGER_BUFFER_PX).toBe(150);
+  });
+
+  it('builds the ScrollTrigger start from the pre-entry buffer', () => {
+    // `top bottom+=150px` = the trigger fires when the element top passes a
+    // line 150px BELOW the viewport bottom — i.e. BEFORE the element enters.
+    expect(SCROLL_TRIGGER_START).toBe('top bottom+=150px');
+  });
+
+  it('expands the IntersectionObserver root by the same pre-entry buffer', () => {
+    // Positive bottom rootMargin expands the detection box ~150px below the
+    // viewport, so `useInView` flips true while the element is still below
+    // the fold — the same contract Reveal/SectionBand use via ScrollTrigger.
+    expect(SCROLL_TRIGGER_ROOT_MARGIN).toBe('0px 0px 150px 0px');
+  });
+
+  it('matches the buffer to the ~90% viewport-entry design target', () => {
+    // At 100vh the buffer is roughly 150/1000 of the viewport — the spec
+    // allows 100–150px; we lock the top of that band.
+    const viewportShare = SCROLL_TRIGGER_BUFFER_PX / 1000;
+    expect(viewportShare).toBeGreaterThanOrEqual(0.1);
+    expect(viewportShare).toBeLessThanOrEqual(0.15);
+  });
+});
+
+describe('Story B: reduced-motion settled state', () => {
+  function mockReducedMotion() {
+    const original = window.matchMedia;
+    window.matchMedia = ((query: string) => ({
+      matches: query === '(prefers-reduced-motion: reduce)',
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    })) as typeof window.matchMedia;
+    return () => {
+      window.matchMedia = original;
+    };
+  }
+
+  it('useReducedMotion reports true when the user prefers reduced motion', () => {
+    const restore = mockReducedMotion();
+    try {
+      const { result } = renderHook(() => useReducedMotion());
+      // The mount effect reads the live media query (jsdom flushes effects
+      // synchronously under renderHook) — reduced-motion users get `true`.
+      expect(result.current).toBe(true);
+    } finally {
+      restore();
+    }
+  });
+
+  it('useReducedMotion returns false when motion is enabled', () => {
+    const restore = mockMotionEnabledMatchMedia();
+    try {
+      const { result } = renderHook(() => useReducedMotion());
+      expect(result.current).toBe(false);
+    } finally {
+      restore();
+    }
+  });
+
+  it('leaves scene targets at the settled static state under prefers-reduced-motion: reduce', async () => {
+    // Default jsdom matchMedia reports `(prefers-reduced-motion: no-preference)`
+    // as NOT matching, so the GSAP timeline under gsap.matchMedia() is never
+    // registered — the scene stays in its static SSR state (settled).
+    const restore = mockReducedMotion();
+    try {
+      const { container } = render(<MotionHarness />);
+      const main = container.querySelector('.scene-main-group') as Element;
+      const ring = container.querySelector('.scene-ring') as Element;
+
+      // Let the post-paint rAF poll run — even after the poll, no tween may
+      // be registered for reduced-motion users (settled state).
+      await new Promise((resolve) => setTimeout(resolve, 60));
+      await act(async () => {});
+
+      expect(main.getAttribute('style')).toBeNull();
+      expect(ring.getAttribute('style')).toBeNull();
+      expect(main.getAttribute('transform')).toBeNull();
+    } finally {
+      restore();
+    }
+  });
+});
+
+describe('useEntrance (progressive enhancement)', () => {
+  it('stays false on the first render and flips true after the post-paint rAF', async () => {
+    const { result } = renderHook(() => useEntrance());
+    expect(result.current).toBe(false);
+    // The mount effect schedules a rAF (16ms setTimeout polyfill); wait for
+    // the frame so the entrance flag flips.
+    await new Promise((resolve) => setTimeout(resolve, 30));
+    await act(async () => {});
+    expect(result.current).toBe(true);
   });
 });

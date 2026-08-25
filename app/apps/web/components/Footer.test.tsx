@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { ThemeProvider } from 'styled-components';
+import { renderToString } from 'react-dom/server';
+import { ServerStyleSheet, ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
 import { theme } from '@joinorigin/design';
@@ -113,5 +114,69 @@ describe('Footer', () => {
       'href',
       '/de/terms',
     );
+  });
+});
+
+/**
+ * Story A (Sprint 22): the Footer is mobile-first at the researched 320px
+ * minimum viewport (TASK-526) — the 320px base stacks the whole footer
+ * vertically (column layout with compact 16px gutters); the row layout
+ * applies at tablet+. jsdom does not apply `@media` to layout, so
+ * breakpoint behavior is asserted on the generated stylesheet.
+ */
+describe('Story A: Footer mobile-first breakpoints (min viewport = 320px)', () => {
+  /** Renders the footer server-side and returns the generated CSS text. */
+  function cssForFooter(): string {
+    const sheet = new ServerStyleSheet();
+    try {
+      renderToString(
+        sheet.collectStyles(
+          <I18nProvider locale="en" dictionary={getDictionary('en')}>
+            <NativeThemeProvider theme={theme}>
+              <ThemeProvider theme={theme}>
+                <WaitlistModalProvider>
+                  <Footer />
+                </WaitlistModalProvider>
+              </ThemeProvider>
+            </NativeThemeProvider>
+          </I18nProvider>,
+        ),
+      );
+      return sheet.getStyleTags();
+    } finally {
+      sheet.seal();
+    }
+  }
+
+  it('uses 16px gutters at the 320px floor and widens at breakpoints', () => {
+    const css = cssForFooter();
+    expect(css).toContain('padding:32px 16px');
+    expect(css).toContain('@media (min-width:480px)');
+    expect(css).toContain('padding:32px 24px');
+    expect(css).toContain('@media (min-width:1024px)');
+    expect(css).toContain('padding:48px 32px');
+  });
+
+  it('stacks the footer vertically (column) at the 320px floor', () => {
+    const css = cssForFooter();
+    expect(css).toContain('flex-direction:column');
+    // The row layout applies at tablet+.
+    expect(css).toContain('@media (min-width:768px)');
+    expect(css).toContain('flex-direction:row');
+  });
+
+  it('stacks the nav groups vertically at the 320px floor', () => {
+    const css = cssForFooter();
+    // Base: groups stack vertically; tablet+: fan out into columns.
+    expect(css).toContain('flex-direction:column');
+    expect(css).toContain('@media (min-width:768px)');
+    expect(css).toContain('flex-direction:row');
+  });
+
+  it('keeps the group gap compact at the 320px floor and widens at tablet+', () => {
+    const css = cssForFooter();
+    expect(css).toContain('gap:24px');
+    expect(css).toContain('@media (min-width:768px)');
+    expect(css).toContain('gap:48px');
   });
 });

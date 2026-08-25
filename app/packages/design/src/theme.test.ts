@@ -64,6 +64,36 @@ describe('design tokens', () => {
     }
   });
 
+  /**
+   * Story A (Sprint 22, TASK-526): the researched minimum viewport is 320px.
+   * `minimum` anchors the floor the app is designed and verified from; the
+   * foldable-cover class (Z Fold 4/5, Z Flip 5/6 covers) is 360px.
+   */
+  it('anchors the mobile-first floor at the researched 320px minimum (TASK-526)', () => {
+    expect(breakpoints.minimum).toBe(320);
+    expect(theme.breakpoints.minimum).toBe(320);
+  });
+
+  it('ships the foldable-cover breakpoint between minimum and mobile', () => {
+    expect(breakpoints.foldable).toBe(360);
+    // The foldable class sits strictly between the 320px floor and the
+    // legacy mobile breakpoint (480px).
+    expect(breakpoints.foldable).toBeGreaterThan(breakpoints.minimum);
+    expect(breakpoints.foldable).toBeLessThan(breakpoints.mobile);
+  });
+
+  it('keeps the established mobile-first breakpoint ladder (480/768/1024/1280)', () => {
+    expect(breakpoints.mobile).toBe(480);
+    expect(breakpoints.tablet).toBe(768);
+    expect(breakpoints.desktop).toBe(1024);
+    expect(breakpoints.wide).toBe(1280);
+  });
+
+  it('exposes the same breakpoint tokens on the theme (single source of truth)', () => {
+    expect(theme.breakpoints).toEqual(breakpoints);
+    expect(theme.breakpoints.minimum).toBe(320);
+  });
+
   it('exposes font weights for styled-components', () => {
     expect(theme.fontWeights.semibold).toBe('600');
   });
