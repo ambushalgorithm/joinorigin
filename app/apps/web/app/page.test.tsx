@@ -96,6 +96,20 @@ describe('home page', () => {
     }
   });
 
+  it('renders the concept cards as full-card single wrapping links (Story D)', () => {
+    renderPage();
+    // Every concept card is one semantic focusable <a> covering the entire
+    // card, localized to the docs concepts section (TASK-534, Story D).
+    const conceptLinks = screen
+      .getAllByRole('link')
+      .filter((link) => link.getAttribute('href') === '/en/docs#concepts');
+    expect(conceptLinks.length).toBeGreaterThanOrEqual(8);
+    // The link is the card itself: it wraps the card title heading.
+    for (const link of conceptLinks) {
+      expect(within(link as HTMLElement).getByRole('heading', { level: 3 })).toBeInTheDocument();
+    }
+  });
+
   it('exports metadata per the arch pattern (title, canonical, keywords)', () => {
     expect(metadata.title).toBe('JoinOrigin — Social Collaboration Network & Community OS');
     expect(metadata.description).toContain('social collaboration network');

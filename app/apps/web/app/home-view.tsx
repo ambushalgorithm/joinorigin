@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { createGlobalStyle } from 'styled-components';
 import styled, { ThemeProvider as DomThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
@@ -19,13 +20,14 @@ import ChipMarquee from '../components/ChipMarquee';
 import { faqEntries, faqNamespace } from '../lib/faq';
 import { JsonLd } from '../lib/seo/JsonLdScript';
 import { faqPage } from '../lib/seo/jsonLd';
+import { useLocalizePath } from '../lib/seo/localePath';
 
 import SectionBand from '../components/SectionBand';
 import {
   BodyCopy,
-  Card,
   CardBody,
   CardGrid,
+  CardLink,
   CardTitle,
   PageContainer,
   Section,
@@ -106,30 +108,44 @@ const PageRoot = styled.div`
   background-repeat: no-repeat;
 `;
 
-/** Definition paragraph — directly under the hero (discovery §5.1). */
+/**
+ * Definition paragraph — directly under the hero (discovery §5.1).
+ * Mobile-first (Story A): base styles target the minimum viewport (320px
+ * floor); the paragraph widens and the type scale steps up at
+ * `theme.breakpoints.mobile`.
+ */
 const Definition = styled.p`
   margin: 0 auto;
   max-width: 720px;
-  padding: ${({ theme }) => theme.spacing.xl}px ${({ theme }) => theme.spacing.lg}px
+  padding: ${({ theme }) => theme.spacing.xl}px ${({ theme }) => theme.spacing.md}px
     ${({ theme }) => theme.spacing.xl}px;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.7;
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   color: ${({ theme }) => theme.colors.text};
   text-align: center;
 
-  @media (max-width: 480px) {
-    font-size: 16px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    padding: ${({ theme }) => theme.spacing.xl}px ${({ theme }) => theme.spacing.lg}px
+      ${({ theme }) => theme.spacing.xl}px;
+    font-size: 18px;
   }
 `;
 
-/** Visible FAQ block — `<section>` with `<h2>` per question + `<p>` answer. */
+/** Visible FAQ block — `<section>` with `<h2>` per question + `<p>` answer.
+ *  Mobile-first (Story A): tighter side padding at the minimum viewport,
+ *  roomier at `theme.breakpoints.mobile`. */
 const FaqSection = styled.section`
   max-width: 720px;
   margin: 0 auto;
-  padding: ${({ theme }) => theme.spacing.xl}px ${({ theme }) => theme.spacing.lg}px
+  padding: ${({ theme }) => theme.spacing.xl}px ${({ theme }) => theme.spacing.md}px
     ${({ theme }) => theme.spacing.xxl}px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    padding: ${({ theme }) => theme.spacing.xl}px ${({ theme }) => theme.spacing.lg}px
+      ${({ theme }) => theme.spacing.xxl}px;
+  }
 `;
 
 const FaqHeading = styled.h2`
@@ -174,6 +190,12 @@ const CONCEPT_KEYS = [
 export function HomeView() {
   const { t, dictionary } = useI18n();
   const homeFaq = faqEntries(faqNamespace(dictionary, 'home'));
+  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
+  // helper applies the active locale's prefix per the confirmed table —
+  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
+  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
+  // `/de/**`.
+  const localizePath = useLocalizePath();
 
   return (
     <NativeThemeProvider theme={theme}>
@@ -209,10 +231,15 @@ export function HomeView() {
                         <CardGrid>
                           {CONCEPT_KEYS.map((concept, index) => (
                             <Reveal key={concept} delay={`${index * 0.08}s`}>
-                              <Card>
+                              {/* Full-card single wrapping link (Story D): the
+                                  concept card is entirely clickable and one
+                                  semantic focusable <a> — hover/focus lift and
+                                  the visible keyboard focus ring (Story C) live
+                                  on the CardLink interactive variant. */}
+                              <CardLink as={Link} href={localizePath('/docs#concepts')}>
                                 <CardTitle>{t(`common.objects.${concept}`)}</CardTitle>
                                 <CardBody>{t(`docs.concepts.${concept}.body`)}</CardBody>
-                              </Card>
+                              </CardLink>
                             </Reveal>
                           ))}
                         </CardGrid>

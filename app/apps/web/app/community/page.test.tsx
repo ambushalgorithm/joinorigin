@@ -53,6 +53,21 @@ describe('community page', () => {
     expect(faq?.mainEntity).toHaveLength(5);
     expect(payloads.some((p) => p['@type'] === 'BreadcrumbList')).toBe(true);
   });
+
+  it('keeps the values cards non-interactive (Story C — no hover/focus on informational cards)', () => {
+    renderWithI18n(<CommunityPage />);
+    // The four values cards are informational surfaces, NOT clickable tiles:
+    // the card titles must not be wrapped in a link (Story C/D).
+    for (const title of [
+      'People First',
+      'Communities Drive Growth',
+      'Collaboration Creates Value',
+      'Ownership & Sovereignty',
+    ]) {
+      const heading = screen.getByRole('heading', { level: 3, name: title });
+      expect(heading.closest('a')).toBeNull();
+    }
+  });
 });
 
 /**

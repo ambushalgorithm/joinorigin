@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react';
+import { screen, render, within } from '@testing-library/react';
 
 import {
   I18nProvider,
@@ -139,6 +139,28 @@ describe('features page', () => {
     expect(faq?.mainEntity).toHaveLength(4);
     expect(faq?.mainEntity[0].name).toBe('How is JoinOrigin different from Discord?');
     expect(payloads.some((p) => p['@type'] === 'BreadcrumbList')).toBe(true);
+  });
+
+  it('renders core-object and roadmap cards as full-card single wrapping links (Story D)', () => {
+    renderWithI18n(<FeaturesPage />);
+    // Every core-object card is one semantic focusable <a> covering the
+    // entire card, localized to the docs concepts section (TASK-534, Story D).
+    const coreObjectLinks = screen
+      .getAllByRole('link')
+      .filter((link) => link.getAttribute('href') === '/en/docs#concepts');
+    expect(coreObjectLinks.length).toBeGreaterThanOrEqual(8);
+    // The link is the card itself: it wraps the card title heading.
+    for (const link of coreObjectLinks) {
+      expect(within(link as HTMLElement).getByRole('heading', { level: 3 })).toBeInTheDocument();
+    }
+    // Roadmap cards link to the docs roadmap section, same full-card pattern.
+    const roadmapLinks = screen
+      .getAllByRole('link')
+      .filter((link) => link.getAttribute('href') === '/en/docs#roadmap');
+    expect(roadmapLinks.length).toBeGreaterThanOrEqual(3);
+    for (const link of roadmapLinks) {
+      expect(within(link as HTMLElement).getByRole('heading', { level: 3 })).toBeInTheDocument();
+    }
   });
 });
 
