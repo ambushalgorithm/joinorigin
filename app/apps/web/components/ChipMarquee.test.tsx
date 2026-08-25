@@ -69,10 +69,10 @@ describe('ChipMarquee', () => {
     // The animated track is aria-hidden (duplicates never read by AT).
     const track = container.querySelector('[aria-hidden="true"]');
     expect(track).not.toBeNull();
-    // The static list is visually hidden and labeled with the intro.
+    // The static list is visually hidden and labeled with the exact intro.
     const list = container.querySelector('ul');
     expect(list).not.toBeNull();
-    expect(list?.getAttribute('aria-label')).toContain('communities growing inside');
+    expect(list?.getAttribute('aria-label')).toBe(INTRO);
     // Each community name appears exactly once in the static list.
     const items = Array.from(list?.querySelectorAll('li') ?? []);
     expect(items.map((li) => li.textContent)).toEqual([
@@ -98,6 +98,26 @@ describe('ChipMarquee', () => {
     }
   });
 
+  it('keeps every chip label inside its wrapping link (full-chip link contract)', () => {
+    const { container } = renderMarquee(TARGET_PATH);
+    const labels = [
+      'Startup Founders',
+      'Small Businesses',
+      'Book Clubs',
+      'Community Organizations',
+      'Run Clubs',
+      'Pee-wee Leagues',
+      'Anyone with an Idea',
+    ];
+    const track = container.querySelector('[aria-hidden="true"]');
+    const links = track?.querySelectorAll('a') ?? [];
+    // The track repeats the set 2× — every label appears twice as link text.
+    const linkTexts = Array.from(links).map((link) => link.textContent);
+    for (const label of labels) {
+      expect(linkTexts.filter((text) => text === label)).toHaveLength(2);
+    }
+  });
+
   it('keeps chips non-interactive when no targetPath is provided', () => {
     const { container } = renderMarquee();
     const track = container.querySelector('[aria-hidden="true"]');
@@ -117,6 +137,14 @@ describe('ChipMarquee', () => {
   it('exposes the geo country that selected the target as data-ip-country', () => {
     renderMarquee(TARGET_PATH, 'DE');
     expect(screen.getByTestId('chip-marquee')).toHaveAttribute('data-ip-country', 'DE');
+  });
+
+  it('exposes data-ip-country even when no targetPath resolved (observability)', () => {
+    // The server wrapper always passes the geo country through for e2e
+    // observability — even when the target path could not be resolved.
+    renderMarquee(null, 'DE');
+    expect(screen.getByTestId('chip-marquee')).toHaveAttribute('data-ip-country', 'DE');
+    expect(screen.queryByRole('link')).toBeNull();
   });
 
   it('omits data-ip-country when no geo country selected the target', () => {
