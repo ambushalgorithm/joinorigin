@@ -12,9 +12,9 @@ import Reveal from '../../components/Reveal';
 import SectionBand from '../../components/SectionBand';
 import {
   BodyCopy,
-  Card,
   CardBody,
   CardGrid,
+  CardLink,
   CardTitle,
   PageContainer,
   Section,
@@ -98,12 +98,15 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
               {hasGuideMatches ? (
                 <CardGrid data-testid="guides-hub-grid">
                   {filteredEntries.map((entry) => (
-                    <Card key={entry.slug}>
-                      <CardTitle>
-                        <StyledLink href={localizePath(entry.path)}>{entry.title}</StyledLink>
-                      </CardTitle>
+                    <CardLink
+                      key={entry.slug}
+                      as={Link}
+                      href={localizePath(entry.path)}
+                      aria-label={entry.title}
+                    >
+                      <CardTitle>{entry.title}</CardTitle>
                       <CardBody>{entry.description}</CardBody>
-                    </Card>
+                    </CardLink>
                   ))}
                 </CardGrid>
               ) : (
@@ -143,12 +146,15 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
               <BodyCopy>{t('seoContent.guides.universalCopy')}</BodyCopy>
               <CardGrid data-testid="guides-hub-start-local">
                 {entries[0]?.cities.slice(0, 6).map((city) => (
-                  <Card key={city.path}>
-                    <CardTitle>
-                      <StyledLink href={localizePath(city.path)}>{city.name}</StyledLink>
-                    </CardTitle>
+                  <CardLink
+                    key={city.path}
+                    as={Link}
+                    href={localizePath(city.path)}
+                    aria-label={city.name}
+                  >
+                    <CardTitle>{city.name}</CardTitle>
                     <CardBody>{t('seoContent.guides.cityCardBody', { city: city.name })}</CardBody>
-                  </Card>
+                  </CardLink>
                 ))}
               </CardGrid>
             </Section>
