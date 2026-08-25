@@ -12,12 +12,36 @@ import { expect, test, type Locator, type Page } from '@playwright/test';
  *   ≤768px  — heading 36px, orbit scale 0.5 (360px)
  *   ≤480px  — heading 28px, orbit scale 0.4 (288px)
  *
+ * Sprint 22 (TASK-542, Story A): the researched minimum viewport (TASK-526)
+ * is 320px — mobile-first base styles are the DEFAULT and must be correct
+ * from 320px up. The suite therefore adds a **320px min-viewport bucket**, a
+ * **340px narrow foldable-cover bucket** (Galaxy Z Fold 2/3 covers ≈311–342px
+ * — the narrowest current browsing surfaces), and a **280px sub-320 smoke
+ * test** (Galaxy Fold 2019 cover emulation) that asserts ONLY the D2
+ * degradation invariants: no horizontal overflow + primary content still
+ * reachable.
+ *
  * In addition to the orbit container's computed width, every breakpoint
  * asserts the orbit is fully visible and centered in its hero-right
  * container (TASK-242): the ring center must coincide with the container
  * center, the ring circle must stay inside the hero region, and all 9
  * avatar chips must remain within the hero.
  */
+
+/**
+ * Story A / D2 invariant: the page must never scroll horizontally. The
+ * researched floor is 320px; below it (e.g. the 280px Galaxy Fold cover)
+ * content flows at the available width (graceful degradation, no lost
+ * content). `scrollWidth` includes any overflowing fixed-width element, so
+ * this assertion fails loudly on the classic mobile overflow bug.
+ */
+async function expectNoHorizontalOverflow(page: Page): Promise<void> {
+  const overflow = await page.evaluate(() => {
+    const doc = document.documentElement;
+    return doc.scrollWidth - window.innerWidth;
+  });
+  expect(overflow, 'page must not scroll horizontally').toBeLessThanOrEqual(0);
+}
 
 /**
  * Waits for the orbit entrance scale-in animation to settle, then verifies
@@ -63,8 +87,6 @@ async function expectOrbitVisibleAndCentered(
   const ringCenterX = ringBox.x + ringBox.width / 2;
   const ringCenterY = ringBox.y + ringBox.height / 2;
   const ringRadius = (797 / 2) * scale;
-  // Outermost avatar reach: chip center radius 399 + half chip size 44.
-  const chipExtent = (399 + 44) * scale;
 
   // Centered within the hero-right container.
   expect(Math.abs(ringCenterX - (vizBox.x + vizBox.width / 2))).toBeLessThan(2);
@@ -210,6 +232,92 @@ test.describe('responsive breakpoints', () => {
 
     // Orbit fully visible + centered in its hero-right container.
     await expectOrbitVisibleAndCentered(page, 288, page.getByTestId('hero'));
+  });
+
+  test('320px minimum viewport (researched floor, TASK-526): base mobile layout, no overflow, hamburger usable', async ({
+    page,
+  }) => {
+    // The researched floor — iPhone 5/SE class and the narrowest foldable
+    // covers (Z Fold 2/3 ≈311–342px) all resolve to this bucket.
+    await page.setViewportSize({ width: 320, height: 568 });
+    await page.goto('/');
+
+    // Base (mobile-first default) layout: 28px heading + 288px orbit — the
+    // same ≤480 bucket, asserted AT the floor so the default styles are
+    // proven correct at 320px.
+    const h1FontSize = await page.locator('h1').evaluate((el) => getComputedStyle(el).fontSize);
+    expect(h1FontSize).toBe('28px');
+
+    const orbitWidth = await page
+      .getByTestId('orbit-viz')
+      .evaluate((el) => parseFloat(getComputedStyle(el).width));
+    expect(orbitWidth).toBe(288);
+
+    // Orbit fully visible + centered in its hero-right container.
+    await expectOrbitVisibleAndCentered(page, 288, page.getByTestId('hero'));
+
+    // Hamburger replaces the primary nav at the floor.
+    await expect(page.getByRole('navigation', { name: 'Primary' })).toBeHidden();
+    const toggle = page.getByTestId('mobile-menu-toggle');
+    await expect(toggle).toBeVisible();
+
+    // D1/D2 invariant: no horizontal overflow at the minimum supported
+    // viewport.
+    await expectNoHorizontalOverflow(page);
+
+    // Hamburger nav is usable: it opens the panel and the panel's primary
+    // CTA is tappable (opens the waitlist modal).
+    await toggle.click();
+    const menu = page.getByTestId('mobile-menu');
+    await expect(menu).toBeVisible();
+    await expect(menu.getByText('Locations')).toBeVisible();
+    await menu.getByTestId('mobile-get-started-button').click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+    await expect(page.getByRole('dialog')).toContainText('Join the waitlist');
+  });
+
+  test('340px narrow foldable-cover bucket (Z Fold 2/3 class): no overflow, base layout, CTA tappable', async ({
+    page,
+  }) => {
+    // The narrowest current foldable cover displays (Galaxy Z Fold 2/3
+    // ≈311–342px CSS) — above the 320px floor but below the 480 enhancement.
+    await page.setViewportSize({ width: 340, height: 700 });
+    await page.goto('/');
+
+    // Base mobile layout persists below the 480px enhancement breakpoint.
+    await expect(page.getByRole('navigation', { name: 'Primary' })).toBeHidden();
+    await expect(page.getByTestId('mobile-menu-toggle')).toBeVisible();
+
+    const h1FontSize = await page.locator('h1').evaluate((el) => getComputedStyle(el).fontSize);
+    expect(h1FontSize).toBe('28px');
+
+    await expectNoHorizontalOverflow(page);
+
+    // Primary header CTA stays tappable at the narrow foldable width.
+    const cta = page.getByTestId('get-started-button');
+    await expect(cta).toBeVisible();
+    await cta.click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+  });
+
+  test('280px sub-320 degradation (Galaxy Fold cover, D2): no overflow, content reachable', async ({
+    page,
+  }) => {
+    // Chrome DevTools `Galaxy Fold` preset (280×653). This is NOT a design
+    // bucket — D2 graceful degradation only: no horizontal overflow and the
+    // primary content remains reachable (research §5, §7).
+    await page.setViewportSize({ width: 280, height: 653 });
+    await page.goto('/');
+
+    await expectNoHorizontalOverflow(page);
+
+    // Primary content reachable: the hero H1 renders and the hamburger opens
+    // the full mobile menu at the sub-320 width.
+    await expect(page.locator('h1')).toBeVisible();
+    await page.getByTestId('mobile-menu-toggle').click();
+    const menu = page.getByTestId('mobile-menu');
+    await expect(menu).toBeVisible();
+    await expect(menu.getByText('Guides')).toBeVisible();
   });
 });
 

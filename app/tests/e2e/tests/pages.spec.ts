@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Locator, type Page } from '@playwright/test';
 
 /**
  * Menu pages end-to-end validation (TASK-218 e2e-seo).
@@ -319,5 +319,145 @@ test.describe('/features ten-tools copy (TASK-478)', () => {
     const mainText = await page.locator('main').innerText();
     expect(mainText).not.toContain('fünf Tools');
     expect(mainText).not.toContain('fünf getrennten Tools');
+  });
+});
+
+/**
+ * Sprint 22 (TASK-542, Stories A/C/D) — menu pages at the researched minimum
+ * viewport (TASK-526: 320px floor; narrow foldable cover class ≈311–342px).
+ *
+ * 1. Every menu page renders at the 320px floor with NO horizontal overflow
+ *    (mobile-first base styles; D2 graceful degradation below 320).
+ * 2. The mobile hamburger panel is usable at the floor: it opens and its
+ *    links navigate.
+ * 3. Clickable menu-page cards (guides-hub grid, features core-object cards)
+ *    are single wrapping `<a>` links (Story D): clicking ANYWHERE on the
+ *    card — including the corner padding — navigates.
+ * 4. Interactive card links expose a visible keyboard focus indicator
+ *    (`:focus-visible` outline using `theme.colors.focusRing`) (Story C).
+ */
+test.describe('Sprint 22: mobile menu pages + full-card links + focus (TASK-542)', () => {
+  /** Story A/D2 invariant: the page never scrolls horizontally. */
+  async function expectNoHorizontalOverflow(page: Page): Promise<void> {
+    const overflow = await page.evaluate(() => {
+      const doc = document.documentElement;
+      return doc.scrollWidth - window.innerWidth;
+    });
+    expect(overflow, 'page must not scroll horizontally').toBeLessThanOrEqual(0);
+  }
+
+  /** Story D — clicks the BOTTOM-LEFT padding corner of a card (not its
+   *  title text) and asserts navigation. The card is a single wrapping `<a>`
+   *  (CardLink), so any point on it must navigate. */
+  async function expectFullCardClickNavigates(page: Page, card: Locator): Promise<string> {
+    await expect(card).toBeVisible();
+    await card.scrollIntoViewIfNeeded();
+    const box = (await card.boundingBox())!;
+    const href = (await card.getAttribute('href')) ?? '';
+    expect(href).toMatch(
+      /^\/(en|de|es|ar|fr|it|nl|pl|pt-BR|hi|id|ja|ko|fa|ru|th|tr|uk|zh-CN|zh-TW)?\//,
+    );
+    // The corner point sits in the card's padding area, far from the title.
+    await page.mouse.click(box.x + 10, box.y + box.height - 10);
+    return href;
+  }
+
+  test('every menu page renders at the 320px floor with no horizontal overflow', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+
+    for (const pageDef of MENU_PAGES) {
+      const response = await page.goto(pageDef.path);
+      expect(response?.status(), `${pageDef.path} must resolve, not 404`).toBe(200);
+      await expect(page.locator('h1'), `${pageDef.path} h1`).toBeVisible();
+      await expectNoHorizontalOverflow(page);
+    }
+  });
+
+  test('mobile hamburger panel is usable at 320px on a menu page — opens and navigates', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/en/features');
+
+    const toggle = page.getByTestId('mobile-menu-toggle');
+    await expect(toggle).toBeVisible();
+    await toggle.click();
+
+    const menu = page.getByTestId('mobile-menu');
+    await expect(menu).toBeVisible();
+    // Explore group + retained top-level links render in the panel.
+    await expect(menu.getByText('Explore')).toBeVisible();
+    await expect(menu.getByText('Locations')).toBeVisible();
+    await expect(menu.getByText('Features')).toBeVisible();
+
+    // Tapping a panel link navigates (44px-tall tap target at the floor).
+    await menu.getByText('Locations').click();
+    await page.waitForURL('**/en/location', { timeout: 120_000 });
+    await expect(page.locator('h1')).toBeVisible();
+  });
+
+  test('full-card click: clicking the corner of a guides-hub card navigates to the guide', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/en/guides');
+
+    const card = page.getByTestId('guides-hub-grid').locator('a').first();
+    const href = await expectFullCardClickNavigates(page, card);
+    await page.waitForURL(`**${href}`, { timeout: 120_000 });
+    await expect(page.locator('h1')).toBeVisible();
+  });
+
+  test('full-card click: clicking the corner of a features core-object card navigates to /en/docs#concepts', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/en/features');
+
+    const card = page.locator('a[href="/en/docs#concepts"]').first();
+    await expectFullCardClickNavigates(page, card);
+    await page.waitForURL(/\/en\/docs/, { timeout: 120_000 });
+    await expect(page.locator('h1')).toBeVisible();
+  });
+
+  test('keyboard focus indicator: a guides-hub card focused via Tab shows a visible :focus-visible outline', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/en/guides');
+
+    const card = page.getByTestId('guides-hub-grid').locator('a').first();
+    await expect(card).toBeVisible();
+
+    // Navigate with the keyboard until the interactive card receives focus
+    // (real keyboard modality — the Story C `:focus-visible` contract).
+    let focused = false;
+    for (let i = 0; i < 120 && !focused; i += 1) {
+      await page.keyboard.press('Tab');
+      focused = await card.evaluate((el) => document.activeElement === el);
+    }
+    expect(focused, 'the card link must be reachable via keyboard').toBe(true);
+
+    const focus = await card.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return {
+        focusVisible: el.matches(':focus-visible'),
+        outlineStyle: cs.outlineStyle,
+        outlineWidth: cs.outlineWidth,
+        outlineColor: cs.outlineColor,
+      };
+    });
+    expect(focus.focusVisible, ':focus-visible must match for keyboard focus').toBe(true);
+    expect(focus.outlineStyle).not.toBe('none');
+    expect(parseFloat(focus.outlineWidth)).toBeGreaterThan(0);
+    // The focus ring uses the design token (rgb(124, 156, 255) = #7C9CFF).
+    expect(focus.outlineColor).toBe('rgb(124, 156, 255)');
   });
 });
