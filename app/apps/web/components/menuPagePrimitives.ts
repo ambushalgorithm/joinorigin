@@ -14,19 +14,25 @@ import { ACCENT_GRADIENT, ENTRANCE_EASING } from './landingTokens';
  * Sprint 8 redesign additions (spec sprint-8-menu-redesign §5): `Eyebrow`,
  * `HeroScene`, hover lift/glow on `Card`, framed `Quote`, and the gradient
  * tick on `SectionTitle` — all purely visual, no semantics changed.
+ *
+ * Sprint 22 (Stories A/C/D): primitives are mobile-first — base styles target
+ * the minimum viewport (320px floor) and enhance at `theme.breakpoints`.
+ * Hover/focus animation applies ONLY to the interactive variant `CardLink`
+ * (full-card single wrapping link with a visible keyboard focus ring);
+ * non-interactive cards (`Card`, `FaqCard`) get no hover/focus animation.
  */
 
 export const PageContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
-  padding: 96px 64px 64px;
+  padding: 48px 20px;
 
-  @media (max-width: 1024px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     padding: 64px 32px;
   }
 
-  @media (max-width: 480px) {
-    padding: 48px 20px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    padding: 96px 64px 64px;
   }
 `;
 
@@ -38,17 +44,17 @@ export const PageTitle = styled.h1`
   margin: 0 0 ${({ theme }) => theme.spacing.md}px;
   font-family: ${({ theme }) => theme.fontFamilies.display};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  font-size: ${({ theme }) => theme.typography.displayLg}px;
+  font-size: ${({ theme }) => theme.typography.heading}px;
   line-height: 1.1;
   letter-spacing: -0.5px;
   color: ${({ theme }) => theme.colors.text};
 
-  @media (max-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     font-size: ${({ theme }) => theme.typography.display}px;
   }
 
-  @media (max-width: 480px) {
-    font-size: ${({ theme }) => theme.typography.heading}px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    font-size: ${({ theme }) => theme.typography.displayLg}px;
   }
 `;
 
@@ -116,13 +122,13 @@ export const HeroScene = styled.div<{ $glow?: string }>`
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 560px;
+    max-width: 320px;
     height: auto;
   }
 
-  @media (max-width: 480px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     svg {
-      max-width: 320px;
+      max-width: 560px;
     }
   }
 `;
@@ -174,15 +180,42 @@ export const BodyCopy = styled.p`
 
 export const CardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: 1fr;
   gap: ${({ theme }) => theme.spacing.lg}px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 `;
 
+/**
+ * Non-interactive card surface (Story C): plain surface card with NO hover or
+ * focus animation — only clickable variants (`CardLink`) animate. Views render
+ * this for informational cards; clickable cards must use `CardLink` so the
+ * whole card is a single semantic focusable link (Story D).
+ */
 export const Card = styled.article`
   padding: ${({ theme }) => theme.spacing.lg}px;
   background: ${({ theme }) => theme.colors.surface};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radius.lg}px;
+`;
+
+/**
+ * Full-card clickable variant (Stories C + D): a single semantic focusable
+ * `<a>` covering the ENTIRE card — no nested links inside. Hover lift/glow and
+ * a visible keyboard focus ring (`focus-visible`, `theme.colors.focusRing`)
+ * apply ONLY to this interactive variant. Use `as={Link}` from `next/link`
+ * for internal routes.
+ */
+export const CardLink = styled.a`
+  display: block;
+  padding: ${({ theme }) => theme.spacing.lg}px;
+  background: ${({ theme }) => theme.colors.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radius.lg}px;
+  color: inherit;
+  text-decoration: none;
   transition:
     transform 0.25s ${ENTRANCE_EASING},
     border-color 0.25s ease,
@@ -190,12 +223,18 @@ export const Card = styled.article`
 
   /* Hover/focus lift + glow (spec sprint-8 §5) — purely visual, no content change. */
   &:hover,
-  &:focus-within {
+  &:focus-visible {
     transform: translateY(-4px);
     border-color: ${({ theme }) => theme.colors.primary};
     box-shadow:
       0 12px 32px rgba(10, 16, 34, 0.6),
       0 0 0 1px ${({ theme }) => theme.colors.primary}2E;
+  }
+
+  /* Visible keyboard focus indicator (Story C). */
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.focusRing};
+    outline-offset: 2px;
   }
 `;
 
@@ -224,9 +263,10 @@ export const FaqItem = styled.div`
 `;
 
 /**
- * FAQ item as a card (spec sprint-10 §4.8): surface card, hover lift + primary
- * border tint + soft shadow. Semantics unchanged — children keep the `h3`
- * question and `p` answer so the FAQ JSON-LD mirror stays 1:1.
+ * FAQ item as a card (spec sprint-10 §4.8): plain surface card — non-
+ * interactive, so NO hover/focus animation (Story C). Semantics unchanged —
+ * children keep the `h3` question and `p` answer so the FAQ JSON-LD mirror
+ * stays 1:1.
  */
 export const FaqCard = styled.div`
   margin: 0 0 ${({ theme }) => theme.spacing.lg}px;
@@ -234,19 +274,6 @@ export const FaqCard = styled.div`
   background: ${({ theme }) => theme.colors.surface};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radius.lg}px;
-  transition:
-    transform 0.25s ${ENTRANCE_EASING},
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-
-  &:hover,
-  &:focus-within {
-    transform: translateY(-3px);
-    border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow:
-      0 12px 32px rgba(10, 16, 34, 0.6),
-      0 0 0 1px ${({ theme }) => theme.colors.primary}2E;
-  }
 `;
 
 export const FaqQuestion = styled.h3`
