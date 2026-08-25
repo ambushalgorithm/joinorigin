@@ -42,13 +42,21 @@ import { useLocalizePath } from '../../lib/seo/localePath';
 
 const VALUE_KEYS = ['peopleFirst', 'communitiesDriveGrowth', 'collaborationCreatesValue'] as const;
 
-/** Explore hub cross-links row (TASK-316) — additive, keeps copy intact. */
+/**
+ * Explore hub cross-links row (TASK-316) — additive, keeps copy intact.
+ * Mobile-first (Story A): tighter gap at the minimum viewport, roomier at
+ * `theme.breakpoints.mobile`.
+ */
 const ExploreLinks = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.lg}px;
+  gap: ${({ theme }) => theme.spacing.md}px;
   margin-top: ${({ theme }) => theme.spacing.md}px;
   flex-wrap: wrap;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    gap: ${({ theme }) => theme.spacing.lg}px;
+  }
 `;
 
 export function CommunityView() {

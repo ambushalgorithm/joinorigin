@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
@@ -10,9 +11,9 @@ import SectionBand from '../../components/SectionBand';
 import {
   AccentLink,
   BodyCopy,
-  Card,
   CardBody,
   CardGrid,
+  CardLink,
   CardTitle,
   CompareTable,
   FaqAnswer,
@@ -70,13 +71,44 @@ const COMPARISON_KEYS = [
 
 const ROADMAP_PHASE_KEYS = ['phase1', 'phase2', 'phase3'] as const;
 
-/** Explore hub cross-links row (TASK-316) — additive, keeps copy intact. */
+/**
+ * Explore hub cross-links row (TASK-316) — additive, keeps copy intact.
+ * Mobile-first (Story A): tighter gap at the minimum viewport, roomier at
+ * `theme.breakpoints.mobile`.
+ */
 const ExploreLinks = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.lg}px;
-  margin: ${({ theme }) => theme.spacing.md}px ${({ theme }) => theme.spacing.md}px;
+  gap: ${({ theme }) => theme.spacing.md}px;
+  margin: ${({ theme }) => theme.spacing.md}px 0;
   flex-wrap: wrap;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    gap: ${({ theme }) => theme.spacing.lg}px;
+  }
+`;
+
+/**
+ * Comparison-table scroll wrapper (Story A): at the minimum viewport the
+ * three-column table keeps a readable minimum width and scrolls horizontally
+ * inside its band (never overflowing the page); from `theme.breakpoints.mobile`
+ * it flows at full width.
+ */
+const TableScroll = styled.div`
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  table {
+    min-width: 560px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    overflow-x: visible;
+
+    table {
+      min-width: 0;
+    }
+  }
 `;
 
 export function FeaturesView() {
@@ -116,24 +148,28 @@ export function FeaturesView() {
                   {t('common.nav.locations')}
                 </AccentLink>
               </ExploreLinks>
-              <CompareTable data-testid="features-comparison-table">
-                <TableHead>
-                  <TableRow>
-                    <TableHeader scope="col">{t('features.comparison.toolHeader')}</TableHeader>
-                    <TableHeader scope="col">{t('features.comparison.greatAtHeader')}</TableHeader>
-                    <TableHeader scope="col">{t('features.comparison.addsHeader')}</TableHeader>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {COMPARISON_KEYS.map((row) => (
-                    <TableRow key={row}>
-                      <TableCell>{t(`features.comparison.${row}.tool`)}</TableCell>
-                      <TableCell>{t(`features.comparison.${row}.strength`)}</TableCell>
-                      <TableCell>{t(`features.comparison.${row}.gap`)}</TableCell>
+              <TableScroll>
+                <CompareTable data-testid="features-comparison-table">
+                  <TableHead>
+                    <TableRow>
+                      <TableHeader scope="col">{t('features.comparison.toolHeader')}</TableHeader>
+                      <TableHeader scope="col">
+                        {t('features.comparison.greatAtHeader')}
+                      </TableHeader>
+                      <TableHeader scope="col">{t('features.comparison.addsHeader')}</TableHeader>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </CompareTable>
+                  </TableHead>
+                  <TableBody>
+                    {COMPARISON_KEYS.map((row) => (
+                      <TableRow key={row}>
+                        <TableCell>{t(`features.comparison.${row}.tool`)}</TableCell>
+                        <TableCell>{t(`features.comparison.${row}.strength`)}</TableCell>
+                        <TableCell>{t(`features.comparison.${row}.gap`)}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </CompareTable>
+              </TableScroll>
             </Section>
           </Reveal>
         </PageContainer>
@@ -147,10 +183,14 @@ export function FeaturesView() {
               <CardGrid>
                 {CORE_OBJECT_KEYS.map((object, index) => (
                   <Reveal key={object} delay={`${index * 0.08}s`}>
-                    <Card>
+                    {/* Full-card single wrapping link (Story D): the core-object
+                        card is entirely clickable and one semantic focusable
+                        <a> — hover/focus lift and the visible keyboard focus
+                        ring (Story C) live on the CardLink variant. */}
+                    <CardLink as={Link} href={localizePath('/docs#concepts')}>
                       <CardTitle>{t(`common.objects.${object}`)}</CardTitle>
                       <CardBody>{t(`features.coreObjects.${object}.body`)}</CardBody>
-                    </Card>
+                    </CardLink>
                   </Reveal>
                 ))}
               </CardGrid>
@@ -167,10 +207,14 @@ export function FeaturesView() {
               <CardGrid>
                 {ROADMAP_PHASE_KEYS.map((phase, index) => (
                   <Reveal key={phase} delay={`${index * 0.08}s`}>
-                    <Card>
+                    {/* Full-card single wrapping link (Story D): the roadmap
+                        card is entirely clickable and one semantic focusable
+                        <a> — hover/focus lift and the visible keyboard focus
+                        ring (Story C) live on the CardLink variant. */}
+                    <CardLink as={Link} href={localizePath('/docs#roadmap')}>
                       <CardTitle>{t(`common.roadmap.${phase}Title`)}</CardTitle>
                       <CardBody>{t(`features.roadmap.${phase}.body`)}</CardBody>
-                    </Card>
+                    </CardLink>
                   </Reveal>
                 ))}
               </CardGrid>
