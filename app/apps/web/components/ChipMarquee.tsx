@@ -1,6 +1,7 @@
 'use client';
 
-import styled, { keyframes } from 'styled-components';
+import Link from 'next/link';
+import styled, { css, keyframes } from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
 
@@ -15,11 +16,21 @@ import { CHIP_MARQUEE_DURATION } from './menuTokens';
  * `width: max-content` track translating `0 → -50%` over 28s, paused on
  * hover, with edge fade masks.
  *
+ * Story E (TASK-536): the chips are real links — every chip is a single
+ * wrapping `<a>` (via `next/link`) to the resolved content-rich community
+ * page (`targetPath`, the registry-exact localized path computed
+ * server-side by `lib/seo/exampleCommunities.ts` through the
+ * `ChipMarqueeServer` wrapper: closest country first, then the largest
+ * content-rich community within it; locale-language default when geo is
+ * absent). When `targetPath` is absent (a surface renders the bare client
+ * component without the server wrapper) chips stay non-interactive pills.
+ *
  * A11y: the animated track is `aria-hidden`; an equivalent visually-hidden
- * static `<ul>` (labeled with the intro) lists each community name once, so
- * screen readers never hear duplicates. Reduced motion turns the track into a
- * static wrapping flex row (same as `LogoMarquee`) via the CSS media query
- * plus the `MenuPageShell` global kill-switch.
+ * static `<ul>` (labeled with the intro) lists each community name once as a
+ * link to the same target, so screen readers get the same navigation without
+ * ever hearing duplicates. Reduced motion turns the track into a static
+ * wrapping flex row (same as `LogoMarquee`) via the CSS media query plus the
+ * `MenuPageShell` global kill-switch.
  *
  * RTL: the loop uses a physical `translateX` and repeats identical content,
  * so it stays a seamless closed loop in every direction (spec §10.7).
@@ -38,6 +49,23 @@ const EXAMPLE_COMMUNITY_KEYS = [
 export interface ChipMarqueeProps {
   /** Localized intro sentence read as the sr-only list aria-label. */
   intro: string;
+  /**
+   * Registry-exact localized path of the resolved content-rich community
+   * page (Story E) — `/${locale}/location/<country>/<region>/<city>` from
+   * `lib/seo/exampleCommunities.ts`. The server wrapper `ChipMarqueeServer`
+   * supplies it so the client never imports the geo snapshot. When present
+   * every chip becomes a single wrapping link to this page; when absent the
+   * chips render as non-interactive pills (defensive — surfaces should pass
+   * the resolved path).
+   */
+  targetPath?: string | null;
+  /**
+   * Visitor country (ISO-3166-1 alpha-2, from `getServerCountry()`/
+   * `x-joinorigin-ip-country`, TASK-479) that selected `targetPath`
+   * server-side. Kept for observability (`data-ip-country`) so e2e suites
+   * can assert the geo-aware closest-country resolution.
+   */
+  country?: string | null;
 }
 
 const chipScroll = keyframes`
@@ -74,8 +102,10 @@ const Track = styled.div`
   }
 `;
 
-/** Example-community pill (spec sprint-8 §8.2 styles reused verbatim). */
-const Chip = styled.span`
+/** Shared example-community pill surface (spec sprint-8 §8.2 styles
+ *  verbatim). Non-interactive pills get NO hover/focus animation (Story C —
+ *  only the interactive link variant animates). */
+const chipPill = css`
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -89,6 +119,21 @@ const Chip = styled.span`
   color: ${({ theme }) => theme.colors.text};
   flex-shrink: 0;
   white-space: nowrap;
+`;
+
+/** Non-interactive pill fallback (no `targetPath`) — no hover/focus motion. */
+const Chip = styled.span`
+  ${chipPill}
+`;
+
+/**
+ * Interactive chip link (Story D/E): a single wrapping `<a>` covering the
+ * whole chip — hover/focus fill + a visible keyboard focus ring apply ONLY
+ * to this clickable variant (Story C).
+ */
+const ChipLink = styled.a`
+  ${chipPill}
+  text-decoration: none;
 
   &::before {
     content: '';
@@ -100,8 +145,14 @@ const Chip = styled.span`
     transition: transform 0.4s ${ENTRANCE_EASING};
   }
 
-  &:hover::before {
+  &:hover::before,
+  &:focus-visible::before {
     transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.focusRing};
+    outline-offset: 2px;
   }
 `;
 
@@ -123,25 +174,32 @@ const SrOnlyList = styled.ul`
   border: 0;
 `;
 
-export function ChipMarquee({ intro }: ChipMarqueeProps) {
+export function ChipMarquee({ intro, targetPath, country }: ChipMarqueeProps) {
   const { t } = useI18n();
 
   const labels = EXAMPLE_COMMUNITY_KEYS.map((key) => t(`community.examples.${key}`));
+  const href = targetPath ?? undefined;
 
   return (
-    <div data-testid="chip-marquee">
+    <div data-testid="chip-marquee" data-ip-country={country ?? undefined}>
       <Wrap>
         <Track aria-hidden="true">
-          {[...labels, ...labels].map((label, index) => (
-            <Chip key={`${label}-${index}`}>
-              <ChipLabel>{label}</ChipLabel>
-            </Chip>
-          ))}
+          {[...labels, ...labels].map((label, index) =>
+            href ? (
+              <ChipLink as={Link} href={href} key={`${label}-${index}`}>
+                <ChipLabel>{label}</ChipLabel>
+              </ChipLink>
+            ) : (
+              <Chip key={`${label}-${index}`}>
+                <ChipLabel>{label}</ChipLabel>
+              </Chip>
+            ),
+          )}
         </Track>
       </Wrap>
       <SrOnlyList aria-label={intro}>
         {labels.map((label) => (
-          <li key={label}>{label}</li>
+          <li key={label}>{href ? <Link href={href}>{label}</Link> : label}</li>
         ))}
       </SrOnlyList>
     </div>
