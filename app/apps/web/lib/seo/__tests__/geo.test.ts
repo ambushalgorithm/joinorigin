@@ -1,7 +1,8 @@
-import { getServerCountry } from '../geo';
+import { IP_COUNTRY_HEADER, getServerCountry } from '../geo';
 
 /**
- * Server-side geo helper unit tests (TASK-479 — fe-ip-country).
+ * Server-side geo helper unit tests (TASK-479 — fe-ip-country; consumed by
+ * Story E TASK-540 for the example-communities closest-country contract).
  *
  * Contract: `getServerCountry()` reads the proxy-forwarded
  * `x-joinorigin-ip-country` header (originating from Cloudflare's
@@ -53,5 +54,12 @@ describe('lib/seo geo — getServerCountry()', () => {
   it('trims surrounding whitespace before validating', async () => {
     mockCountryHeader.value = '  fr ';
     await expect(getServerCountry()).resolves.toBe('FR');
+  });
+
+  it('exposes the header name that proxy.ts must keep in sync', () => {
+    // proxy.ts sets `x-joinorigin-ip-country` from Cloudflare's
+    // `CF-IPCountry`; geo.ts must read the exact same name or every
+    // server-side geo lookup silently returns null (Story E fallback).
+    expect(IP_COUNTRY_HEADER).toBe('x-joinorigin-ip-country');
   });
 });

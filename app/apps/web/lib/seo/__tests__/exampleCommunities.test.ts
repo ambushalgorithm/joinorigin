@@ -18,7 +18,9 @@
 
 import { type Locale } from '@joinorigin/i18n';
 
+import type { LocationCity } from '../data/types';
 import { exampleCommunityTarget } from '../exampleCommunities';
+import { contentRichCities } from '../locationData';
 import { locationPageEntries } from '../locationPages';
 
 function enRegistryPaths(): Set<string> {
@@ -92,16 +94,42 @@ describe('lib/seo exampleCommunities — exampleCommunityTarget (Story E)', () =
     const fi = exampleCommunityTarget('en', 'FI');
     expect(fi?.country.iso2).toBe('DK');
     expect(fi?.city.asciiName).toBe('Copenhagen');
+    expect(fi?.path).toBe('/en/location/denmark/capital-region/copenhagen');
 
     // Switzerland — Milan (IT) at ~213 km from Bern is the nearest community.
     const ch = exampleCommunityTarget('en', 'CH');
     expect(ch?.country.iso2).toBe('IT');
     expect(ch?.city.asciiName).toBe('Milan');
+    expect(ch?.path).toBe('/en/location/italy/lombardy/milan');
 
     // New Zealand — Australia hosts the nearest content-rich community.
     const nz = exampleCommunityTarget('en', 'NZ');
     expect(nz?.country.iso2).toBe('AU');
     expect(nz?.city.asciiName).toBe('Sydney');
+    expect(nz?.path).toBe('/en/location/australia/new-south-wales/sydney');
+  });
+
+  it('applies closest-country resolution on a non-EN surface', () => {
+    // The geo country wins over the de locale default (DE/Berlin): a Finnish
+    // visitor on the German surface still targets the nearest content-rich
+    // community (DK/Copenhagen), on the ACTIVE /de path tree.
+    const deFi = exampleCommunityTarget('de', 'FI');
+    expect(deFi?.country.iso2).toBe('DK');
+    expect(deFi?.city.asciiName).toBe('Copenhagen');
+    expect(deFi?.path).toBe('/de/location/denmark/capital-region/copenhagen');
+  });
+
+  it('falls back to the locale default for well-formed but unknown country codes', () => {
+    // 'XX' is syntactically valid alpha-2 but not in the dataset; 'AQ'
+    // (Antarctica) has no city row to use as a geographic reference point —
+    // both are unresolvable and must fall back to the locale-language
+    // default (never a crash, never an arbitrary country).
+    expect(exampleCommunityTarget('en', 'XX')?.path).toBe(
+      '/en/location/united-states/new-york/new-york',
+    );
+    expect(exampleCommunityTarget('en', 'AQ')?.path).toBe(
+      '/en/location/united-states/new-york/new-york',
+    );
   });
 
   it('falls back to the locale default for absent/malformed geo', () => {
@@ -145,6 +173,65 @@ describe('lib/seo exampleCommunities — exampleCommunityTarget (Story E)', () =
       expect(target).toBeDefined();
       expect(target?.path).toMatch(new RegExp(`^/${locale}/location/`));
       expect(enRegistry.has(enCounterpart(target!.path, locale))).toBe(true);
+    }
+  });
+
+  it('resolves a registry-exact target for every locale, with and without geo', () => {
+    // Broad sweep: every locale surface resolves BOTH its locale-language
+    // default (no geo) and a closest-country target (FI → DK) to a
+    // registry-exact path on that surface. Guards against a data/locale
+    // regression anywhere in the 21-locale tree.
+    const enRegistry = enRegistryPaths();
+    const locales: Locale[] = [
+      'en',
+      'de',
+      'fr',
+      'es',
+      'pt-BR',
+      'it',
+      'nl',
+      'pl',
+      'tr',
+      'uk',
+      'ru',
+      'fa',
+      'ar',
+      'hi',
+      'ja',
+      'ko',
+      'zh-TW',
+      'zh-CN',
+      'id',
+      'th',
+      'vi',
+    ];
+    for (const locale of locales) {
+      for (const country of [null, 'FI'] as Array<string | null>) {
+        const target = exampleCommunityTarget(locale, country);
+        expect(target).toBeDefined();
+        expect(target?.path).toMatch(new RegExp(`^/${locale}/location/`));
+        expect(enRegistry.has(enCounterpart(target!.path, locale))).toBe(true);
+      }
+    }
+  });
+
+  it('returns the LARGEST content-rich city in the matched country (data-level check)', () => {
+    // For every content-rich country the resolver must return the
+    // highest-population content-rich city within it, and the country
+    // object must be the city's own country (invariant for link metadata).
+    const byCountry = new Map<string, LocationCity[]>();
+    for (const city of contentRichCities()) {
+      const list = byCountry.get(city.countryIso2) ?? [];
+      list.push(city);
+      byCountry.set(city.countryIso2, list);
+    }
+    for (const iso2 of byCountry.keys()) {
+      const target = exampleCommunityTarget('en', iso2);
+      expect(target).toBeDefined();
+      expect(target?.country.iso2).toBe(iso2);
+      expect(target?.city.countryIso2).toBe(iso2);
+      const maxPop = Math.max(...byCountry.get(iso2)!.map((city) => city.population ?? 0));
+      expect(target?.city.population ?? 0).toBe(maxPop);
     }
   });
 
