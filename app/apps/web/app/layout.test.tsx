@@ -119,6 +119,19 @@ describe('root layout', () => {
     expect(screen.getByText('page content')).toBeInTheDocument();
   });
 
+  it('mounts the NavigationProgress bar globally (Story G / TASK-538)', async () => {
+    const element = await RootLayout({ children: <main>page content</main> });
+    renderLayout(element);
+    // The thin top progress bar is mounted once in the root layout so it can
+    // report slow (>100ms) route transitions app-wide, and it is a purely
+    // visual overlay (hidden from assistive tech — the destination content is
+    // the accessible status signal).
+    const progress = screen.getByTestId('navigation-progress');
+    expect(progress).toBeInTheDocument();
+    expect(progress).toHaveAttribute('aria-hidden', 'true');
+    expect(progress).toHaveAttribute('data-visible', 'false');
+  });
+
   it('renders Organization + WebSite JSON-LD once, server-side', async () => {
     const element = await RootLayout({ children: <main>page content</main> });
     const { container } = renderLayout(element);

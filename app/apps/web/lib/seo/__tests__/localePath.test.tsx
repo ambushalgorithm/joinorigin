@@ -2,7 +2,13 @@ import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@joinorigin/design';
-import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
+import {
+  I18nProvider,
+  SUPPORTED_LOCALES,
+  _resetI18nForTests,
+  getDictionary,
+  type Locale,
+} from '@joinorigin/i18n';
 
 import { localeFromPathname, localeLinkPrefix, localizePath, useLocalizePath } from '../localePath';
 
@@ -104,6 +110,30 @@ describe('localizePath', () => {
     expect(localizePath('/de/contact', '/de/docs', 'de')).toBe('/de/contact');
     expect(localizePath('/de/contact', '/docs', 'de')).toBe('/de/contact');
     expect(localizePath('/en/guides', '/en/features', 'en')).toBe('/en/guides');
+  });
+});
+
+describe('Story F O(1) locale resolution (TASK-537)', () => {
+  it.each(SUPPORTED_LOCALES)(
+    'resolves every supported locale prefix /%s via the Set lookup',
+    (locale) => {
+      expect(localeFromPathname(`/${locale}`)).toBe(locale);
+      expect(localeFromPathname(`/${locale}/guides/start-a-community`)).toBe(locale);
+      expect(localeFromPathname(`/${locale}/`)).toBe(locale);
+    },
+  );
+
+  it('treats near-miss segments as unprefixed (Set membership is exact, not prefix-like)', () => {
+    expect(localeFromPathname('/deutschland')).toBeUndefined();
+    expect(localeFromPathname('/de-features')).toBeUndefined();
+    expect(localeFromPathname('/events')).toBeUndefined();
+    expect(localeFromPathname('/japan')).toBeUndefined();
+  });
+
+  it('keeps localizePath correct for every locale prefix (never double-prefixes)', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      expect(localizePath(`/${locale}/guides`, '/features', locale)).toBe(`/${locale}/guides`);
+    }
   });
 });
 

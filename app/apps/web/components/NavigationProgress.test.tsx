@@ -191,4 +191,83 @@ describe('NavigationProgress', () => {
       window.matchMedia = originalMatchMedia;
     }
   });
+
+  it('shows the bar for slow back/forward traversals too (popstate beyond the budget)', () => {
+    const { bar, navigate } = renderProgress();
+
+    act(() => {
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    });
+    advance(THRESHOLD + 1);
+    expect(bar().getAttribute('data-visible')).toBe('true');
+
+    navigate('/en/location');
+    expect(bar().getAttribute('data-visible')).toBe('false');
+  });
+
+  it('arms a single threshold check for rapid clicks on different routes', () => {
+    const { bar } = renderProgress();
+
+    clickLink('/en/features');
+    advance(60);
+    // A second link click while the first transition is still pending must
+    // NOT re-arm the clock — the original 100ms budget still applies.
+    clickLink('/de/guides');
+    advance(THRESHOLD - 60 - 1);
+    expect(bar().getAttribute('data-visible')).toBe('false');
+
+    advance(1);
+    expect(bar().getAttribute('data-visible')).toBe('true');
+  });
+
+  it('removes its document/window listeners and clears timers on unmount', () => {
+    const addDocSpy = jest.spyOn(document, 'addEventListener');
+    const removeDocSpy = jest.spyOn(document, 'removeEventListener');
+    const addWinSpy = jest.spyOn(window, 'addEventListener');
+    const removeWinSpy = jest.spyOn(window, 'removeEventListener');
+
+    try {
+      const view = render(<NavigationProgress />);
+      // The transition detector listens for anchor clicks (capture phase) and
+      // browser back/forward traversals.
+      expect(addDocSpy).toHaveBeenCalledWith('click', expect.any(Function), true);
+      expect(addWinSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
+
+      view.unmount();
+      // Both listeners are removed and the pending timer is cleared, so an
+      // unmounted bar cannot leak listeners or update an unmounted tree.
+      expect(removeDocSpy).toHaveBeenCalledWith('click', expect.any(Function), true);
+      expect(removeWinSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
+    } finally {
+      addDocSpy.mockRestore();
+      removeDocSpy.mockRestore();
+      addWinSpy.mockRestore();
+      removeWinSpy.mockRestore();
+    }
+  });
+
+  it('renders as a purely visual overlay with no accessibility semantics', () => {
+    const { bar } = renderProgress();
+    // The bar is decorative: the destination content itself is the accessible
+    // status signal, so the overlay is hidden from assistive tech.
+    expect(bar()).toHaveAttribute('aria-hidden', 'true');
+    expect(bar()).toHaveAttribute('data-testid', 'navigation-progress');
+    expect(bar()).toHaveAttribute('data-visible', 'false');
+  });
+
+  it('ignores a same-route hash anchor after the route has committed (no stuck bar)', () => {
+    const { bar, navigate } = renderProgress();
+
+    // Commit a slow transition first: the bar appears, then hides on render.
+    clickLink('/en/features');
+    advance(THRESHOLD + 1);
+    navigate('/en/features');
+    expect(bar().getAttribute('data-visible')).toBe('false');
+
+    // A same-pathname hash link (`/en/features#section`) is not a route
+    // transition and must not re-show the bar.
+    clickLink('/en/features#section');
+    advance(THRESHOLD * 2);
+    expect(bar().getAttribute('data-visible')).toBe('false');
+  });
 });

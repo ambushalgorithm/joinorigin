@@ -527,3 +527,71 @@ describe('CF-IPCountry geo forwarding (TASK-479)', () => {
     expect(response.headers.get(IP_COUNTRY_HEADER)).toBe('BR');
   });
 });
+
+describe('Story F matcher trim + O(1) locale resolution (TASK-537)', () => {
+  it('still matches every app page route — prefetch/RSC requests carry these pathnames', () => {
+    // The matcher trims system routes from the middleware hop but MUST keep
+    // page pathnames matching: `<Link prefetch>` and RSC requests carry the
+    // same pathname and the layout reads `x-joinorigin-locale` from them.
+    for (const url of [
+      '/',
+      '/features',
+      '/location/germany/berlin/berlin',
+      '/en/features',
+      '/de/location/germany/berlin/berlin',
+      '/vi/guides/start-a-community',
+    ]) {
+      expect(unstable_doesMiddlewareMatch({ config, url })).toBe(true);
+    }
+  });
+
+  it('skips the middleware hop entirely for static asset trees (F6 trim)', () => {
+    expect(unstable_doesMiddlewareMatch({ config, url: '/_next/static/chunks/x.js' })).toBe(false);
+    expect(unstable_doesMiddlewareMatch({ config, url: '/_next/image?url=x' })).toBe(false);
+    expect(unstable_doesMiddlewareMatch({ config, url: '/assets/logo.svg' })).toBe(false);
+    expect(unstable_doesMiddlewareMatch({ config, url: '/fonts/Inter.woff2' })).toBe(false);
+  });
+
+  it('skips metadata + icon routes that never need locale resolution (F6 trim)', () => {
+    for (const path of [
+      '/sitemap.xml',
+      '/robots.txt',
+      '/llms.txt',
+      '/favicon.ico',
+      '/icon',
+      '/apple-icon',
+      '/manifest.webmanifest',
+      '/icon-16x16.png',
+    ]) {
+      expect(unstable_doesMiddlewareMatch({ config, url: path })).toBe(false);
+    }
+  });
+
+  it('file-extension URLs outside the matcher exclusions still hit the proxy but pass through', () => {
+    // `/apple-touch-icon.png` is not in the matcher exclusions, so the proxy
+    // still runs and `isSystemRoute` (file extension) keeps it unprefixed —
+    // the same end result as the matcher trim, via the in-proxy guard.
+    expect(unstable_doesMiddlewareMatch({ config, url: '/apple-touch-icon.png' })).toBe(true);
+    const response = runProxyAt('http://localhost/apple-touch-icon.png', {
+      'accept-language': 'de',
+    });
+    expect(response.status).toBe(200);
+    expect(response.headers.get('location')).toBeNull();
+    expect(response.headers.get('x-middleware-next')).toBe('1');
+  });
+
+  it('localeFromPathname resolves all 21 supported locales via the O(1) Set lookup', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      expect(localeFromPathname(`/${locale}`)).toBe(locale);
+      expect(localeFromPathname(`/${locale}/guides/start-a-community`)).toBe(locale);
+    }
+  });
+
+  it('keeps the O(1) Set semantics identical: near-miss segments are NOT locales', () => {
+    expect(localeFromPathname('/deutschland')).toBeUndefined();
+    expect(localeFromPathname('/de-features')).toBeUndefined();
+    expect(localeFromPathname('/events')).toBeUndefined();
+    expect(localeFromPathname('/japan')).toBeUndefined();
+    expect(localeFromPathname('/')).toBeUndefined();
+  });
+});
