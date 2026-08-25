@@ -48,4 +48,17 @@ module.exports = {
     // imports regardless of prettier's singleQuote setting (TASK-226).
     'next-env.d.ts',
   ],
+  // TASK-523 — HARD 600-line cap on unit test files. Auto-enforced by the
+  // pre-commit hook (lint-fix.sh) and `pnpm lint`. e2e specs (*.spec.ts) are
+  // EXEMPT — this is a unit-test-only guard per PM decision. The 2308-line
+  // locationView.test.ts was split into 7 concern files (TASK-521), each
+  // under the limit; this rule keeps future test files from growing back.
+  overrides: [
+    {
+      files: ['**/*.test.ts', '**/*.test.tsx'],
+      rules: {
+        'max-lines': ['error', { max: 600 }],
+      },
+    },
+  ],
 };
