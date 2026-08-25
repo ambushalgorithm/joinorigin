@@ -527,7 +527,18 @@ function ideasEntry(
 
 /* ------------------------------------------------------------------ *
  * Public registry
+ *
+ * `locationPageEntries` is pure + deterministic: every entry derives from
+ * the committed snapshot, tier config, group-type taxonomy, content files,
+ * and locale dictionaries — none of which change after module load. A
+ * module-level per-locale cache (TASK-520) turns the ~400 full rebuilds a
+ * unit-test file triggers (each re-deriving the ~12.5k-entry registry)
+ * into a single build per locale. The cached arrays are frozen so no
+ * caller can mutate the shared result (all consumers are non-mutating:
+ * .find/.filter/.map/.slice).
  * ------------------------------------------------------------------ */
+
+const LOCATION_PAGE_ENTRIES_CACHE = new Map<Locale, readonly LocationPageEntry[]>();
 
 /**
  * Derive the complete location-page registry.
@@ -548,6 +559,14 @@ function ideasEntry(
  */
 export function locationPageEntries(locale?: Locale): LocationPageEntry[] {
   const target = locale ?? 'en';
+  const cached = LOCATION_PAGE_ENTRIES_CACHE.get(target);
+  if (cached) return cached as LocationPageEntry[];
+  const entries = Object.freeze(buildLocationPageEntries(target));
+  LOCATION_PAGE_ENTRIES_CACHE.set(target, entries);
+  return entries as LocationPageEntry[];
+}
+
+function buildLocationPageEntries(target: Locale): LocationPageEntry[] {
   const snapshot = loadLocationSnapshot();
   const entries: LocationPageEntry[] = [];
 

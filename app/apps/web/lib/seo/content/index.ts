@@ -557,6 +557,79 @@ interface ContentFileEntry {
   content: LocationContent;
 }
 
+/* ------------------------------------------------------------------ *
+ * Lookup indexes (TASK-520 — test-performance)
+ *
+ * `CONTENT_FILES` (~455 committed files) is static after module load, so
+ * the linear `.find`/`.filter` scans in `getContent`/`hasContent`/
+ * `listContentByKind`/`contentLocalesFor` are built once into Maps. The
+ * `kind|slug|locale` key gives exact O(1) resolution (with the EN fallback
+ * handled by the `kind|slug` index); `kind|locale` + `locale` indexes
+ * serve `listContent`/`listContentByKind` without re-filtering. Entry
+ * order is preserved by pushing into the per-key arrays in `CONTENT_FILES`
+ * order, so every consumer sees the same order as before.
+ * ------------------------------------------------------------------ */
+
+type ContentIndexKey = `${ContentKind}|${string}|${Locale}`;
+
+function contentIndexKey(kind: ContentKind, slug: string, locale: Locale): ContentIndexKey {
+  return `${kind}|${slug}|${locale}`;
+}
+
+function slugIndexKey(kind: ContentKind, slug: string): string {
+  return `${kind}|${slug}`;
+}
+
+function kindLocaleIndexKey(kind: ContentKind, locale: Locale): string {
+  return `${kind}|${locale}`;
+}
+
+let contentIndex:
+  | {
+      byExactKey: Map<ContentIndexKey, ContentFileEntry>;
+      bySlug: Map<string, ContentFileEntry[]>;
+      byKindLocale: Map<string, ContentFileEntry[]>;
+      byLocale: Map<Locale, LocationContent[]>;
+    }
+  | undefined;
+
+function getContentIndex(): NonNullable<typeof contentIndex> {
+  if (!contentIndex) {
+    const byExactKey = new Map<ContentIndexKey, ContentFileEntry>();
+    const bySlug = new Map<string, ContentFileEntry[]>();
+    const byKindLocale = new Map<string, ContentFileEntry[]>();
+    const byLocale = new Map<Locale, LocationContent[]>();
+
+    for (const entry of CONTENT_FILES) {
+      byExactKey.set(contentIndexKey(entry.kind, entry.slug, entry.locale), entry);
+
+      const slugKey = slugIndexKey(entry.kind, entry.slug);
+      const slugEntries = bySlug.get(slugKey);
+      if (slugEntries) slugEntries.push(entry);
+      else bySlug.set(slugKey, [entry]);
+
+      const kindLocaleKey = kindLocaleIndexKey(entry.kind, entry.locale);
+      const kindLocaleEntries = byKindLocale.get(kindLocaleKey);
+      if (kindLocaleEntries) kindLocaleEntries.push(entry);
+      else byKindLocale.set(kindLocaleKey, [entry]);
+
+      const localeContents = byLocale.get(entry.locale);
+      if (localeContents) localeContents.push(entry.content);
+      else byLocale.set(entry.locale, [entry.content]);
+    }
+
+    // `listContent(locale)` hands out these arrays directly — freeze them so
+    // a consumer can never mutate the shared cache (all current consumers
+    // are non-mutating: .every / for..of / .length).
+    for (const contents of byLocale.values()) {
+      Object.freeze(contents);
+    }
+
+    contentIndex = { byExactKey, bySlug, byKindLocale, byLocale };
+  }
+  return contentIndex;
+}
+
 const CONTENT_FILES: readonly ContentFileEntry[] = [
   // EN source of truth — country pages.
   // country germany (EN source of truth).
@@ -1948,9 +2021,7 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
 
 /** True when committed content exists for (kind, slug) in a locale. */
 export function hasContent(kind: ContentKind, slug: string, locale: Locale): boolean {
-  return CONTENT_FILES.some(
-    (entry) => entry.kind === kind && entry.slug === slug && entry.locale === locale,
-  );
+  return getContentIndex().byExactKey.has(contentIndexKey(kind, slug, locale));
 }
 
 /**
@@ -1962,32 +2033,31 @@ export function getContent<T extends LocationContent>(
   slug: string,
   locale: Locale = 'en',
 ): T | undefined {
-  const exact = CONTENT_FILES.find(
-    (entry) => entry.kind === kind && entry.slug === slug && entry.locale === locale,
-  );
+  const exact = getContentIndex().byExactKey.get(contentIndexKey(kind, slug, locale));
   if (exact) return exact.content as T;
   if (locale !== 'en') {
-    const enFallback = CONTENT_FILES.find(
-      (entry) => entry.kind === kind && entry.slug === slug && entry.locale === 'en',
-    );
-    if (enFallback) return enFallback.content as T;
+    const enFallback = getContentIndex().bySlug.get(slugIndexKey(kind, slug));
+    const enEntry = enFallback?.find((entry) => entry.locale === 'en');
+    if (enEntry) return enEntry.content as T;
   }
   return undefined;
 }
 
 /** All authored content for a locale (EN fallback is NOT applied here). */
 export function listContent(locale: Locale = 'en'): LocationContent[] {
-  return CONTENT_FILES.filter((entry) => entry.locale === locale).map((entry) => entry.content);
+  return getContentIndex().byLocale.get(locale) ?? [];
 }
 
 /** Content of a given kind for a locale (EN fallback not applied). */
 export function listContentByKind(kind: ContentKind, locale: Locale = 'en'): LocationContent[] {
-  return listContent(locale).filter((content) => content.kind === kind);
+  return (getContentIndex().byKindLocale.get(kindLocaleIndexKey(kind, locale)) ?? []).map(
+    (entry) => entry.content,
+  );
 }
 
 /** Locales with committed content for (kind, slug) — e.g. Berlin city: ['en','de']. */
 export function contentLocalesFor(kind: ContentKind, slug: string): Locale[] {
-  return CONTENT_FILES.filter((entry) => entry.kind === kind && entry.slug === slug).map(
+  return (getContentIndex().bySlug.get(slugIndexKey(kind, slug)) ?? []).map(
     (entry) => entry.locale,
   );
 }
