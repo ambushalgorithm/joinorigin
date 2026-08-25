@@ -18,7 +18,8 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
  * Brand mark + wordmark, tagline, grouped nav (Explore / Product / Company /
  * Legal), `Get discovered` rotating-border CTA, the copyright line, and the
  * language switcher (Sprint 9, compact variant aligned to the inline end).
- * Stacks vertically on mobile.
+ * Mobile-first (Sprint 22 Story A): the 320px base stacks the whole footer
+ * vertically (column layout); the row layout applies at tablet+.
  */
 
 const FOOTER_GROUPS = [
@@ -65,26 +66,38 @@ const fadeIn = keyframes`
 
 const StyledFooter = styled.footer<{ $entered: boolean }>`
   border-top: 1px solid ${({ theme }) => theme.colors.border};
-  padding: 32px 24px;
+  /* Mobile-first (Story A): 16px gutters at the 320px floor, widened at
+     the first enhancement breakpoint, then at desktop. */
+  padding: 32px 16px;
   animation: ${({ $entered }) =>
     $entered
       ? css`
           ${fadeIn} 0.5s ease-out ${DELAY.footer} both
         `
       : 'none'};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    padding: 32px 24px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    padding: 48px 32px;
+  }
 `;
 
 const Inner = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
+  /* Mobile-first (Story A): the 320px base stacks the brand, CTA, groups,
+     and utility row vertically; the row layout applies at tablet+. */
+  flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme }) => theme.spacing.xl}px;
-  flex-wrap: wrap;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 `;
 
@@ -119,11 +132,12 @@ const Tagline = styled.span`
   color: ${({ theme }) => theme.colors.textMuted};
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   gap: ${({ theme }) => theme.spacing.xl}px;
   flex-wrap: wrap;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    flex-direction: row;
   }
 `;
 
@@ -133,12 +147,15 @@ const Spacer = styled.div`
 
 const Groups = styled.nav`
   display: flex;
-  gap: ${({ theme }) => theme.spacing.xxl}px;
-  flex-wrap: wrap;
+  /* Mobile-first (Story A): groups stack vertically at the 320px floor and
+     fan out into columns at tablet+. */
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.lg}px;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: ${({ theme }) => theme.spacing.lg}px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    flex-direction: row;
+    gap: ${({ theme }) => theme.spacing.xxl}px;
+    flex-wrap: wrap;
   }
 `;
 

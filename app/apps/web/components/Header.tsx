@@ -31,6 +31,9 @@ import LanguageSwitcher from './LanguageSwitcher';
  *   mobile-panel row between the nav links and `Log In`.
  * - Mobile: hamburger toggles a dropdown panel; closes on link click,
  *   outside click, or ESC.
+ * - Mobile-first (Sprint 22 Story A): base styles target the researched
+ *   320px minimum viewport (compact gutters, 44px tap targets, shrinkable
+ *   right cluster) and are enhanced at `theme.breakpoints`.
  */
 
 const NAV_LINKS = [
@@ -80,7 +83,14 @@ const Inner = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: ${({ theme }) => theme.spacing.sm}px;
-  padding: ${({ theme }) => theme.spacing.md}px ${({ theme }) => theme.spacing.xl}px;
+  /* Mobile-first (Story A): the 320px base uses compact gutters so the brand
+     mark, CTA, and hamburger fit the researched minimum viewport without
+     overflow; padding grows at the first enhancement breakpoint. */
+  padding: ${({ theme }) => theme.spacing.md}px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    padding: ${({ theme }) => theme.spacing.md}px ${({ theme }) => theme.spacing.xl}px;
+  }
 `;
 
 const Brand = styled.a`
@@ -266,7 +276,14 @@ const MobileGroupLabel = styled.span`
 const Right = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.lg}px;
+  /* min-width: 0 lets the cluster shrink at sub-320 widths (D2 graceful
+     degradation) instead of forcing horizontal page overflow. */
+  min-width: 0;
+  gap: ${({ theme }) => theme.spacing.sm}px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    gap: ${({ theme }) => theme.spacing.lg}px;
+  }
 `;
 
 const LogInLink = styled.button`
@@ -301,7 +318,7 @@ const LogInLink = styled.button`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     display: none;
   }
 `;
@@ -316,6 +333,14 @@ const Hamburger = styled.button`
   background: transparent;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text};
+  border-radius: ${({ theme }) => theme.radius.md}px;
+
+  /* Visible keyboard focus ring (Story C) — the hamburger is the primary
+     mobile navigation control and must show focus for keyboard users. */
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.focusRing};
+    outline-offset: 2px;
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
     display: none;
@@ -330,7 +355,12 @@ const MobilePanel = styled.div`
   background: ${({ theme }) => theme.colors.surface};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radius.lg}px;
-  margin: 0 20px 16px;
+  /* Mobile-first: 16px gutters at the 320px floor; slightly wider at 480+. */
+  margin: 0 ${({ theme }) => theme.spacing.md}px ${({ theme }) => theme.spacing.md}px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    margin: 0 20px 16px;
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
     display: none;
