@@ -6,6 +6,7 @@ import { _resetI18nForTests, useI18n } from '@joinorigin/i18n';
 import { LocationView } from './LocationView';
 import { buildLocationViewData, hubEntry, resolveLocationEntry } from '../../lib/seo/locationView';
 import type { LocationViewData } from '../../lib/seo/locationView';
+import { localizePath } from '../../lib/seo/localePath';
 import { renderWithI18n } from '../../test-utils';
 
 /**
@@ -331,23 +332,25 @@ describe('LocationView country mesh (TASK-490)', () => {
     expect(screen.getByTestId('location-country-name')).toHaveTextContent('Germany');
 
     // City cards carry localized dataset names + registry-exact hrefs.
+    // TASK-533 (Story D) — each card is a single wrapping link, so the
+    // accessible name combines the card title + the body CTA.
     const cities = within(screen.getByTestId('location-country-cities'));
-    expect(cities.getByRole('link', { name: 'Berlin' })).toHaveAttribute(
+    expect(cities.getByRole('link', { name: /Berlin/ })).toHaveAttribute(
       'href',
       '/en/location/germany/berlin/berlin',
     );
-    expect(cities.getByRole('link', { name: 'Munich' })).toHaveAttribute(
+    expect(cities.getByRole('link', { name: /Munich/ })).toHaveAttribute(
       'href',
       '/en/location/germany/bavaria/munich',
     );
 
     // Region cards carry localized dataset names + registry-exact hrefs.
     const regions = within(screen.getByTestId('location-country-regions'));
-    expect(regions.getByRole('link', { name: 'Bavaria' })).toHaveAttribute(
+    expect(regions.getByRole('link', { name: /Bavaria/ })).toHaveAttribute(
       'href',
       '/en/location/germany/bavaria',
     );
-    expect(regions.getByRole('link', { name: 'State of Berlin' })).toHaveAttribute(
+    expect(regions.getByRole('link', { name: /State of Berlin/ })).toHaveAttribute(
       'href',
       '/en/location/germany/berlin',
     );
@@ -389,7 +392,7 @@ describe('LocationView country mesh (TASK-490)', () => {
     expect(mesh).toBeInTheDocument();
     expect(screen.getByTestId('location-region-name')).toHaveTextContent('Osaka Prefecture');
     const cities = within(screen.getByTestId('location-region-cities'));
-    expect(cities.getByRole('link', { name: 'Osaka' })).toHaveAttribute(
+    expect(cities.getByRole('link', { name: /Osaka/ })).toHaveAttribute(
       'href',
       '/en/location/japan/osaka/osaka',
     );
@@ -427,5 +430,115 @@ describe('LocationView country mesh (TASK-490)', () => {
     renderWithI18n(<LocationView data={hubData} />, 'en');
     expect(screen.queryByTestId('location-country-mesh')).not.toBeInTheDocument();
     expect(screen.queryByTestId('location-region-mesh')).not.toBeInTheDocument();
+  });
+});
+
+describe('LocationView full-card links + hover/focus rules (TASK-533, Stories C/D)', () => {
+  beforeEach(() => {
+    _resetI18nForTests();
+    mockPathname = '/en/location';
+  });
+
+  it('guide-link cards are a single wrapping link covering the whole card', () => {
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const grid = within(screen.getByTestId('location-guide-links'));
+    const links = grid.getAllByRole('link');
+    // One link per guide card — the link IS the card (no nested links).
+    expect(links.length).toBe(data.guideLinks.length);
+    for (const guide of data.guideLinks) {
+      const link = grid.getByRole('link', { name: new RegExp(guide.title) });
+      // The whole card is inside the link: title + the step-by-step body CTA.
+      expect(link).toHaveTextContent(guide.title);
+      expect(link).toHaveTextContent('Step-by-step guide');
+      expect(link.getAttribute('href')).toBe(localizePath(guide.path, mockPathname, 'en'));
+      // No nested anchor inside the card link.
+      expect(link.querySelector('a')).toBeNull();
+    }
+  });
+
+  it('flagship-city cards are a single wrapping link covering the whole card', () => {
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const grid = within(screen.getByTestId('location-flagship-cities'));
+    const links = grid.getAllByRole('link');
+    expect(links.length).toBe(data.siblingCities.length);
+    for (const sibling of data.siblingCities) {
+      const link = grid.getByRole('link', { name: new RegExp(sibling.name) });
+      expect(link).toHaveTextContent(sibling.name);
+      expect(link).toHaveTextContent('Explore communities');
+      expect(link.getAttribute('href')).toBe(localizePath(sibling.path, mockPathname, 'en'));
+      expect(link.querySelector('a')).toBeNull();
+    }
+  });
+
+  it('hub-directory cards are single wrapping links to registry-exact paths', () => {
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const directory = screen.getByTestId('location-hub-directory');
+    const links = within(directory).getAllByRole('link');
+    // One wrapping link per directory card — no nested anchors inside any card.
+    expect(links.length).toBe(data.hubDirectory?.length ?? 0);
+    for (const link of links) {
+      expect(link.querySelector('a')).toBeNull();
+    }
+
+    // Spot-check the first card of every section resolves a registry-exact href.
+    for (const section of [
+      'countries',
+      'regions',
+      'cities',
+      'communityTypes',
+      'eventIdeas',
+    ] as const) {
+      const expected = (data.hubDirectory ?? []).find((entry) => entry.section === section);
+      if (!expected) continue;
+      const firstLink = within(
+        screen.getByTestId(`location-hub-directory-${section}`),
+      ).getAllByRole('link')[0];
+      expect(firstLink.getAttribute('href')).toBe(localizePath(expected.path, mockPathname, 'en'));
+    }
+  });
+
+  it('sibling-city cards are a single wrapping link covering the whole card', () => {
+    const data = buildLocationViewData(
+      resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' })!,
+      'en',
+    );
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const grid = within(screen.getByTestId('location-sibling-cities'));
+    const links = grid.getAllByRole('link');
+    expect(links.length).toBe(data.siblingCities.length);
+    for (const sibling of data.siblingCities) {
+      const link = grid.getByRole('link', { name: new RegExp(sibling.name) });
+      expect(link).toHaveTextContent('Explore communities');
+      expect(link.getAttribute('href')).toBe(localizePath(sibling.path, mockPathname, 'en'));
+      expect(link.querySelector('a')).toBeNull();
+    }
+  });
+
+  it('idea listicle cards are informational — NOT links, no hover/focus target (Story C)', () => {
+    const data = buildLocationViewData(
+      resolveLocationEntry({
+        country: 'germany',
+        region: 'berlin',
+        city: 'berlin',
+        variant: 'ideas',
+      })!,
+      'en',
+    );
+    renderWithI18n(<LocationView data={data} />, 'en');
+
+    const grids = screen.getAllByTestId('location-idea-grid');
+    expect(grids.length).toBeGreaterThan(0);
+    for (const grid of grids) {
+      // Non-interactive cards must contain no link/button (no hover/focus animation).
+      expect(within(grid).queryByRole('link')).not.toBeInTheDocument();
+      expect(within(grid).queryByRole('button')).not.toBeInTheDocument();
+    }
   });
 });

@@ -20,6 +20,7 @@ import {
   Card,
   CardBody,
   CardGrid,
+  CardLink,
   CardTitle,
   FaqAnswer,
   FaqCard,
@@ -60,14 +61,14 @@ import type { HubDirectorySection, LocationViewData } from '../../lib/seo/locati
 const BreadcrumbNav = styled.nav`
   max-width: 1280px;
   margin: 0 auto;
-  padding: 24px 64px 24px;
+  padding: 20px;
 
-  @media (max-width: 1024px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     padding: 24px 32px 24px;
   }
 
-  @media (max-width: 480px) {
-    padding: 20px 20px 20px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    padding: 24px 64px 24px;
   }
 `;
 
@@ -162,12 +163,22 @@ const TagLink = styled(Link)<{ $current?: boolean }>`
     border-color: ${({ theme }) => theme.colors.primary};
     box-shadow: 0 8px 24px rgba(93, 124, 255, 0.25);
   }
+
+  /* Visible keyboard focus indicator (Story C). */
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.focusRing};
+    outline-offset: 2px;
+  }
 `;
 
 const IdeaGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: 1fr;
   gap: ${({ theme }) => theme.spacing.lg}px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 `;
 
 const IdeaCard = styled(Card)``;
@@ -200,17 +211,17 @@ const IdeaVenue = styled.p`
 const Attribution = styled.p`
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 64px 64px;
+  padding: 0 20px 48px;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: ${({ theme }) => theme.typography.caption}px;
   color: ${({ theme }) => theme.colors.textMuted};
 
-  @media (max-width: 1024px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     padding: 0 32px 64px;
   }
 
-  @media (max-width: 480px) {
-    padding: 0 20px 48px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    padding: 0 64px 64px;
   }
 `;
 
@@ -443,17 +454,10 @@ export function LocationView({ data }: { data: LocationViewData }) {
               <SectionTitle>{t('seoContent.location.guidesTitle')}</SectionTitle>
               <CardGrid data-testid="location-guide-links">
                 {data.guideLinks.map((guide) => (
-                  <Card key={guide.path}>
-                    <CardTitle>
-                      <Link
-                        href={localizePath(guide.path)}
-                        style={{ color: 'inherit', textDecoration: 'none' }}
-                      >
-                        {guide.title}
-                      </Link>
-                    </CardTitle>
+                  <CardLink key={guide.path} as={Link} href={localizePath(guide.path)}>
+                    <CardTitle>{guide.title}</CardTitle>
                     <CardBody>{t('seoContent.location.stepByStepGuide')}</CardBody>
-                  </Card>
+                  </CardLink>
                 ))}
               </CardGrid>
             </Section>
@@ -596,17 +600,10 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 <SectionTitle>{t('seoContent.location.flagshipCities')}</SectionTitle>
                 <CardGrid data-testid="location-flagship-cities">
                   {data.siblingCities.map((sibling) => (
-                    <Card key={sibling.path}>
-                      <CardTitle>
-                        <Link
-                          href={localizePath(sibling.path)}
-                          style={{ color: 'inherit', textDecoration: 'none' }}
-                        >
-                          {sibling.name}
-                        </Link>
-                      </CardTitle>
+                    <CardLink key={sibling.path} as={Link} href={localizePath(sibling.path)}>
+                      <CardTitle>{sibling.name}</CardTitle>
                       <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
-                    </Card>
+                    </CardLink>
                   ))}
                 </CardGrid>
               </Section>
@@ -677,16 +674,9 @@ export function LocationView({ data }: { data: LocationViewData }) {
                         </SubTitle>
                         <CardGrid data-testid={`location-hub-directory-${section.key}`}>
                           {section.matches.map((entry) => (
-                            <Card key={entry.path}>
-                              <CardTitle>
-                                <Link
-                                  href={localizePath(entry.path)}
-                                  style={{ color: 'inherit', textDecoration: 'none' }}
-                                >
-                                  {entry.name}
-                                </Link>
-                              </CardTitle>
-                            </Card>
+                            <CardLink key={entry.path} as={Link} href={localizePath(entry.path)}>
+                              <CardTitle>{entry.name}</CardTitle>
+                            </CardLink>
                           ))}
                         </CardGrid>
                       </div>
@@ -745,17 +735,10 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 <SectionTitle>{t('seoContent.location.nearbyCities')}</SectionTitle>
                 <CardGrid data-testid="location-sibling-cities">
                   {data.siblingCities.map((sibling) => (
-                    <Card key={sibling.path}>
-                      <CardTitle>
-                        <Link
-                          href={localizePath(sibling.path)}
-                          style={{ color: 'inherit', textDecoration: 'none' }}
-                        >
-                          {sibling.name}
-                        </Link>
-                      </CardTitle>
+                    <CardLink key={sibling.path} as={Link} href={localizePath(sibling.path)}>
+                      <CardTitle>{sibling.name}</CardTitle>
                       <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
-                    </Card>
+                    </CardLink>
                   ))}
                 </CardGrid>
               </Section>
@@ -786,33 +769,19 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 <SubTitle>{t('seoContent.location.directorySectionTitles.cities')}</SubTitle>
                 <CardGrid data-testid="location-country-cities">
                   {data.countryMesh.cities.map((city) => (
-                    <Card key={city.path}>
-                      <CardTitle>
-                        <Link
-                          href={localizePath(city.path)}
-                          style={{ color: 'inherit', textDecoration: 'none' }}
-                        >
-                          {city.name}
-                        </Link>
-                      </CardTitle>
+                    <CardLink key={city.path} as={Link} href={localizePath(city.path)}>
+                      <CardTitle>{city.name}</CardTitle>
                       <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
-                    </Card>
+                    </CardLink>
                   ))}
                 </CardGrid>
                 <SubTitle>{t('seoContent.location.directorySectionTitles.regions')}</SubTitle>
                 <CardGrid data-testid="location-country-regions">
                   {data.countryMesh.regions.map((region) => (
-                    <Card key={region.path}>
-                      <CardTitle>
-                        <Link
-                          href={localizePath(region.path)}
-                          style={{ color: 'inherit', textDecoration: 'none' }}
-                        >
-                          {region.name}
-                        </Link>
-                      </CardTitle>
+                    <CardLink key={region.path} as={Link} href={localizePath(region.path)}>
+                      <CardTitle>{region.name}</CardTitle>
                       <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
-                    </Card>
+                    </CardLink>
                   ))}
                 </CardGrid>
               </Section>
@@ -840,17 +809,10 @@ export function LocationView({ data }: { data: LocationViewData }) {
                 <SubTitle>{t('seoContent.location.nearbyCities')}</SubTitle>
                 <CardGrid data-testid="location-region-cities">
                   {data.regionMesh.cities.map((city) => (
-                    <Card key={city.path}>
-                      <CardTitle>
-                        <Link
-                          href={localizePath(city.path)}
-                          style={{ color: 'inherit', textDecoration: 'none' }}
-                        >
-                          {city.name}
-                        </Link>
-                      </CardTitle>
+                    <CardLink key={city.path} as={Link} href={localizePath(city.path)}>
+                      <CardTitle>{city.name}</CardTitle>
                       <CardBody>{t('seoContent.location.exploreCommunities')}</CardBody>
-                    </Card>
+                    </CardLink>
                   ))}
                 </CardGrid>
               </Section>
