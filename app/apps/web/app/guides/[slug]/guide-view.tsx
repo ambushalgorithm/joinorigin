@@ -12,9 +12,9 @@ import SectionBand from '../../../components/SectionBand';
 import {
   BodyCopy,
   BulletList,
-  Card,
   CardBody,
   CardGrid,
+  CardLink,
   CardTitle,
   FaqAnswer,
   FaqCard,
@@ -111,20 +111,21 @@ const CityLinks = styled.div`
 /** Hero-meta row for the secondary "Translate this page" link-out (TASK-318):
  *  guides are EN canonical only, so the link always renders — a small
  *  unobtrusive text link aligned inline-end, never competing with the
- *  language switcher. */
+ *  language switcher. Mobile-first (Story A): the base padding targets the
+ *  minimum viewport and widens at the mobile/desktop breakpoints. */
 const TranslateRow = styled.div`
   max-width: 1280px;
   margin: 0 auto;
-  padding: 24px 64px 0;
+  padding: 20px 20px 0;
   display: flex;
   justify-content: flex-end;
 
-  @media (max-width: 1024px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     padding: 24px 32px 0;
   }
 
-  @media (max-width: 480px) {
-    padding: 20px 20px 0;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}px) {
+    padding: 24px 64px 0;
   }
 `;
 
@@ -228,12 +229,15 @@ export function GuideView({ entry, content }: GuideViewProps) {
               <SectionTitle>{t('seoContent.guides.relatedGuides')}</SectionTitle>
               <CardGrid>
                 {relatedEntries.map((related) => (
-                  <Card key={related.slug}>
-                    <CardTitle>
-                      <RelatedLink href={localizePath(related.href)}>{related.title}</RelatedLink>
-                    </CardTitle>
+                  <CardLink
+                    key={related.slug}
+                    as={Link}
+                    href={localizePath(related.href)}
+                    aria-label={related.title}
+                  >
+                    <CardTitle>{related.title}</CardTitle>
                     <CardBody>{t('seoContent.guides.continueBuilding')}</CardBody>
-                  </Card>
+                  </CardLink>
                 ))}
               </CardGrid>
             </Section>

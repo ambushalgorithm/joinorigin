@@ -136,14 +136,16 @@ const FormCard = styled.div`
   -webkit-backdrop-filter: blur(10px);
 `;
 
-/** Two-column Name | Email row on desktop (spec §8.5). */
+/** Two-column Name | Email row on larger screens (spec §8.5) — the mobile-
+ *  first base stacks the fields (Story A) and the `mobile` breakpoint
+ *  upgrades to two columns. */
 const Row = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: ${({ theme }) => theme.spacing.md}px;
 
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
