@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect, type Locator, type Page } from '@playwright/test';
 
 /**
  * Location pages e2e (TASK-308 fe-location-pages).
@@ -546,7 +546,10 @@ test.describe('flagship cities + Browse-locations 5 sections (TASK-480)', () => 
     await expect(flagship).toBeVisible();
     // Capped at 6 (TASK-480) — the EN language area (alphabetical) leads.
     await expect(flagship.locator('a')).toHaveCount(6);
-    const names = await flagship.locator('a').allInnerTexts();
+    // Story D full-card links (TASK-533) wrap the title + a "Explore
+    // communities" CardBody — assert the CardTitle (h3) so the name list
+    // matches the intent (card names), not the full link text.
+    const names = await flagship.locator('a h3').allInnerTexts();
     expect(names).toEqual(['Austin', 'Cape Town', 'Chicago', 'Dublin', 'Johannesburg', 'Lagos']);
     // Every card stays on the ACTIVE locale surface (never /en leak is N/A
     // here — this IS the en surface — but the hrefs must be /en/**).
@@ -568,7 +571,8 @@ test.describe('flagship cities + Browse-locations 5 sections (TASK-480)', () => 
     await expect(flagship).toBeVisible();
     await expect(flagship.locator('a')).toHaveCount(6);
     // Locale country/area first: the German cities lead the capped list.
-    const names = await flagship.locator('a').allInnerTexts();
+    // (Story D full-card links add a CardBody — assert the h3 title only.)
+    const names = await flagship.locator('a h3').allInnerTexts();
     expect(names.slice(0, 2)).toEqual(['Berlin', 'Munich']);
     for (const href of await flagship
       .locator('a')
@@ -636,7 +640,9 @@ test.describe('guides Start local list (TASK-480)', () => {
     const grid = page.getByTestId('guides-hub-start-local');
     await expect(grid).toBeVisible();
     await expect(grid.locator('a')).toHaveCount(6);
-    const names = await grid.locator('a').allInnerTexts();
+    // Story D full-card links (TASK-535) wrap the title + a city CardBody —
+    // assert the CardTitle (h3) so the name list matches the intent.
+    const names = await grid.locator('a h3').allInnerTexts();
     expect(names).toEqual(['Austin', 'Cape Town', 'Chicago', 'Dublin', 'Johannesburg', 'Lagos']);
     // The cards localize to the active /en surface at render time.
     for (const href of await grid
@@ -657,7 +663,8 @@ test.describe('guides Start local list (TASK-480)', () => {
     const grid = page.getByTestId('guides-hub-start-local');
     await expect(grid).toBeVisible();
     await expect(grid.locator('a')).toHaveCount(6);
-    const names = await grid.locator('a').allInnerTexts();
+    // Story D full-card links add a CardBody — assert the h3 title only.
+    const names = await grid.locator('a h3').allInnerTexts();
     expect(names.slice(0, 2)).toEqual(['Berlin', 'Munich']);
     for (const href of await grid
       .locator('a')
@@ -1528,5 +1535,159 @@ test.describe('Story H: /location i18n completeness (TASK-519)', () => {
         exact: true,
       }),
     ).toHaveCount(0);
+  });
+});
+
+/**
+ * Sprint 22 (TASK-542, Stories A/C/D) — mobile-first rendering + full-card
+ * click + keyboard focus indicator at the researched minimum viewport
+ * (TASK-526: 320px floor; narrow foldable cover class ≈311–342px).
+ *
+ * 1. The hub renders its directory grids, flagship-city grid, and inventory
+ *    banner at the 320px floor with NO horizontal overflow; every card grid
+ *    is a single column (mobile-first base = 1fr, enhanced at `mobile: 480`).
+ * 2. Clickable location cards (directory, flagship, sibling, guide-link,
+ *    country/region mesh) are single wrapping `<a>` links (Story D): clicking
+ *    ANYWHERE on the card — including the corner padding, not just the title
+ *    text — navigates to the card's href.
+ * 3. Interactive card links expose a visible keyboard focus indicator
+ *    (`:focus-visible` outline using `theme.colors.focusRing`) (Story C).
+ */
+test.describe('Sprint 22: mobile-first location surfaces + full-card + focus (TASK-542)', () => {
+  /** Story A/D2 invariant: the page never scrolls horizontally. */
+  async function expectNoHorizontalOverflow(page: Page): Promise<void> {
+    const overflow = await page.evaluate(() => {
+      const doc = document.documentElement;
+      return doc.scrollWidth - window.innerWidth;
+    });
+    expect(overflow, 'page must not scroll horizontally').toBeLessThanOrEqual(0);
+  }
+
+  /** Asserts a CardGrid renders a single column (mobile-first base). */
+  async function expectSingleColumnGrid(page: Page, grid: Locator) {
+    await expect(grid).toBeVisible();
+    const tracks = await grid.evaluate((el) =>
+      getComputedStyle(el).gridTemplateColumns.split(' ').filter(Boolean),
+    );
+    expect(tracks, 'mobile-first grid must be a single column').toHaveLength(1);
+    // The single column fits the viewport (no card overflows horizontally).
+    const box = await grid.locator('a').first().boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(
+      (await page.evaluate(() => window.innerWidth)) + 1,
+    );
+  }
+
+  /**
+   * Story D — clicks the BOTTOM-LEFT padding corner of a card (not its title
+   * text) and asserts navigation to the card's href. The card is a single
+   * wrapping `<a>` (CardLink), so any point on it must navigate.
+   */
+  async function expectFullCardClickNavigates(page: Page, card: Locator) {
+    await expect(card).toBeVisible();
+    await card.scrollIntoViewIfNeeded();
+    const box = (await card.boundingBox())!;
+    const href = (await card.getAttribute('href')) ?? '';
+    expect(href).toMatch(
+      /^\/(en|de|es|ar|fr|it|nl|pl|pt-BR|hi|id|ja|ko|fa|ru|th|tr|uk|zh-CN|zh-TW)?\/location/,
+    );
+    // The corner point sits in the card's padding area, far from the title.
+    await page.mouse.click(box.x + 10, box.y + box.height - 10);
+    await page.waitForURL(`**${href}`, { timeout: 120_000 });
+  }
+
+  test('hub at the 320px floor: directory, flagship grid, and inventory banner render without horizontal overflow', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/en/location');
+
+    // The three mobile surfaces the hub renders (TASK-480/485/491).
+    await expect(page.getByTestId('location-inventory-banner')).toBeVisible();
+    const flagship = page.getByTestId('location-flagship-cities');
+    await expect(flagship).toBeVisible();
+    await expect(flagship.locator('a')).toHaveCount(6);
+    await expect(page.getByTestId('location-hub-directory')).toBeVisible();
+
+    // D1/D2 invariant at the researched floor.
+    await expectNoHorizontalOverflow(page);
+
+    // Directory grids are single-column at the floor.
+    await expectSingleColumnGrid(page, page.getByTestId('location-hub-directory-countries'));
+    await expectSingleColumnGrid(page, page.getByTestId('location-hub-directory-cities'));
+  });
+
+  test('city page at the 320px floor: sibling + guide-link grids render single-column without overflow', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/en/location/germany/berlin/berlin');
+
+    await expectNoHorizontalOverflow(page);
+    await expectSingleColumnGrid(page, page.getByTestId('location-sibling-cities'));
+    await expectSingleColumnGrid(page, page.getByTestId('location-guide-links'));
+  });
+
+  test('full-card click: clicking the corner of a hub directory card navigates', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/en/location');
+
+    const card = page.getByTestId('location-hub-directory-countries').locator('a').first();
+    await expectFullCardClickNavigates(page, card);
+    // Landed on the country page with its content rendered.
+    await expect(page.locator('h1')).toContainText(/Communities in/);
+  });
+
+  test('full-card click: clicking the corner of a city sibling card navigates', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/en/location/germany/berlin/berlin');
+
+    const card = page.getByTestId('location-sibling-cities').locator('a').first();
+    await expectFullCardClickNavigates(page, card);
+    await expect(page.locator('h1')).toContainText(/Communities in/);
+  });
+
+  test('keyboard focus indicator: a directory card focused via Tab shows a visible :focus-visible outline', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/en/location');
+
+    const card = page.getByTestId('location-hub-directory-countries').locator('a').first();
+    await expect(card).toBeVisible();
+
+    // Navigate with the keyboard until the interactive card receives focus
+    // (real keyboard modality — the Story C `:focus-visible` contract).
+    let focused = false;
+    for (let i = 0; i < 120 && !focused; i += 1) {
+      await page.keyboard.press('Tab');
+      focused = await card.evaluate((el) => document.activeElement === el);
+    }
+    expect(focused, 'the card link must be reachable via keyboard').toBe(true);
+
+    const focus = await card.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return {
+        focusVisible: el.matches(':focus-visible'),
+        outlineStyle: cs.outlineStyle,
+        outlineWidth: cs.outlineWidth,
+        outlineColor: cs.outlineColor,
+      };
+    });
+    expect(focus.focusVisible, ':focus-visible must match for keyboard focus').toBe(true);
+    expect(focus.outlineStyle).not.toBe('none');
+    expect(parseFloat(focus.outlineWidth)).toBeGreaterThan(0);
+    // The focus ring uses the design token (rgb(124, 156, 255) = #7C9CFF).
+    expect(focus.outlineColor).toBe('rgb(124, 156, 255)');
   });
 });
