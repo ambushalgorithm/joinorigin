@@ -8,10 +8,11 @@ import { gsap } from '../lib/gsap';
 
 import { DEFAULT_ACCENT, PAGE_SCHEMES, type PageAccentKey } from './menuTokens';
 import { SECTION_BAND_BORDER, SECTION_BAND_GLASS } from './menuTokens';
+import { SCROLL_TRIGGER_START } from './motion';
 
 /**
  * Glass section band (spec sprint-10-menu-redesign §4.7, GSAP elevation
- * sprint-10-menu-anim §5.6).
+ * sprint-10-menu-anim §5.6, Story B sprint-22 pre-entry trigger).
  *
  * Gives the menu-page body rhythm: sections alternate between plain canvas
  * and full-bleed glass bands (blurred, bordered). The band extends
@@ -23,7 +24,12 @@ import { SECTION_BAND_BORDER, SECTION_BAND_GLASS } from './menuTokens';
  * - `glow`: paints the per-page glow `::before` AND renders a real
  *   `meshLayer` div (NOT a pseudo element) carrying the page's full-bleed
  *   mesh with `data-gsap-parallax="0.08"` so the first band's mesh drifts
- *   subtly on scroll.
+ *   subtly on scroll. The parallax scrub starts at `SCROLL_TRIGGER_START`
+ *   (element top ~150px BELOW the viewport bottom) so the drift is already
+ *   in motion when the band becomes visible (~90% viewport height entry).
+ *   Reduced-motion users get NO parallax — the mesh renders at its settled
+ *   static position (everything runs under `gsap.matchMedia()` +
+ *   `(prefers-reduced-motion: no-preference)`).
  *
  * Semantics: wrapper only — children keep their own `<section>`/headings and
  * their own `Reveal` wrappers.
@@ -88,7 +94,10 @@ export function SectionBand({
             ease: 'none',
             scrollTrigger: {
               trigger: bandRef.current,
-              start: 'top bottom',
+              // Story B: start the scrub ~150px BEFORE the band enters the
+              // viewport so the mesh drift is already mid-flight when the
+              // band becomes visible (~90% viewport height entry).
+              start: SCROLL_TRIGGER_START,
               end: 'bottom top',
               scrub: 0.6,
             },

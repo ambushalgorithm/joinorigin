@@ -63,11 +63,34 @@ export function useEntrance(): boolean {
 export const AVATAR_FLYIN_DELAYS = [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.3];
 
 /**
+ * Story B (Sprint 22): scroll-trigger pre-entry buffer.
+ *
+ * Scroll-triggered reveals/parallax now fire when the element's top edge is
+ * ~100–150px BELOW the viewport bottom edge — i.e. BEFORE the element enters
+ * the viewport ("~90% viewport height entry"). The animation therefore starts
+ * pre-entry and is already mid-flight by the time the element scrolls into
+ * view. Reduced-motion users get no tween/parallax at all (see Reveal.tsx and
+ * SectionBand.tsx — everything runs under `gsap.matchMedia()` +
+ * `(prefers-reduced-motion: no-preference)`), so elements render at their
+ * settled state.
+ */
+export const SCROLL_TRIGGER_BUFFER_PX = 150;
+
+/** ScrollTrigger start string for the pre-entry buffer (Reveal, SectionBand). */
+export const SCROLL_TRIGGER_START = `top bottom+=${SCROLL_TRIGGER_BUFFER_PX}px`;
+
+/** IntersectionObserver rootMargin for the same pre-entry buffer (useInView). */
+export const SCROLL_TRIGGER_ROOT_MARGIN = `0px 0px ${SCROLL_TRIGGER_BUFFER_PX}px 0px`;
+
+/**
  * IntersectionObserver-based `useInView` hook (design spec sprint-8
  * §4.3) for scroll-reveal animations.
  *
  * - Returns `{ ref, inView, mounted }`.
- * - Observes with `threshold: 0.15` and `rootMargin: 0px 0px -40px`.
+ * - Observes with `threshold: 0` and `rootMargin: SCROLL_TRIGGER_ROOT_MARGIN`
+ *   (`0px 0px 150px 0px` — the root box is expanded ~150px below the viewport
+ *   bottom, so `inView` flips to `true` while the element is still BELOW the
+ *   fold, pre-entry, matching the Reveal/ScrollTrigger contract).
  * - Fires once: `disconnect()` after the first intersecting observation.
  * - SSR-safe: `mounted` is `false` on the server and first client paint;
  *   `inView` becomes `true` on client mount if the element already
@@ -103,7 +126,10 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(options?: {
           }
         }
       },
-      { threshold: options?.threshold ?? 0.15, rootMargin: options?.rootMargin ?? '0px 0px -40px' },
+      {
+        threshold: options?.threshold ?? 0,
+        rootMargin: options?.rootMargin ?? SCROLL_TRIGGER_ROOT_MARGIN,
+      },
     );
 
     observer.observe(element);
