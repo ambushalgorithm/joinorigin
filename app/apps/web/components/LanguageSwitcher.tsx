@@ -55,6 +55,11 @@ function localeTargetPath(pathname: string, next: Locale): string {
  * it expands downward without floating right or overflowing the viewport, and
  * omits the EN hints to save space on small screens. The `footer` variant is
  * unchanged.
+ * Mobile-first (Sprint 22 Story A): at the researched 320px minimum viewport
+ * the `mobile-panel` variant is the only header-adjacent switcher — full-width
+ * trigger, in-flow downward listbox, `min-width: 0` — so nothing overflows
+ * the narrowest supported screens. The header variant hides below the tablet
+ * breakpoint via the tokenized `theme.breakpoints.tablet` media rule.
  *
  * Behavior contract (spec §6/§8): ARIA listbox pattern, full keyboard nav
  * (Enter/Space/Arrows/Home/End/Escape/Tab), focus return on close, and RTL
@@ -121,9 +126,11 @@ const Wrap = styled.div<{ $variant: NonNullable<LanguageSwitcherProps['variant']
   ${({ $variant }) =>
     $variant === 'header'
       ? css`
-          /* The mobile menu (≤768px) carries its own switcher; hide the
-             header one below the breakpoint (TASK-278). */
-          @media (max-width: 768px) {
+          /* The mobile menu (below the tablet breakpoint) carries its own
+             switcher; hide the header one there (TASK-278). The base 320px
+             layout therefore shows the mobile-panel variant instead of the
+             header one (Story A). */
+          @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
             display: none;
           }
         `
@@ -165,8 +172,9 @@ const Trigger = styled.button<{ $variant: NonNullable<LanguageSwitcherProps['var
     border-color: ${({ theme }) => theme.colors.primary};
   }
 
+  /* Visible keyboard focus ring (Story C) — brand focus token. */
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.colors.primary};
+    outline: 2px solid ${({ theme }) => theme.colors.focusRing};
     outline-offset: 2px;
   }
 `;
