@@ -33,11 +33,23 @@ import { SUPPORTED_LOCALES, useI18n, type Locale } from '@joinorigin/i18n';
  */
 
 /** The locale forced by a locale-prefixed pathname — `/de`, `/de/...`,
- *  `/en`, `/en/...`, `/pt-BR/...`, etc. `undefined` for unprefixed paths. */
+ *  `/en`, `/en/...`, `/pt-BR/...`, etc. `undefined` for unprefixed paths.
+ *
+ *  Story F (TASK-537): O(1) resolution instead of a 21-element array scan.
+ *  `useLocalizePath` runs this on EVERY client-side internal link render
+ *  (header, footer, card grids, …), so the linear `SUPPORTED_LOCALES.find`
+ *  was on the render hot path of every route. The first pathname segment IS
+ *  the locale prefix when it names a supported locale, so one Set lookup
+ *  replaces the scan with identical semantics (`/deutschland`, `/de-features`,
+ *  `/events` are NOT locales; `/` has no segment). */
+const LOCALE_SEGMENTS = new Set<string>(SUPPORTED_LOCALES);
+
 export function localeFromPathname(pathname: string): Locale | undefined {
-  return SUPPORTED_LOCALES.find(
-    (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
-  );
+  const segment = pathname.split('/')[1];
+  if (segment === undefined || !LOCALE_SEGMENTS.has(segment)) {
+    return undefined;
+  }
+  return segment as Locale;
 }
 
 /**
