@@ -79,24 +79,77 @@ export function citySlug(city: LocationCity): string {
 
 /* ------------------------------------------------------------------ *
  * Dataset lookups (G3 — real places only, never synthetic)
+ *
+ * The snapshot (cities/regions/countries) is static after module load, so
+ * the linear `.find` scans below (the city scan is ~50k rows) are built
+ * once into Maps (TASK-520). First-match semantics are preserved: when
+ * multiple snapshot rows share a slug, the FIRST row wins — exactly what
+ * the previous `.find` order returned.
  * ------------------------------------------------------------------ */
 
+let locationIndexes:
+  | {
+      cityBySlug: Map<string, LocationCity>;
+      cityByGeonameId: Map<number, LocationCity>;
+      regionById: Map<string, LocationRegion>;
+      regionBySlug: Map<string, LocationRegion>;
+      countryByIso2: Map<string, LocationCountry>;
+      countryBySlug: Map<string, LocationCountry>;
+    }
+  | undefined;
+
+function getLocationIndexes(): NonNullable<typeof locationIndexes> {
+  if (!locationIndexes) {
+    const snapshot = loadLocationSnapshot();
+    const cityBySlug = new Map<string, LocationCity>();
+    const cityByGeonameId = new Map<number, LocationCity>();
+    const regionById = new Map<string, LocationRegion>();
+    const regionBySlug = new Map<string, LocationRegion>();
+    const countryByIso2 = new Map<string, LocationCountry>();
+    const countryBySlug = new Map<string, LocationCountry>();
+
+    for (const city of snapshot.cities) {
+      if (!cityBySlug.has(citySlug(city))) cityBySlug.set(citySlug(city), city);
+      if (!cityByGeonameId.has(city.id)) cityByGeonameId.set(city.id, city);
+    }
+    for (const region of snapshot.regions) {
+      regionById.set(region.id, region);
+      if (!regionBySlug.has(regionSlug(region))) regionBySlug.set(regionSlug(region), region);
+    }
+    for (const country of snapshot.countries) {
+      countryByIso2.set(country.iso2, country);
+      if (!countryBySlug.has(countrySlug(country)))
+        countryBySlug.set(countrySlug(country), country);
+    }
+
+    locationIndexes = {
+      cityBySlug,
+      cityByGeonameId,
+      regionById,
+      regionBySlug,
+      countryByIso2,
+      countryBySlug,
+    };
+  }
+  return locationIndexes;
+}
+
 export function findCountry(iso2: string): LocationCountry | undefined {
-  return loadLocationSnapshot().countries.find((c) => c.iso2 === iso2);
+  return getLocationIndexes().countryByIso2.get(iso2);
 }
 
 export function findRegion(regionId: string): LocationRegion | undefined {
-  return loadLocationSnapshot().regions.find((r) => r.id === regionId);
+  return getLocationIndexes().regionById.get(regionId);
 }
 
 /** Find a country by its URL slug (the canonical `countrySlug` segment). */
 export function findCountryBySlug(slug: string): LocationCountry | undefined {
-  return loadLocationSnapshot().countries.find((c) => countrySlug(c) === slug);
+  return getLocationIndexes().countryBySlug.get(slug);
 }
 
 /** Find a region by its URL slug (the canonical `regionSlug` segment). */
 export function findRegionBySlug(slug: string): LocationRegion | undefined {
-  return loadLocationSnapshot().regions.find((r) => regionSlug(r) === slug);
+  return getLocationIndexes().regionBySlug.get(slug);
 }
 
 /**
@@ -116,7 +169,7 @@ export function findRegionBySlugOrFlagship(slug: string): LocationRegion | undef
 }
 
 export function findCityByGeonameId(geonameId: number): LocationCity | undefined {
-  return loadLocationSnapshot().cities.find((c) => c.id === geonameId);
+  return getLocationIndexes().cityByGeonameId.get(geonameId);
 }
 
 /**
@@ -154,7 +207,7 @@ export function findCityBySlug(slug: string): LocationCity | undefined {
     const pinned = findCityByGeonameId(pinnedId);
     if (pinned) return pinned;
   }
-  return loadLocationSnapshot().cities.find((c) => citySlug(c) === slug);
+  return getLocationIndexes().cityBySlug.get(slug);
 }
 
 /* ------------------------------------------------------------------ *
@@ -398,12 +451,20 @@ export const CONTENT_RICH_CITY_SLUGS: readonly string[] = [
  *  Slug-collision cities (london, madrid, los-angeles, san-francisco,
  *  vancouver, barcelona, taipei) resolve deterministically through
  *  `CONTENT_RICH_CITY_GEONAME_IDS` (TASK-484) — never a bare first-match
- *  snapshot row. */
+ *  snapshot row. Pure + deterministic, so the resolved set is memoized
+ *  (TASK-520); consumers are non-mutating (.filter/.map/.slice). */
+let contentRichCitiesCache: LocationCity[] | undefined;
+
 export function contentRichCities(): LocationCity[] {
-  return CONTENT_RICH_CITY_SLUGS.flatMap((slug) => {
-    const city = findCityBySlug(slug);
-    return city ? [city] : [];
-  });
+  if (!contentRichCitiesCache) {
+    const cities = CONTENT_RICH_CITY_SLUGS.flatMap((slug) => {
+      const city = findCityBySlug(slug);
+      return city ? [city] : [];
+    });
+    Object.freeze(cities);
+    contentRichCitiesCache = cities;
+  }
+  return contentRichCitiesCache;
 }
 
 /** Display name for a city card — flagship config overrides (e.g. "New York
@@ -797,13 +858,19 @@ export const LOCALE_CITY_SLUGS: Readonly<Record<Locale, readonly string[]>> = {
  * never header-dependent). Slug-collision cities resolve through
  * `CONTENT_RICH_CITY_GEONAME_IDS` (TASK-484), so the area reflects the
  * intended row's country (london → GB, never London, Ontario's CA).
+ * Pure + deterministic, so the per-locale set is memoized (TASK-520).
  */
+const localeCountryCodesCache = new Map<Locale, ReadonlySet<string>>();
+
 export function localeCountryCodes(locale: Locale): ReadonlySet<string> {
+  const cached = localeCountryCodesCache.get(locale);
+  if (cached) return cached;
   const codes = new Set<string>();
   for (const slug of LOCALE_CITY_SLUGS[locale]) {
     const city = findCityBySlug(slug);
     if (city) codes.add(city.countryIso2);
   }
+  localeCountryCodesCache.set(locale, codes);
   return codes;
 }
 
