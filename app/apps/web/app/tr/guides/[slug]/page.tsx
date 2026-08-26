@@ -59,7 +59,7 @@ export default async function TrGuidePage({ params }: TrGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/tr' },
           { name: 'Guides', path: guideHubPath('tr') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

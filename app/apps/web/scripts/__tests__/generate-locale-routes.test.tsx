@@ -387,12 +387,13 @@ describe('representative generated pages render + export metadata', () => {
     });
   });
 
-  it('EN static metadata emits the EN surface cluster (canonical /en/..., en + x-default → /en/)', () => {
+  it('EN static metadata emits the FULL 21-locale cluster (canonical /en/, G-10)', () => {
     expect(EnHome.metadata.alternates?.canonical).toBe('http://localhost:3100/en');
-    expect(EnHome.metadata.alternates?.languages).toEqual({
-      en: 'http://localhost:3100/en',
-      'x-default': 'http://localhost:3100/en',
-    });
+    const languages = EnHome.metadata.alternates?.languages as Record<string, string>;
+    expect(languages.en).toBe('http://localhost:3100/en');
+    expect(languages.de).toBe('http://localhost:3100/de');
+    expect(languages['x-default']).toBe('http://localhost:3100/en');
+    expect(Object.keys(languages)).toHaveLength(21 + 1);
   });
 
   it('de/features renders the shared view with a single H1', () => {

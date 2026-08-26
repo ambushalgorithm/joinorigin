@@ -27,10 +27,11 @@
 
 import type { Metadata } from 'next';
 
-import { SUPPORTED_LOCALES, type Locale } from '@joinorigin/i18n';
+import { getDictionary, getT, type Locale } from '@joinorigin/i18n';
 
 import { getGuideContent, hasContent } from './content';
 import type { GuideContent } from './content/types';
+import type { FaqEntry } from './jsonLd';
 import {
   cityDisplayName,
   citySlug,
@@ -42,7 +43,7 @@ import {
   localeCountryCodes,
   regionSlug,
 } from './locationData';
-import { createMetadata } from './metadata';
+import { createMetadata, fullLocaleLanguages } from './metadata';
 import { absoluteUrl } from './url';
 
 /** Guide hub path (L2a — design §4.1). */
@@ -82,6 +83,13 @@ export interface GuidePageEntry {
   /** Content locale of this entry — 'en' on the canonical surface. */
   locale: Locale;
   title: string;
+  /**
+   * Visible H1 — the document title with the `| JoinOrigin` brand suffix
+   * stripped (G-9, sprint-24 gap-analysis §6): the `<title>` keeps the
+   * suffix, the H1 and hub card titles drop it. Honors the content
+   * `heading` override when authored.
+   */
+  heading: string;
   description: string;
   /** Deterministic `lastmod` source (fixed release date — §9.1). */
   lastModified: string;
@@ -108,6 +116,14 @@ export function guidePath(slug: string, locale: Locale = 'en'): string {
 function defaultTitle(slug: string): string {
   const human = slug.replace(/-/g, ' ');
   return `How to ${human.charAt(0).toUpperCase()}${human.slice(1)} | JoinOrigin`;
+}
+
+/** The visible H1 for a guide — the document title with the `| JoinOrigin`
+ *  brand suffix stripped (G-9). A content `heading` override wins when
+ *  authored; otherwise the suffix is removed from the title. */
+export function guideHeading(title: string, headingOverride?: string): string {
+  if (headingOverride) return headingOverride;
+  return title.replace(/\s*\|\s*JoinOrigin\s*$/, '');
 }
 
 /**
@@ -175,12 +191,14 @@ export function guidePageEntries(locale: Locale = 'en'): GuidePageEntry[] {
     if (!content) {
       throw new Error(`[guides] missing committed content for guide "${slug}" (locale ${locale})`);
     }
+    const title = content.title ?? defaultTitle(slug);
     return {
       params: { slug },
       path: guidePath(slug, locale),
       slug,
       locale,
-      title: content.title ?? defaultTitle(slug),
+      title,
+      heading: guideHeading(title, content.heading),
       description:
         content.description ?? 'Practical, evergreen steps for building and running communities.',
       lastModified: GUIDES_RELEASE_DATE,
@@ -213,12 +231,14 @@ export function guidePageEntriesWithFallback(locale: Locale = 'en'): GuidePageEn
     if (!content) {
       throw new Error(`[guides] missing committed content for guide "${slug}" (locale ${locale})`);
     }
+    const title = content.title ?? defaultTitle(slug);
     return {
       params: { slug },
       path: guidePath(slug, locale),
       slug,
       locale,
-      title: content.title ?? defaultTitle(slug),
+      title,
+      heading: guideHeading(title, content.heading),
       description:
         content.description ?? 'Practical, evergreen steps for building and running communities.',
       lastModified: GUIDES_RELEASE_DATE,
@@ -251,11 +271,12 @@ export function guidePageForLocale(
  * ------------------------------------------------------------------ */
 
 /**
- * `alternates.languages` for a guide page. A locale surface page lists its
- * locale self + `en` + `x-default` → EN canonical (mirrors the Berlin de
- * location surface). An EN canonical page lists every locale with committed
- * translated content + `x-default` → EN; when no translation exists the
- * cluster is omitted (phase A parity with EN-only location pages).
+ * `alternates.languages` for a guide page (G-10, sprint-24 gap-analysis §6):
+ * the FULL hreflang cluster matching the sitemap xhtml:link set. A locale
+ * surface page lists its locale self + `en` + `x-default` → EN canonical; an
+ * EN canonical page lists every `/<locale>/guides/<slug>` counterpart (all
+ * 21 locale guide routes are live generated wrappers with EN-fallback
+ * content, so the cluster is never omitted).
  */
 export function guideLanguagesFor(
   slug: string,
@@ -268,22 +289,15 @@ export function guideLanguagesFor(
       'x-default': absoluteUrl(guidePath(slug, 'en')),
     };
   }
-  const alternatives: Record<string, string> = {
+  return {
+    ...fullLocaleLanguages(guidePath(slug, 'en')),
     en: absoluteUrl(guidePath(slug, 'en')),
     'x-default': absoluteUrl(guidePath(slug, 'en')),
   };
-  for (const other of SUPPORTED_LOCALES) {
-    if (other === 'en') continue;
-    if (hasContent('guide', slug, other)) {
-      alternatives[other] = absoluteUrl(guidePath(slug, other));
-    }
-  }
-  return Object.keys(alternatives).length > 2 ? alternatives : undefined;
 }
 
 /** `alternates.languages` for a guide hub page (same hreflang rules as
- *  `guideLanguagesFor`; the EN hub lists every locale hub that carries at
- *  least one translated guide). */
+ *  `guideLanguagesFor`; the EN hub lists every `/<locale>/guides` surface). */
 export function guideHubLanguagesFor(locale: Locale = 'en'): Record<string, string> | undefined {
   if (locale !== 'en') {
     return {
@@ -292,17 +306,11 @@ export function guideHubLanguagesFor(locale: Locale = 'en'): Record<string, stri
       'x-default': absoluteUrl(guideHubPath('en')),
     };
   }
-  const alternatives: Record<string, string> = {
+  return {
+    ...fullLocaleLanguages(guideHubPath('en')),
     en: absoluteUrl(guideHubPath('en')),
     'x-default': absoluteUrl(guideHubPath('en')),
   };
-  for (const other of SUPPORTED_LOCALES) {
-    if (other === 'en') continue;
-    if (guidePageEntries(other).length > 0) {
-      alternatives[other] = absoluteUrl(guideHubPath(other));
-    }
-  }
-  return Object.keys(alternatives).length > 2 ? alternatives : undefined;
 }
 
 /** Per-page metadata for a guide entry: canonical + OG/Twitter via the
@@ -373,4 +381,24 @@ export function listGuides(locale: Locale = 'en'): GuideContent[] {
   return GUIDE_SLUGS.map((slug) => getGuideContent(slug, locale)).filter(
     (content): content is GuideContent => content !== undefined,
   );
+}
+
+/**
+ * The `/guides` hub FAQ (G-12, sprint-24 gap-analysis §6) — the generic
+ * platform FAQ (the same translated `home.faq.*` keys the homepage renders,
+ * resolved per-locale with EN fallback) so the hub carries a visible FAQ
+ * block mirrored 1:1 in `FAQPage` JSON-LD. No new dictionary keys are
+ * introduced — the keys already exist in all 21 locale files.
+ */
+export function guideHubFaq(locale: Locale = 'en'): FaqEntry[] {
+  const t = getT(getDictionary(locale));
+  const enT = getT(getDictionary('en'));
+  const resolve = (key: string): string => {
+    const localized = t(key);
+    return localized === key ? enT(key) : localized;
+  };
+  return [1, 2, 3, 4, 5].map((n) => ({
+    question: resolve(`home.faq.q${n}.question`),
+    answer: resolve(`home.faq.q${n}.answer`),
+  }));
 }

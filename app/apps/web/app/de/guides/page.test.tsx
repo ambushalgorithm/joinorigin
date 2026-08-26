@@ -71,11 +71,11 @@ describe('/de/guides hub (TASK-421)', () => {
     expect(headings).toHaveLength(1);
     // Every committed de guide card links to the locale-prefixed path…
     for (const entry of guidePageEntries('de')) {
-      expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
+      expect(screen.getByRole('link', { name: entry.heading })).toHaveAttribute('href', entry.path);
     }
     // …and the hub lists ALL guides (untranslated ones fall back to EN).
     for (const entry of guidePageEntriesWithFallback('de')) {
-      expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
+      expect(screen.getByRole('link', { name: entry.heading })).toHaveAttribute('href', entry.path);
     }
   });
 });

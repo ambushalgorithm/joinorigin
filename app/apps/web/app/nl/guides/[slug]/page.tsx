@@ -59,7 +59,7 @@ export default async function NlGuidePage({ params }: NlGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/nl' },
           { name: 'Guides', path: guideHubPath('nl') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

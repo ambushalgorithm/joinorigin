@@ -21,3 +21,14 @@ export const SITE = {
   /** Brand background (`@joinorigin/design` colors.background) — used for theme-color. */
   themeColor: '#0A1022',
 } as const;
+
+/**
+ * Real social profile URLs for the brand (G-7, sprint-24 gap-analysis).
+ *
+ * Populate with the provisioned X / GitHub / LinkedIn / YouTube profile URLs
+ * when they exist. The `Organization.sameAs` JSON-LD property is emitted
+ * ONLY when this array is non-empty (an empty `sameAs` array is an
+ * unfinished-template signal to crawlers), so until profiles exist the
+ * property is omitted from the structured data entirely.
+ */
+export const SOCIAL_PROFILES: readonly string[] = [];

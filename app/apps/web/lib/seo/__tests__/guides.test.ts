@@ -14,6 +14,8 @@ import {
   GLOSSARY_HUB_PATH,
   GUIDES_HUB_PATH,
   GUIDE_SLUGS,
+  guideHeading,
+  guideHubFaq,
   guideHubLanguagesFor,
   guideHubMetadata,
   guideHubPath,
@@ -361,6 +363,31 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     expect(untranslated?.description).toBe(getGuideContent('organize-a-meetup', 'de')?.description);
   });
 
+  it('G-9 — every registry entry separates the document title from the visible H1 (heading drops `| JoinOrigin`)', () => {
+    for (const entry of guidePageEntries()) {
+      expect(entry.title).toContain('| JoinOrigin');
+      expect(entry.heading).toBe(entry.title.replace(/\s*\|\s*JoinOrigin\s*$/, ''));
+      expect(entry.heading).not.toContain('| JoinOrigin');
+    }
+    // The helper honors an authored `heading` override and strips otherwise.
+    expect(guideHeading('How to Moderate a Community | JoinOrigin')).toBe(
+      'How to Moderate a Community',
+    );
+    expect(guideHeading('How to Moderate a Community | JoinOrigin', 'Moderate a community')).toBe(
+      'Moderate a community',
+    );
+  });
+
+  it('G-12 — the guides-hub FAQ resolves the translated home FAQ keys per locale', () => {
+    const en = guideHubFaq('en');
+    expect(en).toHaveLength(5);
+    expect(en[0].question).toBe('What is JoinOrigin?');
+    const de = guideHubFaq('de');
+    expect(de).toHaveLength(5);
+    expect(de[0].question).toBe('Was ist JoinOrigin?');
+    expect(de[0].answer.length).toBeGreaterThan(0);
+  });
+
   it('locale surfaces emit self + en + x-default → EN canonical hreflang at /en/', () => {
     expect(guideLanguagesFor('start-a-community', 'de')).toEqual({
       de: 'http://localhost:3100/de/guides/start-a-community',
@@ -394,6 +421,7 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
       slug: 'start-a-community',
       locale: 'de',
       title: 'Gemeinschaft aufbauen | JoinOrigin',
+      heading: 'Gemeinschaft aufbauen',
       description: 'Praktische Schritte für den Aufbau von Gemeinschaften.',
       lastModified: '2026-08-14',
       priority: 0.7,
@@ -416,6 +444,7 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
       slug: 'start-a-community',
       locale: 'en',
       title: 'How to Start a Community | JoinOrigin',
+      heading: 'How to Start a Community',
       description: 'Practical, evergreen steps for building and running communities.',
       lastModified: '2026-08-14',
       priority: 0.7,
@@ -439,7 +468,7 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     );
   });
 
-  it('EN canonical guide pages list every translated locale once translations exist', () => {
+  it('EN canonical guide pages emit the FULL 21-locale cluster (G-10)', () => {
     const hasContentMock = contentModule.hasContent as jest.Mock;
     hasContentMock.mockImplementation(
       (kind: string, slug: string, locale: string) =>
@@ -458,12 +487,17 @@ describe('lib/seo guides — locale-aware loader + hreflang (TASK-421)', () => {
     }
   });
 
-  it('EN surfaces omit the hreflang cluster until a translation is committed (phase A parity)', () => {
+  it('EN guide pages + hubs carry the FULL cluster even with zero translations (G-10 — all locale routes are live)', () => {
     const hasContentMock = contentModule.hasContent as jest.Mock;
     hasContentMock.mockImplementation(() => false);
     try {
-      expect(guideLanguagesFor('start-a-community', 'en')).toBeUndefined();
-      expect(guideHubLanguagesFor('en')).toBeUndefined();
+      const languages = guideLanguagesFor('start-a-community', 'en');
+      expect(languages?.en).toBe('http://localhost:3100/en/guides/start-a-community');
+      expect(languages?.de).toBe('http://localhost:3100/de/guides/start-a-community');
+      expect(Object.keys(languages ?? {})).toHaveLength(SUPPORTED_LOCALES.length + 1);
+      const hubLanguages = guideHubLanguagesFor('en');
+      expect(hubLanguages?.de).toBe('http://localhost:3100/de/guides');
+      expect(Object.keys(hubLanguages ?? {})).toHaveLength(SUPPORTED_LOCALES.length + 1);
     } finally {
       hasContentMock.mockRestore();
     }

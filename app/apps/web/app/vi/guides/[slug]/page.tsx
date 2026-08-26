@@ -59,7 +59,7 @@ export default async function ViGuidePage({ params }: ViGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/vi' },
           { name: 'Guides', path: guideHubPath('vi') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

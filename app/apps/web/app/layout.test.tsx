@@ -185,6 +185,13 @@ describe('root layout', () => {
         expect.stringContaining('/fonts/urbanist.css'),
       ]),
     );
+    // G-16 — the llms.txt index (and its full-text companion) are
+    // self-discoverable from every HTML page.
+    const llms = Array.from(container.querySelectorAll<HTMLLinkElement>('link[rel="llms.txt"]'));
+    expect(llms.map((link) => link.getAttribute('href'))).toEqual(['/llms.txt']);
+    expect(
+      container.querySelector<HTMLLinkElement>('link[rel="alternate"][href="/llms-full.txt"]'),
+    ).not.toBeNull();
   });
 
   it('inlines the critical first-paint body background so no white flash occurs (TASK-404)', async () => {

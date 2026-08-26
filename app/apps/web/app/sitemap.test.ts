@@ -5,13 +5,8 @@ import { SUPPORTED_LOCALES, type Locale } from '@joinorigin/i18n';
 import sitemap from './sitemap';
 import { getDatasetVersion } from '../lib/seo/locationData';
 import { indexableLocationEntries, locationPageEntries } from '../lib/seo/locationPages';
-import {
-  GUIDE_SLUGS,
-  guideLanguagesFor,
-  guidePageEntries,
-  GUIDES_RELEASE_DATE,
-} from '../lib/seo/guides';
-import { ROUTES, SITE_RELEASE_DATE } from '../lib/seo/routes';
+import { GUIDE_SLUGS, guideLanguagesFor, guidePageEntries } from '../lib/seo/guides';
+import { ROUTES } from '../lib/seo/routes';
 import { absoluteUrl } from '../lib/seo/url';
 
 /**
@@ -24,6 +19,12 @@ import { absoluteUrl } from '../lib/seo/url';
  * their `/en/**` surface — unprefixed `/**` is never canonical (it
  * 307-redirects at the proxy).
  *
+ * Sprint 24 (G-14): `/signup` joins the static set (21 locales); `lastmod`
+ * is emitted ONLY where per-URL content-change data is maintained (location
+ * entries use the dataset version date) — static routes and guides drop it.
+ * Sprint 24 (G-10): EN pages carry the FULL 21-locale hreflang cluster
+ * (all `/<locale>/**` wrappers are live generated routes).
+ *
  * Sprint 20: per-locale surfaces now enumerate every committed content city
  * (de Berlin + Munich, es 8, ar 3, hi 6, …) × its variants + ideas — the de
  * indexable set grows beyond 7, EN-only content-rich Tier-3 pages (e.g.
@@ -34,13 +35,13 @@ import { absoluteUrl } from '../lib/seo/url';
  *  - parity: for every locale, every indexable page (static routes +
  *    indexable locations + guides + hubs) appears exactly once, and nothing
  *    else does (no drift, no orphans),
- *  - determinism: `lastModified` is pinned to the dataset version date /
- *    fixed release dates — never `new Date()`,
+ *  - determinism: `lastModified` is pinned to the dataset version date for
+ *    location entries and absent elsewhere — never `new Date()`,
  *  - indexation: no Tier-3 / failed-gate page is published (D8),
  *  - hreflang: every non-EN URL carries self + `en` + `x-default` → EN
  *    canonical at `/en/...`; every EN URL carries the full cluster of live
- *    alternates (all 21 locales for static routes / guides / hubs; committed
- *    content only for locations — e.g. Berlin/Munich `de`, dubai `ar`).
+ *    alternates (all 21 locales for static routes / guides / hubs /
+ *    location pages — G-10).
  */
 
 type SitemapEntry = {
@@ -65,6 +66,9 @@ function prefixedPath(locale: Locale, path: string): string {
   return path === '/' ? `/${locale}` : `/${locale}${path}`;
 }
 
+/** The full static set — ROUTES + glossary hub + signup (G-14). */
+const STATIC_ROUTE_PATHS: string[] = [...ROUTES.map((route) => route.path), '/glossary', '/signup'];
+
 describe('app/sitemap — parity with live pages across all 21 locale surfaces', () => {
   const entries = sitemap() as unknown as SitemapEntry[];
   const paths = entries.map(pathOf);
@@ -79,9 +83,13 @@ describe('app/sitemap — parity with live pages across all 21 locale surfaces',
     }
   });
 
-  it('lists the glossary + guides hubs exactly once per locale surface', () => {
+  it('lists the glossary + signup + guides hubs exactly once per locale surface', () => {
     for (const locale of SUPPORTED_LOCALES) {
-      for (const path of [prefixedPath(locale, '/glossary'), prefixedPath(locale, '/guides')]) {
+      for (const path of [
+        prefixedPath(locale, '/glossary'),
+        prefixedPath(locale, '/signup'),
+        prefixedPath(locale, '/guides'),
+      ]) {
         expect(paths).toContain(path);
         const matches = paths.filter((candidate) => candidate === path);
         expect(matches).toHaveLength(1);
@@ -175,8 +183,7 @@ describe('app/sitemap — parity with live pages across all 21 locale surfaces',
   it('publishes exactly the known indexable set (no drift, no orphans)', () => {
     const expected = new Set<string>();
     for (const locale of SUPPORTED_LOCALES) {
-      for (const route of ROUTES) expected.add(prefixedPath(locale, route.path));
-      expected.add(prefixedPath(locale, '/glossary'));
+      for (const route of STATIC_ROUTE_PATHS) expected.add(prefixedPath(locale, route));
       for (const entry of indexableLocationEntries(locale)) expected.add(entry.path);
       for (const entry of guidePageEntries(locale)) expected.add(entry.path);
       expected.add(prefixedPath(locale, '/guides'));
@@ -189,25 +196,22 @@ describe('app/sitemap — deterministic lastModified (never new Date)', () => {
   const entries = sitemap() as unknown as SitemapEntry[];
   const datasetVersion = getDatasetVersion();
 
-  const expected = new Map<string, string>();
-  for (const locale of SUPPORTED_LOCALES) {
-    for (const route of ROUTES) expected.set(prefixedPath(locale, route.path), SITE_RELEASE_DATE);
-    expected.set(prefixedPath(locale, '/glossary'), GUIDES_RELEASE_DATE);
-    for (const entry of indexableLocationEntries(locale)) {
-      expected.set(entry.path, entry.lastModified);
-    }
-    for (const entry of guidePageEntries(locale)) {
-      expected.set(entry.path, entry.lastModified);
-    }
-    expected.set(prefixedPath(locale, '/guides'), GUIDES_RELEASE_DATE);
-  }
-
-  it('pins every entry to a deterministic date matching its registry source', () => {
-    expect(entries.length).toBe(expected.size);
-    for (const entry of entries) {
-      const path = pathOf(entry);
-      expect(entry.lastModified).toBe(expected.get(path));
-      expect(String(entry.lastModified)).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  it('G-14 — static routes and guides DROP lastmod (no per-URL content-change data)', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      for (const route of STATIC_ROUTE_PATHS) {
+        const entry = entries.find(
+          (candidate) => pathOf(candidate) === prefixedPath(locale, route),
+        );
+        expect(entry?.lastModified).toBeUndefined();
+      }
+      for (const entry of guidePageEntries(locale)) {
+        const sitemapEntry = entries.find((candidate) => pathOf(candidate) === entry.path);
+        expect(sitemapEntry?.lastModified).toBeUndefined();
+      }
+      const hubEntry = entries.find(
+        (candidate) => pathOf(candidate) === prefixedPath(locale, '/guides'),
+      );
+      expect(hubEntry?.lastModified).toBeUndefined();
     }
   });
 
@@ -290,7 +294,7 @@ describe('app/sitemap — hreflang clusters across all 21 locale surfaces', () =
       }
       expect(languages?.['x-default']).toBe(absoluteUrl(prefixedPath('en', route.path)));
     }
-    for (const path of ['/glossary', '/guides']) {
+    for (const path of ['/glossary', '/signup', '/guides']) {
       const languages = languageKeys(byPath.get(prefixedPath('en', path)) as SitemapEntry);
       expect(languages).toBeDefined();
       for (const locale of SUPPORTED_LOCALES) {
@@ -299,7 +303,7 @@ describe('app/sitemap — hreflang clusters across all 21 locale surfaces', () =
       expect(languages?.['x-default']).toBe(absoluteUrl(prefixedPath('en', path)));
     }
     // EN guide pages: the hreflang cluster mirrors guideLanguagesFor exactly
-    // (self at /en/guides/<slug>, every translated locale, x-default → /en/).
+    // (self at /en/guides/<slug>, every locale, x-default → /en/).
     for (const entry of guidePageEntries('en')) {
       const languages = languageKeys(byPath.get(entry.path) as SitemapEntry);
       expect(languages).toBeDefined();
@@ -307,35 +311,17 @@ describe('app/sitemap — hreflang clusters across all 21 locale surfaces', () =
     }
   });
 
-  it('EN location pages list every locale with committed content; EN-only pages carry no cluster', () => {
-    // Sprint 20: committed per-locale content exists for many cities now (de
-    // berlin/munich, es 8, ar 3, hi 6, fr 2, pt-BR 3, ja 2, zh-TW 2, …) — an
-    // EN page carries a cluster iff ANY locale surface enumerates the same
-    // path (committed content only, phase A). Recompute the committed sets
-    // exactly like locationView's COMMITTED_PATHS to stay in lockstep.
-    const committedEnPaths = new Set<string>();
-    for (const locale of SUPPORTED_LOCALES) {
-      if (locale === 'en') continue;
-      for (const entry of locationPageEntries(locale)) {
-        committedEnPaths.add(entry.path.replace(new RegExp(`^/${locale}`), '/en'));
-      }
-    }
+  it('G-10 — EN location pages carry the FULL 21-locale cluster (matching the head hreflang)', () => {
     for (const entry of indexableLocationEntries('en')) {
       const sitemapEntry = byPath.get(entry.path) as SitemapEntry;
-      if (committedEnPaths.has(entry.path)) {
-        const languages = languageKeys(sitemapEntry);
-        expect(languages).toBeDefined();
-        expect(languages?.['en']).toBe(absoluteUrl(entry.path));
-        expect(languages?.['x-default']).toBe(absoluteUrl(entry.path));
-      } else {
-        // Phase A — EN-only pages (hub/country/region/cities without
-        // committed translations) have no hreflang.
-        expect(languageKeys(sitemapEntry)).toBeUndefined();
-      }
+      const languages = languageKeys(sitemapEntry);
+      expect(languages).toBeDefined();
+      expect(languages?.['en']).toBe(absoluteUrl(entry.path));
+      expect(languages?.['de']).toBe(absoluteUrl(entry.path.replace(/^\/en/, '/de')));
+      expect(languages?.['x-default']).toBe(absoluteUrl(entry.path));
+      expect(Object.keys(languages ?? {})).toHaveLength(SUPPORTED_LOCALES.length + 1);
     }
-    // Spot-check the new per-locale clusters: dubai → ar, buenos-aires → es,
-    // munich → de (each a content-rich Tier-2 city with a committed
-    // translation on its surface).
+    // Spot-check a few per-locale counterparts of EN cities.
     const spot = (city: string, locale: Locale, pathPart: string) => {
       const enCity = indexableLocationEntries('en').find(
         (entry) => entry.kind === 'city' && entry.params.city === city,
@@ -343,7 +329,6 @@ describe('app/sitemap — hreflang clusters across all 21 locale surfaces', () =
       expect(enCity).toBeDefined();
       const sitemapEntry = byPath.get(enCity!.path) as SitemapEntry;
       const languages = languageKeys(sitemapEntry);
-      expect(languages).toBeDefined();
       expect(languages?.[locale]).toBe(absoluteUrl(enCity!.path.replace(/^\/en/, `/${locale}`)));
       expect(enCity!.path).toContain(pathPart);
     };
@@ -393,6 +378,9 @@ describe('app/sitemap — changeFrequency/priority preserved per surface', () =>
       expect(byPath.get(prefixedPath(locale, '/'))?.priority).toBe(1);
       expect(byPath.get(prefixedPath(locale, '/glossary'))?.changeFrequency).toBe('weekly');
       expect(byPath.get(prefixedPath(locale, '/glossary'))?.priority).toBe(0.6);
+      // G-14 — the signup page joins the static set (monthly/0.8).
+      expect(byPath.get(prefixedPath(locale, '/signup'))?.changeFrequency).toBe('monthly');
+      expect(byPath.get(prefixedPath(locale, '/signup'))?.priority).toBe(0.8);
     }
   });
 

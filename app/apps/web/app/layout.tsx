@@ -152,6 +152,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
         <link rel="stylesheet" href="/fonts/inter.css" />
         <link rel="stylesheet" href="/fonts/urbanist.css" />
+        {/* LLM-crawler self-discovery (G-16, sprint-24 gap-analysis §6): the
+            llms.txt index is linked from every HTML page so crawlers find it
+            without relying on convention; llms-full.txt is the full-text
+            companion. */}
+        <link rel="llms.txt" href="/llms.txt" />
+        <link
+          rel="alternate"
+          type="text/plain"
+          href="/llms-full.txt"
+          title="JoinOrigin llms-full.txt"
+        />
       </head>
       <body suppressHydrationWarning style={{ backgroundColor: 'rgb(10, 16, 34)' }}>
         <Registry>

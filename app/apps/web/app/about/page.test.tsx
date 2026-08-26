@@ -66,7 +66,9 @@ describe('about page', () => {
     expect(payloads.some((p) => p['@type'] === 'AboutPage')).toBe(true);
     const breadcrumb = payloads.find((p) => p['@type'] === 'BreadcrumbList');
     expect(breadcrumb?.itemListElement).toHaveLength(2);
-    expect(breadcrumb?.itemListElement[1].item).toBe('http://localhost:3100/about');
+    // G-8 — every breadcrumb item normalizes to the canonical /en/** surface.
+    expect(breadcrumb?.itemListElement[0].item).toBe('http://localhost:3100/en');
+    expect(breadcrumb?.itemListElement[1].item).toBe('http://localhost:3100/en/about');
   });
 });
 

@@ -1,3 +1,5 @@
+import { SUPPORTED_LOCALES } from '@joinorigin/i18n';
+
 import { SITE } from '../site';
 import { absoluteUrl } from '../url';
 import { ROUTES } from '../routes';
@@ -139,7 +141,7 @@ describe('lib/seo createMetadata', () => {
     });
   });
 
-  it('emits the EN surface cluster for locale=en: canonical /en/... + en + x-default → /en/', () => {
+  it('emits the FULL 21-locale cluster for locale=en (G-10): canonical /en/... + every /<locale>/ counterpart', () => {
     const meta = createMetadata({
       title: 'T',
       description: 'D',
@@ -147,10 +149,11 @@ describe('lib/seo createMetadata', () => {
       locale: 'en',
     });
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/en/features'));
-    expect(meta.alternates?.languages).toEqual({
-      en: absoluteUrl('/en/features'),
-      'x-default': absoluteUrl('/en/features'),
-    });
+    const languages = meta.alternates?.languages as Record<string, string>;
+    expect(languages.en).toBe(absoluteUrl('/en/features'));
+    expect(languages.de).toBe(absoluteUrl('/de/features'));
+    expect(languages['x-default']).toBe(absoluteUrl('/en/features'));
+    expect(Object.keys(languages)).toHaveLength(SUPPORTED_LOCALES.length + 1);
   });
 
   it('prefixes an unprefixed path onto the EN surface (canonical /en/..., never unprefixed)', () => {
@@ -161,13 +164,13 @@ describe('lib/seo createMetadata', () => {
       locale: 'en',
     });
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/en/features'));
-    expect(meta.alternates?.languages).toEqual({
-      en: absoluteUrl('/en/features'),
-      'x-default': absoluteUrl('/en/features'),
-    });
+    const languages = meta.alternates?.languages as Record<string, string>;
+    expect(languages.en).toBe(absoluteUrl('/en/features'));
+    expect(languages.de).toBe(absoluteUrl('/de/features'));
+    expect(languages['x-default']).toBe(absoluteUrl('/en/features'));
   });
 
-  it('keeps the EN home surface at /en with the EN cluster', () => {
+  it('keeps the EN home surface at /en with the full cluster', () => {
     const meta = createMetadata({
       title: 'T',
       description: 'D',
@@ -175,10 +178,10 @@ describe('lib/seo createMetadata', () => {
       locale: 'en',
     });
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/en'));
-    expect(meta.alternates?.languages).toEqual({
-      en: absoluteUrl('/en'),
-      'x-default': absoluteUrl('/en'),
-    });
+    const languages = meta.alternates?.languages as Record<string, string>;
+    expect(languages.en).toBe(absoluteUrl('/en'));
+    expect(languages.de).toBe(absoluteUrl('/de'));
+    expect(languages['x-default']).toBe(absoluteUrl('/en'));
   });
 
   it('honors an explicit languages map over the locale-derived cluster', () => {
@@ -216,22 +219,23 @@ describe('lib/seo localizeMetadata (EN-fallback surface rewrite, TASK-458 + TASK
     expect(meta.openGraph?.title).toBe('Berlin — Communities in Berlin | JoinOrigin');
   });
 
-  it('rewrites the EN surface to /en/** with the EN cluster (TASK-466)', () => {
+  it('rewrites the EN surface to /en/** with the FULL 21-locale cluster (G-10)', () => {
     const meta = localizeMetadata(enMeta, 'en', '/location/germany/berlin');
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/en/location/germany/berlin'));
-    expect(meta.alternates?.languages).toEqual({
-      en: absoluteUrl('/en/location/germany/berlin'),
-      'x-default': absoluteUrl('/en/location/germany/berlin'),
-    });
+    const languages = meta.alternates?.languages as Record<string, string>;
+    expect(languages.en).toBe(absoluteUrl('/en/location/germany/berlin'));
+    expect(languages.de).toBe(absoluteUrl('/de/location/germany/berlin'));
+    expect(languages['x-default']).toBe(absoluteUrl('/en/location/germany/berlin'));
+    expect(Object.keys(languages)).toHaveLength(SUPPORTED_LOCALES.length + 1);
   });
 
   it('accepts an already-/en-prefixed EN surface path idempotently', () => {
     const meta = localizeMetadata(enMeta, 'en', '/en/location/germany/berlin');
     expect(meta.alternates?.canonical).toBe(absoluteUrl('/en/location/germany/berlin'));
-    expect(meta.alternates?.languages).toEqual({
-      en: absoluteUrl('/en/location/germany/berlin'),
-      'x-default': absoluteUrl('/en/location/germany/berlin'),
-    });
+    const languages = meta.alternates?.languages as Record<string, string>;
+    expect(languages.en).toBe(absoluteUrl('/en/location/germany/berlin'));
+    expect(languages.de).toBe(absoluteUrl('/de/location/germany/berlin'));
+    expect(languages['x-default']).toBe(absoluteUrl('/en/location/germany/berlin'));
   });
 
   it('maps the EN root onto /<locale> (no trailing slash) and /en for the EN surface', () => {
@@ -248,13 +252,14 @@ describe('lib/seo JSON-LD builders', () => {
       name: string;
       url: string;
       logo: string;
-      sameAs: string[];
     };
     expect(data['@type']).toBe('Organization');
     expect(data.name).toBe('JoinOrigin');
     expect(data.url).toBe(absoluteUrl('/'));
     expect(data.logo).toBe(absoluteUrl('/assets/logo/joinorigin-logo.svg'));
-    expect(Array.isArray(data.sameAs)).toBe(true);
+    // G-7 — no real social profiles are provisioned yet, so the empty
+    // `sameAs` property is OMITTED (never `sameAs: []`).
+    expect('sameAs' in data).toBe(false);
   });
 
   it('website exposes name, url and language', () => {
@@ -269,15 +274,23 @@ describe('lib/seo JSON-LD builders', () => {
     expect(data.inLanguage).toBe('en');
   });
 
-  it('breadcrumbList builds Home › Page positions with absolute items', () => {
+  it('breadcrumbList builds Home › Page positions with canonicalized /en/** items (G-8)', () => {
     const data = breadcrumbList([
       { name: 'Home', path: '/' },
       { name: 'About', path: '/about' },
+      { name: 'Berlin', path: '/de/location/germany/berlin' },
     ]);
     const list = data.itemListElement as Array<{ position: number; name: string; item: string }>;
-    expect(list).toHaveLength(2);
-    expect(list[0]).toMatchObject({ position: 1, name: 'Home', item: absoluteUrl('/') });
-    expect(list[1]).toMatchObject({ position: 2, name: 'About', item: absoluteUrl('/about') });
+    expect(list).toHaveLength(3);
+    expect(list[0]).toMatchObject({ position: 1, name: 'Home', item: absoluteUrl('/en') });
+    expect(list[1]).toMatchObject({ position: 2, name: 'About', item: absoluteUrl('/en/about') });
+    // Already-prefixed locale paths pass through unchanged (canonical on
+    // their own surface).
+    expect(list[2]).toMatchObject({
+      position: 3,
+      name: 'Berlin',
+      item: absoluteUrl('/de/location/germany/berlin'),
+    });
   });
 
   it('faqPage mirrors visible question/answer pairs', () => {

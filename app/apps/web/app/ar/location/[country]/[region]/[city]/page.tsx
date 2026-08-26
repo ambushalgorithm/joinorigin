@@ -59,6 +59,7 @@ export default async function ArCityPage({ params }: ArCityPageProps) {
       <LocationView data={data} />
       {jsonLd.breadcrumbs ? <JsonLd data={jsonLd.breadcrumbs} /> : null}
       {jsonLd.faq ? <JsonLd data={jsonLd.faq} /> : null}
+      {jsonLd.city ? <JsonLd data={jsonLd.city} /> : null}
     </>
   );
 }

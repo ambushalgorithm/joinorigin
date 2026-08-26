@@ -47,6 +47,7 @@ export default async function ArLocationHubPage() {
     <>
       <LocationView data={data} />
       {jsonLd.breadcrumbs ? <JsonLd data={jsonLd.breadcrumbs} /> : null}
+      {jsonLd.faq ? <JsonLd data={jsonLd.faq} /> : null}
     </>
   );
 }

@@ -145,7 +145,10 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
     renderWithGuideI18n(<GuideView entry={entry} content={content} />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent(content.title ?? entry.title);
+    // G-9 — the visible H1 drops the `| JoinOrigin` brand suffix.
+    expect(headings[0]).toHaveTextContent(
+      (content.title ?? entry.title).replace(/\s*\|\s*JoinOrigin\s*$/, ''),
+    );
   });
 
   it('renders the definitional intro paragraphs and step-by-step structure', () => {
@@ -190,6 +193,10 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
       content.steps.length + 1,
     );
     expect(screen.getByTestId('guide-join-button')).toBeInTheDocument();
+    // G-2/G-15 (Sprint 24) — the guide CTA navigates to the locale-prefixed
+    // /signup route (the signup page replaced the waitlist modal) with the
+    // unified "Get Started" label.
+    expect(screen.getByRole('link', { name: 'Get Started' })).toHaveAttribute('href', '/en/signup');
     // Sibling guide link — resolved through the registry (TASK-444): href via
     // guidePath and title via guidePageEntry, never the humanized slug.
     // All-routes-prefixed (TASK-464 + TASK-466): the EN registry path is
@@ -310,9 +317,12 @@ describe('guide page wrapper', () => {
       const enContent = getGuideContent('start-a-community', 'en');
       if (!deContent || !enContent) throw new Error('missing guide fixtures');
 
-      // The body resolves the active locale — H1 + a step render German.
+      // The body resolves the active locale — H1 (suffix-stripped, G-9) + a
+      // step render German.
       const headings = screen.getAllByRole('heading', { level: 1 });
-      expect(headings[0]).toHaveTextContent(deContent.title ?? '');
+      expect(headings[0]).toHaveTextContent(
+        (deContent.title ?? '').replace(/\s*\|\s*JoinOrigin\s*$/, ''),
+      );
       expect(headings[0]).not.toHaveTextContent(enContent.title ?? '');
       expect(screen.getByText(deContent.steps[0].title)).toBeInTheDocument();
 
@@ -342,7 +352,7 @@ describe('guide page wrapper', () => {
       const enContent = getGuideContent('start-a-community', 'en');
       if (!enContent) throw new Error('missing guide content');
       expect(screen.getAllByRole('heading', { level: 1 })[0]).toHaveTextContent(
-        enContent.title ?? '',
+        (enContent.title ?? '').replace(/\s*\|\s*JoinOrigin\s*$/, ''),
       );
       // The loader tried the locale surface first, then the EN fallback.
       expect(forLocaleMock).toHaveBeenCalledWith('start-a-community', 'de');

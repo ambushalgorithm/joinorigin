@@ -173,6 +173,13 @@ export interface GuideStep {
 export interface GuideContent extends BaseContent {
   kind: 'guide';
   /**
+   * Visible H1 (G-9, sprint-24 gap-analysis §6) — the document title
+   * (`title`) keeps the `| JoinOrigin` brand suffix for SEO; the visible
+   * heading drops it. When absent, the registry/view strips the suffix from
+   * `title` at render, so guide content files do not need to change.
+   */
+  heading?: string;
+  /**
    * Definitional intro — an explicit array of paragraphs, each one a
    * standalone string rendered as its own paragraph block on the guide
    * page (TASK-351). The combined paragraphs must still clear the ≥150-word

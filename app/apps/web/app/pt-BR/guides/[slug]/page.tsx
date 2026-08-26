@@ -59,7 +59,7 @@ export default async function PtBRGuidePage({ params }: PtBRGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/pt-BR' },
           { name: 'Guides', path: guideHubPath('pt-BR') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

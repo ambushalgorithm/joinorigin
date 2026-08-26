@@ -59,7 +59,7 @@ export default async function UkGuidePage({ params }: UkGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/uk' },
           { name: 'Guides', path: guideHubPath('uk') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

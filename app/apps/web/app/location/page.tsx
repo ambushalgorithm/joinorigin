@@ -42,6 +42,7 @@ export default async function LocationHubPage() {
     <>
       <LocationView data={data} />
       {jsonLd.breadcrumbs ? <JsonLd data={jsonLd.breadcrumbs} /> : null}
+      {jsonLd.faq ? <JsonLd data={jsonLd.faq} /> : null}
     </>
   );
 }

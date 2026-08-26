@@ -366,9 +366,12 @@ export function LocationView({ data }: { data: LocationViewData }) {
   // TASK-516 — country/region/city crumbs re-resolve through the ACTIVE
   // locale via the per-crumb `nameLocalized` map (localized dataset names);
   // the server-baked `crumb.name` stays the pre-hydration fallback.
-  const crumbLabel = (crumb: (typeof data.breadcrumbs)[number]) => {
-    if (crumb.path === '/') return t('seoContent.breadcrumb.home');
-    if (crumb.path === '/location') return t('seoContent.breadcrumb.hub');
+  // G-8 — crumbs now carry surface-prefixed paths (`/en`, `/de/location`,
+  // …), so the home/hub chrome re-resolves by POSITION (first = home,
+  // second = hub) instead of the old unprefixed path values.
+  const crumbLabel = (crumb: (typeof data.breadcrumbs)[number], index: number) => {
+    if (index === 0) return t('seoContent.breadcrumb.home');
+    if (index === 1) return t('seoContent.breadcrumb.hub');
     return crumb.nameLocalized?.[activeLocale] ?? crumb.name;
   };
 
@@ -427,12 +430,14 @@ export function LocationView({ data }: { data: LocationViewData }) {
             {data.breadcrumbs.map((crumb, index) =>
               index === data.breadcrumbs.length - 1 ? (
                 <BreadcrumbItem key={crumb.path}>
-                  <BreadcrumbCurrent aria-current="page">{crumbLabel(crumb)}</BreadcrumbCurrent>
+                  <BreadcrumbCurrent aria-current="page">
+                    {crumbLabel(crumb, index)}
+                  </BreadcrumbCurrent>
                 </BreadcrumbItem>
               ) : (
                 <BreadcrumbItem key={crumb.path}>
                   <BreadcrumbLink href={localizePath(crumb.path)}>
-                    {crumbLabel(crumb)}
+                    {crumbLabel(crumb, index)}
                   </BreadcrumbLink>
                 </BreadcrumbItem>
               ),

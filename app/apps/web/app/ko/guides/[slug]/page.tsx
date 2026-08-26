@@ -59,7 +59,7 @@ export default async function KoGuidePage({ params }: KoGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/ko' },
           { name: 'Guides', path: guideHubPath('ko') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />
