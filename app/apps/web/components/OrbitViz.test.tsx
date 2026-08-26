@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { renderToString } from 'react-dom/server';
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
 
@@ -15,10 +16,26 @@ import OrbitViz from './OrbitViz';
  * + chip fly-ins are now GSAP-driven via the `orbit-{n}` / `orbit-chip` class
  * hooks (DOM transforms, verifiable in e2e). jsdom has no real scroll/ticker,
  * so we assert structure + GSAP hooks, not live rotation.
+ *
+ * G-5 SSR/static contract: the server-rendered hub shows the FINAL count
+ * ("2,400+", never "0+") because useCountUp initializes at the target.
  */
 
 function renderOrbit() {
   return render(
+    <I18nProvider locale="en" dictionary={getDictionary('en')}>
+      <NativeThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <OrbitViz />
+        </ThemeProvider>
+      </NativeThemeProvider>
+    </I18nProvider>,
+  );
+}
+
+/** Server-render the orbit exactly like SSR (effects never run). */
+function serverHtml(): string {
+  return renderToString(
     <I18nProvider locale="en" dictionary={getDictionary('en')}>
       <NativeThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
@@ -38,6 +55,17 @@ describe('OrbitViz', () => {
     }
     expect(screen.getByTestId('orbit-hub')).toBeInTheDocument();
     expect(container.querySelectorAll('.orbit-chip')).toHaveLength(9);
+  });
+
+  it('SSR/static HTML renders the FINAL hub count — no 0+ Members (G-5)', () => {
+    const html = serverHtml();
+    // React SSR splits text children with comment markers, so the CountValue
+    // span content is `2,400<!-- -->+` — assert on the visible hub fragment.
+    const hubHtml = html.slice(html.indexOf('data-testid="orbit-hub"'));
+    const countValue = hubHtml.match(/CountValue[^>]*>([\s\S]*?)<\/span>/)?.[1] ?? '';
+    expect(countValue).toContain('2,400');
+    // The visible count must not start at the count-up 0 in static HTML.
+    expect(countValue.startsWith('0')).toBe(false);
   });
 
   it('exposes the GSAP class hooks (orbit-1..4 + orbit-chip)', () => {
