@@ -195,8 +195,14 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
     expect(screen.getByTestId('guide-join-button')).toBeInTheDocument();
     // G-2/G-15 (Sprint 24) — the guide CTA navigates to the locale-prefixed
     // /signup route (the signup page replaced the waitlist modal) with the
-    // unified "Get Started" label.
-    expect(screen.getByRole('link', { name: 'Get Started' })).toHaveAttribute('href', '/en/signup');
+    // unified "Get Started" label. The guide hero also renders the shared
+    // "Get Started" join CTA (HeroCta waitlist variant), so scope the href
+    // assertion to the guide-join-button anchor (TASK-559 disambiguation).
+    const guideCtaLink = screen.getByTestId('guide-join-button').closest('a');
+    expect(guideCtaLink).toHaveAttribute('href', '/en/signup');
+    for (const link of screen.getAllByRole('link', { name: 'Get Started' })) {
+      expect(link).toHaveAttribute('href', '/en/signup');
+    }
     // Sibling guide link — resolved through the registry (TASK-444): href via
     // guidePath and title via guidePageEntry, never the humanized slug.
     // All-routes-prefixed (TASK-464 + TASK-466): the EN registry path is

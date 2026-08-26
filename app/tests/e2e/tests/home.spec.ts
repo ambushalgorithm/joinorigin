@@ -6,8 +6,8 @@ import { leadsCsvRow, waitForHydration } from './helpers';
  * JoinOrigin homescreen e2e coverage (Sprint 3).
  *
  * The typewriter re-types on mount (400ms delay + 20ms/char ≈ 2.5s total),
- * so assertions on the final heading wait for it to complete. The waitlist
- * modal flow posts to the real dev server (`POST /api/leads`), which appends
+ * so assertions on the final heading wait for it to complete. The signup
+ * form posts to the real dev server (`POST /api/leads`), which appends
  * to `apps/web/data/leads.csv` — acceptable for the sprint-scope CSV.
  *
  * Story 3 (Expanded Signup): the browser-driven submission is asserted to
@@ -63,26 +63,33 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
   await expect(page.getByText('© 2026 JoinOrigin')).toBeVisible();
 });
 
-test('any CTA opens the waitlist modal and submission reaches the CSV API', async ({ page }) => {
+test('join CTAs navigate to the signup page and a submission reaches the CSV API', async ({
+  page,
+}) => {
   await page.goto('/');
   await waitForHydration(page);
 
   const email = `home.${Date.now()}@example.com`;
 
-  // Open from the hero Start Project button (any-button contract).
+  // Sprint 24 (TASK-556): the hero Start Project CTA is a real anchor to the
+  // locale-prefixed /signup route — the waitlist modal no longer opens.
   await page.getByTestId('start-project-button').click();
-  const modal = page.getByRole('dialog');
-  await expect(modal).toBeVisible();
-  await expect(modal).toContainText('Join the waitlist');
+  await page.waitForURL('**/en/signup');
+  await expect(page.getByTestId('signup-panel')).toBeVisible();
+  await expect(page.getByTestId('signup-heading')).toHaveText('Join the waitlist', {
+    timeout: 15_000,
+  });
 
-  // Submit name + email → success state.
-  await modal.getByTestId('waitlist-name-input').fill('Ada Lovelace');
-  await modal.getByTestId('waitlist-email-input').fill(email);
-  await modal.getByTestId('waitlist-submit').click();
+  // Submit name + email on the signup form → success state.
+  await page.getByTestId('signup-name-input').fill('Ada Lovelace');
+  await page.getByTestId('signup-email-input').fill(email);
+  await page.getByTestId('signup-submit').click();
 
-  await expect(modal).toContainText("You're on the list!", { timeout: 15_000 });
-  await modal.getByTestId('waitlist-done').click();
-  await expect(modal).not.toBeVisible();
+  await expect(page.getByText("You're on the list!", { exact: false })).toBeVisible({
+    timeout: 15_000,
+  });
+  await page.getByTestId('signup-done').click();
+  await expect(page.getByTestId('signup-form')).toBeVisible();
 
   // Story 3: the row is captured with the expanded schema and passive fields.
   const row = leadsCsvRow(email);
@@ -90,25 +97,27 @@ test('any CTA opens the waitlist modal and submission reaches the CSV API', asyn
   expect(row).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z,Ada Lovelace,/);
   expect(row).toContain(email.toLowerCase());
   // Browser-supplied passive fields are present (raw IP, resolved locale,
-  // user agent, referrer = the home page URL).
-  expect(row).toContain('http://127.0.0.1:3100/');
+  // user agent, referrer = the signup page URL).
+  expect(row).toContain('http://127.0.0.1:3100/en/signup');
 });
 
-test('waitlist modal validates bad input with inline field errors', async ({ page }) => {
+test('the signup form validates bad input with inline field errors', async ({ page }) => {
   await page.goto('/');
+  await waitForHydration(page);
 
   await page.getByTestId('get-started-button').click();
-  const modal = page.getByRole('dialog');
+  await page.waitForURL('**/en/signup');
+  await expect(page.getByTestId('signup-panel')).toBeVisible();
 
-  // Client submits; server responds 400 with the email field error.
-  // (A valid name is required first so the email rule is what fires.)
-  await modal.getByTestId('waitlist-name-input').fill('Ada Lovelace');
-  await modal.getByTestId('waitlist-email-input').fill('not-an-email');
-  await modal.getByTestId('waitlist-submit').click();
+  // Client submits; the form blocks with inline field errors (no dialog).
+  await page.getByTestId('signup-name-input').fill('Ada Lovelace');
+  await page.getByTestId('signup-email-input').fill('not-an-email');
+  await page.getByTestId('signup-submit').click();
 
-  await expect(modal.getByText('Enter a valid email address.')).toBeVisible({
+  await expect(page.getByText('Enter a valid email address.')).toBeVisible({
     timeout: 15_000,
   });
+  await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 
 test('Story A — home Concepts tiles are non-interactive cards (no nav, no hover highlight)', async ({

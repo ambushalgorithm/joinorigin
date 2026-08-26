@@ -43,7 +43,8 @@ test.describe.configure({ mode: 'serial' });
 
 /** Absolute page paths under test — the EN canonical /en/** surfaces (8
  *  HTML pages, discovery §4; /pricing removed). The unprefixed `/**`
- *  counterparts 307-redirect to these surfaces (TASK-464/466). */
+ *  counterparts 307-redirect to these surfaces (TASK-464/466). Sprint 24
+ *  (TASK-555/557): the indexable /en/signup surface is added. */
 const PATHS = [
   '/en',
   '/en/features',
@@ -53,6 +54,7 @@ const PATHS = [
   '/en/contact',
   '/en/privacy',
   '/en/terms',
+  '/en/signup',
 ];
 
 /** Expected per-page <title> (discovery §5 + layout default). */
@@ -65,7 +67,33 @@ const EXPECTED_TITLES: Record<string, string> = {
   '/en/contact': 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
   '/en/privacy': 'Privacy Policy | JoinOrigin',
   '/en/terms': 'Terms of Service | JoinOrigin',
+  '/en/signup': 'Sign Up — Create Your Account | JoinOrigin',
 };
+
+/** The 21 supported locales — mirrors `SUPPORTED_LOCALES` in @joinorigin/i18n. */
+const SUPPORTED_LOCALES = [
+  'en',
+  'es',
+  'pt-BR',
+  'fr',
+  'de',
+  'ru',
+  'ja',
+  'ko',
+  'zh-CN',
+  'zh-TW',
+  'ar',
+  'hi',
+  'id',
+  'tr',
+  'it',
+  'pl',
+  'nl',
+  'vi',
+  'th',
+  'uk',
+  'fa',
+] as const;
 
 /** Parse every `application/ld+json` block on the page → flat @type array. */
 async function ldTypes(page: Page): Promise<string[]> {
@@ -191,7 +219,7 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
 });
 
 test.describe('crawler entry points (arch §3.7–§3.9)', () => {
-  test('/sitemap.xml returns 200 and lists all 8 HTML pages', async ({ page }) => {
+  test('/sitemap.xml returns 200 and lists all indexable HTML pages', async ({ page }) => {
     const response = await page.goto('/sitemap.xml');
     expect(response?.status()).toBe(200);
     const contentType = response?.headers()['content-type'] ?? '';
@@ -232,7 +260,8 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
 
     // The EN canonical indexable set must be listed (static routes, glossary,
     // guides hub, flagships + Tier-2 city slice, all 12 guides) — every entry
-    // on its /en/** surface (all-routes-prefixed, TASK-464/466).
+    // on its /en/** surface (all-routes-prefixed, TASK-464/466). Sprint 24
+    // adds the /en/signup surface (TASK-557).
     const expectedIndexable = [
       ...PATHS,
       '/en/location',
@@ -286,29 +315,7 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
 
     // Sprint 19 Goal 1 + Q4 — every one of the 21 locale surfaces is
     // indexable (home + static routes + hubs on each /<locale> tree).
-    const SUPPORTED_LOCALES = [
-      'en',
-      'es',
-      'pt-BR',
-      'fr',
-      'de',
-      'ru',
-      'ja',
-      'ko',
-      'zh-CN',
-      'zh-TW',
-      'ar',
-      'hi',
-      'id',
-      'tr',
-      'it',
-      'pl',
-      'nl',
-      'vi',
-      'th',
-      'uk',
-      'fa',
-    ] as const;
+    // Sprint 24 (TASK-557): the signup page is registered on every locale.
     for (const locale of SUPPORTED_LOCALES) {
       const home = locale === 'en' ? '/en' : `/${locale}`;
       expect(paths, `sitemap should contain ${home}`).toContain(home);
@@ -316,6 +323,8 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
       expect(paths, `sitemap should contain ${features}`).toContain(features);
       const guides = locale === 'en' ? '/en/guides' : `/${locale}/guides`;
       expect(paths, `sitemap should contain ${guides}`).toContain(guides);
+      const signup = locale === 'en' ? '/en/signup' : `/${locale}/signup`;
+      expect(paths, `sitemap should contain ${signup}`).toContain(signup);
     }
 
     // Advertised URLs must be live (200) — zero orphans, zero 500s. The
@@ -364,12 +373,18 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     expect(xmlText).toContain(
       '<loc>http://localhost:3100/de/location/germany/berlin/berlin/ideas</loc>',
     );
-    // EN-only pages emit no hreflang cluster (phase A). Parse the sitemap
-    // into <url> blocks and assert the NYC block carries no alternates.
+    // G-10 (TASK-557): EN pages carry the FULL hreflang cluster. Parse the
+    // sitemap into <url> blocks and assert the NYC block declares every
+    // locale alternate + x-default → EN canonical.
     const blocks = [...xmlText.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => m[1]);
     const nycBlock = blocks.find((block) => block.includes('new-york/new-york</loc>'));
     expect(nycBlock).toBeDefined();
-    expect(nycBlock ?? '').not.toContain('hreflang');
+    expect(nycBlock ?? '').toContain('hreflang="de"');
+    expect(nycBlock ?? '').toContain('/de/location/united-states/new-york/new-york');
+    expect(nycBlock ?? '').toContain('hreflang="x-default"');
+    expect(nycBlock ?? '').toContain(
+      'http://localhost:3100/en/location/united-states/new-york/new-york',
+    );
   });
 
   test('/robots.txt returns 200, allows all crawlers, and references the sitemap', async ({
@@ -587,6 +602,125 @@ test.describe('JSON-LD structured data (arch §3.6, discovery §7)', () => {
     // Fixed by fe-fix-home (TASK-219): home server wrapper emits FAQPage
     // JSON-LD mirroring the visible FAQ block 1:1 (discovery §5.1/§8.3).
     expect(types).toContain('FAQPage');
+  });
+});
+
+test.describe('Sprint 24 structured-data + llms brand alignment (TASK-557/559)', () => {
+  /** Parses every `application/ld+json` block into a flat node list. */
+  async function ldNodes(page: Page): Promise<Array<Record<string, unknown>>> {
+    return page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+      scripts.flatMap((s) => {
+        const parsed = JSON.parse(s.textContent ?? '{}') as
+          Record<string, unknown> | Array<Record<string, unknown>>;
+        return Array.isArray(parsed) ? parsed : [parsed];
+      }),
+    );
+  }
+
+  test('Organization JSON-LD never emits an empty sameAs array (G-7)', async ({ page }) => {
+    await page.goto('/en');
+    const org = (await ldNodes(page)).find((node) => node['@type'] === 'Organization');
+    expect(org).toBeDefined();
+    // G-7: sameAs is either omitted (no provisioned profiles) or non-empty —
+    // an empty `sameAs: []` would read as an unfinished template.
+    if ('sameAs' in (org ?? {})) {
+      const sameAs = (org?.sameAs as unknown[]) ?? [];
+      expect(sameAs.length, 'sameAs must not be empty').toBeGreaterThan(0);
+    }
+  });
+
+  test('BreadcrumbList JSON-LD items use canonical locale-prefixed URLs (G-8)', async ({
+    page,
+  }) => {
+    await page.goto('/en/features');
+    const breadcrumb = (await ldNodes(page)).find((node) => node['@type'] === 'BreadcrumbList');
+    expect(breadcrumb).toBeDefined();
+    const items = (breadcrumb?.itemListElement as Array<{ item?: string }>) ?? [];
+    expect(items.length).toBeGreaterThan(0);
+    for (const item of items) {
+      const pathname = new URL(item.item ?? '').pathname;
+      // Canonical tree: every breadcrumb item lives on the /en/** surface.
+      expect(pathname, `breadcrumb item ${pathname}`).toMatch(/^\/en(\/|$)/);
+    }
+  });
+
+  test('FAQPage JSON-LD on the /location and /guides hubs (G-12)', async ({ page }) => {
+    for (const path of ['/en/location', '/en/guides']) {
+      await page.goto(path);
+      const types = await ldTypes(page);
+      expect(types, `FAQPage on ${path}`).toContain('FAQPage');
+    }
+  });
+
+  test('City/Place + GeoCoordinates JSON-LD on city pages (G-13)', async ({ page }) => {
+    await page.goto('/en/location/germany/berlin/berlin');
+    const city = (await ldNodes(page)).find((node) => node['@type'] === 'City');
+    expect(city).toBeDefined();
+    expect(String(city?.name)).toContain('Berlin');
+    const geo = city?.geo as Record<string, unknown> | undefined;
+    expect(geo?.['@type']).toBe('GeoCoordinates');
+    expect(typeof geo?.latitude).toBe('number');
+    expect(typeof geo?.longitude).toBe('number');
+    // URL is canonical on the /en/** surface.
+    expect(new URL(String(city?.url)).pathname).toMatch(/^\/en\//);
+  });
+
+  test('every HTML page links llms.txt + llms-full.txt in <head> (G-16)', async ({ page }) => {
+    for (const path of PATHS) {
+      await page.goto(path);
+      await expect(
+        page.locator('link[rel="llms.txt"][href="/llms.txt"]'),
+        `llms.txt link on ${path}`,
+      ).toHaveCount(1);
+      await expect(
+        page.locator(
+          'link[rel="alternate"][title="JoinOrigin llms-full.txt"][href="/llms-full.txt"]',
+        ),
+        `llms-full.txt link on ${path}`,
+      ).toHaveCount(1);
+    }
+  });
+
+  test('/llms-full.txt returns 200 text/plain with the full markdown (G-16)', async ({
+    request,
+  }) => {
+    const response = await request.get('/llms-full.txt');
+    expect(response.status()).toBe(200);
+    const contentType = response.headers()['content-type'] ?? '';
+    expect(contentType).toContain('text/plain');
+    const text = await response.text();
+    expect(text).toContain('# JoinOrigin — llms-full.txt');
+    // Same curated sections as /llms.txt, each link expanded with the full
+    // parseable body (guide intro/steps/FAQ, flagship-city intro).
+    expect(text).toContain('## Locations');
+    expect(text).toContain('## Guides');
+    expect(text).toContain('### /en/guides/start-a-community');
+    // Full-text expansion: the file carries the actual guide body text, far
+    // beyond the ~3 KB /llms.txt index budget.
+    expect(Buffer.byteLength(text, 'utf8')).toBeGreaterThan(10 * 1024);
+  });
+
+  test('signup pages emit the full 21-locale hreflang cluster (G-10, TASK-557/559)', async ({
+    page,
+  }) => {
+    await page.goto('/en/signup');
+    // All 20 non-EN locale surfaces + the en self + x-default → EN canonical.
+    for (const locale of SUPPORTED_LOCALES) {
+      await expect(page.locator(`link[rel="alternate"][hreflang="${locale}"]`)).toHaveCount(1);
+    }
+    await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
+    // Canonical resolves to the /en/signup surface.
+    const canonical = page.locator('link[rel="canonical"]');
+    await expect(canonical).toHaveCount(1);
+    expect(new URL((await canonical.getAttribute('href')) ?? '').pathname).toBe('/en/signup');
+  });
+
+  test('all 21 locale signup URLs resolve 200 (TASK-557/559)', async ({ request }) => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const path = locale === 'en' ? '/en/signup' : `/${locale}/signup`;
+      const response = await request.get(path);
+      expect(response.status(), `live ${path}`).toBe(200);
+    }
   });
 });
 

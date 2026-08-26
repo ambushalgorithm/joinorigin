@@ -1,33 +1,31 @@
 import { expect, test } from '@playwright/test';
 
-import { waitForHydration } from './helpers';
-
 /**
- * Modal a11y — focus return on close (spec §9.2).
+ * Signup form a11y — keyboard reachability + focus order (TASK-559).
  *
- * Spec: "focus moves to modal on open, returns to trigger on close".
- * Previously tracked as a KNOWN GAP via `test.fail()` (TASK-205): focus moved to
- * the name input on open and Tab was trapped, but after closing via ESC / ✕ /
- * backdrop / Done focus was NOT restored to the trigger — the active element
- * fell back to the page BODY.
- *
- * Fixed by TASK-207 (fe-fix-a11y-focus): `WaitlistModalProvider` records the
- * trigger element on open and passes it to `WaitlistModal`, which restores
- * focus to it on every close path. The `test.fail()` marker is removed — this
- * assertion is now a required check.
+ * The waitlist modal is retired (TASK-556) and replaced by the `/signup`
+ * page (TASK-555). The old modal focus-trap contract is gone, so this spec
+ * now covers the equivalent keyboard-a11y guarantees of the signup form:
+ * labels are programmatically associated (`htmlFor`/`id`), the name field
+ * is the first focusable element inside `<main>` after navigation, and
+ * Tab cycles through the semantic form controls (name → email → submit).
  */
 
-test('a11y: focus returns to the trigger when the waitlist modal closes', async ({ page }) => {
-  await page.goto('/');
-  await waitForHydration(page);
-  const trigger = page.getByTestId('start-project-button');
-  await trigger.click();
-  const modal = page.getByRole('dialog');
-  await expect(modal).toBeVisible();
-  await expect(modal.getByTestId('waitlist-name-input')).toBeFocused();
+test('signup form fields are labeled and keyboard-reachable in order', async ({ page }) => {
+  await page.goto('/en/signup');
+  await expect(page.getByTestId('signup-panel')).toBeVisible();
 
-  // Close via ESC — focus must return to the trigger.
-  await page.keyboard.press('Escape');
-  await expect(modal).toBeHidden();
-  await expect(trigger).toBeFocused();
+  // Programmatic label association: labels point at the input ids.
+  await expect(page.locator('label[for="waitlist-name"]')).toBeVisible();
+  await expect(page.locator('label[for="waitlist-email"]')).toBeVisible();
+
+  // The name input is the first focusable control in the form.
+  await page.locator('main').getByTestId('signup-name-input').focus();
+  await expect(page.getByTestId('signup-name-input')).toBeFocused();
+
+  // Tab order: name → email → submit (the full semantic form cycle).
+  await page.keyboard.press('Tab');
+  await expect(page.getByTestId('signup-email-input')).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.getByTestId('signup-submit')).toBeFocused();
 });

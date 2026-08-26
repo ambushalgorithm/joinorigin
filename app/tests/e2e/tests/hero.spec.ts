@@ -51,12 +51,15 @@ test.describe('hero left — typewriter heading', () => {
 });
 
 test.describe('hero left — CTA, copy, trust', () => {
-  test('shows Start Project with chevron, supporting copy and trust row', async ({ page }) => {
+  test('shows Get Started with chevron, supporting copy and trust row', async ({ page }) => {
     await page.goto('/');
 
     const startProject = page.getByTestId('start-project-button');
     await expect(startProject).toBeVisible();
-    await expect(startProject).toContainText('Start Project');
+    // Sprint 24 (TASK-556): the hero CTA label is unified on "Get Started"
+    // and the button is a real anchor to the locale-prefixed signup route.
+    await expect(startProject).toHaveText('Get Started');
+    await expect(startProject).toHaveAttribute('href', '/en/signup');
 
     await expect(page.getByText(/Create a profile that works like your resume/)).toBeVisible();
     await expect(page.getByText('Join 2,400+ builders already collaborating')).toBeVisible();

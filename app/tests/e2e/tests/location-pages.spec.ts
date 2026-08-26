@@ -9,7 +9,8 @@ import { test, expect, type Locator, type Page } from '@playwright/test';
  *  3. Berlin `de` pages serve the German body + full hreflang set
  *     (de self + en + x-default → EN) via `alternates.languages`,
  *  4. EN Berlin pages emit the bidirectional hreflang cluster; EN-only pages
- *     (hub/country/region/NYC) emit NO hreflang (phase A),
+ *     (hub/country/region/NYC) emit the full 21-locale hreflang cluster
+ *     (G-10, TASK-557),
  *  5. JSON-LD: BreadcrumbList everywhere, FAQPage on content pages, ItemList
  *     (30 ideas) on idea pages,
  *  6. (TASK-469) Browse-locations directory + flagship/sibling city card hrefs
@@ -37,6 +38,31 @@ const EN_ONLY = [
   '/en/location/united-states/new-york',
   '/en/location/united-states/new-york/new-york',
 ];
+
+/** The 21 supported locales — mirrors `SUPPORTED_LOCALES` in @joinorigin/i18n. */
+const ALL_LOCALES = [
+  'en',
+  'es',
+  'pt-BR',
+  'fr',
+  'de',
+  'ru',
+  'ja',
+  'ko',
+  'zh-CN',
+  'zh-TW',
+  'ar',
+  'hi',
+  'id',
+  'tr',
+  'it',
+  'pl',
+  'nl',
+  'vi',
+  'th',
+  'uk',
+  'fa',
+] as const;
 
 async function ldTypes(page: Page): Promise<string[]> {
   return page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
@@ -105,12 +131,17 @@ test.describe('location internal-link mesh navigation', () => {
     await expect(page).toHaveTitle(/Startup communities in Berlin/);
   });
 
-  test('every mesh level renders a single h1 + breadcrumbs + waitlist CTA', async ({ page }) => {
+  test('every mesh level renders a single h1 + breadcrumbs + signup CTA', async ({ page }) => {
     for (const path of MESH) {
       await page.goto(path);
       expect(await page.locator('h1').count()).toBe(1);
       await expect(page.locator('[data-testid="location-breadcrumbs"]')).toBeVisible();
       await expect(page.locator('[data-testid="location-cta-band"]')).toBeVisible();
+      // Sprint 24 (TASK-556): the location CTA is a real link to the
+      // locale-prefixed signup route (waitlist modal retired).
+      const joinButton = page.getByTestId('location-cta-join-button');
+      await expect(joinButton).toBeVisible();
+      await expect(joinButton).toHaveAttribute('href', /\/en\/signup$/);
     }
   });
 });
@@ -229,9 +260,14 @@ test.describe('Berlin de pages + hreflang', () => {
   });
 
   for (const path of EN_ONLY) {
-    test(`${path} (EN-only) emits NO hreflang alternates`, async ({ page }) => {
+    test(`${path} (EN-only) emits the full 21-locale hreflang cluster (G-10)`, async ({ page }) => {
       await page.goto(path);
-      await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(0);
+      // G-10 (TASK-557): every indexable EN page carries the full hreflang
+      // cluster — each `/<locale>` counterpart + en self + x-default → EN.
+      for (const locale of ALL_LOCALES) {
+        await expect(page.locator(`link[rel="alternate"][hreflang="${locale}"]`)).toHaveCount(1);
+      }
+      await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
     });
   }
 
