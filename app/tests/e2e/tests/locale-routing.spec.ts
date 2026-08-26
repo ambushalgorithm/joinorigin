@@ -30,9 +30,9 @@ import { test, expect, type Page } from '@playwright/test';
  *   7. per-locale metadata with EN fallback — canonical + hreflang stay
  *      per-locale (`x-default` → `/en/**` canonical), copy uses committed
  *      translations where they exist and EN otherwise,
- *   8. (TASK-470) the Join-the-waitlist modal renders in the URL's language —
- *      `/es` shows Spanish modal copy, `/vi` Vietnamese, `/en` English
- *      (URL-only: no cookie, no navigator.language guess),
+ *   8. (TASK-470 + TASK-559) the signup page renders in the URL's language —
+ *      `/es/signup` shows Spanish signup copy, `/vi` Vietnamese, `/en`
+ *      English (URL-only: no cookie, no navigator.language guess),
  *   9. (follow-up A, TASK-465) client-side locale sync on SPA navigation —
  *      navigating to `/<language>/**` toggles the UI language instantly
  *      (switcher label + header chrome + `<html lang>`); no cookie is
@@ -644,46 +644,37 @@ test.describe('Goal 7 — per-locale metadata with EN fallback', () => {
   });
 });
 
-test.describe('Goal 8 — waitlist modal renders in the URL language (URL-only, no cookie)', () => {
-  /** Open the waitlist modal from the hero CTA on the current page. */
-  async function openModal(page: Page): Promise<void> {
-    // Wait for hydration so React's event delegation is attached (repo
-    // convention — waitlist.spec.ts). The `[data-hero="actions"]` marker
-    // receives its inline GSAP opacity only when the entrance tween runs, so
-    // do NOT emulate reducedMotion here (that would skip the tween and the
-    // marker would never appear). Playwright's click auto-waits for the
-    // button to become visible once the 0.6s entrance settles.
-    await page.waitForFunction(() => {
-      const marker = document.querySelector('[data-hero="actions"]');
-      return marker instanceof HTMLElement && marker.style.opacity !== '';
-    });
-    await page.getByTestId('start-project-button').click();
-    await expect(page.getByRole('dialog')).toBeVisible();
+test.describe('Goal 8 — signup page renders in the URL language (URL-only, no cookie)', () => {
+  /** Navigate to the locale-prefixed signup page and wait for the JS-only
+   *  hydration swap (SSR renders clean signup copy, then the heading flips
+   *  to the waitlist variant — TASK-555/559). */
+  async function openSignup(page: Page, locale: string): Promise<void> {
+    await page.goto(`/${locale}/signup`);
+    await expect(page.getByTestId('signup-panel')).toBeVisible();
+    // Wait for the hydration swap so the localized waitlist heading is shown.
+    await expect(page.getByTestId('signup-disclosure')).toBeVisible({ timeout: 15_000 });
   }
 
-  test('/es renders the modal in Spanish (heading + submit)', async ({ page }) => {
-    await page.goto('/es');
-    await openModal(page);
-    await expect(page.getByRole('dialog')).toContainText('Únete a la lista de espera');
-    await expect(page.getByTestId('waitlist-submit')).toContainText('Solicitar acceso');
-    await expect(page.getByRole('dialog')).toContainText('Date a conocer en el sistema operativo');
-    // The URL-only contract holds: opening the modal on /es writes no cookie.
+  test('/es/signup renders the signup copy in Spanish (heading + submit)', async ({ page }) => {
+    await openSignup(page, 'es');
+    await expect(page.getByTestId('signup-heading')).toHaveText('Únete a la lista de espera');
+    await expect(page.getByTestId('signup-submit')).toHaveText('Comenzar');
+    await expect(page.getByTestId('signup-disclosure')).toContainText('Origin está en desarrollo.');
+    // The URL-only contract holds: loading /es/signup writes no cookie.
     await expectNoLocaleCookie(page);
   });
 
-  test('/vi renders the modal in Vietnamese', async ({ page }) => {
-    await page.goto('/vi');
-    await openModal(page);
-    await expect(page.getByRole('dialog')).toContainText('Tham gia danh sách chờ');
-    await expect(page.getByTestId('waitlist-submit')).toContainText('Yêu cầu truy cập');
+  test('/vi/signup renders the signup copy in Vietnamese', async ({ page }) => {
+    await openSignup(page, 'vi');
+    await expect(page.getByTestId('signup-heading')).toHaveText('Tham gia danh sách chờ');
+    await expect(page.getByTestId('signup-submit')).toHaveText('Bắt đầu');
     await expectNoLocaleCookie(page);
   });
 
-  test('/en renders the modal in English (control)', async ({ page }) => {
-    await page.goto('/en');
-    await openModal(page);
-    await expect(page.getByRole('dialog')).toContainText('Join the waitlist');
-    await expect(page.getByTestId('waitlist-submit')).toContainText('Request access');
+  test('/en/signup renders the signup copy in English (control)', async ({ page }) => {
+    await openSignup(page, 'en');
+    await expect(page.getByTestId('signup-heading')).toHaveText('Join the waitlist');
+    await expect(page.getByTestId('signup-submit')).toHaveText('Get Started');
     await expectNoLocaleCookie(page);
   });
 });

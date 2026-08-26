@@ -7,8 +7,8 @@ import { leadsCsvHasEmail, leadsCsvHeader, leadsCsvRow } from './helpers';
  * the running dev server.
  *
  * Each test uses a unique `x-forwarded-for` IP so the route's per-IP rate
- * limiter (10/min) is isolated per test — the browser-driven modal tests share
- * a different bucket, so this suite never trips the browser flow.
+ * limiter (10/min) is isolated per test — the browser-driven signup-form
+ * tests share a different bucket, so this suite never trips the browser flow.
  *
  * Story 3 (Expanded Signup): the route passively captures ip / locale /
  * userAgent / referrer / timestamp server-side, so these specs also assert the
@@ -31,7 +31,7 @@ function uniqueIp(): string {
 const PASSIVE_HEADERS = {
   'accept-language': 'fr-FR,fr;q=0.9,en;q=0.8',
   'user-agent': 'JoinOrigin-E2E/1.0 (passive capture check)',
-  referer: 'https://joinorigin.example/waitlist',
+  referer: 'https://joinorigin.example/signup',
 };
 
 function postValid(email: string) {
@@ -65,7 +65,7 @@ test.describe('POST /api/leads', () => {
     expect(row).toContain(email.toLowerCase());
     expect(row).toContain('fr');
     expect(row).toContain('JoinOrigin-E2E/1.0');
-    expect(row).toContain('https://joinorigin.example/waitlist');
+    expect(row).toContain('https://joinorigin.example/signup');
   });
 
   test('passively captures a raw client IP on the CSV row', async ({ request }) => {

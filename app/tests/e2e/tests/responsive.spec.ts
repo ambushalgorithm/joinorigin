@@ -266,14 +266,14 @@ test.describe('responsive breakpoints', () => {
     await expectNoHorizontalOverflow(page);
 
     // Hamburger nav is usable: it opens the panel and the panel's primary
-    // CTA is tappable (opens the waitlist modal).
+    // CTA is tappable (navigates to the signup page, TASK-556).
     await toggle.click();
     const menu = page.getByTestId('mobile-menu');
     await expect(menu).toBeVisible();
     await expect(menu.getByText('Locations')).toBeVisible();
     await menu.getByTestId('mobile-get-started-button').click();
-    await expect(page.getByRole('dialog')).toBeVisible();
-    await expect(page.getByRole('dialog')).toContainText('Join the waitlist');
+    await page.waitForURL('**/en/signup');
+    await expect(page.getByTestId('signup-panel')).toBeVisible();
   });
 
   test('340px narrow foldable-cover bucket (Z Fold 2/3 class): no overflow, base layout, CTA tappable', async ({
@@ -293,11 +293,14 @@ test.describe('responsive breakpoints', () => {
 
     await expectNoHorizontalOverflow(page);
 
-    // Primary header CTA stays tappable at the narrow foldable width.
+    // Primary header CTA stays tappable at the narrow foldable width — it
+    // is a real anchor to the signup page (TASK-556).
     const cta = page.getByTestId('get-started-button');
     await expect(cta).toBeVisible();
+    await expect(cta).toHaveAttribute('href', '/en/signup');
     await cta.click();
-    await expect(page.getByRole('dialog')).toBeVisible();
+    await page.waitForURL('**/en/signup');
+    await expect(page.getByTestId('signup-panel')).toBeVisible();
   });
 
   test('280px sub-320 degradation (Galaxy Fold cover, D2): no overflow, content reachable', async ({
@@ -367,15 +370,15 @@ test.describe('mobile nav (≤768px)', () => {
     }).toPass({ timeout: 10_000 });
   });
 
-  test('mobile Get Started opens the waitlist modal', async ({ page }) => {
+  test('mobile Get Started navigates to the signup page', async ({ page }) => {
     await page.setViewportSize({ width: 700, height: 800 });
     await page.goto('/');
 
     await page.getByTestId('mobile-menu-toggle').click();
     await page.getByTestId('mobile-get-started-button').click();
 
-    const modal = page.getByRole('dialog');
-    await expect(modal).toBeVisible();
-    await expect(modal).toContainText('Join the waitlist');
+    await page.waitForURL('**/en/signup');
+    await expect(page.getByTestId('signup-panel')).toBeVisible();
+    await expect(page.getByRole('dialog')).toHaveCount(0);
   });
 });
