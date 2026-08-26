@@ -79,7 +79,10 @@ describe('home page', () => {
     renderPage();
     expect(screen.getByText('Trusted by teams at')).toBeInTheDocument();
     expect(screen.getByText('Where teams find their origin')).toBeInTheDocument();
-    expect(screen.getByText('Get Discovered')).toBeInTheDocument();
+    // Every primary join CTA reads "Get Started" (header, hero, footer).
+    expect(screen.getAllByText('Get Started').length).toBeGreaterThanOrEqual(3);
+    const footerCta = screen.getByTestId('footer-waitlist-button');
+    expect(footerCta).toHaveAttribute('href', '/en/signup');
     expect(screen.getByText('Privacy')).toBeInTheDocument();
     expect(screen.getByText('Terms')).toBeInTheDocument();
     expect(screen.getByText('© 2026 JoinOrigin')).toBeInTheDocument();

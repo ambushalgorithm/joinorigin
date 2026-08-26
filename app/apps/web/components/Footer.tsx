@@ -10,16 +10,16 @@ import { useLocalizePath } from '../lib/seo/localePath';
 import LanguageSwitcher from './LanguageSwitcher';
 import { DELAY, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
-import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * Slim footer (spec §5.6 + sprint-4-discovery §3.2).
  *
  * Brand mark + wordmark, tagline, grouped nav (Explore / Product / Company /
- * Legal), `Get discovered` rotating-border CTA, the copyright line, and the
- * language switcher (Sprint 9, compact variant aligned to the inline end).
- * Mobile-first (Sprint 22 Story A): the 320px base stacks the whole footer
- * vertically (column layout); the row layout applies at tablet+.
+ * Legal), `Get Started` rotating-border CTA (a real link to the
+ * locale-prefixed `/signup` route — Sprint 24, TASK-556), the copyright line,
+ * and the language switcher (Sprint 9, compact variant aligned to the inline
+ * end). Mobile-first (Sprint 22 Story A): the 320px base stacks the whole
+ * footer vertically (column layout); the row layout applies at tablet+.
  */
 
 const FOOTER_GROUPS = [
@@ -221,7 +221,6 @@ const Copyright = styled.span`
 
 export function Footer() {
   const entered = useEntrance();
-  const { openWaitlist } = useWaitlist();
   const { t } = useI18n();
   const localizePath = useLocalizePath();
 
@@ -237,8 +236,8 @@ export function Footer() {
         </div>
         <Spacer />
         <RotatingBorderButton
-          label={t('common.joinWaitlist')}
-          onClick={(event) => openWaitlist(event.currentTarget)}
+          label={t('header.getStarted')}
+          href={localizePath('/signup')}
           testID="footer-waitlist-button"
         />
         <Groups aria-label={t('footer.navAria')}>

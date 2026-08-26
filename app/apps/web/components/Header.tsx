@@ -10,7 +10,6 @@ import { useI18n } from '@joinorigin/i18n';
 import { useLocalizePath } from '../lib/seo/localePath';
 import { DELAY, EASE, useEntrance } from './motion';
 import RotatingBorderButton from './RotatingBorderButton';
-import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 import LanguageSwitcher from './LanguageSwitcher';
 
 /**
@@ -25,8 +24,9 @@ import LanguageSwitcher from './LanguageSwitcher';
  * - Explore dropdown (TASK-316): desktop submenu with Locations (`/location`),
  *   Guides (`/guides`), Glossary (`/glossary`); the mobile panel lists the
  *   same Explore links above the Features/Community/Docs/About links.
- * - `Log In` button + rotating-border `Get Started` CTA on the right. Both
- *   open the same waitlist modal (TASK-405) — there is no auth/login route.
+ * - `Log In` link + rotating-border `Get Started` CTA on the right. Both
+ *   navigate to the locale-prefixed `/signup` route (Sprint 24, TASK-556) —
+ *   there is no auth/login route, so account creation starts at signup.
  * - Language switcher (Sprint 9): desktop right cluster before `Log In`;
  *   mobile-panel row between the nav links and `Log In`.
  * - Mobile: hamburger toggles a dropdown panel; closes on link click,
@@ -286,7 +286,7 @@ const Right = styled.div`
   }
 `;
 
-const LogInLink = styled.button`
+const LogInLink = styled(Link)`
   position: relative;
   font-family: ${({ theme }) => theme.fontFamilies.sans};
   font-size: 15px;
@@ -294,9 +294,6 @@ const LogInLink = styled.button`
   color: ${({ theme }) => theme.colors.text};
   text-decoration: none;
   padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
 
   &::after {
     content: '';
@@ -385,8 +382,8 @@ const MobileLink = styled(Link)`
   }
 `;
 
-/** Mobile-panel `Log In` control — a button that opens the waitlist modal (TASK-405). */
-const MobileLogInButton = styled.button`
+/** Mobile-panel `Log In` control — a link to the locale-prefixed signup route. */
+const MobileLogInButton = styled(Link)`
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -396,9 +393,6 @@ const MobileLogInButton = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.text};
   text-decoration: none;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
   border-radius: ${({ theme }) => theme.radius.md}px;
 
   &:hover,
@@ -498,7 +492,6 @@ function ExploreDropdown() {
 
 export function Header() {
   const entered = useEntrance();
-  const { openWaitlist } = useWaitlist();
   const { t } = useI18n();
   const localizePath = useLocalizePath();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -547,16 +540,12 @@ export function Header() {
 
         <Right>
           <LanguageSwitcher variant="header" />
-          <LogInLink
-            type="button"
-            onClick={(event) => openWaitlist(event.currentTarget)}
-            data-testid="login-button"
-          >
+          <LogInLink href={localizePath('/signup')} data-testid="login-button">
             {t('header.logIn')}
           </LogInLink>
           <RotatingBorderButton
             label={t('header.getStarted')}
-            onClick={(event) => openWaitlist(event.currentTarget)}
+            href={localizePath('/signup')}
             testID="get-started-button"
           />
           <Hamburger
@@ -602,21 +591,16 @@ export function Header() {
           ))}
           <LanguageSwitcher variant="mobile-panel" />
           <MobileLogInButton
-            type="button"
+            href={localizePath('/signup')}
             data-testid="mobile-login-button"
-            onClick={(event) => {
-              closeMobile();
-              openWaitlist(event.currentTarget);
-            }}
+            onClick={closeMobile}
           >
             {t('header.logIn')}
           </MobileLogInButton>
           <RotatingBorderButton
             label={t('header.getStarted')}
-            onClick={(event) => {
-              closeMobile();
-              openWaitlist(event.currentTarget);
-            }}
+            href={localizePath('/signup')}
+            onClick={closeMobile}
             testID="mobile-get-started-button"
           />
         </MobilePanel>

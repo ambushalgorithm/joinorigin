@@ -6,7 +6,6 @@ import { theme } from '@joinorigin/design';
 import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import CtaBand from './CtaBand';
-import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * `next/navigation` is mocked so the band's `useLocalizePath` (link
@@ -25,9 +24,7 @@ function renderBand(props: React.ComponentProps<typeof CtaBand> = {}, locale: Lo
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <NativeThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <WaitlistModalProvider>
-            <CtaBand {...props} />
-          </WaitlistModalProvider>
+          <CtaBand {...props} />
         </ThemeProvider>
       </NativeThemeProvider>
     </I18nProvider>,
@@ -37,10 +34,10 @@ function renderBand(props: React.ComponentProps<typeof CtaBand> = {}, locale: Lo
 /**
  * Unit tests for the menu-page join CTA band (spec sprint-8 §4.2).
  *
- * The default band renders the join headline + a `Get discovered`
- * rotating-border button (wired to the shared waitlist modal). Legal pages
- * pass `ctaOverride` to render `Questions about Origin?` with a `Contact us`
- * link to `/contact` (no modal).
+ * The default band renders the join headline + a `Get Started`
+ * rotating-border link (navigating to the locale-prefixed `/signup` route).
+ * Legal pages pass `ctaOverride` to render `Questions about Origin?` with a
+ * `Contact us` link to `/contact` (no signup route).
  */
 
 describe('CtaBand', () => {
@@ -62,10 +59,20 @@ describe('CtaBand', () => {
         /Join 2,400\+ builders — from first ideas to established companies — on Origin's social collaboration network/i,
       ),
     ).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Get Discovered' })).toBeInTheDocument();
+    const joinLink = screen.getByTestId('cta-band-join-button');
+    expect(joinLink.tagName).toBe('A');
+    expect(joinLink).toHaveAttribute('href', '/en/signup');
+    expect(joinLink).toHaveTextContent('Get Started');
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('renders the contact override as a link to /en/contact (no join button)', () => {
+  it('prefixes the default join link on a /de/** load (table row 3)', () => {
+    mockPathname = '/de/features';
+    renderBand({}, 'de');
+    expect(screen.getByTestId('cta-band-join-button')).toHaveAttribute('href', '/de/signup');
+  });
+
+  it('renders the contact override as a link to /en/contact (no join link)', () => {
     renderBand({
       headline: 'Questions about Origin?',
       subline: 'Our team replies within 2 business days.',
@@ -77,7 +84,7 @@ describe('CtaBand', () => {
     expect(screen.getByText('Our team replies within 2 business days.')).toBeInTheDocument();
     const contactLink = screen.getByRole('link', { name: 'Contact us' });
     expect(contactLink).toHaveAttribute('href', '/en/contact');
-    expect(screen.queryByRole('button', { name: 'Get Discovered' })).not.toBeInTheDocument();
+    expect(screen.queryByTestId('cta-band-join-button')).not.toBeInTheDocument();
   });
 
   it('prefixes the override link with /en on an unprefixed EN load (all-routes-prefixed)', () => {

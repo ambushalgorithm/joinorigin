@@ -90,7 +90,7 @@ export function CommunityView({ marquee }: CommunityViewProps) {
         lead: t('community.hero.lead'),
         scene: 'community',
         accent: 'community',
-        cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
+        cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },
         meta: { stat: true },
       }}
     >

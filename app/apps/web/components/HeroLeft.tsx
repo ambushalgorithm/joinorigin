@@ -9,20 +9,23 @@ import { gsap } from '../lib/gsap';
 
 import { useI18n } from '@joinorigin/i18n';
 
+import { useLocalizePath } from '../lib/seo/localePath';
 import RotatingBorderButton from './RotatingBorderButton';
 import TypewriterHeading from './TypewriterHeading';
-import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * Hero — left column (spec §5.3, GSAP entrance sprint-10-menu-anim §5.8).
  *
- * Composes the typewriter heading, Start Project CTA (rotating border, right
+ * Composes the typewriter heading, Get Started CTA (rotating border, right
  * chevron, hover fill from the right), supporting copy, and the trust row of
  * overlapping avatars. GSAP staggers the Actions / Supporting / Trust
  * entrances via `data-hero` hooks inside `gsap.matchMedia()` under
  * `(prefers-reduced-motion: no-preference)`. The `TypewriterHeading`
  * component is user-kept code — its internals stay byte-identical; it is NOT
  * animated by GSAP.
+ *
+ * Sprint 24 (TASK-556): the Start Project CTA is a real link to the
+ * locale-prefixed `/signup` route — the waitlist modal is retired.
  */
 
 const TRUST_AVATAR_COUNT = 9;
@@ -115,8 +118,8 @@ const TrustCopy = styled.span`
 
 export function HeroLeft() {
   const columnRef = useRef<HTMLDivElement>(null);
-  const { openWaitlist } = useWaitlist();
   const { t } = useI18n();
+  const localizePath = useLocalizePath();
 
   useGSAP(
     () => {
@@ -159,7 +162,7 @@ export function HeroLeft() {
             size="large"
             fillDirection="right"
             icon={ChevronIcon}
-            onClick={(event) => openWaitlist(event.currentTarget)}
+            href={localizePath('/signup')}
             testID="start-project-button"
           />
         </Actions>

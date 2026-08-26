@@ -78,7 +78,7 @@ export function DocsView() {
         lead: t('docs.hero.lead'),
         scene: 'docs',
         accent: 'docs',
-        cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
+        cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },
       }}
       subnav={{
         label: t('docs.hero.eyebrow'),

@@ -15,7 +15,6 @@ import Hero from '../components/Hero';
 import LogoMarquee from '../components/LogoMarquee';
 import Reveal from '../components/Reveal';
 import { BRAND_MESH } from '../components/landingTokens';
-import { WaitlistModalProvider } from '../components/WaitlistModal/WaitlistModalProvider';
 import { faqEntries, faqNamespace } from '../lib/faq';
 import { JsonLd } from '../lib/seo/JsonLdScript';
 import { faqPage } from '../lib/seo/jsonLd';
@@ -204,76 +203,74 @@ export function HomeView({ marquee }: HomeViewProps) {
   return (
     <NativeThemeProvider theme={theme}>
       <DomThemeProvider theme={theme}>
-        <WaitlistModalProvider>
-          <PageRoot data-testid="home-page">
-            <Screen style={{ padding: 0, backgroundColor: 'transparent' }}>
-              <Header />
-              <main>
-                <Hero />
-                {/* Visible definition paragraph — exact phrase for LLM entity
-                    clarity (discovery §5.1, §6). ScrollTrigger reveal (spec
-                    sprint-10-menu-anim §5.8). */}
-                <Reveal>
-                  <Definition>{t('home.definition')}</Definition>
-                </Reveal>
-                <SectionBand variant="glass">
-                  <PageContainer>
-                    <Reveal>
-                      <Section>
-                        <SectionTitle>{t('community.sectionExamples')}</SectionTitle>
-                        <BodyCopy>{t('community.examplesIntro')}</BodyCopy>
-                        {/* Story B: the server wrapper passes the geo-aware
-                            `ChipMarqueeServer` through this slot. */}
-                        {marquee}
-                      </Section>
-                    </Reveal>
-                  </PageContainer>
-                </SectionBand>
-                <SectionBand variant="glass" accent="docs" glow>
-                  <PageContainer>
-                    <Reveal>
-                      <Section>
-                        <SectionTitle id="concepts">{t('docs.sectionConcepts')}</SectionTitle>
-                        <CardGrid>
-                          {CONCEPT_KEYS.map((concept, index) => (
-                            <Reveal key={concept} delay={`${index * 0.08}s`}>
-                              {/* Story A (TASK-547): the concept tiles are
-                                  informational surfaces — non-interactive
-                                  `Card` (no Link, no hover/focus/selected
-                                  highlight). The `#concepts` anchor above
-                                  stays for deep links from /docs. */}
-                              <Card>
-                                <CardTitle>{t(`common.objects.${concept}`)}</CardTitle>
-                                <CardBody>{t(`docs.concepts.${concept}.body`)}</CardBody>
-                              </Card>
-                            </Reveal>
-                          ))}
-                        </CardGrid>
-                      </Section>
-                    </Reveal>
-                  </PageContainer>
-                </SectionBand>
-                <Reveal>
-                  <LogoMarquee />
-                </Reveal>
-                {/* Visible FAQ block, mirrored 1:1 in FAQPage JSON-LD (§8.3). */}
-                <Reveal>
-                  <FaqSection aria-labelledby="home-faq-heading">
-                    <FaqHeading id="home-faq-heading">{t('common.faqHeading')}</FaqHeading>
-                    {homeFaq.map((faq) => (
-                      <FaqItem key={faq.question}>
-                        <FaqQuestion>{faq.question}</FaqQuestion>
-                        <FaqAnswer>{faq.answer}</FaqAnswer>
-                      </FaqItem>
-                    ))}
-                  </FaqSection>
-                </Reveal>
-              </main>
-              <Footer />
-            </Screen>
-          </PageRoot>
-          <GlobalStyles />
-        </WaitlistModalProvider>
+        <PageRoot data-testid="home-page">
+          <Screen style={{ padding: 0, backgroundColor: 'transparent' }}>
+            <Header />
+            <main>
+              <Hero />
+              {/* Visible definition paragraph — exact phrase for LLM entity
+                  clarity (discovery §5.1, §6). ScrollTrigger reveal (spec
+                  sprint-10-menu-anim §5.8). */}
+              <Reveal>
+                <Definition>{t('home.definition')}</Definition>
+              </Reveal>
+              <SectionBand variant="glass">
+                <PageContainer>
+                  <Reveal>
+                    <Section>
+                      <SectionTitle>{t('community.sectionExamples')}</SectionTitle>
+                      <BodyCopy>{t('community.examplesIntro')}</BodyCopy>
+                      {/* Story B: the server wrapper passes the geo-aware
+                          `ChipMarqueeServer` through this slot. */}
+                      {marquee}
+                    </Section>
+                  </Reveal>
+                </PageContainer>
+              </SectionBand>
+              <SectionBand variant="glass" accent="docs" glow>
+                <PageContainer>
+                  <Reveal>
+                    <Section>
+                      <SectionTitle id="concepts">{t('docs.sectionConcepts')}</SectionTitle>
+                      <CardGrid>
+                        {CONCEPT_KEYS.map((concept, index) => (
+                          <Reveal key={concept} delay={`${index * 0.08}s`}>
+                            {/* Story A (TASK-547): the concept tiles are
+                                informational surfaces — non-interactive
+                                `Card` (no Link, no hover/focus/selected
+                                highlight). The `#concepts` anchor above
+                                stays for deep links from /docs. */}
+                            <Card>
+                              <CardTitle>{t(`common.objects.${concept}`)}</CardTitle>
+                              <CardBody>{t(`docs.concepts.${concept}.body`)}</CardBody>
+                            </Card>
+                          </Reveal>
+                        ))}
+                      </CardGrid>
+                    </Section>
+                  </Reveal>
+                </PageContainer>
+              </SectionBand>
+              <Reveal>
+                <LogoMarquee />
+              </Reveal>
+              {/* Visible FAQ block, mirrored 1:1 in FAQPage JSON-LD (§8.3). */}
+              <Reveal>
+                <FaqSection aria-labelledby="home-faq-heading">
+                  <FaqHeading id="home-faq-heading">{t('common.faqHeading')}</FaqHeading>
+                  {homeFaq.map((faq) => (
+                    <FaqItem key={faq.question}>
+                      <FaqQuestion>{faq.question}</FaqQuestion>
+                      <FaqAnswer>{faq.answer}</FaqAnswer>
+                    </FaqItem>
+                  ))}
+                </FaqSection>
+              </Reveal>
+            </main>
+            <Footer />
+          </Screen>
+        </PageRoot>
+        <GlobalStyles />
         {/* FAQPage JSON-LD — localized mirror of the visible FAQ block
             (arch-i18n §7.4), rendered into the initial SSR HTML. */}
         <JsonLd data={faqPage(homeFaq)} />

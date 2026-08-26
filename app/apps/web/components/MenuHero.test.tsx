@@ -7,7 +7,6 @@ import { theme } from '@joinorigin/design';
 import { I18nProvider, _resetI18nForTests, getDictionary } from '@joinorigin/i18n';
 
 import MenuHero from './MenuHero';
-import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 import { renderWithI18n } from '../test-utils';
 
 /**
@@ -29,20 +28,18 @@ jest.mock('next/navigation', () => ({
  * The hero owns the page's single `<h1>`; the scene is decorative
  * (`alt=""` + `aria-hidden`), and the band must NOT be a `header` landmark
  * (the sticky top nav `Header` is the only `header` on menu pages). Sprint 10
- * additions: hero CTA (waitlist button / contact ghost link), social-proof
+ * additions: hero CTA (signup link / contact ghost link), social-proof
  * meta (TrustRow avatars / CountUpStat pill), and the ambient atmosphere.
  */
 
 function renderHero(props: Partial<React.ComponentProps<typeof MenuHero>> = {}) {
   return renderWithI18n(
     <ThemeProvider theme={theme}>
-      <WaitlistModalProvider>
-        <MenuHero
-          title="Everything a community needs, in one calm workspace"
-          lead="Origin is a social collaboration network built around eight core objects."
-          {...props}
-        />
-      </WaitlistModalProvider>
+      <MenuHero
+        title="Everything a community needs, in one calm workspace"
+        lead="Origin is a social collaboration network built around eight core objects."
+        {...props}
+      />
     </ThemeProvider>,
   );
 }
@@ -77,9 +74,7 @@ describe('MenuHero', () => {
   it('re-translates the H1 through the active locale on a de load (TASK-477)', () => {
     renderWithI18n(
       <ThemeProvider theme={theme}>
-        <WaitlistModalProvider>
-          <MenuHero title="T" titleKey="seoContent.breadcrumb.hub" />
-        </WaitlistModalProvider>
+        <MenuHero title="T" titleKey="seoContent.breadcrumb.hub" />
       </ThemeProvider>,
       'de',
     );
@@ -111,14 +106,16 @@ describe('MenuHero', () => {
     expect(screen.queryByTestId('menu-hero-scene')).not.toBeInTheDocument();
   });
 
-  it('renders a waitlist hero CTA when cta.variant is waitlist (spec §4.3)', async () => {
+  it('renders a signup hero CTA when cta.variant is waitlist (spec §4.3)', async () => {
     const user = userEvent.setup();
-    renderHero({ cta: { variant: 'waitlist', label: 'Join the waitlist' } });
-    const button = screen.getByTestId('hero-join-button');
-    expect(button).toHaveTextContent('Join the waitlist');
-    // The button opens the shared waitlist modal.
-    await user.click(button);
-    expect(screen.getByRole('dialog')).toBeVisible();
+    renderHero({ cta: { variant: 'waitlist', label: 'Get Started' } });
+    const link = screen.getByTestId('hero-join-button');
+    expect(link.tagName).toBe('A');
+    expect(link).toHaveAttribute('href', '/en/signup');
+    expect(link).toHaveTextContent('Get Started');
+    // A real anchor — no modal opens.
+    await user.click(link);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
   it('renders a ghost contact link instead of the waitlist on legal pages (spec §4.3)', () => {
@@ -155,9 +152,7 @@ describe('MenuHero', () => {
     mockPathname = '/de/docs';
     renderWithI18n(
       <ThemeProvider theme={theme}>
-        <WaitlistModalProvider>
-          <MenuHero title="T" cta={{ variant: 'contact', label: 'Kontakt', href: '/contact' }} />
-        </WaitlistModalProvider>
+        <MenuHero title="T" cta={{ variant: 'contact', label: 'Kontakt', href: '/contact' }} />
       </ThemeProvider>,
       'de',
     );
@@ -168,9 +163,7 @@ describe('MenuHero', () => {
     mockPathname = '/docs';
     renderWithI18n(
       <ThemeProvider theme={theme}>
-        <WaitlistModalProvider>
-          <MenuHero title="T" cta={{ variant: 'contact', label: 'Kontakt' }} />
-        </WaitlistModalProvider>
+        <MenuHero title="T" cta={{ variant: 'contact', label: 'Kontakt' }} />
       </ThemeProvider>,
       'de',
     );
@@ -181,13 +174,22 @@ describe('MenuHero', () => {
     mockPathname = '/en/docs';
     renderWithI18n(
       <ThemeProvider theme={theme}>
-        <WaitlistModalProvider>
-          <MenuHero title="T" cta={{ variant: 'contact', label: 'Contact us', href: '/contact' }} />
-        </WaitlistModalProvider>
+        <MenuHero title="T" cta={{ variant: 'contact', label: 'Contact us', href: '/contact' }} />
       </ThemeProvider>,
       'en',
     );
     expect(screen.getByTestId('hero-contact-link')).toHaveAttribute('href', '/en/contact');
+  });
+
+  it('routes the waitlist hero CTA to the locale-prefixed signup route (table row 3)', () => {
+    mockPathname = '/de/docs';
+    renderWithI18n(
+      <ThemeProvider theme={theme}>
+        <MenuHero title="T" cta={{ variant: 'waitlist', label: 'Loslegen' }} />
+      </ThemeProvider>,
+      'de',
+    );
+    expect(screen.getByTestId('hero-join-button')).toHaveAttribute('href', '/de/signup');
   });
 });
 
@@ -207,9 +209,7 @@ describe('Story A: MenuHero mobile-first breakpoints (min viewport = 320px)', ()
         sheet.collectStyles(
           <I18nProvider locale="en" dictionary={getDictionary('en')}>
             <ThemeProvider theme={theme}>
-              <WaitlistModalProvider>
-                <MenuHero title="T" {...props} />
-              </WaitlistModalProvider>
+              <MenuHero title="T" {...props} />
             </ThemeProvider>
           </I18nProvider>,
         ),
@@ -289,13 +289,11 @@ describe('Story B: MenuHero reduced-motion settled state', () => {
   it('renders the hero static (no GSAP-written styles) under prefers-reduced-motion: reduce', async () => {
     const { container } = renderWithI18n(
       <ThemeProvider theme={theme}>
-        <WaitlistModalProvider>
-          <MenuHero
-            title="Everything a community needs"
-            lead="Origin is a social collaboration network."
-            cta={{ variant: 'waitlist', label: 'Join the waitlist' }}
-          />
-        </WaitlistModalProvider>
+        <MenuHero
+          title="Everything a community needs"
+          lead="Origin is a social collaboration network."
+          cta={{ variant: 'waitlist', label: 'Get Started' }}
+        />
       </ThemeProvider>,
     );
 
