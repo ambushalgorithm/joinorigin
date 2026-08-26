@@ -2,6 +2,7 @@ import { screen, within } from '@testing-library/react';
 
 import { getDictionary } from '@joinorigin/i18n';
 
+import ChipMarqueeServer from '../components/ChipMarqueeServer';
 import HomePage, { metadata } from './page';
 import { faqEntries, faqNamespace } from '../lib/faq';
 import { renderWithI18n } from '../test-utils';
@@ -11,9 +12,35 @@ import { renderWithI18n } from '../test-utils';
  * re-types on mount (400ms delay + 20ms/char), so advance timers to reach
  * the final heading state. FAQ content is read from the EN dictionary (the
  * same source the server layout seeds in real requests).
+ *
+ * Story B (TASK-547): the wrapper passes the server-rendered `ChipMarqueeServer`
+ * into the view's `marquee` slot. The server component reads `next/headers`
+ * (geo + locale), so this page suite mocks it — its own behaviour is covered
+ * in `components/ChipMarqueeServer.test.tsx` — and asserts the slot wiring
+ * through the mock being instantiated by the wrapper.
  */
 
 const EN_FAQ = faqEntries(faqNamespace(getDictionary('en'), 'home'));
+
+/** EN concept-tile labels (`common.objects.*` in the EN dictionary), in the
+ *  order the home view renders them. */
+const EN_CONCEPT_LABELS = [
+  'Ideas',
+  'Projects',
+  'Feed',
+  'Communities',
+  'Communication',
+  'Profiles',
+  'Opportunities',
+  'Companies',
+];
+
+jest.mock('../components/ChipMarqueeServer', () => ({
+  __esModule: true,
+  default: jest.fn(() => null),
+}));
+
+const mockChipMarqueeServer = ChipMarqueeServer as jest.Mock;
 
 function renderPage() {
   return renderWithI18n(<HomePage />);
@@ -96,18 +123,34 @@ describe('home page', () => {
     }
   });
 
-  it('renders the concept cards as full-card single wrapping links (Story D)', () => {
+  it('renders the concept tiles as non-interactive static cards (Story A)', () => {
     renderPage();
-    // Every concept card is one semantic focusable <a> covering the entire
-    // card, localized to the docs concepts section (TASK-534, Story D).
-    const conceptLinks = screen
-      .getAllByRole('link')
-      .filter((link) => link.getAttribute('href') === '/en/docs#concepts');
-    expect(conceptLinks.length).toBeGreaterThanOrEqual(8);
-    // The link is the card itself: it wraps the card title heading.
-    for (const link of conceptLinks) {
-      expect(within(link as HTMLElement).getByRole('heading', { level: 3 })).toBeInTheDocument();
+    // The #concepts anchor stays for deep links from /docs.
+    expect(screen.getByRole('heading', { level: 2, name: 'Concepts' })).toHaveAttribute(
+      'id',
+      'concepts',
+    );
+    // Story A: the eight concept tiles are informational surfaces — no
+    // /docs#concepts links remain and no card title is wrapped in a link
+    // (no hover/focus/selected highlight on the tile itself).
+    expect(
+      screen
+        .queryAllByRole('link')
+        .filter((link) => link.getAttribute('href') === '/en/docs#concepts'),
+    ).toHaveLength(0);
+    for (const label of EN_CONCEPT_LABELS) {
+      const heading = screen.getByRole('heading', { level: 3, name: label });
+      expect(heading.closest('a')).toBeNull();
+      expect(heading.closest('article')).not.toBeNull();
     }
+  });
+
+  it('renders the server-rendered example-communities marquee slot (Story B)', () => {
+    mockChipMarqueeServer.mockClear();
+    renderPage();
+    // The wrapper passes <ChipMarqueeServer /> into the view's marquee slot —
+    // the mock is instantiated exactly once (the view renders the slot).
+    expect(mockChipMarqueeServer).toHaveBeenCalledTimes(1);
   });
 
   it('exports metadata per the arch pattern (title, canonical, keywords)', () => {

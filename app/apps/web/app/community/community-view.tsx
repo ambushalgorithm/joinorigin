@@ -1,10 +1,10 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { useI18n } from '@joinorigin/i18n';
 
-import ChipMarquee from '../../components/ChipMarquee';
 import CountUpStat from '../../components/CountUpStat';
 import MenuPageShell from '../../components/MenuPageShell';
 import Reveal from '../../components/Reveal';
@@ -43,6 +43,19 @@ import { useLocalizePath } from '../../lib/seo/localePath';
 const VALUE_KEYS = ['peopleFirst', 'communitiesDriveGrowth', 'collaborationCreatesValue'] as const;
 
 /**
+ * Community view props (Story B, TASK-547). The "Example communities" marquee
+ * is server-rendered by `ChipMarqueeServer` in the page wrapper (it reads geo
+ * + active locale from `next/headers`) and dropped into this client view
+ * through the `marquee` slot — the client never imports the 12 MB geo
+ * snapshot.
+ */
+export interface CommunityViewProps {
+  /** Server-rendered `ChipMarqueeServer` element for the Example-communities
+   *  section (absent on surfaces whose wrapper hasn't wired the slot yet). */
+  marquee?: ReactNode;
+}
+
+/**
  * Explore hub cross-links row (TASK-316) — additive, keeps copy intact.
  * Mobile-first (Story A): tighter gap at the minimum viewport, roomier at
  * `theme.breakpoints.mobile`.
@@ -59,7 +72,7 @@ const ExploreLinks = styled.div`
   }
 `;
 
-export function CommunityView() {
+export function CommunityView({ marquee }: CommunityViewProps) {
   const { t, dictionary } = useI18n();
   const faq = faqEntries(faqNamespace(dictionary, 'community'));
   // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
@@ -113,7 +126,9 @@ export function CommunityView() {
             <Section>
               <SectionTitle>{t('community.sectionExamples')}</SectionTitle>
               <BodyCopy>{t('community.examplesIntro')}</BodyCopy>
-              <ChipMarquee intro={t('community.examplesIntro')} />
+              {/* Story B: the server wrapper passes the geo-aware
+                  `ChipMarqueeServer` through this slot. */}
+              {marquee}
             </Section>
           </Reveal>
         </PageContainer>

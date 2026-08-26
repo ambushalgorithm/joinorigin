@@ -2,13 +2,27 @@ import { screen, render } from '@testing-library/react';
 
 import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
+import ChipMarqueeServer from '../../components/ChipMarqueeServer';
 import CommunityPage, { metadata } from './page';
 import { renderWithI18n } from '../../test-utils';
 
 /**
  * Unit tests for the /community page (discovery §5.3): metadata export per
  * the arch pattern + semantic HTML (single h1, values, communities, trust).
+ *
+ * Story B (TASK-547): the wrapper passes the server-rendered `ChipMarqueeServer`
+ * into the view's `marquee` slot. The server component reads `next/headers`
+ * (geo + locale), so this page suite mocks it — its own behaviour is covered
+ * in `components/ChipMarqueeServer.test.tsx` — and asserts the slot wiring
+ * through the mock being instantiated by the wrapper.
  */
+
+jest.mock('../../components/ChipMarqueeServer', () => ({
+  __esModule: true,
+  default: jest.fn(() => null),
+}));
+
+const mockChipMarqueeServer = ChipMarqueeServer as jest.Mock;
 
 describe('community page', () => {
   it('exports metadata per the arch pattern (title, description, canonical, keywords)', () => {
@@ -32,14 +46,16 @@ describe('community page', () => {
   });
 
   it('renders values, example communities, and the trust stat', () => {
+    mockChipMarqueeServer.mockClear();
     renderWithI18n(<CommunityPage />);
     expect(screen.getByText('How we run the network')).toBeInTheDocument();
     expect(screen.getByText('People First')).toBeInTheDocument();
     expect(screen.getByText('Example communities')).toBeInTheDocument();
-    // Chip labels appear in the scrolling marquee (2× duplicate track, both
-    // aria-hidden) and the visually-hidden static list — assert >= 1.
-    expect(screen.getAllByText('Book Clubs').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('Startup Founders').length).toBeGreaterThanOrEqual(1);
+    // Story B: the wrapper passes <ChipMarqueeServer /> into the view's
+    // marquee slot — the mock is instantiated exactly once (the view renders
+    // the slot; the real server component's chip links are covered by its own
+    // suite).
+    expect(mockChipMarqueeServer).toHaveBeenCalledTimes(1);
     expect(screen.getByTestId('community-members-stat')).toHaveTextContent('2,400+');
   });
 
