@@ -63,7 +63,7 @@
     "hero": {
       "headline": "Przestrzeń współpracy pomysłów, projektów i społeczności — miejsce, w którym nowe i istniejące zespoły odnajdują swój Origin.",
       "headlineAccent": "Origin.",
-      "startProject": "Rozpocznij projekt",
+      "startProject": "Zacznij",
       "supporting": "Stwórz profil działający jak CV, opublikuj swój pomysł jako stronę i załóż lub dołącz do społeczności wokół dowolnej rzeczy — nowego pomysłu, istniejącej małej firmy, startupu AI, klubu książki czy biegu na 10 km.",
       "trustAvatarsAlt": "Członek JoinOrigin {{number}}",
       "trustCopy": "Dołącz do ponad 2400 budowniczych, którzy już współpracują"
@@ -119,10 +119,39 @@
       "rateLimited": "Zbyt wiele żądań. Spróbuj ponownie za minutę."
     }
   },
+  "signup": {
+    "title": "Zarejestruj się — Utwórz konto | JoinOrigin",
+    "description": "Utwórz konto na Origin, społecznościowej sieci współpracy. Podaj imię i adres e-mail, aby dać się odkryć, a następnie rozpocznij lub dołącz do społeczności już dziś.",
+    "heading": "Utwórz konto",
+    "subcopy": "Daj się odkryć w systemie operacyjnym społeczności — niezależnie od tego, czy zaczynasz coś nowego, czy rozwijasz istniejący projekt.",
+    "nameLabel": "Imię",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Zacznij",
+    "submitting": "Tworzenie konta…",
+    "legalNote": "Zero spamu. Wypisz się w dowolnym momencie.",
+    "successHeading": "Jesteś na liście!",
+    "successCopy": "Napiszemy do Ciebie e-mail, gdy Twoje miejsce pracy będzie gotowe.",
+    "done": "Gotowe",
+    "errors": {
+      "generic": "Coś poszło nie tak. Spróbuj ponownie.",
+      "nameEmailRequired": "Imię i adres e-mail są wymagane.",
+      "nameRequired": "Imię jest wymagane.",
+      "nameTooLong": "Imię może mieć maksymalnie 120 znaków.",
+      "emailInvalid": "Podaj prawidłowy adres e-mail.",
+      "rateLimited": "Zbyt wiele żądań. Spróbuj ponownie za minutę."
+    },
+    "waitlist": {
+      "heading": "Dołącz do listy oczekujących",
+      "subcopy": "Daj się odkryć w systemie operacyjnym społeczności — niezależnie od tego, czy zaczynasz coś nowego, czy rozwijasz istniejący projekt. Napiszemy do Ciebie e-mail, gdy Twoje miejsce pracy będzie gotowe.",
+      "disclosure": "Origin jest w fazie rozwoju. Twoje imię i adres e-mail służą wyłącznie do skonfigurowania i zabezpieczenia konta, gdy nadejdzie Twoja kolej."
+    }
+  },
   "ctaBand": {
     "headline": "Znajdź swoich ludzi. Zaczynajcie lub rozwijajcie coś razem.",
     "subline": "Dołącz do ponad 2400 budowniczych — od pierwszych pomysłów po uznane firmy — w społecznościowej sieci współpracy Origin i daj się odkryć już dziś.",
-    "joinLabel": "Daj się odkryć",
+    "joinLabel": "Zacznij",
     "contactLabel": "Skontaktuj się z nami"
   },
   "features": {
@@ -733,7 +762,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "Daj się odkryć"
+      "joinWaitlist": "Zacznij"
     }
   }
 }

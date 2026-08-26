@@ -63,7 +63,7 @@
     "hero": {
       "headline": "Uno spazio per idee, progetti e collaborazione comunitaria — dove i team nuovi ed esistenti trovano la loro Origin.",
       "headlineAccent": "Origin.",
-      "startProject": "Avvia un progetto",
+      "startProject": "Inizia",
       "supporting": "Crea un profilo che funziona come il tuo curriculum, pubblica la tua idea come una pagina e avvia o unisciti a una community su qualsiasi cosa — un'idea completamente nuova, una piccola impresa esistente, una startup di IA, un club del libro o una corsa da 10 km.",
       "trustAvatarsAlt": "Membro JoinOrigin {{number}}",
       "trustCopy": "Unisciti a oltre 2.400 creatori che collaborano già"
@@ -119,10 +119,39 @@
       "rateLimited": "Troppe richieste. Riprova tra un minuto."
     }
   },
+  "signup": {
+    "title": "Registrati — Crea il tuo account | JoinOrigin",
+    "description": "Crea il tuo account su Origin, il social network della collaborazione. Inserisci nome ed email per farti scoprire e inizia o entra a far parte di una comunità oggi stesso.",
+    "heading": "Crea il tuo account",
+    "subcopy": "Fatti scoprire sul sistema operativo di comunità — sia che tu stia iniziando qualcosa di nuovo sia che tu stia facendo crescere un progetto esistente.",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "Email",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Inizia",
+    "submitting": "Creazione dell'account in corso…",
+    "legalNote": "Niente spam. Disiscriviti quando vuoi.",
+    "successHeading": "Sei in lista!",
+    "successCopy": "Ti scriveremo via email quando il tuo spazio di lavoro sarà pronto.",
+    "done": "Fatto",
+    "errors": {
+      "generic": "Qualcosa è andato storto. Riprova.",
+      "nameEmailRequired": "Nome ed email sono obbligatori.",
+      "nameRequired": "Il nome è obbligatorio.",
+      "nameTooLong": "Il nome deve essere di 120 caratteri o meno.",
+      "emailInvalid": "Inserisci un indirizzo email valido.",
+      "rateLimited": "Troppe richieste. Riprova tra un minuto."
+    },
+    "waitlist": {
+      "heading": "Entra nella lista d'attesa",
+      "subcopy": "Fatti scoprire sul sistema operativo di comunità — sia che tu stia iniziando qualcosa di nuovo sia che tu stia facendo crescere un progetto esistente. Ti scriveremo via email quando il tuo spazio di lavoro sarà pronto.",
+      "disclosure": "Origin è in fase di sviluppo. Nome ed email servono solo per configurare e proteggere il tuo account quando sarà il tuo turno."
+    }
+  },
   "ctaBand": {
     "headline": "Trova le tue persone. Inizia o fai crescere qualcosa insieme.",
     "subline": "Unisciti a oltre 2.400 creatori — dalle prime idee alle aziende affermate — sulla rete di collaborazione sociale di Origin e fatti scoprire oggi.",
-    "joinLabel": "Fatti scoprire",
+    "joinLabel": "Inizia",
     "contactLabel": "Contattaci"
   },
   "features": {
@@ -717,7 +746,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "Fatti scoprire"
+      "joinWaitlist": "Inizia"
     },
     "metadata": {
       "waitlistPhrase": "Unisciti a Origin e fatti scoprire oggi.",

@@ -63,7 +63,7 @@
     "hero": {
       "headline": "點子、專案與社群協作空間——讓全新與既有的團隊在這裡找到他們的 Origin。",
       "headlineAccent": "Origin.",
-      "startProject": "開始專案",
+      "startProject": "開始使用",
       "supporting": "建立一個像履歷一樣的個人檔案，把你的點子發布成頁面，然後圍繞任何事物開始或加入社群——一個全新的點子、一家既有的小型企業、一個 AI 新創、一個讀書會、一場 10 公里路跑。",
       "trustAvatarsAlt": "JoinOrigin 成員 {{number}}",
       "trustCopy": "已有 2,400+ 位建設者在此協作"
@@ -119,10 +119,39 @@
       "rateLimited": "請求過於頻繁。請一分鐘後再試。"
     }
   },
+  "signup": {
+    "title": "註冊 — 建立您的帳戶 | JoinOrigin",
+    "description": "在社交協作網路 Origin 上建立您的帳戶。輸入姓名和電子郵件，讓自己被發現，然後立即開始或加入一個社群。",
+    "heading": "建立您的帳戶",
+    "subcopy": "在社群 OS 上讓自己被發現——無論你是正要開創全新的東西，還是正在壯大一個既有的專案。",
+    "nameLabel": "姓名",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "電子郵件",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "開始使用",
+    "submitting": "正在建立您的帳戶…",
+    "legalNote": "絕不寄送垃圾郵件。隨時可以取消訂閱。",
+    "successHeading": "你已在名單上！",
+    "successCopy": "當你的工作空間準備就緒時，我們會以電子郵件通知你。",
+    "done": "完成",
+    "errors": {
+      "generic": "發生錯誤。請再試一次。",
+      "nameEmailRequired": "姓名與電子郵件為必填欄位。",
+      "nameRequired": "姓名為必填欄位。",
+      "nameTooLong": "姓名不得超過 120 個字元。",
+      "emailInvalid": "請輸入有效的電子郵件地址。",
+      "rateLimited": "請求過於頻繁。請一分鐘後再試。"
+    },
+    "waitlist": {
+      "heading": "加入等候名單",
+      "subcopy": "在社群 OS 上讓自己被發現——無論你是正要開創全新的東西，還是正在壯大一個既有的專案。當你的工作空間準備就緒時，我們會以電子郵件通知你。",
+      "disclosure": "Origin 正在開發中。您的姓名與電子郵件僅用於在輪到您時設定及保護您的帳戶。"
+    }
+  },
   "ctaBand": {
     "headline": "找到你的夥伴。一起開始或壯大某件事。",
     "subline": "加入 Origin 社交協作網路上 2,400+ 位建設者的行列——從最初的點子到成熟的公司——今天就讓自己被發現。",
-    "joinLabel": "讓自己被發現",
+    "joinLabel": "開始使用",
     "contactLabel": "聯絡我們"
   },
   "features": {
@@ -733,7 +762,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "讓自己被發現"
+      "joinWaitlist": "開始使用"
     }
   }
 }

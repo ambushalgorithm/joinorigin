@@ -63,7 +63,7 @@
     "hero": {
       "headline": "Không gian hợp tác ý tưởng, dự án và cộng đồng — nơi các đội nhóm mới và hiện hữu tìm thấy Origin của mình.",
       "headlineAccent": "Origin.",
-      "startProject": "Bắt đầu dự án",
+      "startProject": "Bắt đầu",
       "supporting": "Tạo hồ sơ hoạt động như sơ yếu lý lịch của bạn, đăng ý tưởng dưới dạng một trang, và bắt đầu hoặc tham gia một cộng đồng xoay quanh bất cứ điều gì — một ý tưởng hoàn toàn mới, một doanh nghiệp nhỏ hiện hữu, một startup AI, một câu lạc bộ sách, hoặc một giải chạy 10 km.",
       "trustAvatarsAlt": "Thành viên JoinOrigin {{number}}",
       "trustCopy": "Tham gia cùng 2.400+ nhà sáng lập đang hợp tác"
@@ -119,10 +119,39 @@
       "rateLimited": "Quá nhiều yêu cầu. Vui lòng thử lại sau một phút."
     }
   },
+  "signup": {
+    "title": "Đăng ký — Tạo tài khoản của bạn | JoinOrigin",
+    "description": "Tạo tài khoản của bạn trên Origin, mạng xã hội cộng tác. Nhập tên và email để được khám phá, rồi bắt đầu hoặc tham gia một cộng đồng ngay hôm nay.",
+    "heading": "Tạo tài khoản của bạn",
+    "subcopy": "Hãy được khám phá trên hệ điều hành cộng đồng — dù bạn đang bắt đầu điều gì đó mới hay phát triển một dự án hiện hữu.",
+    "nameLabel": "Tên",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "Email",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Bắt đầu",
+    "submitting": "Đang tạo tài khoản của bạn…",
+    "legalNote": "Không spam. Hủy đăng ký bất cứ lúc nào.",
+    "successHeading": "Bạn đã có tên trong danh sách!",
+    "successCopy": "Chúng tôi sẽ gửi email cho bạn khi không gian làm việc của bạn sẵn sàng.",
+    "done": "Xong",
+    "errors": {
+      "generic": "Đã xảy ra sự cố. Vui lòng thử lại.",
+      "nameEmailRequired": "Tên và email là bắt buộc.",
+      "nameRequired": "Tên là bắt buộc.",
+      "nameTooLong": "Tên phải có tối đa 120 ký tự.",
+      "emailInvalid": "Vui lòng nhập địa chỉ email hợp lệ.",
+      "rateLimited": "Quá nhiều yêu cầu. Vui lòng thử lại sau một phút."
+    },
+    "waitlist": {
+      "heading": "Tham gia danh sách chờ",
+      "subcopy": "Hãy được khám phá trên hệ điều hành cộng đồng — dù bạn đang bắt đầu điều gì đó mới hay phát triển một dự án hiện hữu. Chúng tôi sẽ gửi email cho bạn khi không gian làm việc của bạn sẵn sàng.",
+      "disclosure": "Origin đang trong giai đoạn phát triển. Tên và email của bạn chỉ được dùng để thiết lập và bảo mật tài khoản khi đến lượt bạn."
+    }
+  },
   "ctaBand": {
     "headline": "Tìm đúng người của bạn. Cùng nhau bắt đầu hoặc phát triển điều gì đó.",
     "subline": "Tham gia cùng 2.400+ nhà sáng lập — từ những ý tưởng đầu tiên đến các công ty đã thành lập — trên mạng lưới cộng tác xã hội của Origin và được khám phá ngay hôm nay.",
-    "joinLabel": "Được khám phá",
+    "joinLabel": "Bắt đầu",
     "contactLabel": "Liên hệ với chúng tôi"
   },
   "features": {
@@ -733,7 +762,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "Được khám phá"
+      "joinWaitlist": "Bắt đầu"
     }
   }
 }
