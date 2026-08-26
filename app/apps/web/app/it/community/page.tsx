@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import ChipMarqueeServer from '../../../components/ChipMarqueeServer';
 import { JsonLd } from '../../../lib/seo/JsonLdScript';
 import { breadcrumbList } from '../../../lib/seo/jsonLd';
 import { createMetadata } from '../../../lib/seo/metadata';
@@ -39,7 +40,7 @@ export const metadata: Metadata = createMetadata({
 export default function ItCommunityPage() {
   return (
     <>
-      <CommunityView />
+      <CommunityView marquee={<ChipMarqueeServer />} />
       <JsonLd
         data={breadcrumbList([
           { name: 'Home', path: '/it' },

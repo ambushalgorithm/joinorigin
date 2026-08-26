@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import ChipMarqueeServer from '../../components/ChipMarqueeServer';
 import { createMetadata } from '../../lib/seo/metadata';
 import { SITE } from '../../lib/seo/site';
 import { HomeView } from '../home-view';
@@ -36,7 +37,7 @@ export const metadata: Metadata = createMetadata({
 export default function ZhTWHomePage() {
   return (
     <>
-      <HomeView />
+      <HomeView marquee={<ChipMarqueeServer />} />
     </>
   );
 }

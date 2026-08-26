@@ -12,6 +12,14 @@
  *     path + `Home` → `/<locale>` breadcrumb, existing de/es guide
  *     wrappers have the fixed Home crumb, and representative generated
  *     pages render + export the expected canonical.
+ *
+ * Story B (TASK-547/TASK-548): the generated home + community wrappers pass
+ * the server-rendered `ChipMarqueeServer` into the view's `marquee` slot
+ * (mirroring the hand-written EN wrappers). That server component reads
+ * `next/headers` (geo + locale), so this suite mocks it — its own behavior
+ * is covered in `components/ChipMarqueeServer.test.tsx` — and asserts the
+ * slot wiring at both the source level (every locale surface) and through
+ * the mock being instantiated when a generated page renders.
  */
 
 import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -24,6 +32,7 @@ import * as DeAbout from '../../app/de/about/page';
 import * as DeFeatures from '../../app/de/features/page';
 import * as EnHome from '../../app/en/page';
 import * as EsCommunity from '../../app/es/community/page';
+import ChipMarqueeServer from '../../components/ChipMarqueeServer';
 import {
   fixGuideBreadcrumbs,
   guideFile,
@@ -36,6 +45,13 @@ import {
   wrapperName,
 } from '../generate-locale-routes';
 import { renderWithI18n } from '../../test-utils';
+
+jest.mock('../../components/ChipMarqueeServer', () => ({
+  __esModule: true,
+  default: jest.fn(() => null),
+}));
+
+const mockChipMarqueeServer = ChipMarqueeServer as jest.Mock;
 
 /** `apps/web` root (the generator's webRoot). */
 const WEB_ROOT = join(__dirname, '..', '..');
@@ -273,6 +289,14 @@ describe('route smoke tests (real apps/web/app tree)', () => {
         expect(source).toContain(
           `localizeMetadata(locationMetadata(entry), '${entry.locale}', entry.path)`,
         );
+        // TASK-480 contract (now encoded in the generator template): the hub
+        // threads the proxy-forwarded IP country into the view data so the
+        // "Browse locations" directory orders IP-country → locale-language →
+        // alphabetical (mirrors the hand-written `app/location/page.tsx`).
+        expect(source).toContain("import { getServerCountry } from '../../../lib/seo/geo';");
+        expect(source).toContain(
+          `buildLocationViewData(entry, '${entry.locale}', await getServerCountry())`,
+        );
       }
     }
   });
@@ -305,6 +329,24 @@ describe('route smoke tests (real apps/web/app tree)', () => {
       if (entry.page !== 'home') {
         expect(source).toContain(`{ name: 'Home', path: '/${entry.locale}' }`);
       }
+    }
+  });
+
+  it('every home + community wrapper passes ChipMarqueeServer into the view marquee slot (Story B mirror)', () => {
+    for (const locale of EXPECTED_LOCALES) {
+      // app/<locale>/page.tsx — HomeView marquee slot (depth 2 → components).
+      const home = readFileSync(join(APP_DIR, locale, 'page.tsx'), 'utf8');
+      expect(home).toContain("import ChipMarqueeServer from '../../components/ChipMarqueeServer';");
+      expect(home).toContain('<HomeView marquee={<ChipMarqueeServer />} />');
+      expect(home).not.toContain('<HomeView />');
+
+      // app/<locale>/community/page.tsx — CommunityView marquee slot (depth 3).
+      const community = readFileSync(join(APP_DIR, locale, 'community', 'page.tsx'), 'utf8');
+      expect(community).toContain(
+        "import ChipMarqueeServer from '../../../components/ChipMarqueeServer';",
+      );
+      expect(community).toContain('<CommunityView marquee={<ChipMarqueeServer />} />');
+      expect(community).not.toContain('<CommunityView />');
     }
   });
 
@@ -370,5 +412,17 @@ describe('representative generated pages render + export metadata', () => {
   it('de/about renders the shared view with a single H1', () => {
     renderWithI18n(<DeAboutPage />, 'de');
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
+  });
+
+  it('generated home + community wrappers pass <ChipMarqueeServer /> into the view marquee slot (Story B mirror)', () => {
+    mockChipMarqueeServer.mockClear();
+    renderWithI18n(<EnHomePage />, 'en');
+    // The wrapper renders <HomeView marquee={<ChipMarqueeServer />} /> — the
+    // mock is instantiated exactly once (the view renders the slot).
+    expect(mockChipMarqueeServer).toHaveBeenCalledTimes(1);
+
+    mockChipMarqueeServer.mockClear();
+    renderWithI18n(<EsCommunityPage />, 'es');
+    expect(mockChipMarqueeServer).toHaveBeenCalledTimes(1);
   });
 });
