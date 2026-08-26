@@ -4,7 +4,7 @@
  *
  * Three layers:
  *  1. Input-table snapshot — `routePlan()` must produce exactly the
- *     21 locales × 14 public pages file set (Rule 12: no branching).
+ *     21 locales × 17 public pages file set (Rule 12: no branching).
  *  2. Writer behavior — no-clobber (existing files are skipped, never
  *     overwritten), idempotent re-runs, and the emitted manifest.
  *  3. Route smoke tests over the real `apps/web/app` tree — every planned
@@ -92,6 +92,7 @@ const EXPECTED_PAGES = [
   'privacy',
   'terms',
   'glossary',
+  'signup',
   'location',
   'location-country',
   'location-region',
@@ -107,18 +108,18 @@ function makeTempDir(): string {
 }
 
 describe('route plan (input table snapshot)', () => {
-  it('plans exactly 21 locales × 16 pages = 336 wrappers', () => {
+  it('plans exactly 21 locales × 17 pages = 357 wrappers', () => {
     const plan = routePlan();
-    expect(plan).toHaveLength(336);
+    expect(plan).toHaveLength(357);
     expect(new Set(plan.map((entry) => entry.locale))).toEqual(new Set(EXPECTED_LOCALES));
     expect(new Set(plan.map((entry) => entry.page))).toEqual(new Set(EXPECTED_PAGES));
-    // Every locale has the same 16 pages (the input table is a grid).
+    // Every locale has the same 17 pages (the input table is a grid).
     const perLocale = new Map<string, number>();
     for (const entry of plan) {
       perLocale.set(entry.locale, (perLocale.get(entry.locale) ?? 0) + 1);
     }
     for (const locale of EXPECTED_LOCALES) {
-      expect(perLocale.get(locale)).toBe(16);
+      expect(perLocale.get(locale)).toBe(17);
     }
   });
 
@@ -150,7 +151,7 @@ describe('writer (no-clobber + idempotent + manifest)', () => {
     const temp = makeTempDir();
     try {
       const result = await writeAll(temp);
-      expect(result.generated).toHaveLength(336);
+      expect(result.generated).toHaveLength(357);
       expect(result.skippedExisting).toHaveLength(0);
       for (const file of routePlan().map((entry) => entry.file)) {
         expect(existsSync(join(temp, file))).toBe(true);
@@ -160,11 +161,11 @@ describe('writer (no-clobber + idempotent + manifest)', () => {
       // surface, so preExisting is empty).
       const manifest = manifestFrom(result);
       expect(manifest.locales).toEqual(EXPECTED_LOCALES);
-      expect(manifest.pageCount).toBe(336);
-      expect(manifest.generated).toHaveLength(336);
+      expect(manifest.pageCount).toBe(357);
+      expect(manifest.generated).toHaveLength(357);
       expect(manifest.preExisting).toEqual([]);
       expect(manifest.guideBreadcrumbsFixed).toHaveLength(40);
-      expect(manifest.lastRun.generated).toBe(336);
+      expect(manifest.lastRun.generated).toBe(357);
       expect(manifest.lastRun.skippedExisting).toBe(0);
     } finally {
       rmSync(temp, { recursive: true, force: true });
@@ -181,7 +182,7 @@ describe('writer (no-clobber + idempotent + manifest)', () => {
       const result = await writeAll(temp);
       expect(result.skippedExisting).toContain('app/de/features/page.tsx');
       expect(readFileSync(existing, 'utf8')).toContain('Existing');
-      expect(result.generated).toHaveLength(335);
+      expect(result.generated).toHaveLength(356);
     } finally {
       rmSync(temp, { recursive: true, force: true });
     }
@@ -193,7 +194,7 @@ describe('writer (no-clobber + idempotent + manifest)', () => {
       await writeAll(temp);
       const second = await writeAll(temp);
       expect(second.generated).toHaveLength(0);
-      expect(second.skippedExisting).toHaveLength(336);
+      expect(second.skippedExisting).toHaveLength(357);
     } finally {
       rmSync(temp, { recursive: true, force: true });
     }
@@ -234,7 +235,7 @@ describe('guide breadcrumb fixes (TASK-448d)', () => {
 });
 
 describe('route smoke tests (real apps/web/app tree)', () => {
-  it('every planned wrapper exists — 21 locales × 16 pages, no 404 at the routing layer', () => {
+  it('every planned wrapper exists — 21 locales × 17 pages, no 404 at the routing layer', () => {
     const missing = routePlan()
       .map((entry) => entry.file)
       .filter((file) => !existsSync(join(WEB_ROOT, file)));
@@ -247,7 +248,7 @@ describe('route smoke tests (real apps/web/app tree)', () => {
     // the full location + guide surface), so a re-run writes nothing and
     // skips every planned file deterministically.
     expect(result.generated).toHaveLength(0);
-    expect(result.skippedExisting).toHaveLength(336);
+    expect(result.skippedExisting).toHaveLength(357);
   });
 
   it('every location wrapper is force-dynamic, resolves the locale entry with EN fallback, and renders the locale body', () => {

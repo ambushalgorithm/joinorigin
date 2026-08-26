@@ -15,7 +15,7 @@
  *   - LOCALES = SUPPORTED_LOCALES (21: en + 20 translations) from
  *     `@joinorigin/i18n` — single source of truth for the locale matrix.
  *   - STATIC_PAGES = every public non-location page (home, features,
- *     community, docs, about, contact, privacy, terms, glossary).
+ *     community, docs, about, contact, privacy, terms, glossary, signup).
  *   - LOCATION_SEGMENTS = the 5 location page kinds (hub, [country],
  *     [country]/[region], [country]/[region]/[city],
  *     [country]/[region]/[city]/[variant]).
@@ -229,6 +229,24 @@ const STATIC_PAGES: StaticPageSpec[] = [
       'community OS',
       'community terms',
       'hybrid events',
+    ],
+  },
+  {
+    route: 'signup',
+    name: 'Signup',
+    viewModule: '../../signup/signup-view',
+    viewName: 'SignupView',
+    crumb: 'Signup',
+    title: 'Sign Up — Create Your Account | JoinOrigin',
+    description:
+      'Create your account on Origin, the social collaboration network. Enter your name and email to get discovered — then start or join a community today.',
+    keywords: [
+      'sign up',
+      'create account',
+      'join Origin',
+      'social collaboration network',
+      'community OS',
+      'get discovered',
     ],
   },
 ];
@@ -702,8 +720,8 @@ function pageNameForRoute(route: string): string {
   return route === '' ? 'home' : route;
 }
 
-/** The complete deterministic route plan — 21 locales × 16 pages
- *  (9 static + 5 location + guide hub + guide detail). */
+/** The complete deterministic route plan — 21 locales × 17 pages
+ *  (10 static + 5 location + guide hub + guide detail). */
 export function routePlan(): PlannedRoute[] {
   const plan: PlannedRoute[] = [];
   for (const locale of LOCALES) {
