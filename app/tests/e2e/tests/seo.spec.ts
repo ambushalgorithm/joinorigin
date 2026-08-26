@@ -12,6 +12,29 @@ import { test, expect, type Page } from '@playwright/test';
  * TASK-205/207) were fixed and the markers removed by fe-fix-menu-seo
  * (TASK-220): menu-page OG image (arch §3.5) and the 160-char description
  * rule (discovery §6). The remaining assertions are required and must pass.
+ *
+ * LIVE-SWEEP CHUNKING (TASK-549, Story C.3): the representative sitemap
+ * parity test below stays the default (bounded sample of every URL shape).
+ * The FULL per-locale sweep — every one of the ~897 advertised URLs across
+ * all 21 locale surfaces resolving 200 — is opt-in and deterministically
+ * chunked so CI can run N jobs in parallel, each resolving one slice within
+ * a sane per-chunk timeout. Enable with:
+ *
+ *   SEO_LIVE_SWEEP=1 pnpm --dir tests/e2e exec playwright test tests/seo.spec.ts
+ *   # single job → one chunk (0-based); run `SEO_LIVE_SWEEP_TOTAL` jobs in parallel:
+ *   SEO_LIVE_SWEEP=1 SEO_LIVE_SWEEP_TOTAL=8 SEO_LIVE_SWEEP_CHUNK=0 pnpm --dir tests/e2e exec playwright test tests/seo.spec.ts
+ *   # optional overrides:
+ *   #   SEO_LIVE_SWEEP_TOTAL      default 8        — number of deterministic chunks
+ *   #   SEO_LIVE_SWEEP_CHUNK      default all      — which chunk THIS job resolves
+ *   #   SEO_LIVE_SWEEP_TIMEOUT_MS default 600000   — per-chunk test timeout
+ *
+ * The exhaustive URL set is never hardcoded here: the sweep derives it at
+ * runtime from the LIVE /sitemap.xml (server output). Derivation stays the
+ * source of truth in the unit suites (`sitemap.test.ts` +
+ * `locationPages.test.ts`, TASK-473); this spec only verifies the live
+ * server resolves the advertised set. Chunk assignment is a stable hash of
+ * the pathname (djb2, no Math.random), so the same sitemap always maps a
+ * URL to the same chunk regardless of sitemap growth.
  */
 
 // These specs navigate many pages; run serially to avoid starving the shared
@@ -400,6 +423,99 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     expect(text).not.toContain('](http://localhost:3100/guides)');
   });
 });
+
+/* ------------------------------------------------------------------ *
+ * Exhaustive per-locale live sweep (TASK-549, Story C.3)
+ *
+ * Opt-in, deterministically chunked FULL parity: every URL advertised by
+ * /sitemap.xml — the ~897-URL set across all 21 locale surfaces (static
+ * routes, glossary, guides, hubs, and every content-rich city's
+ * variant/ideas pages) — must resolve 200 on the live server. `next start`
+ * compiles each ISR route on first request (~2.5s), so a single unscoped
+ * test would run ~40 min and blow any sane timeout. Deterministic chunking
+ * bounds each slice to ceil(897 / SEO_LIVE_SWEEP_TOTAL) URLs per job, and
+ * CI runs one job per chunk in parallel. The unit suites (`sitemap.test.ts`
+ * + `locationPages.test.ts`) remain the source of truth for the full URL
+ * set — this spec derives the advertised set from the LIVE /sitemap.xml at
+ * runtime and never hardcodes the exhaustive list. Serial mode (file-wide)
+ * + the shared-dev-server constraint are preserved: each chunk test only
+ * issues its own requests, so the sweep stays stable under load.
+ * ------------------------------------------------------------------ */
+
+type SweepConfig = {
+  enabled: boolean;
+  total: number;
+  chunk: number | undefined;
+  timeoutMs: number;
+};
+
+/** Reads the SEO_LIVE_SWEEP_* env knobs (usage in the file header). */
+function sweepEnvConfig(): SweepConfig {
+  const enabled = ['1', 'true', 'exhaustive', 'yes'].includes(
+    (process.env.SEO_LIVE_SWEEP ?? '').trim().toLowerCase(),
+  );
+  const total = Math.min(64, Math.max(1, Number(process.env.SEO_LIVE_SWEEP_TOTAL ?? 8) || 8));
+  const rawChunk = (process.env.SEO_LIVE_SWEEP_CHUNK ?? '').trim();
+  const parsedChunk = rawChunk === '' || rawChunk === 'all' ? Number.NaN : Number(rawChunk);
+  const chunk = Number.isFinite(parsedChunk)
+    ? Math.min(total - 1, Math.max(0, Math.trunc(parsedChunk)))
+    : undefined;
+  const timeoutMs = Number(process.env.SEO_LIVE_SWEEP_TIMEOUT_MS ?? 600_000) || 600_000;
+  return { enabled, total, chunk, timeoutMs };
+}
+
+/** djb2 hash of a pathname → deterministic chunk index (no Math.random),
+ *  so the same sitemap always maps a URL to the same chunk across runs
+ *  and CI jobs, even as the sitemap grows. */
+function stableChunkIndex(path: string, total: number): number {
+  let hash = 5381;
+  for (let i = 0; i < path.length; i += 1) {
+    hash = ((hash << 5) + hash + path.charCodeAt(i)) >>> 0;
+  }
+  return hash % total;
+}
+
+const sweepConfig = sweepEnvConfig();
+
+if (sweepConfig.enabled) {
+  test.describe('exhaustive per-locale live sweep — every advertised sitemap URL resolves (200)', () => {
+    // With no SEO_LIVE_SWEEP_CHUNK every chunk test is declared (local
+    // full sweep); a CI job pins the index so only that chunk runs.
+    const chunkIndexes =
+      sweepConfig.chunk === undefined
+        ? Array.from({ length: sweepConfig.total }, (_, i) => i)
+        : [sweepConfig.chunk];
+
+    for (const chunkIndex of chunkIndexes) {
+      test(`chunk ${chunkIndex}/${sweepConfig.total} — every advertised sitemap URL in this slice resolves (200)`, async ({
+        request,
+      }) => {
+        test.setTimeout(sweepConfig.timeoutMs);
+
+        // Derive the full advertised set from the LIVE sitemap (the unit
+        // suites own the derivation; this verifies the server honors the
+        // advertised contract — zero orphans, zero 500s).
+        const sitemapResponse = await request.get('/sitemap.xml');
+        expect(sitemapResponse.status()).toBe(200);
+        const xmlText = await sitemapResponse.text();
+        const locs = [...xmlText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+        const paths = [...new Set(locs.map((loc) => new URL(loc).pathname))];
+
+        // Deterministic subset: stable hash → chunk; every URL lands in
+        // exactly one chunk and the partition is stable across runs.
+        const chunkPaths = paths.filter(
+          (path) => stableChunkIndex(path, sweepConfig.total) === chunkIndex,
+        );
+        expect(chunkPaths.length).toBeGreaterThan(0);
+
+        for (const path of chunkPaths) {
+          const pageResponse = await request.get(path, { timeout: 60_000 });
+          expect(pageResponse.status(), `live ${path}`).toBe(200);
+        }
+      });
+    }
+  });
+}
 
 test.describe('JSON-LD structured data (arch §3.6, discovery §7)', () => {
   test('every page emits valid JSON-LD (server-rendered, parses cleanly)', async ({ page }) => {
