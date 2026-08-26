@@ -17,9 +17,12 @@ import {
  * Mirrors the EN `app/location/page.tsx` wrapper. The hub entry is the
  * canonical EN hub; view data renders the active locale's body via
  * `buildLocationViewData(entry, 'en')` (per-locale content with
- * EN fallback — TASK-453). Metadata is per-locale with EN fallback
- * (TASK-458): the EN hub copy stays (no translated hub content), while
- * canonical + hreflang localize to `/en/location` with
+ * EN fallback — TASK-453) and threads the proxy-forwarded IP country
+ * (`getServerCountry()`) so the "Browse locations" directory orders
+ * IP-country → locale-language → alphabetical (TASK-480 contract, now
+ * encoded in the generator template). Metadata is per-locale with EN
+ * fallback (TASK-458): the EN hub copy stays (no translated hub content),
+ * while canonical + hreflang localize to `/en/location` with
  * `x-default` → EN canonical. Rendered per-request: the root layout
  * reads `headers()`, so SSG/ISR would crash with DYNAMIC_SERVER_USAGE.
  */

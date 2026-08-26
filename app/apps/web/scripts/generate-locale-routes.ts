@@ -3,6 +3,14 @@
  * generate-locale-routes — deterministic `app/<locale>/**` route-tree
  * generator (Rule 12, TASK-448).
  *
+ * SOURCE OF TRUTH (TASK-548, Story C.2): this generator owns EVERY
+ * `app/<locale>/**` wrapper — the committed wrapper tree is generated
+ * output. NEVER hand-edit any `app/<locale>/**` file. When the route set
+ * or a wrapper template changes, regenerate with
+ * `pnpm --filter @joinorigin/web locale:generate --force`, run
+ * `format:generated` (prettier --write), and commit the regenerated
+ * wrappers + `locale-routes.manifest.json` together in the same change.
+ *
  * Input tables (committed here, mirroring the codebase):
  *   - LOCALES = SUPPORTED_LOCALES (21: en + 20 translations) from
  *     `@joinorigin/i18n` — single source of truth for the locale matrix.
@@ -355,6 +363,17 @@ function staticWrapperSource(locale: Locale, page: StaticPageSpec): string {
           { name: '${page.crumb}', path: '/${locale}/${page.route}' },
         ])}
       />\n`;
+  // Story B (TASK-547/TASK-548): the home + community wrappers pass the
+  // server-rendered <ChipMarqueeServer /> into the view's `marquee` slot,
+  // mirroring the hand-written EN wrappers (`app/page.tsx` and
+  // `app/community/page.tsx`) — the 12 MB geo snapshot stays server-side.
+  const marqueeSlot = page.route === '' || page.route === 'community';
+  const marqueeImport = marqueeSlot
+    ? `import ChipMarqueeServer from '${ups(depth)}components/ChipMarqueeServer';\n`
+    : '';
+  const viewElement = marqueeSlot
+    ? `<${page.viewName} marquee={<ChipMarqueeServer />} />`
+    : `<${page.viewName} />`;
   // hreflang note: EN surfaces emit the EN cluster (`en` + `x-default` →
   // EN canonical at `/en/...`); non-EN surfaces emit `[locale]` + `en` +
   // `x-default` → EN canonical (TASK-466: all-routes-prefixed).
@@ -365,7 +384,7 @@ function staticWrapperSource(locale: Locale, page: StaticPageSpec): string {
 
   return `import type { Metadata } from 'next';
 
-${jsonLdScriptImport}${jsonLdImport}import { createMetadata } from '${ups(depth)}lib/seo/metadata';
+${marqueeImport}${jsonLdScriptImport}${jsonLdImport}import { createMetadata } from '${ups(depth)}lib/seo/metadata';
 ${siteImport}import { ${page.viewName} } from '${page.viewModule}';
 
 /**
@@ -394,7 +413,7 @@ export const metadata: Metadata = createMetadata({
 export default function ${name}() {
   return (
     <>
-      <${page.viewName} />
+      ${viewElement}
 ${jsonLdBlock}${crumbBlock}    </>
   );
 }
@@ -429,6 +448,7 @@ function locationWrapperSource(locale: Locale, segment: LocationSegment): string
 
 import { LocationView } from '${ups(depth)}components/location/LocationView';
 import { JsonLd } from '${ups(depth)}lib/seo/JsonLdScript';
+import { getServerCountry } from '${ups(depth)}lib/seo/geo';
 import { localizeMetadata } from '${ups(depth)}lib/seo/metadata';
 import {
   buildLocationViewData,
@@ -443,9 +463,12 @@ import {
  * Mirrors the EN \`app/location/page.tsx\` wrapper. The hub entry is the
  * canonical EN hub; view data renders the active locale's body via
  * \`buildLocationViewData(entry, '${locale}')\` (per-locale content with
- * EN fallback — TASK-453). Metadata is per-locale with EN fallback
- * (TASK-458): the EN hub copy stays (no translated hub content), while
- * canonical + hreflang localize to \`/${locale}/location\` with
+ * EN fallback — TASK-453) and threads the proxy-forwarded IP country
+ * (\`getServerCountry()\`) so the "Browse locations" directory orders
+ * IP-country → locale-language → alphabetical (TASK-480 contract, now
+ * encoded in the generator template). Metadata is per-locale with EN
+ * fallback (TASK-458): the EN hub copy stays (no translated hub content),
+ * while canonical + hreflang localize to \`/${locale}/location\` with
  * \`x-default\` → EN canonical. Rendered per-request: the root layout
  * reads \`headers()\`, so SSG/ISR would crash with DYNAMIC_SERVER_USAGE.
  */
@@ -464,7 +487,7 @@ export default async function ${name}() {
   if (!entry) {
     return null;
   }
-  const data = buildLocationViewData(entry, '${locale}');
+  const data = buildLocationViewData(entry, '${locale}', await getServerCountry());
   const jsonLd = locationJsonLd(data);
   return (
     <>
