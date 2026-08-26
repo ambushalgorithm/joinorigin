@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet, ThemeProvider } from 'styled-components';
@@ -8,7 +8,6 @@ import { theme } from '@joinorigin/design';
 import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import Header from './Header';
-import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * `next/navigation` is mocked so the Header's `useLocalizePath` (link
@@ -30,9 +29,7 @@ function renderHeader(locale: Locale = 'en') {
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <NativeThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <WaitlistModalProvider>
-            <Header />
-          </WaitlistModalProvider>
+          <Header />
         </ThemeProvider>
       </NativeThemeProvider>
     </I18nProvider>,
@@ -91,50 +88,49 @@ describe('Header', () => {
     expect(toggle).toHaveAttribute('aria-expanded', 'false');
   });
 
-  it('opens the waitlist modal from the Get Started CTA', async () => {
+  it('routes the Get Started CTA to the locale-prefixed signup page', async () => {
     const user = userEvent.setup();
     renderHeader();
 
-    await user.click(screen.getByTestId('get-started-button'));
-
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
-    expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
+    const cta = screen.getByTestId('get-started-button');
+    expect(cta).toHaveAttribute('href', '/en/signup');
+    expect(cta).toHaveTextContent('Get Started');
+    // A real anchor — navigation works without JS.
+    await user.click(cta);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('opens the waitlist modal from the desktop Log In button (TASK-405)', async () => {
+  it('routes the desktop Log In button to the locale-prefixed signup page (TASK-405)', async () => {
     const user = userEvent.setup();
     renderHeader();
 
-    await user.click(screen.getByTestId('login-button'));
-
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
-    expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
+    const login = screen.getByTestId('login-button');
+    expect(login).toHaveAttribute('href', '/en/signup');
+    await user.click(login);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('opens the waitlist modal from the mobile panel Log In button (TASK-405)', async () => {
+  it('routes the mobile panel Log In button to the locale-prefixed signup page (TASK-405)', async () => {
     const user = userEvent.setup();
     renderHeader();
 
     await user.click(screen.getByTestId('mobile-menu-toggle'));
-    await user.click(screen.getByTestId('mobile-login-button'));
-
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
-    expect(screen.getByText('Join the waitlist')).toBeInTheDocument();
+    const login = screen.getByTestId('mobile-login-button');
+    expect(login).toHaveAttribute('href', '/en/signup');
+    await user.click(login);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('restores focus to the trigger button when the modal closes (spec §9.2)', async () => {
+  it('routes the mobile panel Get Started CTA to the locale-prefixed signup page', async () => {
     const user = userEvent.setup();
     renderHeader();
 
-    const trigger = screen.getByTestId('get-started-button');
-    await user.click(trigger);
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-    // ESC closes the modal; the provider restores focus to the recorded trigger.
-    await user.keyboard('{Escape}');
-    await waitFor(() => {
-      expect(trigger).toHaveFocus();
-    });
+    await user.click(screen.getByTestId('mobile-menu-toggle'));
+    const cta = screen.getByTestId('mobile-get-started-button');
+    expect(cta).toHaveAttribute('href', '/en/signup');
+    expect(cta).toHaveTextContent('Get Started');
+    await user.click(cta);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
   it('toggles the mobile menu and closes it on ESC', async () => {
@@ -271,9 +267,7 @@ describe('Story A: Header mobile-first breakpoints (min viewport = 320px)', () =
           <I18nProvider locale="en" dictionary={getDictionary('en')}>
             <NativeThemeProvider theme={theme}>
               <ThemeProvider theme={theme}>
-                <WaitlistModalProvider>
-                  <Header />
-                </WaitlistModalProvider>
+                <Header />
               </ThemeProvider>
             </NativeThemeProvider>
           </I18nProvider>,
@@ -355,9 +349,7 @@ describe('Story C: Header interactive focus indicators', () => {
           <I18nProvider locale="en" dictionary={getDictionary('en')}>
             <NativeThemeProvider theme={theme}>
               <ThemeProvider theme={theme}>
-                <WaitlistModalProvider>
-                  <Header />
-                </WaitlistModalProvider>
+                <Header />
               </ThemeProvider>
             </NativeThemeProvider>
           </I18nProvider>,

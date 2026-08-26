@@ -7,7 +7,6 @@ import { theme } from '@joinorigin/design';
 import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import HeroCta from './HeroCta';
-import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * `next/navigation` is mocked so the CTA's `useLocalizePath` (link
@@ -26,9 +25,7 @@ function renderCta(props: React.ComponentProps<typeof HeroCta>, locale: Locale =
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <NativeThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <WaitlistModalProvider>
-            <HeroCta {...props} />
-          </WaitlistModalProvider>
+          <HeroCta {...props} />
         </ThemeProvider>
       </NativeThemeProvider>
     </I18nProvider>,
@@ -38,9 +35,9 @@ function renderCta(props: React.ComponentProps<typeof HeroCta>, locale: Locale =
 /**
  * Unit tests for the hero-level join CTA (spec sprint-10 §4.3).
  *
- * - waitlist variant: a RotatingBorderButton that opens the shared waitlist
- *   modal (testID="hero-join-button").
- * - contact variant: a muted ghost link to /contact, never the modal
+ * - waitlist variant: a RotatingBorderButton that navigates to the
+ *   locale-prefixed `/signup` route (testID="hero-join-button").
+ * - contact variant: a muted ghost link to /contact, never the signup route
  *   (testID="hero-contact-link").
  */
 
@@ -50,14 +47,26 @@ describe('HeroCta', () => {
     mockPathname = '/';
   });
 
-  it('renders a waitlist button and opens the shared modal (spec §4.3)', async () => {
-    const user = userEvent.setup();
-    renderCta({ variant: 'waitlist', label: 'Join the waitlist' });
-    const button = screen.getByTestId('hero-join-button');
-    expect(button).toHaveTextContent('Join the waitlist');
-    await user.click(button);
-    expect(screen.getByRole('dialog')).toBeVisible();
+  it('renders a signup link from the waitlist variant (spec §4.3)', () => {
+    renderCta({ variant: 'waitlist', label: 'Get Started' });
+    const link = screen.getByTestId('hero-join-button');
+    expect(link.tagName).toBe('A');
+    expect(link).toHaveAttribute('href', '/en/signup');
+    expect(link).toHaveTextContent('Get Started');
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(screen.queryByTestId('hero-contact-link')).not.toBeInTheDocument();
+  });
+
+  it('prefixes the signup href on a /de/** load (table row 3)', () => {
+    mockPathname = '/de/features';
+    renderCta({ variant: 'waitlist', label: 'Loslegen' }, 'de');
+    expect(screen.getByTestId('hero-join-button')).toHaveAttribute('href', '/de/signup');
+  });
+
+  it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {
+    mockPathname = '/en/features';
+    renderCta({ variant: 'waitlist', label: 'Get Started' });
+    expect(screen.getByTestId('hero-join-button')).toHaveAttribute('href', '/en/signup');
   });
 
   it('renders a contact ghost link (never the waitlist modal) on legal pages', async () => {

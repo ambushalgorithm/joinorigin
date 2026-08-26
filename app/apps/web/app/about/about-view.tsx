@@ -63,7 +63,7 @@ export function AboutView() {
         lead: t('about.hero.lead'),
         scene: 'about',
         accent: 'about',
-        cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
+        cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },
         meta: { avatars: true },
       }}
     >

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styled, { keyframes } from 'styled-components';
 
 import { ROTATING_BORDER_GRADIENT, ENTRANCE_EASING } from './landingTokens';
@@ -16,11 +17,19 @@ import { ROTATING_BORDER_GRADIENT, ENTRANCE_EASING } from './landingTokens';
  *
  * `--border-angle` is registered globally in `GlobalStyles` (`@property`),
  * which is required for animating a custom property.
+ *
+ * Link variant (Sprint 24, TASK-556): when `href` is provided the CTA renders
+ * as a real anchor (Next.js `Link`) instead of a `<button>` so every join CTA
+ * navigates to the locale-prefixed `/signup` route without JS. `onClick` is
+ * optional and still fires for analytics (`trackEvent('signup_click')`).
  */
 
 export interface RotatingBorderButtonProps {
   label: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Click handler — optional; still fires on the link variant for analytics. */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
+  /** When set, renders as a Next.js Link (anchor) instead of a button. */
+  href?: string;
   /** `large` = Start Project sizing (14px 28px, 16px label); default = 12px 26px, 15px. */
   size?: 'default' | 'large';
   /** Direction the accent fill slides in from on hover. */
@@ -99,6 +108,31 @@ const Body = styled.button<{ $size: 'default' | 'large' }>`
   transition: background-color 0.2s ease;
 `;
 
+/**
+ * Link variant — same visual as the button body, rendered as a Next.js Link
+ * (anchor) so join CTAs navigate to `/<locale>/signup` without JS.
+ */
+const BodyLink = styled(Link)<{ $size: 'default' | 'large' }>`
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing.sm}px;
+  border: 0;
+  cursor: pointer;
+  border-radius: ${({ theme }) => theme.radius.pill}px;
+  background-color: ${({ theme }) => theme.colors.primaryContrast};
+  color: ${({ theme }) => theme.colors.surface};
+  font-family: ${({ theme }) => theme.fontFamilies.sans};
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
+  line-height: 1.2;
+  padding: ${({ $size }) => ($size === 'large' ? '14px 28px' : `12px 26px`)};
+  font-size: ${({ $size }) => ($size === 'large' ? 16 : 15)}px;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+`;
+
 const Label = styled.span`
   position: relative;
   z-index: 1;
@@ -107,6 +141,7 @@ const Label = styled.span`
 export function RotatingBorderButton({
   label,
   onClick,
+  href,
   size = 'default',
   fillDirection = 'left',
   icon,
@@ -116,10 +151,17 @@ export function RotatingBorderButton({
   return (
     <Wrap $size={size} className={className}>
       <Fill $direction={fillDirection} aria-hidden="true" />
-      <Body $size={size} type="button" onClick={onClick} data-testid={testID}>
-        <Label>{label}</Label>
-        {icon ? <span aria-hidden="true">{icon}</span> : null}
-      </Body>
+      {href ? (
+        <BodyLink $size={size} href={href} onClick={onClick} data-testid={testID}>
+          <Label>{label}</Label>
+          {icon ? <span aria-hidden="true">{icon}</span> : null}
+        </BodyLink>
+      ) : (
+        <Body $size={size} type="button" onClick={onClick} data-testid={testID}>
+          <Label>{label}</Label>
+          {icon ? <span aria-hidden="true">{icon}</span> : null}
+        </Body>
+      )}
     </Wrap>
   );
 }

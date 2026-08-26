@@ -9,7 +9,6 @@ import { useLocalizePath } from '../lib/seo/localePath';
 import { ACCENT_GRADIENT } from './landingTokens';
 import Reveal from './Reveal';
 import RotatingBorderButton from './RotatingBorderButton';
-import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * Join CTA band (design spec sprint-8 §4.2) — rendered as the last child of
@@ -17,8 +16,10 @@ import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
  *
  * Gradient-border panel (same CSS-mask technique as `RotatingBorderButton`):
  * 1px `ACCENT_GRADIENT` border, dark blurred surface, centered headline +
- * subline + CTA. The default CTA opens the shared waitlist modal; legal pages
- * (privacy/terms) pass `ctaOverride` to link to `/contact` instead.
+ * subline + CTA. The default CTA is a real link to the locale-prefixed
+ * `/signup` route (Sprint 24, TASK-556 — the waitlist modal is retired);
+ * legal pages (privacy/terms) pass `ctaOverride` to link to `/contact`
+ * instead.
  *
  * Semantics: a `section` with a visible `h2` headline keeps the `h1 → h2`
  * heading hierarchy on every page (spec §10.5).
@@ -114,7 +115,6 @@ const ContactLink = styled(Link)`
 `;
 
 export function CtaBand({ headline, subline, ctaLabel }: CtaBandProps) {
-  const { openWaitlist } = useWaitlist();
   const { t } = useI18n();
   const localizePath = useLocalizePath();
   const isOverride = Boolean(headline || subline || ctaLabel);
@@ -136,7 +136,7 @@ export function CtaBand({ headline, subline, ctaLabel }: CtaBandProps) {
             <RotatingBorderButton
               label={ctaLabel ?? t('ctaBand.joinLabel')}
               fillDirection="left"
-              onClick={(event) => openWaitlist(event.currentTarget)}
+              href={localizePath('/signup')}
               testID="cta-band-join-button"
             />
           )}

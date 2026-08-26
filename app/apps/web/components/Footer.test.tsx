@@ -7,7 +7,6 @@ import { theme } from '@joinorigin/design';
 import { I18nProvider, _resetI18nForTests, getDictionary, type Locale } from '@joinorigin/i18n';
 
 import Footer from './Footer';
-import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * `next/navigation` is mocked so the Footer's `useLocalizePath` (link
@@ -28,9 +27,7 @@ function renderFooter(locale: Locale = 'en') {
     <I18nProvider locale={locale} dictionary={getDictionary(locale)}>
       <NativeThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <WaitlistModalProvider>
-            <Footer />
-          </WaitlistModalProvider>
+          <Footer />
         </ThemeProvider>
       </NativeThemeProvider>
     </I18nProvider>,
@@ -51,7 +48,16 @@ describe('Footer', () => {
     for (const label of ['Explore', 'Product', 'Company', 'Legal']) {
       expect(screen.getByText(label)).toBeInTheDocument();
     }
-    expect(screen.getByTestId('footer-waitlist-button')).toBeInTheDocument();
+    const joinLink = screen.getByTestId('footer-waitlist-button');
+    expect(joinLink.tagName).toBe('A');
+    expect(joinLink).toHaveAttribute('href', '/en/signup');
+    expect(joinLink).toHaveTextContent('Get Started');
+  });
+
+  it('prefixes the footer Get Started link on a /de/** load (table row 3)', () => {
+    mockPathname = '/de/features';
+    renderFooter('de');
+    expect(screen.getByTestId('footer-waitlist-button')).toHaveAttribute('href', '/de/signup');
   });
 
   it('renders the Explore group with Locations / Guides / Glossary links (TASK-316)', () => {
@@ -134,9 +140,7 @@ describe('Story A: Footer mobile-first breakpoints (min viewport = 320px)', () =
           <I18nProvider locale="en" dictionary={getDictionary('en')}>
             <NativeThemeProvider theme={theme}>
               <ThemeProvider theme={theme}>
-                <WaitlistModalProvider>
-                  <Footer />
-                </WaitlistModalProvider>
+                <Footer />
               </ThemeProvider>
             </NativeThemeProvider>
           </I18nProvider>,

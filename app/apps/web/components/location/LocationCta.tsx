@@ -5,19 +5,20 @@ import styled from 'styled-components';
 import { useI18n } from '@joinorigin/i18n';
 
 import { trackEvent } from '../../lib/analytics';
+import { useLocalizePath } from '../../lib/seo/localePath';
 import { ACCENT_GRADIENT } from '../landingTokens';
 import Reveal from '../Reveal';
 import RotatingBorderButton from '../RotatingBorderButton';
-import { useWaitlist } from '../WaitlistModal/WaitlistModalProvider';
 
 /**
- * Location-page waitlist CTA band (design §6.4 #7, §8.4).
+ * Location-page signup CTA band (design §6.4 #7, §8.4).
  *
  * Mirrors the shared `CtaBand` visuals but is wired to the location-page
  * analytics contract: clicking the join button fires
  * `trackEvent('signup_click', { source: 'location-…' })` (the per-page source
- * comes from the registry entry, e.g. `location-city-berlin`) before opening
- * the shared waitlist modal (which posts to `/api/leads`).
+ * comes from the registry entry, e.g. `location-city-berlin`) and navigates
+ * to the locale-prefixed `/signup` route (Sprint 24, TASK-556 — the waitlist
+ * modal is retired).
  *
  * Semantics: a `section` with a visible `h2` headline keeps the `h1 → h2`
  * heading hierarchy on every location page.
@@ -86,8 +87,8 @@ const Subline = styled.p`
 `;
 
 export function LocationCta({ source, headline, subline, ctaLabel }: LocationCtaProps) {
-  const { openWaitlist } = useWaitlist();
   const { t } = useI18n();
+  const localizePath = useLocalizePath();
 
   const bandHeadline = headline ?? t('ctaBand.headline');
   const bandSubline = subline ?? t('ctaBand.subline');
@@ -101,9 +102,9 @@ export function LocationCta({ source, headline, subline, ctaLabel }: LocationCta
           <RotatingBorderButton
             label={ctaLabel ?? t('seoContent.cta.joinWaitlist')}
             fillDirection="left"
-            onClick={(event) => {
+            href={localizePath('/signup')}
+            onClick={() => {
               trackEvent({ name: 'signup_click', props: { source } });
-              openWaitlist(event.currentTarget);
             }}
             testID="location-cta-join-button"
           />

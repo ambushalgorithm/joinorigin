@@ -14,7 +14,6 @@ import Footer from './Footer';
 import Header from './Header';
 import MenuHero, { type MenuHeroProps } from './MenuHero';
 import { SECTION_BAND_GLASS } from './menuTokens';
-import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * Shared shell for the Sprint 4 menu pages (TASK-215), extended for the
@@ -24,10 +23,10 @@ import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
  *
  * Mirrors the home page (`app/page.tsx`) wrapper pattern: both theme
  * providers (DOM styled-components + styled-components/native for the shared
- * `@joinorigin/ui` components), the any-button `WaitlistModalProvider`,
- * sticky `Header` (with the real page nav), `<main>` content, and the slim
- * grouped `Footer`. Pages render their content inside `<main>` so crawlers
- * and LLMs get a single semantic `<main>` landmark per page (arch §5.1).
+ * `@joinorigin/ui` components), sticky `Header` (with the real page nav),
+ * `<main>` content, and the slim grouped `Footer`. Pages render their content
+ * inside `<main>` so crawlers and LLMs get a single semantic `<main>`
+ * landmark per page (arch §5.1).
  *
  * Sprint 8 additions (backwards compatible — when the props are absent the
  * shell behaves exactly as before):
@@ -36,7 +35,7 @@ import { WaitlistModalProvider } from './WaitlistModal/WaitlistModalProvider';
  *  - `showCtaBand` (default `true`) renders the join CTA band as the LAST
  *    child of `<main>`.
  *  - `ctaOverride` tightens the CTA band for legal pages (privacy/terms)
- *    to link to `/contact` instead of opening the waitlist modal.
+ *    to link to `/contact` instead of the signup route.
  * Sprint 10 additions (backwards compatible):
  *  - `subnav` renders the sticky in-page `AnchorNav` as the first child of
  *    `<main>` after the hero (docs/privacy/terms; a `nav` inside `<main>`).
@@ -138,21 +137,19 @@ export function MenuPageShell({
   return (
     <NativeThemeProvider theme={theme}>
       <DomThemeProvider theme={theme}>
-        <WaitlistModalProvider>
-          <PageRoot data-testid="menu-page">
-            <Screen style={{ padding: 0, backgroundColor: 'transparent' }}>
-              <Header />
-              <main>
-                {heroWithLead ? <MenuHero {...heroWithLead} /> : null}
-                {subnav ? <AnchorNav {...subnav} /> : null}
-                <ContentArea $banded={banded}>{children}</ContentArea>
-                {showCtaBand ? <CtaBand {...ctaOverride} /> : null}
-              </main>
-              <Footer />
-            </Screen>
-          </PageRoot>
-          <GlobalStyles />
-        </WaitlistModalProvider>
+        <PageRoot data-testid="menu-page">
+          <Screen style={{ padding: 0, backgroundColor: 'transparent' }}>
+            <Header />
+            <main>
+              {heroWithLead ? <MenuHero {...heroWithLead} /> : null}
+              {subnav ? <AnchorNav {...subnav} /> : null}
+              <ContentArea $banded={banded}>{children}</ContentArea>
+              {showCtaBand ? <CtaBand {...ctaOverride} /> : null}
+            </main>
+            <Footer />
+          </Screen>
+        </PageRoot>
+        <GlobalStyles />
       </DomThemeProvider>
     </NativeThemeProvider>
   );

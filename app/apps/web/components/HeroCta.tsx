@@ -5,19 +5,18 @@ import styled from 'styled-components';
 
 import { useLocalizePath } from '../lib/seo/localePath';
 import RotatingBorderButton from './RotatingBorderButton';
-import { useWaitlist } from './WaitlistModal/WaitlistModalProvider';
 
 /**
  * Hero-level join CTA (spec sprint-10-menu-redesign §4.3).
  *
- * - `waitlist` variant: the shared `RotatingBorderButton` ("Get discovered",
- *   `size="large"`, `fillDirection="left"`) wired to the same
- *   waitlist modal as every other CTA on the page. `testID="hero-join-button"`.
+ * - `waitlist` variant: the shared `RotatingBorderButton` ("Get Started",
+ *   `size="large"`, `fillDirection="left"`) rendered as a real link to the
+ *   locale-prefixed `/signup` route (Sprint 24, TASK-556 — the waitlist modal
+ *   is retired). `testID="hero-join-button"`.
  * - `contact` variant: a muted ghost link to `/contact` (legal pages never
  *   open the waitlist modal). `testID="hero-contact-link"`.
  *
- * Semantics: the waitlist variant is a `<button>`; the contact variant is a
- * real anchor. No headings are rendered.
+ * Semantics: both variants are real anchors. No headings are rendered.
  */
 
 export interface HeroCtaProps {
@@ -52,7 +51,6 @@ const ContactLink = styled(Link)`
 `;
 
 export function HeroCta({ variant, label, href = '/contact' }: HeroCtaProps) {
-  const { openWaitlist } = useWaitlist();
   const localizePath = useLocalizePath();
 
   if (variant === 'contact') {
@@ -68,7 +66,7 @@ export function HeroCta({ variant, label, href = '/contact' }: HeroCtaProps) {
       label={label}
       size="large"
       fillDirection="left"
-      onClick={(event) => openWaitlist(event.currentTarget)}
+      href={localizePath('/signup')}
       testID="hero-join-button"
     />
   );

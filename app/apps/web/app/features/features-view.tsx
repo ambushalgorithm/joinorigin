@@ -129,7 +129,7 @@ export function FeaturesView() {
         lead: t('features.hero.lead'),
         scene: 'features',
         accent: 'features',
-        cta: { variant: 'waitlist', label: t('common.joinWaitlist') },
+        cta: { variant: 'waitlist', label: t('seoContent.cta.joinWaitlist') },
         meta: { avatars: true },
       }}
     >
