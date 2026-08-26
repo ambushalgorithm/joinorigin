@@ -16,18 +16,24 @@ import { CHIP_MARQUEE_DURATION } from './menuTokens';
  * `width: max-content` track translating `0 → -50%` over 28s, paused on
  * hover, with edge fade masks.
  *
- * Story E (TASK-536): the chips are real links — every chip is a single
- * wrapping `<a>` (via `next/link`) to the resolved content-rich community
- * page (`targetPath`, the registry-exact localized path computed
- * server-side by `lib/seo/exampleCommunities.ts` through the
- * `ChipMarqueeServer` wrapper: closest country first, then the largest
- * content-rich community within it; locale-language default when geo is
- * absent). When `targetPath` is absent (a surface renders the bare client
- * component without the server wrapper) chips stay non-interactive pills.
+ * Story B (TASK-546): the chips are real links — EVERY chip links to its OWN
+ * group-type variant page (`/${locale}/location/<country>/<region>/<city>/
+ * <variant>`, e.g. startupFounders→startup, smallBusinesses→small-business,
+ * bookClubs|runClubs|peeWeeLeagues|communityOrganizations→meetup,
+ * anyoneWithAnIdea→ideas) of the closest-largest content-rich community to
+ * the visitor. The per-chip target map (`targets`, chip key → registry-exact
+ * localized path) is computed server-side by `lib/seo/exampleCommunities.ts`
+ * through the `ChipMarqueeServer` wrapper (closest country first, then the
+ * largest content-rich community within it; locale-language default when geo
+ * is absent; deterministic committed-content fallback when the mapped
+ * variant is not committed for the city/locale). When `targets` is absent
+ * (a surface renders the bare client component without the server wrapper)
+ * chips stay non-interactive pills; a chip whose key is missing from a
+ * partial map degrades to a pill too (defensive).
  *
  * A11y: the animated track is `aria-hidden`; an equivalent visually-hidden
  * static `<ul>` (labeled with the intro) lists each community name once as a
- * link to the same target, so screen readers get the same navigation without
+ * link to its own target, so screen readers get the same navigation without
  * ever hearing duplicates. Reduced motion turns the track into a static
  * wrapping flex row (same as `LogoMarquee`) via the CSS media query plus the
  * `MenuPageShell` global kill-switch.
@@ -36,7 +42,19 @@ import { CHIP_MARQUEE_DURATION } from './menuTokens';
  * so it stays a seamless closed loop in every direction (spec §10.7).
  */
 
-const EXAMPLE_COMMUNITY_KEYS = [
+/** One of the seven example-community chips (mirrors the server resolver's
+ *  `ExampleCommunityChipKey` — kept local so the client never imports the
+ *  server-only geo snapshot). */
+export type ExampleCommunityChipKey =
+  | 'startupFounders'
+  | 'smallBusinesses'
+  | 'bookClubs'
+  | 'communityOrganizations'
+  | 'runClubs'
+  | 'peeWeeLeagues'
+  | 'anyoneWithAnIdea';
+
+const EXAMPLE_COMMUNITY_KEYS: readonly ExampleCommunityChipKey[] = [
   'startupFounders',
   'smallBusinesses',
   'bookClubs',
@@ -44,24 +62,33 @@ const EXAMPLE_COMMUNITY_KEYS = [
   'runClubs',
   'peeWeeLeagues',
   'anyoneWithAnIdea',
-] as const;
+];
+
+/**
+ * Per-chip resolved target paths (chip key → registry-exact localized path of
+ * the chip's group-type variant page). The server wrapper `ChipMarqueeServer`
+ * builds this map so the client never imports the geo snapshot.
+ */
+export type ChipTargets = Partial<Record<ExampleCommunityChipKey, string>>;
 
 export interface ChipMarqueeProps {
   /** Localized intro sentence read as the sr-only list aria-label. */
   intro: string;
   /**
-   * Registry-exact localized path of the resolved content-rich community
-   * page (Story E) — `/${locale}/location/<country>/<region>/<city>` from
-   * `lib/seo/exampleCommunities.ts`. The server wrapper `ChipMarqueeServer`
-   * supplies it so the client never imports the geo snapshot. When present
-   * every chip becomes a single wrapping link to this page; when absent the
-   * chips render as non-interactive pills (defensive — surfaces should pass
-   * the resolved path).
+   * Per-chip target map (Story B) — each chip key resolves to the
+   * registry-exact localized path of its group-type variant page
+   * (`/${locale}/location/<country>/<region>/<city>/<variant>`) computed
+   * server-side by `lib/seo/exampleCommunities.ts`. The server wrapper
+   * `ChipMarqueeServer` supplies it so the client never imports the geo
+   * snapshot. A chip whose key has an entry renders as a single wrapping
+   * link to that path; when `targets` is absent or the key is missing the
+   * chip renders as a non-interactive pill (defensive — surfaces should
+   * pass the resolved map).
    */
-  targetPath?: string | null;
+  targets?: ChipTargets | null;
   /**
    * Visitor country (ISO-3166-1 alpha-2, from `getServerCountry()`/
-   * `x-joinorigin-ip-country`, TASK-479) that selected `targetPath`
+   * `x-joinorigin-ip-country`, TASK-479) that selected the per-chip targets
    * server-side. Kept for observability (`data-ip-country`) so e2e suites
    * can assert the geo-aware closest-country resolution.
    */
@@ -121,7 +148,8 @@ const chipPill = css`
   white-space: nowrap;
 `;
 
-/** Non-interactive pill fallback (no `targetPath`) — no hover/focus motion. */
+/** Non-interactive pill fallback (no target for the chip) — no hover/focus
+ *  motion. */
 const Chip = styled.span`
   ${chipPill}
 `;
@@ -174,33 +202,39 @@ const SrOnlyList = styled.ul`
   border: 0;
 `;
 
-export function ChipMarquee({ intro, targetPath, country }: ChipMarqueeProps) {
+export function ChipMarquee({ intro, targets, country }: ChipMarqueeProps) {
   const { t } = useI18n();
 
-  const labels = EXAMPLE_COMMUNITY_KEYS.map((key) => t(`community.examples.${key}`));
-  const href = targetPath ?? undefined;
+  const chips = EXAMPLE_COMMUNITY_KEYS.map((key) => ({
+    key,
+    label: t(`community.examples.${key}`),
+  }));
 
   return (
     <div data-testid="chip-marquee" data-ip-country={country ?? undefined}>
       <Wrap>
         <Track aria-hidden="true">
-          {[...labels, ...labels].map((label, index) =>
-            href ? (
-              <ChipLink as={Link} href={href} key={`${label}-${index}`}>
-                <ChipLabel>{label}</ChipLabel>
+          {[...chips, ...chips].map((chip, index) => {
+            const href = targets?.[chip.key];
+            return href ? (
+              <ChipLink as={Link} href={href} key={`${chip.key}-${index}`}>
+                <ChipLabel>{chip.label}</ChipLabel>
               </ChipLink>
             ) : (
-              <Chip key={`${label}-${index}`}>
-                <ChipLabel>{label}</ChipLabel>
+              <Chip key={`${chip.key}-${index}`}>
+                <ChipLabel>{chip.label}</ChipLabel>
               </Chip>
-            ),
-          )}
+            );
+          })}
         </Track>
       </Wrap>
       <SrOnlyList aria-label={intro}>
-        {labels.map((label) => (
-          <li key={label}>{href ? <Link href={href}>{label}</Link> : label}</li>
-        ))}
+        {chips.map((chip) => {
+          const href = targets?.[chip.key];
+          return (
+            <li key={chip.key}>{href ? <Link href={href}>{chip.label}</Link> : chip.label}</li>
+          );
+        })}
       </SrOnlyList>
     </div>
   );
