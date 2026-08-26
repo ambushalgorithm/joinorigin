@@ -3,10 +3,13 @@ import { useEffect, useState } from 'react';
 /**
  * requestAnimationFrame-based count-up hook (spec §5.4).
  *
- * Animates `0 → target` over `durationMs` with `easeOutCubic`, starting after
- * `delayMs`. Returns the current integer value so callers can format it.
- * With `disabled` (reduced motion) it snaps straight to the target.
+ * SSR/static-safe (G-5): the initial render — and therefore the server-rendered
+ * HTML — is the FINAL target, so no-JS/static output shows "2,400+" / "484"
+ * instead of a "0+" placeholder. The `0 → target` animation runs client-side
+ * ONLY: after hydration the effect resets the value to 0, then animates to the
+ * target over `durationMs` with `easeOutCubic`, starting after `delayMs`.
  *
+ * With `disabled` (reduced motion) it stays snapped straight to the target.
  * A setTimeout fallback keeps the hook working in test environments that do
  * not implement requestAnimationFrame.
  */
@@ -38,7 +41,10 @@ function cancelFrame(id: number): void {
 
 export function useCountUp(target: number, options: UseCountUpOptions = {}): number {
   const { durationMs = 2000, delayMs = 1200, disabled = false } = options;
-  const [value, setValue] = useState(0);
+  // SSR/static-safe (G-5): initialize at the FINAL target so server-rendered
+  // HTML shows the finished figure; the count-up animation starts from 0 in
+  // the effect below, i.e. only after hydration on the client.
+  const [value, setValue] = useState(target);
 
   useEffect(() => {
     if (disabled) {
@@ -46,6 +52,9 @@ export function useCountUp(target: number, options: UseCountUpOptions = {}): num
       return undefined;
     }
 
+    // Begin the client-side animation at 0 (the SSR HTML already showed the
+    // final target; effects never run during server rendering).
+    setValue(0);
     let frameId = 0;
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
     let startTime: number | null = null;

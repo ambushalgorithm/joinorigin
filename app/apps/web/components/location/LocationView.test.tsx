@@ -1,5 +1,10 @@
 import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { renderToString } from 'react-dom/server';
+import { ThemeProvider } from 'styled-components';
+
+import { theme } from '@joinorigin/design';
+import { I18nProvider, getDictionary } from '@joinorigin/i18n';
 
 import { _resetI18nForTests, useI18n } from '@joinorigin/i18n';
 
@@ -42,6 +47,17 @@ function ToggleHarness({ data }: { data: LocationViewData }) {
       <LocationView data={data} />
       <button onClick={() => void setLocale('de')}>switch-de</button>
     </>
+  );
+}
+
+/** Server-render the view exactly like SSR (effects never run). */
+function serverHtml(data: LocationViewData): string {
+  return renderToString(
+    <I18nProvider locale="en" dictionary={getDictionary('en')}>
+      <ThemeProvider theme={theme}>
+        <LocationView data={data} />
+      </ThemeProvider>
+    </I18nProvider>,
   );
 }
 
@@ -270,6 +286,21 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
       'href',
       '/en/community',
     );
+  });
+
+  it('SSR/static HTML renders the inventory banner count as the FINAL total — no 0 (G-5)', () => {
+    const data = buildLocationViewData(hubEntry()!, 'en');
+    const total = data.hubDirectory?.length ?? 0;
+    const html = serverHtml(data);
+
+    // The banner StatPill (testid) wraps the visible StatValue, the label,
+    // and the sr-only fallback. Its first numeric span is the VISIBLE count
+    // — before G-5 the static HTML showed the count-up starting 0.
+    const start = html.indexOf('data-testid="location-inventory-banner"');
+    const pillHtml = html.slice(start, html.indexOf('</div>', start));
+    expect(pillHtml.match(/>(\d+)</)?.[1]).toBe(String(total));
+    expect(pillHtml).toContain('Places and Communities');
+    expect(pillHtml).toContain(String(total));
   });
 
   it('shows the total content-rich inventory next to the Browse locations title', () => {
