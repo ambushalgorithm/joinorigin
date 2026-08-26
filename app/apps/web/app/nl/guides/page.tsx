@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 
 import { JsonLd } from '../../../lib/seo/JsonLdScript';
 import {
+  guideHubFaq,
   guideHubMetadata,
   guideHubPath,
   guidePageEntriesWithFallback,
 } from '../../../lib/seo/guides';
-import { breadcrumbList } from '../../../lib/seo/jsonLd';
+import { breadcrumbList, faqPage } from '../../../lib/seo/jsonLd';
 import { GuidesHubView } from '../../guides/guides-hub-view';
 
 /**
@@ -19,21 +20,24 @@ import { GuidesHubView } from '../../guides/guides-hub-view';
  * per-locale with EN fallback (TASK-458): the hub copy stays EN (no
  * translated hub content exists), while canonical + hreflang localize to
  * `/nl/guides` with `x-default` → EN canonical
- * (`guideHubMetadata`).
+ * (`guideHubMetadata`). The visible FAQ (G-12) resolves per-locale via
+ * `guideHubFaq` and is mirrored 1:1 in the `FAQPage` JSON-LD.
  */
 export const metadata: Metadata = guideHubMetadata('nl');
 
 export default function NlGuidesHubPage() {
   const entries = guidePageEntriesWithFallback('nl');
+  const faq = guideHubFaq('nl');
   return (
     <>
-      <GuidesHubView entries={entries} />
+      <GuidesHubView entries={entries} faq={faq} />
       <JsonLd
         data={breadcrumbList([
           { name: 'Home', path: '/nl' },
           { name: 'Guides', path: guideHubPath('nl') },
         ])}
       />
+      <JsonLd data={faqPage(faq)} />
     </>
   );
 }

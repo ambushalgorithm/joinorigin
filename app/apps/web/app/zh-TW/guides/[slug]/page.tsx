@@ -59,7 +59,7 @@ export default async function ZhTWGuidePage({ params }: ZhTWGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/zh-TW' },
           { name: 'Guides', path: guideHubPath('zh-TW') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

@@ -1,6 +1,8 @@
+import { getCityContent, getGuideContent } from './content';
 import { GLOSSARY_HUB_PATH, guidePageEntries } from './guides';
 import { FLAGSHIP_CITIES } from './locationData';
 import { LOCATION_HUB_PATH } from './locationPages';
+import { ROUTES } from './routes';
 import { absoluteUrl } from './url';
 
 /**
@@ -152,4 +154,62 @@ export function buildLlmsText(): string {
   }
 
   return lines.join('\n').trimEnd() + '\n';
+}
+
+/**
+ * The full-text companion (`/llms-full.txt`, G-16) — the same curated
+ * sections as `/llms.txt`, each link expanded with the parseable full text
+ * of its page (guide intro/steps/FAQ, flagship-city intro, static-page
+ * description). Deterministic — built from committed content only.
+ */
+export function buildLlmsFullText(): string {
+  const lines: string[] = [
+    '# JoinOrigin — llms-full.txt',
+    '',
+    '> Full-text companion to /llms.txt: the complete, parseable text of',
+    '> every key page in one fetch, so LLM crawlers do not need to',
+    '> re-crawl individual HTML pages.',
+    '',
+  ];
+
+  for (const section of LLMS_ENTRIES) {
+    lines.push(`## ${section.heading}`, '');
+    for (const link of section.links) {
+      lines.push(`### ${link.path}`, '');
+      lines.push(link.description, '');
+      const body = fullTextForPath(link.path);
+      if (body) lines.push(body, '');
+    }
+  }
+
+  return lines.join('\n').trimEnd() + '\n';
+}
+
+/** The full page text for a curated llms.txt link path (EN canonical
+ *  `/en/**` surface). Static pages resolve their `ROUTES` copy; guide and
+ *  city pages expand their committed content. Returns `''` when no typed
+ *  content exists (the link description already covers those). */
+function fullTextForPath(path: string): string {
+  const route = ROUTES.find((candidate) => enSurfacePath(candidate.path) === path);
+  if (route) return route.description;
+
+  const guideMatch = path.match(/^\/en\/guides\/([a-z0-9-]+)$/);
+  if (guideMatch) {
+    const guide = getGuideContent(guideMatch[1], 'en');
+    if (guide?.kind === 'guide') {
+      return [
+        ...guide.intro,
+        ...guide.steps.map((step) => `${step.title} — ${step.body}`),
+        ...guide.faq.map((faqEntry) => `${faqEntry.question} ${faqEntry.answer}`),
+      ].join('\n\n');
+    }
+  }
+
+  const cityMatch = path.match(/^\/en\/location\/([^/]+)\/([^/]+)\/([^/]+)$/);
+  if (cityMatch) {
+    const city = getCityContent(cityMatch[3], 'en');
+    if (city?.kind === 'city') return city.intro.join('\n\n');
+  }
+
+  return '';
 }

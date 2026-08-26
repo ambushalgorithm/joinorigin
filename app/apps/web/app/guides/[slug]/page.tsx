@@ -61,7 +61,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/' },
           { name: 'Guides', path: GUIDES_HUB_PATH },
-          { name: entry.title, path: entry.path },
+          // G-9 — the crumb mirrors the visible H1 (no `| JoinOrigin` suffix).
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

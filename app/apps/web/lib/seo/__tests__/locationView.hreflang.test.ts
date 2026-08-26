@@ -2,26 +2,32 @@
  * lib/seo locationView — hreflang + metadata unit tests.
  *
  * Asserts the EN↔de hreflang mapping is bidirectional and generalizes to
- * ANY locale surface, EN-only pages carry no hreflang, `noindex` applies
- * to Tier-3/failed gates, and de pages expose alternates.languages.
+ * ANY locale surface, EN pages carry the FULL 21-locale cluster (G-10,
+ * matching the sitemap xhtml:link set), `noindex` applies to Tier-3/failed
+ * gates, and de pages expose alternates.languages.
  */
+
+import { SUPPORTED_LOCALES } from '@joinorigin/i18n';
 
 import { languagesFor, locationMetadata, resolveLocationEntry } from '../locationView';
 import { locationPageEntries, type LocationPageEntry } from '../locationPages';
+import { absoluteUrl } from '../url';
 
 describe('lib/seo locationView — hreflang + metadata', () => {
-  it('emits bidirectional en/de languages + x-default→EN canonical at /en/ for Berlin pages', () => {
+  it('emits the FULL cluster for EN Berlin pages (G-10): en + every /<locale>/ + x-default → EN canonical', () => {
     const berlinCity = resolveLocationEntry({
       country: 'germany',
       region: 'berlin',
       city: 'berlin',
     });
     const languages = languagesFor(berlinCity!);
-    expect(languages).toEqual({
-      en: 'http://localhost:3100/en/location/germany/berlin/berlin',
-      de: 'http://localhost:3100/de/location/germany/berlin/berlin',
-      'x-default': 'http://localhost:3100/en/location/germany/berlin/berlin',
-    });
+    expect(languages?.en).toBe('http://localhost:3100/en/location/germany/berlin/berlin');
+    expect(languages?.de).toBe('http://localhost:3100/de/location/germany/berlin/berlin');
+    expect(languages?.['x-default']).toBe(
+      'http://localhost:3100/en/location/germany/berlin/berlin',
+    );
+    // 21 locales + x-default — every /<locale>/ counterpart is a live route.
+    expect(Object.keys(languages ?? {})).toHaveLength(SUPPORTED_LOCALES.length + 1);
   });
 
   it('de pages list de self + en alternate (at /en/) + x-default→EN canonical', () => {
@@ -59,18 +65,21 @@ describe('lib/seo locationView — hreflang + metadata', () => {
     });
   });
 
-  it('EN-only pages (hub/country/region/NYC) carry NO hreflang', () => {
+  it('EN pages (hub/country/region/NYC) carry the FULL 21-locale cluster (G-10)', () => {
     const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
-    expect(languagesFor(hub!)).toBeUndefined();
-    expect(languagesFor(resolveLocationEntry({ country: 'united-states' })!)).toBeUndefined();
-    expect(
-      languagesFor(resolveLocationEntry({ country: 'united-states', region: 'new-york' })!),
-    ).toBeUndefined();
-    expect(
-      languagesFor(
-        resolveLocationEntry({ country: 'united-states', region: 'new-york', city: 'new-york' })!,
-      ),
-    ).toBeUndefined();
+    const hubLanguages = languagesFor(hub!);
+    expect(hubLanguages?.en).toBe('http://localhost:3100/en/location');
+    expect(hubLanguages?.de).toBe('http://localhost:3100/de/location');
+    expect(Object.keys(hubLanguages ?? {})).toHaveLength(SUPPORTED_LOCALES.length + 1);
+    for (const entry of [
+      resolveLocationEntry({ country: 'united-states' })!,
+      resolveLocationEntry({ country: 'united-states', region: 'new-york' })!,
+      resolveLocationEntry({ country: 'united-states', region: 'new-york', city: 'new-york' })!,
+    ]) {
+      const languages = languagesFor(entry);
+      expect(languages?.en).toBe(absoluteUrl(entry.path));
+      expect(Object.keys(languages ?? {})).toHaveLength(SUPPORTED_LOCALES.length + 1);
+    }
   });
 
   it('metadata: canonical + robots noindex for failed gates', () => {

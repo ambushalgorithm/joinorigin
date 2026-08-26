@@ -92,7 +92,8 @@ describe('guides hub page', () => {
     for (const entry of guidePageEntries()) {
       // All-routes-prefixed (TASK-464 + TASK-466): EN registry paths are
       // already `/en/...` — the helper passes them through unchanged.
-      expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
+      // G-9 — card titles drop the `| JoinOrigin` SEO suffix.
+      expect(screen.getByRole('link', { name: entry.heading })).toHaveAttribute('href', entry.path);
     }
   });
 
@@ -115,11 +116,15 @@ describe('guides hub page', () => {
     );
   });
 
-  it('renders the BreadcrumbList JSON-LD', async () => {
+  it('renders the BreadcrumbList + FAQPage JSON-LD (G-12 hub FAQ)', async () => {
     renderWithGuidesI18n(await GuidesHubPage());
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     expect(payloads.some((p) => p['@type'] === 'BreadcrumbList')).toBe(true);
+    // G-12 — the hub FAQ mirrors the visible FAQ block 1:1.
+    const faq = payloads.find((p) => p['@type'] === 'FAQPage');
+    expect(faq).toBeDefined();
+    expect(faq?.mainEntity).toHaveLength(5);
   });
 
   it('renders a keyboard-accessible search input with translated label/placeholder (TASK-317 + TASK-414)', async () => {
@@ -182,14 +187,18 @@ describe('guides hub page', () => {
       const deEntries = guidePageEntries('de');
       expect(deEntries.length).toBeGreaterThan(0);
       for (const entry of deEntries) {
-        expect(screen.getByRole('link', { name: entry.title })).toHaveAttribute('href', entry.path);
+        expect(screen.getByRole('link', { name: entry.heading })).toHaveAttribute(
+          'href',
+          entry.path,
+        );
       }
       // German titles are visibly different from EN — assert one marker.
       const enTitle = guidePageEntries().find((e) => e.slug === 'start-a-community')?.title;
       const deTitle = deEntries.find((e) => e.slug === 'start-a-community')?.title;
+      const deHeading = deEntries.find((e) => e.slug === 'start-a-community')?.heading;
       expect(deTitle).toBeDefined();
       expect(deTitle).not.toBe(enTitle);
-      expect(screen.getByRole('link', { name: deTitle! })).toHaveAttribute(
+      expect(screen.getByRole('link', { name: deHeading! })).toHaveAttribute(
         'href',
         '/de/guides/start-a-community',
       );

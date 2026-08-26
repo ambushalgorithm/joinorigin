@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import type { Locale } from '@joinorigin/i18n';
+import { SUPPORTED_LOCALES, type Locale } from '@joinorigin/i18n';
 
 import { SITE } from './site';
 import { absoluteUrl } from './url';
@@ -51,9 +51,10 @@ function enPathFor(surfacePath: string, locale?: Locale): string {
 }
 
 /** Locale-derived hreflang for a surface: non-EN emits self + EN +
- *  `x-default` → EN canonical (`/en/...`); EN emits the EN surface cluster
- *  (`en` + `x-default` → `/en/...`). Callers needing the full 21-locale set
- *  pass an explicit `languages` map (sitemap / guide / location helpers). */
+ *  `x-default` → EN canonical (`/en/...`); EN emits the FULL 21-locale
+ *  cluster (`en` + every `/<locale>/...` counterpart + `x-default` →
+ *  `/en/...`) — matching the sitemap's xhtml:link set (G-10). Callers
+ *  needing a custom cluster pass an explicit `languages` map. */
 function localeLanguages(
   locale: Locale | undefined,
   surfacePath: string,
@@ -62,6 +63,7 @@ function localeLanguages(
   if (!locale) return undefined;
   if (locale === 'en') {
     return {
+      ...fullLocaleLanguages(surfacePath),
       en: absoluteUrl(surfacePath),
       'x-default': absoluteUrl(surfacePath),
     };
@@ -71,6 +73,23 @@ function localeLanguages(
     en: absoluteUrl(enPath),
     'x-default': absoluteUrl(enPath),
   };
+}
+
+/**
+ * The full 21-locale hreflang cluster for an EN surface — every
+ * `/<locale>/...` counterpart (all `/<locale>` wrappers are live generated
+ * routes with EN-fallback content). `enPath` is the EN surface path
+ * (e.g. `/en/features` or `/en`).
+ */
+export function fullLocaleLanguages(enPath: string): Record<string, string> {
+  const base =
+    enPath === '/en' ? '' : enPath.startsWith('/en') ? enPath.slice('/en'.length) : enPath;
+  const languages: Record<string, string> = {};
+  for (const locale of SUPPORTED_LOCALES) {
+    if (locale === 'en') continue;
+    languages[locale] = absoluteUrl(base === '' ? `/${locale}` : `/${locale}${base}`);
+  }
+  return languages;
 }
 
 /**
@@ -143,6 +162,7 @@ export function localizeMetadata(meta: Metadata, locale: Locale, enPath: string)
       alternates: {
         canonical: enUrl,
         languages: {
+          ...fullLocaleLanguages(enSurface),
           en: enUrl,
           'x-default': enUrl,
         },

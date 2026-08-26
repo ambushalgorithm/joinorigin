@@ -16,6 +16,10 @@ import {
   CardGrid,
   CardLink,
   CardTitle,
+  FaqAnswer,
+  FaqCard,
+  FaqQuestion,
+  FaqSection,
   PageContainer,
   Section,
   SectionTitle,
@@ -25,6 +29,7 @@ import { useDebouncedValue } from '../../lib/search/useDebouncedValue';
 import { useLocalizePath } from '../../lib/seo/localePath';
 import type { GuidePageEntry } from '../../lib/seo/guides';
 import { GLOSSARY_HUB_PATH } from '../../lib/seo/guides';
+import type { FaqEntry } from '../../lib/seo/jsonLd';
 
 /**
  * Community Building hub view (design §6.3) — pillar page listing all 7 L1
@@ -42,6 +47,12 @@ import { GLOSSARY_HUB_PATH } from '../../lib/seo/guides';
 
 export interface GuidesHubViewProps {
   entries: GuidePageEntry[];
+  /**
+   * Visible FAQ pairs (G-12, sprint-24 gap-analysis §6) — the same entries
+   * the server wrapper mirrors into `FAQPage` JSON-LD, so the structured
+   * data always mirrors the visible block.
+   */
+  faq: FaqEntry[];
 }
 
 const StyledLink = styled(Link)`
@@ -54,7 +65,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export function GuidesHubView({ entries }: GuidesHubViewProps) {
+export function GuidesHubView({ entries, faq }: GuidesHubViewProps) {
   const { t } = useI18n();
   // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
   // helper applies the active locale's prefix per the confirmed table —
@@ -102,9 +113,10 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
                       key={entry.slug}
                       as={Link}
                       href={localizePath(entry.path)}
-                      aria-label={entry.title}
+                      // G-9 — card titles drop the `| JoinOrigin` SEO suffix.
+                      aria-label={entry.heading}
                     >
-                      <CardTitle>{entry.title}</CardTitle>
+                      <CardTitle>{entry.heading}</CardTitle>
                       <CardBody>{entry.description}</CardBody>
                     </CardLink>
                   ))}
@@ -161,6 +173,26 @@ export function GuidesHubView({ entries }: GuidesHubViewProps) {
           </Reveal>
         </PageContainer>
       </SectionBand>
+
+      {faq.length > 0 ? (
+        <SectionBand variant="plain">
+          <PageContainer>
+            <Reveal>
+              <Section>
+                <SectionTitle>{t('common.faqHeading')}</SectionTitle>
+                <FaqSection data-testid="guides-hub-faq">
+                  {faq.map((faqEntry) => (
+                    <FaqCard key={faqEntry.question}>
+                      <FaqQuestion>{faqEntry.question}</FaqQuestion>
+                      <FaqAnswer>{faqEntry.answer}</FaqAnswer>
+                    </FaqCard>
+                  ))}
+                </FaqSection>
+              </Section>
+            </Reveal>
+          </PageContainer>
+        </SectionBand>
+      ) : null}
     </MenuPageShell>
   );
 }

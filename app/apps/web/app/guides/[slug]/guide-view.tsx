@@ -36,7 +36,6 @@ import {
   guidePath,
   GUIDES_HUB_PATH,
 } from '../../../lib/seo/guides';
-import { useWaitlist } from '../../../components/WaitlistModal/WaitlistModalProvider';
 
 /**
  * L1 how-to guide view (design §6.2) — client view rendering a single H1
@@ -129,21 +128,28 @@ const TranslateRow = styled.div`
   }
 `;
 
-/** "JoinOrigin can help" CTA — rendered INSIDE the shell so the
- *  WaitlistModalProvider context is available (same pattern as CtaBand). */
+/** "JoinOrigin can help" CTA — a real link to the locale-prefixed `/signup`
+ *  route (G-15/G-2, Sprint 24): the signup page replaces the waitlist modal,
+ *  so the guide CTA navigates to `/<locale>/signup` with the unified
+ *  "Get Started" label. The trackEvent contract stays `signup_click`. */
 function GuideJoinCta({ slug }: { slug: string }) {
   const { t } = useI18n();
-  const { openWaitlist } = useWaitlist();
+  const localizePath = useLocalizePath();
+  const href = localizePath('/signup');
   return (
-    <RotatingBorderButton
-      label={t('seoContent.cta.joinWaitlist')}
-      fillDirection="left"
-      onClick={(event) => {
-        trackEvent({ name: 'signup_click', props: { source: `guide-${slug}` } });
-        openWaitlist(event.currentTarget);
-      }}
-      testID="guide-join-button"
-    />
+    <Link
+      href={href}
+      onClick={() => trackEvent({ name: 'signup_click', props: { source: `guide-${slug}` } })}
+    >
+      <RotatingBorderButton
+        label={t('seoContent.cta.joinWaitlist')}
+        fillDirection="left"
+        onClick={() => {
+          /* Navigation handled by the wrapping Link. */
+        }}
+        testID="guide-join-button"
+      />
+    </Link>
   );
 }
 
@@ -171,7 +177,9 @@ export function GuideView({ entry, content }: GuideViewProps) {
     <MenuPageShell
       hero={{
         eyebrow: t('seoContent.guides.eyebrow'),
-        title: content.title ?? entry.title,
+        // G-9 — the visible H1 drops the `| JoinOrigin` brand suffix that the
+        // document title keeps (`entry.heading` is the suffix-stripped title).
+        title: entry.heading,
         lead: content.description ?? entry.description,
         scene: 'docs',
         accent: 'docs',

@@ -59,7 +59,7 @@ export default async function DeGuidePage({ params }: DeGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/de' },
           { name: 'Guides', path: guideHubPath('de') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

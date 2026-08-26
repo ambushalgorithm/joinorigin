@@ -4,7 +4,6 @@ import { SUPPORTED_LOCALES, type Locale } from '@joinorigin/i18n';
 
 import {
   GLOSSARY_HUB_PATH,
-  GUIDES_RELEASE_DATE,
   guideHubLanguagesFor,
   guideHubPath,
   guideLanguagesFor,
@@ -12,7 +11,7 @@ import {
 } from '../lib/seo/guides';
 import { indexableLocationEntries } from '../lib/seo/locationPages';
 import { languagesFor } from '../lib/seo/locationView';
-import { ROUTES, SITE_RELEASE_DATE } from '../lib/seo/routes';
+import { ROUTES } from '../lib/seo/routes';
 import { absoluteUrl } from '../lib/seo/url';
 
 /**
@@ -51,14 +50,16 @@ const LOCATION_CHANGE_FREQUENCY: Record<
   ideas: 'monthly',
 };
 
-/** Static route sitemap spec — the `ROUTES` list plus the glossary hub,
- *  carrying the existing values (home weekly/1.0, menu monthly/0.8, legal
- *  monthly/0.3, glossary weekly/0.6) and a deterministic lastmod source. */
+/** Static route sitemap spec — the `ROUTES` list plus the glossary hub and
+ *  the signup page, carrying the existing values (home weekly/1.0, menu
+ *  monthly/0.8, legal monthly/0.3, glossary weekly/0.6, signup monthly/0.8).
+ *  G-14: `lastmod` is intentionally NOT emitted for static routes — there is
+ *  no per-URL content-change data to maintain (the old fixed release-date
+ *  constants were stale by design). */
 interface StaticRouteSpec {
   path: string;
   changeFrequency: 'weekly' | 'monthly';
   priority: number;
-  lastModified: string;
 }
 
 const STATIC_ROUTES: StaticRouteSpec[] = [
@@ -66,13 +67,16 @@ const STATIC_ROUTES: StaticRouteSpec[] = [
     path,
     changeFrequency,
     priority,
-    lastModified: SITE_RELEASE_DATE,
   })),
   {
     path: GLOSSARY_HUB_PATH,
     changeFrequency: 'weekly' as const,
     priority: 0.6,
-    lastModified: GUIDES_RELEASE_DATE,
+  },
+  {
+    path: '/signup',
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
   },
 ];
 
@@ -125,13 +129,16 @@ function localeSurfaceEntries(locale: Locale): MetadataRoute.Sitemap {
   for (const route of STATIC_ROUTES) {
     entries.push({
       url: absoluteUrl(staticPath(locale, route.path)),
-      lastModified: route.lastModified,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
       alternates: { languages: staticLanguagesFor(locale, route.path) },
     });
   }
 
+  // G-14: location pages keep `lastModified` = the dataset version date —
+  // genuine content-change data (the committed geodata snapshot version) —
+  // while static routes and guides drop `lastmod` (no per-URL authored
+  // dates exist to maintain).
   for (const entry of indexableLocationEntries(locale)) {
     const languages = languagesFor(entry);
     entries.push({
@@ -147,7 +154,6 @@ function localeSurfaceEntries(locale: Locale): MetadataRoute.Sitemap {
     const languages = guideLanguagesFor(entry.slug, locale);
     entries.push({
       url: absoluteUrl(entry.path),
-      lastModified: entry.lastModified,
       changeFrequency: 'monthly' as const,
       priority: entry.priority,
       ...(languages ? { alternates: { languages } } : {}),
@@ -157,7 +163,6 @@ function localeSurfaceEntries(locale: Locale): MetadataRoute.Sitemap {
   const hubLanguages = guideHubLanguagesFor(locale);
   entries.push({
     url: absoluteUrl(guideHubPath(locale)),
-    lastModified: GUIDES_RELEASE_DATE,
     changeFrequency: 'weekly' as const,
     priority: 0.8,
     ...(hubLanguages ? { alternates: { languages: hubLanguages } } : {}),

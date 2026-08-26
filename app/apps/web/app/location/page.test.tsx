@@ -98,13 +98,16 @@ describe('/location hub page', () => {
     expect(screen.getByTestId('location-cta-join-button')).toBeInTheDocument();
   });
 
-  it('renders server-side JSON-LD: BreadcrumbList (no FAQ/ItemList on hub)', async () => {
+  it('renders server-side JSON-LD: BreadcrumbList + FAQPage (G-12 hub FAQ)', async () => {
     await renderHubPage();
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     const breadcrumb = payloads.find((p) => p['@type'] === 'BreadcrumbList');
     expect(breadcrumb?.itemListElement).toHaveLength(2);
-    expect(payloads.some((p) => p['@type'] === 'FAQPage')).toBe(false);
+    // G-12 — the hub FAQ mirrors the visible FAQ block 1:1.
+    const faq = payloads.find((p) => p['@type'] === 'FAQPage');
+    expect(faq).toBeDefined();
+    expect(faq?.mainEntity).toHaveLength(5);
   });
 
   it('renders the searchable "Browse locations" directory (TASK-317)', async () => {

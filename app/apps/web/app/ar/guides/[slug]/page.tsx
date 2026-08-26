@@ -59,7 +59,7 @@ export default async function ArGuidePage({ params }: ArGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/ar' },
           { name: 'Guides', path: guideHubPath('ar') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

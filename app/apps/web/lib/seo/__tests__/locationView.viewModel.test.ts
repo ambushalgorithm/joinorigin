@@ -14,12 +14,48 @@ import {
   waitlistSource,
 } from '../locationView';
 import { locationPageEntries } from '../locationPages';
+import { absoluteUrl } from '../url';
 
 describe('lib/seo locationView — resolve + view model', () => {
   it('resolves the hub entry (EN canonical at /en/location)', () => {
     const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
     expect(hub).toBeDefined();
     expect(hub?.path).toBe('/en/location');
+  });
+
+  it('G-12 — the hub view model carries the translated platform FAQ (visible + JSON-LD mirror)', () => {
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    const data = buildLocationViewData(hub!);
+    expect(data.faq.length).toBeGreaterThanOrEqual(3);
+    expect(data.faq[0].question).toBe('What is JoinOrigin?');
+    const de = buildLocationViewData(hub!, 'de');
+    expect(de.faq[0].question).toBe('Was ist JoinOrigin?');
+    const jsonLd = locationJsonLd(de);
+    expect(jsonLd.faq?.['@type']).toBe('FAQPage');
+    expect(jsonLd.faq?.mainEntity).toHaveLength(de.faq.length);
+  });
+
+  it('G-13 — city pages carry the real GeoNames coordinates + City JSON-LD; non-city kinds do not', () => {
+    const berlin = resolveLocationEntry({ country: 'germany', region: 'berlin', city: 'berlin' });
+    const data = buildLocationViewData(berlin!);
+    expect(data.cityGeo).toEqual({ lat: expect.any(Number), lng: expect.any(Number) });
+    const jsonLd = locationJsonLd(data);
+    expect(jsonLd.city?.['@type']).toBe('City');
+    expect(jsonLd.city?.geo).toMatchObject({ '@type': 'GeoCoordinates' });
+    expect(typeof jsonLd.city?.geo?.latitude).toBe('number');
+    // The City URL matches the current crumb path (surface-prefixed).
+    const lastCrumb = data.breadcrumbs[data.breadcrumbs.length - 1].path;
+    expect(jsonLd.city?.url).toBe(absoluteUrl(lastCrumb));
+    // Variant/ideas/hub pages never emit the City payload.
+    const variant = resolveLocationEntry({
+      country: 'germany',
+      region: 'berlin',
+      city: 'berlin',
+      variant: 'startup',
+    });
+    expect(locationJsonLd(buildLocationViewData(variant!)).city).toBeUndefined();
+    const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
+    expect(locationJsonLd(buildLocationViewData(hub!)).city).toBeUndefined();
   });
 
   it('resolves country/region/city/variant params to registry entries', () => {

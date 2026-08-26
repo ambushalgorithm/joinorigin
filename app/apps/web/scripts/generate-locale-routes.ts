@@ -456,6 +456,8 @@ function locationWrapperSource(locale: Locale, segment: LocationSegment): string
   const params = (paramNames[segment] ?? []) as string[];
   const interfaceName = `${pascalLocale(locale)}${capitalize(segment)}PageProps`;
   const faq = segment === 'hub' ? '' : `      {jsonLd.faq ? <JsonLd data={jsonLd.faq} /> : null}\n`;
+  const city =
+    segment === 'city' ? `      {jsonLd.city ? <JsonLd data={jsonLd.city} /> : null}\n` : '';
   const itemList =
     segment === 'variant'
       ? `      {jsonLd.itemList ? <JsonLd data={jsonLd.itemList} /> : null}\n`
@@ -511,6 +513,7 @@ export default async function ${name}() {
     <>
       <LocationView data={data} />
       {jsonLd.breadcrumbs ? <JsonLd data={jsonLd.breadcrumbs} /> : null}
+      {jsonLd.faq ? <JsonLd data={jsonLd.faq} /> : null}
     </>
   );
 }
@@ -580,7 +583,7 @@ export default async function ${name}({ params }: ${interfaceName}) {
     <>
       <LocationView data={data} />
       {jsonLd.breadcrumbs ? <JsonLd data={jsonLd.breadcrumbs} /> : null}
-${faq}${itemList}    </>
+${faq}${city}${itemList}    </>
   );
 }
 `;
@@ -592,11 +595,12 @@ function guideHubWrapperSource(locale: Locale): string {
 
 import { JsonLd } from '${ups(3)}lib/seo/JsonLdScript';
 import {
+  guideHubFaq,
   guideHubMetadata,
   guideHubPath,
   guidePageEntriesWithFallback,
 } from '${ups(3)}lib/seo/guides';
-import { breadcrumbList } from '${ups(3)}lib/seo/jsonLd';
+import { breadcrumbList, faqPage } from '${ups(3)}lib/seo/jsonLd';
 import { GuidesHubView } from '../../guides/guides-hub-view';
 
 /**
@@ -609,21 +613,24 @@ import { GuidesHubView } from '../../guides/guides-hub-view';
  * per-locale with EN fallback (TASK-458): the hub copy stays EN (no
  * translated hub content exists), while canonical + hreflang localize to
  * \`/${locale}/guides\` with \`x-default\` → EN canonical
- * (\`guideHubMetadata\`).
+ * (\`guideHubMetadata\`). The visible FAQ (G-12) resolves per-locale via
+ * \`guideHubFaq\` and is mirrored 1:1 in the \`FAQPage\` JSON-LD.
  */
 export const metadata: Metadata = guideHubMetadata('${locale}');
 
 export default function ${name}() {
   const entries = guidePageEntriesWithFallback('${locale}');
+  const faq = guideHubFaq('${locale}');
   return (
     <>
-      <GuidesHubView entries={entries} />
+      <GuidesHubView entries={entries} faq={faq} />
       <JsonLd
         data={breadcrumbList([
           { name: 'Home', path: '/${locale}' },
           { name: 'Guides', path: guideHubPath('${locale}') },
         ])}
       />
+      <JsonLd data={faqPage(faq)} />
     </>
   );
 }
@@ -694,7 +701,7 @@ export default async function ${name}({ params }: ${interfaceName}) {
         data={breadcrumbList([
           { name: 'Home', path: '/${locale}' },
           { name: 'Guides', path: guideHubPath('${locale}') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

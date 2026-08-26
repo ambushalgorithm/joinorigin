@@ -435,10 +435,11 @@ describe('lib/seo locationView — Story H i18n completeness (TASK-518)', () => 
       'Communities nach Stadt',
       'Vereinigte Arabische Emirate',
     ]);
-    // Home + hub crumbs stay chrome-translated (dictionary); the country
-    // crumb is the de dataset name — never the EN registry title.
-    expect(de.breadcrumbs[0].path).toBe('/');
-    expect(de.breadcrumbs[1].path).toBe('/location');
+    // G-8 — Home + hub crumbs stay chrome-translated (dictionary) and carry
+    // surface-prefixed paths (`/de`, `/de/location`); the country crumb is
+    // the de dataset name — never the EN registry title.
+    expect(de.breadcrumbs[0].path).toBe('/de');
+    expect(de.breadcrumbs[1].path).toBe('/de/location');
     expect(de.breadcrumbs[2].name).not.toBe('Communities in United Arab Emirates');
     // Every entity crumb carries the full per-locale map for client toggle.
     expect(de.breadcrumbs[2].nameLocalized?.de).toBe('Vereinigte Arabische Emirate');

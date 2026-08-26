@@ -59,7 +59,7 @@ export default async function ZhCNGuidePage({ params }: ZhCNGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/zh-CN' },
           { name: 'Guides', path: guideHubPath('zh-CN') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

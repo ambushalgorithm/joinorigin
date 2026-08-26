@@ -41,26 +41,35 @@ describe('/location/[country]/[region]/[city] route', () => {
     expect(params[0]).toHaveProperty('region');
   });
 
-  it('generateMetadata emits canonical + no hreflang for NYC (EN-only)', async () => {
+  it('generateMetadata emits canonical + the FULL hreflang cluster for NYC (G-10)', async () => {
     const meta = await generateMetadata({
       params: Promise.resolve({ country: 'united-states', region: 'new-york', city: 'new-york' }),
     });
     expect(meta.alternates?.canonical).toBe(
       'http://localhost:3100/en/location/united-states/new-york/new-york',
     );
-    expect(meta.alternates?.languages).toBeUndefined();
+    // G-10 — every indexable EN template emits the full 21-locale cluster
+    // matching the sitemap (all `/<locale>/location/**` routes are live).
+    const languages = meta.alternates?.languages as Record<string, string>;
+    expect(languages).toBeDefined();
+    expect(languages.en).toBe('http://localhost:3100/en/location/united-states/new-york/new-york');
+    expect(languages.de).toBe('http://localhost:3100/de/location/united-states/new-york/new-york');
+    expect(languages['x-default']).toBe(
+      'http://localhost:3100/en/location/united-states/new-york/new-york',
+    );
+    expect(Object.keys(languages)).toHaveLength(22); // 21 locales + x-default
     expect(meta.robots).toEqual({ index: true, follow: true });
   });
 
-  it('generateMetadata emits hreflang en/de for Berlin', async () => {
+  it('generateMetadata emits the FULL hreflang cluster for Berlin (G-10)', async () => {
     const meta = await generateMetadata({
       params: Promise.resolve({ country: 'germany', region: 'berlin', city: 'berlin' }),
     });
-    expect(meta.alternates?.languages).toEqual({
-      en: 'http://localhost:3100/en/location/germany/berlin/berlin',
-      de: 'http://localhost:3100/de/location/germany/berlin/berlin',
-      'x-default': 'http://localhost:3100/en/location/germany/berlin/berlin',
-    });
+    const languages = meta.alternates?.languages as Record<string, string>;
+    expect(languages).toBeDefined();
+    expect(languages.en).toBe('http://localhost:3100/en/location/germany/berlin/berlin');
+    expect(languages.de).toBe('http://localhost:3100/de/location/germany/berlin/berlin');
+    expect(languages['x-default']).toBe('http://localhost:3100/en/location/germany/berlin/berlin');
   });
 
   it('generateMetadata returns empty metadata for unknown slugs (route 404s)', async () => {
@@ -105,6 +114,23 @@ describe('/location/[country]/[region]/[city] route', () => {
 
     expect(screen.getByTestId('location-faq')).toBeInTheDocument();
     expect(screen.getByTestId('location-cta-band')).toBeInTheDocument();
+  });
+
+  it('renders City/Place + GeoCoordinates JSON-LD from the dataset row (G-13)', async () => {
+    const page = await CityPage({
+      params: Promise.resolve({ country: 'germany', region: 'berlin', city: 'berlin' }),
+    });
+    renderWithI18n(page);
+    const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
+    const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
+    const city = payloads.find((p) => p['@type'] === 'City');
+    expect(city).toBeDefined();
+    expect(city?.name).toBe('Communities in Berlin');
+    expect(city?.url).toBe('http://localhost:3100/en/location/germany/berlin/berlin');
+    // Real GeoNames coordinates — never fabricated.
+    expect(city?.geo).toMatchObject({ '@type': 'GeoCoordinates' });
+    expect(typeof city?.geo?.latitude).toBe('number');
+    expect(typeof city?.geo?.longitude).toBe('number');
   });
 
   it('renders the un-gated dubai city view: Explore community types + nearby cities (TASK-474)', () => {

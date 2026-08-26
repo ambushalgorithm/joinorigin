@@ -39,7 +39,7 @@ import type {
   VariantEnrichment,
 } from './content/types';
 import type { LocationCity, LocationCountry, LocationRegion } from './data/types';
-import { breadcrumbList, faqPage, type BreadcrumbItem } from './jsonLd';
+import { breadcrumbList, cityPlace, faqPage, type BreadcrumbItem } from './jsonLd';
 import {
   FLAGSHIP_CITIES,
   GROUP_TYPES,
@@ -78,7 +78,7 @@ import {
   locationPageEntries,
   type LocationPageEntry,
 } from './locationPages';
-import { createMetadata } from './metadata';
+import { createMetadata, fullLocaleLanguages } from './metadata';
 import { SITE } from './site';
 import { absoluteUrl } from './url';
 
@@ -138,40 +138,8 @@ export function waitlistSource(entry: LocationPageEntry): string {
 }
 
 /* ------------------------------------------------------------------ *
- * hreflang (per-locale surfaces — design §7.2)
+ * hreflang (per-locale surfaces — design §7.2, G-10)
  * ------------------------------------------------------------------ */
-
-/**
- * Committed path sets per locale surface — the dynamic generalization of the
- * former Berlin-only `DE_PATHS`. Each non-EN locale contributes the paths
- * `locationPageEntries(locale)` actually enumerates (committed content only,
- * phase A §7.1), so a counterpart is only ever reported where a translation
- * exists. EN never appears here — the canonical tree is the origin.
- */
-function committedPathSets(): Map<Locale, ReadonlySet<string>> {
-  const sets = new Map<Locale, ReadonlySet<string>>();
-  for (const locale of SUPPORTED_LOCALES) {
-    if (locale === 'en') continue;
-    sets.set(locale, new Set(locationPageEntries(locale).map((entry) => entry.path)));
-  }
-  return sets;
-}
-
-const COMMITTED_PATHS = committedPathSets();
-
-/**
- * The counterpart path for an EN path on a locale surface (undefined when
- * the surface has no committed content for that page). All-routes-prefixed
- * (TASK-466): the EN surface is `/en/...` — an already-`/en`-prefixed input
- * is accepted (EN entry paths now carry the prefix). The EN locale itself
- * has no committed path set (the canonical tree is the origin), so callers
- * fall back to the EN view-model path and the client view localizes it.
- */
-function localePathForEn(enPath: string, locale: Locale): string | undefined {
-  const base = enPath.startsWith('/en') ? enPath.slice(3) : enPath;
-  const candidate = `/${locale}${base}`;
-  return COMMITTED_PATHS.get(locale)?.has(candidate) ? candidate : undefined;
-}
 
 /** The EN counterpart path for a locale-surface path — `/en/...`
  *  (all-routes-prefixed, TASK-466). */
@@ -185,11 +153,9 @@ function enPathForLocale(localePath: string, locale: Locale): string {
  * (`/${locale}/...`). All-routes-prefixed (TASK-466): EN registry paths
  * carry the `/en` prefix, and the generator created all 21 locale trees —
  * every `/<locale>/location/**` route exists — so the mapping is
- * unconditional. Unlike `localePathForEn` (which only maps surfaces with
- * COMMITTED content, for hreflang), card hrefs must point at the surface the
- * user is browsing: `/en/...` would navigate a `/es/location` visitor to the
- * English surface. Unprefixed paths (guide links) and EN itself pass through
- * unchanged.
+ * unconditional. Card hrefs must point at the surface the user is browsing:
+ * `/en/...` would navigate a `/es/location` visitor to the English surface.
+ * Unprefixed paths (guide links) and EN itself pass through unchanged.
  */
 function forwardToLocaleSurface(enPath: string, locale: Locale): string {
   if (locale === 'en' || !enPath.startsWith('/en')) return enPath;
@@ -197,11 +163,12 @@ function forwardToLocaleSurface(enPath: string, locale: Locale): string {
 }
 
 /**
- * `alternates.languages` for a location entry. Only surfaces with committed
- * translations carry a hreflang cluster (phase A — EN-only pages carry no
- * cluster). An EN page lists every locale surface with committed content for
- * the same path; a per-locale page lists its own locale + `en` + `x-default`
- * → EN canonical.
+ * `alternates.languages` for a location entry (G-10, sprint-24 gap-analysis
+ * §6): the FULL hreflang cluster matching the sitemap xhtml:link set — an EN
+ * page lists every `/<locale>/...` counterpart (all 21 locale trees are live
+ * generated wrappers with EN-fallback content, so the cluster is never
+ * omitted); a per-locale page lists its own locale + `en` + `x-default` →
+ * EN canonical.
  */
 export function languagesFor(entry: LocationPageEntry): Record<string, string> | undefined {
   if (entry.locale && entry.locale !== 'en') {
@@ -212,16 +179,11 @@ export function languagesFor(entry: LocationPageEntry): Record<string, string> |
       'x-default': enUrl,
     };
   }
-  const alternatives: Record<string, string> = {
+  return {
+    ...fullLocaleLanguages(entry.path),
     en: absoluteUrl(entry.path),
     'x-default': absoluteUrl(entry.path),
   };
-  for (const locale of SUPPORTED_LOCALES) {
-    if (locale === 'en') continue;
-    const localePath = localePathForEn(entry.path, locale);
-    if (localePath) alternatives[locale] = absoluteUrl(localePath);
-  }
-  return Object.keys(alternatives).length > 2 ? alternatives : undefined;
 }
 
 /* ------------------------------------------------------------------ *
@@ -1215,6 +1177,12 @@ export interface LocationViewData {
   waitlistSource: string;
   /** Country/region/city display names for the honest presence claim. */
   entityLabel: string;
+  /**
+   * Real GeoNames coordinates for city pages (G-13) — populated for
+   * `city` kind only, from the dataset row (never fabricated). Drives the
+   * `City`/`Place` + `GeoCoordinates` JSON-LD payload.
+   */
+  cityGeo?: { lat: number; lng: number };
 }
 
 /** Localized eyebrow labels (chrome — seoContent namespace, TASK-310). */
@@ -1526,7 +1494,14 @@ export function buildLocationViewData(
           : regionMeshData
             ? regionMeshData.faq
             : []
-        : faqFor(entry, content);
+        : entry.kind === 'hub'
+          ? hubFaqFor(locale)
+          : faqFor(entry, content);
+
+  // G-13 — real GeoNames coordinates for city pages (the JSON-LD City/Place
+  // payload mirrors the visible "City facts" section; never fabricated).
+  const cityGeo =
+    entry.kind === 'city' && cityEntity ? { lat: cityEntity.lat, lng: cityEntity.lng } : undefined;
 
   return {
     kind: entry.kind,
@@ -1578,6 +1553,7 @@ export function buildLocationViewData(
       entry.kind === 'ideas' && content?.kind === 'city' ? content.ideaPage.categories : undefined,
     waitlistSource: waitlistSource(entry),
     entityLabel: entityLabelFor(entry, locale),
+    cityGeo,
   };
 }
 
@@ -1623,6 +1599,26 @@ function faqFor(entry: LocationPageEntry, content: LocationContent | undefined):
   return content.faq;
 }
 
+/**
+ * The `/location` hub FAQ (G-12, sprint-24 gap-analysis §6) — the generic
+ * platform FAQ (the same translated `home.faq.*` keys the homepage renders,
+ * resolved per-locale with EN fallback) so the hub carries a visible FAQ
+ * block mirrored 1:1 in `FAQPage` JSON-LD. No new dictionary keys are
+ * introduced — the keys already exist in all 21 locale files.
+ */
+function hubFaqFor(locale: Locale): LocationFaq[] {
+  const t = getT(getDictionary(locale));
+  const enT = getT(getDictionary('en'));
+  const resolve = (key: string): string => {
+    const localized = t(key);
+    return localized === key ? enT(key) : localized;
+  };
+  return [1, 2, 3, 4, 5].map((n) => ({
+    question: resolve(`home.faq.q${n}.question`),
+    answer: resolve(`home.faq.q${n}.answer`),
+  }));
+}
+
 /* ------------------------------------------------------------------ *
  * Breadcrumbs (design §8.5 up-links)
  * ------------------------------------------------------------------ */
@@ -1634,17 +1630,18 @@ function breadcrumbsFor(
 ): BreadcrumbItem[] {
   const t = getT(getDictionary(locale));
   const hubName = t('seoContent.breadcrumb.hub');
-  // Up-links point at the per-locale surface when that ancestor has committed
-  // content there; otherwise they stay on the EN canonical tree (phase A §7.1
-  // — the de surface only carries the 7 Berlin pages, so ancestors are
-  // EN-only). The hub crumb follows the same rule.
-  const upPath = (segments: string[]) => {
-    const canonical = `${LOCATION_HUB_PATH}${segments.map((segment) => `/${segment}`).join('')}`;
-    return localePathForEn(canonical, locale) ?? canonical;
-  };
+  // G-8 (sprint-24 gap-analysis §6): every crumb lives on the ACTIVE locale
+  // surface `/<locale>/...` so the JSON-LD items use the same locale-prefixed
+  // path the canonical tag uses (all-routes-prefixed, TASK-466 — the EN
+  // canonical surface is `/en/**`, and every `/<locale>/location/**` route
+  // exists as a generated wrapper with EN-fallback content, so surface paths
+  // never 404). Ancestors no longer fall back to the unprefixed `/**` tree.
+  const surfacePrefix = `/${locale}`;
+  const upPath = (segments: string[]) =>
+    `${surfacePrefix}${LOCATION_HUB_PATH}${segments.map((segment) => `/${segment}`).join('')}`;
   const crumbs: BreadcrumbItem[] = [
-    { name: t('seoContent.breadcrumb.home'), path: '/' },
-    { name: hubName, path: localePathForEn(LOCATION_HUB_PATH, locale) ?? LOCATION_HUB_PATH },
+    { name: t('seoContent.breadcrumb.home'), path: surfacePrefix },
+    { name: hubName, path: `${surfacePrefix}${LOCATION_HUB_PATH}` },
   ];
   if (entry.kind === 'hub') {
     return crumbs;
@@ -1679,7 +1676,7 @@ function breadcrumbsFor(
     pushEntityCrumb(
       (l) => (country ? countryLocalizedName(country, l) : undefined),
       headingFor(entry),
-      entry.path,
+      forwardToLocaleSurface(entry.path, locale),
     );
     return crumbs;
   }
@@ -1701,7 +1698,7 @@ function breadcrumbsFor(
     pushEntityCrumb(
       (l) => (region ? regionLocalizedName(region, l) : undefined),
       headingFor(entry),
-      entry.path,
+      forwardToLocaleSurface(entry.path, locale),
     );
     return crumbs;
   }
@@ -1747,11 +1744,12 @@ function breadcrumbsFor(
     );
   }
   if (entry.kind === 'city') {
-    // Current crumb = the localized city dataset name (TASK-516).
+    // Current crumb = the localized city dataset name (TASK-516) at the
+    // ACTIVE locale surface path (G-8 — never the EN entry path).
     pushEntityCrumb(
       (l) => (city ? cityLocalizedName(city, l) : undefined),
       headingFor(entry),
-      entry.path,
+      forwardToLocaleSurface(entry.path, locale),
     );
   } else {
     // variant / ideas — the current crumb mirrors the localized H1 (committed
@@ -1763,7 +1761,7 @@ function breadcrumbsFor(
     }
     crumbs.push({
       name: currentNameLocalized[locale] ?? headingFor(entry),
-      path: entry.path,
+      path: forwardToLocaleSurface(entry.path, locale),
       nameLocalized: currentNameLocalized,
     });
   }
@@ -1778,6 +1776,8 @@ export interface LocationJsonLdPayload {
   breadcrumbs?: ReturnType<typeof breadcrumbList>;
   faq?: ReturnType<typeof faqPage>;
   itemList?: ReturnType<typeof itemListForIdeas>;
+  /** City/Place + GeoCoordinates (G-13) — city pages only. */
+  city?: ReturnType<typeof cityPlace>;
 }
 
 /** ItemList JSON-LD for the 30-idea listicle (design §6.6, §9.4). */
@@ -1808,6 +1808,19 @@ export function locationJsonLd(data: LocationViewData): LocationJsonLdPayload {
   }
   if (data.ideaCategories && data.ideaCategories.length > 0) {
     payload.itemList = itemListForIdeas(data.ideaCategories);
+  }
+  if (data.kind === 'city' && data.cityGeo) {
+    // G-13 — City/Place + GeoCoordinates from the dataset row. The URL is
+    // the current breadcrumb's path (already surface-prefixed), so it always
+    // matches the page's canonical tag on every locale surface.
+    const currentPath =
+      data.breadcrumbs.length > 0 ? data.breadcrumbs[data.breadcrumbs.length - 1].path : data.path;
+    payload.city = cityPlace({
+      name: data.heading,
+      path: currentPath,
+      lat: data.cityGeo.lat,
+      lng: data.cityGeo.lng,
+    });
   }
   return payload;
 }

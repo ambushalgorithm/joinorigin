@@ -59,7 +59,7 @@ export default async function PlGuidePage({ params }: PlGuidePageProps) {
         data={breadcrumbList([
           { name: 'Home', path: '/pl' },
           { name: 'Guides', path: guideHubPath('pl') },
-          { name: entry.title, path: entry.path },
+          { name: entry.heading, path: entry.path },
         ])}
       />
       <JsonLd data={faqPage(content.faq)} />

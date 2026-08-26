@@ -1,4 +1,4 @@
-import { buildLlmsText, LLMS_ENTRIES } from '../llms';
+import { buildLlmsFullText, buildLlmsText, LLMS_ENTRIES } from '../llms';
 import { guidePageEntries } from '../guides';
 import { FLAGSHIP_CITIES } from '../locationData';
 import { absoluteUrl } from '../url';
@@ -93,7 +93,6 @@ describe('lib/seo llms.txt — serialization shape', () => {
   it('is deterministic (no new Date / Math.random)', () => {
     expect(buildLlmsText()).toBe(buildLlmsText());
   });
-
   it('renders absolute URLs at the /en/** canonical surface via absoluteUrl', () => {
     const text = buildLlmsText();
     expect(text).toContain(absoluteUrl('/en/about'));
@@ -110,6 +109,40 @@ describe('lib/seo llms.txt — serialization shape', () => {
 
   it('no trailing blank lines (llms.txt v2)', () => {
     const text = buildLlmsText();
+    expect(text.trimEnd()).not.toMatch(/\n\n$/);
+  });
+});
+
+describe('lib/seo llms-full.txt — full-text companion (G-16)', () => {
+  const text = buildLlmsFullText();
+
+  it('is deterministic and carries the same sections as llms.txt', () => {
+    expect(buildLlmsFullText()).toBe(buildLlmsFullText());
+    for (const heading of ['## Overview', '## Guides', '## Locations']) {
+      expect(text).toContain(heading);
+    }
+  });
+
+  it('expands guide pages with their full intro + steps + FAQ', () => {
+    // The start-a-community guide's intro sentence appears in full.
+    expect(text).toContain('The hardest part of starting a community');
+    // A guide step title appears with its body.
+    expect(text).toContain('Define a clear purpose');
+  });
+
+  it('expands flagship city pages with their authored intro', () => {
+    for (const flagship of FLAGSHIP_CITIES) {
+      expect(text).toContain(
+        `### /en/location/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`,
+      );
+    }
+    expect(text).toContain('New York City is a place');
+  });
+
+  it('stays plain-text with /en/** headings and no API links', () => {
+    expect(text).toContain('### /en/about');
+    expect(text).toContain("Origin's mission: a social collaboration network");
+    expect(text).not.toMatch(/\/api\//);
     expect(text.trimEnd()).not.toMatch(/\n\n$/);
   });
 });
