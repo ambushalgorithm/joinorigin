@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import styled, { ThemeProvider as DomThemeProvider } from 'styled-components';
 import { ThemeProvider as NativeThemeProvider } from 'styled-components/native';
@@ -16,18 +16,16 @@ import LogoMarquee from '../components/LogoMarquee';
 import Reveal from '../components/Reveal';
 import { BRAND_MESH } from '../components/landingTokens';
 import { WaitlistModalProvider } from '../components/WaitlistModal/WaitlistModalProvider';
-import ChipMarquee from '../components/ChipMarquee';
 import { faqEntries, faqNamespace } from '../lib/faq';
 import { JsonLd } from '../lib/seo/JsonLdScript';
 import { faqPage } from '../lib/seo/jsonLd';
-import { useLocalizePath } from '../lib/seo/localePath';
 
 import SectionBand from '../components/SectionBand';
 import {
   BodyCopy,
+  Card,
   CardBody,
   CardGrid,
-  CardLink,
   CardTitle,
   PageContainer,
   Section,
@@ -187,15 +185,21 @@ const CONCEPT_KEYS = [
   'companies',
 ] as const;
 
-export function HomeView() {
+/**
+ * Home view props (Story B, TASK-547). The "Example communities" marquee is
+ * server-rendered by `ChipMarqueeServer` in the page wrapper (it reads geo +
+ * active locale from `next/headers`) and dropped into this client view through
+ * the `marquee` slot — the client never imports the 12 MB geo snapshot.
+ */
+export interface HomeViewProps {
+  /** Server-rendered `ChipMarqueeServer` element for the Example-communities
+   *  section (absent on surfaces whose wrapper hasn't wired the slot yet). */
+  marquee?: ReactNode;
+}
+
+export function HomeView({ marquee }: HomeViewProps) {
   const { t, dictionary } = useI18n();
   const homeFaq = faqEntries(faqNamespace(dictionary, 'home'));
-  // Locale-aware internal links (Sprint 19 Goal 2, TASK-460): the shared
-  // helper applies the active locale's prefix per the confirmed table —
-  // unprefixed EN load keeps links unprefixed; `/en/**` stays `/en/**`;
-  // `/de/**` renders `/de/**`; unprefixed load with a `de` cookie renders
-  // `/de/**`.
-  const localizePath = useLocalizePath();
 
   return (
     <NativeThemeProvider theme={theme}>
@@ -218,7 +222,9 @@ export function HomeView() {
                       <Section>
                         <SectionTitle>{t('community.sectionExamples')}</SectionTitle>
                         <BodyCopy>{t('community.examplesIntro')}</BodyCopy>
-                        <ChipMarquee intro={t('community.examplesIntro')} />
+                        {/* Story B: the server wrapper passes the geo-aware
+                            `ChipMarqueeServer` through this slot. */}
+                        {marquee}
                       </Section>
                     </Reveal>
                   </PageContainer>
@@ -231,15 +237,15 @@ export function HomeView() {
                         <CardGrid>
                           {CONCEPT_KEYS.map((concept, index) => (
                             <Reveal key={concept} delay={`${index * 0.08}s`}>
-                              {/* Full-card single wrapping link (Story D): the
-                                  concept card is entirely clickable and one
-                                  semantic focusable <a> — hover/focus lift and
-                                  the visible keyboard focus ring (Story C) live
-                                  on the CardLink interactive variant. */}
-                              <CardLink as={Link} href={localizePath('/docs#concepts')}>
+                              {/* Story A (TASK-547): the concept tiles are
+                                  informational surfaces — non-interactive
+                                  `Card` (no Link, no hover/focus/selected
+                                  highlight). The `#concepts` anchor above
+                                  stays for deep links from /docs. */}
+                              <Card>
                                 <CardTitle>{t(`common.objects.${concept}`)}</CardTitle>
                                 <CardBody>{t(`docs.concepts.${concept}.body`)}</CardBody>
-                              </CardLink>
+                              </Card>
                             </Reveal>
                           ))}
                         </CardGrid>
