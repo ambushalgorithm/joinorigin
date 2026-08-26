@@ -1,7 +1,8 @@
 /**
- * lib/seo exampleCommunities — Story E target resolver (TASK-536) unit tests.
+ * lib/seo exampleCommunities — Story E target resolver (TASK-536) + Story B
+ * per-chip group-type variant resolver (TASK-545) unit tests.
  *
- * Contract:
+ * Contract (Story E):
  *  - Geo present + well-formed → the CLOSEST content-rich country to the
  *    visitor (their own when it hosts content-rich communities, otherwise
  *    the nearest by haversine distance over dataset city coordinates), then
@@ -14,12 +15,27 @@
  *    the location registry.
  *  - Resolution is deterministic (ties break on `CONTENT_RICH_CITY_SLUGS`
  *    order; derived maps are memoized).
+ *
+ * Contract (Story B — per chip):
+ *  - startupFounders→startup, smallBusinesses→small-business,
+ *    bookClubs|runClubs|peeWeeLeagues|communityOrganizations→meetup,
+ *    anyoneWithAnIdea→ideas — variant pages of the same closest-largest
+ *    content-rich city (reuses `exampleCommunityTarget` geo+locale).
+ *  - Deterministic fallback when the mapped variant lacks COMMITTED content
+ *    for that city/locale (the per-locale registry does not enumerate it):
+ *    `/ideas` else the city page.
  */
 
 import { type Locale } from '@joinorigin/i18n';
 
 import type { LocationCity } from '../data/types';
-import { exampleCommunityTarget } from '../exampleCommunities';
+import {
+  EXAMPLE_COMMUNITY_CHIP_KEYS,
+  chipVariantFallbackPath,
+  exampleCommunityChipTarget,
+  exampleCommunityChipTargets,
+  exampleCommunityTarget,
+} from '../exampleCommunities';
 import { contentRichCities } from '../locationData';
 import { locationPageEntries } from '../locationPages';
 
@@ -239,5 +255,186 @@ describe('lib/seo exampleCommunities — exampleCommunityTarget (Story E)', () =
     const first = exampleCommunityTarget('en', 'FI');
     const second = exampleCommunityTarget('en', 'FI');
     expect(second).toEqual(first);
+  });
+});
+
+describe('lib/seo exampleCommunities — chipVariantFallbackPath (Story B fallback chain)', () => {
+  const NYC = '/en/location/united-states/new-york/new-york';
+
+  it('returns the mapped variant path when it is committed', () => {
+    const committed = new Set([`${NYC}/startup`, `${NYC}/ideas`]);
+    expect(chipVariantFallbackPath(NYC, 'startup', committed)).toEqual({
+      path: `${NYC}/startup`,
+      variantCommitted: true,
+    });
+  });
+
+  it('falls back to /ideas when the mapped variant is uncommitted but the idea page is committed', () => {
+    const committed = new Set([NYC, `${NYC}/ideas`]);
+    expect(chipVariantFallbackPath(NYC, 'startup', committed)).toEqual({
+      path: `${NYC}/ideas`,
+      variantCommitted: false,
+    });
+  });
+
+  it('falls back to the city page when neither the variant nor the idea page is committed', () => {
+    const committed = new Set([NYC]);
+    expect(chipVariantFallbackPath(NYC, 'startup', committed)).toEqual({
+      path: NYC,
+      variantCommitted: false,
+    });
+  });
+});
+
+describe('lib/seo exampleCommunities — exampleCommunityChipTarget (Story B)', () => {
+  it('maps every chip to its group-type variant of the closest-largest city (en default → New York)', () => {
+    expect(exampleCommunityChipTarget('startupFounders', 'en')?.path).toBe(
+      '/en/location/united-states/new-york/new-york/startup',
+    );
+    expect(exampleCommunityChipTarget('smallBusinesses', 'en')?.path).toBe(
+      '/en/location/united-states/new-york/new-york/small-business',
+    );
+    for (const chip of [
+      'bookClubs',
+      'communityOrganizations',
+      'runClubs',
+      'peeWeeLeagues',
+    ] as const) {
+      expect(exampleCommunityChipTarget(chip, 'en')?.path).toBe(
+        '/en/location/united-states/new-york/new-york/meetup',
+      );
+    }
+    expect(exampleCommunityChipTarget('anyoneWithAnIdea', 'en')?.path).toBe(
+      '/en/location/united-states/new-york/new-york/ideas',
+    );
+  });
+
+  it('returns the mapped variant and the committed flag on committed surfaces', () => {
+    const target = exampleCommunityChipTarget('startupFounders', 'en');
+    expect(target?.variant).toBe('startup');
+    expect(target?.variantCommitted).toBe(true);
+    expect(target?.country.iso2).toBe('US');
+    expect(target?.city.asciiName).toBe('New York');
+  });
+
+  it('reuses exampleCommunityTarget geo + locale resolution (closest-largest city)', () => {
+    // Geo wins: a UK visitor targets the largest content-rich city in the UK.
+    const gb = exampleCommunityChipTarget('startupFounders', 'en', 'GB');
+    expect(gb?.country.iso2).toBe('GB');
+    expect(gb?.city.asciiName).toBe('London');
+    expect(gb?.path).toBe('/en/location/united-kingdom/england/london/startup');
+
+    // A German visitor on the German surface gets the committed Berlin variant.
+    const de = exampleCommunityChipTarget('smallBusinesses', 'de');
+    expect(de?.city.asciiName).toBe('Berlin');
+    expect(de?.path).toBe('/de/location/germany/berlin/berlin/small-business');
+    expect(de?.variantCommitted).toBe(true);
+
+    // Geo wins on a non-EN surface when the resolved city has committed
+    // content in that locale (Mexico City is a committed `es` city).
+    const esMx = exampleCommunityChipTarget('startupFounders', 'es', 'MX');
+    expect(esMx?.country.iso2).toBe('MX');
+    expect(esMx?.city.asciiName).toBe('Mexico City');
+    expect(esMx?.path).toBe('/es/location/mexico/mexico-city/mexico-city/startup');
+    expect(esMx?.variantCommitted).toBe(true);
+  });
+
+  it('falls back to the city page when the mapped variant lacks committed content for the locale', () => {
+    // A US visitor on the German surface resolves New York, which has NO
+    // committed German variant/ideas content → the deterministic fallback is
+    // the New York CITY page (Story E path), never a broken variant URL.
+    const target = exampleCommunityChipTarget('startupFounders', 'de', 'US');
+    expect(target?.country.iso2).toBe('US');
+    expect(target?.city.asciiName).toBe('New York');
+    expect(target?.variant).toBe('startup');
+    expect(target?.variantCommitted).toBe(false);
+    expect(target?.path).toBe('/de/location/united-states/new-york/new-york');
+
+    // The ideas-mapped chip falls back the same way on the same surface.
+    const ideas = exampleCommunityChipTarget('anyoneWithAnIdea', 'de', 'US');
+    expect(ideas?.path).toBe('/de/location/united-states/new-york/new-york');
+    expect(ideas?.variantCommitted).toBe(false);
+  });
+
+  it('falls back to /ideas when the idea page is committed on the surface', () => {
+    // Berlin has committed German idea-page content, so the ideas-mapped chip
+    // points at the committed /ideas page (the intermediate fallback rung).
+    const ideas = exampleCommunityChipTarget('anyoneWithAnIdea', 'de');
+    expect(ideas?.path).toBe('/de/location/germany/berlin/berlin/ideas');
+    expect(ideas?.variantCommitted).toBe(true);
+  });
+
+  it('returns registry-exact localized paths for every chip across surfaces', () => {
+    const enRegistry = enRegistryPaths();
+    const locales: Locale[] = [
+      'en',
+      'de',
+      'fr',
+      'es',
+      'pt-BR',
+      'it',
+      'nl',
+      'pl',
+      'tr',
+      'uk',
+      'ru',
+      'fa',
+      'ar',
+      'hi',
+      'ja',
+      'ko',
+      'zh-TW',
+      'zh-CN',
+      'id',
+      'th',
+      'vi',
+    ];
+    for (const locale of locales) {
+      for (const chip of EXAMPLE_COMMUNITY_CHIP_KEYS) {
+        for (const country of [null, 'FI', 'US'] as Array<string | null>) {
+          const target = exampleCommunityChipTarget(chip, locale, country);
+          expect(target).toBeDefined();
+          expect(target?.path).toMatch(new RegExp(`^/${locale}/location/`));
+          expect(enRegistry.has(enCounterpart(target!.path, locale))).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('is deterministic across repeated calls', () => {
+    const first = exampleCommunityChipTarget('startupFounders', 'de', 'US');
+    const second = exampleCommunityChipTarget('startupFounders', 'de', 'US');
+    expect(second).toEqual(first);
+  });
+});
+
+describe('lib/seo exampleCommunities — exampleCommunityChipTargets (Story B aggregate)', () => {
+  it('resolves all seven chips in one pass with the same base city', () => {
+    const targets = exampleCommunityChipTargets('en');
+    expect(targets).toBeDefined();
+    const base = exampleCommunityTarget('en');
+    for (const chip of EXAMPLE_COMMUNITY_CHIP_KEYS) {
+      const target = targets?.[chip];
+      expect(target).toBeDefined();
+      expect(target?.country.iso2).toBe(base?.country.iso2);
+      expect(target?.city.asciiName).toBe(base?.city.asciiName);
+      expect(target?.path).toMatch(new RegExp(`^/en/location/`));
+    }
+    expect(Object.keys(targets ?? {})).toHaveLength(EXAMPLE_COMMUNITY_CHIP_KEYS.length);
+  });
+
+  it('matches the per-chip resolver exactly', () => {
+    const aggregate = exampleCommunityChipTargets('de', 'US');
+    expect(aggregate).toBeDefined();
+    for (const chip of EXAMPLE_COMMUNITY_CHIP_KEYS) {
+      expect(aggregate?.[chip]).toEqual(exampleCommunityChipTarget(chip, 'de', 'US'));
+    }
+  });
+
+  it('is deterministic and frozen (callers cannot mutate the shared map)', () => {
+    const first = exampleCommunityChipTargets('en');
+    const second = exampleCommunityChipTargets('en');
+    expect(second).toEqual(first);
+    expect(Object.isFrozen(first)).toBe(true);
   });
 });
