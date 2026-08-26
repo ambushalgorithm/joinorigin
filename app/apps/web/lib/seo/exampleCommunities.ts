@@ -1,25 +1,38 @@
 /**
- * Example-communities target resolver (Story E, TASK-536).
+ * Example-communities target resolver (Story E TASK-536 + Story B TASK-545).
  *
  * The `/community` and home "Example communities" chips (community types
  * such as "Startup Founders", "Small Businesses", "Book Clubs") become real
  * links to the content-rich community that is most relevant to the visitor:
  *
- *  - Geo present (`getServerCountry()` / the proxy-forwarded
+ *  - Story E (`exampleCommunityTarget`): one shared destination — the
+ *    CLOSEST-largest content-rich community page.
+ *    Geo present (`getServerCountry()` / the proxy-forwarded
  *    `x-joinorigin-ip-country` header, TASK-479): pick the CLOSEST country
  *    to the visitor (their own country when it hosts content-rich
  *    communities, otherwise the content-rich country whose community
  *    reference point is nearest — haversine distance over dataset city
  *    coordinates), then the LARGEST content-rich community within it
  *    (highest-population content-rich city).
- *  - Geo absent / malformed: the locale-language default — the largest
+ *    Geo absent / malformed: the locale-language default — the largest
  *    content-rich community in the locale's primary country (the first
  *    country of the locale's language-area ordering, `LOCALE_CITY_SLUGS`).
+ *  - Story B (`exampleCommunityChipTarget` / `exampleCommunityChipTargets`):
+ *    PER-CHIP destinations — each chip maps to a GROUP-TYPE VARIANT page of
+ *    the same closest-largest content-rich city:
+ *    startupFounders→startup, smallBusinesses→small-business, bookClubs|
+ *    runClubs|peeWeeLeagues|communityOrganizations→meetup,
+ *    anyoneWithAnIdea→ideas. When the mapped variant has no COMMITTED
+ *    content for that city/locale (the per-locale location registry does
+ *    not enumerate it), resolution falls back deterministically to `/ideas`
+ *    (when committed) else to the city page (Story E path).
  *
  * The resolver reuses the existing location data layer (TASK-480/484/520)
  * WITHOUT modifying it — `contentRichCities()` / `findCountry` /
- * `findCityBySlug` / `LOCALE_CITY_SLUGS` and the registry-exact path builder
- * `cityLocationPath` (TASK-469). All lookups are deterministic: ties break on
+ * `findCityBySlug` / `LOCALE_CITY_SLUGS`, the registry-exact path builder
+ * `cityLocationPath` (TASK-469), and the per-locale registry
+ * `locationPageEntries` (the single source of truth for committed
+ * `/location` URLs). All lookups are deterministic: ties break on
  * the `CONTENT_RICH_CITY_SLUGS` order (first occurrence wins), and derived
  * maps are memoized (same pattern as the TASK-520 snapshot indexes).
  *
@@ -27,19 +40,22 @@
  * client components must never import it (the 12 MB `locations.json` would
  * leak into client bundles — see `docs/design/sprint-22-nav-perf-baseline.md`
  * RC1). `components/ChipMarqueeServer.tsx` is the server entry point that
- * feeds the resolved path to the client `ChipMarquee`.
+ * feeds the resolved per-chip targets to the client `ChipMarquee`.
  */
 
 import type { Locale } from '@joinorigin/i18n';
 
 import type { LocationCity, LocationCountry } from './data/types';
 import {
+  IDEA_VARIANT,
   LOCALE_CITY_SLUGS,
   contentRichCities,
   findCityBySlug,
   findCountry,
   loadLocationSnapshot,
+  type GroupTypeKey,
 } from './locationData';
+import { locationPageEntries } from './locationPages';
 import { cityLocationPath } from './locationView';
 
 /** One content-rich community target resolved for a surface locale. */
@@ -253,4 +269,192 @@ export function exampleCommunityTarget(
   const path = cityLocationPath(city, locale);
   if (!path) return undefined;
   return { country, city, path };
+}
+
+/* ------------------------------------------------------------------ *
+ * Per-chip group-type variant targets (Story B, TASK-545)
+ *
+ * Each example-community chip maps to a GROUP-TYPE VARIANT page of the
+ * closest-largest content-rich city resolved by `exampleCommunityTarget`
+ * above (geo + locale). The mapping is fixed (user-approved):
+ *
+ *   startupFounders → startup
+ *   smallBusinesses → small-business
+ *   bookClubs | runClubs | peeWeeLeagues | communityOrganizations → meetup
+ *   anyoneWithAnIdea → ideas
+ *
+ * A chip's target is the mapped variant page ON THE ACTIVE LOCALE SURFACE
+ * (`/${locale}/location/<country>/<region>/<city>/<variant>`), provided the
+ * variant has COMMITTED content for that city/locale — i.e. the per-locale
+ * location registry (`locationPageEntries(locale)`, the single source of
+ * truth for committed `/location` URLs) enumerates the page. When the
+ * mapped variant is not committed there, resolution falls back
+ * deterministically:
+ *
+ *   mapped variant → `/ideas` (when the idea page is committed) → the city
+ *   page (the `exampleCommunityTarget` path — always reachable through the
+ *   EN fallback surface).
+ *
+ * The per-locale registry (not the EN one) drives the commitment check so
+ * the fallback stays meaningful: e.g. a `de` visitor whose closest-largest
+ * city is New York gets the New York CITY page, because New York has no
+ * committed German variant/ideas content — while a German visitor (Berlin)
+ * gets the committed `/de/.../berlin/startup` variant page.
+ * ------------------------------------------------------------------ */
+
+/** The seven example-community chip keys (mirrors `ChipMarquee`'s label
+ *  keys — `community.examples.<key>` — so server + client stay aligned). */
+export type ExampleCommunityChipKey =
+  | 'startupFounders'
+  | 'smallBusinesses'
+  | 'bookClubs'
+  | 'communityOrganizations'
+  | 'runClubs'
+  | 'peeWeeLeagues'
+  | 'anyoneWithAnIdea';
+
+/** Canonical server-side chip ordering (matches the client marquee). */
+export const EXAMPLE_COMMUNITY_CHIP_KEYS: readonly ExampleCommunityChipKey[] = [
+  'startupFounders',
+  'smallBusinesses',
+  'bookClubs',
+  'communityOrganizations',
+  'runClubs',
+  'peeWeeLeagues',
+  'anyoneWithAnIdea',
+] as const;
+
+/** Chip → group-type variant slug mapping (Story B — fixed, user-approved). */
+const CHIP_VARIANT_MAP: Readonly<
+  Record<ExampleCommunityChipKey, GroupTypeKey | typeof IDEA_VARIANT>
+> = {
+  startupFounders: 'startup',
+  smallBusinesses: 'small-business',
+  bookClubs: 'meetup',
+  communityOrganizations: 'meetup',
+  runClubs: 'meetup',
+  peeWeeLeagues: 'meetup',
+  anyoneWithAnIdea: IDEA_VARIANT,
+};
+
+/** The per-chip resolved target for a surface. */
+export interface ExampleCommunityChipTarget {
+  /** The country whose content-rich community is selected. */
+  country: LocationCountry;
+  /** The largest content-rich city within that country (by population). */
+  city: LocationCity;
+  /** The mapped group-type variant slug for the chip (startup |
+   *  small-business | meetup | ideas). */
+  variant: GroupTypeKey | typeof IDEA_VARIANT;
+  /** True when the resolved path IS the mapped variant page (no fallback
+   *  was applied — the variant has committed content for the city/locale). */
+  variantCommitted: boolean;
+  /** Registry-exact localized path — the mapped variant page, else the
+   *  `/ideas` page, else the city page (Story E path). */
+  path: string;
+}
+
+/** Memoized per-locale committed-path sets (deterministic — derived once
+ *  from the memoized per-locale registry). */
+const committedPathSets = new Map<Locale, ReadonlySet<string>>();
+
+function committedPathSet(locale: Locale): ReadonlySet<string> {
+  let set = committedPathSets.get(locale);
+  if (!set) {
+    set = new Set(locationPageEntries(locale).map((entry) => entry.path));
+    committedPathSets.set(locale, set);
+  }
+  return set;
+}
+
+/**
+ * Deterministic committed-content fallback for a resolved city page:
+ * the mapped variant when committed, else the `/ideas` page when committed,
+ * else the city page itself. Exported so the fallback chain is directly
+ * unit-testable with synthetic committed-path sets.
+ *
+ * @param basePath The registry-exact city page path (from
+ *   `exampleCommunityTarget`), e.g. `/en/location/.../new-york/new-york`.
+ * @param variant The chip's mapped variant slug.
+ * @param committedPaths The per-locale committed registry paths.
+ * @returns The resolved `{ path, variantCommitted }`.
+ */
+export function chipVariantFallbackPath(
+  basePath: string,
+  variant: GroupTypeKey | typeof IDEA_VARIANT,
+  committedPaths: ReadonlySet<string>,
+): { path: string; variantCommitted: boolean } {
+  const variantPath = `${basePath}/${variant}`;
+  if (committedPaths.has(variantPath)) {
+    return { path: variantPath, variantCommitted: true };
+  }
+  const ideasPath = `${basePath}/${IDEA_VARIANT}`;
+  if (committedPaths.has(ideasPath)) {
+    return { path: ideasPath, variantCommitted: false };
+  }
+  return { path: basePath, variantCommitted: false };
+}
+
+/**
+ * Resolve the target for ONE example-community chip (Story B): the mapped
+ * group-type variant page of the closest-largest content-rich city to the
+ * visitor, with the deterministic committed-content fallback. Returns
+ * `undefined` only when the data layer cannot resolve any content-rich
+ * community (defensive — the committed set is never empty).
+ *
+ * @param chip The example-community chip key.
+ * @param locale The active surface locale — drives the registry-exact
+ *   localized path and the locale-language default when geo is absent.
+ * @param ipCountry Optional ISO-3166-1 alpha-2 visitor country (the
+ *   `getServerCountry()` value). Absent/malformed values fall back to the
+ *   locale default.
+ */
+export function exampleCommunityChipTarget(
+  chip: ExampleCommunityChipKey,
+  locale: Locale,
+  ipCountry?: string | null,
+): ExampleCommunityChipTarget | undefined {
+  const base = exampleCommunityTarget(locale, ipCountry);
+  if (!base) return undefined;
+  const variant = CHIP_VARIANT_MAP[chip];
+  const { path, variantCommitted } = chipVariantFallbackPath(
+    base.path,
+    variant,
+    committedPathSet(locale),
+  );
+  return {
+    country: base.country,
+    city: base.city,
+    variant,
+    variantCommitted,
+    path,
+  };
+}
+
+/**
+ * Resolve targets for ALL seven example-community chips in one geo+locale
+ * pass (the per-chip map `ChipMarqueeServer` feeds to the client marquee —
+ * Story B). Returns `undefined` only when the data layer cannot resolve any
+ * content-rich community (defensive — the committed set is never empty).
+ */
+export function exampleCommunityChipTargets(
+  locale: Locale,
+  ipCountry?: string | null,
+): Readonly<Record<ExampleCommunityChipKey, ExampleCommunityChipTarget>> | undefined {
+  const base = exampleCommunityTarget(locale, ipCountry);
+  if (!base) return undefined;
+  const committed = committedPathSet(locale);
+  const record = {} as Record<ExampleCommunityChipKey, ExampleCommunityChipTarget>;
+  for (const chip of EXAMPLE_COMMUNITY_CHIP_KEYS) {
+    const variant = CHIP_VARIANT_MAP[chip];
+    const { path, variantCommitted } = chipVariantFallbackPath(base.path, variant, committed);
+    record[chip] = {
+      country: base.country,
+      city: base.city,
+      variant,
+      variantCommitted,
+      path,
+    };
+  }
+  return Object.freeze(record);
 }
