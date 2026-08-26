@@ -13,7 +13,27 @@ import { leadsCsvRow, waitForHydration } from './helpers';
  * Story 3 (Expanded Signup): the browser-driven submission is asserted to
  * produce an expanded-schema CSV row carrying the passive server-side capture
  * fields (timestamp, ip, locale, userAgent, referrer) alongside name/email.
+ *
+ * Sprint 23 (Stories A + B): home e2e assertions for the non-interactive
+ * Concepts tiles (Story A — no nav on click, no hover highlight) and the
+ * geo-aware "Example communities" marquee whose chips are real links to the
+ * mapped group-type variant pages (Story B). The deterministic committed-
+ * content fallback (de surface + US visitor → New York city page) is covered
+ * in `community.spec.ts` alongside the /community marquee.
  */
+
+/** Per-chip EN targets for New York (locale-language default / US visitor)
+ *  — mirrors `ChipMarqueeServer.test.tsx` so the live server honours the
+ *  unit-tested resolver contract. */
+const NEW_YORK_EN_TARGETS = [
+  '/en/location/united-states/new-york/new-york/startup',
+  '/en/location/united-states/new-york/new-york/small-business',
+  '/en/location/united-states/new-york/new-york/meetup',
+  '/en/location/united-states/new-york/new-york/meetup',
+  '/en/location/united-states/new-york/new-york/meetup',
+  '/en/location/united-states/new-york/new-york/meetup',
+  '/en/location/united-states/new-york/new-york/ideas',
+];
 
 test('homepage renders the header, hero, ticker and footer', async ({ page }) => {
   await page.goto('/');
@@ -89,4 +109,81 @@ test('waitlist modal validates bad input with inline field errors', async ({ pag
   await expect(modal.getByText('Enter a valid email address.')).toBeVisible({
     timeout: 15_000,
   });
+});
+
+test('Story A — home Concepts tiles are non-interactive cards (no nav, no hover highlight)', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+
+  // The #concepts anchor (deep link target from /docs) is preserved on the
+  // section title even though the tiles themselves are no longer links.
+  await expect(page.locator('#concepts')).toBeVisible();
+
+  const conceptsSection = page.locator('section').filter({ has: page.locator('#concepts') });
+  const cards = conceptsSection.locator('article');
+  await expect(cards).toHaveCount(8);
+
+  // Each tile is an informational article: exactly one h3 title + p body.
+  for (let i = 0; i < 8; i += 1) {
+    await expect(cards.nth(i).locator('h3')).toHaveCount(1);
+    await expect(cards.nth(i).locator('p')).toHaveCount(1);
+  }
+
+  // No link wraps any tile — the Story D full-card links were replaced with
+  // the Story A static Card surface (docs-page cards remain clickable).
+  await expect(cards.locator('a[href]')).toHaveCount(0);
+
+  // Clicking a tile must NOT navigate (URL stays on the home surface).
+  const firstCard = cards.first();
+  await firstCard.click({ position: { x: 4, y: 4 }, force: true });
+  await page.waitForTimeout(500);
+  expect(new URL(page.url()).pathname).toBe('/en');
+
+  // No hover highlight: computed transform/border/box-shadow stay unchanged
+  // (the static Card has no hover animation — only CardLink variants animate).
+  const readCardStyle = (card: typeof firstCard) =>
+    card.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return {
+        transform: cs.transform,
+        borderColor: cs.borderColor,
+        boxShadow: cs.boxShadow,
+      };
+    });
+  const styleBefore = await readCardStyle(firstCard);
+  await firstCard.hover();
+  const styleAfter = await readCardStyle(firstCard);
+  expect(styleAfter).toEqual(styleBefore);
+});
+
+test('Story B — home Example-communities chips are links to the mapped group-type variant pages', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+
+  const marquee = page.getByTestId('chip-marquee');
+  await expect(marquee).toBeVisible();
+
+  // The animated track repeats the 7 chips 2×, every one a single wrapping
+  // link to its OWN mapped group-type variant page (startupFounders→startup,
+  // smallBusinesses→small-business, bookClubs|runClubs|peeWeeLeagues|
+  // communityOrganizations→meetup, anyoneWithAnIdea→ideas).
+  const trackHrefs = await marquee
+    .locator('[aria-hidden="true"] a')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+  expect(trackHrefs).toEqual([...NEW_YORK_EN_TARGETS, ...NEW_YORK_EN_TARGETS]);
+
+  // The sr-only list reads each community once as a link to its own target.
+  const srHrefs = await marquee
+    .locator('ul a')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+  expect(srHrefs).toEqual(NEW_YORK_EN_TARGETS);
+
+  // Clicking a chip navigates to its mapped variant page (Story B clickable).
+  await marquee.locator('[aria-hidden="true"] a').first().click();
+  await page.waitForURL('**/en/location/united-states/new-york/new-york/startup');
+  await expect(page.locator('h1')).toBeVisible();
 });
