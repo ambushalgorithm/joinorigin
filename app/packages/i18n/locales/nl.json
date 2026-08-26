@@ -63,7 +63,7 @@
     "hero": {
       "headline": "Ideeën, projecten en community-samenwerking — hier vinden nieuwe én bestaande teams hun Origin.",
       "headlineAccent": "Origin.",
-      "startProject": "Start een project",
+      "startProject": "Aan de slag",
       "supporting": "Maak een profiel dat werkt als je cv, plaats je idee als pagina en start of sluit je aan bij een community rondom alles — een gloednieuw idee, een bestaand klein bedrijf, een AI-startup, een boekenclub of een 10k-loop.",
       "trustAvatarsAlt": "JoinOrigin-lid {{number}}",
       "trustCopy": "Sluit je aan bij 2.400+ bouwers die al samenwerken"
@@ -119,10 +119,39 @@
       "rateLimited": "Te veel verzoeken. Probeer het over een minuut opnieuw."
     }
   },
+  "signup": {
+    "title": "Registreren — Maak je account aan | JoinOrigin",
+    "description": "Maak je account aan op Origin, het sociale samenwerkingsnetwerk. Voer je naam en e-mailadres in om ontdekt te worden en start of sluit je vandaag nog aan bij een community.",
+    "heading": "Maak je account aan",
+    "subcopy": "Word ontdekt op het community-besturingssysteem — of je nu iets nieuws start of een bestaand project laat groeien.",
+    "nameLabel": "Naam",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "E-mailadres",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Aan de slag",
+    "submitting": "Account wordt aangemaakt…",
+    "legalNote": "Geen spam. Op elk moment uitschrijven.",
+    "successHeading": "Je staat op de lijst!",
+    "successCopy": "We mailen je zodra je werkruimte klaar is.",
+    "done": "Klaar",
+    "errors": {
+      "generic": "Er is iets misgegaan. Probeer het opnieuw.",
+      "nameEmailRequired": "Naam en e-mailadres zijn verplicht.",
+      "nameRequired": "Naam is verplicht.",
+      "nameTooLong": "Naam mag maximaal 120 tekens bevatten.",
+      "emailInvalid": "Voer een geldig e-mailadres in.",
+      "rateLimited": "Te veel verzoeken. Probeer het over een minuut opnieuw."
+    },
+    "waitlist": {
+      "heading": "Op de wachtlijst",
+      "subcopy": "Word ontdekt op het community-besturingssysteem — of je nu iets nieuws start of een bestaand project laat groeien. We mailen je zodra je werkruimte klaar is.",
+      "disclosure": "Origin is in ontwikkeling. Je naam en e-mailadres worden alleen gebruikt om je account in te stellen en te beveiligen wanneer je aan de beurt bent."
+    }
+  },
   "ctaBand": {
     "headline": "Vind je mensen. Start of groei samen iets.",
     "subline": "Sluit je aan bij 2.400+ bouwers — van eerste ideeën tot gevestigde bedrijven — op het sociale samenwerkingsnetwerk van Origin en word vandaag nog ontdekt.",
-    "joinLabel": "Word ontdekt",
+    "joinLabel": "Aan de slag",
     "contactLabel": "Neem contact op"
   },
   "features": {
@@ -733,7 +762,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "Word ontdekt"
+      "joinWaitlist": "Aan de slag"
     }
   }
 }

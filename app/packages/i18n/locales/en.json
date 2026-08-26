@@ -63,7 +63,7 @@
     "hero": {
       "headline": "Ideas, projects and community collaboration space — where new and existing teams find their Origin.",
       "headlineAccent": "Origin.",
-      "startProject": "Start Project",
+      "startProject": "Get Started",
       "supporting": "Create a profile that works like your resume, post your idea as a page, and start or join a community around anything — a brand-new idea, an existing small business, an AI startup, a book club, or a 10k run.",
       "trustAvatarsAlt": "JoinOrigin member {{number}}",
       "trustCopy": "Join 2,400+ builders already collaborating"
@@ -119,10 +119,39 @@
       "rateLimited": "Too many requests. Try again in a minute."
     }
   },
+  "signup": {
+    "title": "Sign Up — Create Your Account | JoinOrigin",
+    "description": "Create your account on Origin, the social collaboration network. Enter your name and email to get discovered — then start or join a community today.",
+    "heading": "Create your account",
+    "subcopy": "Get discovered on the community OS — whether you're starting something new or growing an existing project.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "Email",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Get Started",
+    "submitting": "Creating your account…",
+    "legalNote": "No spam. Unsubscribe anytime.",
+    "successHeading": "You're on the list!",
+    "successCopy": "We'll email you when your workspace is ready.",
+    "done": "Done",
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "nameEmailRequired": "Name and email are required.",
+      "nameRequired": "Name is required.",
+      "nameTooLong": "Name must be 120 characters or fewer.",
+      "emailInvalid": "Enter a valid email address.",
+      "rateLimited": "Too many requests. Try again in a minute."
+    },
+    "waitlist": {
+      "heading": "Join the waitlist",
+      "subcopy": "Get discovered on the community OS — whether you're starting something new or growing an existing project. We'll email you when your workspace is ready.",
+      "disclosure": "Origin is in development. Your name and email are used only to set up and secure your account when it's your turn."
+    }
+  },
   "ctaBand": {
     "headline": "Find your people. Start or grow something together.",
     "subline": "Join 2,400+ builders — from first ideas to established companies — on Origin's social collaboration network and get discovered today.",
-    "joinLabel": "Get Discovered",
+    "joinLabel": "Get Started",
     "contactLabel": "Contact us"
   },
   "features": {
@@ -733,7 +762,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "Get Discovered"
+      "joinWaitlist": "Get Started"
     }
   }
 }

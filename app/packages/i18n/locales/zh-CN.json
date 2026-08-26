@@ -63,7 +63,7 @@
     "hero": {
       "headline": "创意、项目和社区协作空间 —— 团队和优秀项目在这里找到他们的 Origin。",
       "headlineAccent": "Origin。",
-      "startProject": "开始项目",
+      "startProject": "开始使用",
       "supporting": "创建一份如同简历的个人主页，把你的创意发布成页面，然后围绕任何事物开始或加入一个社区 —— 一家小企业、一个 AI 初创公司、一个读书俱乐部、一场 10 公里跑步。",
       "trustAvatarsAlt": "JoinOrigin 成员 {{number}}",
       "trustCopy": "已有 2,400+ 位建设者加入协作"
@@ -119,10 +119,39 @@
       "rateLimited": "请求过于频繁，请一分钟后重试。"
     }
   },
+  "signup": {
+    "title": "注册 — 创建您的账户 | JoinOrigin",
+    "description": "在社交协作网络 Origin 上创建您的账户。输入姓名和邮箱，让自己被发现，然后立即开始或加入一个社区。",
+    "heading": "创建您的账户",
+    "subcopy": "在社群操作系统上让自己被发现——无论你是在开始新事物，还是在发展现有项目。",
+    "nameLabel": "姓名",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "开始使用",
+    "submitting": "正在创建您的账户…",
+    "legalNote": "绝无垃圾邮件。可随时退订。",
+    "successHeading": "你已经在名单上了！",
+    "successCopy": "你的工作空间准备好后，我们会通过邮件通知你。",
+    "done": "完成",
+    "errors": {
+      "generic": "出了点问题，请重试。",
+      "nameEmailRequired": "姓名和邮箱均为必填项。",
+      "nameRequired": "姓名是必填项。",
+      "nameTooLong": "姓名不能超过 120 个字符。",
+      "emailInvalid": "请输入有效的邮箱地址。",
+      "rateLimited": "请求过于频繁，请一分钟后重试。"
+    },
+    "waitlist": {
+      "heading": "加入候补名单",
+      "subcopy": "抢先进入早期访问名单。你的工作空间准备好后，我们会通过邮件通知你。",
+      "disclosure": "Origin 正在开发中。您的姓名和邮箱仅用于在轮到您时设置和保护您的账户。"
+    }
+  },
   "ctaBand": {
     "headline": "找到你的伙伴，一起建设。",
     "subline": "加入 Origin 社交协作网络上的 2,400+ 位建设者，今天就让自己被发现。",
-    "joinLabel": "让自己被发现",
+    "joinLabel": "开始使用",
     "contactLabel": "联系我们"
   },
   "features": {
@@ -717,7 +746,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "让自己被发现"
+      "joinWaitlist": "开始使用"
     },
     "metadata": {
       "waitlistPhrase": "今天就加入 Origin，让自己被发现。",

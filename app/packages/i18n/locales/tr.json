@@ -63,7 +63,7 @@
     "hero": {
       "headline": "Fikirler, projeler ve topluluk iş birliği alanı — yeni ve mevcut ekiplerin Origin'ini bulduğu yer.",
       "headlineAccent": "Origin.",
-      "startProject": "Proje Başlat",
+      "startProject": "Başlayın",
       "supporting": "Özgeçmişiniz gibi çalışan bir profil oluşturun, fikrinizi bir sayfa olarak yayınlayın ve her şeyin etrafında bir topluluk başlatın ya da katılın — yepyeni bir fikir, mevcut bir küçük işletme, bir yapay zekâ girişimi, bir kitap kulübü veya bir 10K koşusu.",
       "trustAvatarsAlt": "JoinOrigin üyesi {{number}}",
       "trustCopy": "Hâlihazırda iş birliği yapan 2.400+ kurucuya katılın"
@@ -119,10 +119,39 @@
       "rateLimited": "Çok fazla istek gönderildi. Bir dakika sonra tekrar deneyin."
     }
   },
+  "signup": {
+    "title": "Kayıt Ol — Hesabınızı Oluşturun | JoinOrigin",
+    "description": "Origin sosyal iş birliği ağında hesabınızı oluşturun. Adınızı ve e-postanızı girerek keşfedilin ve bugün bir topluluğa başlayın veya katılın.",
+    "heading": "Hesabınızı oluşturun",
+    "subcopy": "Topluluk işletim sisteminde keşfedilin — ister yeni bir şey başlatıyor ister mevcut bir projeyi büyütüyor olun.",
+    "nameLabel": "Ad",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "E-posta",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Başlayın",
+    "submitting": "Hesabınız oluşturuluyor…",
+    "legalNote": "Spam yok. İstediğiniz zaman abonelikten çıkabilirsiniz.",
+    "successHeading": "Listedesiniz!",
+    "successCopy": "Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
+    "done": "Tamam",
+    "errors": {
+      "generic": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+      "nameEmailRequired": "Ad ve e-posta zorunludur.",
+      "nameRequired": "Ad zorunludur.",
+      "nameTooLong": "Ad en fazla 120 karakter olmalıdır.",
+      "emailInvalid": "Geçerli bir e-posta adresi girin.",
+      "rateLimited": "Çok fazla istek gönderildi. Bir dakika sonra tekrar deneyin."
+    },
+    "waitlist": {
+      "heading": "Bekleme listesine katılın",
+      "subcopy": "Topluluk işletim sisteminde keşfedilin — ister yeni bir şey başlatıyor ister mevcut bir projeyi büyütüyor olun. Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
+      "disclosure": "Origin geliştirme aşamasındadır. Adınız ve e-postanız yalnızca sıranız geldiğinde hesabınızı kurmak ve güvenceye almak için kullanılır."
+    }
+  },
   "ctaBand": {
     "headline": "İnsanlarını bul. Birlikte bir şey başlat ya da büyüt.",
     "subline": "İlk fikirlerden köklü şirketlere — Origin'in sosyal iş birliği ağındaki 2.400+ kurucuya katılın ve bugün keşfedilin.",
-    "joinLabel": "Keşfedilin",
+    "joinLabel": "Başlayın",
     "contactLabel": "Bize ulaşın"
   },
   "features": {
@@ -717,7 +746,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "Keşfedilin"
+      "joinWaitlist": "Başlayın"
     },
     "metadata": {
       "waitlistPhrase": "Origin'e katılın ve bugün keşfedilin.",

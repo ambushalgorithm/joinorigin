@@ -63,7 +63,7 @@
     "hero": {
       "headline": "Ruang kolaborasi ide, proyek, dan komunitas — tempat tim baru dan yang sudah ada menemukan Origin mereka.",
       "headlineAccent": "Origin.",
-      "startProject": "Mulai Proyek",
+      "startProject": "Mulai",
       "supporting": "Buat profil yang berfungsi seperti CV Anda, unggah ide Anda sebagai halaman, dan mulai atau ikuti komunitas untuk apa pun — ide yang benar-benar baru, bisnis kecil yang sudah berjalan, startup AI, klub buku, atau lari 10k.",
       "trustAvatarsAlt": "Anggota JoinOrigin {{number}}",
       "trustCopy": "Gabung dengan 2.400+ pembangun yang sudah berkolaborasi"
@@ -119,10 +119,39 @@
       "rateLimited": "Terlalu banyak permintaan. Coba lagi dalam satu menit."
     }
   },
+  "signup": {
+    "title": "Daftar — Buat Akun Anda | JoinOrigin",
+    "description": "Buat akun Anda di Origin, jaringan kolaborasi sosial. Masukkan nama dan email untuk ditemukan, lalu mulai atau bergabung dengan komunitas hari ini.",
+    "heading": "Buat akun Anda",
+    "subcopy": "Mulailah ditemukan di OS komunitas — baik Anda memulai sesuatu yang baru maupun mengembangkan proyek yang sudah ada.",
+    "nameLabel": "Nama",
+    "namePlaceholder": "Ada Lovelace",
+    "emailLabel": "Email",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "Mulai",
+    "submitting": "Membuat akun Anda…",
+    "legalNote": "Tanpa spam. Berhenti berlangganan kapan saja.",
+    "successHeading": "Anda masuk daftar!",
+    "successCopy": "Kami akan mengirim email saat ruang kerja Anda siap.",
+    "done": "Selesai",
+    "errors": {
+      "generic": "Terjadi kesalahan. Silakan coba lagi.",
+      "nameEmailRequired": "Nama dan email wajib diisi.",
+      "nameRequired": "Nama wajib diisi.",
+      "nameTooLong": "Nama maksimal 120 karakter.",
+      "emailInvalid": "Masukkan alamat email yang valid.",
+      "rateLimited": "Terlalu banyak permintaan. Coba lagi dalam satu menit."
+    },
+    "waitlist": {
+      "heading": "Gabung daftar tunggu",
+      "subcopy": "Mulailah ditemukan di OS komunitas — baik Anda memulai sesuatu yang baru maupun mengembangkan proyek yang sudah ada. Kami akan mengirim email saat ruang kerja Anda siap.",
+      "disclosure": "Origin sedang dalam pengembangan. Nama dan email Anda hanya digunakan untuk menyiapkan dan mengamankan akun Anda saat giliran Anda tiba."
+    }
+  },
   "ctaBand": {
     "headline": "Temukan orang-orang Anda. Mulai atau kembangkan sesuatu bersama.",
     "subline": "Gabung dengan 2.400+ pembangun — dari ide pertama hingga perusahaan mapan — di jaringan kolaborasi sosial Origin dan mulailah ditemukan hari ini.",
-    "joinLabel": "Mulai Ditemukan",
+    "joinLabel": "Mulai",
     "contactLabel": "Hubungi kami"
   },
   "features": {
@@ -717,7 +746,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "Mulai Ditemukan"
+      "joinWaitlist": "Mulai"
     },
     "metadata": {
       "waitlistPhrase": "Bergabunglah dengan Origin dan mulailah ditemukan hari ini.",

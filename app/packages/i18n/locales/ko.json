@@ -63,7 +63,7 @@
     "hero": {
       "headline": "아이디어, 프로젝트, 커뮤니티 협업 공간 — 새로 시작하는 팀과 기존 팀이 자신의 Origin을 찾는 곳.",
       "headlineAccent": "Origin.",
-      "startProject": "프로젝트 시작",
+      "startProject": "시작하기",
       "supporting": "이력서처럼 활용할 수 있는 프로필을 만들고, 아이디어를 페이지로 올리고, 어떤 주제로든 커뮤니티를 시작하거나 참여하세요 — 새로운 아이디어, 기존 소규모 사업, AI 스타트업, 독서 모임, 10km 러닝처럼요.",
       "trustAvatarsAlt": "JoinOrigin 멤버 {{number}}",
       "trustCopy": "이미 협업 중인 2,400명 이상의 빌더와 함께하세요"
@@ -119,10 +119,39 @@
       "rateLimited": "요청이 너무 많습니다. 1분 후 다시 시도해 주세요."
     }
   },
+  "signup": {
+    "title": "회원가입 — 계정 만들기 | JoinOrigin",
+    "description": "소셜 협업 네트워크 Origin에서 계정을 만드세요. 이름과 이메일을 입력해 발견되고, 오늘 커뮤니티를 시작하거나 참여하세요.",
+    "heading": "계정 만들기",
+    "subcopy": "커뮤니티 OS에서 발견되세요 — 새로운 무언가를 시작하든 기존 프로젝트를 성장시키든 상관없이요.",
+    "nameLabel": "이름",
+    "namePlaceholder": "홍길동",
+    "emailLabel": "이메일",
+    "emailPlaceholder": "ada@example.com",
+    "submit": "시작하기",
+    "submitting": "계정 생성 중…",
+    "legalNote": "스팸 없음. 언제든 구독 해지 가능합니다.",
+    "successHeading": "명단에 등록되었습니다!",
+    "successCopy": "워크스페이스가 준비되면 이메일로 알려드립니다.",
+    "done": "완료",
+    "errors": {
+      "generic": "문제가 발생했습니다. 다시 시도해 주세요.",
+      "nameEmailRequired": "이름과 이메일이 필요합니다.",
+      "nameRequired": "이름이 필요합니다.",
+      "nameTooLong": "이름은 120자 이하여야 합니다.",
+      "emailInvalid": "유효한 이메일 주소를 입력해 주세요.",
+      "rateLimited": "요청이 너무 많습니다. 1분 후 다시 시도해 주세요."
+    },
+    "waitlist": {
+      "heading": "대기자 명단에 참여하기",
+      "subcopy": "커뮤니티 OS에서 발견되세요 — 새로운 무언가를 시작하든 기존 프로젝트를 성장시키든 상관없이요. 워크스페이스가 준비되면 이메일로 알려드립니다.",
+      "disclosure": "Origin은 개발 중입니다. 이름과 이메일은 차례가 되었을 때 계정을 설정하고 보호하는 용도로만 사용됩니다."
+    }
+  },
   "ctaBand": {
     "headline": "당신의 사람들을 찾으세요. 함께 시작하거나 함께 성장하세요.",
     "subline": "첫 아이디어부터 기존 기업까지, Origin의 소셜 협업 네트워크에서 2,400명 이상의 빌더와 함께하고 오늘 바로 발견되세요.",
-    "joinLabel": "발견되기",
+    "joinLabel": "시작하기",
     "contactLabel": "문의하기"
   },
   "features": {
@@ -733,7 +762,7 @@
       }
     },
     "cta": {
-      "joinWaitlist": "발견되기"
+      "joinWaitlist": "시작하기"
     }
   }
 }
