@@ -24,7 +24,7 @@
     "objects": {
       "profiles": "Hồ sơ",
       "ideas": "Ý tưởng",
-      "communities": "Cộng đồng",
+      "communities": "Origin",
       "communication": "Giao tiếp",
       "feed": "Bảng tin",
       "projects": "Dự án",
@@ -33,11 +33,11 @@
     },
     "values": {
       "peopleFirst": "Con người là trên hết",
-      "communitiesDriveGrowth": "Cộng đồng thúc đẩy tăng trưởng",
+      "communitiesDriveGrowth": "Origin thúc đẩy tăng trưởng",
       "collaborationCreatesValue": "Hợp tác tạo ra giá trị"
     },
     "roadmap": {
-      "phase1Title": "Giai đoạn 1 — Nền tảng Cộng đồng",
+      "phase1Title": "Giai đoạn 1 — Nền tảng Origin",
       "phase2Title": "Giai đoạn 2 — Hợp tác",
       "phase3Title": "Giai đoạn 3 — Tổ chức",
       "phase4Title": "Giai đoạn 4 — Hợp tác AI",
@@ -61,14 +61,14 @@
   },
   "home": {
     "hero": {
-      "headline": "Không gian hợp tác ý tưởng, dự án và cộng đồng — nơi các đội nhóm mới và hiện hữu tìm thấy Origin của mình.",
+      "headline": "Nơi mọi ý tưởng, startup và dự án tìm thấy những người và nguồn lực để tiến về phía trước — Origin.",
       "headlineAccent": "Origin.",
       "startProject": "Bắt đầu",
-      "supporting": "Tạo hồ sơ hoạt động như sơ yếu lý lịch của bạn, đăng ý tưởng dưới dạng một trang, và bắt đầu hoặc tham gia một cộng đồng xoay quanh bất cứ điều gì — một ý tưởng hoàn toàn mới, một doanh nghiệp nhỏ hiện hữu, một startup AI, một câu lạc bộ sách, hoặc một giải chạy 10 km.",
+      "supporting": "Tạo hồ sơ hoạt động như sơ yếu lý lịch của bạn, đăng ý tưởng dưới dạng một trang, và bắt đầu một Origin xoay quanh bất cứ điều gì — một ý tưởng, một doanh nghiệp nhỏ, một startup AI, một câu lạc bộ sách, hoặc một giải chạy 10 km. Sau đó hãy mời những người sẽ cùng bạn đưa nó tiến về phía trước.",
       "trustAvatarsAlt": "Thành viên JoinOrigin {{number}}",
       "trustCopy": "Tham gia cùng 2.400+ nhà sáng lập đang hợp tác"
     },
-    "definition": "Origin là một mạng lưới cộng tác xã hội — hệ điều hành cộng đồng nơi ý tưởng, dự án và cộng đồng của bạn hội tụ trong một không gian có tổ chức. JoinOrigin là thương hiệu và mạng lưới đứng đằng sau nó.",
+    "definition": "Origin là không gian bạn tạo ra xoay quanh một mục tiêu — một ý tưởng, một startup, một doanh nghiệp nhỏ hoặc một dự án. Quy tụ những người và nguồn lực nó cần, rồi cùng nhau đưa nó tiến về phía trước: đồng sáng lập, đối tác, khách hàng, những người ủng hộ và mạng lưới của bạn. JoinOrigin là thương hiệu và mạng lưới đứng đằng sau nó.",
     "marquee": {
       "label": "Được tin cậy bởi các đội nhóm tại",
       "partnerAlt": "Đối tác JoinOrigin {{number}}"
@@ -76,23 +76,23 @@
     "faq": {
       "q1": {
         "question": "JoinOrigin là gì?",
-        "answer": "Origin là một mạng lưới cộng tác xã hội — một hệ điều hành cộng đồng đưa ý tưởng, dự án và cộng đồng của bạn vào một không gian có tổ chức. JoinOrigin là thương hiệu và mạng lưới đứng đằng sau nó. Thay vì năm công cụ riêng biệt, các mối quan hệ của bạn nằm ở một nơi duy nhất, để không có gì bị thất lạc giữa chúng."
+        "answer": "Origin là không gian bạn tạo ra xoay quanh một mục tiêu. Bạn mang ý tưởng đến, quy tụ những người và nguồn lực nó cần, rồi cùng nhau đưa nó tiến về phía trước. JoinOrigin là thương hiệu và mạng lưới đứng đằng sau nó. Thay vì năm công cụ riêng biệt, các mối quan hệ của bạn nằm ở một nơi duy nhất, để không có gì bị thất lạc giữa chúng."
       },
       "q2": {
         "question": "JoinOrigin khác gì so với Discord/LinkedIn/Reddit?",
-        "answer": "Discord là ứng dụng trò chuyện, LinkedIn kết nối các chuyên gia, còn Reddit dành cho thảo luận. Origin kết hợp tất cả xoay quanh đồ thị xã hội — hồ sơ, cộng đồng, trò chuyện, bảng tin, dự án và cơ hội đều sống cùng nhau, để các mối quan hệ trở thành sự cộng tác thực sự."
+        "answer": "Discord là ứng dụng trò chuyện, LinkedIn kết nối các chuyên gia, còn Reddit dành cho thảo luận. Origin kết hợp tất cả xoay quanh đồ thị xã hội — hồ sơ, Origin, trò chuyện, bảng tin, dự án và cơ hội đều sống cùng nhau, để các mối quan hệ trở thành công việc thực sự."
       },
       "q3": {
         "question": "Tôi có thể làm gì khi đã tham gia?",
-        "answer": "Tạo hồ sơ hoạt động như sơ yếu lý lịch, đăng ý tưởng dưới dạng một trang ý tưởng, bắt đầu hoặc tham gia các cộng đồng xoay quanh bất cứ điều gì, và mời những người bạn muốn hợp tác cùng. Mỗi cộng đồng đều có phòng riêng nơi các thành viên kết nối với nhau."
+        "answer": "Tạo hồ sơ hoạt động như sơ yếu lý lịch, đăng ý tưởng dưới dạng một trang ý tưởng, và bắt đầu một Origin xoay quanh bất cứ điều gì. Mời những người bạn muốn hợp tác cùng — đồng sáng lập, đối tác, khách hàng, người ủng hộ — và mỗi Origin đều có phòng riêng nơi công việc tiến về phía trước."
       },
       "q4": {
         "question": "Origin đã hoạt động chưa?",
-        "answer": "Có — Origin đã hoạt động và đang phát triển. Nhấp vào Bắt đầu và được khám phá: tạo hồ sơ của bạn, đăng ý tưởng, và bắt đầu hoặc tham gia một cộng đồng ngay hôm nay."
+        "answer": "Có — Origin đã hoạt động và đang phát triển. Nhấp vào Bắt đầu: tạo hồ sơ của bạn, đăng ý tưởng, và bắt đầu một Origin xoay quanh bất cứ điều gì bạn muốn hiện thực hóa."
       },
       "q5": {
         "question": "Làm thế nào để tôi tham gia?",
-        "answer": "Nhấp vào Bắt đầu và được khám phá. Nhập tên và email của bạn, và hồ sơ của bạn đã sẵn sàng — hãy bắt đầu xây dựng cộng đồng của bạn ngay hôm nay."
+        "answer": "Nhấp vào Bắt đầu. Nhập tên và email của bạn, và hồ sơ của bạn đã sẵn sàng — sau đó bắt đầu một Origin xoay quanh ý tưởng của bạn và mời những người sẽ cùng bạn đưa nó tiến về phía trước."
       }
     }
   },
@@ -121,9 +121,9 @@
   },
   "signup": {
     "title": "Đăng ký — Tạo tài khoản của bạn | JoinOrigin",
-    "description": "Tạo tài khoản của bạn trên Origin, mạng xã hội cộng tác. Nhập tên và email để được khám phá, rồi bắt đầu hoặc tham gia một cộng đồng ngay hôm nay.",
+    "description": "Tạo tài khoản của bạn trên Origin. Nhập tên và email để được khám phá, rồi bắt đầu một Origin xoay quanh ý tưởng của bạn và tìm những người cùng nguồn lực để đưa nó tiến về phía trước.",
     "heading": "Tạo tài khoản của bạn",
-    "subcopy": "Hãy được khám phá trên hệ điều hành cộng đồng — dù bạn đang bắt đầu điều gì đó mới hay phát triển một dự án hiện hữu.",
+    "subcopy": "Hãy được khám phá trên Origin — dù bạn đang bắt đầu điều gì đó mới hay phát triển một dự án hiện hữu. Tìm đồng sáng lập, đối tác, khách hàng và những người ủng hộ của bạn.",
     "nameLabel": "Tên",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "Email",
@@ -132,7 +132,7 @@
     "submitting": "Đang tạo tài khoản của bạn…",
     "legalNote": "Không spam. Hủy đăng ký bất cứ lúc nào.",
     "successHeading": "Bạn đã có tên trong danh sách!",
-    "successCopy": "Chúng tôi sẽ gửi email cho bạn khi không gian làm việc của bạn sẵn sàng.",
+    "successCopy": "Chúng tôi sẽ gửi email cho bạn khi Origin của bạn sẵn sàng.",
     "done": "Xong",
     "errors": {
       "generic": "Đã xảy ra sự cố. Vui lòng thử lại.",
@@ -144,47 +144,47 @@
     },
     "waitlist": {
       "heading": "Tham gia danh sách chờ",
-      "subcopy": "Hãy được khám phá trên hệ điều hành cộng đồng — dù bạn đang bắt đầu điều gì đó mới hay phát triển một dự án hiện hữu. Chúng tôi sẽ gửi email cho bạn khi không gian làm việc của bạn sẵn sàng.",
+      "subcopy": "Hãy được khám phá trên Origin — dù bạn đang bắt đầu điều gì đó mới hay phát triển một dự án hiện hữu. Chúng tôi sẽ gửi email cho bạn khi Origin của bạn sẵn sàng.",
       "disclosure": "Origin đang trong giai đoạn phát triển. Tên và email của bạn chỉ được dùng để thiết lập và bảo mật tài khoản khi đến lượt bạn."
     }
   },
   "ctaBand": {
-    "headline": "Tìm đúng người của bạn. Cùng nhau bắt đầu hoặc phát triển điều gì đó.",
-    "subline": "Tham gia cùng 2.400+ nhà sáng lập — từ những ý tưởng đầu tiên đến các công ty đã thành lập — trên mạng lưới cộng tác xã hội của Origin và được khám phá ngay hôm nay.",
+    "headline": "Bắt đầu một Origin. Tìm những người và nguồn lực để đưa nó tiến về phía trước.",
+    "subline": "Tham gia cùng 2.400+ nhà sáng lập — từ những ý tưởng đầu tiên đến các công ty đã thành lập — những người đang quy tụ con người và nguồn lực trên Origin. Tìm đồng sáng lập, đối tác, khách hàng và những người ủng hộ của bạn. Được khám phá ngay hôm nay.",
     "joinLabel": "Bắt đầu",
     "contactLabel": "Liên hệ với chúng tôi"
   },
   "features": {
     "hero": {
       "eyebrow": "Đối tượng cốt lõi",
-      "title": "Mọi thứ một cộng đồng cần, trong một không gian làm việc bình yên",
-      "lead": "Origin là một mạng lưới cộng tác xã hội được xây dựng quanh tám đối tượng cốt lõi: hồ sơ, ý tưởng, cộng đồng, giao tiếp, bảng tin, dự án, công ty và cơ hội. Dù bạn đang bắt đầu điều gì đó mới hay phát triển một công ty hiện hữu, các mối quan hệ của bạn nằm ở một nơi duy nhất thay vì mười công cụ riêng biệt."
+      "title": "Mọi thứ một Origin cần, trong một không gian làm việc bình yên",
+      "lead": "Origin được xây dựng quanh tám đối tượng cốt lõi: hồ sơ, ý tưởng, Origins, giao tiếp, bảng tin, dự án, công ty và cơ hội. Bắt đầu một Origin cho bất cứ điều gì bạn muốn hiện thực hóa — một startup, một doanh nghiệp nhỏ, một dự án — và tìm những đồng sáng lập, đối tác, khách hàng cùng người ủng hộ sẽ cùng bạn đưa nó tiến về phía trước."
     },
     "sectionCoreObjects": "Đối tượng cốt lõi",
     "coreObjects": {
       "profiles": {
-        "body": "Hồ sơ hoạt động như một sơ yếu lý lịch sống: nó mang theo kinh nghiệm, kỹ năng và ý tưởng của bạn — cùng danh tiếng và các mối quan hệ — xuyên suốt mọi cộng đồng và dự án bạn tham gia."
+        "body": "Hồ sơ hoạt động như một sơ yếu lý lịch sống: nó mang theo kinh nghiệm, kỹ năng và ý tưởng của bạn — cùng danh tiếng và các mối quan hệ — xuyên suốt mọi Origin và dự án bạn tham gia."
       },
       "ideas": {
-        "body": "Ý tưởng là điểm khởi đầu của mọi thứ trên Origin. Đăng một trang ý tưởng cho bất cứ điều gì — một doanh nghiệp nhỏ, một startup AI, một câu lạc bộ sách, một giải chạy 10 km — và những người muốn xây dựng nó sẽ tìm thấy bạn."
+        "body": "Mỗi Origin bắt đầu từ một ý tưởng. Đăng một trang ý tưởng cho bất cứ điều gì — một doanh nghiệp nhỏ, một startup AI, một câu lạc bộ sách, một giải chạy 10 km — và những người muốn xây dựng nó sẽ tìm thấy bạn."
       },
       "communities": {
-        "body": "Các nhóm xoay quanh sở thích, ngành nghề và mục tiêu — Nhà sáng lập Startup, Doanh nghiệp nhỏ, Câu lạc bộ sách, Tổ chức cộng đồng, Bất kỳ ai có Ý tưởng — nơi các thành viên tìm thấy nhau."
+        "body": "Không gian bạn tạo ra xoay quanh một mục tiêu — một startup, một doanh nghiệp nhỏ, một câu lạc bộ sách hoặc bất cứ ý tưởng nào. Mỗi Origin quy tụ những người chia sẻ nó và đi kèm một phòng riêng nơi công việc tiến về phía trước."
       },
       "communication": {
-        "body": "Mỗi cộng đồng đều đi kèm một phòng Matrix: trò chuyện thời gian thực, tin nhắn trực tiếp và thảo luận nhóm qua giao thức Matrix mở, được mã hóa đầu cuối mặc định."
+        "body": "Mỗi Origin đều đi kèm một phòng Matrix: trò chuyện thời gian thực, tin nhắn trực tiếp và thảo luận nhóm qua giao thức Matrix mở, được mã hóa đầu cuối mặc định."
       },
       "feed": {
-        "body": "Bảng tin hiển thị bài đăng, cập nhật và cơ hội từ những người và cộng đồng bạn theo dõi. Đó là một dòng chảy bình yên của những gì quan trọng trong mạng lưới của bạn, không phải một cỗ máy gây nghiện."
+        "body": "Bảng tin hiển thị bài đăng, cập nhật và cơ hội từ những người và Origins bạn theo dõi. Đó là một dòng chảy bình yên của những gì quan trọng trong mạng lưới của bạn, không phải một cỗ máy gây nghiện."
       },
       "projects": {
-        "body": "Những nỗ lực cộng tác nơi các thành viên cộng đồng làm việc cùng nhau và biến các cuộc trò chuyện thành kết quả."
+        "body": "Những nỗ lực cộng tác nơi những người trong Origin của bạn làm việc cùng nhau và biến các cuộc trò chuyện thành kết quả."
       },
       "companies": {
-        "body": "Các dự án kinh doanh do thành viên tạo lập trong mạng lưới, tích hợp sẵn quản lý đội nhóm và chia sẻ cơ hội."
+        "body": "Các dự án kinh doanh hình thành từ Origins trong mạng lưới, tích hợp sẵn quản lý đội nhóm và chia sẻ cơ hội."
       },
       "opportunities": {
-        "body": "Công việc, quan hệ đối tác và khoản đầu tư được khám phá qua đồ thị xã hội — mạng lưới hiển thị đúng cơ hội vào đúng thời điểm."
+        "body": "Công việc, quan hệ đối tác, khách hàng và khoản đầu tư được khám phá qua đồ thị xã hội — Origin của bạn hiển thị đúng cơ hội vào đúng thời điểm."
       }
     },
     "sectionComparison": "Vì sao lại là Origin thay vì mười công cụ",
@@ -196,61 +196,61 @@
       "slack": {
         "tool": "Slack",
         "strength": "kết nối các đội nhóm trong kênh",
-        "gap": "nhưng được xây dựng cho một không gian làm việc duy nhất — nó không mang theo hồ sơ, cộng đồng, dự án và cơ hội xuyên suốt những người bạn đã biết."
+        "gap": "nhưng được xây dựng cho một không gian làm việc duy nhất — nó không mang theo hồ sơ, Origins, dự án và cơ hội xuyên suốt những người bạn đã biết."
       },
       "discord": {
         "tool": "Discord",
         "strength": "giao tiếp",
-        "gap": "nhưng không được tổ chức quanh hồ sơ, cộng đồng, dự án và cơ hội trên một đồ thị xã hội dùng chung."
+        "gap": "nhưng không được tổ chức quanh hồ sơ, Origins, dự án và cơ hội trên một đồ thị xã hội dùng chung."
       },
       "whatsapp": {
         "tool": "WhatsApp",
         "strength": "nhắn tin",
-        "gap": "nhưng là một ứng dụng trò chuyện riêng tư — nó không mang lại cho cộng đồng hồ sơ, dự án và khả năng khám phá bền vững trên một đồ thị xã hội dùng chung."
+        "gap": "nhưng là một ứng dụng trò chuyện riêng tư — nó không mang lại cho Origins hồ sơ, dự án và khả năng khám phá bền vững trên một đồ thị xã hội dùng chung."
       },
       "linkedin": {
         "tool": "LinkedIn",
         "strength": "kết nối các chuyên gia",
-        "gap": "nhưng không vận hành các cộng đồng, trò chuyện và dự án biến kết nối thành cộng tác."
+        "gap": "nhưng không vận hành các Origins, trò chuyện và dự án biến kết nối thành cộng tác."
       },
       "meetup": {
         "tool": "Meetup",
         "strength": "tìm sự kiện",
-        "gap": "nhưng được xây dựng quanh việc xác nhận tham dự một lần — nó không duy trì cộng đồng, dự án và các mối quan hệ phát triển sau sự kiện."
+        "gap": "nhưng được xây dựng quanh việc xác nhận tham dự một lần — nó không duy trì Origin, dự án và các mối quan hệ phát triển sau sự kiện."
       },
       "eventbrite": {
         "tool": "Eventbrite",
         "strength": "bán vé",
-        "gap": "nhưng quản lý sự kiện, không phải cộng đồng — nó không mang lại cho nhóm của bạn một mái nhà lâu dài với hồ sơ, dự án và cơ hội."
+        "gap": "nhưng quản lý sự kiện, không phải Origins — nó không mang lại cho nhóm của bạn một mái nhà lâu dài với hồ sơ, dự án và cơ hội."
       },
       "notion": {
         "tool": "Notion",
         "strength": "tổ chức công việc",
-        "gap": "nhưng là một công cụ tài liệu — nó không kết nối những con người đằng sau các trang thành một cộng đồng cùng làm việc."
+        "gap": "nhưng là một công cụ tài liệu — nó không kết nối những con người đằng sau các trang thành một Origin cùng làm việc."
       },
       "asana": {
         "tool": "Asana",
         "strength": "theo dõi dự án",
-        "gap": "nhưng được xây dựng cho nhiệm vụ, không phải mối quan hệ — nó không làm nổi bật những con người và cộng đồng tạo nên dự án."
+        "gap": "nhưng được xây dựng cho nhiệm vụ, không phải mối quan hệ — nó không làm nổi bật những con người và Origins tạo nên dự án."
       },
       "patreon": {
         "tool": "Patreon",
         "strength": "tài trợ cho người sáng tạo",
-        "gap": "nhưng được xây dựng quanh đăng ký — nó không mang lại cho thành viên của bạn hồ sơ, dự án và cộng đồng trên một đồ thị xã hội dùng chung."
+        "gap": "nhưng được xây dựng quanh đăng ký — nó không mang lại cho thành viên của bạn hồ sơ, dự án và Origins trên một đồ thị xã hội dùng chung."
       },
       "facebook": {
         "tool": "Facebook",
         "strength": "kết nối các nhóm",
-        "gap": "nhưng được xây dựng quanh một bảng tin quảng cáo — nó không mang lại cho cộng đồng một không gian làm việc bình yên với hồ sơ, dự án và cơ hội."
+        "gap": "nhưng được xây dựng quanh một bảng tin quảng cáo — nó không mang lại cho Origins một không gian làm việc bình yên với hồ sơ, dự án và cơ hội."
       }
     },
     "sectionRoadmap": "Lộ trình",
     "roadmap": {
       "phase1": {
-        "body": "Hồ sơ, cộng đồng, trò chuyện và đồ thị xã hội. Thước đo thành công: các thành viên hình thành cộng đồng bền vững."
+        "body": "Hồ sơ, Origins, trò chuyện và đồ thị xã hội. Thước đo thành công: các thành viên hình thành Origins bền vững."
       },
       "phase2": {
-        "body": "Các dự án, không gian làm việc dùng chung và công cụ biến cuộc trò chuyện thành công việc chung. Thước đo thành công: các cộng đồng cùng nhau tạo ra kết quả."
+        "body": "Các dự án, không gian làm việc dùng chung và công cụ biến cuộc trò chuyện thành công việc chung. Thước đo thành công: các Origins cùng nhau tạo ra kết quả."
       },
       "phase3": {
         "body": "Các công ty và dự án kinh doanh do thành viên tạo lập, với quản lý đội nhóm và quản trị. Thước đo thành công: các công ty được thành lập bên trong mạng lưới."
@@ -259,7 +259,7 @@
     "faq": {
       "q1": {
         "question": "JoinOrigin khác gì so với Discord?",
-        "answer": "Discord là một ứng dụng trò chuyện. Origin là một mạng lưới cộng tác xã hội — hồ sơ, ý tưởng, cộng đồng, trò chuyện, bảng tin, dự án và công ty đều sống trên một đồ thị xã hội duy nhất."
+        "answer": "Discord là một ứng dụng trò chuyện. Origin là một mạng lưới cộng tác xã hội — hồ sơ, ý tưởng, Origins, trò chuyện, bảng tin, dự án và công ty đều sống trên một đồ thị xã hội duy nhất."
       },
       "q2": {
         "question": "JoinOrigin có mã nguồn mở không?",
@@ -267,7 +267,7 @@
       },
       "q3": {
         "question": "Đồ thị xã hội là gì?",
-        "answer": "Đồ thị xã hội là mạng lưới các mối quan hệ giữa các thành viên. Origin được tổ chức quanh nó, để mọi hồ sơ, cộng đồng và dự án đều kết nối thông qua con người."
+        "answer": "Đồ thị xã hội là mạng lưới các mối quan hệ giữa các thành viên. Origin được tổ chức quanh nó, để mọi hồ sơ, Origin và dự án đều kết nối thông qua con người."
       },
       "q4": {
         "question": "Khi nào các dự án và công ty ra mắt?",
@@ -279,26 +279,26 @@
     "hero": {
       "eyebrow": "Mạng lưới",
       "title": "Nơi mọi người tìm thấy nhau",
-      "lead": "Origin là một mạng lưới cộng tác xã hội được tổ chức quanh các cộng đồng — những nhóm người chia sẻ sở thích, ngành nghề, mục tiêu và cơ hội. Cộng đồng là trung tâm của sự gắn kết."
+      "lead": "Origin là nơi mọi người quy tụ xoay quanh các mục tiêu. Bắt đầu một Origin cho bất cứ điều gì bạn muốn hiện thực hóa — một startup, một doanh nghiệp nhỏ, một câu lạc bộ sách — hoặc tham gia một Origin phù hợp với điều bạn đang xây dựng, và tìm những người cùng nguồn lực để đưa nó tiến về phía trước."
     },
     "sectionValues": "Cách chúng tôi vận hành mạng lưới",
     "values": {
       "peopleFirst": {
-        "body": "Thành viên là con người, không phải hồ sơ trong cơ sở dữ liệu. Mọi quyết định thiết kế đều bảo vệ các mối quan hệ tạo nên giá trị đáng để tham gia của mạng lưới."
+        "body": "Thành viên là con người, không phải hồ sơ trong cơ sở dữ liệu. Mọi quyết định thiết kế đều bảo vệ các mối quan hệ tạo nên giá trị đáng để bắt đầu một Origin."
       },
       "communitiesDriveGrowth": {
-        "body": "Cộng đồng là trung tâm của sự gắn kết. Khi một cộng đồng phát triển, những người trong đó tìm thấy nhau và cùng nhau xây dựng."
+        "body": "Origins là trung tâm của sự gắn kết. Khi một Origin phát triển, những người trong đó tìm thấy nhau, chia sẻ điều họ cần và cùng nhau xây dựng."
       },
       "collaborationCreatesValue": {
         "body": "Cộng tác là cách các cuộc trò chuyện trở thành dự án và dự án trở thành công ty. Origin được xây dựng để cộng tác có nơi để phát triển."
       },
       "ownership": {
         "title": "Quyền sở hữu & Chủ quyền",
-        "body": "Bạn sở hữu danh tính, dữ liệu và cộng đồng của mình. Kiến trúc mở và danh tính di động giữ cho mạng lưới có trách nhiệm với các thành viên."
+        "body": "Bạn sở hữu danh tính, dữ liệu và Origins của mình. Kiến trúc mở và danh tính di động giữ cho mạng lưới có trách nhiệm với các thành viên."
       }
     },
-    "sectionExamples": "Ví dụ về các cộng đồng",
-    "examplesIntro": "Đây là những loại cộng đồng đang phát triển bên trong JoinOrigin hiện nay. Nếu bạn chia sẻ một trong những mục tiêu này, đã có sẵn một nơi dành cho bạn:",
+    "sectionExamples": "Ví dụ về các Origins",
+    "examplesIntro": "Đây là những loại Origins đang phát triển bên trong JoinOrigin hiện nay. Nếu bạn chia sẻ một trong những mục tiêu này, đã có sẵn một nơi dành cho bạn:",
     "examples": {
       "startupFounders": "Nhà sáng lập Startup",
       "smallBusinesses": "Doanh nghiệp nhỏ",
@@ -309,17 +309,17 @@
       "anyoneWithAnIdea": "Bất kỳ ai có Ý tưởng"
     },
     "sectionJoin": "Tham gia mạng lưới",
-    "joinCopy": "Cộng đồng được xây dựng bởi những con người trong đó. Được khám phá và tham gia cùng những nhà sáng lập định hình cách mọi người tìm thấy nhau trực tuyến.",
+    "joinCopy": "Mạng lưới được xây dựng bởi những con người trong đó. Bắt đầu một Origin, được khám phá và tham gia cùng những nhà sáng lập định hình cách mọi người tìm thấy nhau và đưa mọi thứ tiến về phía trước.",
     "joinStatValue": "2.400+",
     "joinStatLabel": "Thành viên cùng nhau xây dựng",
     "faq": {
       "q1": {
-        "question": "Tôi có thể tham gia những cộng đồng nào?",
-        "answer": "Bất kỳ ai cũng có thể bắt đầu hoặc tham gia một cộng đồng xoay quanh bất cứ ý tưởng nào — một doanh nghiệp nhỏ, một startup AI, giúp đỡ người vô gia cư, một giải chạy 10 km, một phong trào chính trị, một giải bóng thiếu nhi. Nếu nó có ý nghĩa với bạn, nó có một vị trí trên Origin."
+        "question": "Tôi có thể tham gia những Origins nào?",
+        "answer": "Bất kỳ ai cũng có thể bắt đầu hoặc tham gia một Origin xoay quanh bất cứ ý tưởng nào — một doanh nghiệp nhỏ, một startup AI, giúp đỡ người vô gia cư, một giải chạy 10 km, một phong trào chính trị, một giải bóng thiếu nhi. Nếu nó có ý nghĩa với bạn, nó có một vị trí trên Origin."
       },
       "q2": {
-        "question": "Tôi có thể tự tạo cộng đồng của mình không?",
-        "answer": "Có. Mọi thành viên đều có thể tạo một cộng đồng xoay quanh bất cứ ý tưởng nào và mời những người họ muốn xây dựng cùng — dù đó là một doanh nghiệp, một câu lạc bộ sách hay một câu lạc bộ chạy bộ."
+        "question": "Tôi có thể tự tạo Origin của mình không?",
+        "answer": "Có. Mọi thành viên đều có thể tạo một Origin xoay quanh bất cứ ý tưởng nào và mời những người họ muốn xây dựng cùng — dù đó là một doanh nghiệp, một câu lạc bộ sách hay một câu lạc bộ chạy bộ."
       },
       "q3": {
         "question": "Dữ liệu của tôi có phải của tôi không?",
@@ -327,11 +327,11 @@
       },
       "q4": {
         "question": "Làm thế nào để tôi tìm thấy những người của mình?",
-        "answer": "Duyệt các cộng đồng theo sở thích, ngành nghề hoặc mục tiêu — từ doanh nghiệp nhỏ và câu lạc bộ sách đến startup AI và câu lạc bộ chạy bộ — rồi tham gia những cộng đồng phù hợp với điều bạn muốn xây dựng. Hoặc tự tạo một cộng đồng cho bất cứ ý tưởng nào."
+        "answer": "Duyệt các Origins theo sở thích, ngành nghề hoặc mục tiêu — từ doanh nghiệp nhỏ và câu lạc bộ sách đến startup AI và câu lạc bộ chạy bộ — rồi tham gia những Origins phù hợp với điều bạn muốn xây dựng. Hoặc tự tạo một Origin cho bất cứ ý tưởng nào."
       },
       "q5": {
         "question": "Tôi có thể tham gia ẩn danh hoặc bằng tên không?",
-        "answer": "Bạn tự lựa chọn. Bạn có thể tham gia bằng tài khoản có tên hoặc giữ ẩn danh, và các cộng đồng, phòng và trang ý tưởng có thể mở cho mọi người hoặc bị giới hạn bởi người tổ chức. Các tùy chọn này sẽ được triển khai dần theo thời gian."
+        "answer": "Bạn tự lựa chọn. Bạn có thể tham gia bằng tài khoản có tên hoặc giữ ẩn danh, và các Origins, phòng và trang ý tưởng có thể mở cho mọi người hoặc bị giới hạn bởi người tổ chức. Các tùy chọn này sẽ được triển khai dần theo thời gian."
       }
     }
   },
@@ -347,7 +347,7 @@
         "body": "Hồ sơ là danh tính di động của mỗi thành viên — giống như một sơ yếu lý lịch sống. Chúng mang theo kinh nghiệm, kỹ năng, ý tưởng, danh tiếng và các mối quan hệ xuyên suốt mọi cộng đồng và dự án, để con người bạn đi cùng bạn ở mọi nơi."
       },
       "communities": {
-        "body": "Cộng đồng là những nhóm người chia sẻ sở thích, ngành nghề, mục tiêu và cơ hội — xoay quanh bất cứ ý tưởng nào. Chúng là trung tâm của sự gắn kết trên Origin và là cách các thành viên tìm thấy nhau."
+        "body": "Origins là không gian bạn tạo ra xoay quanh một mục tiêu — một nhóm người chia sẻ sở thích, ngành nghề, mục tiêu và cơ hội xoay quanh bất cứ ý tưởng nào. Chúng là trung tâm của sự gắn kết trên Origin và là cách các thành viên tìm thấy nhau."
       },
       "ideas": {
         "body": "Mỗi ý tưởng đều có một mái nhà. Đăng một trang ý tưởng cho bất cứ điều gì — một doanh nghiệp nhỏ, một startup AI, giúp đỡ người vô gia cư, một giải chạy 10 km, một câu lạc bộ sách, một giải bóng thiếu nhi — và tìm những người muốn cùng bạn xây dựng nó."
@@ -371,16 +371,16 @@
     "sectionRoadmap": "Lộ trình",
     "roadmap": {
       "phase1": {
-        "body": "Hồ sơ, cộng đồng, trò chuyện và đồ thị xã hội. Thước đo thành công: các thành viên hình thành cộng đồng bền vững."
+        "body": "Hồ sơ, Origins, trò chuyện và đồ thị xã hội. Thước đo thành công: các thành viên hình thành Origins bền vững."
       },
       "phase2": {
-        "body": "Các dự án, không gian làm việc dùng chung và công cụ biến cuộc trò chuyện thành công việc chung. Thước đo thành công: các cộng đồng cùng nhau tạo ra kết quả."
+        "body": "Các dự án, không gian làm việc dùng chung và công cụ biến cuộc trò chuyện thành công việc chung. Thước đo thành công: các Origins cùng nhau tạo ra kết quả."
       },
       "phase3": {
         "body": "Các công ty và dự án kinh doanh do thành viên tạo lập, với quản lý đội nhóm và quản trị. Thước đo thành công: các công ty được thành lập bên trong mạng lưới."
       },
       "phase4": {
-        "body": "Các trợ lý AI giúp cộng đồng điều phối, tóm tắt và ghép nối cơ hội. Thước đo thành công: các thành viên cộng tác với AI như những người bình đẳng."
+        "body": "Các trợ lý AI giúp Origins điều phối, tóm tắt và ghép nối cơ hội. Thước đo thành công: các thành viên cộng tác với AI như những người bình đẳng."
       },
       "phase5": {
         "body": "Các tiêu chuẩn mở và tính di động để mạng lưới kết nối xuyên các nền tảng. Thước đo thành công: một đồ thị xã hội di động và tương tác được."
@@ -400,7 +400,7 @@
       },
       "q4": {
         "question": "Điều gì đang hoạt động ngay bây giờ?",
-        "answer": "Nền tảng Cộng đồng (Giai đoạn 1) đã hoạt động: hồ sơ, cộng đồng, trò chuyện và đồ thị xã hội đã được 2.400+ nhà sáng lập sử dụng."
+        "answer": "Nền tảng Origin (Giai đoạn 1) đã hoạt động: hồ sơ, Origins, trò chuyện và đồ thị xã hội đã được 2.400+ nhà sáng lập sử dụng."
       }
     }
   },
@@ -411,22 +411,22 @@
       "lead": "Origin là một mạng lưới cộng tác xã hội được xây dựng trên một niềm tin: tài sản giá trị nhất trên internet không phải là nội dung hay phần mềm — mà là mạng lưới con người và các mối quan hệ họ hình thành."
     },
     "sectionMission": "Sứ mệnh của chúng tôi",
-    "missionParagraph1": "Origin đang xây dựng hệ điều hành cho sự cộng tác của con người. Thay vì năm công cụ riêng biệt cho trò chuyện, cộng đồng và dự án, các mối quan hệ của bạn sống trong một không gian làm việc bình yên. Đồ thị xã hội chính là sản phẩm: hồ sơ, ý tưởng, cộng đồng, giao tiếp, bảng tin, dự án, công ty và cơ hội đều treo trên cùng một mạng lưới con người.",
-    "missionParagraph2": "Hôm nay, 2.400+ nhà sáng lập đã và đang hợp tác trên Origin. Khi nền tảng phát triển qua lộ trình — Nền tảng Cộng đồng, Hợp tác, Tổ chức, Hợp tác AI và Mạng lưới Toàn cầu — sứ mệnh vẫn không đổi: giúp mọi người tìm thấy nhau và cùng nhau xây dựng.",
+    "missionParagraph1": "Origin đang xây dựng hệ điều hành cho sự cộng tác của con người. Thay vì năm công cụ riêng biệt cho trò chuyện, Origins và dự án, các mối quan hệ của bạn sống trong một không gian làm việc bình yên. Đồ thị xã hội chính là sản phẩm: hồ sơ, ý tưởng, Origins, giao tiếp, bảng tin, dự án, công ty và cơ hội đều treo trên cùng một mạng lưới con người.",
+    "missionParagraph2": "Hôm nay, 2.400+ nhà sáng lập đã và đang hợp tác trên Origin. Khi nền tảng phát triển qua lộ trình — Nền tảng Origin, Hợp tác, Tổ chức, Hợp tác AI và Mạng lưới Toàn cầu — sứ mệnh vẫn không đổi: giúp mọi người tìm thấy nhau và cùng nhau xây dựng.",
     "sectionPrinciples": "Các nguyên tắc chỉ đạo",
     "principles": {
       "peopleFirst": {
         "body": "Mạng lưới được tạo nên từ con người, không chỉ từ nội dung hay phần mềm. Các quyết định sản phẩm bắt đầu từ những mối quan hệ mà thành viên muốn hình thành."
       },
       "communitiesDriveGrowth": {
-        "body": "Cộng đồng là trung tâm của sự gắn kết — những nhóm người chia sẻ sở thích, ngành nghề, mục tiêu và cơ hội mang lại sức sống cho mạng lưới."
+        "body": "Origins là trung tâm của sự gắn kết — những nhóm người chia sẻ sở thích, ngành nghề, mục tiêu và cơ hội mang lại sức sống cho mạng lưới."
       },
       "collaborationCreatesValue": {
         "body": "Các cuộc trò chuyện trở thành dự án, dự án trở thành công ty. Origin được xây dựng để cộng tác có nơi để phát triển."
       },
       "openArchitecture": {
         "title": "Kiến trúc Mở",
-        "body": "Giao tiếp chạy trên giao thức Matrix mở, và danh tính, hồ sơ, cộng đồng cùng đồ thị xã hội đều di động và thuộc quyền sở hữu của người dùng."
+        "body": "Giao tiếp chạy trên giao thức Matrix mở, và danh tính, hồ sơ, Origins cùng đồ thị xã hội đều di động và thuộc quyền sở hữu của người dùng."
       }
     },
     "sectionFounder": "Định hướng từ nhà sáng lập",
@@ -439,7 +439,7 @@
     "faq": {
       "q1": {
         "question": "JoinOrigin là gì?",
-        "answer": "Origin là một mạng lưới cộng tác xã hội — một hệ điều hành cộng đồng đưa ý tưởng, dự án và cộng đồng của bạn vào một không gian có tổ chức. JoinOrigin là thương hiệu và mạng lưới đứng đằng sau nó."
+        "answer": "Origin là không gian bạn tạo ra xoay quanh một mục tiêu — một không gian có tổ chức nơi ý tưởng, dự án và Origins của bạn sống cùng nhau. JoinOrigin là thương hiệu và mạng lưới đứng đằng sau nó."
       },
       "q2": {
         "question": "Câu “mạng lưới là sản phẩm” nghĩa là gì?",
@@ -455,7 +455,7 @@
     "hero": {
       "eyebrow": "Liên hệ",
       "title": "Trò chuyện với chúng tôi",
-      "lead": "Có câu hỏi về Origin — mạng lưới cộng tác xã hội — hay việc bắt đầu một cộng đồng? Chúng tôi rất muốn nghe từ bạn. Hãy hỏi chúng tôi bất cứ điều gì."
+      "lead": "Có câu hỏi về Origin — hay việc bắt đầu Origin của riêng bạn? Chúng tôi rất muốn nghe từ bạn. Hãy hỏi chúng tôi bất cứ điều gì."
     },
     "sectionForm": "Gửi một tin nhắn",
     "form": {
@@ -482,7 +482,7 @@
       },
       "q2": {
         "question": "Làm thế nào để tôi có quyền truy cập?",
-        "answer": "Nhấp vào Bắt đầu và được khám phá — nhập tên và email của bạn và hồ sơ của bạn đã sẵn sàng, và bạn có thể bắt đầu hoặc tham gia các cộng đồng ngay lập tức."
+        "answer": "Nhấp vào Bắt đầu và được khám phá — nhập tên và email của bạn và hồ sơ của bạn đã sẵn sàng, và bạn có thể bắt đầu hoặc tham gia các Origins ngay lập tức."
       }
     }
   },
@@ -549,7 +549,7 @@
     "heading": "Không tìm thấy trang",
     "copy": "Trang bạn đang tìm không tồn tại hoặc đã được chuyển đi. Hãy quay về trang chủ để tìm nơi dự án tiếp theo của đội bạn bắt đầu.",
     "backHome": "Quay về trang chủ",
-    "exploreCommunities": "Khám phá cộng đồng →"
+    "exploreCommunities": "Khám phá Origins →"
   },
   "mobile": {
     "home": {
@@ -698,9 +698,9 @@
     "glossary": {
       "eyebrow": "Hệ điều hành Cộng đồng",
       "title": "Bảng thuật ngữ Hệ điều hành Cộng đồng",
-      "intro": "Từ vựng thiết yếu của việc xây dựng cộng đồng — định nghĩa rõ ràng cho các thuật ngữ mà người tổ chức, người điều hành và người sáng lập sử dụng mỗi ngày.",
+      "intro": "Từ vựng thiết yếu của Origin — định nghĩa rõ ràng cho các thuật ngữ mà người tổ chức, người điều hành và người sáng lập sử dụng mỗi ngày.",
       "whyTitle": "Vì sao có bảng thuật ngữ",
-      "whyBody": "Xây dựng cộng đồng có ngôn ngữ riêng và các thuật ngữ thường được dùng khá lỏng lẻo. Bảng thuật ngữ Hệ điều hành Cộng đồng mang đến cho người tổ chức, người điều hành và người sáng lập những định nghĩa chung đáng tin cậy — từ các khái niệm kinh điển như điều hành và tiếp nhận thành viên đến những ý tưởng mới hơn như vòng tương tác và sự kiện kết hợp.",
+      "whyBody": "Việc cùng nhau xây dựng bất cứ điều gì đều có ngôn ngữ riêng và các thuật ngữ thường được dùng khá lỏng lẻo. Bảng thuật ngữ Origin mang đến cho người tổ chức, người điều hành và người sáng lập những định nghĩa chung đáng tin cậy — từ các khái niệm kinh điển như điều hành và tiếp nhận thành viên đến những ý tưởng mới hơn như vòng tương tác và sự kiện kết hợp.",
       "termsTitle": "Các thuật ngữ cốt lõi",
       "termsIntro": "Dưới đây là các thuật ngữ cốt lõi mà mọi người tổ chức, người điều hành và người sáng lập đều dùng — mỗi thuật ngữ được định nghĩa trong thực tế xuyên suốt Hướng dẫn xây dựng cộng đồng:",
       "goDeeper": "Tìm hiểu sâu hơn",
@@ -708,20 +708,20 @@
       "goDeeperItem2": "Xem các khái niệm trong thực tế: trang thành phố <1>Thành phố New York</1> và <2>Berlin</2>.",
       "terms": {
         "community": {
-          "name": "Cộng đồng",
-          "definition": "Một nhóm người chia sẻ sở thích, ngành nghề, mục tiêu hoặc cơ hội và kết nối xoay quanh chúng. Trên Origin, mỗi cộng đồng đều đi kèm một phòng nơi các thành viên tìm thấy nhau và cùng nhau xây dựng."
+          "name": "Origin",
+          "definition": "Không gian bạn tạo ra xoay quanh một mục tiêu. Một Origin quy tụ những người và nguồn lực cần thiết để hiện thực hóa điều gì đó — một doanh nghiệp nhỏ, một startup AI, một câu lạc bộ sách hoặc một giải chạy 10 km. Trên Origin, mỗi Origin đều đi kèm một phòng nơi các thành viên tìm thấy nhau và cùng nhau xây dựng."
         },
         "community-manager": {
           "name": "Quản lý cộng đồng",
-          "definition": "Người giữ cho một cộng đồng chào đón, sôi động và đi đúng sứ mệnh — chào đón thành viên mới, khơi gợi cuộc trò chuyện và điều phối các dự án. Trên Origin, thành viên bắt đầu một cộng đồng sẽ sở hữu và điều hành phòng của cộng đồng đó."
+          "definition": "Người giữ cho một Origin chào đón, sôi động và đi đúng sứ mệnh — chào đón thành viên mới, khơi gợi cuộc trò chuyện và điều phối công việc. Trên Origin, thành viên bắt đầu một Origin sẽ sở hữu và điều hành phòng của Origin đó."
         },
         "community-os": {
           "name": "Hệ điều hành Cộng đồng",
-          "definition": "Một nền tảng đưa hồ sơ, cộng đồng, trò chuyện, dự án và cơ hội vào một không gian làm việc có tổ chức. Origin là hệ điều hành cộng đồng đứng đằng sau JoinOrigin."
+          "definition": "Một nền tảng đưa hồ sơ, Origins, trò chuyện, dự án và cơ hội vào một không gian làm việc có tổ chức. Origin là hệ điều hành cộng đồng đứng đằng sau JoinOrigin — không gian nơi ý tưởng, con người và nguồn lực cùng nhau tiến về phía trước."
         },
         "moderation": {
           "name": "Điều hành",
-          "definition": "Việc giữ cho một cộng đồng an toàn và đúng chủ đề thông qua các hướng dẫn rõ ràng và thực thi nhất quán, công bằng. Điều hành tốt bảo vệ các mối quan hệ khiến một cộng đồng đáng để tham gia."
+          "definition": "Việc giữ cho một Origin an toàn và đúng chủ đề thông qua các hướng dẫn rõ ràng và thực thi nhất quán, công bằng. Điều hành tốt bảo vệ các mối quan hệ khiến một Origin đáng để tham gia."
         },
         "onboarding": {
           "name": "Tiếp nhận thành viên",
@@ -729,11 +729,11 @@
         },
         "activation": {
           "name": "Kích hoạt",
-          "definition": "Khoảnh khắc một thành viên mới thực hiện hành động khiến họ trở thành một phần của cộng đồng — bài đăng đầu tiên, sự kiện đầu tiên hoặc dự án đầu tiên. Kích hoạt là bước giữa việc tham gia và đóng góp."
+          "definition": "Khoảnh khắc một thành viên mới thực hiện hành động khiến họ trở thành một phần của Origin — bài đăng đầu tiên, đề xuất đầu tiên hoặc đóng góp đầu tiên. Kích hoạt là bước giữa việc tham gia và đóng góp."
         },
         "engagement-loop": {
           "name": "Vòng tương tác",
-          "definition": "Vòng lặp tham gia lặp đi lặp lại giữ cho một cộng đồng sống động: ai đó đăng bài, những người khác phản hồi, và cuộc trò chuyện tạo thêm lý do để quay lại. Các vòng lặp lành mạnh là nhịp đập của một cộng đồng sôi động."
+          "definition": "Vòng lặp lặp đi lặp lại đưa một Origin tiến về phía trước: ai đó đăng một nhu cầu hoặc đề nghị, những người khác phản hồi, và công việc tạo thêm lý do để quay lại. Các vòng lặp lành mạnh là nhịp đập của một Origin sôi động."
         },
         "hybrid-events": {
           "name": "Sự kiện kết hợp",
@@ -741,7 +741,7 @@
         },
         "co-founder": {
           "name": "Đồng sáng lập",
-          "definition": "Một người cùng bạn xây dựng một dự án hoặc công ty và chia sẻ hành trình thành lập. Trên Origin, đồng sáng lập thường được tìm thấy qua mạng lưới — những người tham gia trang ý tưởng của bạn và quyết định cùng nhau xây dựng."
+          "definition": "Một người cùng bạn xây dựng một dự án hoặc công ty và chia sẻ hành trình thành lập. Trên Origin, đồng sáng lập thường được tìm thấy qua Origin của bạn — những người đáp lại một nhu cầu hoặc đề nghị, tham gia công việc và quyết định cùng nhau xây dựng."
         }
       }
     },

@@ -24,7 +24,7 @@
     "objects": {
       "profiles": "Profielen",
       "ideas": "Ideeën",
-      "communities": "Community's",
+      "communities": "Origin",
       "communication": "Communicatie",
       "feed": "Feed",
       "projects": "Projecten",
@@ -33,11 +33,11 @@
     },
     "values": {
       "peopleFirst": "Mensen voorop",
-      "communitiesDriveGrowth": "Community's drijven groei",
+      "communitiesDriveGrowth": "Origin drijft groei",
       "collaborationCreatesValue": "Samenwerking creëert waarde"
     },
     "roadmap": {
-      "phase1Title": "Fase 1 — Community Foundation",
+      "phase1Title": "Fase 1 — Origin Foundation",
       "phase2Title": "Fase 2 — Samenwerking",
       "phase3Title": "Fase 3 — Organisatie",
       "phase4Title": "Fase 4 — AI-samenwerking",
@@ -61,14 +61,14 @@
   },
   "home": {
     "hero": {
-      "headline": "Ideeën, projecten en community-samenwerking — hier vinden nieuwe én bestaande teams hun Origin.",
+      "headline": "Waar elk idee, elke startup en elk project de mensen en middelen vindt om het vooruit te brengen — Origin.",
       "headlineAccent": "Origin.",
       "startProject": "Aan de slag",
-      "supporting": "Maak een profiel dat werkt als je cv, plaats je idee als pagina en start of sluit je aan bij een community rondom alles — een gloednieuw idee, een bestaand klein bedrijf, een AI-startup, een boekenclub of een 10k-loop.",
+      "supporting": "Maak een profiel dat werkt als je cv, plaats je idee als pagina en start een Origin rondom alles — een idee, een klein bedrijf, een AI-startup, een boekenclub of een 10k-loop. Nodig dan de mensen uit die het samen met jou vooruit zullen brengen.",
       "trustAvatarsAlt": "JoinOrigin-lid {{number}}",
       "trustCopy": "Sluit je aan bij 2.400+ bouwers die al samenwerken"
     },
-    "definition": "Origin is een sociaal samenwerkingsnetwerk — het community-besturingssysteem waarin je ideeën, projecten en community's samenkomen in één overzichtelijke ruimte. JoinOrigin is het merk en het netwerk erachter.",
+    "definition": "Origin is de ruimte die je start rondom een doel — een idee, een startup, een klein bedrijf of een project. Breng de mensen en middelen samen die het nodig heeft en breng het samen vooruit: medeoprichters, partners, klanten, supporters en je netwerk. JoinOrigin is het merk en het netwerk erachter.",
     "marquee": {
       "label": "Vertrouwd door teams bij",
       "partnerAlt": "JoinOrigin-partner {{number}}"
@@ -76,23 +76,23 @@
     "faq": {
       "q1": {
         "question": "Wat is JoinOrigin?",
-        "answer": "Origin is een sociaal samenwerkingsnetwerk — een community-besturingssysteem dat je ideeën, projecten en community's samenbrengt in één overzichtelijke ruimte. JoinOrigin is het merk en het netwerk erachter. In plaats van vijf losse tools leven je relaties op één plek, zodat er niets verloren gaat."
+        "answer": "Origin is de ruimte die je start rondom een doel. Jij brengt het idee in, verzamelt de mensen en middelen die het nodig heeft en brengt het samen vooruit. JoinOrigin is het merk en het netwerk erachter. In plaats van vijf losse tools leven je relaties op één plek, zodat er niets verloren gaat."
       },
       "q2": {
         "question": "Waarin verschilt JoinOrigin van Discord/LinkedIn/Reddit?",
-        "answer": "Discord is een chat-app, LinkedIn vindt professionals en Reddit is er voor discussies. Origin combineert ze rondom de sociale graaf — profielen, community's, chat, feed, projecten en kansen leven allemaal samen, zodat relaties veranderen in echte samenwerking."
+        "answer": "Discord is een chat-app, LinkedIn vindt professionals en Reddit is er voor discussies. Origin combineert ze rondom de sociale graaf — profielen, Origin, chat, feed, projecten en kansen leven allemaal samen, zodat relaties veranderen in echt werk."
       },
       "q3": {
         "question": "Wat kan ik doen zodra ik binnen ben?",
-        "answer": "Maak een profiel dat werkt als een cv, plaats je idee als idee-pagina, start of sluit je aan bij community's rondom alles en nodig de mensen uit waarmee je wilt werken. Elke community heeft een eigen kamer waar leden elkaar ontmoeten."
+        "answer": "Maak een profiel dat werkt als een cv, plaats je idee als idee-pagina en start een Origin rondom alles. Nodig de mensen uit waarmee je wilt werken — medeoprichters, partners, klanten, supporters — en elke Origin heeft een eigen kamer waar het werk vooruitgaat."
       },
       "q4": {
         "question": "Is Origin live?",
-        "answer": "Ja — Origin is live en groeit. Klik op “Aan de slag” en word ontdekt: maak je profiel aan, plaats je idee en start of sluit je vandaag nog aan bij een community."
+        "answer": "Ja — Origin is live en groeit. Klik op “Aan de slag”: maak je profiel aan, plaats je idee en start een Origin rondom alles wat je wilt laten gebeuren."
       },
       "q5": {
         "question": "Hoe doe ik mee?",
-        "answer": "Klik op “Aan de slag” en word ontdekt. Vul je naam en e-mailadres in en je profiel is klaar — start vandaag nog met het bouwen van je community."
+        "answer": "Klik op “Aan de slag”. Vul je naam en e-mailadres in en je profiel is klaar — start dan een Origin rondom je idee en nodig de mensen uit die het samen met jou vooruit zullen brengen."
       }
     }
   },
@@ -121,9 +121,9 @@
   },
   "signup": {
     "title": "Registreren — Maak je account aan | JoinOrigin",
-    "description": "Maak je account aan op Origin, het sociale samenwerkingsnetwerk. Voer je naam en e-mailadres in om ontdekt te worden en start of sluit je vandaag nog aan bij een community.",
+    "description": "Maak je account aan op Origin. Voer je naam en e-mailadres in om ontdekt te worden en start dan een Origin rondom je idee en vind de mensen en middelen om het vooruit te brengen.",
     "heading": "Maak je account aan",
-    "subcopy": "Word ontdekt op het community-besturingssysteem — of je nu iets nieuws start of een bestaand project laat groeien.",
+    "subcopy": "Word ontdekt op Origin — of je nu iets nieuws start of een bestaand project laat groeien. Vind je medeoprichters, partners, klanten en supporters.",
     "nameLabel": "Naam",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-mailadres",
@@ -132,7 +132,7 @@
     "submitting": "Account wordt aangemaakt…",
     "legalNote": "Geen spam. Op elk moment uitschrijven.",
     "successHeading": "Je staat op de lijst!",
-    "successCopy": "We mailen je zodra je werkruimte klaar is.",
+    "successCopy": "We mailen je zodra je Origin klaar is.",
     "done": "Klaar",
     "errors": {
       "generic": "Er is iets misgegaan. Probeer het opnieuw.",
@@ -144,47 +144,47 @@
     },
     "waitlist": {
       "heading": "Op de wachtlijst",
-      "subcopy": "Word ontdekt op het community-besturingssysteem — of je nu iets nieuws start of een bestaand project laat groeien. We mailen je zodra je werkruimte klaar is.",
+      "subcopy": "Word ontdekt op Origin — of je nu iets nieuws start of een bestaand project laat groeien. We mailen je zodra je Origin klaar is.",
       "disclosure": "Origin is in ontwikkeling. Je naam en e-mailadres worden alleen gebruikt om je account in te stellen en te beveiligen wanneer je aan de beurt bent."
     }
   },
   "ctaBand": {
-    "headline": "Vind je mensen. Start of groei samen iets.",
-    "subline": "Sluit je aan bij 2.400+ bouwers — van eerste ideeën tot gevestigde bedrijven — op het sociale samenwerkingsnetwerk van Origin en word vandaag nog ontdekt.",
+    "headline": "Start een Origin. Vind de mensen en middelen om het vooruit te brengen.",
+    "subline": "Sluit je aan bij 2.400+ bouwers — van eerste ideeën tot gevestigde bedrijven — die al mensen en middelen op Origin verzamelen. Vind je medeoprichters, partners, klanten en supporters. Word vandaag nog ontdekt.",
     "joinLabel": "Aan de slag",
     "contactLabel": "Neem contact op"
   },
   "features": {
     "hero": {
       "eyebrow": "Kernobjecten",
-      "title": "Alles wat een community nodig heeft, in één rustige werkruimte",
-      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is opgebouwd rond acht kernobjecten: profielen, ideeën, community's, communicatie, feed, projecten, bedrijven en kansen. Of je nu iets nieuws start of een bestaand bedrijf laat groeien, je relaties leven op één plek in plaats van in tien losse tools."
+      "title": "Alles wat een Origin nodig heeft, in één rustige werkruimte",
+      "lead": "Origin is opgebouwd rond acht kernobjecten: profielen, ideeën, Origins, communicatie, feed, projecten, bedrijven en kansen. Start een Origin voor alles wat je wilt laten gebeuren — een startup, een klein bedrijf, een project — en vind de medeoprichters, partners, klanten en supporters die het samen met jou vooruit zullen brengen."
     },
     "sectionCoreObjects": "Kernobjecten",
     "coreObjects": {
       "profiles": {
-        "body": "Een profiel werkt als een levend cv: het draagt je ervaring, vaardigheden en ideeën — plus je reputatie en relaties — mee naar elke community en elk project waar je lid van wordt."
+        "body": "Een profiel werkt als een levend cv: het draagt je ervaring, vaardigheden en ideeën — plus je reputatie en relaties — mee naar elke Origin en elk project waar je lid van wordt."
       },
       "ideas": {
-        "body": "Ideeën zijn het startpunt van alles op Origin. Plaats een idee-pagina voor elk idee — een klein bedrijf, een AI-startup, een boekenclub, een 10k-loop — en de mensen die het willen bouwen vinden jou."
+        "body": "Elke Origin begint met een idee. Plaats een idee-pagina voor alles — een klein bedrijf, een AI-startup, een boekenclub, een 10k-loop — en de mensen die het willen bouwen vinden jou."
       },
       "communities": {
-        "body": "Groepen rondom interesses, sectoren en doelen — Startup-oprichters, kleine bedrijven, boekenclubs, maatschappelijke organisaties, iedereen met een idee — waar leden elkaar vinden."
+        "body": "De ruimte die je start rondom een doel — een startup, een klein bedrijf, een boekenclub of elk idee. Elke Origin verzamelt de mensen die het delen en heeft een eigen kamer waar het werk vooruitgaat."
       },
       "communication": {
-        "body": "Elke community heeft een Matrix-kamer: realtime-chat, directe berichten en groepsdiscussies via het open Matrix-protocol, standaard end-to-end versleuteld."
+        "body": "Elke Origin heeft een Matrix-kamer: realtime-chat, directe berichten en groepsdiscussies via het open Matrix-protocol, standaard end-to-end versleuteld."
       },
       "feed": {
-        "body": "De feed toont berichten, updates en kansen van de mensen en community's die je volgt. Het is een rustige stroom van wat er in je netwerk toe doet, geen betrokkenheidsmachine."
+        "body": "De feed toont berichten, updates en kansen van de mensen en Origins die je volgt. Het is een rustige stroom van wat er in je netwerk toe doet, geen betrokkenheidsmachine."
       },
       "projects": {
-        "body": "Gezamenlijke inspanningen waarin communityleden samenwerken en gesprekken omzetten in resultaten."
+        "body": "Gezamenlijke inspanningen waarin de mensen in je Origin samenwerken en gesprekken omzetten in resultaten."
       },
       "companies": {
-        "body": "Ondernemingen die leden binnen het netwerk oprichten, met ingebouwd teammanagement en het delen van kansen."
+        "body": "Ondernemingen die ontstaan uit Origins binnen het netwerk, met ingebouwd teammanagement en het delen van kansen."
       },
       "opportunities": {
-        "body": "Banen, partnerschappen en investeringen die worden ontdekt via de sociale graaf — het netwerk brengt de juiste kansen op het juiste moment naar boven."
+        "body": "Banen, partnerschappen, klanten en investeringen die worden ontdekt via de sociale graaf — je Origin brengt de juiste kansen op het juiste moment naar boven."
       }
     },
     "sectionComparison": "Waarom Origin in plaats van tien tools",
@@ -196,61 +196,61 @@
       "slack": {
         "tool": "Slack",
         "strength": "verbindt teams in kanalen",
-        "gap": "maar is gebouwd voor één werkruimte — het draagt geen profielen, community's, projecten en kansen mee over de mensen die je al kent."
+        "gap": "maar is gebouwd voor één werkruimte — het draagt geen profielen, Origins, projecten en kansen mee over de mensen die je al kent."
       },
       "discord": {
         "tool": "Discord",
         "strength": "communiceert",
-        "gap": "maar is niet georganiseerd rond profielen, community's, projecten en kansen op een gedeelde sociale graaf."
+        "gap": "maar is niet georganiseerd rond profielen, Origins, projecten en kansen op een gedeelde sociale graaf."
       },
       "whatsapp": {
         "tool": "WhatsApp",
         "strength": "stuurt berichten",
-        "gap": "maar is een privéchat-app — het geeft community's geen duurzame profielen, projecten en vindbaarheid op een gedeelde sociale graaf."
+        "gap": "maar is een privéchat-app — het geeft Origins geen duurzame profielen, projecten en vindbaarheid op een gedeelde sociale graaf."
       },
       "linkedin": {
         "tool": "LinkedIn",
         "strength": "vindt professionals",
-        "gap": "maar drijft niet de community's, chats en projecten die connecties omzetten in samenwerking."
+        "gap": "maar drijft niet de Origins, chats en projecten die connecties omzetten in samenwerking."
       },
       "meetup": {
         "tool": "Meetup",
         "strength": "vindt evenementen",
-        "gap": "maar draait om eenmalige aanmeldingen — het draagt de community, projecten en relaties die na het evenement groeien niet mee."
+        "gap": "maar draait om eenmalige aanmeldingen — het draagt de Origin, projecten en relaties die na het evenement groeien niet mee."
       },
       "eventbrite": {
         "tool": "Eventbrite",
         "strength": "verkoopt tickets",
-        "gap": "maar beheert evenementen, geen community's — het geeft je groep geen blijvend thuis met profielen, projecten en kansen."
+        "gap": "maar beheert evenementen, geen Origins — het geeft je groep geen blijvend thuis met profielen, projecten en kansen."
       },
       "notion": {
         "tool": "Notion",
         "strength": "organiseert werk",
-        "gap": "maar is een documenttool — het verbindt de mensen achter de pagina's niet tot een community die samenwerkt."
+        "gap": "maar is een documenttool — het verbindt de mensen achter de pagina's niet tot een Origin die samenwerkt."
       },
       "asana": {
         "tool": "Asana",
         "strength": "volgt projecten",
-        "gap": "maar is gebouwd voor taken, niet voor relaties — het brengt de mensen en community's die projecten mogelijk maken niet naar boven."
+        "gap": "maar is gebouwd voor taken, niet voor relaties — het brengt de mensen en Origins die projecten mogelijk maken niet naar boven."
       },
       "patreon": {
         "tool": "Patreon",
         "strength": "financiert makers",
-        "gap": "maar draait om abonnementen — het geeft je leden geen profielen, projecten en community's op een gedeelde sociale graaf."
+        "gap": "maar draait om abonnementen — het geeft je leden geen profielen, projecten en Origins op een gedeelde sociale graaf."
       },
       "facebook": {
         "tool": "Facebook",
         "strength": "verbindt groepen",
-        "gap": "maar is gebouwd rond een advertentie-feed — het geeft community's geen rustige werkruimte met profielen, projecten en kansen."
+        "gap": "maar is gebouwd rond een advertentie-feed — het geeft Origins geen rustige werkruimte met profielen, projecten en kansen."
       }
     },
     "sectionRoadmap": "Roadmap",
     "roadmap": {
       "phase1": {
-        "body": "Profielen, community's, chat en de sociale graaf. Succesmetriek: leden die duurzame community's vormen."
+        "body": "Profielen, Origins, chat en de sociale graaf. Succesmetriek: leden die duurzame Origins vormen."
       },
       "phase2": {
-        "body": "Projecten, gedeelde werkruimtes en tools die gesprekken omzetten in gezamenlijk werk. Succesmetriek: community's die samen resultaten opleveren."
+        "body": "Projecten, gedeelde werkruimtes en tools die gesprekken omzetten in gezamenlijk werk. Succesmetriek: Origins die samen resultaten opleveren."
       },
       "phase3": {
         "body": "Bedrijven en ondernemingen die leden oprichten, met teammanagement en bestuur. Succesmetriek: bedrijven die binnen het netwerk worden opgericht."
@@ -259,7 +259,7 @@
     "faq": {
       "q1": {
         "question": "Waarin verschilt JoinOrigin van Discord?",
-        "answer": "Discord is een chat-app. Origin is een sociaal samenwerkingsnetwerk — profielen, ideeën, community's, chat, feed, projecten en bedrijven leven allemaal op één sociale graaf."
+        "answer": "Discord is een chat-app. Origin is een sociaal samenwerkingsnetwerk — profielen, ideeën, Origins, chat, feed, projecten en bedrijven leven allemaal op één sociale graaf."
       },
       "q2": {
         "question": "Is JoinOrigin open source?",
@@ -267,7 +267,7 @@
       },
       "q3": {
         "question": "Wat is de sociale graaf?",
-        "answer": "De sociale graaf is het web van relaties tussen leden. Origin is eromheen georganiseerd, zodat elk profiel, elke community en elk project verbindt via mensen."
+        "answer": "De sociale graaf is het web van relaties tussen leden. Origin is eromheen georganiseerd, zodat elk profiel, elke Origin en elk project verbindt via mensen."
       },
       "q4": {
         "question": "Wanneer worden projecten en bedrijven gelanceerd?",
@@ -279,26 +279,26 @@
     "hero": {
       "eyebrow": "Het netwerk",
       "title": "Waar mensen elkaar vinden",
-      "lead": "Origin is een sociaal samenwerkingsnetwerk dat is georganiseerd rond community's — groepen mensen die interesses, sectoren, doelen en kansen delen. Community's vormen het middelpunt van betrokkenheid."
+      "lead": "Origin is waar mensen samenkomen rondom doelen. Start een Origin voor alles wat je wilt laten gebeuren — een startup, een klein bedrijf, een boekenclub — of sluit je aan bij een Origin dat past bij wat jij bouwt, en vind de mensen en middelen om het vooruit te brengen."
     },
     "sectionValues": "Hoe we het netwerk runnen",
     "values": {
       "peopleFirst": {
-        "body": "Leden zijn mensen, geen profielen in een database. Elke ontwerpbeslissing beschermt de relaties die het netwerk de moeite waard maken om aan mee te doen."
+        "body": "Leden zijn mensen, geen profielen in een database. Elke ontwerpbeslissing beschermt de relaties die een Origin de moeite waard maken om te starten."
       },
       "communitiesDriveGrowth": {
-        "body": "Community's vormen het middelpunt van betrokkenheid. Wanneer een community bloeit, vinden de mensen erin elkaar en bouwen ze samen."
+        "body": "Origins vormen het middelpunt van betrokkenheid. Wanneer een Origin bloeit, vinden de mensen erin elkaar, delen ze wat ze nodig hebben en bouwen ze samen."
       },
       "collaborationCreatesValue": {
         "body": "Samenwerking is hoe gesprekken projecten worden en projecten bedrijven. Origin is gebouwd zodat samenwerking een bestemming heeft."
       },
       "ownership": {
         "title": "Eigendom & soevereiniteit",
-        "body": "Je bezit je identiteit, je gegevens en je community's. Open architectuur en een overdraagbare identiteit houden het netwerk verantwoordelijk tegenover zijn leden."
+        "body": "Je bezit je identiteit, je gegevens en je Origins. Open architectuur en een overdraagbare identiteit houden het netwerk verantwoordelijk tegenover zijn leden."
       }
     },
-    "sectionExamples": "Voorbeeld-community's",
-    "examplesIntro": "Dit zijn de soorten community's die vandaag de dag binnen JoinOrigin groeien. Deel jij één van deze doelen, dan is er al een plek voor jou:",
+    "sectionExamples": "Voorbeeld-Origins",
+    "examplesIntro": "Dit zijn de soorten Origins die vandaag de dag binnen JoinOrigin groeien. Deel jij één van deze doelen, dan is er al een plek voor jou:",
     "examples": {
       "startupFounders": "Startup-oprichters",
       "smallBusinesses": "Kleine bedrijven",
@@ -309,17 +309,17 @@
       "anyoneWithAnIdea": "Iedereen met een idee"
     },
     "sectionJoin": "Sluit je aan bij het netwerk",
-    "joinCopy": "De community wordt gebouwd door de mensen die erin zitten. Word ontdekt en sluit je aan bij de bouwers die vormgeven aan hoe mensen elkaar online vinden.",
+    "joinCopy": "Het netwerk wordt gebouwd door de mensen die erin zitten. Start een Origin, word ontdekt en sluit je aan bij de bouwers die vormgeven aan hoe mensen elkaar vinden en dingen vooruitbrengen.",
     "joinStatValue": "2.400+",
     "joinStatLabel": "Leden die samen bouwen",
     "faq": {
       "q1": {
-        "question": "Bij welke community's kan ik me aansluiten?",
-        "answer": "Iedereen kan een community starten of zich aansluiten rondom elk idee — een klein bedrijf, een AI-startup, hulp aan daklozen, een 10k-loop, een politieke beweging, een jeugdsportcompetitie. Als het jou iets doet, heeft het een plek op Origin."
+        "question": "Bij welke Origins kan ik me aansluiten?",
+        "answer": "Iedereen kan een Origin starten of zich aansluiten rondom elk idee — een klein bedrijf, een AI-startup, hulp aan daklozen, een 10k-loop, een politieke beweging, een jeugdsportcompetitie. Als het jou iets doet, heeft het een plek op Origin."
       },
       "q2": {
-        "question": "Kan ik mijn eigen community starten?",
-        "answer": "Ja. Elk lid kan een community oprichten rondom elk idee en de mensen uitnodigen waarmee ze willen bouwen — of het nu een bedrijf, een boekenclub of een loopgroep is."
+        "question": "Kan ik mijn eigen Origin starten?",
+        "answer": "Ja. Elk lid kan een Origin oprichten rondom elk idee en de mensen uitnodigen waarmee ze willen bouwen — of het nu een bedrijf, een boekenclub of een loopgroep is."
       },
       "q3": {
         "question": "Is mijn data van mij?",
@@ -327,11 +327,11 @@
       },
       "q4": {
         "question": "Hoe vind ik mijn mensen?",
-        "answer": "Blader door community's op interesse, sector of doel — van kleine bedrijven en boekenclubs tot AI-startups en loopgroepen — en sluit je aan bij de community's die passen bij wat jij wilt bouwen. Of start je eigen community voor elk idee."
+        "answer": "Blader door Origins op interesse, sector of doel — van kleine bedrijven en boekenclubs tot AI-startups en loopgroepen — en sluit je aan bij de Origins die passen bij wat jij wilt bouwen. Of start je eigen Origin voor elk idee."
       },
       "q5": {
         "question": "Kan ik anoniem of met naam meedoen?",
-        "answer": "Jij kiest. Je kunt meedoen met een account op naam of anoniem blijven, en community's, kamers en idee-pagina's kunnen open zijn voor iedereen of beperkt worden door organisatoren. Deze opties worden geleidelijk uitgerold."
+        "answer": "Jij kiest. Je kunt meedoen met een account op naam of anoniem blijven, en Origins, kamers en idee-pagina's kunnen open zijn voor iedereen of beperkt worden door organisatoren. Deze opties worden geleidelijk uitgerold."
       }
     }
   },
@@ -347,7 +347,7 @@
         "body": "Profielen zijn de overdraagbare identiteit van elk lid — als een levend cv. Ze dragen ervaring, vaardigheden, ideeën, reputatie en relaties mee naar elke community en elk project, zodat wie je bent met je meereist."
       },
       "communities": {
-        "body": "Community's zijn groepen mensen die interesses, sectoren, doelen en kansen delen — rondom elk idee. Ze vormen het middelpunt van betrokkenheid op Origin en de manier waarop leden elkaar vinden."
+        "body": "Origins zijn de ruimte die je start rondom een doel — een groep mensen die interesses, sectoren, doelen en kansen delen rondom elk idee. Ze vormen het middelpunt van betrokkenheid op Origin en de manier waarop leden elkaar vinden."
       },
       "ideas": {
         "body": "Elk idee krijgt een thuis. Plaats een idee-pagina voor alles — een klein bedrijf, een AI-startup, hulp aan daklozen, een 10k-loop, een boekenclub, een jeugdsportcompetitie — en vind de mensen die het met jou willen bouwen."
@@ -371,16 +371,16 @@
     "sectionRoadmap": "Roadmap",
     "roadmap": {
       "phase1": {
-        "body": "Profielen, community's, chat en de sociale graaf. Succesmetriek: leden die duurzame community's vormen."
+        "body": "Profielen, Origins, chat en de sociale graaf. Succesmetriek: leden die duurzame Origins vormen."
       },
       "phase2": {
-        "body": "Projecten, gedeelde werkruimtes en tools die gesprekken omzetten in gezamenlijk werk. Succesmetriek: community's die samen resultaten opleveren."
+        "body": "Projecten, gedeelde werkruimtes en tools die gesprekken omzetten in gezamenlijk werk. Succesmetriek: Origins die samen resultaten opleveren."
       },
       "phase3": {
         "body": "Bedrijven en ondernemingen die leden oprichten, met teammanagement en bestuur. Succesmetriek: bedrijven die binnen het netwerk worden opgericht."
       },
       "phase4": {
-        "body": "AI-werkers die community's helpen coördineren, samenvatten en kansen matchen. Succesmetriek: leden die als gelijken met AI samenwerken."
+        "body": "AI-werkers die Origins helpen coördineren, samenvatten en kansen matchen. Succesmetriek: leden die als gelijken met AI samenwerken."
       },
       "phase5": {
         "body": "Open standaarden en overdraagbaarheid zodat het netwerk verbindt over platforms heen. Succesmetriek: een overdraagbare, interoperabele sociale graaf."
@@ -400,7 +400,7 @@
       },
       "q4": {
         "question": "Wat is er nu live?",
-        "answer": "De Community Foundation (Fase 1) is live: profielen, community's, chat en de sociale graaf worden al gebruikt door 2.400+ bouwers."
+        "answer": "De Origin Foundation (Fase 1) is live: profielen, Origins, chat en de sociale graaf worden al gebruikt door 2.400+ bouwers."
       }
     }
   },
@@ -411,22 +411,22 @@
       "lead": "Origin is een sociaal samenwerkingsnetwerk dat is gebouwd op één overtuiging: het meest waardevolle bezit op internet is niet content of software — het is het netwerk van mensen en de relaties die zij vormen."
     },
     "sectionMission": "Onze missie",
-    "missionParagraph1": "Origin bouwt het besturingssysteem voor menselijke samenwerking. In plaats van vijf losse tools voor chat, community's en projecten leven je relaties in één rustige werkruimte. De sociale graaf is het product: profielen, ideeën, community's, communicatie, feed, projecten, bedrijven en kansen hangen allemaal af van hetzelfde netwerk van mensen.",
-    "missionParagraph2": "Vandaag werken al 2.400+ bouwers samen op Origin. Terwijl het platform groeit via de roadmap — Community Foundation, Samenwerking, Organisatie, AI-samenwerking en het mondiale netwerk — blijft de missie hetzelfde: mensen helpen elkaar te vinden en samen te bouwen.",
+    "missionParagraph1": "Origin bouwt het besturingssysteem voor menselijke samenwerking. In plaats van vijf losse tools voor chat, Origins en projecten leven je relaties in één rustige werkruimte. De sociale graaf is het product: profielen, ideeën, Origins, communicatie, feed, projecten, bedrijven en kansen hangen allemaal af van hetzelfde netwerk van mensen.",
+    "missionParagraph2": "Vandaag werken al 2.400+ bouwers samen op Origin. Terwijl het platform groeit via de roadmap — Origin Foundation, Samenwerking, Organisatie, AI-samenwerking en het mondiale netwerk — blijft de missie hetzelfde: mensen helpen elkaar te vinden en samen te bouwen.",
     "sectionPrinciples": "Leidende principes",
     "principles": {
       "peopleFirst": {
         "body": "Het netwerk bestaat uit mensen, niet alleen uit content of software. Productbeslissingen beginnen bij de relaties die leden willen aangaan."
       },
       "communitiesDriveGrowth": {
-        "body": "Community's vormen het middelpunt van betrokkenheid — groepen mensen die interesses, sectoren, doelen en kansen delen brengen het netwerk tot leven."
+        "body": "Origins vormen het middelpunt van betrokkenheid — groepen mensen die interesses, sectoren, doelen en kansen delen brengen het netwerk tot leven."
       },
       "collaborationCreatesValue": {
         "body": "Gesprekken worden projecten, projecten worden bedrijven. Origin is gebouwd zodat samenwerking een bestemming heeft."
       },
       "openArchitecture": {
         "title": "Open architectuur",
-        "body": "Communicatie verloopt via het open Matrix-protocol en identiteit, profielen, community's en de sociale graaf zijn overdraagbaar en eigendom van de gebruiker."
+        "body": "Communicatie verloopt via het open Matrix-protocol en identiteit, profielen, Origins en de sociale graaf zijn overdraagbaar en eigendom van de gebruiker."
       }
     },
     "sectionFounder": "Advies van de oprichter",
@@ -439,7 +439,7 @@
     "faq": {
       "q1": {
         "question": "Wat is JoinOrigin?",
-        "answer": "Origin is een sociaal samenwerkingsnetwerk — een community-besturingssysteem dat je ideeën, projecten en community's samenbrengt in één overzichtelijke ruimte. JoinOrigin is het merk en het netwerk erachter."
+        "answer": "Origin is de ruimte die je start rondom een doel — één overzichtelijke ruimte waar je ideeën, projecten en Origins samenkomen. JoinOrigin is het merk en het netwerk erachter."
       },
       "q2": {
         "question": "Wat betekent “het netwerk is het product”?",
@@ -455,7 +455,7 @@
     "hero": {
       "eyebrow": "Contact",
       "title": "Praat met ons",
-      "lead": "Heb je een vraag over Origin — het sociale samenwerkingsnetwerk — of over het starten van een community? We horen graag van je. Vraag ons gerust van alles."
+      "lead": "Heb je een vraag over Origin — of over het starten van je eigen Origin? We horen graag van je. Vraag ons gerust van alles."
     },
     "sectionForm": "Stuur een bericht",
     "form": {
@@ -482,7 +482,7 @@
       },
       "q2": {
         "question": "Hoe krijg ik toegang?",
-        "answer": "Klik op “Aan de slag” en word ontdekt — vul je naam en e-mailadres in en je profiel is klaar, en je kunt meteen community's starten of je erbij aansluiten."
+        "answer": "Klik op “Aan de slag” en word ontdekt — vul je naam en e-mailadres in en je profiel is klaar, en je kunt meteen Origins starten of je erbij aansluiten."
       }
     }
   },
@@ -549,7 +549,7 @@
     "heading": "Pagina niet gevonden",
     "copy": "De pagina die je zoekt bestaat niet of is verplaatst. Ga terug naar de startpagina om te ontdekken waar het volgende project van je team begint.",
     "backHome": "Terug naar start",
-    "exploreCommunities": "Ontdek community's →"
+    "exploreCommunities": "Ontdek Origins →"
   },
   "mobile": {
     "home": {
@@ -698,9 +698,9 @@
     "glossary": {
       "eyebrow": "Gemeenschaps-OS",
       "title": "Gemeenschaps-OS-woordenlijst",
-      "intro": "De essentiële woordenschat van gemeenschapsopbouw — duidelijke definities van de termen die organisatoren, moderatoren en oprichters dagelijks gebruiken.",
+      "intro": "De essentiële woordenschat van Origin — duidelijke definities van de termen die organisatoren, moderatoren en oprichters dagelijks gebruiken.",
       "whyTitle": "Waarom een woordenlijst",
-      "whyBody": "Gemeenschapsopbouw heeft een eigen taal en de termen worden vaak losjes gebruikt. Een gemeenschaps-OS-woordenlijst geeft organisatoren, moderatoren en oprichters gedeelde definities waar ze op kunnen rekenen — van klassieke concepten zoals moderatie en onboarding tot nieuwere ideeën zoals betrokkenheidslussen en hybride evenementen.",
+      "whyBody": "Samen iets bouwen heeft een eigen taal en de termen worden vaak losjes gebruikt. Een Origin-woordenlijst geeft organisatoren, moderatoren en oprichters gedeelde definities waar ze op kunnen rekenen — van klassieke concepten zoals moderatie en onboarding tot nieuwere ideeën zoals betrokkenheidslussen en hybride evenementen.",
       "termsTitle": "Kernbegrippen",
       "termsIntro": "Hier zijn de kernbegrippen die elke organisator, moderator en oprichter gebruikt — elk wordt in de praktijk gedefinieerd in de Handleidingen voor gemeenschapsopbouw:",
       "goDeeper": "Ga dieper",
@@ -708,20 +708,20 @@
       "goDeeperItem2": "Bekijk de concepten in de praktijk: de stadspagina's van <1>New York</1> en <2>Berlijn</2>.",
       "terms": {
         "community": {
-          "name": "Community",
-          "definition": "Een groep mensen die interesses, sectoren, doelen of kansen delen en zich daaromheen verbinden. Op Origin heeft elke community een kamer waar leden elkaar vinden en samen bouwen."
+          "name": "Origin",
+          "definition": "De ruimte die je start rondom een doel. Een Origin verzamelt de mensen en middelen die nodig zijn om iets te laten gebeuren — een klein bedrijf, een AI-startup, een boekenclub of een 10k-loop. Op Origin heeft elke Origin een kamer waar leden elkaar vinden en samen bouwen."
         },
         "community-manager": {
           "name": "Communitymanager",
-          "definition": "De persoon die een community gastvrij, actief en op koers houdt — nieuwe leden welkom heten, gesprekken op gang brengen en projecten coördineren. Op Origin is het lid dat een community start eigenaar en moderator van de kamer."
+          "definition": "De persoon die een Origin gastvrij, actief en op koers houdt — nieuwe leden welkom heten, gesprekken op gang brengen en werk coördineren. Op Origin is het lid dat een Origin start eigenaar en moderator van de kamer."
         },
         "community-os": {
           "name": "Community-besturingssysteem",
-          "definition": "Een platform dat profielen, community's, chat, projecten en kansen samenbrengt in één overzichtelijke werkruimte. Origin is het community-besturingssysteem achter JoinOrigin."
+          "definition": "Een platform dat profielen, Origins, chat, projecten en kansen samenbrengt in één overzichtelijke werkruimte. Origin is het community-besturingssysteem achter JoinOrigin — de ruimte waar ideeën, mensen en middelen samen vooruitgaan."
         },
         "moderation": {
           "name": "Moderatie",
-          "definition": "De praktijk van het veilig en op onderwerp houden van een community door duidelijke richtlijnen en consistent, eerlijk toezicht. Goede moderatie beschermt de relaties die een community de moeite waard maken om bij te horen."
+          "definition": "De praktijk van het veilig en op onderwerp houden van een Origin door duidelijke richtlijnen en consistent, eerlijk toezicht. Goede moderatie beschermt de relaties die een Origin de moeite waard maken om bij te horen."
         },
         "onboarding": {
           "name": "Onboarding",
@@ -729,11 +729,11 @@
         },
         "activation": {
           "name": "Activering",
-          "definition": "Het moment waarop een nieuw lid de actie zet die hen deel van de community maakt — de eerste post, het eerste evenement of het eerste project. Activering is de stap tussen lid worden en bijdragen."
+          "definition": "Het moment waarop een nieuw lid de actie zet die hen deel van een Origin maakt — de eerste post, het eerste voorstel of de eerste bijdrage. Activering is de stap tussen lid worden en bijdragen."
         },
         "engagement-loop": {
           "name": "Betrokkenheidslus",
-          "definition": "De terugkerende cyclus van deelname die een community levend houdt: iemand plaatst iets, anderen reageren en het gesprek creëert meer redenen om terug te komen. Gezonde lussen zijn de hartslag van een actieve community."
+          "definition": "De terugkerende cyclus die een Origin vooruitbrengt: iemand plaatst een behoefte of een aanbod, anderen reageren en het werk creëert meer redenen om terug te komen. Gezonde lussen zijn de hartslag van een actieve Origin."
         },
         "hybrid-events": {
           "name": "Hybride evenementen",
@@ -741,7 +741,7 @@
         },
         "co-founder": {
           "name": "Medeoprichter",
-          "definition": "Iemand die samen met jou een project of bedrijf bouwt en de oprichtingsreis deelt. Op Origin worden medeoprichters vaak via het netwerk gevonden — mensen die zich bij je idee-pagina aansluiten en besluiten samen te bouwen."
+          "definition": "Iemand die samen met jou een project of bedrijf bouwt en de oprichtingsreis deelt. Op Origin worden medeoprichters vaak via je Origin gevonden — mensen die reageren op een behoefte of aanbod, zich bij het werk aansluiten en besluiten samen te bouwen."
         }
       }
     },

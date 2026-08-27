@@ -24,7 +24,7 @@
     "objects": {
       "profiles": "Profil",
       "ideas": "Ide",
-      "communities": "Komunitas",
+      "communities": "Origin",
       "communication": "Komunikasi",
       "feed": "Linimasa",
       "projects": "Proyek",
@@ -33,11 +33,11 @@
     },
     "values": {
       "peopleFirst": "Utamakan Manusia",
-      "communitiesDriveGrowth": "Komunitas Mendorong Pertumbuhan",
+      "communitiesDriveGrowth": "Origin Mendorong Pertumbuhan",
       "collaborationCreatesValue": "Kolaborasi Menciptakan Nilai"
     },
     "roadmap": {
-      "phase1Title": "Fase 1 — Fondasi Komunitas",
+      "phase1Title": "Fase 1 — Fondasi Origin",
       "phase2Title": "Fase 2 — Kolaborasi",
       "phase3Title": "Fase 3 — Organisasi",
       "phase4Title": "Fase 4 — Kolaborasi AI",
@@ -61,14 +61,14 @@
   },
   "home": {
     "hero": {
-      "headline": "Ruang kolaborasi ide, proyek, dan komunitas — tempat tim baru dan yang sudah ada menemukan Origin mereka.",
+      "headline": "Tempat setiap ide, startup, dan proyek menemukan orang dan sumber daya untuk mewujudkannya — Origin.",
       "headlineAccent": "Origin.",
       "startProject": "Mulai",
-      "supporting": "Buat profil yang berfungsi seperti CV Anda, unggah ide Anda sebagai halaman, dan mulai atau ikuti komunitas untuk apa pun — ide yang benar-benar baru, bisnis kecil yang sudah berjalan, startup AI, klub buku, atau lari 10k.",
+      "supporting": "Buat profil yang berfungsi seperti CV Anda, unggah ide Anda sebagai halaman, dan mulailah Origin untuk apa pun — sebuah ide, bisnis kecil, startup AI, klub buku, atau lari 10k. Lalu undang orang-orang yang akan mewujudkannya bersama Anda.",
       "trustAvatarsAlt": "Anggota JoinOrigin {{number}}",
       "trustCopy": "Gabung dengan 2.400+ pembangun yang sudah berkolaborasi"
     },
-    "definition": "Origin adalah jaringan kolaborasi sosial — OS komunitas tempat ide, proyek, dan komunitas Anda berkumpul dalam satu ruang yang terorganisir. JoinOrigin adalah merek dan jaringan di baliknya.",
+    "definition": "Origin adalah ruang yang Anda mulai di sekitar sebuah tujuan — ide, startup, bisnis kecil, atau proyek. Kumpulkan orang dan sumber daya yang dibutuhkannya, lalu wujudkan bersama: co-founder, mitra, klien, pendukung, dan jaringan Anda. JoinOrigin adalah merek dan jaringan di baliknya.",
     "marquee": {
       "label": "Dipercaya oleh tim di",
       "partnerAlt": "Mitra JoinOrigin {{number}}"
@@ -76,23 +76,23 @@
     "faq": {
       "q1": {
         "question": "Apa itu JoinOrigin?",
-        "answer": "Origin adalah jaringan kolaborasi sosial — OS komunitas yang menyatukan ide, proyek, dan komunitas Anda dalam satu ruang yang terorganisir. JoinOrigin adalah merek dan jaringan di baliknya. Alih-alih lima alat terpisah, relasi Anda hidup dalam satu tempat, sehingga tidak ada yang hilang di antaranya."
+        "answer": "Origin adalah ruang yang Anda mulai di sekitar sebuah tujuan. Anda membawa idenya, mengumpulkan orang dan sumber daya yang dibutuhkannya, lalu mewujudkannya bersama. JoinOrigin adalah merek dan jaringan di baliknya. Alih-alih lima alat terpisah, relasi Anda hidup dalam satu tempat, sehingga tidak ada yang hilang di antaranya."
       },
       "q2": {
         "question": "Apa perbedaan JoinOrigin dengan Discord/LinkedIn/Reddit?",
-        "answer": "Discord adalah aplikasi obrolan, LinkedIn mencari profesional, dan Reddit untuk diskusi. Origin menggabungkan semuanya dalam social graph — profil, komunitas, obrolan, linimasa, proyek, dan peluang hidup bersama, sehingga relasi berubah menjadi kolaborasi nyata."
+        "answer": "Discord adalah aplikasi obrolan, LinkedIn mencari profesional, dan Reddit untuk diskusi. Origin menggabungkan semuanya dalam social graph — profil, Origin, obrolan, linimasa, proyek, dan peluang hidup bersama, sehingga relasi berubah menjadi pekerjaan nyata."
       },
       "q3": {
         "question": "Apa yang bisa saya lakukan setelah masuk?",
-        "answer": "Buat profil yang berfungsi seperti CV, unggah ide Anda sebagai halaman ide, mulai atau ikuti komunitas untuk apa pun, dan undang orang yang ingin Anda ajak bekerja sama. Setiap komunitas dilengkapi ruangnya sendiri tempat para anggota terhubung."
+        "answer": "Buat profil yang berfungsi seperti CV, unggah ide Anda sebagai halaman ide, dan mulailah Origin untuk apa pun. Undang orang yang ingin Anda ajak bekerja sama — co-founder, mitra, klien, pendukung — dan setiap Origin dilengkapi ruangnya sendiri tempat pekerjaan berjalan maju."
       },
       "q4": {
         "question": "Apakah Origin sudah berjalan?",
-        "answer": "Ya — Origin sudah berjalan dan terus berkembang. Klik Mulai dan mulailah ditemukan: buat profil Anda, unggah ide Anda, lalu mulai atau ikuti komunitas hari ini."
+        "answer": "Ya — Origin sudah berjalan dan terus berkembang. Klik Mulai: buat profil Anda, unggah ide Anda, dan mulailah Origin untuk apa pun yang ingin Anda wujudkan."
       },
       "q5": {
         "question": "Bagaimana cara saya bergabung?",
-        "answer": "Klik Mulai dan mulailah ditemukan. Masukkan nama dan email Anda, dan profil Anda langsung siap — mulailah membangun komunitas Anda hari ini."
+        "answer": "Klik Mulai. Masukkan nama dan email Anda, dan profil Anda langsung siap — lalu mulailah Origin di sekitar ide Anda dan undang orang-orang yang akan mewujudkannya bersama Anda."
       }
     }
   },
@@ -121,9 +121,9 @@
   },
   "signup": {
     "title": "Daftar — Buat Akun Anda | JoinOrigin",
-    "description": "Buat akun Anda di Origin, jaringan kolaborasi sosial. Masukkan nama dan email untuk ditemukan, lalu mulai atau bergabung dengan komunitas hari ini.",
+    "description": "Buat akun Anda di Origin. Masukkan nama dan email untuk ditemukan, lalu mulailah Origin di sekitar ide Anda dan temukan orang serta sumber daya untuk mewujudkannya.",
     "heading": "Buat akun Anda",
-    "subcopy": "Mulailah ditemukan di OS komunitas — baik Anda memulai sesuatu yang baru maupun mengembangkan proyek yang sudah ada.",
+    "subcopy": "Mulailah ditemukan di Origin — baik Anda memulai sesuatu yang baru maupun mengembangkan proyek yang sudah ada. Temukan co-founder, mitra, klien, dan pendukung Anda.",
     "nameLabel": "Nama",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "Email",
@@ -132,7 +132,7 @@
     "submitting": "Membuat akun Anda…",
     "legalNote": "Tanpa spam. Berhenti berlangganan kapan saja.",
     "successHeading": "Anda masuk daftar!",
-    "successCopy": "Kami akan mengirim email saat ruang kerja Anda siap.",
+    "successCopy": "Kami akan mengirim email saat Origin Anda siap.",
     "done": "Selesai",
     "errors": {
       "generic": "Terjadi kesalahan. Silakan coba lagi.",
@@ -144,47 +144,47 @@
     },
     "waitlist": {
       "heading": "Gabung daftar tunggu",
-      "subcopy": "Mulailah ditemukan di OS komunitas — baik Anda memulai sesuatu yang baru maupun mengembangkan proyek yang sudah ada. Kami akan mengirim email saat ruang kerja Anda siap.",
+      "subcopy": "Mulailah ditemukan di Origin — baik Anda memulai sesuatu yang baru maupun mengembangkan proyek yang sudah ada. Kami akan mengirim email saat Origin Anda siap.",
       "disclosure": "Origin sedang dalam pengembangan. Nama dan email Anda hanya digunakan untuk menyiapkan dan mengamankan akun Anda saat giliran Anda tiba."
     }
   },
   "ctaBand": {
-    "headline": "Temukan orang-orang Anda. Mulai atau kembangkan sesuatu bersama.",
-    "subline": "Gabung dengan 2.400+ pembangun — dari ide pertama hingga perusahaan mapan — di jaringan kolaborasi sosial Origin dan mulailah ditemukan hari ini.",
+    "headline": "Mulailah sebuah Origin. Temukan orang dan sumber daya untuk mewujudkannya.",
+    "subline": "Gabung dengan 2.400+ pembangun — dari ide pertama hingga perusahaan mapan — yang sudah mengumpulkan orang dan sumber daya di Origin. Temukan co-founder, mitra, klien, dan pendukung Anda. Mulailah ditemukan hari ini.",
     "joinLabel": "Mulai",
     "contactLabel": "Hubungi kami"
   },
   "features": {
     "hero": {
       "eyebrow": "Objek inti",
-      "title": "Semua yang dibutuhkan komunitas, dalam satu ruang kerja yang tenang",
-      "lead": "Origin adalah jaringan kolaborasi sosial yang dibangun di sekitar delapan objek inti: profil, ide, komunitas, komunikasi, linimasa, proyek, perusahaan, dan peluang. Baik Anda memulai sesuatu yang baru maupun mengembangkan perusahaan yang sudah ada, relasi Anda hidup dalam satu tempat alih-alih sepuluh alat terpisah."
+      "title": "Semua yang dibutuhkan Origin, dalam satu ruang kerja yang tenang",
+      "lead": "Origin dibangun di sekitar delapan objek inti: profil, ide, Origins, komunikasi, linimasa, proyek, perusahaan, dan peluang. Mulailah Origin untuk apa pun yang ingin Anda wujudkan — startup, bisnis kecil, proyek — dan temukan co-founder, mitra, klien, serta pendukung yang akan mewujudkannya bersama Anda."
     },
     "sectionCoreObjects": "Objek inti",
     "coreObjects": {
       "profiles": {
-        "body": "Profil berfungsi seperti CV yang hidup: profil membawa pengalaman, keterampilan, dan ide Anda — plus reputasi dan relasi — di setiap komunitas dan proyek yang Anda ikuti."
+        "body": "Profil berfungsi seperti CV yang hidup: profil membawa pengalaman, keterampilan, dan ide Anda — plus reputasi dan relasi — di setiap Origin dan proyek yang Anda ikuti."
       },
       "ideas": {
-        "body": "Ide adalah titik awal dari segala sesuatu di Origin. Unggah halaman ide untuk ide apa pun — bisnis kecil, startup AI, klub buku, lari 10k — dan orang yang ingin membangunnya akan menemukan Anda."
+        "body": "Setiap Origin dimulai dari sebuah ide. Unggah halaman ide untuk apa pun — bisnis kecil, startup AI, klub buku, lari 10k — dan orang yang ingin membangunnya akan menemukan Anda."
       },
       "communities": {
-        "body": "Grup berdasarkan minat, industri, dan tujuan — Pendiri Startup, Bisnis Kecil, Klub Buku, Organisasi Komunitas, Siapa pun dengan Ide — tempat para anggota saling menemukan."
+        "body": "Ruang yang Anda mulai di sekitar sebuah tujuan — startup, bisnis kecil, klub buku, atau ide apa pun. Setiap Origin mengumpulkan orang-orang yang berbagi tujuan itu dan dilengkapi ruangnya sendiri tempat pekerjaan berjalan maju."
       },
       "communication": {
-        "body": "Setiap komunitas dilengkapi ruang Matrix: obrolan real-time, pesan langsung, dan diskusi grup melalui protokol Matrix yang terbuka, terenkripsi ujung-ke-ujung secara default."
+        "body": "Setiap Origin dilengkapi ruang Matrix: obrolan real-time, pesan langsung, dan diskusi grup melalui protokol Matrix yang terbuka, terenkripsi ujung-ke-ujung secara default."
       },
       "feed": {
-        "body": "Linimasa menampilkan kiriman, pembaruan, dan peluang dari orang serta komunitas yang Anda ikuti. Ini adalah aliran tenang tentang hal-hal penting di jaringan Anda, bukan mesin keterlibatan."
+        "body": "Linimasa menampilkan kiriman, pembaruan, dan peluang dari orang serta Origins yang Anda ikuti. Ini adalah aliran tenang tentang hal-hal penting di jaringan Anda, bukan mesin keterlibatan."
       },
       "projects": {
-        "body": "Upaya kolaboratif tempat para anggota komunitas bekerja sama dan mengubah percakapan menjadi hasil nyata."
+        "body": "Upaya kolaboratif tempat orang-orang di Origin Anda bekerja sama dan mengubah percakapan menjadi hasil nyata."
       },
       "companies": {
-        "body": "Ventura yang dibentuk oleh anggota di dalam jaringan, dengan manajemen tim dan berbagi peluang yang terintegrasi."
+        "body": "Ventura yang terbentuk dari Origins di dalam jaringan, dengan manajemen tim dan berbagi peluang yang terintegrasi."
       },
       "opportunities": {
-        "body": "Pekerjaan, kemitraan, dan investasi yang ditemukan melalui social graph — jaringan menampilkan peluang yang tepat di waktu yang tepat."
+        "body": "Pekerjaan, kemitraan, klien, dan investasi yang ditemukan melalui social graph — Origin Anda menampilkan peluang yang tepat di waktu yang tepat."
       }
     },
     "sectionComparison": "Mengapa Origin, bukan sepuluh alat",
@@ -196,61 +196,61 @@
       "linkedin": {
         "tool": "LinkedIn",
         "strength": "menemukan profesional",
-        "gap": "tetapi tidak mendukung komunitas, obrolan, dan proyek yang mengubah koneksi menjadi kolaborasi."
+        "gap": "tetapi tidak mendukung Origins, obrolan, dan proyek yang mengubah koneksi menjadi kolaborasi."
       },
       "discord": {
         "tool": "Discord",
         "strength": "berkomunikasi",
-        "gap": "tetapi tidak terorganisir di sekitar profil, komunitas, proyek, dan peluang dalam satu social graph bersama."
+        "gap": "tetapi tidak terorganisir di sekitar profil, Origins, proyek, dan peluang dalam satu social graph bersama."
       },
       "slack": {
         "tool": "Slack",
         "strength": "menghubungkan tim dalam kanal",
-        "gap": "tetapi dibangun untuk satu ruang kerja saja — tidak membawa profil, komunitas, proyek, dan peluang ke orang-orang yang sudah Anda kenal."
+        "gap": "tetapi dibangun untuk satu ruang kerja saja — tidak membawa profil, Origins, proyek, dan peluang ke orang-orang yang sudah Anda kenal."
       },
       "whatsapp": {
         "tool": "WhatsApp",
         "strength": "berkirim pesan",
-        "gap": "tetapi merupakan aplikasi obrolan pribadi — tidak memberikan komunitas profil, proyek, dan penemuan yang bertahan lama dalam satu social graph bersama."
+        "gap": "tetapi merupakan aplikasi obrolan pribadi — tidak memberikan Origins profil, proyek, dan penemuan yang bertahan lama dalam satu social graph bersama."
       },
       "meetup": {
         "tool": "Meetup",
         "strength": "menemukan acara",
-        "gap": "tetapi dibangun di sekitar RSVP sekali jalan — tidak membawa komunitas, proyek, dan relasi yang tumbuh setelah acara."
+        "gap": "tetapi dibangun di sekitar RSVP sekali jalan — tidak membawa Origin, proyek, dan relasi yang tumbuh setelah acara."
       },
       "eventbrite": {
         "tool": "Eventbrite",
         "strength": "menjual tiket",
-        "gap": "tetapi mengelola acara, bukan komunitas — tidak memberikan grup Anda rumah yang bertahan lama dengan profil, proyek, dan peluang."
+        "gap": "tetapi mengelola acara, bukan Origins — tidak memberikan grup Anda rumah yang bertahan lama dengan profil, proyek, dan peluang."
       },
       "notion": {
         "tool": "Notion",
         "strength": "mengorganisir pekerjaan",
-        "gap": "tetapi merupakan alat dokumen — tidak menghubungkan orang-orang di balik halaman menjadi komunitas yang bekerja sama."
+        "gap": "tetapi merupakan alat dokumen — tidak menghubungkan orang-orang di balik halaman menjadi Origin yang bekerja sama."
       },
       "asana": {
         "tool": "Asana",
         "strength": "melacak proyek",
-        "gap": "tetapi dibangun untuk tugas, bukan relasi — tidak menampilkan orang dan komunitas yang membuat proyek terwujud."
+        "gap": "tetapi dibangun untuk tugas, bukan relasi — tidak menampilkan orang dan Origins yang membuat proyek terwujud."
       },
       "patreon": {
         "tool": "Patreon",
         "strength": "mendanai kreator",
-        "gap": "tetapi dibangun di sekitar langganan — tidak memberikan anggota Anda profil, proyek, dan komunitas dalam satu social graph bersama."
+        "gap": "tetapi dibangun di sekitar langganan — tidak memberikan anggota Anda profil, proyek, dan Origins dalam satu social graph bersama."
       },
       "facebook": {
         "tool": "Facebook",
         "strength": "menghubungkan grup",
-        "gap": "tetapi dibangun di sekitar linimasa iklan — tidak memberikan komunitas ruang kerja yang tenang dengan profil, proyek, dan peluang."
+        "gap": "tetapi dibangun di sekitar linimasa iklan — tidak memberikan Origins ruang kerja yang tenang dengan profil, proyek, dan peluang."
       }
     },
     "sectionRoadmap": "Peta jalan",
     "roadmap": {
       "phase1": {
-        "body": "Profil, komunitas, obrolan, dan social graph. Metrik keberhasilan: anggota membentuk komunitas yang bertahan lama."
+        "body": "Profil, Origins, obrolan, dan social graph. Metrik keberhasilan: anggota membentuk Origins yang bertahan lama."
       },
       "phase2": {
-        "body": "Proyek, ruang kerja bersama, dan alat yang mengubah percakapan menjadi kerja bersama. Metrik keberhasilan: komunitas menghasilkan hasil bersama-sama."
+        "body": "Proyek, ruang kerja bersama, dan alat yang mengubah percakapan menjadi kerja bersama. Metrik keberhasilan: Origins menghasilkan hasil bersama-sama."
       },
       "phase3": {
         "body": "Perusahaan dan ventura yang dibentuk oleh anggota, dengan manajemen tim dan tata kelola. Metrik keberhasilan: perusahaan yang didirikan di dalam jaringan."
@@ -259,7 +259,7 @@
     "faq": {
       "q1": {
         "question": "Apa perbedaan JoinOrigin dengan Discord?",
-        "answer": "Discord adalah aplikasi obrolan. Origin adalah jaringan kolaborasi sosial — profil, ide, komunitas, obrolan, linimasa, proyek, dan perusahaan semuanya hidup dalam satu social graph."
+        "answer": "Discord adalah aplikasi obrolan. Origin adalah jaringan kolaborasi sosial — profil, ide, Origins, obrolan, linimasa, proyek, dan perusahaan semuanya hidup dalam satu social graph."
       },
       "q2": {
         "question": "Apakah JoinOrigin bersifat open source?",
@@ -267,7 +267,7 @@
       },
       "q3": {
         "question": "Apa itu social graph?",
-        "answer": "Social graph adalah jaring hubungan antar anggota. Origin terorganisir di sekitarnya, sehingga setiap profil, komunitas, dan proyek terhubung melalui orang."
+        "answer": "Social graph adalah jaring hubungan antar anggota. Origin terorganisir di sekitarnya, sehingga setiap profil, Origin, dan proyek terhubung melalui orang."
       },
       "q4": {
         "question": "Kapan proyek dan perusahaan diluncurkan?",
@@ -279,26 +279,26 @@
     "hero": {
       "eyebrow": "Jaringan",
       "title": "Tempat orang saling menemukan",
-      "lead": "Origin adalah jaringan kolaborasi sosial yang terorganisir di sekitar komunitas — kelompok orang yang berbagi minat, industri, tujuan, dan peluang. Komunitas adalah pusat keterlibatan."
+      "lead": "Origin adalah tempat orang berkumpul di sekitar tujuan. Mulailah Origin untuk apa pun yang ingin Anda wujudkan — startup, bisnis kecil, klub buku — atau ikuti yang sesuai dengan yang sedang Anda bangun, dan temukan orang serta sumber daya untuk mewujudkannya."
     },
     "sectionValues": "Cara kami menjalankan jaringan",
     "values": {
       "peopleFirst": {
-        "body": "Anggota adalah manusia, bukan sekadar profil dalam database. Setiap keputusan desain melindungi relasi yang membuat jaringan ini layak diikuti."
+        "body": "Anggota adalah manusia, bukan sekadar profil dalam database. Setiap keputusan desain melindungi relasi yang membuat Origin layak dimulai."
       },
       "communitiesDriveGrowth": {
-        "body": "Komunitas adalah pusat keterlibatan. Saat sebuah komunitas berkembang, orang-orang di dalamnya saling menemukan dan membangun bersama."
+        "body": "Origins adalah pusat keterlibatan. Saat sebuah Origin berkembang, orang-orang di dalamnya saling menemukan, berbagi apa yang mereka butuhkan, dan membangun bersama."
       },
       "collaborationCreatesValue": {
         "body": "Kolaborasi adalah cara percakapan menjadi proyek dan proyek menjadi perusahaan. Origin dibangun agar kolaborasi punya tempat untuk bertumbuh."
       },
       "ownership": {
         "title": "Kepemilikan & Kedaulatan",
-        "body": "Anda memiliki identitas, data, dan komunitas Anda. Arsitektur terbuka dan identitas portabel menjaga jaringan tetap bertanggung jawab kepada anggotanya."
+        "body": "Anda memiliki identitas, data, dan Origins Anda. Arsitektur terbuka dan identitas portabel menjaga jaringan tetap bertanggung jawab kepada anggotanya."
       }
     },
-    "sectionExamples": "Contoh komunitas",
-    "examplesIntro": "Inilah jenis komunitas yang tumbuh di dalam JoinOrigin saat ini. Jika Anda memiliki salah satu tujuan ini, sudah ada tempat untuk Anda:",
+    "sectionExamples": "Contoh Origins",
+    "examplesIntro": "Inilah jenis Origins yang tumbuh di dalam JoinOrigin saat ini. Jika Anda memiliki salah satu tujuan ini, sudah ada tempat untuk Anda:",
     "examples": {
       "startupFounders": "Pendiri Startup",
       "smallBusinesses": "Bisnis Kecil",
@@ -309,17 +309,17 @@
       "anyoneWithAnIdea": "Siapa pun dengan Ide"
     },
     "sectionJoin": "Gabung ke jaringan",
-    "joinCopy": "Komunitas dibangun oleh orang-orang di dalamnya. Mulailah ditemukan dan bergabunglah dengan para pembangun yang membentuk cara orang saling menemukan secara online.",
+    "joinCopy": "Jaringan dibangun oleh orang-orang di dalamnya. Mulailah sebuah Origin, temukan, dan bergabunglah dengan para pembangun yang membentuk cara orang saling menemukan dan mewujudkan sesuatu.",
     "joinStatValue": "2,400+",
     "joinStatLabel": "Anggota yang membangun bersama",
     "faq": {
       "q1": {
-        "question": "Komunitas apa saja yang bisa saya ikuti?",
-        "answer": "Siapa pun dapat memulai atau mengikuti komunitas untuk ide apa pun — bisnis kecil, startup AI, membantu tuna wisma, lari 10k, gerakan politik, liga pee-wee. Jika itu penting bagi Anda, ia punya tempat di Origin."
+        "question": "Origins apa saja yang bisa saya ikuti?",
+        "answer": "Siapa pun dapat memulai atau mengikuti Origin untuk ide apa pun — bisnis kecil, startup AI, membantu tuna wisma, lari 10k, gerakan politik, liga pee-wee. Jika itu penting bagi Anda, ia punya tempat di Origin."
       },
       "q2": {
-        "question": "Bisakah saya memulai komunitas sendiri?",
-        "answer": "Bisa. Setiap anggota dapat membuat komunitas untuk ide apa pun dan mengundang orang yang ingin diajak membangun — baik itu bisnis, klub buku, atau klub lari."
+        "question": "Bisakah saya memulai Origin sendiri?",
+        "answer": "Bisa. Setiap anggota dapat membuat Origin untuk ide apa pun dan mengundang orang yang ingin diajak membangun — baik itu bisnis, klub buku, atau klub lari."
       },
       "q3": {
         "question": "Apakah data saya milik saya?",
@@ -327,11 +327,11 @@
       },
       "q4": {
         "question": "Bagaimana cara menemukan orang-orang saya?",
-        "answer": "Jelajahi komunitas berdasarkan minat, industri, atau tujuan — dari bisnis kecil dan klub buku hingga startup AI dan klub lari — lalu ikuti yang sesuai dengan yang ingin Anda bangun. Atau buat komunitas sendiri untuk ide apa pun."
+        "answer": "Jelajahi Origins berdasarkan minat, industri, atau tujuan — dari bisnis kecil dan klub buku hingga startup AI dan klub lari — lalu ikuti yang sesuai dengan yang ingin Anda bangun. Atau buat Origin sendiri untuk ide apa pun."
       },
       "q5": {
         "question": "Bisakah saya bergabung secara anonim atau dengan nama?",
-        "answer": "Terserah Anda. Anda dapat berpartisipasi dengan akun bernama atau tetap anonim, dan komunitas, ruang, serta halaman ide dapat terbuka untuk semua orang atau dibatasi oleh penyelenggara. Opsi ini diluncurkan secara bertahap."
+        "answer": "Terserah Anda. Anda dapat berpartisipasi dengan akun bernama atau tetap anonim, dan Origins, ruang, serta halaman ide dapat terbuka untuk semua orang atau dibatasi oleh penyelenggara. Opsi ini diluncurkan secara bertahap."
       }
     }
   },
@@ -347,7 +347,7 @@
         "body": "Profil adalah identitas portabel setiap anggota — seperti CV yang hidup. Profil membawa pengalaman, keterampilan, ide, reputasi, dan relasi di setiap komunitas dan proyek, sehingga siapa diri Anda ikut berjalan bersama Anda."
       },
       "communities": {
-        "body": "Komunitas adalah kelompok orang yang berbagi minat, industri, tujuan, dan peluang — untuk ide apa pun. Komunitas adalah pusat keterlibatan di Origin dan cara anggota saling menemukan."
+        "body": "Origins adalah ruang yang Anda mulai di sekitar sebuah tujuan — sekelompok orang yang berbagi minat, industri, tujuan, dan peluang untuk ide apa pun. Origins adalah pusat keterlibatan di Origin dan cara anggota saling menemukan."
       },
       "ideas": {
         "body": "Setiap ide mendapat rumah. Unggah halaman ide untuk apa pun — bisnis kecil, startup AI, membantu tuna wisma, lari 10k, klub buku, liga pee-wee — dan temukan orang yang ingin membangunnya bersama Anda."
@@ -371,16 +371,16 @@
     "sectionRoadmap": "Peta jalan",
     "roadmap": {
       "phase1": {
-        "body": "Profil, komunitas, obrolan, dan social graph. Metrik keberhasilan: anggota membentuk komunitas yang bertahan lama."
+        "body": "Profil, Origins, obrolan, dan social graph. Metrik keberhasilan: anggota membentuk Origins yang bertahan lama."
       },
       "phase2": {
-        "body": "Proyek, ruang kerja bersama, dan alat yang mengubah percakapan menjadi kerja bersama. Metrik keberhasilan: komunitas menghasilkan hasil bersama-sama."
+        "body": "Proyek, ruang kerja bersama, dan alat yang mengubah percakapan menjadi kerja bersama. Metrik keberhasilan: Origins menghasilkan hasil bersama-sama."
       },
       "phase3": {
         "body": "Perusahaan dan ventura yang dibentuk oleh anggota, dengan manajemen tim dan tata kelola. Metrik keberhasilan: perusahaan yang didirikan di dalam jaringan."
       },
       "phase4": {
-        "body": "Pekerja AI yang membantu komunitas berkoordinasi, merangkum, dan mencocokkan peluang. Metrik keberhasilan: anggota berkolaborasi dengan AI setara."
+        "body": "Pekerja AI yang membantu Origins berkoordinasi, merangkum, dan mencocokkan peluang. Metrik keberhasilan: anggota berkolaborasi dengan AI setara."
       },
       "phase5": {
         "body": "Standar terbuka dan portabilitas sehingga jaringan terhubung lintas platform. Metrik keberhasilan: social graph yang portabel dan interoperabel."
@@ -400,7 +400,7 @@
       },
       "q4": {
         "question": "Apa yang sudah berjalan sekarang?",
-        "answer": "Fondasi Komunitas (Fase 1) sudah berjalan: profil, komunitas, obrolan, dan social graph sudah digunakan oleh 2.400+ pembangun."
+        "answer": "Fondasi Origin (Fase 1) sudah berjalan: profil, Origins, obrolan, dan social graph sudah digunakan oleh 2.400+ pembangun."
       }
     }
   },
@@ -411,22 +411,22 @@
       "lead": "Origin adalah jaringan kolaborasi sosial yang dibangun di atas satu keyakinan: aset paling berharga di internet bukanlah konten atau perangkat lunak — melainkan jaringan manusia dan relasi yang mereka bentuk."
     },
     "sectionMission": "Misi kami",
-    "missionParagraph1": "Origin sedang membangun sistem operasi untuk kolaborasi manusia. Alih-alih lima alat terpisah untuk obrolan, komunitas, dan proyek, relasi Anda hidup dalam satu ruang kerja yang tenang. Social graph adalah produknya: profil, ide, komunitas, komunikasi, linimasa, proyek, perusahaan, dan peluang semuanya menggantung pada jaringan manusia yang sama.",
-    "missionParagraph2": "Hari ini, 2.400+ pembangun sudah berkolaborasi di Origin. Saat platform tumbuh melalui peta jalan — Fondasi Komunitas, Kolaborasi, Organisasi, Kolaborasi AI, dan Jaringan Global — misinya tetap sama: membantu orang saling menemukan dan membangun bersama.",
+    "missionParagraph1": "Origin sedang membangun sistem operasi untuk kolaborasi manusia. Alih-alih lima alat terpisah untuk obrolan, Origins, dan proyek, relasi Anda hidup dalam satu ruang kerja yang tenang. Social graph adalah produknya: profil, ide, Origins, komunikasi, linimasa, proyek, perusahaan, dan peluang semuanya menggantung pada jaringan manusia yang sama.",
+    "missionParagraph2": "Hari ini, 2.400+ pembangun sudah berkolaborasi di Origin. Saat platform tumbuh melalui peta jalan — Fondasi Origin, Kolaborasi, Organisasi, Kolaborasi AI, dan Jaringan Global — misinya tetap sama: membantu orang saling menemukan dan membangun bersama.",
     "sectionPrinciples": "Prinsip-prinsip panduan",
     "principles": {
       "peopleFirst": {
         "body": "Jaringan terdiri dari manusia, bukan sekadar konten atau perangkat lunak. Keputusan produk berawal dari relasi yang ingin dibentuk para anggota."
       },
       "communitiesDriveGrowth": {
-        "body": "Komunitas adalah pusat keterlibatan — kelompok orang yang berbagi minat, industri, tujuan, dan peluang menghidupkan jaringan."
+        "body": "Origins adalah pusat keterlibatan — kelompok orang yang berbagi minat, industri, tujuan, dan peluang menghidupkan jaringan."
       },
       "collaborationCreatesValue": {
         "body": "Percakapan berubah menjadi proyek, proyek berubah menjadi perusahaan. Origin dibangun agar kolaborasi punya tempat untuk bertumbuh."
       },
       "openArchitecture": {
         "title": "Arsitektur Terbuka",
-        "body": "Komunikasi berjalan di atas protokol Matrix yang terbuka, dan identitas, profil, komunitas, serta social graph bersifat portabel dan dimiliki pengguna."
+        "body": "Komunikasi berjalan di atas protokol Matrix yang terbuka, dan identitas, profil, Origins, serta social graph bersifat portabel dan dimiliki pengguna."
       }
     },
     "sectionFounder": "Panduan pendiri",
@@ -439,7 +439,7 @@
     "faq": {
       "q1": {
         "question": "Apa itu JoinOrigin?",
-        "answer": "Origin adalah jaringan kolaborasi sosial — OS komunitas yang menyatukan ide, proyek, dan komunitas Anda dalam satu ruang yang terorganisir. JoinOrigin adalah merek dan jaringan di baliknya."
+        "answer": "Origin adalah ruang yang Anda mulai di sekitar sebuah tujuan — satu ruang terorganisir tempat ide, proyek, dan Origins Anda hidup bersama. JoinOrigin adalah merek dan jaringan di baliknya."
       },
       "q2": {
         "question": "Apa maksud dari “jaringan adalah produknya”?",
@@ -455,7 +455,7 @@
     "hero": {
       "eyebrow": "Kontak",
       "title": "Bicara dengan kami",
-      "lead": "Punya pertanyaan tentang Origin — jaringan kolaborasi sosial — atau memulai komunitas? Kami senang mendengar dari Anda. Tanyakan apa saja kepada kami."
+      "lead": "Punya pertanyaan tentang Origin — atau memulai Origin Anda sendiri? Kami senang mendengar dari Anda. Tanyakan apa saja kepada kami."
     },
     "sectionForm": "Kirim pesan",
     "form": {
@@ -482,7 +482,7 @@
       },
       "q2": {
         "question": "Bagaimana cara saya mendapatkan akses?",
-        "answer": "Klik Mulai dan mulailah ditemukan — masukkan nama dan email Anda dan profil Anda langsung siap, lalu Anda bisa mulai atau mengikuti komunitas segera."
+        "answer": "Klik Mulai dan mulailah ditemukan — masukkan nama dan email Anda dan profil Anda langsung siap, lalu Anda bisa mulai atau mengikuti Origins segera."
       }
     }
   },
@@ -549,7 +549,7 @@
     "heading": "Halaman tidak ditemukan",
     "copy": "Halaman yang Anda cari tidak ada atau telah dipindahkan. Kembali ke beranda untuk menemukan tempat proyek tim Anda berikutnya dimulai.",
     "backHome": "Kembali ke beranda",
-    "exploreCommunities": "Jelajahi komunitas →"
+    "exploreCommunities": "Jelajahi Origins →"
   },
   "mobile": {
     "home": {
@@ -698,9 +698,9 @@
     "glossary": {
       "eyebrow": "OS Komunitas",
       "title": "Glosarium OS Komunitas",
-      "intro": "Kosakata penting dalam membangun komunitas — definisi jelas untuk istilah yang digunakan penyelenggara, moderator, dan pendiri setiap hari.",
+      "intro": "Kosakata penting dari Origin — definisi jelas untuk istilah yang digunakan penyelenggara, moderator, dan pendiri setiap hari.",
       "whyTitle": "Mengapa glosarium",
-      "whyBody": "Membangun komunitas punya bahasanya sendiri, dan istilah-istilahnya sering dipakai secara longgar. Glosarium OS Komunitas memberi penyelenggara, moderator, dan pendiri definisi bersama yang bisa diandalkan — dari konsep klasik seperti moderasi dan onboarding hingga ide yang lebih baru seperti lingkar keterlibatan dan acara hibrida.",
+      "whyBody": "Membangun apa pun bersama punya bahasanya sendiri, dan istilah-istilahnya sering dipakai secara longgar. Glosarium Origin memberi penyelenggara, moderator, dan pendiri definisi bersama yang bisa diandalkan — dari konsep klasik seperti moderasi dan onboarding hingga ide yang lebih baru seperti lingkar keterlibatan dan acara hibrida.",
       "termsTitle": "Istilah inti",
       "termsIntro": "Berikut istilah inti yang dipakai setiap penyelenggara, moderator, dan pendiri — masing-masing didefinisikan dalam praktik di Panduan Membangun Komunitas:",
       "goDeeper": "Lebih dalam",
@@ -708,20 +708,20 @@
       "goDeeperItem2": "Lihat konsep-konsep ini dalam praktik: halaman kota <1>Kota New York</1> dan <2>Berlin</2>.",
       "terms": {
         "community": {
-          "name": "Komunitas",
-          "definition": "Sekelompok orang yang berbagi minat, industri, tujuan, atau peluang dan terhubung di sekitarnya. Di Origin, setiap komunitas dilengkapi ruang tempat anggota saling menemukan dan membangun bersama."
+          "name": "Origin",
+          "definition": "Ruang yang Anda mulai di sekitar sebuah tujuan. Sebuah Origin mengumpulkan orang dan sumber daya yang dibutuhkan untuk mewujudkan sesuatu — bisnis kecil, startup AI, klub buku, atau lari 10k. Di Origin, setiap Origin dilengkapi ruang tempat anggota saling menemukan dan membangun bersama."
         },
         "community-manager": {
           "name": "Manajer komunitas",
-          "definition": "Orang yang menjaga komunitas tetap ramah, aktif, dan sesuai misi — menyambut anggota baru, memicu percakapan, dan mengoordinasikan proyek. Di Origin, anggota yang memulai komunitas memiliki dan memoderasi ruangnya."
+          "definition": "Orang yang menjaga Origin tetap ramah, aktif, dan sesuai misi — menyambut anggota baru, memicu percakapan, dan mengoordinasikan pekerjaan. Di Origin, anggota yang memulai Origin memiliki dan memoderasi ruangnya."
         },
         "community-os": {
           "name": "OS Komunitas",
-          "definition": "Platform yang menyatukan profil, komunitas, obrolan, proyek, dan peluang dalam satu ruang kerja yang terorganisir. Origin adalah OS komunitas di balik JoinOrigin."
+          "definition": "Platform yang menyatukan profil, Origins, obrolan, proyek, dan peluang dalam satu ruang kerja yang terorganisir. Origin adalah OS komunitas di balik JoinOrigin — ruang tempat ide, orang, dan sumber daya berjalan maju bersama."
         },
         "moderation": {
           "name": "Moderasi",
-          "definition": "Praktik menjaga komunitas tetap aman dan sesuai topik melalui pedoman yang jelas serta penegakan yang konsisten dan adil. Moderasi yang baik melindungi relasi yang membuat komunitas layak diikuti."
+          "definition": "Praktik menjaga Origin tetap aman dan sesuai topik melalui pedoman yang jelas serta penegakan yang konsisten dan adil. Moderasi yang baik melindungi relasi yang membuat Origin layak diikuti."
         },
         "onboarding": {
           "name": "Onboarding",
@@ -729,11 +729,11 @@
         },
         "activation": {
           "name": "Aktivasi",
-          "definition": "Momen ketika anggota baru melakukan tindakan yang menjadikan mereka bagian dari komunitas — kiriman pertama, acara pertama, atau proyek pertama. Aktivasi adalah langkah antara bergabung dan berkontribusi."
+          "definition": "Momen ketika anggota baru melakukan tindakan yang menjadikan mereka bagian dari Origin — kiriman pertama, proposal pertama, atau kontribusi pertama. Aktivasi adalah langkah antara bergabung dan berkontribusi."
         },
         "engagement-loop": {
           "name": "Lingkar keterlibatan",
-          "definition": "Siklus partisipasi berulang yang menjaga komunitas tetap hidup: seseorang mengirim, yang lain merespons, dan percakapan menciptakan lebih banyak alasan untuk kembali. Lingkar yang sehat adalah denyut nadi komunitas yang aktif."
+          "definition": "Siklus berulang yang membuat Origin berjalan maju: seseorang mengirimkan kebutuhan atau tawaran, yang lain merespons, dan pekerjaan menciptakan lebih banyak alasan untuk kembali. Lingkar yang sehat adalah denyut nadi Origin yang aktif."
         },
         "hybrid-events": {
           "name": "Acara hibrida",
@@ -741,7 +741,7 @@
         },
         "co-founder": {
           "name": "Co-founder",
-          "definition": "Seseorang yang membangun proyek atau perusahaan bersama Anda dan berbagi perjalanan pendirian. Di Origin, co-founder sering ditemukan melalui jaringan — orang-orang yang bergabung dengan halaman ide Anda dan memutuskan untuk membangun bersama."
+          "definition": "Seseorang yang membangun proyek atau perusahaan bersama Anda dan berbagi perjalanan pendirian. Di Origin, co-founder sering ditemukan melalui Origin Anda — orang-orang yang merespons kebutuhan atau tawaran, bergabung dalam pekerjaan, dan memutuskan untuk membangun bersama."
         }
       }
     },

@@ -24,7 +24,7 @@
     "objects": {
       "profiles": "Profiller",
       "ideas": "Fikirler",
-      "communities": "Topluluklar",
+      "communities": "Origin",
       "communication": "Mesajlaşma",
       "feed": "Akış",
       "projects": "Projeler",
@@ -33,11 +33,11 @@
     },
     "values": {
       "peopleFirst": "Önce İnsan",
-      "communitiesDriveGrowth": "Topluluklar Büyümeyi Sağlar",
+      "communitiesDriveGrowth": "Origin Büyümeyi Sağlar",
       "collaborationCreatesValue": "İş Birliği Değer Yaratır"
     },
     "roadmap": {
-      "phase1Title": "Faz 1 — Topluluk Temeli",
+      "phase1Title": "Faz 1 — Origin Temeli",
       "phase2Title": "Faz 2 — İş Birliği",
       "phase3Title": "Faz 3 — Organizasyon",
       "phase4Title": "Faz 4 — Yapay Zekâ ile İş Birliği",
@@ -61,14 +61,14 @@
   },
   "home": {
     "hero": {
-      "headline": "Fikirler, projeler ve topluluk iş birliği alanı — yeni ve mevcut ekiplerin Origin'ini bulduğu yer.",
+      "headline": "Her fikrin, girişimin ve projenin ilerlemek için insanları ve kaynakları bulduğu yer — Origin.",
       "headlineAccent": "Origin.",
       "startProject": "Başlayın",
-      "supporting": "Özgeçmişiniz gibi çalışan bir profil oluşturun, fikrinizi bir sayfa olarak yayınlayın ve her şeyin etrafında bir topluluk başlatın ya da katılın — yepyeni bir fikir, mevcut bir küçük işletme, bir yapay zekâ girişimi, bir kitap kulübü veya bir 10K koşusu.",
+      "supporting": "Özgeçmişiniz gibi çalışan bir profil oluşturun, fikrinizi bir sayfa olarak yayınlayın ve her şeyin etrafında bir Origin başlatın — bir fikir, küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü veya bir 10K koşusu. Sonra onu sizinle birlikte ileriye taşıyacak insanları davet edin.",
       "trustAvatarsAlt": "JoinOrigin üyesi {{number}}",
       "trustCopy": "Hâlihazırda iş birliği yapan 2.400+ kurucuya katılın"
     },
-    "definition": "Origin, sosyal iş birliği ağıdır — fikirlerinizin, projelerinizin ve topluluklarınızın tek bir düzenli alanda buluştuğu topluluk işletim sistemi. JoinOrigin, arkasındaki marka ve ağdır.",
+    "definition": "Origin, bir hedef etrafında başlattığınız alandır — bir fikir, bir girişim, küçük bir işletme veya bir proje. İhtiyaç duyduğu insanları ve kaynakları bir araya getirin ve birlikte ileriye taşıyın: kurucu ortaklar, ortaklar, müşteriler, destekçiler ve ağınız. JoinOrigin, arkasındaki marka ve ağdır.",
     "marquee": {
       "label": "Ekiplerin güvendiği",
       "partnerAlt": "JoinOrigin iş ortağı {{number}}"
@@ -76,23 +76,23 @@
     "faq": {
       "q1": {
         "question": "JoinOrigin nedir?",
-        "answer": "Origin, sosyal iş birliği ağıdır — fikirlerinizi, projelerinizi ve topluluklarınızı tek bir düzenli alanda toplayan bir topluluk işletim sistemi. JoinOrigin, arkasındaki marka ve ağdır. Beş ayrı araç yerine ilişkileriniz tek bir yerde yaşar, böylece hiçbir şey arada kaybolmaz."
+        "answer": "Origin, bir hedef etrafında başlattığınız alandır. Fikri siz getirirsiniz, ihtiyaç duyduğu insanları ve kaynakları toplarsınız ve birlikte ileriye taşırsınız. JoinOrigin, arkasındaki marka ve ağdır. Beş ayrı araç yerine ilişkileriniz tek bir yerde yaşar, böylece hiçbir şey arada kaybolmaz."
       },
       "q2": {
         "question": "JoinOrigin'in Discord/LinkedIn/Reddit'ten farkı nedir?",
-        "answer": "Discord bir sohbet uygulamasıdır, LinkedIn profesyonelleri bulur, Reddit ise tartışma içindir. Origin, bunları sosyal grafik etrafında birleştirir — profiller, topluluklar, sohbet, akış, projeler ve fırsatlar bir arada yaşar; böylece ilişkiler gerçek iş birliğine dönüşür."
+        "answer": "Discord bir sohbet uygulamasıdır, LinkedIn profesyonelleri bulur, Reddit ise tartışma içindir. Origin, bunları sosyal grafik etrafında birleştirir — profiller, Origin, sohbet, akış, projeler ve fırsatlar bir arada yaşar; böylece ilişkiler gerçek işe dönüşür."
       },
       "q3": {
         "question": "İçeri girdikten sonra neler yapabilirim?",
-        "answer": "Özgeçmiş gibi çalışan bir profil oluşturun, fikrinizi bir fikir sayfası olarak yayınlayın, her şeyin etrafında topluluklar başlatın ya da katılın ve birlikte çalışmak istediğiniz kişileri davet edin. Her topluluğun, üyelerin bağlandığı kendi odası vardır."
+        "answer": "Özgeçmiş gibi çalışan bir profil oluşturun, fikrinizi bir fikir sayfası olarak yayınlayın ve her şeyin etrafında bir Origin başlatın. Birlikte çalışmak istediğiniz kişileri davet edin — kurucu ortaklar, ortaklar, müşteriler, destekçiler — ve her Origin'in, işin ilerlediği kendi odası vardır."
       },
       "q4": {
         "question": "Origin aktif mi?",
-        "answer": "Evet — Origin aktif ve büyüyor. Başlayın düğmesine tıklayın ve keşfedilin: profilinizi oluşturun, fikrinizi yayınlayın ve bugün bir topluluğa başlayın ya da katılın."
+        "answer": "Evet — Origin aktif ve büyüyor. Başlayın düğmesine tıklayın: profilinizi oluşturun, fikrinizi yayınlayın ve gerçekleştirmek istediğiniz her şey için bir Origin başlatın."
       },
       "q5": {
         "question": "Nasıl katılırım?",
-        "answer": "Başlayın düğmesine tıklayın ve keşfedilin. Adınızı ve e-postanızı girin, profiliniz hazır — bugün topluluğunuzu kurmaya başlayın."
+        "answer": "Başlayın düğmesine tıklayın. Adınızı ve e-postanızı girin, profiliniz hazır — sonra fikriniz etrafında bir Origin başlatın ve onu sizinle birlikte ileriye taşıyacak insanları davet edin."
       }
     }
   },
@@ -121,9 +121,9 @@
   },
   "signup": {
     "title": "Kayıt Ol — Hesabınızı Oluşturun | JoinOrigin",
-    "description": "Origin sosyal iş birliği ağında hesabınızı oluşturun. Adınızı ve e-postanızı girerek keşfedilin ve bugün bir topluluğa başlayın veya katılın.",
+    "description": "Origin'de hesabınızı oluşturun. Adınızı ve e-postanızı girerek keşfedilin, sonra fikriniz etrafında bir Origin başlatın ve ilerletmek için insanları ve kaynakları bulun.",
     "heading": "Hesabınızı oluşturun",
-    "subcopy": "Topluluk işletim sisteminde keşfedilin — ister yeni bir şey başlatıyor ister mevcut bir projeyi büyütüyor olun.",
+    "subcopy": "Origin'de keşfedilin — ister yeni bir şey başlatıyor ister mevcut bir projeyi büyütüyor olun. Kurucu ortaklarınızı, ortaklarınızı, müşterilerinizi ve destekçilerinizi bulun.",
     "nameLabel": "Ad",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-posta",
@@ -132,7 +132,7 @@
     "submitting": "Hesabınız oluşturuluyor…",
     "legalNote": "Spam yok. İstediğiniz zaman abonelikten çıkabilirsiniz.",
     "successHeading": "Listedesiniz!",
-    "successCopy": "Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
+    "successCopy": "Origin'iniz hazır olduğunda size e-posta göndereceğiz.",
     "done": "Tamam",
     "errors": {
       "generic": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
@@ -144,47 +144,47 @@
     },
     "waitlist": {
       "heading": "Bekleme listesine katılın",
-      "subcopy": "Topluluk işletim sisteminde keşfedilin — ister yeni bir şey başlatıyor ister mevcut bir projeyi büyütüyor olun. Çalışma alanınız hazır olduğunda size e-posta göndereceğiz.",
+      "subcopy": "Origin'de keşfedilin — ister yeni bir şey başlatıyor ister mevcut bir projeyi büyütüyor olun. Origin'iniz hazır olduğunda size e-posta göndereceğiz.",
       "disclosure": "Origin geliştirme aşamasındadır. Adınız ve e-postanız yalnızca sıranız geldiğinde hesabınızı kurmak ve güvenceye almak için kullanılır."
     }
   },
   "ctaBand": {
-    "headline": "İnsanlarını bul. Birlikte bir şey başlat ya da büyüt.",
-    "subline": "İlk fikirlerden köklü şirketlere — Origin'in sosyal iş birliği ağındaki 2.400+ kurucuya katılın ve bugün keşfedilin.",
+    "headline": "Bir Origin başlatın. İlerletmek için insanları ve kaynakları bulun.",
+    "subline": "İlk fikirlerden köklü şirketlere — halihazırda Origin'de insanları ve kaynakları bir araya getiren 2.400+ kurucuya katılın. Kurucu ortaklarınızı, ortaklarınızı, müşterilerinizi ve destekçilerinizi bulun. Bugün keşfedilin.",
     "joinLabel": "Başlayın",
     "contactLabel": "Bize ulaşın"
   },
   "features": {
     "hero": {
       "eyebrow": "Temel nesneler",
-      "title": "Bir topluluğun ihtiyaç duyduğu her şey, tek bir sakin çalışma alanında",
-      "lead": "Origin, sekiz temel nesne etrafında kurulmuş bir sosyal iş birliği ağıdır: profiller, fikirler, topluluklar, iletişim, akış, projeler, şirketler ve fırsatlar. İster yeni bir şey başlatıyor ister mevcut bir şirketi büyütüyor olun, ilişkileriniz on ayrı araç yerine tek bir yerde yaşar."
+      "title": "Bir Origin'in ihtiyaç duyduğu her şey, tek bir sakin çalışma alanında",
+      "lead": "Origin, sekiz temel nesne etrafında kurulmuştur: profiller, fikirler, Origin, iletişim, akış, projeler, şirketler ve fırsatlar. Gerçekleştirmek istediğiniz her şey için bir Origin başlatın — bir girişim, küçük bir işletme, bir proje — ve onu sizinle birlikte ileriye taşıyacak kurucu ortakları, ortakları, müşterileri ve destekçileri bulun."
     },
     "sectionCoreObjects": "Temel nesneler",
     "coreObjects": {
       "profiles": {
-        "body": "Bir profil, canlı bir özgeçmiş gibi çalışır: deneyiminizi, becerilerinizi ve fikirlerinizi — ayrıca itibarınızı ve ilişkilerinizi — katıldığınız her topluluğa ve projeye taşır."
+        "body": "Bir profil, canlı bir özgeçmiş gibi çalışır: deneyiminizi, becerilerinizi ve fikirlerinizi — ayrıca itibarınızı ve ilişkilerinizi — katıldığınız her Origin'e ve projeye taşır."
       },
       "ideas": {
-        "body": "Fikirler, Origin'deki her şeyin başlangıç noktasıdır. Herhangi bir fikir için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü, bir 10K koşusu — ve onu inşa etmek isteyen insanlar sizi bulur."
+        "body": "Her Origin bir fikirle başlar. Herhangi bir şey için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü, bir 10K koşusu — ve onu inşa etmek isteyen insanlar sizi bulur."
       },
       "communities": {
-        "body": "İlgi alanları, sektörler ve hedefler etrafındaki gruplar — Girişim Kurucuları, Küçük İşletmeler, Kitap Kulüpleri, Topluluk Örgütleri, Fikri Olan Herkes — üyelerin birbirini bulduğu yer."
+        "body": "Bir hedef etrafında başlattığınız alan — bir girişim, küçük bir işletme, bir kitap kulübü veya herhangi bir fikir. Her Origin, onu paylaşan insanları bir araya getirir ve işin ilerlediği kendi odasıyla gelir."
       },
       "communication": {
-        "body": "Her topluluk bir Matrix odasıyla gelir: açık Matrix protokolü üzerinden gerçek zamanlı sohbet, doğrudan mesajlar ve grup tartışmaları; varsayılan olarak uçtan uca şifreli."
+        "body": "Her Origin bir Matrix odasıyla gelir: açık Matrix protokolü üzerinden gerçek zamanlı sohbet, doğrudan mesajlar ve grup tartışmaları; varsayılan olarak uçtan uca şifreli."
       },
       "feed": {
-        "body": "Akış, takip ettiğiniz kişilerden ve topluluklardan gönderileri, güncellemeleri ve fırsatları gösterir. Ağınızda önemli olanların sakin bir akışıdır, bir etkileşim makinesi değil."
+        "body": "Akış, takip ettiğiniz kişilerden ve Origins'lerden gönderileri, güncellemeleri ve fırsatları gösterir. Ağınızda önemli olanların sakin bir akışıdır, bir etkileşim makinesi değil."
       },
       "projects": {
-        "body": "Topluluk üyelerinin birlikte çalıştığı ve sohbetleri sonuçlara dönüştürdüğü iş birliğine dayalı çabalar."
+        "body": "Origin'inizdeki insanların birlikte çalıştığı ve sohbetleri sonuçlara dönüştürdüğü iş birliğine dayalı çabalar."
       },
       "companies": {
-        "body": "Ağ içinde üyeler tarafından kurulan girişimler; takım yönetimi ve fırsat paylaşımı dahildir."
+        "body": "Ağ içinde Origins'lerden kurulan girişimler; takım yönetimi ve fırsat paylaşımı dahildir."
       },
       "opportunities": {
-        "body": "Sosyal grafik üzerinden keşfedilen işler, ortaklıklar ve yatırımlar — ağ, doğru zamanda doğru fırsatları yüzeye çıkarır."
+        "body": "Sosyal grafik üzerinden keşfedilen işler, ortaklıklar, müşteriler ve yatırımlar — Origin'iniz doğru zamanda doğru fırsatları yüzeye çıkarır."
       }
     },
     "sectionComparison": "Neden on araç yerine Origin?",
@@ -196,61 +196,61 @@
       "linkedin": {
         "tool": "LinkedIn",
         "strength": "profesyonelleri bulur",
-        "gap": "ancak bağlantıları iş birliğine dönüştüren toplulukları, sohbeti ve projeleri desteklemez."
+        "gap": "ancak bağlantıları iş birliğine dönüştüren Origins'leri, sohbeti ve projeleri desteklemez."
       },
       "discord": {
         "tool": "Discord",
         "strength": "iletişim kurar",
-        "gap": "ancak ortak bir sosyal grafik üzerinde profiller, topluluklar, projeler ve fırsatlar etrafında organize edilmemiştir."
+        "gap": "ancak ortak bir sosyal grafik üzerinde profiller, Origins'ler, projeler ve fırsatlar etrafında organize edilmemiştir."
       },
       "slack": {
         "tool": "Slack",
         "strength": "ekiplerin kanallarda bağlantı kurmasını sağlar",
-        "gap": "ancak tek bir çalışma alanı için kurulmuştur — zaten tanıdığınız kişiler arasında profilleri, toplulukları, projeleri ve fırsatları taşımaz."
+        "gap": "ancak tek bir çalışma alanı için kurulmuştur — zaten tanıdığınız kişiler arasında profilleri, Origins'leri, projeleri ve fırsatları taşımaz."
       },
       "whatsapp": {
         "tool": "WhatsApp",
         "strength": "mesajlaşır",
-        "gap": "ancak özel bir sohbet uygulamasıdır — topluluklara ortak bir sosyal grafik üzerinde kalıcı profiller, projeler ve keşif sunmaz."
+        "gap": "ancak özel bir sohbet uygulamasıdır — Origins'lere ortak bir sosyal grafik üzerinde kalıcı profiller, projeler ve keşif sunmaz."
       },
       "meetup": {
         "tool": "Meetup",
         "strength": "etkinlikleri bulur",
-        "gap": "ancak tek seferlik RSVP'ler etrafında kurulmuştur — etkinlikten sonra büyüyen topluluğu, projeleri ve ilişkileri taşımaz."
+        "gap": "ancak tek seferlik RSVP'ler etrafında kurulmuştur — etkinlikten sonra büyüyen Origin'i, projeleri ve ilişkileri taşımaz."
       },
       "eventbrite": {
         "tool": "Eventbrite",
         "strength": "bilet satar",
-        "gap": "ancak etkinlikleri yönetir, toplulukları değil — grubunuza profiller, projeler ve fırsatlarla kalıcı bir yuva vermez."
+        "gap": "ancak etkinlikleri yönetir, Origins'leri değil — grubunuza profiller, projeler ve fırsatlarla kalıcı bir yuva vermez."
       },
       "notion": {
         "tool": "Notion",
         "strength": "işi organize eder",
-        "gap": "ancak bir doküman aracıdır — sayfaların arkasındaki insanları birlikte çalışan bir topluluğa bağlamaz."
+        "gap": "ancak bir doküman aracıdır — sayfaların arkasındaki insanları birlikte çalışan bir Origin'e bağlamaz."
       },
       "asana": {
         "tool": "Asana",
         "strength": "projeleri takip eder",
-        "gap": "ancak görevler için kurulmuştur, ilişkiler için değil — projeleri hayata geçiren insanları ve toplulukları yüzeye çıkarmaz."
+        "gap": "ancak görevler için kurulmuştur, ilişkiler için değil — projeleri hayata geçiren insanları ve Origins'leri yüzeye çıkarmaz."
       },
       "patreon": {
         "tool": "Patreon",
         "strength": "yaratıcıları finanse eder",
-        "gap": "ancak abonelikler etrafında kurulmuştur — üyelerinize ortak bir sosyal grafik üzerinde profiller, projeler ve topluluklar sunmaz."
+        "gap": "ancak abonelikler etrafında kurulmuştur — üyelerinize ortak bir sosyal grafik üzerinde profiller, projeler ve Origins'ler sunmaz."
       },
       "facebook": {
         "tool": "Facebook",
         "strength": "grupları bağlar",
-        "gap": "ancak bir reklam akışı etrafında kurulmuştur — topluluklara profiller, projeler ve fırsatlarla sakin bir çalışma alanı sunmaz."
+        "gap": "ancak bir reklam akışı etrafında kurulmuştur — Origins'lere profiller, projeler ve fırsatlarla sakin bir çalışma alanı sunmaz."
       }
     },
     "sectionRoadmap": "Yol Haritası",
     "roadmap": {
       "phase1": {
-        "body": "Profiller, topluluklar, sohbet ve sosyal grafik. Başarı ölçütü: üyelerin kalıcı topluluklar oluşturması."
+        "body": "Profiller, Origins'ler, sohbet ve sosyal grafik. Başarı ölçütü: üyelerin kalıcı Origins'ler oluşturması."
       },
       "phase2": {
-        "body": "Projeler, paylaşılan çalışma alanları ve sohbetleri ortak çalışmaya dönüştüren araçlar. Başarı ölçütü: toplulukların birlikte sonuç üretmesi."
+        "body": "Projeler, paylaşılan çalışma alanları ve sohbetleri ortak çalışmaya dönüştüren araçlar. Başarı ölçütü: Origins'lerin birlikte sonuç üretmesi."
       },
       "phase3": {
         "body": "Üyeler tarafından kurulan şirketler ve girişimler; takım yönetimi ve yönetişim ile. Başarı ölçütü: ağ içinde kurulan şirketler."
@@ -259,7 +259,7 @@
     "faq": {
       "q1": {
         "question": "JoinOrigin'in Discord'dan farkı nedir?",
-        "answer": "Discord bir sohbet uygulamasıdır. Origin ise bir sosyal iş birliği ağıdır — profiller, fikirler, topluluklar, sohbet, akış, projeler ve şirketler tek bir sosyal grafik üzerinde yaşar."
+        "answer": "Discord bir sohbet uygulamasıdır. Origin ise bir sosyal iş birliği ağıdır — profiller, fikirler, Origins'ler, sohbet, akış, projeler ve şirketler tek bir sosyal grafik üzerinde yaşar."
       },
       "q2": {
         "question": "JoinOrigin açık kaynak mı?",
@@ -267,7 +267,7 @@
       },
       "q3": {
         "question": "Sosyal grafik nedir?",
-        "answer": "Sosyal grafik, üyeler arasındaki ilişkiler ağıdır. Origin, bunun etrafında organize edilmiştir; böylece her profil, topluluk ve proje insanlar aracılığıyla bağlanır."
+        "answer": "Sosyal grafik, üyeler arasındaki ilişkiler ağıdır. Origin, bunun etrafında organize edilmiştir; böylece her profil, Origin ve proje insanlar aracılığıyla bağlanır."
       },
       "q4": {
         "question": "Projeler ve şirketler ne zaman kullanıma açılacak?",
@@ -279,26 +279,26 @@
     "hero": {
       "eyebrow": "Ağ",
       "title": "İnsanların birbirini bulduğu yer",
-      "lead": "Origin, topluluklar etrafında organize edilmiş bir sosyal iş birliği ağıdır — ilgi alanlarını, sektörleri, hedefleri ve fırsatları paylaşan insan grupları. Topluluklar, etkileşimin merkezidir."
+      "lead": "Origin, insanların hedefler etrafında toplandığı yerdir. Gerçekleştirmek istediğiniz her şey için bir Origin başlatın — bir girişim, küçük bir işletme, bir kitap kulübü — ya da inşa ettiğiniz şeye uyan birine katılın ve ilerletmek için insanları ve kaynakları bulun."
     },
     "sectionValues": "Ağı nasıl yönetiyoruz",
     "values": {
       "peopleFirst": {
-        "body": "Üyeler insandır, veritabanındaki profiller değil. Her tasarım kararı, ağı katılmaya değer kılan ilişkileri korur."
+        "body": "Üyeler insandır, veritabanındaki profiller değil. Her tasarım kararı, bir Origin'i başlatmaya değer kılan ilişkileri korur."
       },
       "communitiesDriveGrowth": {
-        "body": "Topluluklar, etkileşimin merkezidir. Bir topluluk geliştiğinde içindeki insanlar birbirini bulur ve birlikte inşa eder."
+        "body": "Origins'ler, etkileşimin merkezidir. Bir Origin geliştiğinde içindeki insanlar birbirini bulur, ihtiyaçlarını paylaşır ve birlikte inşa eder."
       },
       "collaborationCreatesValue": {
         "body": "İş birliği, sohbetlerin projeye, projelerin şirkete dönüşme yoludur. Origin, iş birliğinin gidecek bir yeri olsun diye kuruldu."
       },
       "ownership": {
         "title": "Sahiplik ve Egemenlik",
-        "body": "Kimliğinizin, verilerinizin ve topluluklarınızın sahibi sizsiniz. Açık mimari ve taşınabilir kimlik, ağı üyelerine karşı sorumlu tutar."
+        "body": "Kimliğinizin, verilerinizin ve Origins'lerinizin sahibi sizsiniz. Açık mimari ve taşınabilir kimlik, ağı üyelerine karşı sorumlu tutar."
       }
     },
-    "sectionExamples": "Örnek topluluklar",
-    "examplesIntro": "Bunlar, bugün JoinOrigin içinde büyüyen topluluk türleridir. Bu hedeflerden birini paylaşıyorsanız sizin için zaten bir yer var:",
+    "sectionExamples": "Örnek Origins'ler",
+    "examplesIntro": "Bunlar, bugün JoinOrigin içinde büyüyen Origin türleridir. Bu hedeflerden birini paylaşıyorsanız sizin için zaten bir yer var:",
     "examples": {
       "startupFounders": "Girişim Kurucuları",
       "smallBusinesses": "Küçük İşletmeler",
@@ -309,17 +309,17 @@
       "anyoneWithAnIdea": "Fikri Olan Herkes"
     },
     "sectionJoin": "Ağa katılın",
-    "joinCopy": "Topluluk, içindeki insanlar tarafından kurulur. Keşfedilin ve insanların çevrimiçi ortamda birbirini bulma biçimini şekillendiren kuruculara katılın.",
+    "joinCopy": "Ağ, içindeki insanlar tarafından kurulur. Bir Origin başlatın, keşfedilin ve insanların birbirini bulma ve işleri ilerletme biçimini şekillendiren kuruculara katılın.",
     "joinStatValue": "2.400+",
     "joinStatLabel": "Birlikte inşa eden üyeler",
     "faq": {
       "q1": {
-        "question": "Hangi topluluklara katılabilirim?",
-        "answer": "Herkes herhangi bir fikir etrafında bir topluluk başlatabilir veya katılabilir — küçük bir işletme, bir yapay zekâ girişimi, evsizlere yardım, bir 10K koşusu, bir siyasi hareket, bir minikler ligi. Sizin için önemliyse, Origin'de bir yeri vardır."
+        "question": "Hangi Origins'lere katılabilirim?",
+        "answer": "Herkes herhangi bir fikir etrafında bir Origin başlatabilir veya katılabilir — küçük bir işletme, bir yapay zekâ girişimi, evsizlere yardım, bir 10K koşusu, bir siyasi hareket, bir minikler ligi. Sizin için önemliyse, Origin'de bir yeri vardır."
       },
       "q2": {
-        "question": "Kendi topluluğumu başlatabilir miyim?",
-        "answer": "Evet. Her üye herhangi bir fikir etrafında bir topluluk oluşturabilir ve birlikte inşa etmek istediği insanları davet edebilir — ister bir işletme, ister bir kitap kulübü, ister bir koşu kulübü olsun."
+        "question": "Kendi Origin'imi başlatabilir miyim?",
+        "answer": "Evet. Her üye herhangi bir fikir etrafında bir Origin oluşturabilir ve birlikte inşa etmek istediği insanları davet edebilir — ister bir işletme, ister bir kitap kulübü, ister bir koşu kulübü olsun."
       },
       "q3": {
         "question": "Verilerim bana mı ait?",
@@ -327,11 +327,11 @@
       },
       "q4": {
         "question": "Kendi insanlarımı nasıl bulurum?",
-        "answer": "Toplulukları ilgi alanına, sektöre veya hedefe göre inceleyin — küçük işletmelerden ve kitap kulüplerinden yapay zekâ girişimlerine ve koşu kulüplerine kadar — sonra inşa etmek istediklerinizle eşleşenlere katılın. Ya da herhangi bir fikir için kendinizinkini başlatın."
+        "answer": "Origins'leri ilgi alanına, sektöre veya hedefe göre inceleyin — küçük işletmelerden ve kitap kulüplerinden yapay zekâ girişimlerine ve koşu kulüplerine kadar — sonra inşa etmek istediklerinizle eşleşenlere katılın. Ya da herhangi bir fikir için kendinizinkini başlatın."
       },
       "q5": {
         "question": "Anonim olarak mı yoksa adımla mı katılabilirim?",
-        "answer": "Siz seçersiniz. Adlı bir hesapla katılabilir veya anonim kalabilirsiniz; topluluklar, odalar ve fikir sayfaları herkese açık olabilir veya organizatörler tarafından sınırlandırılabilir. Bu seçenekler zamanla kullanıma sunulacaktır."
+        "answer": "Siz seçersiniz. Adlı bir hesapla katılabilir veya anonim kalabilirsiniz; Origins'ler, odalar ve fikir sayfaları herkese açık olabilir veya organizatörler tarafından sınırlandırılabilir. Bu seçenekler zamanla kullanıma sunulacaktır."
       }
     }
   },
@@ -347,7 +347,7 @@
         "body": "Profiller, her üyenin taşınabilir kimliğidir — canlı bir özgeçmiş gibi. Deneyimi, becerileri, fikirleri, itibarı ve ilişkileri her topluluğa ve projeye taşırlar; böylece kim olduğunuz sizinle birlikte seyahat eder."
       },
       "communities": {
-        "body": "Topluluklar, ilgi alanlarını, sektörleri, hedefleri ve fırsatları paylaşan insan gruplarıdır — herhangi bir fikir etrafında. Origin'de etkileşimin merkezi ve üyelerin birbirini bulma yoludur."
+        "body": "Origins'ler, bir hedef etrafında başlattığınız alandır — herhangi bir fikir etrafında ilgi alanlarını, sektörleri, hedefleri ve fırsatları paylaşan insan grupları. Origin'de etkileşimin merkezi ve üyelerin birbirini bulma yoludur."
       },
       "ideas": {
         "body": "Her fikir bir yuva bulur. Her şey için bir fikir sayfası yayınlayın — küçük bir işletme, bir yapay zekâ girişimi, evsizlere yardım, bir 10K koşusu, bir kitap kulübü, bir minikler ligi — ve onu sizinle birlikte inşa etmek isteyen insanları bulun."
@@ -371,16 +371,16 @@
     "sectionRoadmap": "Yol Haritası",
     "roadmap": {
       "phase1": {
-        "body": "Profiller, topluluklar, sohbet ve sosyal grafik. Başarı ölçütü: üyelerin kalıcı topluluklar oluşturması."
+        "body": "Profiller, Origins'ler, sohbet ve sosyal grafik. Başarı ölçütü: üyelerin kalıcı Origins'ler oluşturması."
       },
       "phase2": {
-        "body": "Projeler, paylaşılan çalışma alanları ve sohbetleri ortak çalışmaya dönüştüren araçlar. Başarı ölçütü: toplulukların birlikte sonuç üretmesi."
+        "body": "Projeler, paylaşılan çalışma alanları ve sohbetleri ortak çalışmaya dönüştüren araçlar. Başarı ölçütü: Origins'lerin birlikte sonuç üretmesi."
       },
       "phase3": {
         "body": "Üyeler tarafından kurulan şirketler ve girişimler; takım yönetimi ve yönetişim ile. Başarı ölçütü: ağ içinde kurulan şirketler."
       },
       "phase4": {
-        "body": "Toplulukların koordine olmasına, özet çıkarmasına ve fırsatları eşleştirmesine yardımcı olan yapay zekâ çalışanları. Başarı ölçütü: üyelerin yapay zekâ ile eşit olarak iş birliği yapması."
+        "body": "Origins'lerin koordine olmasına, özet çıkarmasına ve fırsatları eşleştirmesine yardımcı olan yapay zekâ çalışanları. Başarı ölçütü: üyelerin yapay zekâ ile eşit olarak iş birliği yapması."
       },
       "phase5": {
         "body": "Ağın platformlar arasında bağlanmasını sağlayan açık standartlar ve taşınabilirlik. Başarı ölçütü: taşınabilir, birlikte çalışabilir bir sosyal grafik."
@@ -400,7 +400,7 @@
       },
       "q4": {
         "question": "Şu anda neler aktif?",
-        "answer": "Topluluk Temeli (Faz 1) aktif: profiller, topluluklar, sohbet ve sosyal grafik şimdiden 2.400+ kurucu tarafından kullanılıyor."
+        "answer": "Origin Temeli (Faz 1) aktif: profiller, Origins'ler, sohbet ve sosyal grafik şimdiden 2.400+ kurucu tarafından kullanılıyor."
       }
     }
   },
@@ -411,22 +411,22 @@
       "lead": "Origin, tek bir inanç üzerine kurulmuş bir sosyal iş birliği ağıdır: internetteki en değerli varlık içerik ya da yazılım değil — insan ağı ve kurdukları ilişkilerdir."
     },
     "sectionMission": "Misyonumuz",
-    "missionParagraph1": "Origin, insan iş birliği için işletim sistemini kuruyor. Sohbet, topluluklar ve projeler için beş ayrı araç yerine ilişkileriniz tek bir sakin çalışma alanında yaşar. Sosyal grafik üründür: profiller, fikirler, topluluklar, iletişim, akış, projeler, şirketler ve fırsatların tümü aynı insan ağına bağlıdır.",
-    "missionParagraph2": "Bugün 2.400+ kurucu Origin'de çoktan iş birliği yapıyor. Platform yol haritası boyunca büyürken — Topluluk Temeli, İş Birliği, Organizasyon, Yapay Zekâ ile İş Birliği ve Küresel Ağ — misyon aynı kalır: insanların birbirini bulmasına ve birlikte inşa etmesine yardımcı olmak.",
+    "missionParagraph1": "Origin, insan iş birliği için işletim sistemini kuruyor. Sohbet, Origins'ler ve projeler için beş ayrı araç yerine ilişkileriniz tek bir sakin çalışma alanında yaşar. Sosyal grafik üründür: profiller, fikirler, Origins'ler, iletişim, akış, projeler, şirketler ve fırsatların tümü aynı insan ağına bağlıdır.",
+    "missionParagraph2": "Bugün 2.400+ kurucu Origin'de çoktan iş birliği yapıyor. Platform yol haritası boyunca büyürken — Origin Temeli, İş Birliği, Organizasyon, Yapay Zekâ ile İş Birliği ve Küresel Ağ — misyon aynı kalır: insanların birbirini bulmasına ve birlikte inşa etmesine yardımcı olmak.",
     "sectionPrinciples": "Rehber ilkeler",
     "principles": {
       "peopleFirst": {
         "body": "Ağ yalnızca içerikten ya da yazılımdan değil, insanlardan oluşur. Ürün kararları, üyelerin kurmak istediği ilişkilerden başlar."
       },
       "communitiesDriveGrowth": {
-        "body": "Topluluklar, etkileşimin merkezidir — ilgi alanlarını, sektörleri, hedefleri ve fırsatları paylaşan insan grupları ağı hayata geçirir."
+        "body": "Origins'ler, etkileşimin merkezidir — ilgi alanlarını, sektörleri, hedefleri ve fırsatları paylaşan insan grupları ağı hayata geçirir."
       },
       "collaborationCreatesValue": {
         "body": "Sohbetler projelere, projeler şirketlere dönüşür. Origin, iş birliğinin gidecek bir yeri olsun diye kuruldu."
       },
       "openArchitecture": {
         "title": "Açık Mimari",
-        "body": "İletişim açık Matrix protokolü üzerinde çalışır; kimlik, profiller, topluluklar ve sosyal grafik taşınabilir ve kullanıcıya aittir."
+        "body": "İletişim açık Matrix protokolü üzerinde çalışır; kimlik, profiller, Origins'ler ve sosyal grafik taşınabilir ve kullanıcıya aittir."
       }
     },
     "sectionFounder": "Kurucu rehberliği",
@@ -439,7 +439,7 @@
     "faq": {
       "q1": {
         "question": "JoinOrigin nedir?",
-        "answer": "Origin, sosyal iş birliği ağıdır — fikirlerinizi, projelerinizi ve topluluklarınızı tek bir düzenli alanda toplayan bir topluluk işletim sistemi. JoinOrigin, arkasındaki marka ve ağdır."
+        "answer": "Origin, bir hedef etrafında başlattığınız alandır — fikirlerinizin, projelerinizin ve Origins'lerinizin birlikte yaşadığı tek bir düzenli alan. JoinOrigin, arkasındaki marka ve ağdır."
       },
       "q2": {
         "question": "“Ağ üründür” ne anlama geliyor?",
@@ -455,7 +455,7 @@
     "hero": {
       "eyebrow": "İletişim",
       "title": "Bizimle konuşun",
-      "lead": "Origin — sosyal iş birliği ağı — ya da bir topluluk başlatma hakkında sorunuz mu var? Sizden haber almayı çok isteriz. Bize her şeyi sorabilirsiniz."
+      "lead": "Origin — ya da kendi Origin'inizi başlatma hakkında sorunuz mu var? Sizden haber almayı çok isteriz. Bize her şeyi sorabilirsiniz."
     },
     "sectionForm": "Mesaj gönderin",
     "form": {
@@ -482,7 +482,7 @@
       },
       "q2": {
         "question": "Erişimi nasıl sağlarım?",
-        "answer": "Başlayın düğmesine tıklayın ve keşfedilin — adınızı ve e-postanızı girin, profiliniz hazır olur ve hemen topluluklara başlayabilir ya da katılabilirsiniz."
+        "answer": "Başlayın düğmesine tıklayın ve keşfedilin — adınızı ve e-postanızı girin, profiliniz hazır olur ve hemen Origins'lere başlayabilir ya da katılabilirsiniz."
       }
     }
   },
@@ -549,7 +549,7 @@
     "heading": "Sayfa bulunamadı",
     "copy": "Aradığınız sayfa mevcut değil veya taşınmış. Ekibinizin bir sonraki projesinin başladığı yeri bulmak için ana sayfaya dönün.",
     "backHome": "Ana sayfaya dön",
-    "exploreCommunities": "Toplulukları keşfedin →"
+    "exploreCommunities": "Origins'leri keşfedin →"
   },
   "mobile": {
     "home": {
@@ -698,9 +698,9 @@
     "glossary": {
       "eyebrow": "Topluluk İşletim Sistemi",
       "title": "Topluluk İşletim Sistemi sözlüğü",
-      "intro": "Topluluk kurmanın temel sözlüğü — organizatörlerin, moderatörlerin ve kurucuların her gün kullandığı terimlerin net tanımları.",
+      "intro": "Origin'in temel sözlüğü — organizatörlerin, moderatörlerin ve kurucuların her gün kullandığı terimlerin net tanımları.",
       "whyTitle": "Neden bir sözlük",
-      "whyBody": "Topluluk kurmanın kendine özgü bir dili vardır ve terimler genellikle gevşek kullanılır. Bir topluluk işletim sistemi sözlüğü; organizatörlere, moderatörlere ve kuruculara güvenebilecekleri ortak tanımlar sunar — moderasyon ve karşılama süreci gibi klasik kavramlardan etkileşim döngüleri ve hibrit etkinlikler gibi daha yeni fikirlere kadar.",
+      "whyBody": "Birlikte bir şey kurmanın kendine özgü bir dili vardır ve terimler genellikle gevşek kullanılır. Bir Origin sözlüğü; organizatörlere, moderatörlere ve kuruculara güvenebilecekleri ortak tanımlar sunar — moderasyon ve karşılama süreci gibi klasik kavramlardan etkileşim döngüleri ve hibrit etkinlikler gibi daha yeni fikirlere kadar.",
       "termsTitle": "Temel terimler",
       "termsIntro": "İşte her organizatör, moderatör ve kurucunun kullandığı temel terimler — her biri Topluluk Kurma Rehberleri boyunca uygulamada tanımlanıyor:",
       "goDeeper": "Daha derine inin",
@@ -708,20 +708,20 @@
       "goDeeperItem2": "Kavramları uygulamada görün: <1>New York</1> ve <2>Berlin</2> şehir sayfaları.",
       "terms": {
         "community": {
-          "name": "Topluluk",
-          "definition": "İlgi alanlarını, sektörleri, hedefleri veya fırsatları paylaşan ve bunların etrafında bir araya gelen insan grubu. Origin'de her topluluk, üyelerin birbirini bulduğu ve birlikte inşa ettiği bir odayla gelir."
+          "name": "Origin",
+          "definition": "Bir hedef etrafında başlattığınız alan. Bir Origin, bir şeyi gerçekleştirmek için gereken insanları ve kaynakları bir araya getirir — küçük bir işletme, bir yapay zekâ girişimi, bir kitap kulübü veya bir 10K koşusu. Origin'de her Origin, üyelerin birbirini bulduğu ve birlikte inşa ettiği bir odayla gelir."
         },
         "community-manager": {
           "name": "Topluluk yöneticisi",
-          "definition": "Bir topluluğu sıcak, aktif ve görevinde tutan kişi — yeni üyeleri karşılar, sohbeti başlatır ve projeleri koordine eder. Origin'de bir topluluğu başlatan üye, odasının sahibi ve moderatörüdür."
+          "definition": "Bir Origin'i sıcak, aktif ve görevinde tutan kişi — yeni üyeleri karşılar, sohbeti başlatır ve işi koordine eder. Origin'de bir Origin'i başlatan üye, odasının sahibi ve moderatörüdür."
         },
         "community-os": {
           "name": "Topluluk İşletim Sistemi",
-          "definition": "Profilleri, toplulukları, sohbeti, projeleri ve fırsatları tek bir düzenli çalışma alanında toplayan platform. Origin, JoinOrigin'in arkasındaki topluluk işletim sistemidir."
+          "definition": "Profilleri, Origins'leri, sohbeti, projeleri ve fırsatları tek bir düzenli çalışma alanında toplayan platform. Origin, JoinOrigin'in arkasındaki topluluk işletim sistemidir — fikirlerin, insanların ve kaynakların birlikte ilerlediği alan."
         },
         "moderation": {
           "name": "Moderasyon",
-          "definition": "Bir topluluğu net kurallar ve tutarlı, adil uygulamayla güvenli ve konu odaklı tutma pratiği. İyi moderasyon, bir topluluğu katılmaya değer kılan ilişkileri korur."
+          "definition": "Bir Origin'i net kurallar ve tutarlı, adil uygulamayla güvenli ve konu odaklı tutma pratiği. İyi moderasyon, bir Origin'i katılmaya değer kılan ilişkileri korur."
         },
         "onboarding": {
           "name": "Karşılama süreci",
@@ -729,11 +729,11 @@
         },
         "activation": {
           "name": "Aktivasyon",
-          "definition": "Yeni bir üyenin topluluğun parçası olmasını sağlayan eylemi gerçekleştirdiği an — ilk gönderisi, ilk etkinliği veya ilk projesi. Aktivasyon, katılmak ile katkıda bulunmak arasındaki adımdır."
+          "definition": "Yeni bir üyenin Origin'in parçası olmasını sağlayan eylemi gerçekleştirdiği an — ilk gönderisi, ilk önerisi veya ilk katkısı. Aktivasyon, katılmak ile katkıda bulunmak arasındaki adımdır."
         },
         "engagement-loop": {
           "name": "Etkileşim döngüsü",
-          "definition": "Bir topluluğu canlı tutan tekrarlayan katılım döngüsü: biri gönderi paylaşır, diğerleri yanıt verir ve sohbet geri dönmek için daha fazla neden yaratır. Sağlıklı döngüler, aktif bir topluluğun kalp atışıdır."
+          "definition": "Bir Origin'i ileriye taşıyan tekrarlayan döngü: biri bir ihtiyaç veya teklif paylaşır, diğerleri yanıt verir ve iş geri dönmek için daha fazla neden yaratır. Sağlıklı döngüler, aktif bir Origin'in kalp atışıdır."
         },
         "hybrid-events": {
           "name": "Hibrit etkinlikler",
@@ -741,7 +741,7 @@
         },
         "co-founder": {
           "name": "Kurucu ortak",
-          "definition": "Sizinle birlikte bir proje veya şirket kuran ve kuruluş yolculuğunu paylaşan kişi. Origin'de kurucu ortaklar genellikle ağ üzerinden bulunur — fikir sayfanıza katılan ve birlikte inşa etmeye karar veren insanlar."
+          "definition": "Sizinle birlikte bir proje veya şirket kuran ve kuruluş yolculuğunu paylaşan kişi. Origin'de kurucu ortaklar genellikle Origin'iniz üzerinden bulunur — bir ihtiyaca veya teklife yanıt veren, işe katılan ve birlikte inşa etmeye karar veren insanlar."
         }
       }
     },
