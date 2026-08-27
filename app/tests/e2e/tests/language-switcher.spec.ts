@@ -126,7 +126,7 @@ test.describe('language switcher responsive', () => {
  * The /location hub H1 is chrome (locale-independent registry EN title), so
  * it must resolve through the active locale dictionary on toggle
  * (`seoContent.breadcrumb.hub` via MenuHero `titleKey`). The honest presence
- * claim ("Find or start a community in {{city}}") and the home/hub breadcrumb
+ * claim ("Find or start an Origin in {{city}}") and the home/hub breadcrumb
  * crumbs re-resolve through the client dictionary the same way — the whole
  * hero + breadcrumb chrome must translate when the language is switched from
  * the /location page (URL-only locale: /en/location → /de/location).
@@ -144,15 +144,15 @@ test.describe('/location language toggle (TASK-477)', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 
     // EN chrome before the toggle.
-    await expect(page.locator('h1')).toContainText('Communities by City');
-    await expect(page.getByText('Find or start a community in your city')).toBeVisible();
+    await expect(page.locator('h1')).toContainText('Origins by City');
+    await expect(page.getByText('Find or start an Origin in your city')).toBeVisible();
     const breadcrumbs = page.getByTestId('location-breadcrumbs');
     await expect(breadcrumbs).toContainText('Home');
-    await expect(breadcrumbs).toContainText('Communities by City');
+    await expect(breadcrumbs).toContainText('Origins by City');
     // TASK-491 — the hub intro resolves through the EN dictionary.
     const enIntro = page.getByTestId('location-intro');
     await expect(enIntro).toContainText(
-      'Every country, region, city, community type, and event idea on the network',
+      'Every country, region, city, Origin type, and event idea on the network',
     );
 
     // Toggle to German through the header switcher (URL-only locale: no
@@ -170,19 +170,19 @@ test.describe('/location language toggle (TASK-477)', () => {
     // TASK-477: the h1 resolves through seoContent.breadcrumb.hub (German),
     // the presence claim city via seoContent.location.hubEntity, and the
     // home/hub breadcrumb crumbs through the active dictionary.
-    await expect(page.locator('h1')).toContainText('Communities nach Stadt', {
+    await expect(page.locator('h1')).toContainText('Origins nach Stadt', {
       timeout: 15_000,
     });
-    await expect(page.getByText('Community in deiner Stadt finden oder gründen')).toBeVisible();
+    await expect(page.getByText('Ein Origin in deiner Stadt finden oder gründen')).toBeVisible();
     // TASK-491 — the hub intro + hero lead re-translate on the de surface.
     await expect(page.getByTestId('location-intro')).toContainText(
-      'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+      'Jedes Land, jede Region, jede Stadt, jeder Origin-Typ und jede Veranstaltungsidee im Netzwerk',
     );
     const deBreadcrumbs = page.getByTestId('location-breadcrumbs');
     await expect(deBreadcrumbs).toContainText('Startseite');
-    await expect(deBreadcrumbs).toContainText('Communities nach Stadt');
+    await expect(deBreadcrumbs).toContainText('Origins nach Stadt');
     // No stale EN chrome on the toggled surface.
-    await expect(page.getByText('Find or start a community in your city')).toHaveCount(0);
+    await expect(page.getByText('Find or start an Origin in your city')).toHaveCount(0);
     await expect(deBreadcrumbs.getByText('Home')).toHaveCount(0);
     // URL-only contract (TASK-468): the toggle writes no locale cookie.
     expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
@@ -196,10 +196,10 @@ test.describe('/location language toggle (TASK-477)', () => {
 
     await page.goto('/de/location');
     await expect(page.locator('html')).toHaveAttribute('lang', 'de');
-    await expect(page.locator('h1')).toContainText('Communities nach Stadt');
-    await expect(page.getByText('Community in deiner Stadt finden oder gründen')).toBeVisible();
+    await expect(page.locator('h1')).toContainText('Origins nach Stadt');
+    await expect(page.getByText('Ein Origin in deiner Stadt finden oder gründen')).toBeVisible();
     await expect(page.getByTestId('location-intro')).toContainText(
-      'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+      'Jedes Land, jede Region, jede Stadt, jeder Origin-Typ und jede Veranstaltungsidee im Netzwerk',
     );
 
     const footerSwitcher = page.getByTestId('language-switcher-footer');
@@ -211,14 +211,14 @@ test.describe('/location language toggle (TASK-477)', () => {
 
     await expect(page).toHaveURL(/\/en\/location(?:\/|$)/, { timeout: 15_000 });
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-    await expect(page.locator('h1')).toContainText('Communities by City', { timeout: 15_000 });
-    await expect(page.getByText('Find or start a community in your city')).toBeVisible();
+    await expect(page.locator('h1')).toContainText('Origins by City', { timeout: 15_000 });
+    await expect(page.getByText('Find or start an Origin in your city')).toBeVisible();
     await expect(page.getByTestId('location-intro')).toContainText(
-      'Every country, region, city, community type, and event idea on the network',
+      'Every country, region, city, Origin type, and event idea on the network',
     );
     const enBreadcrumbs = page.getByTestId('location-breadcrumbs');
     await expect(enBreadcrumbs).toContainText('Home');
-    await expect(enBreadcrumbs).toContainText('Communities by City');
+    await expect(enBreadcrumbs).toContainText('Origins by City');
     expect(await page.evaluate(() => document.cookie)).not.toContain('joinorigin_locale');
   });
 });
@@ -331,7 +331,7 @@ test.describe('/location country page toggle — German H1 + localized crumb (TA
 
     await page.goto('/en/location/united-arab-emirates');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-    await expect(page.locator('h1')).toContainText('Communities in United Arab Emirates');
+    await expect(page.locator('h1')).toContainText('Origins in United Arab Emirates');
     // The EN country crumb is the dataset display name ("United Arab
     // Emirates") — TASK-516 replaced the EN registry title crumb.
     const enBreadcrumbs = page.getByTestId('location-breadcrumbs');
@@ -357,7 +357,7 @@ test.describe('/location country page toggle — German H1 + localized crumb (TA
     // The country breadcrumb crumb re-resolves through its nameLocalized map.
     const deBreadcrumbs = page.getByTestId('location-breadcrumbs');
     await expect(deBreadcrumbs).toContainText('Startseite');
-    await expect(deBreadcrumbs).toContainText('Communities nach Stadt');
+    await expect(deBreadcrumbs).toContainText('Origins nach Stadt');
     await expect(deBreadcrumbs).toContainText('Vereinigte Arabische Emirate');
     // No stale EN chrome.
     await expect(page.locator('h1')).not.toContainText('Communities in United Arab Emirates');

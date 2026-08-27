@@ -87,12 +87,12 @@ test.describe('location internal-link mesh navigation', () => {
     // the real in-page link navigation. All internal links carry the /en/**
     // prefix (TASK-464).
     await page.goto('/en/location/germany/berlin/berlin/startup');
-    await expect(page.locator('h1')).toContainText('Startup communities in Berlin');
+    await expect(page.locator('h1')).toContainText('Startup Origins in Berlin');
     await page.goto('/en/location/germany/berlin/berlin');
-    await expect(page.locator('h1')).toContainText('Communities in Berlin');
+    await expect(page.locator('h1')).toContainText('Origins in Berlin');
 
     await page.goto('/en/location');
-    await expect(page).toHaveTitle(/Communities by City/);
+    await expect(page).toHaveTitle(/Origins by City/);
     const berlinLink = page.locator('a[href="/en/location/germany/berlin/berlin"]').first();
     await expect(berlinLink).toBeVisible();
     await berlinLink.click();
@@ -128,7 +128,7 @@ test.describe('location internal-link mesh navigation', () => {
     await page.waitForTimeout(1200);
     await startupLink.click();
     await page.waitForURL('**/location/germany/berlin/berlin/startup', { timeout: 120_000 });
-    await expect(page).toHaveTitle(/Startup communities in Berlin/);
+    await expect(page).toHaveTitle(/Startup Origins in Berlin/);
   });
 
   test('every mesh level renders a single h1 + breadcrumbs + signup CTA', async ({ page }) => {
@@ -315,7 +315,7 @@ test.describe('location variant enrichment (TASK-319)', () => {
   }) => {
     await page.goto('/de/location/germany/berlin/berlin/startup');
     // Chrome headings localized via seoContent.* keys.
-    await expect(page.getByText('Wo sich Startup-Communities treffen')).toBeVisible();
+    await expect(page.getByText('Wo sich Startup-Origins treffen')).toBeVisible();
     await expect(page.getByText('Typische Formate')).toBeVisible();
     await expect(page.getByText('So startest du')).toBeVisible();
 
@@ -330,13 +330,13 @@ test.describe('location variant enrichment (TASK-319)', () => {
     page,
   }) => {
     await page.goto('/en/location/united-states/new-york/new-york/startup');
-    await expect(page.getByText('Where Startup communities gather')).toBeVisible();
+    await expect(page.getByText('Where Startup Origins gather')).toBeVisible();
     // NYC-specific venue copy.
     await expect(page.getByText(/Coworking spaces in SoHo and Flatiron/)).toBeVisible();
     await expect(page.getByTestId('variant-enrichment-venues')).toBeVisible();
 
     await page.goto('/en/location/germany/berlin/berlin/startup');
-    await expect(page.getByText('Where Startup communities gather')).toBeVisible();
+    await expect(page.getByText('Where Startup Origins gather')).toBeVisible();
     // Berlin-specific venue copy — no NYC overlap.
     await expect(page.getByText(/Coworking spaces in Mitte and Kreuzberg/)).toBeVisible();
     await expect(page.getByText('Coworking spaces in SoHo and Flatiron')).toHaveCount(0);
@@ -349,7 +349,7 @@ test.describe('location variant enrichment (TASK-319)', () => {
     await expect(page.getByText(/Coworking spaces in SoHo and Flatiron/)).toBeVisible();
 
     await page.goto('/en/location/united-states/new-york/new-york/creative');
-    await expect(page.getByText('Where Creative & design communities gather')).toBeVisible();
+    await expect(page.getByText('Where Creative & design Origins gather')).toBeVisible();
     await expect(page.getByText(/Chelsea gallery spaces/)).toBeVisible();
     await expect(page.getByText('Coworking spaces in SoHo and Flatiron')).toHaveCount(0);
   });
@@ -503,14 +503,14 @@ test.describe('full city-page mesh for content-rich cities (TASK-475)', () => {
   }
 
   for (const city of MESH_CITY_PAGES) {
-    test(`${city.name} city page renders Explore community types + Communities in nearby cities (TASK-475)`, async ({
+    test(`${city.name} city page renders Explore Origin types + Origins in nearby cities (TASK-475)`, async ({
       page,
     }) => {
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.goto(city.path);
       await expect(page.locator('h1')).toContainText(city.name);
-      await expect(page.getByText('Explore community types')).toBeVisible();
-      await expect(page.getByText('Communities in nearby cities')).toBeVisible();
+      await expect(page.getByText('Explore Origin types')).toBeVisible();
+      await expect(page.getByText('Origins in nearby cities')).toBeVisible();
       await expectMeshSections(page);
     });
 
@@ -531,8 +531,8 @@ test.describe('full city-page mesh for content-rich cities (TASK-475)', () => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/es/location/argentina/buenos-aires-f-d/buenos-aires');
     await expect(page.locator('html')).toHaveAttribute('lang', 'es');
-    await expect(page.getByText('Explora tipos de comunidad')).toBeVisible();
-    await expect(page.getByText('Comunidades en ciudades cercanas')).toBeVisible();
+    await expect(page.getByText('Explora tipos de Origin')).toBeVisible();
+    await expect(page.getByText('Origins en ciudades cercanas')).toBeVisible();
     await expectMeshSections(page);
 
     const startup = await page.goto('/es/location/argentina/buenos-aires-f-d/buenos-aires/startup');
@@ -546,8 +546,8 @@ test.describe('full city-page mesh for content-rich cities (TASK-475)', () => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/ar/location/united-arab-emirates/dubai/dubai');
     await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
-    await expect(page.getByText('استكشف أنواع المجتمعات')).toBeVisible();
-    await expect(page.getByText('مجتمعات في المدن القريبة')).toBeVisible();
+    await expect(page.getByText('استكشف أنواع Origin')).toBeVisible();
+    await expect(page.getByText('Origins في المدن القريبة')).toBeVisible();
     await expectMeshSections(page);
 
     const startup = await page.goto('/ar/location/united-arab-emirates/dubai/dubai/startup');
@@ -564,8 +564,8 @@ test.describe('full city-page mesh for content-rich cities (TASK-475)', () => {
       '/en/location/germany/berlin/berlin',
     ]) {
       await page.goto(path);
-      await expect(page.getByText('Explore community types')).toBeVisible();
-      await expect(page.getByText('Communities in nearby cities')).toBeVisible();
+      await expect(page.getByText('Explore Origin types')).toBeVisible();
+      await expect(page.getByText('Origins in nearby cities')).toBeVisible();
       await expectMeshSections(page);
     }
   });
@@ -632,8 +632,8 @@ test.describe('flagship cities + Browse-locations 5 sections (TASK-480)', () => 
       { testId: 'location-hub-directory-countries', label: 'Country' },
       { testId: 'location-hub-directory-regions', label: 'Region' },
       { testId: 'location-hub-directory-cities', label: 'City' },
-      { testId: 'location-hub-directory-communityTypes', label: 'Community type' },
-      { testId: 'location-hub-directory-eventIdeas', label: 'Community event ideas' },
+      { testId: 'location-hub-directory-communityTypes', label: 'Origin type' },
+      { testId: 'location-hub-directory-eventIdeas', label: 'Event ideas' },
     ] as const;
     for (const section of sections) {
       const grid = directory.getByTestId(section.testId);
@@ -654,7 +654,7 @@ test.describe('flagship cities + Browse-locations 5 sections (TASK-480)', () => 
       { testId: 'location-hub-directory-countries', label: 'Land' },
       { testId: 'location-hub-directory-regions', label: 'Region' },
       { testId: 'location-hub-directory-cities', label: 'Stadt' },
-      { testId: 'location-hub-directory-communityTypes', label: 'Community-Typ' },
+      { testId: 'location-hub-directory-communityTypes', label: 'Origin-Typen' },
       { testId: 'location-hub-directory-eventIdeas', label: 'Community-Event-Ideen' },
     ] as const;
     for (const section of sections) {
@@ -730,7 +730,7 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
       'Countries (38)',
       'Regions (54)',
       'Cities (56)',
-      'Community types (280)',
+      'Origin types (280)',
       'Event ideas (56)',
     ];
     for (const badge of badges) {
@@ -763,14 +763,14 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
     const banner = page.getByTestId('location-inventory-banner');
     await expect(banner).toBeVisible();
     // The stat value mirrors the directory total (484) with the localized
-    // label ("Places and Communities", TASK-485).
+    // label ("Places and Origins", TASK-485).
     await expect(banner).toContainText('484');
-    await expect(banner).toContainText('Places and Communities');
+    await expect(banner).toContainText('Places and Origins');
 
     // TASK-491 — the band mirrors the /community "Join the network"
     // section: SectionTitle heading + BodyCopy explainer + ExploreLinks row.
     await expect(page.getByRole('heading', { level: 2, name: 'Join the network' })).toBeVisible();
-    await expect(page.getByText('Browse every place and community on the network.')).toBeVisible();
+    await expect(page.getByText('Browse every place and Origin on the network.')).toBeVisible();
     const explore = page.getByTestId('location-inventory-explore');
     await expect(explore.getByRole('link', { name: 'Locations' })).toHaveAttribute(
       'href',
@@ -811,14 +811,14 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
     const banner = page.getByTestId('location-inventory-banner');
     await expect(banner).toBeVisible();
     await expect(banner).toContainText('484');
-    await expect(banner).toContainText('Orte und Communities');
+    await expect(banner).toContainText('Orte und Origins');
 
     // The full band localizes on the de surface (TASK-491).
     await expect(
       page.getByRole('heading', { level: 2, name: 'Tritt dem Netzwerk bei' }),
     ).toBeVisible();
     await expect(
-      page.getByText('Durchstöbere jeden Ort und jede Community im Netzwerk.'),
+      page.getByText('Durchstöbere jeden Ort und jedes Origin im Netzwerk.'),
     ).toBeVisible();
     const explore = page.getByTestId('location-inventory-explore');
     await expect(explore.getByRole('link', { name: 'Standorte' })).toHaveAttribute(
@@ -838,7 +838,7 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
  *    country, and the region list — with registry-exact hrefs on the ACTIVE
  *    locale surface (never `/en/**` on a non-EN surface).
  * 2. Every location screen (hub/country/city) renders the SAME 7-guide
- *    "Guides for starting a community" set — the /location hub and a city
+ *    "Guides for starting an Origin" set — the /location hub and a city
  *    page must expose identical guide links (titles + hrefs).
  * 3. The hub location-intro (`data-testid="location-intro"`) translates on
  *    the /de/location surface (and the EN surface renders the EN copy) —
@@ -851,7 +851,7 @@ test.describe('Story D: country mesh + unified guides + translated hub intro (TA
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/colombia');
     // Localized country name in the H1 (registry title, brand stripped).
-    await expect(page.locator('h1')).toContainText('Communities in Colombia');
+    await expect(page.locator('h1')).toContainText('Origins in Colombia');
 
     const mesh = page.getByTestId('location-country-mesh');
     await expect(mesh).toBeVisible();
@@ -895,7 +895,7 @@ test.describe('Story D: country mesh + unified guides + translated hub intro (TA
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/australia');
-    await expect(page.locator('h1')).toContainText('Communities in Australia');
+    await expect(page.locator('h1')).toContainText('Origins in Australia');
 
     const mesh = page.getByTestId('location-country-mesh');
     await expect(mesh).toBeVisible();
@@ -955,7 +955,7 @@ test.describe('Story D: country mesh + unified guides + translated hub intro (TA
 
     // The city page renders the identical guide set (titles + hrefs).
     await page.goto('/en/location/united-states/texas/austin');
-    await expect(page.locator('h1')).toContainText('Communities in Austin');
+    await expect(page.locator('h1')).toContainText('Origins in Austin');
     const cityGuides = page.getByTestId('location-guide-links');
     await expect(cityGuides).toBeVisible();
     await expect(cityGuides.locator('a')).toHaveCount(7);
@@ -972,13 +972,13 @@ test.describe('Story D: country mesh + unified guides + translated hub intro (TA
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location');
     await expect(page.getByTestId('location-intro')).toContainText(
-      'Every country, region, city, community type, and event idea on the network',
+      'Every country, region, city, Origin type, and event idea on the network',
     );
 
     await page.goto('/de/location');
     await expect(page.locator('html')).toHaveAttribute('lang', 'de');
     await expect(page.getByTestId('location-intro')).toContainText(
-      'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+      'Jedes Land, jede Region, jede Stadt, jeder Origin-Typ und jede Veranstaltungsidee im Netzwerk',
     );
   });
 
@@ -997,10 +997,8 @@ test.describe('Story D: country mesh + unified guides + translated hub intro (TA
     await expect(band).toHaveCount(1);
     await expect(band.getByRole('heading', { level: 2, name: 'Join the network' })).toBeVisible();
     await expect(band.getByTestId('location-inventory-banner')).toContainText('484');
-    await expect(band.getByTestId('location-inventory-banner')).toContainText(
-      'Places and Communities',
-    );
-    await expect(band.getByText('Browse every place and community on the network.')).toBeVisible();
+    await expect(band.getByTestId('location-inventory-banner')).toContainText('Places and Origins');
+    await expect(band.getByText('Browse every place and Origin on the network.')).toBeVisible();
     const explore = band.getByTestId('location-inventory-explore');
     await expect(explore.getByRole('link', { name: 'Locations' })).toHaveAttribute(
       'href',
@@ -1026,7 +1024,7 @@ test.describe('Story D: country mesh + unified guides + translated hub intro (TA
  *    "Country facts" data block, content-rich cities + regions sub-sections,
  *    and a FAQ (authored OR data-driven).
  * 2. Region pages (`/location/japan/osaka`) list the region's content-rich
- *    cities under a "Communities in nearby cities" section and render a
+ *    cities under an "Origins in nearby cities" section and render a
  *    data-driven FAQ.
  * 3. Content-rich cities with NO same-region siblings (jakarta/lima/
  *    singapore) still render the nearby-cities section via the sibling
@@ -1041,7 +1039,7 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/united-states');
-    await expect(page.locator('h1')).toContainText('Communities in the United States');
+    await expect(page.locator('h1')).toContainText('Origins in the United States');
 
     // Kind-appropriate "Country facts" label (never "City facts").
     await expect(page.getByRole('heading', { level: 2, name: 'Country facts' })).toBeVisible();
@@ -1070,7 +1068,7 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/italy');
-    await expect(page.locator('h1')).toContainText('Communities in Italy');
+    await expect(page.locator('h1')).toContainText('Origins in Italy');
 
     // Country facts label — italy now has authored content (TASK-503), so
     // the data points are the authored prose facts (richer than the dataset
@@ -1094,8 +1092,8 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
     // data-driven template).
     const faq = page.getByTestId('location-faq');
     await expect(faq).toBeVisible();
-    await expect(faq.getByText('How do I find communities in Italy?')).toBeVisible();
-    await expect(faq.getByText('Can I start a community in an Italian city?')).toBeVisible();
+    await expect(faq.getByText('How do I find Origins in Italy?')).toBeVisible();
+    await expect(faq.getByText('Can I start an Origin in an Italian city?')).toBeVisible();
     await expect(faq.getByText('Does JoinOrigin operate in Italy?')).toBeVisible();
   });
 
@@ -1104,7 +1102,7 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/norway');
-    await expect(page.locator('h1')).toContainText('Communities in Norway');
+    await expect(page.locator('h1')).toContainText('Origins in Norway');
 
     // Norway has no authored content: the page must still render the
     // dataset-driven "Country facts" data points (TASK-496) and the
@@ -1117,16 +1115,16 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
 
     const faq = page.getByTestId('location-faq');
     await expect(faq).toBeVisible();
-    await expect(faq.getByText('How do I find communities in Norway?')).toBeVisible();
+    await expect(faq.getByText('How do I find Origins in Norway?')).toBeVisible();
     await expect(faq.getByText('How many people live in Norway?')).toBeVisible();
   });
 
-  test('region page (japan/osaka) lists its cities + Communities in nearby cities + FAQ', async ({
+  test('region page (japan/osaka) lists its cities + Origins in nearby cities + FAQ', async ({
     page,
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/japan/osaka');
-    await expect(page.locator('h1')).toContainText('Communities in Osaka');
+    await expect(page.locator('h1')).toContainText('Origins in Osaka');
 
     // Region facts label + authored region data points (osaka region content
     // was authored in Story G TASK-505, so the authored prose facts win over
@@ -1138,11 +1136,11 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
     await expect(points).toContainText('more than eight million');
 
     // Region mesh — content-rich cities in the region under the localized
-    // "Communities in nearby cities" subtitle (TASK-496).
+    // "Origins in nearby cities" subtitle (TASK-496).
     const mesh = page.getByTestId('location-region-mesh');
     await expect(mesh).toBeVisible();
     await expect(mesh.getByTestId('location-region-name')).toContainText('Osaka Prefecture');
-    await expect(mesh.getByText('Communities in nearby cities')).toBeVisible();
+    await expect(mesh.getByText('Origins in nearby cities')).toBeVisible();
     const cityCards = mesh.getByTestId('location-region-cities');
     await expect(cityCards.getByRole('link', { name: 'Osaka' })).toBeVisible();
     await expect(cityCards.locator('a[href="/en/location/japan/osaka/osaka"]')).toBeVisible();
@@ -1155,7 +1153,7 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
       faq.getByText('Is the Osaka region different from the Osaka city scene?'),
     ).toBeVisible();
     await expect(
-      faq.getByText('Which Osaka districts have the most active communities?'),
+      faq.getByText('Which Osaka districts have the most active Origins?'),
     ).toBeVisible();
   });
 
@@ -1164,7 +1162,7 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/indonesia/jakarta/jakarta');
-    await expect(page.locator('h1')).toContainText('Communities in Jakarta');
+    await expect(page.locator('h1')).toContainText('Origins in Jakarta');
 
     const siblings = page.getByTestId('location-sibling-cities');
     await expect(siblings).toBeVisible();
@@ -1186,7 +1184,7 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/peru/lima-province/lima');
-    await expect(page.locator('h1')).toContainText('Communities in Lima');
+    await expect(page.locator('h1')).toContainText('Origins in Lima');
 
     const siblings = page.getByTestId('location-sibling-cities');
     await expect(siblings).toBeVisible();
@@ -1206,7 +1204,7 @@ test.describe('Story E: country/region content + city sibling fallback + FAQ lin
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/singapore/singapore/singapore');
-    await expect(page.locator('h1')).toContainText('Communities in Singapore');
+    await expect(page.locator('h1')).toContainText('Origins in Singapore');
 
     const siblings = page.getByTestId('location-sibling-cities');
     await expect(siblings).toBeVisible();
@@ -1299,7 +1297,7 @@ test.describe('Story G: content-rich country/region prose + predominant-locale c
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/mexico');
-    await expect(page.locator('h1')).toContainText('Communities in Mexico');
+    await expect(page.locator('h1')).toContainText('Origins in Mexico');
 
     // The authored intro (G2: ≥150 words) renders in the location-intro
     // block — never the short fallback hero lead.
@@ -1326,10 +1324,8 @@ test.describe('Story G: content-rich country/region prose + predominant-locale c
     // Authored FAQ on the country page.
     const faq = page.getByTestId('location-faq');
     await expect(faq).toBeVisible();
-    await expect(faq.getByText('How do I find communities in Mexico?')).toBeVisible();
-    await expect(
-      faq.getByText('How does regional identity shape Mexican communities?'),
-    ).toBeVisible();
+    await expect(faq.getByText('How do I find Origins in Mexico?')).toBeVisible();
+    await expect(faq.getByText('How does regional identity shape Mexican Origins?')).toBeVisible();
   });
 
   test('osaka region page renders a content-rich intro (≥150 words) + region mesh + FAQ', async ({
@@ -1337,7 +1333,7 @@ test.describe('Story G: content-rich country/region prose + predominant-locale c
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/en/location/japan/osaka');
-    await expect(page.locator('h1')).toContainText('Communities in Osaka');
+    await expect(page.locator('h1')).toContainText('Origins in Osaka');
 
     // The authored region intro (G2: ≥150 words).
     const intro = page.getByTestId('location-intro');
@@ -1515,7 +1511,7 @@ test.describe('Story H: /location i18n completeness (TASK-519)', () => {
     // the country crumb carries the localized de dataset name.
     const breadcrumbs = page.getByTestId('location-breadcrumbs');
     await expect(breadcrumbs).toContainText('Startseite');
-    await expect(breadcrumbs).toContainText('Communities nach Stadt');
+    await expect(breadcrumbs).toContainText('Origins nach Stadt');
     await expect(breadcrumbs).toContainText('Vereinigte Arabische Emirate');
     await expect(breadcrumbs.getByText('Home')).toHaveCount(0);
     await expect(breadcrumbs).not.toContainText('Communities in United Arab Emirates');
@@ -1535,14 +1531,14 @@ test.describe('Story H: /location i18n completeness (TASK-519)', () => {
     await expect(
       page.getByRole('heading', {
         level: 2,
-        name: 'Find or start a community in Ho Chi Minh City',
+        name: 'Find or start an Origin in Ho Chi Minh City',
         exact: true,
       }),
     ).toBeVisible();
     await expect(
       page.getByRole('heading', {
         level: 2,
-        name: 'Find or start a community in ho chi minh city',
+        name: 'Find or start an Origin in ho chi minh city',
         exact: true,
       }),
     ).toHaveCount(0);
@@ -1560,14 +1556,14 @@ test.describe('Story H: /location i18n completeness (TASK-519)', () => {
     await expect(
       page.getByRole('heading', {
         level: 2,
-        name: 'Find or start a community in Osaka Prefecture',
+        name: 'Find or start an Origin in Osaka Prefecture',
         exact: true,
       }),
     ).toBeVisible();
     await expect(
       page.getByRole('heading', {
         level: 2,
-        name: 'Find or start a community in osaka',
+        name: 'Find or start an Origin in osaka',
         exact: true,
       }),
     ).toHaveCount(0);
@@ -1677,7 +1673,7 @@ test.describe('Sprint 22: mobile-first location surfaces + full-card + focus (TA
     const card = page.getByTestId('location-hub-directory-countries').locator('a').first();
     await expectFullCardClickNavigates(page, card);
     // Landed on the country page with its content rendered.
-    await expect(page.locator('h1')).toContainText(/Communities in/);
+    await expect(page.locator('h1')).toContainText(/Origins in/);
   });
 
   test('full-card click: clicking the corner of a city sibling card navigates', async ({
@@ -1689,7 +1685,7 @@ test.describe('Sprint 22: mobile-first location surfaces + full-card + focus (TA
 
     const card = page.getByTestId('location-sibling-cities').locator('a').first();
     await expectFullCardClickNavigates(page, card);
-    await expect(page.locator('h1')).toContainText(/Communities in/);
+    await expect(page.locator('h1')).toContainText(/Origins in/);
   });
 
   test('keyboard focus indicator: a directory card focused via Tab shows a visible :focus-visible outline', async ({

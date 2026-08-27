@@ -57,7 +57,7 @@ const TRANSITIONS: readonly Transition[] = [
     origin: '/en/location',
     target: '/en/location/united-states',
     linkSelector: 'a[href="/en/location/united-states"]',
-    targetH1: 'Communities in the United States',
+    targetH1: 'Origins in the United States',
     budget: 100,
   },
   {
@@ -71,14 +71,14 @@ const TRANSITIONS: readonly Transition[] = [
     origin: '/en',
     target: '/en/location',
     linkSelector: '[data-testid="footer"] a[href="/en/location"]',
-    targetH1: 'Communities by City',
+    targetH1: 'Origins by City',
     budget: 200,
   },
   {
     origin: '/en',
     target: '/en/guides',
     linkSelector: '[data-testid="footer"] a[href="/en/guides"]',
-    targetH1: 'Community Building Guides',
+    targetH1: 'Origin Building Guides',
     budget: 300,
   },
 ];

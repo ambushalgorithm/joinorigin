@@ -309,12 +309,12 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
       '/de/location/germany/berlin/berlin/ideas',
       '/en/guides',
       '/en/glossary',
-      '/en/guides/start-a-community',
+      '/en/guides/start-an-origin',
       '/en/guides/organize-a-meetup',
       '/en/guides/first-10-members',
       '/en/guides/find-a-co-founder',
-      '/en/guides/keep-a-community-active',
-      '/en/guides/hybrid-communities',
+      '/en/guides/keep-an-origin-active',
+      '/en/guides/hybrid-origins',
       '/en/guides/moderation',
       '/en/guides/publish-an-idea',
       '/en/guides/create-a-project',
@@ -437,7 +437,7 @@ test.describe('crawler entry points (arch §3.7–§3.9)', () => {
     expect(text).toContain('[/en/location/united-states/new-york/new-york](');
     expect(text).toContain('[/en/location/germany/berlin/berlin](');
     expect(text).toContain('## Guides');
-    expect(text).toContain('[/en/guides/start-a-community](');
+    expect(text).toContain('[/en/guides/start-an-origin](');
     expect(text).toContain('[/en/guides/moderation](');
     expect(text).toContain('## Glossary');
     expect(text).toContain('[/en/glossary](');
@@ -707,7 +707,7 @@ test.describe('Sprint 24 structured-data + llms brand alignment (TASK-557/559)',
     // parseable body (guide intro/steps/FAQ, flagship-city intro).
     expect(text).toContain('## Locations');
     expect(text).toContain('## Guides');
-    expect(text).toContain('### /en/guides/start-a-community');
+    expect(text).toContain('### /en/guides/start-an-origin');
     // Full-text expansion: the file carries the actual guide body text, far
     // beyond the ~3 KB /llms.txt index budget.
     expect(Buffer.byteLength(text, 'utf8')).toBeGreaterThan(10 * 1024);

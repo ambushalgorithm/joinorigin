@@ -180,7 +180,7 @@ test.describe('every join CTA → /<locale>/signup with "Get Started" (TASK-556/
   });
 
   test('guide join CTA routes to the locale-prefixed signup', async ({ page }) => {
-    await page.goto('/en/guides/start-a-community');
+    await page.goto('/en/guides/start-an-origin');
     const guideCta = page.getByTestId('guide-join-button');
     await expect(guideCta).toBeVisible();
     // The guide CTA is a button inside a wrapping Next.js Link anchor.
@@ -234,9 +234,7 @@ test.describe('count-up SSR — final statics, no 0+ placeholders (G-5, TASK-558
     await context.close();
   });
 
-  test('location hub no-JS HTML renders 484 Places and Communities (never 0)', async ({
-    browser,
-  }) => {
+  test('location hub no-JS HTML renders 484 Places and Origins (never 0)', async ({ browser }) => {
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();
     await page.goto('/en/location');
@@ -244,7 +242,7 @@ test.describe('count-up SSR — final statics, no 0+ placeholders (G-5, TASK-558
     await expect(banner).toBeVisible();
     const text = await banner.innerText();
     expect(text).toContain('484');
-    expect(text).toContain('Places and Communities');
+    expect(text).toContain('Places and Origins');
     expect(text).not.toMatch(/^0\s/);
     await context.close();
   });
