@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'paris',
   pageTitles: {
-    city: 'Communities in Paris | JoinOrigin',
+    city: 'Origins in Paris | JoinOrigin',
     cityDescription:
-      'Find or start communities in Paris — startup, creative, political, meetup, and small business groups across the capital. JoinOrigin waitlist.',
+      'Find or start Origins in Paris — startup, creative, political, meetup, and small business groups across the capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Paris | JoinOrigin',
-      creative: 'Creative communities in Paris | JoinOrigin',
-      political: 'Political & civic communities in Paris | JoinOrigin',
-      meetup: 'Meetup & social communities in Paris | JoinOrigin',
-      'small-business': 'Small business communities in Paris | JoinOrigin',
+      startup: 'Startup Origins in Paris | JoinOrigin',
+      creative: 'Creative Origins in Paris | JoinOrigin',
+      political: 'Political & civic Origins in Paris | JoinOrigin',
+      meetup: 'Meetup & social Origins in Paris | JoinOrigin',
+      'small-business': 'Small business Origins in Paris | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Paris — founders, engineers, and operators around Station F, Le Sentier, and La Défense. JoinOrigin waitlist.',
+        'Find or start startup Origins in Paris — founders, engineers, and operators around Station F, Le Sentier, and La Défense. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Paris — ateliers, galleries, and collectives across Le Marais, Belleville, and the Canal Saint-Martin. JoinOrigin waitlist.',
+        'Find or start creative Origins in Paris — ateliers, galleries, and collectives across Le Marais, Belleville, and the Canal Saint-Martin. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Paris — associations, arrondissement councils, and local campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Paris — associations, arrondissement councils, and local campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Paris — apéros, café tables, language exchanges, and park gatherings. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Paris — apéros, café tables, language exchanges, and park gatherings. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Paris — market traders, café and shop owners, and artisan networks. JoinOrigin waitlist.',
+        'Find or start small business Origins in Paris — market traders, café and shop owners, and artisan networks. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Paris | JoinOrigin',
+    ideas: '30 Origin event ideas in Paris | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Paris — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Paris — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Paris organises itself around the arrondissement — twenty districts that spiral out from the Seine like a snail shell, each with its own squares, markets, and loyalties. A community that picks one arrondissement and shows up there weekly quickly becomes part of the neighbourhood furniture. Cafés, which line nearly every street, double as informal community venues where groups claim a table the way Berliners claim a Stammtisch.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Paris has built one of Europe’s most visible startup ecosystems around Station F, the giant former freight depot that now houses hundreds of early-stage companies, and around La French Tech, a national label that connects founders to mentors and international markets. The historical textile district of Le Sentier has become the heart of the young tech scene, while La Défense anchors corporate innovation and the Grandes Écoles supply a deep bench of engineers and business graduates. Recurring formats include founder breakfasts, pitch evenings, demo days, and industry-specific apéros where fintech, AI, and climate teams compare notes over drinks. English is increasingly common in meetups, which helps international founders plug in before their French improves. What makes Paris distinct is the blend of government-supported infrastructure — public funding, incubators, and events — with a strong café culture that keeps the scene informal. Starting a startup community here works best with a narrow vertical and a regular rhythm: a monthly AI builders night or a climate tech table builds a loyal following faster than a generalist group.',
+      'Paris has built one of Europe’s most visible startup ecosystems around Station F, the giant former freight depot that now houses hundreds of early-stage companies, and around La French Tech, a national label that connects founders to mentors and international markets. The historical textile district of Le Sentier has become the heart of the young tech scene, while La Défense anchors corporate innovation and the Grandes Écoles supply a deep bench of engineers and business graduates. Recurring formats include founder breakfasts, pitch evenings, demo days, and industry-specific apéros where fintech, AI, and climate teams compare notes over drinks. English is increasingly common in meetups, which helps international founders plug in before their French improves. What makes Paris distinct is the blend of government-supported infrastructure — public funding, incubators, and events — with a strong café culture that keeps the scene informal. Starting a startup Origin here works best with a narrow vertical and a regular rhythm: a monthly AI builders night or a climate tech table builds a loyal following faster than a generalist group.',
     creative:
-      'Paris creative life is woven into the city’s streets: ateliers in Belleville and Ménilmontant, galleries in Le Marais, fashion studios in Le Sentier, and cinema and music scenes across the 11th and 19th arrondissements. The Canal Saint-Martin has become a gathering line for artists, designers, and musicians, while schools like the École des Arts Décoratifs and the Beaux-Arts graduate a steady flow of makers into a freelance economy built on collaboration. Open studio weekends, portfolio reviews, gallery walkthroughs, and design critique evenings are the standard formats, and many collectives share not just space but equipment — printing presses, cameras, sewing machines. The city’s scale means communities can be as niche as a group of risograph printers or as broad as a neighbourhood art festival. Starting a creative community in Paris is realistic: pick a craft, an arrondissement, and a regular evening, and the density of curious, skilled people will find you.',
+      'Paris creative life is woven into the city’s streets: ateliers in Belleville and Ménilmontant, galleries in Le Marais, fashion studios in Le Sentier, and cinema and music scenes across the 11th and 19th arrondissements. The Canal Saint-Martin has become a gathering line for artists, designers, and musicians, while schools like the École des Arts Décoratifs and the Beaux-Arts graduate a steady flow of makers into a freelance economy built on collaboration. Open studio weekends, portfolio reviews, gallery walkthroughs, and design critique evenings are the standard formats, and many collectives share not just space but equipment — printing presses, cameras, sewing machines. The city’s scale means communities can be as niche as a group of risograph printers or as broad as a neighbourhood art festival. Starting a creative Origin in Paris is realistic: pick a craft, an arrondissement, and a regular evening, and the density of curious, skilled people will find you.',
     political:
-      'Paris has a deep civic tradition organised through the loi 1901 association — a legal form used by thousands of neighbourhood groups, cultural societies, and volunteer projects. Each of the twenty arrondissements has its own town hall and council, which keeps local politics accessible: residents can attend council sessions, join neighbourhood associations, and shape decisions on housing, schools, and public space. Housing is a defining concern, and tenant groups run information evenings and rent-law workshops open to newcomers. Climate and mobility activists organise around car-free streets, cycling, and urban greening, while civic tech volunteers build tools for participatory budgeting and city data. The culture rewards persistence: Parisians join a group because of trust, and trust is built by showing up to real meetings over months. Starting a political community means choosing a concrete issue and a small geography, then partnering with existing associations rather than duplicating them — the landscape is rich enough that collaboration beats competition.',
+      'Paris has a deep civic tradition organised through the loi 1901 association — a legal form used by thousands of neighbourhood groups, cultural societies, and volunteer projects. Each of the twenty arrondissements has its own town hall and council, which keeps local politics accessible: residents can attend council sessions, join neighbourhood associations, and shape decisions on housing, schools, and public space. Housing is a defining concern, and tenant groups run information evenings and rent-law workshops open to newcomers. Climate and mobility activists organise around car-free streets, cycling, and urban greening, while civic tech volunteers build tools for participatory budgeting and city data. The culture rewards persistence: Parisians join a group because of trust, and trust is built by showing up to real meetings over months. Starting a political Origin means choosing a concrete issue and a small geography, then partnering with existing associations rather than duplicating them — the landscape is rich enough that collaboration beats competition.',
     meetup:
       'Paris’s meetup scene runs on the café, the park bench, and the apéro — the evening drink that turns strangers into regulars. Groups gather for language exchanges, book clubs, board games, photography walks, and running sessions along the Seine and Canal Saint-Martin. The bar à jeux, a board game bar, is a distinctly Parisian venue that hosts casual game nights all week. Parks like the Buttes-Chaumont and the Luxembourg Gardens fill with picnics, outdoor film screenings, and improvised sports in good weather. What newcomers notice is the ritual: the same table at the same café, the same bench, the same Saturday walk, repeated until it becomes a habit. International residents run many English-speaking or bilingual groups, so newcomers can plug in quickly. If you want to start a meetup, choose a repeatable format and a venue that will host you every time — a weekly apéro, a monthly language table — and let Paris’s density of curious people do the rest.',
     'small-business':
-      'Paris small business communities are anchored by the city’s markets, passages, and neighbourhood streets. Marché d’Aligre, Marché des Enfants Rouges, and the covered markets of every arrondissement are not just shopping destinations — they are tight-knit communities of traders who share calendars, suppliers, and advice. The passage couverts, covered shopping arcades from the nineteenth century, still host artisans, bookshops, and cafés that treat their corridor as a shared business. Bistros and bakeries form their own networks of owners who compare notes on rent, staffing, and delivery logistics. Chambers of commerce and arrondissement business groups offer workshops on paperwork, digitalisation, and funding, often in both French and English. What binds these groups is place: a market hall or a passage is a natural community with a collective stake in foot traffic. Starting a small business community is very achievable: a monthly roundtable at a neighbourhood café, with rotating topics like rent, payroll, and online selling, reliably attracts owners who rarely have peers to talk with.',
+      'Paris small business communities are anchored by the city’s markets, passages, and neighbourhood streets. Marché d’Aligre, Marché des Enfants Rouges, and the covered markets of every arrondissement are not just shopping destinations — they are tight-knit communities of traders who share calendars, suppliers, and advice. The passage couverts, covered shopping arcades from the nineteenth century, still host artisans, bookshops, and cafés that treat their corridor as a shared business. Bistros and bakeries form their own networks of owners who compare notes on rent, staffing, and delivery logistics. Chambers of commerce and arrondissement business groups offer workshops on paperwork, digitalisation, and funding, often in both French and English. What binds these groups is place: a market hall or a passage is a natural community with a collective stake in foot traffic. Starting a small business Origin is very achievable: a monthly roundtable at a neighbourhood café, with rotating topics like rent, payroll, and online selling, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Paris is an ideal city for testing new community event ideas: cafés are everywhere, public spaces are generous, and the association culture gives every group a recognised shape. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Paris, from café back rooms and bar à jeux to the Seine riverbanks and community gardens. Some ideas work as one-off events; others are designed to become recurring communities with an apéro rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Paris’s curiosity do the rest.',
+      'Paris is an ideal city for testing new Origin event ideas: cafés are everywhere, public spaces are generous, and the association culture gives every group a recognised shape. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Paris, from café back rooms and bar à jeux to the Seine riverbanks and community gardens. Some ideas work as one-off events; others are designed to become recurring Origins with an apéro rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Paris’s curiosity do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -430,22 +430,22 @@ const content: CityContent = {
           'No. Many Paris events run in English or are bilingual, and the international community is large. A bilingual announcement usually doubles your reach.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Paris communities start, and the association culture gives every group a recognised shape. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Paris Origins start, and the association culture gives every group a recognised shape. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Paris?',
+      question: 'How do I find an Origin in Paris?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real arrondissements, venues, and formats where Parisians gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real arrondissements, venues, and formats where Parisians gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Paris?',
+      question: 'Is it realistic to start an Origin in Paris?',
       answer:
-        'Yes. Paris has cafés everywhere, generous public space, and a strong association culture. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Paris has cafés everywhere, generous public space, and a strong association culture. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Paris?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Parisians find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Parisians find or start Origins.',
     },
   ],
 };

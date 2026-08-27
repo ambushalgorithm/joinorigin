@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'madrid',
   pageTitles: {
-    city: 'Communities in Madrid | JoinOrigin',
+    city: 'Origins in Madrid | JoinOrigin',
     cityDescription:
-      'Find or start communities in Madrid — startup, creative, political, meetup, and small business groups across the Spanish capital. JoinOrigin waitlist.',
+      'Find or start Origins in Madrid — startup, creative, political, meetup, and small business groups across the Spanish capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Madrid | JoinOrigin',
-      creative: 'Creative communities in Madrid | JoinOrigin',
-      political: 'Political & civic communities in Madrid | JoinOrigin',
-      meetup: 'Meetup & social communities in Madrid | JoinOrigin',
-      'small-business': 'Small business communities in Madrid | JoinOrigin',
+      startup: 'Startup Origins in Madrid | JoinOrigin',
+      creative: 'Creative Origins in Madrid | JoinOrigin',
+      political: 'Political & civic Origins in Madrid | JoinOrigin',
+      meetup: 'Meetup & social Origins in Madrid | JoinOrigin',
+      'small-business': 'Small business Origins in Madrid | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Madrid — founders, engineers, and operators around Malasaña, Gran Vía, and the tech hubs. JoinOrigin waitlist.',
+        'Find or start startup Origins in Madrid — founders, engineers, and operators around Malasaña, Gran Vía, and the tech hubs. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Madrid — studios, galleries, and collectives across Lavapiés, Matadero, and Malasaña. JoinOrigin waitlist.',
+        'Find or start creative Origins in Madrid — studios, galleries, and collectives across Lavapiés, Matadero, and Malasaña. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Madrid — district boards, asociaciones de vecinos, and local campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Madrid — district boards, asociaciones de vecinos, and local campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Madrid — tapas crawls, terrace life, Retiro park, and barrio gatherings. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Madrid — tapas crawls, terrace life, Retiro park, and barrio gatherings. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Madrid — market traders, family shops, and barrio networks. JoinOrigin waitlist.',
+        'Find or start small business Origins in Madrid — market traders, family shops, and barrio networks. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Madrid | JoinOrigin',
+    ideas: '30 Origin event ideas in Madrid | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Madrid — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Madrid — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Madrid is a city that lives outdoors and late. The day starts with coffee on a terrace, flows through the rastro flea market on Sunday, and ends with tapas in La Latina or Chueca long after midnight. This rhythm makes community life easy: almost every gathering has a natural venue — a bar terrace, a plaza, a corner of the Retiro park — and almost everyone is open to a conversation.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Madrid’s startup scene has matured rapidly into Spain’s largest, anchored by corporate headquarters, major universities, and a growing venture community around Malasaña and Gran Vía. The city combines the stability of a capital with the informality of a barrio: founders meet in coworking spaces and tech hubs during the day and continue conversations on rooftops at night. Strengths include SaaS, marketplaces, fintech, and a fast-growing AI scene, with strong ties to Latin America that make Madrid a natural bridge for Spanish-speaking founders. Formats include founder breakfasts, pitch evenings, demo days, and industry happy hours that rotate between converted bank halls and startup cafés. The scene is genuinely international — English is common in meetups, while Spanish remains the default for many local groups. The city’s later rhythm shapes events: dinners run long, and networking often continues at a terrace. Starting a startup community in Madrid works best with a narrow vertical and a regular rhythm — a monthly SaaS founders table or an AI builders night builds a loyal following faster than a generalist group.',
+      'Madrid’s startup scene has matured rapidly into Spain’s largest, anchored by corporate headquarters, major universities, and a growing venture community around Malasaña and Gran Vía. The city combines the stability of a capital with the informality of a barrio: founders meet in coworking spaces and tech hubs during the day and continue conversations on rooftops at night. Strengths include SaaS, marketplaces, fintech, and a fast-growing AI scene, with strong ties to Latin America that make Madrid a natural bridge for Spanish-speaking founders. Formats include founder breakfasts, pitch evenings, demo days, and industry happy hours that rotate between converted bank halls and startup cafés. The scene is genuinely international — English is common in meetups, while Spanish remains the default for many local groups. The city’s later rhythm shapes events: dinners run long, and networking often continues at a terrace. Starting a startup Origin in Madrid works best with a narrow vertical and a regular rhythm — a monthly SaaS founders table or an AI builders night builds a loyal following faster than a generalist group.',
     creative:
-      'Madrid’s creative communities are anchored by the Golden Triangle of museums — the Prado, Reina Sofía, and Thyssen — and energised by the barrios around them. Lavapiés has become the creative frontier, with studios, galleries, and international artists, while Matadero Madrid, a converted slaughterhouse, hosts a year-round programme of exhibitions, residencies, and maker events. Malasaña carries the indie spirit of the movida, the cultural explosion that followed the Franco years, and still hosts design studios, record shops, and fanzine culture. Formats include open studio weekends, gallery walkthroughs, portfolio nights, and music production circles, with the city’s late hours turning evening critiques into late-night conversations. Independent cinemas and bookshop cafés add a literary thread that connects writers, translators, and editors. The scene is big enough to support niche communities and compact enough that word travels fast. Starting a creative community in Madrid is realistic: pick a craft, a barrio, and a regular evening, and the density of curious, skilled people will find you.',
+      'Madrid’s creative communities are anchored by the Golden Triangle of museums — the Prado, Reina Sofía, and Thyssen — and energised by the barrios around them. Lavapiés has become the creative frontier, with studios, galleries, and international artists, while Matadero Madrid, a converted slaughterhouse, hosts a year-round programme of exhibitions, residencies, and maker events. Malasaña carries the indie spirit of the movida, the cultural explosion that followed the Franco years, and still hosts design studios, record shops, and fanzine culture. Formats include open studio weekends, gallery walkthroughs, portfolio nights, and music production circles, with the city’s late hours turning evening critiques into late-night conversations. Independent cinemas and bookshop cafés add a literary thread that connects writers, translators, and editors. The scene is big enough to support niche communities and compact enough that word travels fast. Starting a creative Origin in Madrid is realistic: pick a craft, a barrio, and a regular evening, and the density of curious, skilled people will find you.',
     political:
-      'Madrid’s civic landscape is defined by its asociaciones de vecinos — neighbourhood associations that were central to the recovery of democracy after the Franco years and still run local life today. The city is divided into districts with elected boards, and the civic platforms born from the 15-M movement continue to shape housing, mobility, and public space debates. Housing is the defining issue: the tourist economy has pushed rents up, producing tenant unions and campaigns for public and affordable housing that draw national attention. The Madrid Río project — a highway turned riverside park — is the city’s most visible proof that organised residents can win big transformations. Community centres in every district host meetings, classes, and volunteer groups. The political culture rewards persistence and presence: residents who show up to assemblies and speak plainly get results. Starting a political community means choosing a concrete issue and a small geography, then partnering with existing associations — the landscape is rich enough that collaboration beats competition.',
+      'Madrid’s civic landscape is defined by its asociaciones de vecinos — neighbourhood associations that were central to the recovery of democracy after the Franco years and still run local life today. The city is divided into districts with elected boards, and the civic platforms born from the 15-M movement continue to shape housing, mobility, and public space debates. Housing is the defining issue: the tourist economy has pushed rents up, producing tenant unions and campaigns for public and affordable housing that draw national attention. The Madrid Río project — a highway turned riverside park — is the city’s most visible proof that organised residents can win big transformations. Community centres in every district host meetings, classes, and volunteer groups. The political culture rewards persistence and presence: residents who show up to assemblies and speak plainly get results. Starting a political Origin means choosing a concrete issue and a small geography, then partnering with existing associations — the landscape is rich enough that collaboration beats competition.',
     meetup:
       'Madrid’s meetup scene is built on the terrace, the tapas bar, and the late night. Barrios like Malasaña, Chueca, and La Latina live outdoors: terraces fill from morning coffee to midnight drinks, and the Cava Baja’s tapas alleys turn eating into a social sport. The Retiro park and the Madrid Río riverbanks offer green escapes for picnics, games, and outdoor classes, while Sunday’s rastro market turns the streets of La Latina into a moving festival. Formats include weekly terrace gatherings, tapas crawls, language exchanges (Spanish–English), board game nights, and late-night walking tours through the old town. The city’s hours are generous — a meetup that starts at nine in the evening is perfectly normal. Newcomers are welcomed with warmth, and the city’s density means a small group can fill a terrace without effort. Starting a meetup in Madrid means choosing a repeatable format and a fixed spot — a weekly terrace meet or a monthly tapas crawl — and the city’s love of company does the rest.',
     'small-business':
-      'Madrid small business communities are anchored by the city’s markets, the rastro, and the family shop tradition. Market halls like San Miguel, San Antón, and Vallehermoso are not just food destinations — they are communities of stallholders who share suppliers, schedules, and gossip. The rastro, the Sunday flea market, has been running for centuries and still hosts traders who know each other across generations. Family shops in Salamanca, Chamberí, and the barrios form friendly networks of owners who compare notes on rent, staffing, and footfall. The chamber of commerce offers workshops on permits, digitalisation, and financing, while barrio commercial associations organise joint promotions and street events. What binds these groups is place: a market hall or a shopping street is a natural community with a collective stake in the neighbourhood’s life. Starting a small business community is very achievable: a monthly trader breakfast at a market hall, with rotating topics like rent, permits, and online selling, reliably attracts owners who rarely have peers to talk with.',
+      'Madrid small business communities are anchored by the city’s markets, the rastro, and the family shop tradition. Market halls like San Miguel, San Antón, and Vallehermoso are not just food destinations — they are communities of stallholders who share suppliers, schedules, and gossip. The rastro, the Sunday flea market, has been running for centuries and still hosts traders who know each other across generations. Family shops in Salamanca, Chamberí, and the barrios form friendly networks of owners who compare notes on rent, staffing, and footfall. The chamber of commerce offers workshops on permits, digitalisation, and financing, while barrio commercial associations organise joint promotions and street events. What binds these groups is place: a market hall or a shopping street is a natural community with a collective stake in the neighbourhood’s life. Starting a small business Origin is very achievable: a monthly trader breakfast at a market hall, with rotating topics like rent, permits, and online selling, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Madrid is an ideal city for testing new community event ideas: terraces and plazas are free venues, the hours are long, and the city’s associative tradition gives every group a recognised shape. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Madrid, from terrace bars and market halls to the Retiro park and Matadero’s creative halls. Some ideas work as one-off events; others are designed to become recurring communities with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Madrid’s open-air energy do the rest.',
+      'Madrid is an ideal city for testing new Origin event ideas: terraces and plazas are free venues, the hours are long, and the city’s associative tradition gives every group a recognised shape. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Madrid, from terrace bars and market halls to the Retiro park and Matadero’s creative halls. Some ideas work as one-off events; others are designed to become recurring Origins with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Madrid’s open-air energy do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -429,22 +429,22 @@ const content: CityContent = {
           'No. Many Madrid groups run in English or are bilingual, especially in tech and creative scenes. A little Spanish opens doors with neighbours and market traders.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Madrid communities start, and the city’s associative tradition gives you a proven pattern. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Madrid Origins start, and the city’s associative tradition gives you a proven pattern. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Madrid?',
+      question: 'How do I find an Origin in Madrid?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real barrios, venues, and formats where Madrileños gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real barrios, venues, and formats where Madrileños gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Madrid?',
+      question: 'Is it realistic to start an Origin in Madrid?',
       answer:
-        'Yes. Madrid has terraces and plazas everywhere, generous park space, and a strong associative tradition. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Madrid has terraces and plazas everywhere, generous park space, and a strong associative tradition. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -454,7 +454,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Madrid?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Madrileños find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Madrileños find or start Origins.',
     },
   ],
 };

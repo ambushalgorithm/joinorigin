@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'istanbul',
   pageTitles: {
-    city: 'Communities in Istanbul | JoinOrigin',
+    city: 'Origins in Istanbul | JoinOrigin',
     cityDescription:
-      'Find or start communities in Istanbul — startup, creative, political, meetup, and small business groups across Turkey’s largest city. JoinOrigin waitlist.',
+      'Find or start Origins in Istanbul — startup, creative, political, meetup, and small business groups across Turkey’s largest city. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Istanbul | JoinOrigin',
-      creative: 'Creative communities in Istanbul | JoinOrigin',
-      political: 'Political & civic communities in Istanbul | JoinOrigin',
-      meetup: 'Meetup & social communities in Istanbul | JoinOrigin',
-      'small-business': 'Small business communities in Istanbul | JoinOrigin',
+      startup: 'Startup Origins in Istanbul | JoinOrigin',
+      creative: 'Creative Origins in Istanbul | JoinOrigin',
+      political: 'Political & civic Origins in Istanbul | JoinOrigin',
+      meetup: 'Meetup & social Origins in Istanbul | JoinOrigin',
+      'small-business': 'Small business Origins in Istanbul | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Istanbul — founders, engineers, and operators around Kadıköy, Beşiktaş, and the e-commerce scene. JoinOrigin waitlist.',
+        'Find or start startup Origins in Istanbul — founders, engineers, and operators around Kadıköy, Beşiktaş, and the e-commerce scene. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Istanbul — studios, galleries, and collectives across Karaköy, Kadıköy, and Beyoğlu. JoinOrigin waitlist.',
+        'Find or start creative Origins in Istanbul — studios, galleries, and collectives across Karaköy, Kadıköy, and Beyoğlu. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Istanbul — neighbourhood solidarity networks, housing activism, and local campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Istanbul — neighbourhood solidarity networks, housing activism, and local campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Istanbul — çay gardens, Bosphorus ferries, seaside walks, and backgammon evenings. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Istanbul — çay gardens, Bosphorus ferries, seaside walks, and backgammon evenings. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Istanbul — bazaar traders, esnaf networks, and family shops. JoinOrigin waitlist.',
+        'Find or start small business Origins in Istanbul — bazaar traders, esnaf networks, and family shops. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Istanbul | JoinOrigin',
+    ideas: '30 Origin event ideas in Istanbul | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Istanbul — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Istanbul — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Istanbul is the only major city in the world that spans two continents, and its communities span even more: the ferries that cross the Bosphorus connect the European side’s business districts with the Asian side’s cafés and neighbourhood life, making the boat ride itself a daily social ritual. Tea is the lubricant — çay gardens, tea shops, and the glasses served at every shop and office keep conversations flowing.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Istanbul’s startup scene is the largest in the region, powered by a young population, a deep engineering talent pool, and home-grown giants in e-commerce and food delivery. Kadıköy on the Asian side hosts a dense cluster of coworking spaces and startup cafés, while Beşiktaş and Maslak on the European side anchor gaming studios, fintech, and corporate innovation. Universities such as Boğaziçi and ITU feed a steady stream of graduates into early teams, and the city’s position between Europe and Asia makes it a natural hub for cross-border expansion. Formats include founder breakfasts, pitch evenings, demo days, and gaming nights that showcase the country’s proudest industry. The community is young, energetic, and increasingly English-speaking, though Turkish remains the default for local groups. Istanbul’s rhythm is social and late — meetings often continue over tea or dinner. Starting a startup community here works best with a narrow vertical and a regular rhythm — a monthly e-commerce table or a gaming founders night builds a loyal following faster than a generalist group.',
+      'Istanbul’s startup scene is the largest in the region, powered by a young population, a deep engineering talent pool, and home-grown giants in e-commerce and food delivery. Kadıköy on the Asian side hosts a dense cluster of coworking spaces and startup cafés, while Beşiktaş and Maslak on the European side anchor gaming studios, fintech, and corporate innovation. Universities such as Boğaziçi and ITU feed a steady stream of graduates into early teams, and the city’s position between Europe and Asia makes it a natural hub for cross-border expansion. Formats include founder breakfasts, pitch evenings, demo days, and gaming nights that showcase the country’s proudest industry. The community is young, energetic, and increasingly English-speaking, though Turkish remains the default for local groups. Istanbul’s rhythm is social and late — meetings often continue over tea or dinner. Starting a startup Origin here works best with a narrow vertical and a regular rhythm — a monthly e-commerce table or a gaming founders night builds a loyal following faster than a generalist group.',
     creative:
-      'Istanbul’s creative communities bridge two continents and a dozen traditions: Karaköy’s converted warehouses host galleries and design studios, Kadıköy’s streets carry the city’s liveliest murals, and Beyoğlu keeps the bohemian energy of a district that has inspired artists for a century. The city’s craft traditions — ceramics, tiles, calligraphy, and carpet weaving — connect old workshops with contemporary makers. Art schools and the city’s film and music scenes feed a steady stream of talent into a community known for visual art, music, and cinema. Formats include open studio weekends in Kadıköy, Karaköy gallery walks, design critiques, and music production circles, with çay gardens providing the natural meeting point after every event. The scene is dense and connected — a good project can travel from a Moda studio to a Karaköy gallery in a week. Starting a creative community in Istanbul is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
+      'Istanbul’s creative communities bridge two continents and a dozen traditions: Karaköy’s converted warehouses host galleries and design studios, Kadıköy’s streets carry the city’s liveliest murals, and Beyoğlu keeps the bohemian energy of a district that has inspired artists for a century. The city’s craft traditions — ceramics, tiles, calligraphy, and carpet weaving — connect old workshops with contemporary makers. Art schools and the city’s film and music scenes feed a steady stream of talent into a community known for visual art, music, and cinema. Formats include open studio weekends in Kadıköy, Karaköy gallery walks, design critiques, and music production circles, with çay gardens providing the natural meeting point after every event. The scene is dense and connected — a good project can travel from a Moda studio to a Karaköy gallery in a week. Starting a creative Origin in Istanbul is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
     political:
-      'Istanbul’s civic life is anchored by a strong culture of komşuluk — neighbourhood solidarity — and by organised movements around housing, public space, and disaster preparedness. The city’s geography makes planning a constant public question: the Bosphorus bridges, the metro expansion, and the redevelopment of old neighbourhoods are all fought over in real community consultations. Housing is a defining issue, with tenant associations and neighbourhood networks organising against displacement and rising rents. Community kitchens, day centres, and volunteer networks respond to daily needs, while the city’s experience with earthquakes has produced serious preparedness training, including first-aid and building-safety workshops that welcome newcomers. The political culture values directness and solidarity: Istanbul residents help their neighbours first and debate policy after. Starting a political community means choosing a concrete issue and a small geography, then partnering with the solidarity network that already exists in your neighbourhood — the landscape is rich enough that collaboration beats competition.',
+      'Istanbul’s civic life is anchored by a strong culture of komşuluk — neighbourhood solidarity — and by organised movements around housing, public space, and disaster preparedness. The city’s geography makes planning a constant public question: the Bosphorus bridges, the metro expansion, and the redevelopment of old neighbourhoods are all fought over in real community consultations. Housing is a defining issue, with tenant associations and neighbourhood networks organising against displacement and rising rents. Community kitchens, day centres, and volunteer networks respond to daily needs, while the city’s experience with earthquakes has produced serious preparedness training, including first-aid and building-safety workshops that welcome newcomers. The political culture values directness and solidarity: Istanbul residents help their neighbours first and debate policy after. Starting a political Origin means choosing a concrete issue and a small geography, then partnering with the solidarity network that already exists in your neighbourhood — the landscape is rich enough that collaboration beats competition.',
     meetup:
       'Istanbul’s meetup scene runs on tea, water, and conversation. The çay bahçesi, the tea garden, is the city’s true public living room — glasses of tea, backgammon boards, and long conversations under the trees. The Bosphorus ferries add a floating social layer: commuters and groups alike ride the boats for the views, and a ferry gathering is a uniquely Istanbul way to meet. The seaside walks of Moda, Beşiktaş, and Üsküdar host running groups, strollers, and fishermen, while Emirgan and Yıldız parks fill with picnics and family gatherings. Backgammon evenings in kahvehane and tea gardens keep an old tradition alive, and language exchanges (Turkish–English) run across the city. The rhythm is late and generous — a meetup that starts at nine in the evening is perfectly normal. Starting a meetup in Istanbul means choosing a repeatable format and a fixed spot — a weekly çay garden meet or a monthly ferry ride — and the city’s hospitality does the rest.',
     'small-business':
-      'Istanbul small business communities run on the bazaar and the esnaf — the tradesmen who have anchored neighbourhood commerce for centuries. The Grand Bazaar and the Spice Bazaar are the most famous, but every neighbourhood has its own market square where stallholders know each other across generations. The esnaf culture is built on trust: shopkeepers help each other with deliveries, customers, and the endless paperwork of permits and licences. Kadıköy market and the food halls of the European side add a modern layer of young entrepreneurs who share suppliers and pop-up spaces. Chambers of commerce and trade associations offer workshops on digitalisation and exporting, while the city’s festivals give traders a shared calendar. What binds these groups is place and habit: a bazaar or a shop corridor is a natural community with a collective stake in the street’s character. Starting a small business community is very achievable: a monthly esnaf tea at a market hall, with rotating topics like permits, rent, and online selling, reliably attracts owners who rarely have peers to talk with.',
+      'Istanbul small business communities run on the bazaar and the esnaf — the tradesmen who have anchored neighbourhood commerce for centuries. The Grand Bazaar and the Spice Bazaar are the most famous, but every neighbourhood has its own market square where stallholders know each other across generations. The esnaf culture is built on trust: shopkeepers help each other with deliveries, customers, and the endless paperwork of permits and licences. Kadıköy market and the food halls of the European side add a modern layer of young entrepreneurs who share suppliers and pop-up spaces. Chambers of commerce and trade associations offer workshops on digitalisation and exporting, while the city’s festivals give traders a shared calendar. What binds these groups is place and habit: a bazaar or a shop corridor is a natural community with a collective stake in the street’s character. Starting a small business Origin is very achievable: a monthly esnaf tea at a market hall, with rotating topics like permits, rent, and online selling, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Istanbul is an ideal city for testing new community event ideas: çay gardens and seaside cafés are everywhere, the ferries make every meeting an adventure, and Turkish hospitality guarantees a warm welcome. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Istanbul, from tea gardens and ferry piers to bazaars and neighbourhood kitchens. Some ideas work as one-off events; others are designed to become recurring communities with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Istanbul’s hospitality do the rest.',
+      'Istanbul is an ideal city for testing new Origin event ideas: çay gardens and seaside cafés are everywhere, the ferries make every meeting an adventure, and Turkish hospitality guarantees a warm welcome. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Istanbul, from tea gardens and ferry piers to bazaars and neighbourhood kitchens. Some ideas work as one-off events; others are designed to become recurring Origins with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Istanbul’s hospitality do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -429,22 +429,22 @@ const content: CityContent = {
           'No. Many Istanbul groups run in English or are bilingual, especially in tech and creative scenes. A little Turkish — and a lot of çay — opens doors with neighbours and traders.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Istanbul communities start, and the city’s hospitality gives you a proven pattern. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Istanbul Origins start, and the city’s hospitality gives you a proven pattern. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Istanbul?',
+      question: 'How do I find an Origin in Istanbul?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real districts, venues, and formats where Istanbul residents gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real districts, venues, and formats where Istanbul residents gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Istanbul?',
+      question: 'Is it realistic to start an Origin in Istanbul?',
       answer:
-        'Yes. Istanbul has tea gardens, ferries, and seaside promenades as free venues, plus a famously hospitable culture. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Istanbul has tea gardens, ferries, and seaside promenades as free venues, plus a famously hospitable culture. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -454,7 +454,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Istanbul?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Istanbul residents find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Istanbul residents find or start Origins.',
     },
   ],
 };

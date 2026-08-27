@@ -335,8 +335,10 @@ export function intentPhrase(kind: PageKind, typePhrase?: string): string {
 
 /**
  * G4 check: title + description must include the city name and the page's
- * intent phrase (city page → "communities", variant → the group-type
- * label, idea page → "ideas"/localized). Used by the registry + tested.
+ * intent phrase (city page → "communities"/"Origins", variant → the
+ * group-type label, idea page → "ideas"/localized). Used by the registry +
+ * tested. Accepts both the community-era and Origin-era entity phrases so
+ * committed legacy content stays gate-passing during the Wave-3 reframe.
  */
 export function intentMatches(
   title: string,
@@ -354,12 +356,33 @@ export function intentMatches(
 
   if ((kind === 'variant' || kind === 'ideas') && typePhrase) {
     const phrase = typePhrase.toLowerCase();
-    return titleLower.includes(phrase) || descriptionLower.includes(phrase);
+    // Wave-3: titles carry the Origin phrasing while the G4 intent phrase
+    // chrome key may still resolve the legacy community-era label (or the
+    // committed per-locale content titles are still community-era) —
+    // accept either so gate-passing pages stay indexable during the reframe.
+    const originPhrase =
+      kind === 'ideas'
+        ? 'origin event ideas'
+        : phrase.replace('communities', 'origins').replace('community', 'origin');
+    const communityPhrase = phrase.replace('origins', 'communities').replace('origin', 'community');
+    return (
+      titleLower.includes(phrase) ||
+      descriptionLower.includes(phrase) ||
+      titleLower.includes(originPhrase) ||
+      descriptionLower.includes(originPhrase) ||
+      titleLower.includes(communityPhrase) ||
+      descriptionLower.includes(communityPhrase)
+    );
   }
   if (kind === 'ideas') {
     return titleLower.includes('idea') || descriptionLower.includes('idea');
   }
-  return titleLower.includes('commun') || descriptionLower.includes('commun');
+  return (
+    titleLower.includes('commun') ||
+    descriptionLower.includes('commun') ||
+    titleLower.includes('origin') ||
+    descriptionLower.includes('origin')
+  );
 }
 
 export function gateG4(

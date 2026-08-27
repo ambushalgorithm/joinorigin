@@ -75,13 +75,11 @@ describe('LocationView language toggle (TASK-477)', () => {
     renderWithI18n(<ToggleHarness data={data} />, 'en');
 
     // Initial EN surface.
-    expect(
-      screen.getByRole('heading', { level: 1, name: 'Communities by City' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'Origins by City' })).toBeInTheDocument();
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('Home')).toBeInTheDocument();
-    expect(within(breadcrumbs).getByText('Communities by City')).toBeInTheDocument();
-    expect(screen.getByText('Find or start a community in your city')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Origins by City')).toBeInTheDocument();
+    expect(screen.getByText('Find or start an Origin in your city')).toBeInTheDocument();
 
     // Toggle to de — the H1, claim, and breadcrumb chrome re-translate even
     // though the view model is still the EN route build.
@@ -89,13 +87,13 @@ describe('LocationView language toggle (TASK-477)', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByRole('heading', { level: 1, name: 'Communities nach Stadt' }),
+        screen.getByRole('heading', { level: 1, name: 'Origins nach Stadt' }),
       ).toBeInTheDocument();
     });
-    expect(screen.getByText('Community in deiner Stadt finden oder gründen')).toBeInTheDocument();
+    expect(screen.getByText('Ein Origin in deiner Stadt finden oder gründen')).toBeInTheDocument();
     const deCrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(deCrumbs).getByText('Startseite')).toBeInTheDocument();
-    expect(within(deCrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
+    expect(within(deCrumbs).getByText('Origins nach Stadt')).toBeInTheDocument();
   });
 
   it('never mixes the route-locale claim city with toggled claim chrome', async () => {
@@ -106,12 +104,14 @@ describe('LocationView language toggle (TASK-477)', () => {
     const data = buildLocationViewData(hubEntry()!, 'de');
     renderWithI18n(<ToggleHarness data={data} />, 'en');
 
-    expect(screen.getByText('Find or start a community in your city')).toBeInTheDocument();
-    expect(screen.queryByText('Find or start a community in deiner Stadt')).not.toBeInTheDocument();
+    expect(screen.getByText('Find or start an Origin in your city')).toBeInTheDocument();
+    expect(screen.queryByText('Find or start an Origin in deiner Stadt')).not.toBeInTheDocument();
 
     await user.click(screen.getByText('switch-de'));
     await waitFor(() => {
-      expect(screen.getByText('Community in deiner Stadt finden oder gründen')).toBeInTheDocument();
+      expect(
+        screen.getByText('Ein Origin in deiner Stadt finden oder gründen'),
+      ).toBeInTheDocument();
     });
     expect(
       screen.queryByText('Community in your city finden oder gründen'),
@@ -138,7 +138,7 @@ describe('LocationView non-hub H1 + breadcrumb localization (TASK-516)', () => {
 
     // Initial EN surface — registry heading + EN dataset crumb.
     expect(
-      screen.getByRole('heading', { level: 1, name: 'Communities in United Arab Emirates' }),
+      screen.getByRole('heading', { level: 1, name: 'Origins in United Arab Emirates' }),
     ).toBeInTheDocument();
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('United Arab Emirates')).toBeInTheDocument();
@@ -165,7 +165,7 @@ describe('LocationView non-hub H1 + breadcrumb localization (TASK-516)', () => {
     renderWithI18n(<ToggleHarness data={data} />, 'en');
 
     expect(
-      screen.getByRole('heading', { level: 1, name: 'Communities in Berlin' }),
+      screen.getByRole('heading', { level: 1, name: 'Origins in Berlin' }),
     ).toBeInTheDocument();
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('Germany')).toBeInTheDocument();
@@ -180,7 +180,7 @@ describe('LocationView non-hub H1 + breadcrumb localization (TASK-516)', () => {
     });
     const deCrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(deCrumbs).getByText('Startseite')).toBeInTheDocument();
-    expect(within(deCrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
+    expect(within(deCrumbs).getByText('Origins nach Stadt')).toBeInTheDocument();
     expect(within(deCrumbs).getByText('Deutschland')).toBeInTheDocument();
     // Region + city crumbs both localize to "Berlin" on the de surface.
     expect(within(deCrumbs).getAllByText('Berlin')).toHaveLength(2);
@@ -199,7 +199,7 @@ describe('LocationView hub intro translation (TASK-491)', () => {
 
     const intro = screen.getByTestId('location-intro');
     expect(intro).toHaveTextContent(
-      'Every country, region, city, community type, and event idea on the network',
+      'Every country, region, city, Origin type, and event idea on the network',
     );
   });
 
@@ -209,20 +209,20 @@ describe('LocationView hub intro translation (TASK-491)', () => {
     renderWithI18n(<ToggleHarness data={data} />, 'en');
 
     expect(screen.getByTestId('location-intro')).toHaveTextContent(
-      'Every country, region, city, community type, and event idea on the network',
+      'Every country, region, city, Origin type, and event idea on the network',
     );
 
     await user.click(screen.getByText('switch-de'));
 
     await waitFor(() => {
       expect(screen.getByTestId('location-intro')).toHaveTextContent(
-        'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+        'Jedes Land, jede Region, jede Stadt, jeder Origin-Typ und jede Veranstaltungsidee im Netzwerk',
       );
     });
     // The hero lead re-translates through the active dictionary too.
     expect(
       screen.getByText(
-        'Entdecke Communities in Städten auf der ganzen Welt — Startup-, Kreativ-, Politik-, Meetup- und Kleinunternehmens-Gruppen.',
+        'Entdecke Origins in Städten auf der ganzen Welt — Startup-, Kreativ-, Politik-, Meetup- und Kleinunternehmens-Gruppen.',
       ),
     ).toBeInTheDocument();
   });
@@ -246,7 +246,7 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
     { key: 'countries', label: 'Countries' },
     { key: 'regions', label: 'Regions' },
     { key: 'cities', label: 'Cities' },
-    { key: 'communityTypes', label: 'Community types' },
+    { key: 'communityTypes', label: 'Origin types' },
     { key: 'eventIdeas', label: 'Event ideas' },
   ] as const;
 
@@ -266,12 +266,12 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
     // CountUpStat with the total count + localized label.
     const banner = screen.getByTestId('location-inventory-banner');
     expect(banner).toHaveTextContent(String(total));
-    expect(banner).toHaveTextContent('Places and Communities');
+    expect(banner).toHaveTextContent('Places and Origins');
 
     // BodyCopy explainer.
     expect(
       screen.getByText(
-        'Browse every place and community on the network. Find the one that fits you, or start one in your city.',
+        'Browse every place and Origin on the network. Find the one that fits you, or start one in your city.',
       ),
     ).toBeInTheDocument();
 
@@ -299,7 +299,7 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
     const start = html.indexOf('data-testid="location-inventory-banner"');
     const pillHtml = html.slice(start, html.indexOf('</div>', start));
     expect(pillHtml.match(/>(\d+)</)?.[1]).toBe(String(total));
-    expect(pillHtml).toContain('Places and Communities');
+    expect(pillHtml).toContain('Places and Origins');
     expect(pillHtml).toContain(String(total));
   });
 
@@ -340,7 +340,7 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
     expect(screen.getByRole('link', { name: 'Communities in Colombia' })).toBeInTheDocument();
     // Cities scoped to Colombia resolve through the country name too.
     expect(
-      screen.getByRole('link', { name: 'Communities in Bogota, Bogota D.C.' }),
+      screen.getByRole('link', { name: 'Origins in Bogota, Bogota D.C.' }),
     ).toBeInTheDocument();
   });
 });
@@ -499,7 +499,7 @@ describe('LocationView full-card links + hover/focus rules (TASK-533, Stories C/
     for (const sibling of data.siblingCities) {
       const link = grid.getByRole('link', { name: new RegExp(sibling.name) });
       expect(link).toHaveTextContent(sibling.name);
-      expect(link).toHaveTextContent('Explore communities');
+      expect(link).toHaveTextContent('Explore Origins');
       expect(link.getAttribute('href')).toBe(localizePath(sibling.path, mockPathname, 'en'));
       expect(link.querySelector('a')).toBeNull();
     }
@@ -546,7 +546,7 @@ describe('LocationView full-card links + hover/focus rules (TASK-533, Stories C/
     expect(links.length).toBe(data.siblingCities.length);
     for (const sibling of data.siblingCities) {
       const link = grid.getByRole('link', { name: new RegExp(sibling.name) });
-      expect(link).toHaveTextContent('Explore communities');
+      expect(link).toHaveTextContent('Explore Origins');
       expect(link.getAttribute('href')).toBe(localizePath(sibling.path, mockPathname, 'en'));
       expect(link.querySelector('a')).toBeNull();
     }

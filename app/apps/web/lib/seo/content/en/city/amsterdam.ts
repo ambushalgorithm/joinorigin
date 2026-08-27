@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'amsterdam',
   pageTitles: {
-    city: 'Communities in Amsterdam | JoinOrigin',
+    city: 'Origins in Amsterdam | JoinOrigin',
     cityDescription:
-      'Find or start communities in Amsterdam — startup, creative, political, meetup, and small business groups across the Dutch capital. JoinOrigin waitlist.',
+      'Find or start Origins in Amsterdam — startup, creative, political, meetup, and small business groups across the Dutch capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Amsterdam | JoinOrigin',
-      creative: 'Creative communities in Amsterdam | JoinOrigin',
-      political: 'Political & civic communities in Amsterdam | JoinOrigin',
-      meetup: 'Meetup & social communities in Amsterdam | JoinOrigin',
-      'small-business': 'Small business communities in Amsterdam | JoinOrigin',
+      startup: 'Startup Origins in Amsterdam | JoinOrigin',
+      creative: 'Creative Origins in Amsterdam | JoinOrigin',
+      political: 'Political & civic Origins in Amsterdam | JoinOrigin',
+      meetup: 'Meetup & social Origins in Amsterdam | JoinOrigin',
+      'small-business': 'Small business Origins in Amsterdam | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Amsterdam — founders, engineers, and operators around TQ, Zuidas, and the fintech scene. JoinOrigin waitlist.',
+        'Find or start startup Origins in Amsterdam — founders, engineers, and operators around TQ, Zuidas, and the fintech scene. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Amsterdam — studios, galleries, and collectives across NDSM, the Jordaan, and Oost. JoinOrigin waitlist.',
+        'Find or start creative Origins in Amsterdam — studios, galleries, and collectives across NDSM, the Jordaan, and Oost. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Amsterdam — stadsdeel councils, housing activism, and neighbourhood networks. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Amsterdam — stadsdeel councils, housing activism, and neighbourhood networks. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Amsterdam — bruin cafés, borrels, cycling groups, and canalside gatherings. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Amsterdam — bruin cafés, borrels, cycling groups, and canalside gatherings. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Amsterdam — Jordaan shops, Albert Cuyp market traders, and neighbourhood networks. JoinOrigin waitlist.',
+        'Find or start small business Origins in Amsterdam — Jordaan shops, Albert Cuyp market traders, and neighbourhood networks. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Amsterdam | JoinOrigin',
+    ideas: '30 Origin event ideas in Amsterdam | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Amsterdam — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Amsterdam — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Amsterdam is a compact city where everyone seems to know someone who knows someone. The canal ring, the Jordaan, De Pijp, Oost, and Noord each have their own character, but the whole city sits on a human scale — you can cycle from one community to another in fifteen minutes. The bicycle is the true social network: group rides, bike-pooling parents, and after-work fietsen to a park barbecue are part of everyday life.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Amsterdam’s startup scene is compact, international, and surprisingly deep for a city of its size. The tech quarter around TQ in the centre, the Zuidas business district, and a strong fintech corridor have produced global companies while keeping a community feel. The city’s trading history shows in its founders: marketplaces, payments, logistics, and travel tech are recurring strengths, and climate tech has grown quickly as Dutch sustainability culture meets venture capital. English is the default language in most groups, which makes the scene one of Europe’s most accessible for international founders. Formats include founder breakfasts, pitch evenings, demo days, and fintech happy hours that rotate between canal-house offices and startup cafés. The Dutch preference for directness and planning shapes the community: events start on time, feedback is honest, and groups with a clear agenda thrive. Starting a startup community in Amsterdam works best with a narrow vertical and a regular rhythm — a monthly climate founder table or an AI builders night builds a loyal following faster than a generalist group.',
+      'Amsterdam’s startup scene is compact, international, and surprisingly deep for a city of its size. The tech quarter around TQ in the centre, the Zuidas business district, and a strong fintech corridor have produced global companies while keeping a community feel. The city’s trading history shows in its founders: marketplaces, payments, logistics, and travel tech are recurring strengths, and climate tech has grown quickly as Dutch sustainability culture meets venture capital. English is the default language in most groups, which makes the scene one of Europe’s most accessible for international founders. Formats include founder breakfasts, pitch evenings, demo days, and fintech happy hours that rotate between canal-house offices and startup cafés. The Dutch preference for directness and planning shapes the community: events start on time, feedback is honest, and groups with a clear agenda thrive. Starting a startup Origin in Amsterdam works best with a narrow vertical and a regular rhythm — a monthly climate founder table or an AI builders night builds a loyal following faster than a generalist group.',
     creative:
-      'Amsterdam’s creative communities are concentrated and walkable: NDSM wharf on the north bank hosts a city of studios, galleries, and event halls inside former shipyard sheds, while the Jordaan carries a centuries-old tradition of ateliers and galleries. The Rijksakademie and the Gerrit Rietveld Academie feed a steady stream of artists and designers into a scene known for graphic design, photography, street art, and music. Formats include open studio weekends, gallery walkthroughs, portfolio reviews, and design critiques, many held in canal-house studios that give the city its particular intimacy. NDSM’s graffiti-covered walls and annual street-art festivals make it a magnet for makers, while Oost and the Pijp host a younger generation of studios and collectives. The scene is small enough that word travels fast and big enough to support niche communities — risograph printers, techno producers, ceramicists. Starting a creative community in Amsterdam is realistic: pick a craft, a neighbourhood, and a regular evening, and the city’s density of curious, skilled people will find you.',
+      'Amsterdam’s creative communities are concentrated and walkable: NDSM wharf on the north bank hosts a city of studios, galleries, and event halls inside former shipyard sheds, while the Jordaan carries a centuries-old tradition of ateliers and galleries. The Rijksakademie and the Gerrit Rietveld Academie feed a steady stream of artists and designers into a scene known for graphic design, photography, street art, and music. Formats include open studio weekends, gallery walkthroughs, portfolio reviews, and design critiques, many held in canal-house studios that give the city its particular intimacy. NDSM’s graffiti-covered walls and annual street-art festivals make it a magnet for makers, while Oost and the Pijp host a younger generation of studios and collectives. The scene is small enough that word travels fast and big enough to support niche communities — risograph printers, techno producers, ceramicists. Starting a creative Origin in Amsterdam is realistic: pick a craft, a neighbourhood, and a regular evening, and the city’s density of curious, skilled people will find you.',
     political:
-      'Amsterdam’s civic life is structured around its seven stadsdelen, or boroughs, each with elected councils and a real say in local planning. Housing is the dominant issue: the city’s tight rental market has produced active tenant organisations, squatting history, and ongoing campaigns for affordable housing and cooperative building. The wijkcentra, neighbourhood centres, are the physical homes of local life, hosting meetings, language classes, and volunteer groups. Civic tech volunteers build tools for participatory budgeting and city data, while community gardens and shared courtyards give residents a hands-on stake in public space. Mobility politics is also lively — cycling advocacy, car-free streets, and canal-boat permits all have their campaigns. The Dutch political culture is consultative: residents expect to be heard in planning processes, and well-organised neighbourhoods get results. Starting a political community means choosing a concrete issue and a small geography, then partnering with existing organisations — the landscape is organised enough that collaboration beats competition.',
+      'Amsterdam’s civic life is structured around its seven stadsdelen, or boroughs, each with elected councils and a real say in local planning. Housing is the dominant issue: the city’s tight rental market has produced active tenant organisations, squatting history, and ongoing campaigns for affordable housing and cooperative building. The wijkcentra, neighbourhood centres, are the physical homes of local life, hosting meetings, language classes, and volunteer groups. Civic tech volunteers build tools for participatory budgeting and city data, while community gardens and shared courtyards give residents a hands-on stake in public space. Mobility politics is also lively — cycling advocacy, car-free streets, and canal-boat permits all have their campaigns. The Dutch political culture is consultative: residents expect to be heard in planning processes, and well-organised neighbourhoods get results. Starting a political Origin means choosing a concrete issue and a small geography, then partnering with existing organisations — the landscape is organised enough that collaboration beats competition.',
     meetup:
       'Amsterdam’s meetup scene runs on the bruin café, the borrel, and the bicycle. The brown pubs of the Jordaan and De Pijp are living rooms with regulars, candles, and dark wood — the natural home of a weekly borrel, the Dutch after-work drink that turns colleagues into friends. In summer the Vondelpark, the city’s beaches, and the canal quays fill with picnics, barbecues, and outdoor games, while boat trips turn group rides into floating parties. Cycling is the connective tissue: group rides, weekend tours, and the city’s bike-first culture mean a meetup can gather anywhere in fifteen minutes. Formats include language exchanges (Dutch–English), board game nights, canal-side walks, and Friday borrels that welcome newcomers explicitly. The city’s scale keeps everything human — a group of twenty is already a lively evening. Starting a meetup in Amsterdam means choosing a repeatable format and a venue that will host you every time; the city’s density and casual friendliness do the rest.',
     'small-business':
-      'Amsterdam small business communities are shaped by the city’s markets, canals, and neighbourhood streets. The Albert Cuyp market in De Pijp is one of Europe’s busiest day markets and a tight community of traders who share suppliers, gossip, and seasonal calendars. The Jordaan’s independent shops — cheese, books, vintage, flowers — form a friendly network of owners who know each other by name, and Foodhallen has turned the food hall into a community of young entrepreneurs. The chamber of commerce offers structured workshops on permits, digitalisation, and financing, while the city’s many brewery taprooms host supplier nights and trade socials. What binds these groups is place: a market hall, a shopping street, or a canal block is a natural community with a collective stake in foot traffic and the neighbourhood’s reputation. Newcomers typically join by attending a market meeting, taking a chamber workshop, or visiting a taproom event. Starting a small business community is very achievable: a monthly roundtable at a neighbourhood café, with rotating topics like rent, permits, and online selling, reliably attracts owners who rarely have peers to talk with.',
+      'Amsterdam small business communities are shaped by the city’s markets, canals, and neighbourhood streets. The Albert Cuyp market in De Pijp is one of Europe’s busiest day markets and a tight community of traders who share suppliers, gossip, and seasonal calendars. The Jordaan’s independent shops — cheese, books, vintage, flowers — form a friendly network of owners who know each other by name, and Foodhallen has turned the food hall into a community of young entrepreneurs. The chamber of commerce offers structured workshops on permits, digitalisation, and financing, while the city’s many brewery taprooms host supplier nights and trade socials. What binds these groups is place: a market hall, a shopping street, or a canal block is a natural community with a collective stake in foot traffic and the neighbourhood’s reputation. Newcomers typically join by attending a market meeting, taking a chamber workshop, or visiting a taproom event. Starting a small business Origin is very achievable: a monthly roundtable at a neighbourhood café, with rotating topics like rent, permits, and online selling, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Amsterdam is an ideal city for testing new community event ideas: the city is compact, the parks and canals are generous, and the bruin café gives every group a natural venue. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Amsterdam, from bruin café corners and board game cafés to NDSM studios and the Vondelpark lawns. Some ideas work as one-off events; others are designed to become recurring communities with a borrel rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Amsterdam’s scale do the rest.',
+      'Amsterdam is an ideal city for testing new Origin event ideas: the city is compact, the parks and canals are generous, and the bruin café gives every group a natural venue. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Amsterdam, from bruin café corners and board game cafés to NDSM studios and the Vondelpark lawns. Some ideas work as one-off events; others are designed to become recurring Origins with a borrel rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Amsterdam’s scale do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -427,25 +427,25 @@ const content: CityContent = {
       {
         question: 'Do I need to speak Dutch to organise?',
         answer:
-          'No. English is widely spoken and many groups run in English. A little Dutch goes a long way with neighbours, but you can start a community today in English.',
+          'No. English is widely spoken and many groups run in English. A little Dutch goes a long way with neighbours, but you can start an Origin today in English.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Amsterdam communities start, and the bruin café tradition gives you a proven pattern. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Amsterdam Origins start, and the bruin café tradition gives you a proven pattern. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Amsterdam?',
+      question: 'How do I find an Origin in Amsterdam?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real neighbourhoods, venues, and formats where Amsterdammers gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real neighbourhoods, venues, and formats where Amsterdammers gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Amsterdam?',
+      question: 'Is it realistic to start an Origin in Amsterdam?',
       answer:
-        'Yes. Amsterdam is compact, welcoming, and full of natural venues — bruin cafés, parks, and community centres. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Amsterdam is compact, welcoming, and full of natural venues — bruin cafés, parks, and community centres. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Amsterdam?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Amsterdammers find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Amsterdammers find or start Origins.',
     },
   ],
 };

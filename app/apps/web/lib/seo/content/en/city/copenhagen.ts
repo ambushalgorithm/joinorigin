@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'copenhagen',
   pageTitles: {
-    city: 'Communities in Copenhagen | JoinOrigin',
+    city: 'Origins in Copenhagen | JoinOrigin',
     cityDescription:
-      'Find or start communities in Copenhagen — startup, creative, political, meetup, and small business groups across the Danish capital. JoinOrigin waitlist.',
+      'Find or start Origins in Copenhagen — startup, creative, political, meetup, and small business groups across the Danish capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Copenhagen | JoinOrigin',
-      creative: 'Creative communities in Copenhagen | JoinOrigin',
-      political: 'Political & civic communities in Copenhagen | JoinOrigin',
-      meetup: 'Meetup & social communities in Copenhagen | JoinOrigin',
-      'small-business': 'Small business communities in Copenhagen | JoinOrigin',
+      startup: 'Startup Origins in Copenhagen | JoinOrigin',
+      creative: 'Creative Origins in Copenhagen | JoinOrigin',
+      political: 'Political & civic Origins in Copenhagen | JoinOrigin',
+      meetup: 'Meetup & social Origins in Copenhagen | JoinOrigin',
+      'small-business': 'Small business Origins in Copenhagen | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Copenhagen — founders, engineers, and operators around the sustainability, gaming, and biotech scenes. JoinOrigin waitlist.',
+        'Find or start startup Origins in Copenhagen — founders, engineers, and operators around the sustainability, gaming, and biotech scenes. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Copenhagen — studios, galleries, and collectives across Refshaleøen, Nørrebro, and the design district. JoinOrigin waitlist.',
+        'Find or start creative Origins in Copenhagen — studios, galleries, and collectives across Refshaleøen, Nørrebro, and the design district. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Copenhagen — co-housing, cycling advocacy, and neighbourhood initiatives. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Copenhagen — co-housing, cycling advocacy, and neighbourhood initiatives. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Copenhagen — harbour baths, park picnics, and hygge evenings. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Copenhagen — harbour baths, park picnics, and hygge evenings. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Copenhagen — Torvehallerne traders, craft breweries, and design shops. JoinOrigin waitlist.',
+        'Find or start small business Origins in Copenhagen — Torvehallerne traders, craft breweries, and design shops. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Copenhagen | JoinOrigin',
+    ideas: '30 Origin event ideas in Copenhagen | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Copenhagen — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Copenhagen — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Copenhagen is a city built on trust and bicycles. Nearly everyone cycles, most people swim in the harbour, and the Danish concept of hygge — the art of cozy, meaningful togetherness — makes community life a deliberate practice. Neighbourhoods like Nørrebro, Vesterbro, and Østerbro each have their own cafés, parks, and rhythm, and the harbour baths turn the water itself into a summer social venue.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Copenhagen’s startup scene punches far above its size, built on a deep engineering culture, a world-class sustainability mindset, and a surprising strength in gaming — the city that produced global hits is also home to a dense cluster of studios. Climate tech, biotech, and digital health are the other pillars, supported by DTU’s research, CBS’s business graduates, and a venture community that takes green impact seriously. Coworking spaces and startup cafés across Nørrebro and Vesterbro host founder breakfasts, pitch evenings, and demo days, while harbour-side hubs give the scene its distinctive light. English is the default in most groups, which makes Copenhagen one of Europe’s most accessible startup communities for international founders. The culture is collaborative and egalitarian — Danish founders share rather than compete, and flat hierarchies are the norm. Starting a startup community here works best with a narrow vertical and a regular rhythm — a monthly climate founders table or a game-dev night builds a loyal following faster than a generalist group.',
+      'Copenhagen’s startup scene punches far above its size, built on a deep engineering culture, a world-class sustainability mindset, and a surprising strength in gaming — the city that produced global hits is also home to a dense cluster of studios. Climate tech, biotech, and digital health are the other pillars, supported by DTU’s research, CBS’s business graduates, and a venture community that takes green impact seriously. Coworking spaces and startup cafés across Nørrebro and Vesterbro host founder breakfasts, pitch evenings, and demo days, while harbour-side hubs give the scene its distinctive light. English is the default in most groups, which makes Copenhagen one of Europe’s most accessible startup communities for international founders. The culture is collaborative and egalitarian — Danish founders share rather than compete, and flat hierarchies are the norm. Starting a startup Origin here works best with a narrow vertical and a regular rhythm — a monthly climate founders table or a game-dev night builds a loyal following faster than a generalist group.',
     creative:
-      'Copenhagen’s creative communities carry the legacy of Danish design — furniture, architecture, and craftsmanship that shaped global taste — while Refshaleøen, the former shipyard island, has become the city’s most exciting creative frontier. Studios, galleries, street-food stalls, and music venues fill its industrial halls, and the annual festival season turns the whole island into a stage. Nørrebro adds a younger, multicultural energy with ateliers and project spaces, and the city’s art and design schools feed a steady stream of graduates into a scene known for design, film, and music. Formats include Refshaleøen open studio days, design walking tours, portfolio reviews, and music production circles, with harbour swims and cafés providing the natural closing ritual. The scene is compact, well-organised, and proud of its craftsmanship. Starting a creative community in Copenhagen is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
+      'Copenhagen’s creative communities carry the legacy of Danish design — furniture, architecture, and craftsmanship that shaped global taste — while Refshaleøen, the former shipyard island, has become the city’s most exciting creative frontier. Studios, galleries, street-food stalls, and music venues fill its industrial halls, and the annual festival season turns the whole island into a stage. Nørrebro adds a younger, multicultural energy with ateliers and project spaces, and the city’s art and design schools feed a steady stream of graduates into a scene known for design, film, and music. Formats include Refshaleøen open studio days, design walking tours, portfolio reviews, and music production circles, with harbour swims and cafés providing the natural closing ritual. The scene is compact, well-organised, and proud of its craftsmanship. Starting a creative Origin in Copenhagen is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
     political:
-      'Copenhagen’s civic culture is one of Europe’s most participatory, built on co-housing, cycling advocacy, and a municipal tradition of consultation. The city’s housing cooperatives and bofællesskaber — co-housing communities with shared kitchens and common houses — give residents a direct stake in how they live, and the famous bike culture was won and is maintained by organised citizens. Neighbourhood councils, community centres, and volunteer groups shape everything from playgrounds to harbour baths, and the municipality runs real public consultations before major decisions. The culture values consensus, evidence, and patience: Copenhageners expect to be heard and are willing to show up to meetings, often with data in hand. Civic tech and sustainability groups add a forward-looking layer, and the city’s climate goals are themselves a community project. Starting a political community means choosing a concrete issue and a small geography, then partnering with the existing housing, cycling, or neighbourhood networks — the landscape is organised enough that collaboration beats competition.',
+      'Copenhagen’s civic culture is one of Europe’s most participatory, built on co-housing, cycling advocacy, and a municipal tradition of consultation. The city’s housing cooperatives and bofællesskaber — co-housing communities with shared kitchens and common houses — give residents a direct stake in how they live, and the famous bike culture was won and is maintained by organised citizens. Neighbourhood councils, community centres, and volunteer groups shape everything from playgrounds to harbour baths, and the municipality runs real public consultations before major decisions. The culture values consensus, evidence, and patience: Copenhageners expect to be heard and are willing to show up to meetings, often with data in hand. Civic tech and sustainability groups add a forward-looking layer, and the city’s climate goals are themselves a community project. Starting a political Origin means choosing a concrete issue and a small geography, then partnering with the existing housing, cycling, or neighbourhood networks — the landscape is organised enough that collaboration beats competition.',
     meetup:
-      'Copenhagen’s meetup scene runs on the harbour, the park, and the café. The harbour baths at Islands Brygge and Refshaleøen are the city’s great summer social venues — swimming, sunbathing, and conversation on the wooden decks — and a weekly swim-and-coffee is the easiest community to start. Fælledparken hosts picnics, sports, and open-air events, while Reffen’s street-food stalls draw evening crowds that turn into impromptu parties. Cycling clubs, sailing schools, and kayak groups keep the water and the lanes busy, and the hygge tradition makes even a simple café table feel like an occasion. Board game cafés and bookshop reading rooms carry the long winter evenings. Formats include harbour swims, park picnics, board game evenings, and language exchanges (Danish–English). The city is small, safe, and beautifully planned — a group of twenty is already a lively evening. Starting a meetup in Copenhagen means choosing a repeatable format and a fixed venue, and the city’s trust and warmth do the rest.',
+      'Copenhagen’s meetup scene runs on the harbour, the park, and the café. The harbour baths at Islands Brygge and Refshaleøen are the city’s great summer social venues — swimming, sunbathing, and conversation on the wooden decks — and a weekly swim-and-coffee is the easiest Origin to start. Fælledparken hosts picnics, sports, and open-air events, while Reffen’s street-food stalls draw evening crowds that turn into impromptu parties. Cycling clubs, sailing schools, and kayak groups keep the water and the lanes busy, and the hygge tradition makes even a simple café table feel like an occasion. Board game cafés and bookshop reading rooms carry the long winter evenings. Formats include harbour swims, park picnics, board game evenings, and language exchanges (Danish–English). The city is small, safe, and beautifully planned — a group of twenty is already a lively evening. Starting a meetup in Copenhagen means choosing a repeatable format and a fixed venue, and the city’s trust and warmth do the rest.',
     'small-business':
-      'Copenhagen small business communities are anchored by Torvehallerne, the glass market hall, and by a craft culture that the world knows as Danish design. The market’s traders — bakers, cheese mongers, fishmongers, and coffee roasters — form a tight community of suppliers and schedules, while the city’s craft breweries and food producers collaborate on taprooms, festivals, and export. Design shops and ateliers in the centre keep the craft tradition alive, and Reffen’s street-food stalls give young entrepreneurs a low-cost stage. The chamber of commerce offers structured help with registration, export, and sustainability certification — a growing requirement that Danish owners treat as a selling point. What binds these groups is craft pride and place: a market hall or a shop street is a natural community with a collective stake in quality and the neighbourhood’s life. Starting a small business community is very achievable: a monthly trader coffee at a market hall, with rotating topics like rent, permits, and export, reliably attracts owners who rarely have peers to talk with.',
+      'Copenhagen small business communities are anchored by Torvehallerne, the glass market hall, and by a craft culture that the world knows as Danish design. The market’s traders — bakers, cheese mongers, fishmongers, and coffee roasters — form a tight community of suppliers and schedules, while the city’s craft breweries and food producers collaborate on taprooms, festivals, and export. Design shops and ateliers in the centre keep the craft tradition alive, and Reffen’s street-food stalls give young entrepreneurs a low-cost stage. The chamber of commerce offers structured help with registration, export, and sustainability certification — a growing requirement that Danish owners treat as a selling point. What binds these groups is craft pride and place: a market hall or a shop street is a natural community with a collective stake in quality and the neighbourhood’s life. Starting a small business Origin is very achievable: a monthly trader coffee at a market hall, with rotating topics like rent, permits, and export, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Copenhagen is an ideal city for testing new community event ideas: the harbour baths are free summer venues, the parks are generous, and the hygge tradition means people show up for well-made gatherings. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Copenhagen, from harbour baths and market halls to Refshaleøen studios and co-housing common houses. Some ideas work as one-off events; others are designed to become recurring communities with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Copenhagen’s trust do the rest.',
+      'Copenhagen is an ideal city for testing new Origin event ideas: the harbour baths are free summer venues, the parks are generous, and the hygge tradition means people show up for well-made gatherings. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Copenhagen, from harbour baths and market halls to Refshaleøen studios and co-housing common houses. Some ideas work as one-off events; others are designed to become recurring Origins with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Copenhagen’s trust do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -430,22 +430,22 @@ const content: CityContent = {
           'No. English is widely spoken and many groups run in English. A little Danish — and a lot of hygge — opens doors with neighbours and traders.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Copenhagen communities start, from harbour swims to cycling clubs. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Copenhagen Origins start, from harbour swims to cycling clubs. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Copenhagen?',
+      question: 'How do I find an Origin in Copenhagen?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real neighbourhoods, venues, and formats where Copenhageners gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real neighbourhoods, venues, and formats where Copenhageners gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Copenhagen?',
+      question: 'Is it realistic to start an Origin in Copenhagen?',
       answer:
-        'Yes. Copenhagen has harbour baths, parks, cafés, and a culture of participation. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Copenhagen has harbour baths, parks, cafés, and a culture of participation. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Copenhagen?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Copenhageners find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Copenhageners find or start Origins.',
     },
   ],
 };

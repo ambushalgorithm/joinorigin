@@ -179,9 +179,9 @@ describe('lib/seo locationView — country data points + FAQ templates (TASK-496
     const data = buildLocationViewData(austria);
     expect(data.faq.length).toBe(5);
     expect(data.faq[0]).toEqual({
-      question: 'How do I find communities in Austria?',
+      question: 'How do I find Origins in Austria?',
       answer:
-        'The /location hub lists every community in Austria. Browse the group-type pages for startup, creative, political, meetup, and small business communities, including in Austria.',
+        'The /location hub lists every Origin in Austria. Browse the Origin-type pages for startup, creative, political, meetup, and small business Origins, including in Austria.',
     });
     // Dataset values flow into the template.
     expect(data.faq[1].question).toBe('How many people live in Austria?');
@@ -211,11 +211,11 @@ describe('lib/seo locationView — country data points + FAQ templates (TASK-496
     const austria = resolveLocationEntry({ country: 'austria' })!;
     const esData = buildLocationViewData(austria, 'es');
     expect(esData.faq.length).toBe(5);
-    expect(esData.faq[0].question).toBe('¿Cómo encuentro comunidades en Austria?');
+    expect(esData.faq[0].question).toBe('¿Cómo encuentro Origins en Austria?');
     expect(esData.faq[2].answer).toBe('La capital de Austria es Vienna.');
     // EN surface keeps the EN template.
     const enData = buildLocationViewData(austria, 'en');
-    expect(enData.faq[0].question).toBe('How do I find communities in Austria?');
+    expect(enData.faq[0].question).toBe('How do I find Origins in Austria?');
   });
 
   it('every country page carries dataset facts + a data-driven FAQ when un-authored', () => {
@@ -263,7 +263,7 @@ describe('lib/seo locationView — region mesh (TASK-496)', () => {
     // Data-driven FAQ — the localized template populated from the mesh.
     expect(mesh?.faq).toEqual(data.faq);
     expect(data.faq.length).toBeGreaterThanOrEqual(3);
-    expect(data.faq[0].question).toBe('How do I find communities in Sant Julià de Lòria?');
+    expect(data.faq[0].question).toBe('How do I find Origins in Sant Julià de Lòria?');
     expect(data.faq[1].answer).toBe(
       'Sant Julià de Lòria is part of Andorra, whose capital is Andorra la Vella.',
     );
@@ -462,7 +462,7 @@ describe('lib/seo locationView — un-authored country mesh facts + FAQ (TASK-49
     ]);
     // Data-driven FAQ — non-empty for an un-authored country.
     expect(data.faq.length).toBe(5);
-    expect(data.faq[0].question).toBe('How do I find communities in Austria?');
+    expect(data.faq[0].question).toBe('How do I find Origins in Austria?');
     expect(data.faq[1].answer).toContain('8,847,037');
   });
 });

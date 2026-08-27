@@ -71,9 +71,9 @@ describe('filterByKeyword against the Browse-locations searchText (TASK-485/TASK
     const country = matches.find((entry) => entry.section === 'countries');
     expect(country?.name).toBe('Communities in Colombia');
     const cities = matches.filter((entry) => entry.section === 'cities').map((e) => e.name);
-    expect(cities).toContain('Communities in Bogota, Bogota D.C.');
-    expect(cities).toContain('Communities in Medellin, Antioquia');
-    expect(cities).toContain('Communities in Barranquilla, Atlantico');
+    expect(cities).toContain('Origins in Bogota, Bogota D.C.');
+    expect(cities).toContain('Origins in Medellin, Antioquia');
+    expect(cities).toContain('Origins in Barranquilla, Atlantico');
   });
 
   it('"italy" matches the Italy country card + Milan + Milan community types/ideas', () => {
@@ -81,7 +81,7 @@ describe('filterByKeyword against the Browse-locations searchText (TASK-485/TASK
     const country = matches.find((entry) => entry.section === 'countries');
     expect(country?.name).toBe('Communities in Italy');
     const cities = matches.filter((entry) => entry.section === 'cities').map((e) => e.name);
-    expect(cities).toEqual(['Communities in Milan, Lombardy']);
+    expect(cities).toEqual(['Origins in Milan, Lombardy']);
     expect(matches.filter((entry) => entry.section === 'communityTypes')).toHaveLength(5);
     expect(matches.filter((entry) => entry.section === 'eventIdeas')).toHaveLength(1);
   });

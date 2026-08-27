@@ -66,7 +66,7 @@ describe('/de/location/[country]/[region]/[city] route', () => {
 
     // German variant links (pageTitles from the de content file).
     const groupLinks = screen.getByTestId('location-group-type-links');
-    expect(within(groupLinks).getByText('Startup-Communities')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('Startup-Origins')).toBeInTheDocument();
     expect(within(groupLinks).getByText('30 Ideen für Community-Events')).toBeInTheDocument();
 
     // FAQ block rendered from the de FAQ.

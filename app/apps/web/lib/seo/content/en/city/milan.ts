@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'milan',
   pageTitles: {
-    city: 'Communities in Milan | JoinOrigin',
+    city: 'Origins in Milan | JoinOrigin',
     cityDescription:
-      'Find or start communities in Milan — startup, creative, political, meetup, and small business groups across the Lombard capital. JoinOrigin waitlist.',
+      'Find or start Origins in Milan — startup, creative, political, meetup, and small business groups across the Lombard capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Milan | JoinOrigin',
-      creative: 'Creative communities in Milan | JoinOrigin',
-      political: 'Political & civic communities in Milan | JoinOrigin',
-      meetup: 'Meetup & social communities in Milan | JoinOrigin',
-      'small-business': 'Small business communities in Milan | JoinOrigin',
+      startup: 'Startup Origins in Milan | JoinOrigin',
+      creative: 'Creative Origins in Milan | JoinOrigin',
+      political: 'Political & civic Origins in Milan | JoinOrigin',
+      meetup: 'Meetup & social Origins in Milan | JoinOrigin',
+      'small-business': 'Small business Origins in Milan | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Milan — founders, engineers, and operators around Porta Nuova, Isola, and the fintech scene. JoinOrigin waitlist.',
+        'Find or start startup Origins in Milan — founders, engineers, and operators around Porta Nuova, Isola, and the fintech scene. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Milan — design studios, fashion ateliers, and galleries across Brera, Navigli, and Lambrate. JoinOrigin waitlist.',
+        'Find or start creative Origins in Milan — design studios, fashion ateliers, and galleries across Brera, Navigli, and Lambrate. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Milan — neighbourhood committees, housing activism, and urban regeneration campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Milan — neighbourhood committees, housing activism, and urban regeneration campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Milan — aperitivo evenings, Navigli gatherings, and park life. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Milan — aperitivo evenings, Navigli gatherings, and park life. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Milan — market traders, ateliers, and family shop networks. JoinOrigin waitlist.',
+        'Find or start small business Origins in Milan — market traders, ateliers, and family shop networks. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Milan | JoinOrigin',
+    ideas: '30 Origin event ideas in Milan | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Milan — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Milan — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Milan is Italy’s engine room — the capital of fashion, design, and finance — but its communities run on a much older fuel: the aperitivo. Every evening, bars across the city serve drinks with generous buffets, and the ritual of standing at a counter with colleagues, neighbours, and strangers is the social glue of the city. The Navigli canals, Brera’s cobbled streets, and the Porta Nuova towers each host their own version of this nightly gathering.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Milan’s startup scene has grown into Italy’s most active, anchored by the Porta Nuova business district, where glass towers house accelerators, venture funds, and international tech companies. The city’s industrial and creative heritage gives its ecosystem a distinctive flavour: fashion tech, design tech, and fintech are recurring strengths, and Politecnico and Bocconi feed a deep bench of engineers and business graduates. Isola, once a working-class quarter, now hosts innovation hubs and startup cafés, while the Navigli carry the after-hours energy. Formats include founder breakfasts, pitch evenings, demo days, and fintech happy hours that rotate between office terraces and canal-side bars. The community is international — English is common in meetups, while Italian remains the default for many local groups. Milan’s culture is more formal than Rome’s: introductions matter, and a warm referral opens doors. Starting a startup community here works best with a narrow vertical and a regular rhythm — a monthly fashion-tech table or an AI builders night builds a loyal following faster than a generalist group.',
+      'Milan’s startup scene has grown into Italy’s most active, anchored by the Porta Nuova business district, where glass towers house accelerators, venture funds, and international tech companies. The city’s industrial and creative heritage gives its ecosystem a distinctive flavour: fashion tech, design tech, and fintech are recurring strengths, and Politecnico and Bocconi feed a deep bench of engineers and business graduates. Isola, once a working-class quarter, now hosts innovation hubs and startup cafés, while the Navigli carry the after-hours energy. Formats include founder breakfasts, pitch evenings, demo days, and fintech happy hours that rotate between office terraces and canal-side bars. The community is international — English is common in meetups, while Italian remains the default for many local groups. Milan’s culture is more formal than Rome’s: introductions matter, and a warm referral opens doors. Starting a startup Origin here works best with a narrow vertical and a regular rhythm — a monthly fashion-tech table or an AI builders night builds a loyal following faster than a generalist group.',
     creative:
-      'Milan is the design capital of Italy and arguably of the world: the Salone del Mobile and Fashion Week pull creative professionals from every continent, and the city’s studios, ateliers, and galleries work at global standards year-round. Brera is the heart of the art and design district, the Tortona area hosts the design week’s most famous exhibitions, and Lambrate’s former factories have become maker spaces where furniture, objects, and technology are prototyped. The fashion system around the Quadrilatero della Moda connects ateliers, pattern-makers, and emerging designers in a tight, referral-driven network. Formats include studio open days, gallery walkthroughs, portfolio reviews, and design critique evenings, with aperitivo providing the natural closing ritual. The scene is compact and connected — a good project can travel from a Lambrate workshop to a Brera gallery in a week. Starting a creative community in Milan is realistic: pick a craft, a district, and a regular evening, and the density of skilled, ambitious people will find you.',
+      'Milan is the design capital of Italy and arguably of the world: the Salone del Mobile and Fashion Week pull creative professionals from every continent, and the city’s studios, ateliers, and galleries work at global standards year-round. Brera is the heart of the art and design district, the Tortona area hosts the design week’s most famous exhibitions, and Lambrate’s former factories have become maker spaces where furniture, objects, and technology are prototyped. The fashion system around the Quadrilatero della Moda connects ateliers, pattern-makers, and emerging designers in a tight, referral-driven network. Formats include studio open days, gallery walkthroughs, portfolio reviews, and design critique evenings, with aperitivo providing the natural closing ritual. The scene is compact and connected — a good project can travel from a Lambrate workshop to a Brera gallery in a week. Starting a creative Origin in Milan is realistic: pick a craft, a district, and a regular evening, and the density of skilled, ambitious people will find you.',
     political:
-      'Milan’s civic life is shaped by the city’s transformation from an industrial powerhouse into a global service city — and by the battles over who benefits. The Porta Nuova skyscrapers symbolise the boom, while neighbourhood committees in Isola, Scalo Farini, and the periphery campaign for affordable housing, green space, and a fair share of regeneration. Housing is a defining issue: rents have climbed with the city’s fortunes, and tenant associations run info evenings and legal clinics open to newcomers. The city’s participatory budgeting and public consultation processes give organised residents real influence over parks, streets, and civic buildings. Community centres across the city host meetings, language classes, and volunteer groups. The political culture rewards preparation and courtesy: Milanese activists are organised, and well-prepared groups are taken seriously. Starting a political community means choosing a concrete issue and a small geography, then partnering with existing committees — the landscape is rich enough that collaboration beats competition.',
+      'Milan’s civic life is shaped by the city’s transformation from an industrial powerhouse into a global service city — and by the battles over who benefits. The Porta Nuova skyscrapers symbolise the boom, while neighbourhood committees in Isola, Scalo Farini, and the periphery campaign for affordable housing, green space, and a fair share of regeneration. Housing is a defining issue: rents have climbed with the city’s fortunes, and tenant associations run info evenings and legal clinics open to newcomers. The city’s participatory budgeting and public consultation processes give organised residents real influence over parks, streets, and civic buildings. Community centres across the city host meetings, language classes, and volunteer groups. The political culture rewards preparation and courtesy: Milanese activists are organised, and well-prepared groups are taken seriously. Starting a political Origin means choosing a concrete issue and a small geography, then partnering with existing committees — the landscape is rich enough that collaboration beats competition.',
     meetup:
       'Milan’s meetup scene is built on the aperitivo, the Navigli, and the park. The evening drink with buffet is the city’s great social equaliser: office workers, students, and retirees stand at the same counters, and a group that claims a regular bar quickly becomes part of its furniture. The Navigli canals are the classic destination — sunset walks, canal-side bars, and boats that turn group outings into floating parties. Parco Sempione offers green lawns in the shadow of the castle, and the Idroscalo lake draws swimmers, rowers, and picnickers in summer. Formats include weekly aperitivos, board game and trivia evenings, cycling rides into the flat Lombard countryside, and language exchanges (Italian–English). The city’s evening rhythm is perfect for meetups — a group that starts at seven and wanders through dinner is following the local script. Starting a meetup in Milan means choosing a repeatable format and a fixed venue, and the city’s love of good company does the rest.',
     'small-business':
-      'Milan small business communities are anchored by the city’s markets, ateliers, and family workshops. Covered markets like Via Fauché and viale Papiniano are not just places to shop — they are communities of stallholders who share suppliers, schedules, and gossip. The botteghe — artisanal workshops making shoes, frames, lamps, and jewellery — cluster in Brera and Porta Genova, where owners know each other across decades. The aperitivo economy adds a layer of bar and restaurant owners who coordinate suppliers and late-night logistics. The chamber of commerce offers workshops on permits, digitalisation, and exporting, while craft fairs and design markets give makers a shared calendar. What binds these groups is craft pride and place: a market hall or a workshop street is a natural community with a collective stake in quality and foot traffic. Starting a small business community is very achievable: a monthly trader breakfast at a market hall, with rotating topics like rent, permits, and online selling, reliably attracts owners who rarely have peers to talk with.',
+      'Milan small business communities are anchored by the city’s markets, ateliers, and family workshops. Covered markets like Via Fauché and viale Papiniano are not just places to shop — they are communities of stallholders who share suppliers, schedules, and gossip. The botteghe — artisanal workshops making shoes, frames, lamps, and jewellery — cluster in Brera and Porta Genova, where owners know each other across decades. The aperitivo economy adds a layer of bar and restaurant owners who coordinate suppliers and late-night logistics. The chamber of commerce offers workshops on permits, digitalisation, and exporting, while craft fairs and design markets give makers a shared calendar. What binds these groups is craft pride and place: a market hall or a workshop street is a natural community with a collective stake in quality and foot traffic. Starting a small business Origin is very achievable: a monthly trader breakfast at a market hall, with rotating topics like rent, permits, and online selling, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Milan is an ideal city for testing new community event ideas: aperitivo bars give every group a natural venue, the parks and the Idroscalo are free gathering spots, and the city’s design culture rewards well-made events. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Milan, from Navigli bars and covered markets to Lambrate maker spaces and Parco Sempione. Some ideas work as one-off events; others are designed to become recurring communities with an aperitivo rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Milan’s style do the rest.',
+      'Milan is an ideal city for testing new Origin event ideas: aperitivo bars give every group a natural venue, the parks and the Idroscalo are free gathering spots, and the city’s design culture rewards well-made events. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Milan, from Navigli bars and covered markets to Lambrate maker spaces and Parco Sempione. Some ideas work as one-off events; others are designed to become recurring Origins with an aperitivo rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Milan’s style do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -430,22 +430,22 @@ const content: CityContent = {
           'No. Many Milan groups run in English or are bilingual, especially in tech, design, and fashion. A little Italian opens doors with neighbours and market traders.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Milan communities start, and the aperitivo tradition gives you a proven pattern. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Milan Origins start, and the aperitivo tradition gives you a proven pattern. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Milan?',
+      question: 'How do I find an Origin in Milan?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real districts, venues, and formats where Milanesi gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real districts, venues, and formats where Milanesi gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Milan?',
+      question: 'Is it realistic to start an Origin in Milan?',
       answer:
-        'Yes. Milan has aperitivo bars everywhere, generous parks, and a strong associational culture. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Milan has aperitivo bars everywhere, generous parks, and a strong associational culture. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Milan?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Milanesi find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Milanesi find or start Origins.',
     },
   ],
 };

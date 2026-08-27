@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'moscow',
   pageTitles: {
-    city: 'Communities in Moscow | JoinOrigin',
+    city: 'Origins in Moscow | JoinOrigin',
     cityDescription:
-      'Find or start communities in Moscow — startup, creative, political, meetup, and small business groups across the Russian capital. JoinOrigin waitlist.',
+      'Find or start Origins in Moscow — startup, creative, political, meetup, and small business groups across the Russian capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Moscow | JoinOrigin',
-      creative: 'Creative communities in Moscow | JoinOrigin',
-      political: 'Political & civic communities in Moscow | JoinOrigin',
-      meetup: 'Meetup & social communities in Moscow | JoinOrigin',
-      'small-business': 'Small business communities in Moscow | JoinOrigin',
+      startup: 'Startup Origins in Moscow | JoinOrigin',
+      creative: 'Creative Origins in Moscow | JoinOrigin',
+      political: 'Political & civic Origins in Moscow | JoinOrigin',
+      meetup: 'Meetup & social Origins in Moscow | JoinOrigin',
+      'small-business': 'Small business Origins in Moscow | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Moscow — founders, engineers, and operators around the IT scene, Skolkovo, and the city centre. JoinOrigin waitlist.',
+        'Find or start startup Origins in Moscow — founders, engineers, and operators around the IT scene, Skolkovo, and the city centre. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Moscow — studios, galleries, and collectives across Winzavod, Gorky Park, and the courtyards. JoinOrigin waitlist.',
+        'Find or start creative Origins in Moscow — studios, galleries, and collectives across Winzavod, Gorky Park, and the courtyards. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Moscow — volunteer networks, neighbourhood initiatives, and local campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Moscow — volunteer networks, neighbourhood initiatives, and local campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Moscow — park life, café tables, chess evenings, and skating on winter rinks. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Moscow — park life, café tables, chess evenings, and skating on winter rinks. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Moscow — market traders, café owners, and neighbourhood shops. JoinOrigin waitlist.',
+        'Find or start small business Origins in Moscow — market traders, café owners, and neighbourhood shops. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Moscow | JoinOrigin',
+    ideas: '30 Origin event ideas in Moscow | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Moscow — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Moscow — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Moscow is a capital of scale: grand avenues, monumental parks, and a metro system that carries the city underground in minutes. Its communities match that scale — from chess clubs and hiking clubs with thousands of members to intimate café tables in the courtyards off the big streets. The city’s rhythm balances the monumental with the personal: a Soviet-era park, a modern food hall, and a quiet courtyard can all host the same week’s gatherings.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Moscow’s tech community is one of Europe’s largest, built on a deep engineering culture and the success of home-grown giants like Yandex. The scene spans fintech, AI, marketplaces, and B2B software, with coworking floors in the centre and innovation campuses like Skolkovo providing infrastructure for early teams. HSE and Bauman feed a steady stream of engineers and analysts into startups, and the city’s scale means every vertical has a critical mass of practitioners. Formats include founder breakfasts, pitch evenings, demo days, and product network nights where founders and operators share war stories. The community is professional and results-driven — Moscow builders respect craft and working code — and increasingly international, with English common in product groups. The city’s winter rhythm shapes events: evenings are long and indoor, which suits meetups. Starting a startup community in Moscow works best with a narrow vertical and a regular rhythm — a monthly fintech table or an AI builders night builds a loyal following faster than a generalist group.',
+      'Moscow’s tech community is one of Europe’s largest, built on a deep engineering culture and the success of home-grown giants like Yandex. The scene spans fintech, AI, marketplaces, and B2B software, with coworking floors in the centre and innovation campuses like Skolkovo providing infrastructure for early teams. HSE and Bauman feed a steady stream of engineers and analysts into startups, and the city’s scale means every vertical has a critical mass of practitioners. Formats include founder breakfasts, pitch evenings, demo days, and product network nights where founders and operators share war stories. The community is professional and results-driven — Moscow builders respect craft and working code — and increasingly international, with English common in product groups. The city’s winter rhythm shapes events: evenings are long and indoor, which suits meetups. Starting a startup Origin in Moscow works best with a narrow vertical and a regular rhythm — a monthly fintech table or an AI builders night builds a loyal following faster than a generalist group.',
     creative:
-      'Moscow’s creative communities are anchored by world-class institutions and a courtyard culture that keeps the scene intimate. Winzavod, the contemporary-art quarter in former winery buildings, hosts galleries and studios, while the Garage museum at Gorky Park brings international contemporary art to a broad audience. The city’s theatre tradition — from the Bolshoi to hundreds of independent stages — makes performance a central community art, and chess, literature, and classical music carry equal weight. Studios and ateliers cluster in the courtyards behind the grand streets, where makers know each other across crafts. Formats include gallery walks, studio open days, design critiques, and music production circles, with the city’s cafés providing the natural meeting point after every event. The scene is serious and ambitious — Moscow artists work at a high level and value substance. Starting a creative community in Moscow is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
+      'Moscow’s creative communities are anchored by world-class institutions and a courtyard culture that keeps the scene intimate. Winzavod, the contemporary-art quarter in former winery buildings, hosts galleries and studios, while the Garage museum at Gorky Park brings international contemporary art to a broad audience. The city’s theatre tradition — from the Bolshoi to hundreds of independent stages — makes performance a central community art, and chess, literature, and classical music carry equal weight. Studios and ateliers cluster in the courtyards behind the grand streets, where makers know each other across crafts. Formats include gallery walks, studio open days, design critiques, and music production circles, with the city’s cafés providing the natural meeting point after every event. The scene is serious and ambitious — Moscow artists work at a high level and value substance. Starting a creative Origin in Moscow is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
     political:
-      'Moscow’s civic landscape is shaped by a strong tradition of organised volunteering and neighbourhood initiative. Volunteer networks coordinate aid, community centres host clubs and classes, and residents organise around courtyards, parks, and housing — the courtyard, the shared space behind every apartment block, is the natural unit of local life. Libraries and clubhouses anchor community activity, and district administrations hold consultations on local improvements, from park benches to road repairs. The culture values practicality and trust: Moscow residents respond to organisers who deliver concrete results and are careful about who they invite into their networks. Participation happens through established channels, and newcomers who connect with a real volunteer or neighbourhood organisation find a warm reception. Starting a civic community means choosing a concrete issue and a small geography — a courtyard, a park, a building — and partnering with an existing network rather than duplicating it. The landscape is organised enough that collaboration beats competition.',
+      'Moscow’s civic landscape is shaped by a strong tradition of organised volunteering and neighbourhood initiative. Volunteer networks coordinate aid, community centres host clubs and classes, and residents organise around courtyards, parks, and housing — the courtyard, the shared space behind every apartment block, is the natural unit of local life. Libraries and clubhouses anchor community activity, and district administrations hold consultations on local improvements, from park benches to road repairs. The culture values practicality and trust: Moscow residents respond to organisers who deliver concrete results and are careful about who they invite into their networks. Participation happens through established channels, and newcomers who connect with a real volunteer or neighbourhood organisation find a warm reception. Starting a civic Origin means choosing a concrete issue and a small geography — a courtyard, a park, a building — and partnering with an existing network rather than duplicating it. The landscape is organised enough that collaboration beats competition.',
     meetup:
       'Moscow’s meetup scene runs on parks, chess, and the seasons. Gorky Park is the city’s social heart — pavilion cafés, river walks, and summer events draw crowds all day — while Sokolniki and the VDNKh grounds offer huge green spaces for picnics and games. In winter the city turns outward: outdoor rinks fill with skaters, sledging hills appear in every park, and indoor chess and board game clubs carry the evenings. The courtyard cafés off the main streets host a quieter, more intimate scene, and language exchanges (Russian–English) run across the city. The metro makes cross-city attendance practical, so a niche interest can gather members from every district. Moscow’s culture of depth shows in the formats: chess evenings, hiking and ski clubs, theatre-going groups, and literary salons all have devoted followings. Starting a meetup in Moscow means choosing a repeatable format and a fixed venue — a weekly park table or a monthly chess evening — and the city’s scale does the rest.',
     'small-business':
-      'Moscow’s small business community operates at a scale few European cities can match: the metro delivers customers from every district, food halls like Danilovsky Market and Depo anchor modern commerce, and the city’s specialty-coffee boom has turned café and roastery owners into one of the most connected professional networks in town. Business support centres and the chamber of commerce offer structured help with registration, tax, and online selling, while the courtyard shops of the older districts keep a more intimate commerce alive. The craft and flea markets add a maker layer that collaborates on fairs and festivals across the city. What binds these groups is ambition and place: a food hall or a shop row is a natural community with a collective stake in the neighbourhood’s life. Starting a small business community is very achievable: a monthly trader coffee at a market hall, with rotating topics like registration, rent, and delivery, reliably attracts owners who rarely have peers to talk with.',
+      'Moscow’s small business community operates at a scale few European cities can match: the metro delivers customers from every district, food halls like Danilovsky Market and Depo anchor modern commerce, and the city’s specialty-coffee boom has turned café and roastery owners into one of the most connected professional networks in town. Business support centres and the chamber of commerce offer structured help with registration, tax, and online selling, while the courtyard shops of the older districts keep a more intimate commerce alive. The craft and flea markets add a maker layer that collaborates on fairs and festivals across the city. What binds these groups is ambition and place: a food hall or a shop row is a natural community with a collective stake in the neighbourhood’s life. Starting a small business Origin is very achievable: a monthly trader coffee at a market hall, with rotating topics like registration, rent, and delivery, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Moscow is an ideal city for testing new community event ideas: the parks are monumental, the metro connects everything, and the city’s culture of depth rewards well-made events. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Moscow, from park pavilions and food halls to chess clubs and courtyard ateliers. Some ideas work as one-off events; others are designed to become recurring communities with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Moscow’s scale do the rest.',
+      'Moscow is an ideal city for testing new Origin event ideas: the parks are monumental, the metro connects everything, and the city’s culture of depth rewards well-made events. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Moscow, from park pavilions and food halls to chess clubs and courtyard ateliers. Some ideas work as one-off events; others are designed to become recurring Origins with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Moscow’s scale do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -430,22 +430,22 @@ const content: CityContent = {
           'No. Many Moscow groups run in English or are bilingual, especially in tech and creative scenes. A little Russian opens doors with neighbours and market traders.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Moscow communities start, from chess clubs to hiking groups. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Moscow Origins start, from chess clubs to hiking groups. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Moscow?',
+      question: 'How do I find an Origin in Moscow?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real districts, venues, and formats where Muscovites gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real districts, venues, and formats where Muscovites gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Moscow?',
+      question: 'Is it realistic to start an Origin in Moscow?',
       answer:
-        'Yes. Moscow has monumental parks, a practical metro, and a culture of deep interests — chess, theatre, hiking. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Moscow has monumental parks, a practical metro, and a culture of deep interests — chess, theatre, hiking. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Moscow?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Muscovites find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Muscovites find or start Origins.',
     },
   ],
 };

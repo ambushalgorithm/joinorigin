@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'dublin',
   pageTitles: {
-    city: 'Communities in Dublin | JoinOrigin',
+    city: 'Origins in Dublin | JoinOrigin',
     cityDescription:
-      'Find or start communities in Dublin — startup, creative, political, meetup, and small business groups across the Irish capital. JoinOrigin waitlist.',
+      'Find or start Origins in Dublin — startup, creative, political, meetup, and small business groups across the Irish capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Dublin | JoinOrigin',
-      creative: 'Creative communities in Dublin | JoinOrigin',
-      political: 'Political & civic communities in Dublin | JoinOrigin',
-      meetup: 'Meetup & social communities in Dublin | JoinOrigin',
-      'small-business': 'Small business communities in Dublin | JoinOrigin',
+      startup: 'Startup Origins in Dublin | JoinOrigin',
+      creative: 'Creative Origins in Dublin | JoinOrigin',
+      political: 'Political & civic Origins in Dublin | JoinOrigin',
+      meetup: 'Meetup & social Origins in Dublin | JoinOrigin',
+      'small-business': 'Small business Origins in Dublin | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Dublin — founders, engineers, and operators around the Silicon Docks, Ranelagh, and the tech scene. JoinOrigin waitlist.',
+        'Find or start startup Origins in Dublin — founders, engineers, and operators around the Silicon Docks, Ranelagh, and the tech scene. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Dublin — studios, galleries, and collectives across the Liberties, Temple Bar, and the city centre. JoinOrigin waitlist.',
+        'Find or start creative Origins in Dublin — studios, galleries, and collectives across the Liberties, Temple Bar, and the city centre. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Dublin — residents associations, housing activism, and local campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Dublin — residents associations, housing activism, and local campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Dublin — pub sessions, GAA clubs, coastal swims, and park life. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Dublin — pub sessions, GAA clubs, coastal swims, and park life. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Dublin — market traders, family pubs, and neighbourhood shops. JoinOrigin waitlist.',
+        'Find or start small business Origins in Dublin — market traders, family pubs, and neighbourhood shops. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Dublin | JoinOrigin',
+    ideas: '30 Origin event ideas in Dublin | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Dublin — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Dublin — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Dublin is a small capital with a big conversational culture. The pub is the city’s true town square — a place where a quiet pint can turn into a session of music, a job offer, or a plan to start something together. From Stoneybatter to Ranelagh, the neighbourhoods each have their own pub, their own GAA club, and their own rhythm of community life.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Dublin’s startup scene lives in the shadow of the Silicon Docks — the Grand Canal Dock area where global tech giants built European headquarters — but it has grown its own identity around B2B SaaS, fintech, and health tech. Ranelagh, Grand Canal Dock, and the city centre host coworking spaces, incubators, and startup cafés, while Trinity, UCD, and DCU feed graduates into early teams and enterprise agencies run structured support programmes. The community is compact and conversational: founders meet at breakfasts, pitch evenings, and chamber networking events, and the pub remains the place where partnerships actually get sealed. English is the default, and the city’s international workforce makes cross-border hiring and expansion practical. The scene’s small size means introductions happen fast and reputations travel quickly. Dublin’s rhythm is social — meetings often begin on time but end over pints. Starting a startup community here works best with a narrow vertical and a regular rhythm — a monthly SaaS founders table or a health-tech night builds a loyal following faster than a generalist group.',
+      'Dublin’s startup scene lives in the shadow of the Silicon Docks — the Grand Canal Dock area where global tech giants built European headquarters — but it has grown its own identity around B2B SaaS, fintech, and health tech. Ranelagh, Grand Canal Dock, and the city centre host coworking spaces, incubators, and startup cafés, while Trinity, UCD, and DCU feed graduates into early teams and enterprise agencies run structured support programmes. The community is compact and conversational: founders meet at breakfasts, pitch evenings, and chamber networking events, and the pub remains the place where partnerships actually get sealed. English is the default, and the city’s international workforce makes cross-border hiring and expansion practical. The scene’s small size means introductions happen fast and reputations travel quickly. Dublin’s rhythm is social — meetings often begin on time but end over pints. Starting a startup Origin here works best with a narrow vertical and a regular rhythm — a monthly SaaS founders table or a health-tech night builds a loyal following faster than a generalist group.',
     creative:
-      'Dublin’s creative communities draw on one of Europe’s great literary traditions — Joyce, Wilde, Yeats, Beckett — and on a live arts scene that fills theatres, galleries, and pubs with new work every week. The Liberties, the old working-class district, now hosts studios and creative spaces, while Temple Bar’s cultural quarter packs galleries, cinemas, and music venues into a few streets. NCAD and the city’s art schools feed a steady stream of graduates into a scene known for literature, theatre, music, and design. Formats include literary pub crawls, reading nights, open studio weekends, portfolio reviews, and music production circles, with traditional sessions adding a distinctly Irish layer. The city’s small scale means artists, writers, and musicians know each other, and collaborations cross disciplines easily. Starting a creative community in Dublin is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
+      'Dublin’s creative communities draw on one of Europe’s great literary traditions — Joyce, Wilde, Yeats, Beckett — and on a live arts scene that fills theatres, galleries, and pubs with new work every week. The Liberties, the old working-class district, now hosts studios and creative spaces, while Temple Bar’s cultural quarter packs galleries, cinemas, and music venues into a few streets. NCAD and the city’s art schools feed a steady stream of graduates into a scene known for literature, theatre, music, and design. Formats include literary pub crawls, reading nights, open studio weekends, portfolio reviews, and music production circles, with traditional sessions adding a distinctly Irish layer. The city’s small scale means artists, writers, and musicians know each other, and collaborations cross disciplines easily. Starting a creative Origin in Dublin is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
     political:
-      'Dublin’s civic life is anchored by residents associations and a housing crisis that has made tenant organising one of the city’s most active movements. Local area committees and the city council keep planning decisions close to home, and well-organised neighbourhoods shape how housing, transport, and public space develop. Renters’ unions run clinics and campaigns that are open to newcomers, while volunteers power food banks, community gardens, and after-school programmes. The city’s history of civic mobilisation — from the housing campaigns of the last century to the marriage equality referendum — shows how quickly organised Dubliners can change national conversation. Coastal and heritage groups add another layer, caring for beaches, canals, and the city’s Georgian streetscapes. The political culture is direct and social: campaigns are won over cups of tea and pints as much as in council chambers. Starting a political community means choosing a concrete issue and a small geography, then partnering with existing associations — the landscape is rich enough that collaboration beats competition.',
+      'Dublin’s civic life is anchored by residents associations and a housing crisis that has made tenant organising one of the city’s most active movements. Local area committees and the city council keep planning decisions close to home, and well-organised neighbourhoods shape how housing, transport, and public space develop. Renters’ unions run clinics and campaigns that are open to newcomers, while volunteers power food banks, community gardens, and after-school programmes. The city’s history of civic mobilisation — from the housing campaigns of the last century to the marriage equality referendum — shows how quickly organised Dubliners can change national conversation. Coastal and heritage groups add another layer, caring for beaches, canals, and the city’s Georgian streetscapes. The political culture is direct and social: campaigns are won over cups of tea and pints as much as in council chambers. Starting a political Origin means choosing a concrete issue and a small geography, then partnering with existing associations — the landscape is rich enough that collaboration beats competition.',
     meetup:
       'Dublin’s meetup scene runs on the pub, the club, and the sea. The traditional music session — a few musicians, a corner of a pub, a crowd that joins in — is the city’s most beloved community format, and it happens every night somewhere in the city. GAA clubs, rugby clubs, and football clubs anchor neighbourhood life, welcoming newcomers to training and to the clubhouse afterwards. The coast is a second living room: the Forty Foot swimming spot at Sandycove hosts a famously friendly sea-swimming community, Howth’s cliffs and Dún Laoghaire’s pier draw walking groups, and Phoenix Park and St Stephen’s Green fill with picnics and games. Formats include weekly pub nights, session evenings, sea-swim mornings, coastal rambles, and board game cafés. The city is compact and walkable, and Dubliners’ love of chat means strangers become regulars quickly. Starting a meetup in Dublin means choosing a repeatable format and a fixed venue — a weekly pub night or a monthly coastal walk — and the city’s warmth does the rest.',
     'small-business':
-      'Dublin small business communities are anchored by the city’s markets, family pubs, and craft producers. George’s Street Arcade, one of Europe’s oldest shopping malls, and the Temple Bar food market host communities of stallholders who share suppliers, schedules, and gossip. The family pub — often run by the same family for generations — is both a business and a neighbourhood institution, and publicans form tight networks of trust. Craft breweries and food producers have created a new layer of makers who collaborate on festivals and shared taprooms. The chamber of commerce offers workshops on permits, digitalisation, and exporting, while the city’s festivals give traders a shared calendar. What binds these groups is place and story: a market hall or a pub street is a natural community with a collective stake in the neighbourhood’s character. Starting a small business community is very achievable: a monthly trader breakfast at a market hall, with rotating topics like rent, rates, and staffing, reliably attracts owners who rarely have peers to talk with.',
+      'Dublin small business communities are anchored by the city’s markets, family pubs, and craft producers. George’s Street Arcade, one of Europe’s oldest shopping malls, and the Temple Bar food market host communities of stallholders who share suppliers, schedules, and gossip. The family pub — often run by the same family for generations — is both a business and a neighbourhood institution, and publicans form tight networks of trust. Craft breweries and food producers have created a new layer of makers who collaborate on festivals and shared taprooms. The chamber of commerce offers workshops on permits, digitalisation, and exporting, while the city’s festivals give traders a shared calendar. What binds these groups is place and story: a market hall or a pub street is a natural community with a collective stake in the neighbourhood’s character. Starting a small business Origin is very achievable: a monthly trader breakfast at a market hall, with rotating topics like rent, rates, and staffing, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Dublin is an ideal city for testing new community event ideas: pubs host everything for the price of a pint, the coast and parks are free venues, and the city’s conversational culture makes strangers into regulars quickly. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Dublin, from pub corners and market halls to the Forty Foot and GAA clubhouses. Some ideas work as one-off events; others are designed to become recurring communities with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Dublin’s warmth do the rest.',
+      'Dublin is an ideal city for testing new Origin event ideas: pubs host everything for the price of a pint, the coast and parks are free venues, and the city’s conversational culture makes strangers into regulars quickly. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Dublin, from pub corners and market halls to the Forty Foot and GAA clubhouses. Some ideas work as one-off events; others are designed to become recurring Origins with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Dublin’s warmth do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -430,22 +430,22 @@ const content: CityContent = {
           'No. Dublin’s communities welcome newcomers warmly, and many groups run with a mix of locals and internationals. Showing up consistently matters far more than your accent.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Dublin communities start, from pub sessions to GAA clubs. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Dublin Origins start, from pub sessions to GAA clubs. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Dublin?',
+      question: 'How do I find an Origin in Dublin?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real neighbourhoods, venues, and formats where Dubliners gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real neighbourhoods, venues, and formats where Dubliners gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Dublin?',
+      question: 'Is it realistic to start an Origin in Dublin?',
       answer:
-        'Yes. Dublin has pubs, parks, the coast, and a famously friendly culture. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Dublin has pubs, parks, the coast, and a famously friendly culture. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Dublin?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Dubliners find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Dubliners find or start Origins.',
     },
   ],
 };

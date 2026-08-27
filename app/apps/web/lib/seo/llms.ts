@@ -42,7 +42,7 @@ function flagshipLinks(): Array<{ path: string; description: string }> {
     path: enSurfacePath(
       `/location/${flagship.countrySlug}/${flagship.regionSlug}/${flagship.slug}`,
     ),
-    description: `Communities in ${flagship.displayName}.`,
+    description: `Origins in ${flagship.displayName}.`,
   }));
 }
 
@@ -92,7 +92,7 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
   {
     heading: 'Locations',
     links: [
-      { path: enSurfacePath(LOCATION_HUB_PATH), description: 'Find or start communities by city.' },
+      { path: enSurfacePath(LOCATION_HUB_PATH), description: 'Find or start Origins by city.' },
       ...flagshipLinks(),
     ],
   },
