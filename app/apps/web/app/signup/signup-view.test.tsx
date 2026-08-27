@@ -46,7 +46,7 @@ describe('SignupView — SSR clean signup copy (TASK-555)', () => {
     expect(html).toContain('Create your account');
     // React escapes apostrophes in SSR HTML (you&#x27;re), so assert the
     // subcopy in apostrophe-free fragments.
-    expect(html).toContain('Get discovered on the community OS');
+    expect(html).toContain('Get discovered on Origin');
     expect(html).toContain('starting something new or growing an existing project');
     expect(html).toContain('Get Started');
     // Semantic fields with the shared waitlist ids + autocomplete hints.
@@ -57,7 +57,7 @@ describe('SignupView — SSR clean signup copy (TASK-555)', () => {
     // No visible waitlist copy: the modal is closed (renders null) and the
     // view still shows the clean heading/subcopy.
     expect(html).not.toContain('Join the waitlist');
-    expect(html).not.toContain('workspace is ready');
+    expect(html).not.toContain('Origin is ready');
   });
 
   it('contains NO in-development disclosure in the initial HTML', () => {
@@ -76,7 +76,7 @@ describe('SignupView — hydration swap (JS-only waitlist/disclosure)', () => {
     renderWithI18n(<SignupView />);
     expect(screen.getByTestId('signup-heading')).toHaveTextContent('Join the waitlist');
     expect(screen.getByTestId('signup-subcopy')).toHaveTextContent(
-      "We'll email you when your workspace is ready.",
+      "We'll email you when your Origin is ready.",
     );
   });
 

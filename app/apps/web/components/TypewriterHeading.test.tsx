@@ -7,7 +7,7 @@ import { I18nProvider, getDictionary, SUPPORTED_LOCALES, type Locale } from '@jo
 import TypewriterHeading from './TypewriterHeading';
 
 const FULL_TEXT =
-  'Ideas, projects and community collaboration space — where new and existing teams find their Origin.';
+  'Where every idea, startup, and project finds the people and resources to move it forward — Origin.';
 
 function renderHeading(locale: Locale = 'en') {
   return render(
@@ -73,9 +73,9 @@ describe('TypewriterHeading', () => {
     const spans = container.querySelectorAll('h1 > span');
     expect(spans).toHaveLength(3);
 
-    // Body carries the first 92 chars on its own block line…
+    // Body carries the first 91 chars on its own block line…
     const body = spans[0];
-    expect(body.textContent).toBe(FULL_TEXT.slice(0, 92));
+    expect(body.textContent).toBe(FULL_TEXT.slice(0, 91));
     expect(getComputedStyle(body).display).toBe('block');
 
     // …and the remainder renders in the accent span. No text-transform:

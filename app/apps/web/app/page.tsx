@@ -25,7 +25,7 @@ import { HomeView } from './home-view';
  * exceed the limit the e2e description-length check enforces).
  */
 export const metadata: Metadata = createMetadata({
-  title: 'JoinOrigin — Social Collaboration Network & Community OS',
+  title: 'Origin — Social Collaboration Network & Community OS',
   description: SITE.description,
   path: '/',
   keywords: [

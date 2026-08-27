@@ -14,7 +14,7 @@ export const SITE = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3100',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN ?? 'joinorigin.co',
   description:
-    'Origin is a social collaboration network — the community OS where your ideas, projects, and communities come together in one organized space.',
+    'Origin is the space you start around a goal — gather the people and resources you need, and move it forward. JoinOrigin is the network behind it.',
   twitterHandle: '@joinorigin', // update if a real handle is provisioned
   /** Local OG image (1200×630, branded) — no external image hosts (repo rule). */
   ogImage: '/assets/og/og-default.png',

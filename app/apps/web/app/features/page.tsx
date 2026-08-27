@@ -12,9 +12,9 @@ import { FeaturesView } from './features-view';
  * 1:1 with the visible FAQ block in the initial SSR HTML.
  */
 export const metadata: Metadata = createMetadata({
-  title: 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
+  title: 'Features — Origins, Chat, Projects & Opportunities | JoinOrigin',
   description:
-    "Explore Origin's features: profiles, ideas, communities, chat, feed, projects, and opportunities — a social collaboration network for real outcomes.",
+    "Explore Origin's features: profiles, ideas, Origins, chat, feed, projects, and opportunities — one space where every idea finds the people and resources to move forward.",
   path: '/features',
   keywords: [
     'community platform features',

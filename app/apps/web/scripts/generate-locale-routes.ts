@@ -91,7 +91,7 @@ const STATIC_PAGES: StaticPageSpec[] = [
     viewModule: '../home-view',
     viewName: 'HomeView',
     crumb: null,
-    title: 'JoinOrigin — Social Collaboration Network & Community OS',
+    title: 'Origin — Social Collaboration Network & Community OS',
     description: SITE_DESCRIPTION,
     keywords: [
       'social collaboration network',
@@ -107,9 +107,9 @@ const STATIC_PAGES: StaticPageSpec[] = [
     viewModule: '../../features/features-view',
     viewName: 'FeaturesView',
     crumb: 'Features',
-    title: 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
+    title: 'Features — Origins, Chat, Projects & Opportunities | JoinOrigin',
     description:
-      "Explore Origin's features: profiles, ideas, communities, chat, feed, projects, and opportunities — a social collaboration network for real outcomes.",
+      "Explore Origin's features: profiles, ideas, Origins, chat, feed, projects, and opportunities — one space where every idea finds the people and resources to move forward.",
     keywords: [
       'community platform features',
       'collaboration network',
@@ -128,7 +128,7 @@ const STATIC_PAGES: StaticPageSpec[] = [
     crumb: 'Community',
     title: 'Community — Find Your People & Build Together | JoinOrigin',
     description:
-      "Join Origin's social collaboration network of 2,400+ builders. Start or join a community around any idea — a small business, an AI startup, a book club.",
+      "Join Origin's network of 2,400+ builders. Start or join an Origin around any idea — a small business, an AI startup, a book club — and find the people to move it forward.",
     keywords: [
       'online communities',
       'join a community',
@@ -146,7 +146,7 @@ const STATIC_PAGES: StaticPageSpec[] = [
     crumb: 'Docs',
     title: 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
     description:
-      'Learn how Origin works: profiles, ideas, communities, chat, projects, and opportunities. Explore the roadmap, tech stack, Matrix standards, and FAQ.',
+      'Learn how Origin works: profiles, ideas, Origins, chat, feed, projects, and opportunities. Explore the roadmap, tech stack, and open Matrix standards.',
     keywords: [
       'JoinOrigin docs',
       'Origin docs',
@@ -166,7 +166,7 @@ const STATIC_PAGES: StaticPageSpec[] = [
     jsonLd: 'aboutPage',
     title: 'About — The Operating System for Human Collaboration | JoinOrigin',
     description:
-      "Origin's mission: a social collaboration network where people post ideas, form communities, and build projects together. The network is the product.",
+      "Origin's mission: one space where people start around a goal, gather the people and resources they need, and build together. The network is the product.",
     keywords: [
       'about JoinOrigin',
       'social collaboration network mission',
@@ -184,7 +184,7 @@ const STATIC_PAGES: StaticPageSpec[] = [
     jsonLd: 'contactPage',
     title: 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
     description:
-      'Questions about JoinOrigin or starting a community? Contact the team — we reply within 2 business days.',
+      'Questions about Origin — or starting your own Origin? Contact the team — we reply within 2 business days.',
     keywords: [
       'contact JoinOrigin',
       'JoinOrigin support',
@@ -222,7 +222,7 @@ const STATIC_PAGES: StaticPageSpec[] = [
     crumb: 'Glossary',
     title: 'Community OS Glossary | JoinOrigin',
     description:
-      'Learn the core terms of community building — community, community manager, community OS, moderation, onboarding, activation, engagement loop, hybrid events, and co-founder.',
+      'Learn the core terms of Origin — Origin, community manager, community OS, moderation, onboarding, activation, engagement loop, hybrid events, and co-founder.',
     keywords: [
       'community glossary',
       'community manager',
@@ -239,7 +239,7 @@ const STATIC_PAGES: StaticPageSpec[] = [
     crumb: 'Signup',
     title: 'Sign Up — Create Your Account | JoinOrigin',
     description:
-      'Create your account on Origin, the social collaboration network. Enter your name and email to get discovered — then start or join a community today.',
+      'Create your account on Origin. Enter your name and email to get discovered — then start an Origin around your idea and find the people and resources to move it forward.',
     keywords: [
       'sign up',
       'create account',

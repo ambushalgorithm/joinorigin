@@ -23,7 +23,7 @@ import { DocsView } from '../../docs/docs-view';
 export const metadata: Metadata = createMetadata({
   title: 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
   description:
-    'Learn how Origin works: profiles, ideas, communities, chat, projects, and opportunities. Explore the roadmap, tech stack, Matrix standards, and FAQ.',
+    'Learn how Origin works: profiles, ideas, Origins, chat, feed, projects, and opportunities. Explore the roadmap, tech stack, and open Matrix standards.',
   path: '/tr/docs',
   locale: 'tr',
   keywords: [

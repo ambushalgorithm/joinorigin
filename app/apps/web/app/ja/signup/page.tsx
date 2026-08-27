@@ -23,7 +23,7 @@ import { SignupView } from '../../signup/signup-view';
 export const metadata: Metadata = createMetadata({
   title: 'Sign Up — Create Your Account | JoinOrigin',
   description:
-    'Create your account on Origin, the social collaboration network. Enter your name and email to get discovered — then start or join a community today.',
+    'Create your account on Origin. Enter your name and email to get discovered — then start an Origin around your idea and find the people and resources to move it forward.',
   path: '/ja/signup',
   locale: 'ja',
   keywords: [

@@ -71,7 +71,7 @@ describe('root layout', () => {
       default: 'JoinOrigin — Social Collaboration Network & Community OS',
       template: '%s',
     });
-    expect(metadata.description).toContain('social collaboration network');
+    expect(metadata.description).toContain('space you start around a goal');
     // Home-page canonical base (subpages override via createMetadata; Next
     // resolves the relative '/' against metadataBase at render time).
     expect(metadata.alternates?.canonical).toBe('/');
