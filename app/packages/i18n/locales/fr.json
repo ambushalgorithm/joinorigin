@@ -24,7 +24,7 @@
     "objects": {
       "profiles": "Profils",
       "ideas": "Idées",
-      "communities": "Communautés",
+      "communities": "Origin",
       "communication": "Communication",
       "feed": "Fil",
       "projects": "Projets",
@@ -33,11 +33,11 @@
     },
     "values": {
       "peopleFirst": "Les personnes d'abord",
-      "communitiesDriveGrowth": "Les communautés stimulent la croissance",
+      "communitiesDriveGrowth": "Origin stimule la croissance",
       "collaborationCreatesValue": "La collaboration crée de la valeur"
     },
     "roadmap": {
-      "phase1Title": "Phase 1 — Fondation communautaire",
+      "phase1Title": "Phase 1 — Fondation Origin",
       "phase2Title": "Phase 2 — Collaboration",
       "phase3Title": "Phase 3 — Organisation",
       "phase4Title": "Phase 4 — Collaboration IA",
@@ -61,14 +61,14 @@
   },
   "home": {
     "hero": {
-      "headline": "Espace de collaboration pour les idées, les projets et les communautés — là où les équipes nouvelles et existantes trouvent leur Origin.",
+      "headline": "Où chaque idée, startup et projet trouve les personnes et les ressources pour avancer — Origin.",
       "headlineAccent": "Origin.",
       "startProject": "Commencer",
-      "supporting": "Créez un profil qui fonctionne comme votre CV, publiez votre idée sous forme de page, et créez ou rejoignez une communauté autour de tout — une toute nouvelle idée, une petite entreprise existante, une start-up IA, un club de lecture ou un 10 km.",
+      "supporting": "Créez un profil qui fonctionne comme votre CV, publiez votre idée sous forme de page, et créez un Origin autour de tout — une idée, une petite entreprise, une start-up IA, un club de lecture ou un 10 km. Invitez ensuite les personnes qui le feront avancer avec vous.",
       "trustAvatarsAlt": "Membre JoinOrigin {{number}}",
       "trustCopy": "Rejoignez 2 400+ bâtisseurs qui collaborent déjà"
     },
-    "definition": "Origin est un réseau de collaboration sociale — le système d'exploitation communautaire où vos idées, vos projets et vos communautés se réunissent dans un espace organisé. JoinOrigin est la marque et le réseau qui se cachent derrière.",
+    "definition": "Origin est l'espace que vous créez autour d'un objectif — une idée, une startup, une petite entreprise ou un projet. Rassemblez les personnes et les ressources dont il a besoin et faites-le avancer ensemble : cofondateurs, partenaires, clients, soutiens et votre réseau. JoinOrigin est la marque et le réseau qui se cachent derrière.",
     "marquee": {
       "label": "Ils nous font confiance",
       "partnerAlt": "Partenaire JoinOrigin {{number}}"
@@ -76,23 +76,23 @@
     "faq": {
       "q1": {
         "question": "Qu'est-ce que JoinOrigin ?",
-        "answer": "Origin est un réseau de collaboration sociale — un système d'exploitation communautaire qui réunit vos idées, vos projets et vos communautés dans un espace organisé. JoinOrigin est la marque et le réseau qui se cachent derrière. Au lieu de cinq outils séparés, vos relations vivent dans un seul endroit, pour que rien ne se perde entre eux."
+        "answer": "Origin est l'espace que vous créez autour d'un objectif. Vous apportez l'idée, rassemblez les personnes et les ressources dont elle a besoin, et vous la faites avancer ensemble. JoinOrigin est la marque et le réseau qui se cachent derrière. Au lieu de cinq outils séparés, vos relations vivent dans un seul endroit, pour que rien ne se perde entre eux."
       },
       "q2": {
         "question": "En quoi JoinOrigin diffère-t-il de Discord/LinkedIn/Reddit ?",
-        "answer": "Discord est une application de discussion, LinkedIn met en relation les professionnels et Reddit sert à la discussion. Origin les réunit autour du graphe social — profils, communautés, messagerie, fil, projets et opportunités vivent ensemble, pour que les relations se transforment en véritable collaboration."
+        "answer": "Discord est une application de discussion, LinkedIn met en relation les professionnels et Reddit sert à la discussion. Origin les réunit autour du graphe social — profils, Origin, messagerie, fil, projets et opportunités vivent ensemble, pour que les relations se transforment en véritable travail."
       },
       "q3": {
         "question": "Que puis-je faire une fois sur la plateforme ?",
-        "answer": "Créez un profil qui fonctionne comme un CV, publiez votre idée sous forme de page d'idée, créez ou rejoignez des communautés autour de tout, et invitez les personnes avec qui vous souhaitez travailler. Chaque communauté dispose de son propre salon où les membres se retrouvent."
+        "answer": "Créez un profil qui fonctionne comme un CV, publiez votre idée sous forme de page d'idée, et créez un Origin autour de tout. Invitez les personnes avec qui vous souhaitez travailler — cofondateurs, partenaires, clients, soutiens — et chaque Origin dispose de son propre salon où le travail avance."
       },
       "q4": {
         "question": "Origin est-il en ligne ?",
-        "answer": "Oui — Origin est en ligne et en pleine croissance. Cliquez sur « Commencer » et faites-vous découvrir : créez votre profil, publiez votre idée, et créez ou rejoignez une communauté dès aujourd'hui."
+        "answer": "Oui — Origin est en ligne et en pleine croissance. Cliquez sur « Commencer » : créez votre profil, publiez votre idée, et créez un Origin autour de tout ce que vous voulez faire aboutir."
       },
       "q5": {
         "question": "Comment rejoindre ?",
-        "answer": "Cliquez sur « Commencer » et faites-vous découvrir. Saisissez votre nom et votre e-mail, et votre profil est prêt — commencez à bâtir votre communauté dès aujourd'hui."
+        "answer": "Cliquez sur « Commencer ». Saisissez votre nom et votre e-mail, et votre profil est prêt — créez ensuite un Origin autour de votre idée et invitez les personnes qui le feront avancer avec vous."
       }
     }
   },
@@ -121,9 +121,9 @@
   },
   "signup": {
     "title": "S'inscrire — Créer votre compte | JoinOrigin",
-    "description": "Créez votre compte sur Origin, le réseau social de collaboration. Saisissez votre nom et votre e-mail pour vous faire découvrir, puis démarrez ou rejoignez une communauté dès aujourd'hui.",
+    "description": "Créez votre compte sur Origin. Saisissez votre nom et votre e-mail pour vous faire découvrir, puis créez un Origin autour de votre idée et trouvez les personnes et les ressources pour le faire avancer.",
     "heading": "Créer votre compte",
-    "subcopy": "Faites-vous découvrir sur le système d'exploitation communautaire — que vous démarriez quelque chose de nouveau ou que vous fassiez grandir un projet existant.",
+    "subcopy": "Faites-vous découvrir sur Origin — que vous démarriez quelque chose de nouveau ou que vous fassiez grandir un projet existant. Trouvez vos cofondateurs, partenaires, clients et soutiens.",
     "nameLabel": "Nom",
     "namePlaceholder": "Ada Lovelace",
     "emailLabel": "E-mail",
@@ -132,7 +132,7 @@
     "submitting": "Création de votre compte…",
     "legalNote": "Pas de spam. Désabonnez-vous à tout moment.",
     "successHeading": "Vous êtes sur la liste !",
-    "successCopy": "Nous vous enverrons un e-mail lorsque votre espace de travail sera prêt.",
+    "successCopy": "Nous vous enverrons un e-mail lorsque votre Origin sera prêt.",
     "done": "Terminé",
     "errors": {
       "generic": "Une erreur est survenue. Veuillez réessayer.",
@@ -144,47 +144,47 @@
     },
     "waitlist": {
       "heading": "Rejoindre la liste d'attente",
-      "subcopy": "Faites-vous découvrir sur le système d'exploitation communautaire — que vous démarriez quelque chose de nouveau ou que vous fassiez grandir un projet existant. Nous vous enverrons un e-mail lorsque votre espace de travail sera prêt.",
+      "subcopy": "Faites-vous découvrir sur Origin — que vous démarriez quelque chose de nouveau ou que vous fassiez grandir un projet existant. Nous vous enverrons un e-mail lorsque votre Origin sera prêt.",
       "disclosure": "Origin est en cours de développement. Votre nom et votre e-mail ne servent qu'à configurer et sécuriser votre compte lorsque votre tour viendra."
     }
   },
   "ctaBand": {
-    "headline": "Trouvez votre tribu. Lancez ou faites grandir quelque chose ensemble.",
-    "subline": "Rejoignez 2 400+ bâtisseurs — des premières idées aux entreprises établies — sur le réseau de collaboration sociale d'Origin et faites-vous découvrir dès aujourd'hui.",
+    "headline": "Créez un Origin. Trouvez les personnes et les ressources pour le faire avancer.",
+    "subline": "Rejoignez 2 400+ bâtisseurs — des premières idées aux entreprises établies — qui rassemblent déjà des personnes et des ressources sur Origin. Trouvez vos cofondateurs, partenaires, clients et soutiens. Faites-vous découvrir dès aujourd'hui.",
     "joinLabel": "Commencer",
     "contactLabel": "Contactez-nous"
   },
   "features": {
     "hero": {
       "eyebrow": "Objets fondamentaux",
-      "title": "Tout ce dont une communauté a besoin, dans un espace de travail serein",
-      "lead": "Origin est un réseau de collaboration sociale construit autour de huit objets fondamentaux : profils, idées, communautés, communication, fil, projets, entreprises et opportunités. Que vous démarriez quelque chose de nouveau ou que vous fassiez grandir une entreprise existante, vos relations vivent dans un seul endroit au lieu de dix outils séparés."
+      "title": "Tout ce dont un Origin a besoin, dans un espace de travail serein",
+      "lead": "Origin est construit autour de huit objets fondamentaux : profils, idées, Origins, communication, fil, projets, entreprises et opportunités. Créez un Origin pour tout ce que vous voulez voir aboutir — une startup, une petite entreprise, un projet — et trouvez les cofondateurs, partenaires, clients et soutiens qui le feront avancer avec vous."
     },
     "sectionCoreObjects": "Objets fondamentaux",
     "coreObjects": {
       "profiles": {
-        "body": "Un profil fonctionne comme un CV vivant : il porte votre expérience, vos compétences et vos idées — ainsi que votre réputation et vos relations — à travers chaque communauté et chaque projet que vous rejoignez."
+        "body": "Un profil fonctionne comme un CV vivant : il porte votre expérience, vos compétences et vos idées — ainsi que votre réputation et vos relations — à travers chaque Origin et chaque projet que vous rejoignez."
       },
       "ideas": {
-        "body": "Les idées sont le point de départ de tout sur Origin. Publiez une page d'idée pour n'importe quelle idée — une petite entreprise, une start-up IA, un club de lecture, un 10 km — et les personnes qui veulent la construire vous trouvent."
+        "body": "Chaque Origin commence par une idée. Publiez une page d'idée pour n'importe quoi — une petite entreprise, une start-up IA, un club de lecture, un 10 km — et les personnes qui veulent la construire vous trouvent."
       },
       "communities": {
-        "body": "Des groupes autour de centres d'intérêt, d'industries et d'objectifs — Fondateurs de start-up, Petites entreprises, Clubs de lecture, Organisations communautaires, Toute personne avec une idée — où les membres se retrouvent."
+        "body": "L'espace que vous créez autour d'un objectif — une startup, une petite entreprise, un club de lecture ou toute idée. Chaque Origin rassemble les personnes qui le partagent et dispose de son propre salon où le travail avance."
       },
       "communication": {
-        "body": "Chaque communauté dispose d'un salon Matrix : discussion en temps réel, messages directs et discussions de groupe via le protocole ouvert Matrix, chiffrés de bout en bout par défaut."
+        "body": "Chaque Origin dispose d'un salon Matrix : discussion en temps réel, messages directs et discussions de groupe via le protocole ouvert Matrix, chiffrés de bout en bout par défaut."
       },
       "feed": {
-        "body": "Le fil affiche les publications, actualités et opportunités des personnes et communautés que vous suivez. C'est un fil apaisé de ce qui compte dans votre réseau, pas une machine à engagement."
+        "body": "Le fil affiche les publications, actualités et opportunités des personnes et Origins que vous suivez. C'est un fil apaisé de ce qui compte dans votre réseau, pas une machine à engagement."
       },
       "projects": {
-        "body": "Des efforts collaboratifs où les membres d'une communauté travaillent ensemble et transforment les conversations en résultats concrets."
+        "body": "Des efforts collaboratifs où les personnes de votre Origin travaillent ensemble et transforment les conversations en résultats concrets."
       },
       "companies": {
-        "body": "Des entreprises créées par des membres au sein du réseau, avec gestion d'équipe et partage d'opportunités intégrés."
+        "body": "Des entreprises créées à partir d'Origins au sein du réseau, avec gestion d'équipe et partage d'opportunités intégrés."
       },
       "opportunities": {
-        "body": "Emplois, partenariats et investissements découverts grâce au graphe social — le réseau fait remonter les bonnes opportunités au bon moment."
+        "body": "Emplois, partenariats, clients et investissements découverts grâce au graphe social — votre Origin fait remonter les bonnes opportunités au bon moment."
       }
     },
     "sectionComparison": "Pourquoi Origin plutôt que dix outils",
@@ -196,61 +196,61 @@
       "slack": {
         "tool": "Slack",
         "strength": "connecte les équipes dans des canaux",
-        "gap": "mais est conçu pour un espace de travail unique — il ne porte pas les profils, les communautés, les projets et les opportunités à travers les personnes que vous connaissez déjà."
+        "gap": "mais est conçu pour un espace de travail unique — il ne porte pas les profils, les Origins, les projets et les opportunités à travers les personnes que vous connaissez déjà."
       },
       "discord": {
         "tool": "Discord",
         "strength": "communique",
-        "gap": "mais n'est pas organisé autour des profils, des communautés, des projets et des opportunités sur un graphe social partagé."
+        "gap": "mais n'est pas organisé autour des profils, des Origins, des projets et des opportunités sur un graphe social partagé."
       },
       "whatsapp": {
         "tool": "WhatsApp",
         "strength": "envoie des messages",
-        "gap": "mais est une application de messagerie privée — il ne donne pas aux communautés des profils, des projets et une découvrabilité durables sur un graphe social partagé."
+        "gap": "mais est une application de messagerie privée — il ne donne pas aux Origins des profils, des projets et une découvrabilité durables sur un graphe social partagé."
       },
       "linkedin": {
         "tool": "LinkedIn",
         "strength": "met en relation les professionnels",
-        "gap": "mais ne fait pas vivre les communautés, la messagerie et les projets qui transforment les connexions en collaboration."
+        "gap": "mais ne fait pas vivre les Origins, la messagerie et les projets qui transforment les connexions en collaboration."
       },
       "meetup": {
         "tool": "Meetup",
         "strength": "trouve des événements",
-        "gap": "mais est conçu autour de réponses ponctuelles — il ne porte pas la communauté, les projets et les relations qui se développent après l'événement."
+        "gap": "mais est conçu autour de réponses ponctuelles — il ne porte pas l'Origin, les projets et les relations qui se développent après l'événement."
       },
       "eventbrite": {
         "tool": "Eventbrite",
         "strength": "vend des billets",
-        "gap": "mais gère des événements, pas des communautés — il ne donne pas à votre groupe un foyer durable avec des profils, des projets et des opportunités."
+        "gap": "mais gère des événements, pas des Origins — il ne donne pas à votre groupe un foyer durable avec des profils, des projets et des opportunités."
       },
       "notion": {
         "tool": "Notion",
         "strength": "organise le travail",
-        "gap": "mais est un outil de documents — il ne connecte pas les personnes derrière les pages en une communauté qui travaille ensemble."
+        "gap": "mais est un outil de documents — il ne connecte pas les personnes derrière les pages en un Origin qui travaille ensemble."
       },
       "asana": {
         "tool": "Asana",
         "strength": "suit les projets",
-        "gap": "mais est conçu pour les tâches, pas pour les relations — il ne fait pas émerger les personnes et les communautés qui font aboutir les projets."
+        "gap": "mais est conçu pour les tâches, pas pour les relations — il ne fait pas émerger les personnes et les Origins qui font aboutir les projets."
       },
       "patreon": {
         "tool": "Patreon",
         "strength": "finance les créateurs",
-        "gap": "mais est conçu autour des abonnements — il ne donne pas à vos membres des profils, des projets et des communautés sur un graphe social partagé."
+        "gap": "mais est conçu autour des abonnements — il ne donne pas à vos membres des profils, des projets et des Origins sur un graphe social partagé."
       },
       "facebook": {
         "tool": "Facebook",
         "strength": "connecte les groupes",
-        "gap": "mais est conçu autour d'un fil publicitaire — il ne donne pas aux communautés un espace de travail serein avec des profils, des projets et des opportunités."
+        "gap": "mais est conçu autour d'un fil publicitaire — il ne donne pas aux Origins un espace de travail serein avec des profils, des projets et des opportunités."
       }
     },
     "sectionRoadmap": "Feuille de route",
     "roadmap": {
       "phase1": {
-        "body": "Profils, communautés, messagerie et graphe social. Indicateur de réussite : les membres qui forment des communautés durables."
+        "body": "Profils, Origins, messagerie et graphe social. Indicateur de réussite : les membres qui forment des Origins durables."
       },
       "phase2": {
-        "body": "Projets, espaces de travail partagés et outils qui transforment les conversations en travail collectif. Indicateur de réussite : les communautés qui livrent des résultats ensemble."
+        "body": "Projets, espaces de travail partagés et outils qui transforment les conversations en travail collectif. Indicateur de réussite : les Origins qui livrent des résultats ensemble."
       },
       "phase3": {
         "body": "Entreprises et startups créées par les membres, avec gestion d'équipe et gouvernance. Indicateur de réussite : des entreprises fondées au sein du réseau."
@@ -259,7 +259,7 @@
     "faq": {
       "q1": {
         "question": "En quoi JoinOrigin diffère-t-il de Discord ?",
-        "answer": "Discord est une application de discussion. Origin est un réseau de collaboration sociale — profils, idées, communautés, messagerie, fil, projets et entreprises vivent tous sur un même graphe social."
+        "answer": "Discord est une application de discussion. Origin est un réseau de collaboration sociale — profils, idées, Origins, messagerie, fil, projets et entreprises vivent tous sur un même graphe social."
       },
       "q2": {
         "question": "JoinOrigin est-il open source ?",
@@ -267,7 +267,7 @@
       },
       "q3": {
         "question": "Qu'est-ce que le graphe social ?",
-        "answer": "Le graphe social est le maillage des relations entre les membres. Origin est organisé autour de lui, pour que chaque profil, communauté et projet se connecte à travers les personnes."
+        "answer": "Le graphe social est le maillage des relations entre les membres. Origin est organisé autour de lui, pour que chaque profil, Origin et projet se connecte à travers les personnes."
       },
       "q4": {
         "question": "Quand les projets et les entreprises seront-ils lancés ?",
@@ -279,26 +279,26 @@
     "hero": {
       "eyebrow": "Le réseau",
       "title": "Là où les personnes se retrouvent",
-      "lead": "Origin est un réseau de collaboration sociale organisé autour des communautés — des groupes de personnes qui partagent des centres d'intérêt, des industries, des objectifs et des opportunités. Les communautés sont au cœur de l'engagement."
+      "lead": "Origin est l'endroit où les personnes se rassemblent autour d'objectifs. Créez un Origin pour tout ce que vous voulez voir aboutir — une startup, une petite entreprise, un club de lecture — ou rejoignez-en un qui correspond à ce que vous construisez, et trouvez les personnes et les ressources pour le faire avancer."
     },
     "sectionValues": "Comment nous animons le réseau",
     "values": {
       "peopleFirst": {
-        "body": "Les membres sont des personnes, pas des profils dans une base de données. Chaque décision de conception protège les relations qui rendent le réseau digne d'intérêt."
+        "body": "Les membres sont des personnes, pas des profils dans une base de données. Chaque décision de conception protège les relations qui rendent un Origin digne d'être créé."
       },
       "communitiesDriveGrowth": {
-        "body": "Les communautés sont au cœur de l'engagement. Quand une communauté prospère, les personnes qui la composent se retrouvent et construisent ensemble."
+        "body": "Les Origins sont au cœur de l'engagement. Quand un Origin prospère, les personnes qui le composent se retrouvent, partagent ce dont elles ont besoin et construisent ensemble."
       },
       "collaborationCreatesValue": {
         "body": "La collaboration est ce qui fait passer des conversations aux projets et des projets aux entreprises. Origin est conçu pour que la collaboration ait un débouché."
       },
       "ownership": {
         "title": "Propriété & souveraineté",
-        "body": "Vous possédez votre identité, vos données et vos communautés. Une architecture ouverte et une identité portable rendent le réseau responsable envers ses membres."
+        "body": "Vous possédez votre identité, vos données et vos Origins. Une architecture ouverte et une identité portable rendent le réseau responsable envers ses membres."
       }
     },
-    "sectionExamples": "Exemples de communautés",
-    "examplesIntro": "Voici le genre de communautés qui se développent aujourd'hui au sein de JoinOrigin. Si vous partagez l'un de ces objectifs, une place vous y attend déjà :",
+    "sectionExamples": "Exemples d'Origins",
+    "examplesIntro": "Voici le genre d'Origins qui se développent aujourd'hui au sein de JoinOrigin. Si vous partagez l'un de ces objectifs, une place vous y attend déjà :",
     "examples": {
       "startupFounders": "Fondateurs de start-up",
       "smallBusinesses": "Petites entreprises",
@@ -309,17 +309,17 @@
       "anyoneWithAnIdea": "Toute personne avec une idée"
     },
     "sectionJoin": "Rejoindre le réseau",
-    "joinCopy": "La communauté est construite par les personnes qui la composent. Faites-vous découvrir et rejoignez les bâtisseurs qui façonnent la manière dont les personnes se retrouvent en ligne.",
+    "joinCopy": "Le réseau est construit par les personnes qui le composent. Créez un Origin, faites-vous découvrir et rejoignez les bâtisseurs qui façonnent la manière dont les personnes se retrouvent et font avancer les choses.",
     "joinStatValue": "2 400+",
     "joinStatLabel": "Membres qui construisent ensemble",
     "faq": {
       "q1": {
-        "question": "Quelles communautés puis-je rejoindre ?",
-        "answer": "Tout le monde peut créer ou rejoindre une communauté autour de n'importe quelle idée — une petite entreprise, une start-up IA, aider les sans-abri, un 10 km, un mouvement politique, une ligue pee-wee. Si cela compte pour vous, cela a sa place sur Origin."
+        "question": "Quels Origins puis-je rejoindre ?",
+        "answer": "Tout le monde peut créer ou rejoindre un Origin autour de n'importe quelle idée — une petite entreprise, une start-up IA, aider les sans-abri, un 10 km, un mouvement politique, une ligue pee-wee. Si cela compte pour vous, cela a sa place sur Origin."
       },
       "q2": {
-        "question": "Puis-je créer ma propre communauté ?",
-        "answer": "Oui. Chaque membre peut créer une communauté autour de n'importe quelle idée et inviter les personnes avec qui il veut construire — que ce soit une entreprise, un club de lecture ou un club de course."
+        "question": "Puis-je créer mon propre Origin ?",
+        "answer": "Oui. Chaque membre peut créer un Origin autour de n'importe quelle idée et inviter les personnes avec qui il veut construire — que ce soit une entreprise, un club de lecture ou un club de course."
       },
       "q3": {
         "question": "Mes données m'appartiennent-elles ?",
@@ -327,11 +327,11 @@
       },
       "q4": {
         "question": "Comment trouver les personnes qui me ressemblent ?",
-        "answer": "Parcourez les communautés par centre d'intérêt, industrie ou objectif — des petites entreprises et clubs de lecture aux start-up IA et clubs de course — puis rejoignez celles qui correspondent à ce que vous voulez construire. Ou créez la vôtre autour de n'importe quelle idée."
+        "answer": "Parcourez les Origins par centre d'intérêt, industrie ou objectif — des petites entreprises et clubs de lecture aux start-up IA et clubs de course — puis rejoignez ceux qui correspondent à ce que vous voulez construire. Ou créez le vôtre autour de n'importe quelle idée."
       },
       "q5": {
         "question": "Puis-je participer de manière anonyme ou avec mon nom ?",
-        "answer": "C'est vous qui choisissez. Vous pouvez participer avec un compte nominatif ou rester anonyme, et les communautés, les salons et les pages d'idées peuvent être ouverts à tous ou restreints par les organisateurs. Ces options seront déployées progressivement."
+        "answer": "C'est vous qui choisissez. Vous pouvez participer avec un compte nominatif ou rester anonyme, et les Origins, les salons et les pages d'idées peuvent être ouverts à tous ou restreints par les organisateurs. Ces options seront déployées progressivement."
       }
     }
   },
@@ -347,7 +347,7 @@
         "body": "Les profils sont l'identité portable de chaque membre — comme un CV vivant. Ils portent l'expérience, les compétences, les idées, la réputation et les relations à travers chaque communauté et chaque projet, pour que qui vous êtes vous accompagne partout."
       },
       "communities": {
-        "body": "Les communautés sont des groupes de personnes qui partagent des centres d'intérêt, des industries, des objectifs et des opportunités — autour de n'importe quelle idée. Elles sont au cœur de l'engagement sur Origin et le moyen par lequel les membres se retrouvent."
+        "body": "Les Origins sont l'espace que vous créez autour d'un objectif — un groupe de personnes qui partagent des centres d'intérêt, des industries, des objectifs et des opportunités autour de n'importe quelle idée. Ils sont au cœur de l'engagement sur Origin et le moyen par lequel les membres se retrouvent."
       },
       "ideas": {
         "body": "Chaque idée trouve un foyer. Publiez une page d'idée pour tout — une petite entreprise, une start-up IA, aider les sans-abri, un 10 km, un club de lecture, une ligue de hockey pee-wee — et trouvez les personnes qui veulent la construire avec vous."
@@ -371,16 +371,16 @@
     "sectionRoadmap": "Feuille de route",
     "roadmap": {
       "phase1": {
-        "body": "Profils, communautés, messagerie et graphe social. Indicateur de réussite : les membres qui forment des communautés durables."
+        "body": "Profils, Origins, messagerie et graphe social. Indicateur de réussite : les membres qui forment des Origins durables."
       },
       "phase2": {
-        "body": "Projets, espaces de travail partagés et outils qui transforment les conversations en travail collectif. Indicateur de réussite : les communautés qui livrent des résultats ensemble."
+        "body": "Projets, espaces de travail partagés et outils qui transforment les conversations en travail collectif. Indicateur de réussite : les Origins qui livrent des résultats ensemble."
       },
       "phase3": {
         "body": "Entreprises et startups créées par les membres, avec gestion d'équipe et gouvernance. Indicateur de réussite : des entreprises fondées au sein du réseau."
       },
       "phase4": {
-        "body": "Des agents IA qui aident les communautés à se coordonner, à résumer et à mettre en correspondance les opportunités. Indicateur de réussite : des membres qui collaborent avec l'IA sur un pied d'égalité."
+        "body": "Des agents IA qui aident les Origins à se coordonner, à résumer et à mettre en correspondance les opportunités. Indicateur de réussite : des membres qui collaborent avec l'IA sur un pied d'égalité."
       },
       "phase5": {
         "body": "Des standards ouverts et la portabilité pour que le réseau connecte entre plateformes. Indicateur de réussite : un graphe social portable et interopérable."
@@ -400,7 +400,7 @@
       },
       "q4": {
         "question": "Qu'est-ce qui est en ligne maintenant ?",
-        "answer": "La Fondation communautaire (Phase 1) est en ligne : les profils, les communautés, la messagerie et le graphe social sont déjà utilisés par 2 400+ bâtisseurs."
+        "answer": "La Fondation Origin (Phase 1) est en ligne : les profils, les Origins, la messagerie et le graphe social sont déjà utilisés par 2 400+ bâtisseurs."
       }
     }
   },
@@ -411,22 +411,22 @@
       "lead": "Origin est un réseau de collaboration sociale construit sur une conviction : l'atout le plus précieux sur internet n'est ni le contenu ni le logiciel — c'est le réseau de personnes et les relations qu'elles tissent."
     },
     "sectionMission": "Notre mission",
-    "missionParagraph1": "Origin construit le système d'exploitation de la collaboration humaine. Au lieu de cinq outils séparés pour la messagerie, les communautés et les projets, vos relations vivent dans un espace de travail serein. Le graphe social est le produit : profils, idées, communautés, communication, fil, projets, entreprises et opportunités s'appuient tous sur le même réseau de personnes.",
-    "missionParagraph2": "Aujourd'hui, 2 400+ bâtisseurs collaborent déjà sur Origin. À mesure que la plateforme évolue à travers la feuille de route — Fondation communautaire, Collaboration, Organisation, Collaboration IA et Réseau mondial — la mission reste la même : aider les personnes à se retrouver et à construire ensemble.",
+    "missionParagraph1": "Origin construit le système d'exploitation de la collaboration humaine. Au lieu de cinq outils séparés pour la messagerie, les Origins et les projets, vos relations vivent dans un espace de travail serein. Le graphe social est le produit : profils, idées, Origins, communication, fil, projets, entreprises et opportunités s'appuient tous sur le même réseau de personnes.",
+    "missionParagraph2": "Aujourd'hui, 2 400+ bâtisseurs collaborent déjà sur Origin. À mesure que la plateforme évolue à travers la feuille de route — Fondation Origin, Collaboration, Organisation, Collaboration IA et Réseau mondial — la mission reste la même : aider les personnes à se retrouver et à construire ensemble.",
     "sectionPrinciples": "Principes directeurs",
     "principles": {
       "peopleFirst": {
         "body": "Le réseau est fait de personnes, pas seulement de contenu ou de logiciel. Les décisions produit partent des relations que les membres veulent nouer."
       },
       "communitiesDriveGrowth": {
-        "body": "Les communautés sont au cœur de l'engagement — des groupes de personnes qui partagent des centres d'intérêt, des industries, des objectifs et des opportunités donnent vie au réseau."
+        "body": "Les Origins sont au cœur de l'engagement — des groupes de personnes qui partagent des centres d'intérêt, des industries, des objectifs et des opportunités donnent vie au réseau."
       },
       "collaborationCreatesValue": {
         "body": "Les conversations deviennent des projets, les projets deviennent des entreprises. Origin est conçu pour que la collaboration ait un débouché."
       },
       "openArchitecture": {
         "title": "Architecture ouverte",
-        "body": "La communication repose sur le protocole ouvert Matrix, et l'identité, les profils, les communautés et le graphe social sont portables et appartiennent aux utilisateurs."
+        "body": "La communication repose sur le protocole ouvert Matrix, et l'identité, les profils, les Origins et le graphe social sont portables et appartiennent aux utilisateurs."
       }
     },
     "sectionFounder": "Le mot du fondateur",
@@ -439,7 +439,7 @@
     "faq": {
       "q1": {
         "question": "Qu'est-ce que JoinOrigin ?",
-        "answer": "Origin est un réseau de collaboration sociale — un système d'exploitation communautaire qui réunit vos idées, vos projets et vos communautés dans un espace organisé. JoinOrigin est la marque et le réseau qui se cachent derrière."
+        "answer": "Origin est l'espace que vous créez autour d'un objectif — un espace organisé où vos idées, vos projets et vos Origins vivent ensemble. JoinOrigin est la marque et le réseau qui se cachent derrière."
       },
       "q2": {
         "question": "Que signifie « le réseau est le produit » ?",
@@ -455,7 +455,7 @@
     "hero": {
       "eyebrow": "Contact",
       "title": "Parlez-nous",
-      "lead": "Une question sur Origin — le réseau de collaboration sociale — ou la création d'une communauté ? Nous serions ravis de vous lire. Demandez-nous tout ce que vous voulez."
+      "lead": "Une question sur Origin — ou sur la création de votre propre Origin ? Nous serions ravis de vous lire. Demandez-nous tout ce que vous voulez."
     },
     "sectionForm": "Envoyer un message",
     "form": {
@@ -482,7 +482,7 @@
       },
       "q2": {
         "question": "Comment obtenir l'accès ?",
-        "answer": "Cliquez sur « Commencer » et faites-vous découvrir — saisissez votre nom et votre e-mail et votre profil est prêt, puis vous pouvez créer ou rejoindre des communautés immédiatement."
+        "answer": "Cliquez sur « Commencer » et faites-vous découvrir — saisissez votre nom et votre e-mail et votre profil est prêt, puis vous pouvez créer ou rejoindre des Origins immédiatement."
       }
     }
   },
@@ -549,7 +549,7 @@
     "heading": "Page introuvable",
     "copy": "La page que vous recherchez n'existe pas ou a été déplacée. Retournez à l'accueil pour découvrir où commence le prochain projet de votre équipe.",
     "backHome": "Retour à l'accueil",
-    "exploreCommunities": "Explorer les communautés →"
+    "exploreCommunities": "Explorer les Origins →"
   },
   "mobile": {
     "home": {
@@ -698,9 +698,9 @@
     "glossary": {
       "eyebrow": "Système communautaire",
       "title": "Glossaire du système communautaire",
-      "intro": "Le vocabulaire essentiel de la construction de communauté — des définitions claires des termes utilisés chaque jour par les organisateurs, modérateurs et fondateurs.",
+      "intro": "Le vocabulaire essentiel d'Origin — des définitions claires des termes utilisés chaque jour par les organisateurs, modérateurs et fondateurs.",
       "whyTitle": "Pourquoi un glossaire",
-      "whyBody": "La construction de communauté a son propre langage, et les termes y sont souvent employés avec souplesse. Un glossaire du système communautaire donne aux organisateurs, modérateurs et fondateurs des définitions communes sur lesquelles s'appuyer — des concepts classiques comme la modération et l'onboarding aux idées plus récentes comme les boucles d'engagement et les événements hybrides.",
+      "whyBody": "Construire quoi que ce soit ensemble a son propre langage, et les termes y sont souvent employés avec souplesse. Un glossaire d'Origin donne aux organisateurs, modérateurs et fondateurs des définitions communes sur lesquelles s'appuyer — des concepts classiques comme la modération et l'onboarding aux idées plus récentes comme les boucles d'engagement et les événements hybrides.",
       "termsTitle": "Termes essentiels",
       "termsIntro": "Voici les termes essentiels que tout organisateur, modérateur et fondateur utilise — chacun est défini en pratique dans les Guides de construction de communauté :",
       "goDeeper": "Aller plus loin",
@@ -708,20 +708,20 @@
       "goDeeperItem2": "Voyez ces concepts en pratique : les pages villes de <1>New York</1> et de <2>Berlin</2>.",
       "terms": {
         "community": {
-          "name": "Communauté",
-          "definition": "Un groupe de personnes qui partagent des centres d'intérêt, des industries, des objectifs ou des opportunités et qui se connectent autour d'eux. Sur Origin, chaque communauté dispose d'un salon où les membres se retrouvent et construisent ensemble."
+          "name": "Origin",
+          "definition": "L'espace que vous créez autour d'un objectif. Un Origin rassemble les personnes et les ressources nécessaires pour faire aboutir quelque chose — une petite entreprise, une start-up IA, un club de lecture ou un 10 km. Sur Origin, chaque Origin dispose d'un salon où les membres se retrouvent et construisent ensemble."
         },
         "community-manager": {
           "name": "Community manager",
-          "definition": "La personne qui garde une communauté accueillante, active et fidèle à sa mission — en accueillant les nouveaux membres, en suscitant la conversation et en coordonnant les projets. Sur Origin, le membre qui crée une communauté possède et modère son salon."
+          "definition": "La personne qui garde un Origin accueillant, actif et fidèle à sa mission — en accueillant les nouveaux membres, en suscitant la conversation et en coordonnant le travail. Sur Origin, le membre qui crée un Origin possède et modère son salon."
         },
         "community-os": {
           "name": "Système d'exploitation communautaire",
-          "definition": "Une plateforme qui réunit profils, communautés, messagerie, projets et opportunités dans un espace de travail organisé. Origin est le système d'exploitation communautaire derrière JoinOrigin."
+          "definition": "Une plateforme qui réunit profils, Origins, messagerie, projets et opportunités dans un espace de travail organisé. Origin est le système d'exploitation communautaire derrière JoinOrigin — l'espace où les idées, les personnes et les ressources avancent ensemble."
         },
         "moderation": {
           "name": "Modération",
-          "definition": "La pratique qui consiste à garder une communauté sûre et dans le sujet grâce à des règles claires et une application cohérente et équitable. Une bonne modération protège les relations qui rendent une communauté digne d'intérêt."
+          "definition": "La pratique qui consiste à garder un Origin sûr et dans le sujet grâce à des règles claires et une application cohérente et équitable. Une bonne modération protège les relations qui rendent un Origin digne d'intérêt."
         },
         "onboarding": {
           "name": "Onboarding",
@@ -729,11 +729,11 @@
         },
         "activation": {
           "name": "Activation",
-          "definition": "Le moment où un nouveau membre accomplit l'action qui fait de lui un membre à part entière — sa première publication, son premier événement ou son premier projet. L'activation est l'étape entre l'adhésion et la contribution."
+          "definition": "Le moment où un nouveau membre accomplit l'action qui fait de lui un membre à part entière d'un Origin — sa première publication, sa première proposition ou sa première contribution. L'activation est l'étape entre l'adhésion et la contribution."
         },
         "engagement-loop": {
           "name": "Boucle d'engagement",
-          "definition": "Le cycle répété de participation qui maintient une communauté vivante : quelqu'un publie, d'autres répondent, et la conversation crée d'autres raisons de revenir. Des boucles saines sont le cœur battant d'une communauté active."
+          "definition": "Le cycle répété qui fait avancer un Origin : quelqu'un publie un besoin ou une offre, d'autres répondent, et le travail crée d'autres raisons de revenir. Des boucles saines sont le cœur battant d'un Origin actif."
         },
         "hybrid-events": {
           "name": "Événements hybrides",
@@ -741,7 +741,7 @@
         },
         "co-founder": {
           "name": "Cofondateur",
-          "definition": "Une personne qui construit un projet ou une entreprise avec vous et partage le parcours de création. Sur Origin, les cofondateurs se trouvent souvent grâce au réseau — des personnes qui rejoignent votre page d'idée et décident de construire ensemble."
+          "definition": "Une personne qui construit un projet ou une entreprise avec vous et partage le parcours de création. Sur Origin, les cofondateurs se trouvent souvent grâce à votre Origin — des personnes qui répondent à un besoin ou une offre, rejoignent le travail et décident de construire ensemble."
         }
       }
     },
