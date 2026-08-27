@@ -121,6 +121,52 @@ describe('getT — synchronous server t() (arch-i18n §3.3)', () => {
   });
 });
 
+describe('origin repositioning EN copy (TASK-565 — sprint-24-origin-reframe-copy.md)', () => {
+  it('home hero headline ends on the brand accent token', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('home.hero.headline')).toBe(
+      'Where every idea, startup, and project finds the people and resources to move it forward — Origin.',
+    );
+    expect(t('home.hero.headlineAccent')).toBe('Origin.');
+  });
+
+  it('home definition teaches the Origin noun (no community lead)', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('home.definition')).toBe(
+      'Origin is the space you start around a goal — an idea, a startup, a small business, or a project. Bring the people and resources it needs, and move it forward together: co-founders, partners, clients, supporters, and your network. JoinOrigin is the brand and the network behind it.',
+    );
+  });
+
+  it('CTA band headline and subline are Origin-first (decision C)', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('ctaBand.headline')).toBe(
+      'Start an Origin. Find the people and resources to move it forward.',
+    );
+    expect(t('ctaBand.subline')).toContain('gathering people and resources on Origin');
+  });
+
+  it('roadmap phase 1 is renamed Origin Foundation', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('common.roadmap.phase1Title')).toBe('Phase 1 — Origin Foundation');
+    expect(t('features.roadmap.phase1.body')).toBe(
+      'Profiles, Origins, chat, and the social graph. Success metric: members forming durable Origins.',
+    );
+  });
+
+  it('core object communities card is renamed Origins (decision B)', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('common.objects.communities')).toBe('Origins');
+    expect(t('features.coreObjects.communities.body')).toBe(
+      'The space you start around a goal — a startup, a small business, a book club, or any idea. Every Origin gathers the people who share it and comes with its own room where the work moves forward.',
+    );
+  });
+
+  it('signup success copy uses the brand echo (decision D)', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('signup.successCopy')).toBe("We'll email you when your Origin is ready.");
+  });
+});
+
 describe('lookup — dot-path access', () => {
   it('returns nested values', () => {
     const dict = getDictionary('en') as Dictionary;
