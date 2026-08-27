@@ -106,7 +106,7 @@ describe('getT — synchronous server t() (arch-i18n §3.3)', () => {
   it('resolves dotted keys', () => {
     const t = getT(getDictionary('en'));
     expect(t('header.logIn')).toBe('Log In');
-    expect(t('footer.tagline')).toBe('Where teams find their origin');
+    expect(t('footer.tagline')).toBe('Where teams find their Origin');
   });
 
   it('interpolates {{variables}}', () => {
