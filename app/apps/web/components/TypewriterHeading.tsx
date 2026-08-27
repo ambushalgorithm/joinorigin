@@ -17,10 +17,14 @@ import { useReducedMotion } from './motion';
  * best projects find their Origin.` with accent `Origin.` — first 97
  * characters as block line, remainder in accent gradient on the next line.
  *
- * Locale-aware split: the component finds the translated accent inside the
- * translated headline (case-insensitive `indexOf`) and splits there — no
- * hardcoded `SPLIT_INDEX = length - 7`. If the accent is absent from the
- * headline the whole text renders unstyled (no crash). Types char-by-char at
+ * Locale-aware split: the component splits at the LAST case-insensitive
+ * occurrence of the brand token "Origin" inside the translated headline, so
+ * the gradient fragment always starts with the brand word — no hardcoded
+ * `SPLIT_INDEX = length - 7` and no dependence on the literal accent string
+ * (locales that place grammar after "Origin" — id, ko, ja, tr, vi, th,
+ * zh-TW — don't contain the literal `Origin.` / `Origin。` accent). If the
+ * brand token is absent the accent-based split is kept; if the accent is
+ * empty the whole text renders unstyled (no crash). Types char-by-char at
  * 20ms/char after a 400ms delay, with a blinking caret (`|`) that persists.
  *
  * Progressive enhancement: the full text is rendered by default (SSR /
@@ -31,6 +35,9 @@ import { useReducedMotion } from './motion';
 
 const CHAR_DELAY_MS = 20;
 const START_DELAY_MS = 400;
+
+/** Brand token that must begin the emphasized (gradient) fragment. */
+const BRAND_TOKEN = 'origin';
 
 const blink = keyframes`
   0%, 100% {
@@ -77,7 +84,6 @@ const Accent = styled.span<{ $isVisible: boolean }>`
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  text-transform: capitalize;
   text-decoration: underline;
   visibility: ${({ $isVisible = true }) => ($isVisible ? 'visible' : 'hidden')};
   font-size: 68px;
@@ -135,14 +141,22 @@ export function TypewriterHeading() {
   const fullText = t('home.hero.headline');
   const accentText = t('home.hero.headlineAccent');
 
-  // Locale-aware split point (arch-i18n §7.1): the position of the accent
-  // fragment inside the translated headline. When the accent is not found,
-  // `splitIndex` falls back to `length - accentLength`; when the accent is
-  // empty the whole headline renders unstyled (no crash).
+  // Brand-token split point (arch-i18n §7.1): the emphasized fragment must
+  // start with the brand word "Origin". Locales that place grammar AFTER the
+  // brand word (id, ko, ja, tr, vi, th, zh-TW) don't contain the literal
+  // accent string (e.g. `Origin.` / `Origin。`), so instead of
+  // `indexOf(accentText)` + a `length - accentLength` fallback we locate the
+  // LAST case-insensitive occurrence of the brand token inside the translated
+  // headline and split there. When the brand token is absent the accent-based
+  // split is kept; when the accent is empty the whole headline renders
+  // unstyled (no crash).
   const splitIndex = useMemo(() => {
-    const index = accentText
-      ? fullText.toLocaleLowerCase().indexOf(accentText.toLocaleLowerCase())
-      : -1;
+    const lowered = fullText.toLocaleLowerCase();
+    const brandIndex = lowered.lastIndexOf(BRAND_TOKEN);
+    if (brandIndex >= 0) {
+      return brandIndex;
+    }
+    const index = accentText ? lowered.indexOf(accentText.toLocaleLowerCase()) : -1;
     return index >= 0 ? index : fullText.length - accentText.length;
   }, [fullText, accentText]);
 
