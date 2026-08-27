@@ -167,6 +167,155 @@ describe('origin repositioning EN copy (TASK-565 — sprint-24-origin-reframe-co
   });
 });
 
+describe('wave 3 origin reframe — location + guides chrome (TASK-569)', () => {
+  it('guides hub is renamed Origin Building', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('seoContent.guides.hubEyebrow')).toBe('Origin building');
+    expect(t('seoContent.guides.hubTitle')).toBe('Origin Building Guides');
+    expect(t('seoContent.guides.hubLead')).toBe(
+      'Twelve practical, evergreen how-to guides for starting and growing Origins — and communicating in a creator-controlled room. From publishing an idea to healthy moderation.',
+    );
+    expect(t('seoContent.guides.keepLearningGuides')).toBe(
+      'Browse all guides on the <1>Origin Building hub</1>.',
+    );
+  });
+
+  it('guides universalCopy and cityCardBody use the Origin-local framing (Option C)', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('seoContent.guides.universalCopy')).toBe(
+      'Origins are online by nature, and they can also have a local space. Find or start an Origin near you:',
+    );
+    expect(t('seoContent.guides.cityCardBody', { city: 'Berlin' })).toBe(
+      'Explore the local spaces and people behind Origins in Berlin.',
+    );
+    expect(t('seoContent.guides.exploreCommunities')).toBe('Explore Origins');
+    expect(t('seoContent.guides.howJoinOriginHelpsBody')).toContain('find or start Origins');
+  });
+
+  it('location eyebrows and breadcrumb are Origin-first', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('seoContent.eyebrow.hub')).toBe('Origins by city');
+    expect(t('seoContent.eyebrow.country')).toBe('Origins in this country');
+    expect(t('seoContent.eyebrow.region')).toBe('Origins in this region');
+    expect(t('seoContent.eyebrow.city')).toBe('Origins in this city');
+    expect(t('seoContent.eyebrow.variant')).toBe('Origin type');
+    expect(t('seoContent.eyebrow.ideas')).toBe('Origin event ideas');
+    expect(t('seoContent.breadcrumb.hub')).toBe('Origins by City');
+  });
+
+  it('location chrome swaps community nouns for Origins', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('seoContent.location.presenceClaim', { city: 'Berlin' })).toBe(
+      'Find or start an Origin in Berlin',
+    );
+    expect(t('seoContent.location.communitiesIn', { city: 'Berlin' })).toBe('Origins in Berlin');
+    expect(t('seoContent.location.exploreCommunities')).toBe('Explore Origins');
+    expect(t('seoContent.location.exploreGroupTypes')).toBe('Explore Origin types');
+    expect(t('seoContent.location.groupTypesInCity')).toBe('Origin types in the city');
+    expect(t('seoContent.location.nearbyCities')).toBe('Origins in nearby cities');
+    expect(t('seoContent.location.guidesTitle')).toBe('Guides for starting an Origin');
+    expect(t('seoContent.location.directoryBannerLabel')).toBe('Places and Origins');
+    expect(t('seoContent.location.directoryBannerCopy')).toBe(
+      'Browse every place and Origin on the network. Find the one that fits you, or start one in your city.',
+    );
+    expect(t('seoContent.location.hubIntro')).toBe(
+      'Every country, region, city, Origin type, and event idea on the network — find the Origin you are looking for or start one in your city.',
+    );
+    expect(t('seoContent.location.hubLead')).toBe(
+      'Explore Origins by city around the world — startup, creative, political, meetup, and small business groups.',
+    );
+    expect(t('seoContent.location.searchLocationsPlaceholder')).toBe(
+      'Search by city, country, or Origin type',
+    );
+    expect(t('seoContent.location.directorySectionTitles.communityTypes')).toBe('Origin types');
+    expect(t('seoContent.location.directoryKinds.variant')).toBe('Origin type');
+    expect(t('seoContent.location.directoryKinds.ideas')).toBe('Origin event ideas');
+  });
+
+  it('group types are renamed Origins', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('seoContent.groupTypes.startup')).toBe('Startup Origins');
+    expect(t('seoContent.groupTypes.creative')).toBe('Creative & design Origins');
+    expect(t('seoContent.groupTypes.political')).toBe('Political & civic Origins');
+    expect(t('seoContent.groupTypes.meetup')).toBe('Origin meetups & events');
+    expect(t('seoContent.groupTypes.smallBusiness')).toBe('Small business Origins');
+  });
+
+  it('location guide card titles are Origin-first', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('seoContent.location.guideCardTitles.start-a-community')).toBe('Start an Origin');
+    expect(t('seoContent.location.guideCardTitles.keep-a-community-active')).toBe(
+      'Keep an Origin active',
+    );
+    expect(t('seoContent.location.guideCardTitles.hybrid-communities')).toBe('Run hybrid Origins');
+    expect(t('seoContent.location.guideCardTitles.moderation')).toBe('Moderate your Origin');
+  });
+
+  it('FAQ templates reframe country and region questions to Origins', () => {
+    const t = getT(getDictionary('en'));
+    expect(
+      t('seoContent.location.faqTemplates.country.communitiesQuestion', { country: 'Germany' }),
+    ).toBe('How do I find Origins in Germany?');
+    expect(
+      t('seoContent.location.faqTemplates.country.communitiesAnswer', {
+        country: 'Germany',
+        cities: 'Berlin',
+      }),
+    ).toContain('The /location hub lists every Origin in Germany.');
+    expect(
+      t('seoContent.location.faqTemplates.country.operationAnswer', { country: 'Germany' }),
+    ).toContain('find or start Origins anywhere in Germany');
+    expect(
+      t('seoContent.location.faqTemplates.region.communitiesQuestion', { region: 'Bavaria' }),
+    ).toBe('How do I find Origins in Bavaria?');
+    expect(
+      t('seoContent.location.faqTemplates.region.communitiesAnswer', {
+        region: 'Bavaria',
+        cities: 'Munich',
+      }),
+    ).toContain('start an Origin of your own');
+    expect(
+      t('seoContent.location.faqTemplates.region.operationAnswer', { region: 'Bavaria' }),
+    ).toContain('find or start Origins anywhere in Bavaria');
+  });
+
+  it('location metadata title and description are Origin-first', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('seoContent.metadata.title.communitiesIn', { name: 'Berlin' })).toBe(
+      'Origins in Berlin',
+    );
+    expect(
+      t('seoContent.metadata.title.communitiesInWithRegion', { name: 'Berlin', region: 'Berlin' }),
+    ).toBe('Origins in Berlin, Berlin');
+    expect(t('seoContent.metadata.title.ideasIn', { name: 'Berlin' })).toBe(
+      '30 Origin event ideas in Berlin',
+    );
+    expect(
+      t('seoContent.metadata.description.city', { city: 'Berlin', waitlist: 'Join Origin.' }),
+    ).toBe(
+      'Find or start Origins in Berlin — startup, creative, political, meetup, and small business groups. Join Origin.',
+    );
+    expect(
+      t('seoContent.metadata.description.ideas', { city: 'Berlin', waitlist: 'Join Origin.' }),
+    ).toBe(
+      'Discover 30 Origin event ideas in Berlin — networking, learning, outdoor, professional, creative, and impact events. Join Origin.',
+    );
+    expect(
+      t('seoContent.metadata.description.country', {
+        country: 'Germany',
+        waitlist: 'Join Origin.',
+      }),
+    ).toBe(
+      'Find or start Origins in Germany — from startup scenes to small business networks. Join Origin.',
+    );
+    expect(
+      t('seoContent.metadata.description.region', { region: 'Bavaria', waitlist: 'Join Origin.' }),
+    ).toBe(
+      'Find or start Origins in Bavaria — meetups, groups, and events across the region. Join Origin.',
+    );
+  });
+});
+
 describe('lookup — dot-path access', () => {
   it('returns nested values', () => {
     const dict = getDictionary('en') as Dictionary;
