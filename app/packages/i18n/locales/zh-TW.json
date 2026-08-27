@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "依城市查看社群",
-      "country": "這個國家的社群",
-      "region": "這個地區的社群",
-      "city": "這個城市的社群",
-      "variant": "社群類型",
-      "ideas": "社群活動點子"
+      "hub": "依城市查看 Origin",
+      "country": "這個國家的 Origin",
+      "region": "這個地區的 Origin",
+      "city": "這個城市的 Origin",
+      "variant": "Origin 類型",
+      "ideas": "Origin 活動點子"
     },
     "breadcrumb": {
       "home": "首頁",
-      "hub": "依城市查看社群"
+      "hub": "依城市查看 Origin"
     },
     "location": {
-      "presenceClaim": "在{{city}}尋找或建立社群",
+      "presenceClaim": "在{{city}}尋找或建立 Origin",
       "hubEntity": "你的城市",
-      "communitiesIn": "{{city}}的社群",
+      "communitiesIn": "{{city}}的 Origin",
       "cityFacts": "城市資料",
-      "exploreCommunities": "探索社群",
-      "exploreGroupTypes": "探索社群類型",
-      "groupTypesInCity": "這個城市的社群類型",
+      "exploreCommunities": "探索 Origin",
+      "exploreGroupTypes": "探索 Origin 類型",
+      "groupTypesInCity": "這個城市的 Origin 類型",
       "flagshipCities": "重點城市",
-      "nearbyCities": "鄰近城市的社群",
-      "guidesTitle": "建立社群指南",
+      "nearbyCities": "鄰近城市的 Origin",
+      "guidesTitle": "建立 Origin 指南",
       "stepByStepGuide": "逐步指南",
       "ideasLink": "30個社群活動點子",
       "faqHeading": "常見問題",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "常見形式",
       "variantHowToTitle": "如何開始",
       "browseLocations": "瀏覽地點",
-      "directoryBannerLabel": "地點與社群",
+      "directoryBannerLabel": "地點與 Origin",
       "directoryBannerTitle": "加入這個網路",
-      "directoryBannerCopy": "瀏覽網路中的每個地點和社群。找到適合你的那個，或在你的城市建立一個。",
-      "hubIntro": "網路中的每個國家、地區、城市、社群類型和活動點子——找到你正在尋找的社群，或在你的城市建立一個。",
-      "hubLead": "探索世界各地依城市劃分的社群——新創、創意、政治、聚會和小型企業團體。",
+      "directoryBannerCopy": "瀏覽網路中的每個地點和 Origin。找到適合你的那個，或在你的城市建立一個。",
+      "hubIntro": "網路中的每個國家、地區、城市、Origin 類型和活動點子——找到你正在尋找的 Origin，或在你的城市建立一個。",
+      "hubLead": "探索世界各地依城市劃分的 Origin——新創、創意、政治、聚會和小型企業團體。",
       "directoryTotal": "瀏覽地點（{{count}}）",
       "searchLocationsLabel": "搜尋地點",
-      "searchLocationsPlaceholder": "依城市、國家或社群類型搜尋",
+      "searchLocationsPlaceholder": "依城市、國家或 Origin 類型搜尋",
       "emptyState": "沒有符合「{{query}}」的地點。",
       "attribution": "地點資料 © GeoNames 貢獻者，CC BY 4.0；城市資料 © SimpleMaps（worldcities basic），CC BY 4.0。",
       "directoryKinds": {
         "country": "國家",
         "region": "地區",
         "city": "城市",
-        "variant": "社群類型",
-        "ideas": "社群活動點子",
+        "variant": "Origin 類型",
+        "ideas": "Origin 活動點子",
         "fallback": "地點"
       },
       "directorySectionTitles": {
         "countries": "國家",
         "regions": "地區",
         "cities": "城市",
-        "communityTypes": "社群類型",
+        "communityTypes": "Origin 類型",
         "eventIdeas": "活動點子"
       },
       "guideCardTitles": {
-        "start-a-community": "建立社群",
+        "start-a-community": "建立 Origin",
         "organize-a-meetup": "舉辦聚會",
         "first-10-members": "獲得你的前 10 位成員",
         "find-a-co-founder": "尋找共同創辦人",
-        "keep-a-community-active": "讓社群保持活躍",
-        "hybrid-communities": "經營混合式社群",
-        "moderation": "管理你的社群"
+        "keep-a-community-active": "讓 Origin 保持活躍",
+        "hybrid-communities": "經營混合式 Origin",
+        "moderation": "管理你的 Origin"
       },
       "countryFacts": "國家概況",
       "regionFacts": "地區概況",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "如何在{{country}}找到社群？",
-          "communitiesAnswer": "/location中心列出了{{country}}的所有社群。探索創業、創意、政治、聚會和小型企業等社群類型，包括{{cities}}。",
+          "communitiesQuestion": "如何在{{country}}找到 Origin？",
+          "communitiesAnswer": "/location中心列出了{{country}}的所有 Origin。探索創業、創意、政治、聚會和小型企業等 Origin 類型，包括{{cities}}。",
           "populationQuestion": "{{country}}有多少人口？",
           "populationAnswer": "資料集顯示{{country}}的人口為{{population}}。",
           "capitalQuestion": "{{country}}的首都是哪裡？",
@@ -645,52 +645,52 @@
           "languageQuestion": "{{country}}使用什麼語言？",
           "languageAnswer": "{{country}}使用的語言包括{{languages}}。",
           "operationQuestion": "JoinOrigin在{{country}}營運嗎？",
-          "operationAnswer": "是的。JoinOrigin沒有當地辦事處。該平台幫助人們在{{country}}的任何地方找到或建立社群。"
+          "operationAnswer": "是的。JoinOrigin沒有當地辦事處。該平台幫助人們在{{country}}的任何地方找到或建立 Origin。"
         },
         "region": {
-          "communitiesQuestion": "如何在{{region}}找到社群？",
-          "communitiesAnswer": "瀏覽{{region}}的城市頁面 — {{cities}} — 或建立自己的社群。/location中心列出了{{region}}的所有社群類型。",
+          "communitiesQuestion": "如何在{{region}}找到 Origin？",
+          "communitiesAnswer": "瀏覽{{region}}的城市頁面 — {{cities}} — 或建立自己的 Origin。/location中心列出了{{region}}的所有 Origin 類型。",
           "countryQuestion": "{{region}}位於哪個國家？",
           "countryAnswer": "{{region}}屬於{{country}}，首都是{{capital}}。",
           "languageQuestion": "{{region}}使用什麼語言？",
           "languageAnswer": "{{region}}使用的語言包括{{languages}}。",
           "operationQuestion": "JoinOrigin在{{region}}營運嗎？",
-          "operationAnswer": "是的。JoinOrigin沒有當地辦事處。該平台幫助人們在{{region}}的任何地方找到或建立社群。"
+          "operationAnswer": "是的。JoinOrigin沒有當地辦事處。該平台幫助人們在{{region}}的任何地方找到或建立 Origin。"
         }
       }
     },
     "groupTypes": {
-      "startup": "新創社群",
-      "creative": "創意與設計社群",
-      "political": "政治與公民社群",
-      "meetup": "社群聚會與活動",
-      "smallBusiness": "小型企業社群"
+      "startup": "新創 Origin",
+      "creative": "創意與設計 Origin",
+      "political": "政治與公民 Origin",
+      "meetup": "Origin 聚會與活動",
+      "smallBusiness": "小型企業 Origin"
     },
     "guides": {
       "eyebrow": "操作指南",
-      "hubEyebrow": "社群經營",
-      "hubTitle": "社群經營指南",
-      "hubLead": "十二份實用、歷久彌新的操作指南，教你找到、加入並建立群體——以及在創作者掌控的聊天室中溝通。從發布點子到健康的管理，一應俱全。",
+      "hubEyebrow": "Origin 經營",
+      "hubTitle": "Origin 經營指南",
+      "hubLead": "十二份實用、歷久彌新的操作指南，教你建立並發展 Origin——以及在創作者掌控的聊天室中溝通。從發布點子到健康的管理，一應俱全。",
       "allGuides": "所有指南",
       "searchLabel": "搜尋指南",
       "searchPlaceholder": "依指南標題或關鍵字搜尋",
       "emptyState": "沒有符合「{{query}}」的指南。",
       "glossarySection": "社群系統詞彙表",
       "glossaryBandCopy": "在<1>{{glossary}}</1>中學習群體、聊天室、管理、入門與參與循環背後的核心術語。",
-      "universalCopy": "指南放諸四海皆準——社群則紮根於在地。在你附近的城市尋找或建立社群：",
+      "universalCopy": "Origin 本質上在線上，也可以擁有在地空間。在你附近尋找或建立 Origin：",
       "startLocal": "在地開始",
-      "cityCardBody": "探索{{city}}真實的場地、群體和指南。",
+      "cityCardBody": "探索{{city}}的 Origin 背後的在地空間與人們。",
       "overview": "總覽",
       "stepByStep": "逐步進行",
       "stepNumber": "第{{number}}步。",
       "relatedGuides": "相關指南",
       "continueBuilding": "繼續閱讀系列中的下一份指南，持續建設。",
       "practiceInCity": "在真實城市中實踐這些步驟。",
-      "exploreCommunities": "探索社群",
+      "exploreCommunities": "探索 Origin",
       "howJoinOriginHelps": "JoinOrigin能如何協助",
-      "howJoinOriginHelpsBody": "JoinOrigin 是一個社群 OS，幫助你尋找或建立社群——上述步驟在平台上與你已使用的工具上都適用。JoinOrigin 處理結構、被發現與組織，讓你能專注在成員身上。點擊「開始使用」並讓自己被發現。",
+      "howJoinOriginHelpsBody": "JoinOrigin 是一個社群 OS，幫助你尋找或建立 Origin——上述步驟在平台上與你已使用的工具上都適用。JoinOrigin 處理結構、被發現與組織，讓你能專注在成員身上。點擊「開始使用」並讓自己被發現。",
       "keepLearning": "繼續學習",
-      "keepLearningGuides": "在<1>社群經營中心</1>瀏覽所有指南。",
+      "keepLearningGuides": "在<1>Origin 經營中心</1>瀏覽所有指南。",
       "keepLearningGlossary": "在<1>社群系統詞彙表</1>中學習核心術語。",
       "keepLearningLocations": "前往<1>地點中心</1>找到城市頁面，從在地開始。",
       "translatePage": "翻譯此頁面"
@@ -748,17 +748,17 @@
     "metadata": {
       "waitlistPhrase": "加入 Origin，今天就讓自己被發現。",
       "title": {
-        "communitiesIn": "{{name}}的社群",
-        "communitiesInWithRegion": "{{name}}、{{region}}的社群",
+        "communitiesIn": "{{name}}的 Origin",
+        "communitiesInWithRegion": "{{name}}、{{region}}的 Origin",
         "variantIn": "{{name}}的{{label}}",
-        "ideasIn": "{{name}}的30個社群活動點子"
+        "ideasIn": "{{name}}的30個 Origin 活動點子"
       },
       "description": {
-        "city": "在{{city}}尋找或建立社群——新創、創意、政治、聚會與小型企業社群。{{waitlist}}",
+        "city": "在{{city}}尋找或建立 Origin——新創、創意、政治、聚會與小型企業團體。{{waitlist}}",
         "variant": "在{{city}}尋找或建立{{label}}——真實的場地、群體與指南。{{waitlist}}",
-        "ideas": "發掘{{city}}的30個社群活動點子——人脈、學習、戶外、專業、創意與影響力活動。{{waitlist}}",
-        "country": "在{{country}}尋找或建立社群——從新創場景到小型企業網路。{{waitlist}}",
-        "region": "在{{region}}尋找或建立社群——跨地區的聚會、群體與活動。{{waitlist}}"
+        "ideas": "發掘{{city}}的30個 Origin 活動點子——人脈、學習、戶外、專業、創意與影響力活動。{{waitlist}}",
+        "country": "在{{country}}尋找或建立 Origin——從新創場景到小型企業網路。{{waitlist}}",
+        "region": "在{{region}}尋找或建立 Origin——跨地區的聚會、群體與活動。{{waitlist}}"
       }
     },
     "cta": {

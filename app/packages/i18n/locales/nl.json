@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "Gemeenschappen per stad",
-      "country": "Gemeenschappen in dit land",
-      "region": "Gemeenschappen in deze regio",
-      "city": "Gemeenschappen in deze stad",
-      "variant": "Type gemeenschap",
-      "ideas": "Ideeën voor gemeenschapsevenementen"
+      "hub": "Origins per stad",
+      "country": "Origins in dit land",
+      "region": "Origins in deze regio",
+      "city": "Origins in deze stad",
+      "variant": "Origintype",
+      "ideas": "Ideeën voor Origin-evenementen"
     },
     "breadcrumb": {
       "home": "Home",
-      "hub": "Gemeenschappen per stad"
+      "hub": "Origins per stad"
     },
     "location": {
-      "presenceClaim": "Vind of start een gemeenschap in {{city}}",
+      "presenceClaim": "Vind of start een Origin in {{city}}",
       "hubEntity": "je stad",
-      "communitiesIn": "Gemeenschappen in {{city}}",
+      "communitiesIn": "Origins in {{city}}",
       "cityFacts": "Stadsfeiten",
-      "exploreCommunities": "Ontdek gemeenschappen",
-      "exploreGroupTypes": "Ontdek soorten gemeenschappen",
-      "groupTypesInCity": "Soorten gemeenschappen in de stad",
+      "exploreCommunities": "Ontdek Origins",
+      "exploreGroupTypes": "Ontdek soorten Origins",
+      "groupTypesInCity": "Soorten Origins in de stad",
       "flagshipCities": "Kernsteden",
-      "nearbyCities": "Gemeenschappen in nabijgelegen steden",
-      "guidesTitle": "Handleidingen voor het starten van een gemeenschap",
+      "nearbyCities": "Origins in nabijgelegen steden",
+      "guidesTitle": "Handleidingen voor het starten van een Origin",
       "stepByStepGuide": "Stap-voor-stap handleiding",
       "ideasLink": "30 ideeën voor gemeenschapsevenementen",
       "faqHeading": "Veelgestelde vragen",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "Typische formats",
       "variantHowToTitle": "Hoe te beginnen",
       "browseLocations": "Locaties doorbladeren",
-      "directoryBannerLabel": "Plaatsen en communities",
+      "directoryBannerLabel": "Plaatsen en Origins",
       "directoryBannerTitle": "Sluit je aan bij het netwerk",
-      "directoryBannerCopy": "Blader door elke plaats en community in het netwerk. Vind degene die bij je past of start er een in je stad.",
-      "hubIntro": "Elk land, elke regio, elke stad, elk community-type en elk evenementidee in het netwerk — vind de community die je zoekt of start er een in je stad.",
-      "hubLead": "Verken communities per stad over de hele wereld — startup-, creatieve, politieke, meetup- en kleine bedrijfsgroepen.",
+      "directoryBannerCopy": "Blader door elke plaats en elk Origin in het netwerk. Vind degene die bij je past of start er een in je stad.",
+      "hubIntro": "Elk land, elke regio, elke stad, elk Origintype en elk evenementidee in het netwerk — vind het Origin dat je zoekt of start er een in je stad.",
+      "hubLead": "Verken Origins per stad over de hele wereld — startup-, creatieve, politieke, meetup- en kleine bedrijfsgroepen.",
       "directoryTotal": "Locaties doorbladeren ({{count}})",
       "searchLocationsLabel": "Locaties zoeken",
-      "searchLocationsPlaceholder": "Zoek op stad, land of communitytype",
+      "searchLocationsPlaceholder": "Zoek op stad, land of Origintype",
       "emptyState": "Geen locaties gevonden voor “{{query}}”.",
       "attribution": "Locatiegegevens © GeoNames-bijdragers, CC BY 4.0; stadsgegevens © SimpleMaps (worldcities basic), CC BY 4.0.",
       "directoryKinds": {
         "country": "Land",
         "region": "Regio",
         "city": "Stad",
-        "variant": "Communitytype",
-        "ideas": "Ideeën voor community-evenementen",
+        "variant": "Origintype",
+        "ideas": "Ideeën voor Origin-evenementen",
         "fallback": "Locatie"
       },
       "directorySectionTitles": {
         "countries": "Landen",
         "regions": "Regio's",
         "cities": "Steden",
-        "communityTypes": "Communitytypen",
+        "communityTypes": "Origintypen",
         "eventIdeas": "Evenementideeën"
       },
       "guideCardTitles": {
-        "start-a-community": "Start een community",
+        "start-a-community": "Start een Origin",
         "organize-a-meetup": "Organiseer een meetup",
         "first-10-members": "Haal je eerste 10 leden binnen",
         "find-a-co-founder": "Vind een medeoprichter",
-        "keep-a-community-active": "Houd een community actief",
-        "hybrid-communities": "Draai hybride community's",
-        "moderation": "Modereer je community"
+        "keep-a-community-active": "Houd een Origin actief",
+        "hybrid-communities": "Draai hybride Origins",
+        "moderation": "Modereer je Origin"
       },
       "countryFacts": "Feiten over het land",
       "regionFacts": "Feiten over de regio",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "Hoe vind ik communities in {{country}}?",
-          "communitiesAnswer": "De /location-hub vermeldt alle communities in {{country}}. Verken de communitytypen — startup, creatief, politiek, meetup en klein bedrijf — ook in {{cities}}.",
+          "communitiesQuestion": "Hoe vind ik Origins in {{country}}?",
+          "communitiesAnswer": "De /location-hub vermeldt alle Origins in {{country}}. Verken de Origintypen — startup, creatief, politiek, meetup en klein bedrijf — ook in {{cities}}.",
           "populationQuestion": "Hoeveel mensen wonen er in {{country}}?",
           "populationAnswer": "De dataset registreert een bevolking van {{population}} voor {{country}}.",
           "capitalQuestion": "Wat is de hoofdstad van {{country}}?",
@@ -645,52 +645,52 @@
           "languageQuestion": "Welke talen worden er in {{country}} gesproken?",
           "languageAnswer": "De talen die in {{country}} worden gesproken, omvatten {{languages}}.",
           "operationQuestion": "Is JoinOrigin actief in {{country}}?",
-          "operationAnswer": "Ja. JoinOrigin heeft geen lokale kantoren. Het platform helpt mensen om overal in {{country}} communities te vinden of te starten."
+          "operationAnswer": "Ja. JoinOrigin heeft geen lokale kantoren. Het platform helpt mensen om overal in {{country}} Origins te vinden of te starten."
         },
         "region": {
-          "communitiesQuestion": "Hoe vind ik communities in {{region}}?",
-          "communitiesAnswer": "Verken de stadspagina's in {{region}} — {{cities}} — of start je eigen community. De /location-hub vermeldt alle communitytypen in {{region}}.",
+          "communitiesQuestion": "Hoe vind ik Origins in {{region}}?",
+          "communitiesAnswer": "Verken de stadspagina's in {{region}} — {{cities}} — of start je eigen Origin. De /location-hub vermeldt alle Origintypen in {{region}}.",
           "countryQuestion": "In welk land ligt {{region}}?",
           "countryAnswer": "{{region}} is onderdeel van {{country}}, met als hoofdstad {{capital}}.",
           "languageQuestion": "Welke talen worden er in {{region}} gesproken?",
           "languageAnswer": "De talen die in {{region}} worden gesproken, omvatten {{languages}}.",
           "operationQuestion": "Is JoinOrigin actief in {{region}}?",
-          "operationAnswer": "Ja. JoinOrigin heeft geen lokale kantoren. Het platform helpt mensen om overal in {{region}} communities te vinden of te starten."
+          "operationAnswer": "Ja. JoinOrigin heeft geen lokale kantoren. Het platform helpt mensen om overal in {{region}} Origins te vinden of te starten."
         }
       }
     },
     "groupTypes": {
-      "startup": "Startup-gemeenschappen",
-      "creative": "Creatieve & design-gemeenschappen",
-      "political": "Politieke & burgerlijke gemeenschappen",
-      "meetup": "Gemeenschapsmeetups & evenementen",
-      "smallBusiness": "Gemeenschappen van kleine bedrijven"
+      "startup": "Startup-Origins",
+      "creative": "Creatieve & design-Origins",
+      "political": "Politieke & burgerlijke Origins",
+      "meetup": "Origin-meetups & evenementen",
+      "smallBusiness": "Origins van kleine bedrijven"
     },
     "guides": {
       "eyebrow": "Hoe-doe-ik-handleiding",
-      "hubEyebrow": "Gemeenschap opbouwen",
-      "hubTitle": "Handleidingen voor gemeenschapsopbouw",
-      "hubLead": "Twaalf praktische, tijdloze handleidingen voor het vinden, aansluiten en starten van groepen — en voor communiceren in een door de maker beheerde kamer. Van het publiceren van een idee tot gezonde moderatie.",
+      "hubEyebrow": "Origins opbouwen",
+      "hubTitle": "Handleidingen voor het opbouwen van Origins",
+      "hubLead": "Twaalf praktische, tijdloze handleidingen voor het starten en laten groeien van Origins — en voor communiceren in een door de maker beheerde kamer. Van het publiceren van een idee tot gezonde moderatie.",
       "allGuides": "Alle handleidingen",
       "searchLabel": "Handleidingen zoeken",
       "searchPlaceholder": "Zoek op titel of trefwoord",
       "emptyState": "Geen handleidingen gevonden voor “{{query}}”.",
       "glossarySection": "Gemeenschaps-OS-woordenlijst",
       "glossaryBandCopy": "Leer de kernbegrippen achter groepen, kamers, moderatie, onboarding en betrokkenheidslussen in de <1>{{glossary}}</1>.",
-      "universalCopy": "Handleidingen zijn universeel — community's zijn lokaal. Vind of start een community in een stad bij jou in de buurt:",
+      "universalCopy": "Origins zijn van nature online en kunnen ook een lokale ruimte hebben. Vind of start een Origin bij jou in de buurt:",
       "startLocal": "Lokaal beginnen",
-      "cityCardBody": "Ontdek echte locaties, groepen en handleidingen in {{city}}.",
+      "cityCardBody": "Ontdek de lokale ruimtes en mensen achter Origins in {{city}}.",
       "overview": "Overzicht",
       "stepByStep": "Stap voor stap",
       "stepNumber": "Stap {{number}}.",
       "relatedGuides": "Gerelateerde handleidingen",
       "continueBuilding": "Blijf bouwen met de volgende handleiding in de serie.",
       "practiceInCity": "Pas deze stappen in de praktijk toe in een echte stad.",
-      "exploreCommunities": "Ontdek gemeenschappen",
+      "exploreCommunities": "Ontdek Origins",
       "howJoinOriginHelps": "Hoe JoinOrigin kan helpen",
-      "howJoinOriginHelpsBody": "JoinOrigin is een community-besturingssysteem dat je helpt community's te vinden of te starten — de stappen hierboven werken op het platform en met de tools die je al hebt. JoinOrigin regelt de structuur, vindbaarheid en organisatie, zodat jij je kunt richten op je leden. Klik op “Aan de slag” en word ontdekt.",
+      "howJoinOriginHelpsBody": "JoinOrigin is een community-besturingssysteem dat je helpt Origins te vinden of te starten — de stappen hierboven werken op het platform en met de tools die je al hebt. JoinOrigin regelt de structuur, vindbaarheid en organisatie, zodat jij je kunt richten op je leden. Klik op “Aan de slag” en word ontdekt.",
       "keepLearning": "Blijf leren",
-      "keepLearningGuides": "Bekijk alle handleidingen op de <1>Community Building-hub</1>.",
+      "keepLearningGuides": "Bekijk alle handleidingen op de <1>Origin Building-hub</1>.",
       "keepLearningGlossary": "Leer de kernbegrippen in de <1>Community OS-woordenlijst</1>.",
       "keepLearningLocations": "Vind een stadspagina op de <1>locatiehub</1> om lokaal te beginnen.",
       "translatePage": "Deze pagina vertalen"
@@ -748,17 +748,17 @@
     "metadata": {
       "waitlistPhrase": "Sluit je aan bij Origin en word vandaag ontdekt.",
       "title": {
-        "communitiesIn": "Community's in {{name}}",
-        "communitiesInWithRegion": "Community's in {{name}}, {{region}}",
+        "communitiesIn": "Origins in {{name}}",
+        "communitiesInWithRegion": "Origins in {{name}}, {{region}}",
         "variantIn": "{{label}} in {{name}}",
-        "ideasIn": "30 ideeën voor community-evenementen in {{name}}"
+        "ideasIn": "30 ideeën voor Origin-evenementen in {{name}}"
       },
       "description": {
-        "city": "Vind of start community's in {{city}} — startup-, creatieve, politieke, meetup- en kleine-bedrijfsgroepen. {{waitlist}}",
+        "city": "Vind of start Origins in {{city}} — startup-, creatieve, politieke, meetup- en kleine-bedrijfsgroepen. {{waitlist}}",
         "variant": "Vind of start {{label}} in {{city}} — echte locaties, groepen en handleidingen. {{waitlist}}",
-        "ideas": "Ontdek 30 ideeën voor community-evenementen in {{city}} — netwerk-, leer-, outdoor-, professionele, creatieve en impactevenementen. {{waitlist}}",
-        "country": "Vind of start community's in {{country}} — van startupscènes tot netwerken van kleine bedrijven. {{waitlist}}",
-        "region": "Vind of start community's in {{region}} — meetups, groepen en evenementen in de hele regio. {{waitlist}}"
+        "ideas": "Ontdek 30 ideeën voor Origin-evenementen in {{city}} — netwerk-, leer-, outdoor-, professionele, creatieve en impactevenementen. {{waitlist}}",
+        "country": "Vind of start Origins in {{country}} — van startupscènes tot netwerken van kleine bedrijven. {{waitlist}}",
+        "region": "Vind of start Origins in {{region}} — meetups, groepen en evenementen in de hele regio. {{waitlist}}"
       }
     },
     "cta": {

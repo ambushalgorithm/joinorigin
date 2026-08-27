@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "Comunidades por ciudad",
-      "country": "Comunidades en este país",
-      "region": "Comunidades en esta región",
-      "city": "Comunidades en esta ciudad",
-      "variant": "Tipo de comunidad",
-      "ideas": "Ideas de eventos comunitarios"
+      "hub": "Origins por ciudad",
+      "country": "Origins en este país",
+      "region": "Origins en esta región",
+      "city": "Origins en esta ciudad",
+      "variant": "Tipo de Origin",
+      "ideas": "Ideas de eventos de Origin"
     },
     "breadcrumb": {
       "home": "Inicio",
-      "hub": "Comunidades por Ciudad"
+      "hub": "Origins por Ciudad"
     },
     "location": {
-      "presenceClaim": "Encuentra o crea una comunidad en {{city}}",
+      "presenceClaim": "Encuentra o crea un Origin en {{city}}",
       "hubEntity": "tu ciudad",
-      "communitiesIn": "Comunidades en {{city}}",
+      "communitiesIn": "Origins en {{city}}",
       "cityFacts": "Datos de la ciudad",
-      "exploreCommunities": "Explora comunidades",
-      "exploreGroupTypes": "Explora tipos de comunidad",
-      "groupTypesInCity": "Tipos de comunidad en la ciudad",
+      "exploreCommunities": "Explora Origins",
+      "exploreGroupTypes": "Explora tipos de Origin",
+      "groupTypesInCity": "Tipos de Origin en la ciudad",
       "flagshipCities": "Ciudades principales",
-      "nearbyCities": "Comunidades en ciudades cercanas",
-      "guidesTitle": "Guías para crear una comunidad",
+      "nearbyCities": "Origins en ciudades cercanas",
+      "guidesTitle": "Guías para crear un Origin",
       "stepByStepGuide": "Guía paso a paso",
       "ideasLink": "30 ideas de eventos comunitarios",
       "faqHeading": "Preguntas frecuentes",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "Formatos habituales",
       "variantHowToTitle": "Cómo empezar",
       "browseLocations": "Explorar ubicaciones",
-      "directoryBannerLabel": "Lugares y comunidades",
+      "directoryBannerLabel": "Lugares y Origins",
       "directoryBannerTitle": "Únete a la red",
-      "directoryBannerCopy": "Explora todos los lugares y comunidades de la red. Encuentra la que encaje contigo o crea una en tu ciudad.",
-      "hubIntro": "Cada país, región, ciudad, tipo de comunidad e idea de evento en la red: encuentra la comunidad que buscas o crea una en tu ciudad.",
-      "hubLead": "Explora comunidades por ciudad en todo el mundo: grupos de startups, creativos, políticos, de reuniones y pequeñas empresas.",
+      "directoryBannerCopy": "Explora todos los lugares y Origins de la red. Encuentra el que encaje contigo o crea uno en tu ciudad.",
+      "hubIntro": "Cada país, región, ciudad, tipo de Origin e idea de evento en la red: encuentra el Origin que buscas o crea uno en tu ciudad.",
+      "hubLead": "Explora Origins por ciudad en todo el mundo: grupos de startups, creativos, políticos, de reuniones y pequeñas empresas.",
       "directoryTotal": "Explorar ubicaciones ({{count}})",
       "searchLocationsLabel": "Buscar ubicaciones",
-      "searchLocationsPlaceholder": "Busca por ciudad, país o tipo de comunidad",
+      "searchLocationsPlaceholder": "Busca por ciudad, país o tipo de Origin",
       "emptyState": "No hay ubicaciones que coincidan con «{{query}}».",
       "attribution": "Datos de ubicación © colaboradores de GeoNames, CC BY 4.0; datos de ciudades © SimpleMaps (worldcities basic), CC BY 4.0.",
       "directoryKinds": {
         "country": "País",
         "region": "Región",
         "city": "Ciudad",
-        "variant": "Tipo de comunidad",
-        "ideas": "Ideas de eventos comunitarios",
+        "variant": "Tipo de Origin",
+        "ideas": "Ideas de eventos de Origin",
         "fallback": "Ubicación"
       },
       "directorySectionTitles": {
         "countries": "Países",
         "regions": "Regiones",
         "cities": "Ciudades",
-        "communityTypes": "Tipos de comunidad",
+        "communityTypes": "Tipos de Origin",
         "eventIdeas": "Ideas de eventos"
       },
       "guideCardTitles": {
-        "start-a-community": "Crear una comunidad",
+        "start-a-community": "Crear un Origin",
         "organize-a-meetup": "Organizar un encuentro",
         "first-10-members": "Consigue tus primeros 10 miembros",
         "find-a-co-founder": "Encuentra un cofundador",
-        "keep-a-community-active": "Mantén activa una comunidad",
-        "hybrid-communities": "Gestiona comunidades híbridas",
-        "moderation": "Modera tu comunidad"
+        "keep-a-community-active": "Mantén activo un Origin",
+        "hybrid-communities": "Gestiona Origins híbridos",
+        "moderation": "Modera tu Origin"
       },
       "countryFacts": "Datos del país",
       "regionFacts": "Datos de la región",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "¿Cómo encuentro comunidades en {{country}}?",
-          "communitiesAnswer": "El hub /location enumera todas las comunidades de {{country}}. Explora los tipos de comunidad — startups, creativas, políticas, meetups y pequeñas empresas — incluso en {{cities}}.",
+          "communitiesQuestion": "¿Cómo encuentro Origins en {{country}}?",
+          "communitiesAnswer": "El hub /location enumera todos los Origins de {{country}}. Explora los tipos de Origin — startups, creativos, políticos, meetups y pequeñas empresas — incluso en {{cities}}.",
           "populationQuestion": "¿Cuántas personas viven en {{country}}?",
           "populationAnswer": "El conjunto de datos registra una población de {{population}} en {{country}}.",
           "capitalQuestion": "¿Cuál es la capital de {{country}}?",
@@ -645,52 +645,52 @@
           "languageQuestion": "¿Qué idiomas se hablan en {{country}}?",
           "languageAnswer": "Los idiomas que se hablan en {{country}} incluyen {{languages}}.",
           "operationQuestion": "¿JoinOrigin opera en {{country}}?",
-          "operationAnswer": "Sí. JoinOrigin no tiene oficinas locales. La plataforma ayuda a las personas a encontrar o crear comunidades en cualquier lugar de {{country}}."
+          "operationAnswer": "Sí. JoinOrigin no tiene oficinas locales. La plataforma ayuda a las personas a encontrar o crear Origins en cualquier lugar de {{country}}."
         },
         "region": {
-          "communitiesQuestion": "¿Cómo encuentro comunidades en {{region}}?",
-          "communitiesAnswer": "Explora las páginas de ciudades en {{region}} — {{cities}} — o crea tu propia comunidad. El hub /location enumera todos los tipos de comunidad en {{region}}.",
+          "communitiesQuestion": "¿Cómo encuentro Origins en {{region}}?",
+          "communitiesAnswer": "Explora las páginas de ciudades en {{region}} — {{cities}} — o crea tu propio Origin. El hub /location enumera todos los tipos de Origin en {{region}}.",
           "countryQuestion": "¿En qué país está {{region}}?",
           "countryAnswer": "{{region}} es parte de {{country}}, cuya capital es {{capital}}.",
           "languageQuestion": "¿Qué idiomas se hablan en {{region}}?",
           "languageAnswer": "Los idiomas que se hablan en {{region}} incluyen {{languages}}.",
           "operationQuestion": "¿JoinOrigin opera en {{region}}?",
-          "operationAnswer": "Sí. JoinOrigin no tiene oficinas locales. La plataforma ayuda a las personas a encontrar o crear comunidades en cualquier lugar de {{region}}."
+          "operationAnswer": "Sí. JoinOrigin no tiene oficinas locales. La plataforma ayuda a las personas a encontrar o crear Origins en cualquier lugar de {{region}}."
         }
       }
     },
     "groupTypes": {
-      "startup": "Comunidades de startups",
-      "creative": "Comunidades creativas y de diseño",
-      "political": "Comunidades políticas y cívicas",
-      "meetup": "Encuentros y eventos comunitarios",
-      "smallBusiness": "Comunidades de pequeñas empresas"
+      "startup": "Origins de startups",
+      "creative": "Origins creativos y de diseño",
+      "political": "Origins políticos y cívicos",
+      "meetup": "Encuentros y eventos de Origin",
+      "smallBusiness": "Origins de pequeñas empresas"
     },
     "guides": {
       "eyebrow": "Guía práctica",
-      "hubEyebrow": "Construcción de comunidad",
-      "hubTitle": "Guías de construcción de comunidad",
-      "hubLead": "Doce guías prácticas y siempre vigentes para encontrar, unirse y crear grupos — y para comunicarte en una sala controlada por el creador. Desde publicar una idea hasta una moderación saludable.",
+      "hubEyebrow": "Construcción de Origins",
+      "hubTitle": "Guías de construcción de Origins",
+      "hubLead": "Doce guías prácticas y siempre vigentes para crear y hacer crecer Origins — y para comunicarte en una sala controlada por el creador. Desde publicar una idea hasta una moderación saludable.",
       "allGuides": "Todas las guías",
       "searchLabel": "Buscar guías",
       "searchPlaceholder": "Busca por título de guía o palabra clave",
       "emptyState": "No hay guías que coincidan con «{{query}}».",
       "glossarySection": "Glosario del sistema comunitario",
       "glossaryBandCopy": "Aprende los términos clave de los grupos, las salas, la moderación, la incorporación y los bucles de interacción en el <1>{{glossary}}</1>.",
-      "universalCopy": "Las guías son universales — las comunidades son locales. Encuentra o crea una comunidad en una ciudad cercana:",
+      "universalCopy": "Los Origins son online por naturaleza, y también pueden tener un espacio local. Encuentra o crea un Origin cerca de ti:",
       "startLocal": "Empieza localmente",
-      "cityCardBody": "Explora lugares, grupos y guías reales en {{city}}.",
+      "cityCardBody": "Explora los espacios locales y las personas detrás de los Origins en {{city}}.",
       "overview": "Resumen",
       "stepByStep": "Paso a paso",
       "stepNumber": "Paso {{number}}.",
       "relatedGuides": "Guías relacionadas",
       "continueBuilding": "Sigue construyendo con la siguiente guía de la serie.",
       "practiceInCity": "Pon estos pasos en práctica en una ciudad real.",
-      "exploreCommunities": "Explora comunidades",
+      "exploreCommunities": "Explora Origins",
       "howJoinOriginHelps": "Cómo puede ayudar JoinOrigin",
-      "howJoinOriginHelpsBody": "JoinOrigin es un sistema operativo comunitario que te ayuda a encontrar o crear comunidades: los pasos anteriores funcionan en la plataforma y con las herramientas que ya tienes. JoinOrigin se encarga de la estructura, el descubrimiento y la organización para que puedas concentrarte en tus miembros. Haz clic en Comenzar y date a conocer.",
+      "howJoinOriginHelpsBody": "JoinOrigin es un sistema operativo comunitario que te ayuda a encontrar o crear Origins: los pasos anteriores funcionan en la plataforma y con las herramientas que ya tienes. JoinOrigin se encarga de la estructura, el descubrimiento y la organización para que puedas concentrarte en tus miembros. Haz clic en Comenzar y date a conocer.",
       "keepLearning": "Sigue aprendiendo",
-      "keepLearningGuides": "Explora todas las guías en el <1>centro de construcción de comunidad</1>.",
+      "keepLearningGuides": "Explora todas las guías en el <1>centro de construcción de Origins</1>.",
       "keepLearningGlossary": "Aprende los términos clave en el <1>glosario del sistema comunitario</1>.",
       "keepLearningLocations": "Encuentra una página de ciudad en el <1>centro de ubicaciones</1> para empezar localmente.",
       "translatePage": "Traducir esta página"
@@ -748,17 +748,17 @@
     "metadata": {
       "waitlistPhrase": "Únete a Origin y date a conocer hoy mismo.",
       "title": {
-        "communitiesIn": "Comunidades en {{name}}",
-        "communitiesInWithRegion": "Comunidades en {{name}}, {{region}}",
+        "communitiesIn": "Origins en {{name}}",
+        "communitiesInWithRegion": "Origins en {{name}}, {{region}}",
         "variantIn": "{{label}} en {{name}}",
-        "ideasIn": "30 ideas de eventos comunitarios en {{name}}"
+        "ideasIn": "30 ideas de eventos de Origin en {{name}}"
       },
       "description": {
-        "city": "Encuentra o crea comunidades en {{city}} — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. {{waitlist}}",
+        "city": "Encuentra o crea Origins en {{city}} — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. {{waitlist}}",
         "variant": "Encuentra o crea {{label}} en {{city}} — lugares, grupos y guías reales. {{waitlist}}",
-        "ideas": "Descubre 30 ideas de eventos comunitarios en {{city}} — eventos de networking, aprendizaje, exteriores, profesionales, creativos y de impacto. {{waitlist}}",
-        "country": "Encuentra o crea comunidades en {{country}} — desde escenas de startups hasta redes de pequeñas empresas. {{waitlist}}",
-        "region": "Encuentra o crea comunidades en {{region}} — encuentros, grupos y eventos en toda la región. {{waitlist}}"
+        "ideas": "Descubre 30 ideas de eventos de Origin en {{city}} — eventos de networking, aprendizaje, exteriores, profesionales, creativos y de impacto. {{waitlist}}",
+        "country": "Encuentra o crea Origins en {{country}} — desde escenas de startups hasta redes de pequeñas empresas. {{waitlist}}",
+        "region": "Encuentra o crea Origins en {{region}} — encuentros, grupos y eventos en toda la región. {{waitlist}}"
       }
     },
     "cta": {

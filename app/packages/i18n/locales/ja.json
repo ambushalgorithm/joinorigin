@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "都市別コミュニティ",
-      "country": "この国のコミュニティ",
-      "region": "この地域のコミュニティ",
-      "city": "この都市のコミュニティ",
-      "variant": "コミュニティの種類",
-      "ideas": "コミュニティイベントのアイデア"
+      "hub": "都市別のOrigin",
+      "country": "この国のOrigin",
+      "region": "この地域のOrigin",
+      "city": "この都市のOrigin",
+      "variant": "Originの種類",
+      "ideas": "Originイベントのアイデア"
     },
     "breadcrumb": {
       "home": "ホーム",
-      "hub": "都市別コミュニティ"
+      "hub": "都市別のOrigin"
     },
     "location": {
-      "presenceClaim": "{{city}}でコミュニティを見つけるか始める",
+      "presenceClaim": "{{city}}でOriginを見つけるか始める",
       "hubEntity": "あなたの都市",
-      "communitiesIn": "{{city}}のコミュニティ",
+      "communitiesIn": "{{city}}のOrigin",
       "cityFacts": "都市データ",
-      "exploreCommunities": "コミュニティを探す",
-      "exploreGroupTypes": "コミュニティの種類を探す",
-      "groupTypesInCity": "この都市のコミュニティの種類",
+      "exploreCommunities": "Originを探す",
+      "exploreGroupTypes": "Originの種類を探す",
+      "groupTypesInCity": "この都市のOriginの種類",
       "flagshipCities": "主要都市",
-      "nearbyCities": "近隣都市のコミュニティ",
-      "guidesTitle": "コミュニティを始めるためのガイド",
+      "nearbyCities": "近隣都市のOrigin",
+      "guidesTitle": "Originを始めるためのガイド",
       "stepByStepGuide": "ステップバイステップガイド",
       "ideasLink": "コミュニティイベントのアイデア30選",
       "faqHeading": "よくある質問",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "よくある形式",
       "variantHowToTitle": "始め方",
       "browseLocations": "ロケーションを閲覧",
-      "directoryBannerLabel": "場所とコミュニティ",
+      "directoryBannerLabel": "場所とOrigin",
       "directoryBannerTitle": "ネットワークに参加",
-      "directoryBannerCopy": "ネットワーク上のすべての場所とコミュニティを閲覧しましょう。自分に合ったものを見つけるか、あなたの都市で始めましょう。",
-      "hubIntro": "ネットワーク上のすべての国、地域、都市、コミュニティタイプ、イベントのアイデア — 探しているコミュニティを見つけるか、あなたの都市で始めましょう。",
-      "hubLead": "世界中の都市のコミュニティを探索 — スタートアップ、クリエイティブ、政治、ミートアップ、小規模ビジネスのグループ。",
+      "directoryBannerCopy": "ネットワーク上のすべての場所とOriginを閲覧しましょう。自分に合ったものを見つけるか、あなたの都市で始めましょう。",
+      "hubIntro": "ネットワーク上のすべての国、地域、都市、Originタイプ、イベントのアイデア — 探しているOriginを見つけるか、あなたの都市で始めましょう。",
+      "hubLead": "世界中の都市のOriginを探索 — スタートアップ、クリエイティブ、政治、ミートアップ、小規模ビジネスのグループ。",
       "directoryTotal": "ロケーションを閲覧 ({{count}})",
       "searchLocationsLabel": "ロケーションを検索",
-      "searchLocationsPlaceholder": "都市、国、またはコミュニティの種類で検索",
+      "searchLocationsPlaceholder": "都市、国、またはOriginの種類で検索",
       "emptyState": "「{{query}}」に一致するロケーションはありません。",
       "attribution": "ロケーションデータ © GeoNames寄稿者、CC BY 4.0；都市データ © SimpleMaps（worldcities basic）、CC BY 4.0。",
       "directoryKinds": {
         "country": "国",
         "region": "地域",
         "city": "都市",
-        "variant": "コミュニティの種類",
-        "ideas": "コミュニティイベントのアイデア",
+        "variant": "Originの種類",
+        "ideas": "Originイベントのアイデア",
         "fallback": "ロケーション"
       },
       "directorySectionTitles": {
         "countries": "国",
         "regions": "地域",
         "cities": "都市",
-        "communityTypes": "コミュニティの種類",
+        "communityTypes": "Originの種類",
         "eventIdeas": "イベントのアイデア"
       },
       "guideCardTitles": {
-        "start-a-community": "コミュニティを始める",
+        "start-a-community": "Originを始める",
         "organize-a-meetup": "ミートアップを開催する",
         "first-10-members": "最初の10人のメンバーを集める",
         "find-a-co-founder": "共同創業者を見つける",
-        "keep-a-community-active": "コミュニティを活発に保つ",
-        "hybrid-communities": "ハイブリッドコミュニティを運営する",
-        "moderation": "コミュニティをモデレートする"
+        "keep-a-community-active": "Originを活発に保つ",
+        "hybrid-communities": "ハイブリッドOriginを運営する",
+        "moderation": "Originをモデレートする"
       },
       "countryFacts": "国の基本情報",
       "regionFacts": "地域の基本情報",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "{{country}}でコミュニティを見つけるにはどうすればよいですか?",
-          "communitiesAnswer": "/locationハブには{{country}}のすべてのコミュニティが掲載されています。スタートアップ、クリエイティブ、政治、ミートアップ、小規模ビジネスなど、{{cities}}のコミュニティタイプを探索できます。",
+          "communitiesQuestion": "{{country}}でOriginを見つけるにはどうすればよいですか?",
+          "communitiesAnswer": "/locationハブには{{country}}のすべてのOriginが掲載されています。スタートアップ、クリエイティブ、政治、ミートアップ、小規模ビジネスなど、{{cities}}のOriginタイプを探索できます。",
           "populationQuestion": "{{country}}には何人の人が住んでいますか?",
           "populationAnswer": "データセットによると、{{country}}の人口は{{population}}人です。",
           "capitalQuestion": "{{country}}の首都はどこですか?",
@@ -645,52 +645,52 @@
           "languageQuestion": "{{country}}では何語が話されていますか?",
           "languageAnswer": "{{country}}で話されている言語には{{languages}}が含まれます。",
           "operationQuestion": "JoinOriginは{{country}}で活動していますか?",
-          "operationAnswer": "はい。JoinOriginには現地オフィスはありません。このプラットフォームは、{{country}}のどこでもコミュニティを見つけたり立ち上げたりするのに役立ちます。"
+          "operationAnswer": "はい。JoinOriginには現地オフィスはありません。このプラットフォームは、{{country}}のどこでもOriginを見つけたり立ち上げたりするのに役立ちます。"
         },
         "region": {
-          "communitiesQuestion": "{{region}}でコミュニティを見つけるにはどうすればよいですか?",
-          "communitiesAnswer": "{{region}}の都市ページ — {{cities}} — を探索するか、自分でコミュニティを立ち上げてください。/locationハブには{{region}}のすべてのコミュニティタイプが掲載されています。",
+          "communitiesQuestion": "{{region}}でOriginを見つけるにはどうすればよいですか?",
+          "communitiesAnswer": "{{region}}の都市ページ — {{cities}} — を探索するか、自分でOriginを立ち上げてください。/locationハブには{{region}}のすべてのOriginタイプが掲載されています。",
           "countryQuestion": "{{region}}はどの国にありますか?",
           "countryAnswer": "{{region}}は{{country}}の一部で、首都は{{capital}}です。",
           "languageQuestion": "{{region}}では何語が話されていますか?",
           "languageAnswer": "{{region}}で話されている言語には{{languages}}が含まれます。",
           "operationQuestion": "JoinOriginは{{region}}で活動していますか?",
-          "operationAnswer": "はい。JoinOriginには現地オフィスはありません。このプラットフォームは、{{region}}のどこでもコミュニティを見つけたり立ち上げたりするのに役立ちます。"
+          "operationAnswer": "はい。JoinOriginには現地オフィスはありません。このプラットフォームは、{{region}}のどこでもOriginを見つけたり立ち上げたりするのに役立ちます。"
         }
       }
     },
     "groupTypes": {
-      "startup": "スタートアップコミュニティ",
-      "creative": "クリエイティブ＆デザインコミュニティ",
-      "political": "政治・市民コミュニティ",
-      "meetup": "コミュニティミートアップ＆イベント",
-      "smallBusiness": "小規模ビジネスコミュニティ"
+      "startup": "スタートアップOrigin",
+      "creative": "クリエイティブ＆デザインOrigin",
+      "political": "政治・市民Origin",
+      "meetup": "Originミートアップ＆イベント",
+      "smallBusiness": "小規模ビジネスOrigin"
     },
     "guides": {
       "eyebrow": "ハウツーガイド",
-      "hubEyebrow": "コミュニティ構築",
-      "hubTitle": "コミュニティ構築ガイド",
-      "hubLead": "グループを見つけ、参加し、始めるための12の実用的で時代を問わないハウツーガイド — そしてクリエイターが管理するルームでのコミュニケーション。アイデアの公開から健全なモデレーションまで。",
+      "hubEyebrow": "Origin構築",
+      "hubTitle": "Origin構築ガイド",
+      "hubLead": "Originを始め、育てるための12の実用的で時代を問わないハウツーガイド — そしてクリエイターが管理するルームでのコミュニケーション。アイデアの公開から健全なモデレーションまで。",
       "allGuides": "すべてのガイド",
       "searchLabel": "ガイドを検索",
       "searchPlaceholder": "ガイドのタイトルまたはキーワードで検索",
       "emptyState": "「{{query}}」に一致するガイドはありません。",
       "glossarySection": "コミュニティOS用語集",
       "glossaryBandCopy": "グループ、ルーム、モデレーション、オンボーディング、エンゲージメントループの背後にある主要な用語を<1>{{glossary}}</1>で学びましょう。",
-      "universalCopy": "ガイドは普遍的 — コミュニティは地域的。お近くの都市でコミュニティを見つけるか始めましょう：",
+      "universalCopy": "Originは本質的にオンラインであり、ローカルの場を持つこともできます。お近くでOriginを見つけるか始めましょう：",
       "startLocal": "地元で始める",
-      "cityCardBody": "{{city}}の実際の会場、グループ、ガイドを探す。",
+      "cityCardBody": "{{city}}のOriginの背景にあるローカルの場と人々を探す。",
       "overview": "概要",
       "stepByStep": "ステップバイステップ",
       "stepNumber": "ステップ{{number}}。",
       "relatedGuides": "関連ガイド",
       "continueBuilding": "シリーズの次のガイドで構築を続けましょう。",
       "practiceInCity": "実際の都市でこれらのステップを実践しましょう。",
-      "exploreCommunities": "コミュニティを探す",
+      "exploreCommunities": "Originを探す",
       "howJoinOriginHelps": "JoinOriginがどのように役立つか",
-      "howJoinOriginHelpsBody": "JoinOriginは、コミュニティを見つけたり始めたりするのに役立つコミュニティOSです — 上記のステップは、プラットフォーム上でも、すでにお使いのツールでも機能します。JoinOriginが構造、発見、組織化を担うので、あなたはメンバーに集中できます。「はじめる」をクリックして見つけてもらいましょう。",
+      "howJoinOriginHelpsBody": "JoinOriginは、Originを見つけたり始めたりするのに役立つコミュニティOSです — 上記のステップは、プラットフォーム上でも、すでにお使いのツールでも機能します。JoinOriginが構造、発見、組織化を担うので、あなたはメンバーに集中できます。「はじめる」をクリックして見つけてもらいましょう。",
       "keepLearning": "学び続ける",
-      "keepLearningGuides": "すべてのガイドは<1>コミュニティ構築ハブ</1>で閲覧できます。",
+      "keepLearningGuides": "すべてのガイドは<1>Origin構築ハブ</1>で閲覧できます。",
       "keepLearningGlossary": "主要な用語は<1>コミュニティOS用語集</1>で学べます。",
       "keepLearningLocations": "地元で始めるには<1>ロケーションハブ</1>で都市ページを見つけましょう。",
       "translatePage": "このページを翻訳"
@@ -748,17 +748,17 @@
     "metadata": {
       "waitlistPhrase": "今すぐOriginに参加して見つけてもらいましょう。",
       "title": {
-        "communitiesIn": "{{name}}のコミュニティ",
-        "communitiesInWithRegion": "{{name}}、{{region}}のコミュニティ",
+        "communitiesIn": "{{name}}のOrigin",
+        "communitiesInWithRegion": "{{name}}、{{region}}のOrigin",
         "variantIn": "{{name}}の{{label}}",
-        "ideasIn": "{{name}}のコミュニティイベントのアイデア30選"
+        "ideasIn": "{{name}}のOriginイベントのアイデア30選"
       },
       "description": {
-        "city": "{{city}}でコミュニティを見つけるか始めましょう — スタートアップ、クリエイティブ、政治、ミートアップ、小規模ビジネスのグループ。{{waitlist}}",
+        "city": "{{city}}でOriginを見つけるか始めましょう — スタートアップ、クリエイティブ、政治、ミートアップ、小規模ビジネスのグループ。{{waitlist}}",
         "variant": "{{city}}で{{label}}を見つけるか始めましょう — 実際の会場、グループ、ハウツー。{{waitlist}}",
-        "ideas": "{{city}}のコミュニティイベントのアイデア30選を見つけましょう — ネットワーキング、学習、アウトドア、プロフェッショナル、クリエイティブ、インパクトのイベント。{{waitlist}}",
-        "country": "{{country}}でコミュニティを見つけるか始めましょう — スタートアップシーンから小規模ビジネスのネットワークまで。{{waitlist}}",
-        "region": "{{region}}でコミュニティを見つけるか始めましょう — 地域全体のミートアップ、グループ、イベント。{{waitlist}}"
+        "ideas": "{{city}}のOriginイベントのアイデア30選を見つけましょう — ネットワーキング、学習、アウトドア、プロフェッショナル、クリエイティブ、インパクトのイベント。{{waitlist}}",
+        "country": "{{country}}でOriginを見つけるか始めましょう — スタートアップシーンから小規模ビジネスのネットワークまで。{{waitlist}}",
+        "region": "{{region}}でOriginを見つけるか始めましょう — 地域全体のミートアップ、グループ、イベント。{{waitlist}}"
       }
     },
     "cta": {

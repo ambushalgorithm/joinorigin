@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "ชุมชนตามเมือง",
-      "country": "ชุมชนในประเทศนี้",
-      "region": "ชุมชนในภูมิภาคนี้",
-      "city": "ชุมชนในเมืองนี้",
-      "variant": "ประเภทชุมชน",
-      "ideas": "ไอเดียกิจกรรมชุมชน"
+      "hub": "Origins ตามเมือง",
+      "country": "Origins ในประเทศนี้",
+      "region": "Origins ในภูมิภาคนี้",
+      "city": "Origins ในเมืองนี้",
+      "variant": "ประเภท Origin",
+      "ideas": "ไอเดียกิจกรรม Origin"
     },
     "breadcrumb": {
       "home": "หน้าแรก",
-      "hub": "ชุมชนตามเมือง"
+      "hub": "Origins ตามเมือง"
     },
     "location": {
-      "presenceClaim": "ค้นหาหรือเริ่มชุมชนใน {{city}}",
+      "presenceClaim": "ค้นหาหรือเริ่ม Origin ใน {{city}}",
       "hubEntity": "เมืองของคุณ",
-      "communitiesIn": "ชุมชนใน {{city}}",
+      "communitiesIn": "Origins ใน {{city}}",
       "cityFacts": "ข้อเท็จจริงเกี่ยวกับเมือง",
-      "exploreCommunities": "สำรวจชุมชน",
-      "exploreGroupTypes": "สำรวจประเภทชุมชน",
-      "groupTypesInCity": "ประเภทชุมชนในเมือง",
+      "exploreCommunities": "สำรวจ Origins",
+      "exploreGroupTypes": "สำรวจประเภท Origin",
+      "groupTypesInCity": "ประเภท Origin ในเมือง",
       "flagshipCities": "เมืองหลัก",
-      "nearbyCities": "ชุมชนในเมืองใกล้เคียง",
-      "guidesTitle": "คำแนะนำสำหรับการเริ่มชุมชน",
+      "nearbyCities": "Origins ในเมืองใกล้เคียง",
+      "guidesTitle": "คำแนะนำสำหรับการเริ่ม Origin",
       "stepByStepGuide": "คำแนะนำทีละขั้นตอน",
       "ideasLink": "30 ไอเดียกิจกรรมชุมชน",
       "faqHeading": "คำถามที่พบบ่อย",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "รูปแบบทั่วไป",
       "variantHowToTitle": "วิธีเริ่มต้น",
       "browseLocations": "เรียกดูสถานที่",
-      "directoryBannerLabel": "สถานที่และชุมชน",
+      "directoryBannerLabel": "สถานที่และ Origins",
       "directoryBannerTitle": "เข้าร่วมเครือข่าย",
-      "directoryBannerCopy": "สำรวจทุกสถานที่และชุมชนในเครือข่าย ค้นหาสิ่งที่เหมาะกับคุณ หรือเริ่มหนึ่งในเมืองของคุณ",
-      "hubIntro": "ทุกประเทศ ภูมิภาค เมือง ประเภทชุมชน และไอเดียกิจกรรมในเครือข่าย — ค้นหาชุมชนที่คุณกำลังมองหาหรือเริ่มหนึ่งในเมืองของคุณ",
-      "hubLead": "สำรวจชุมชนตามเมืองทั่วโลก — กลุ่มสตาร์ทอัพ กลุ่มสร้างสรรค์ กลุ่มการเมือง มีตอัป และธุรกิจขนาดเล็ก",
+      "directoryBannerCopy": "สำรวจทุกสถานที่และ Origin ในเครือข่าย ค้นหาสิ่งที่เหมาะกับคุณ หรือเริ่มหนึ่งในเมืองของคุณ",
+      "hubIntro": "ทุกประเทศ ภูมิภาค เมือง ประเภท Origin และไอเดียกิจกรรมในเครือข่าย — ค้นหา Origin ที่คุณกำลังมองหาหรือเริ่มหนึ่งในเมืองของคุณ",
+      "hubLead": "สำรวจ Origins ตามเมืองทั่วโลก — กลุ่มสตาร์ทอัพ กลุ่มสร้างสรรค์ กลุ่มการเมือง มีตอัป และธุรกิจขนาดเล็ก",
       "directoryTotal": "เรียกดูสถานที่ ({{count}})",
       "searchLocationsLabel": "ค้นหาสถานที่",
-      "searchLocationsPlaceholder": "ค้นหาด้วยเมือง ประเทศ หรือประเภทชุมชน",
+      "searchLocationsPlaceholder": "ค้นหาด้วยเมือง ประเทศ หรือประเภท Origin",
       "emptyState": "ไม่มีสถานที่ที่ตรงกับ “{{query}}”",
       "attribution": "ข้อมูลสถานที่ © ผู้มีส่วนร่วม GeoNames, CC BY 4.0; ข้อมูลเมือง © SimpleMaps (worldcities basic), CC BY 4.0",
       "directoryKinds": {
         "country": "ประเทศ",
         "region": "ภูมิภาค",
         "city": "เมือง",
-        "variant": "ประเภทชุมชน",
-        "ideas": "ไอเดียกิจกรรมชุมชน",
+        "variant": "ประเภท Origin",
+        "ideas": "ไอเดียกิจกรรม Origin",
         "fallback": "สถานที่"
       },
       "directorySectionTitles": {
         "countries": "ประเทศ",
         "regions": "ภูมิภาค",
         "cities": "เมือง",
-        "communityTypes": "ประเภทชุมชน",
+        "communityTypes": "ประเภท Origin",
         "eventIdeas": "ไอเดียกิจกรรม"
       },
       "guideCardTitles": {
-        "start-a-community": "เริ่มต้นชุมชน",
+        "start-a-community": "เริ่มต้น Origin",
         "organize-a-meetup": "จัดงานพบปะ",
         "first-10-members": "รับสมาชิก 10 คนแรก",
         "find-a-co-founder": "ค้นหาผู้ร่วมก่อตั้ง",
-        "keep-a-community-active": "รักษาชุมชนให้กระตือรือร้น",
-        "hybrid-communities": "ดำเนินชุมชนแบบไฮบริด",
-        "moderation": "กลั่นกรองชุมชนของคุณ"
+        "keep-a-community-active": "รักษา Origin ให้กระตือรือร้น",
+        "hybrid-communities": "ดำเนิน Origins แบบไฮบริด",
+        "moderation": "กลั่นกรอง Origin ของคุณ"
       },
       "countryFacts": "ข้อมูลประเทศ",
       "regionFacts": "ข้อมูลภูมิภาค",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "จะหาชุมชนใน{{country}}ได้อย่างไร?",
-          "communitiesAnswer": "ศูนย์กลาง /location แสดงรายการชุมชนทั้งหมดใน{{country}} สำรวจประเภทชุมชน — สตาร์ทอัพ ครีเอทีฟ การเมือง มีตอัป และธุรกิจขนาดเล็ก — รวมถึงใน{{cities}}",
+          "communitiesQuestion": "จะหา Origins ใน{{country}}ได้อย่างไร?",
+          "communitiesAnswer": "ศูนย์กลาง /location แสดงรายการ Origins ทั้งหมดใน{{country}} สำรวจประเภท Origin — สตาร์ทอัพ ครีเอทีฟ การเมือง มีตอัป และธุรกิจขนาดเล็ก — รวมถึงใน{{cities}}",
           "populationQuestion": "มีคนอาศัยอยู่ใน{{country}}กี่คน?",
           "populationAnswer": "ชุดข้อมูลบันทึกประชากร {{population}} คนใน{{country}}",
           "capitalQuestion": "เมืองหลวงของ{{country}}คืออะไร?",
@@ -645,53 +645,53 @@
           "languageQuestion": "มีภาษาอะไรบ้างที่ใช้ใน{{country}}?",
           "languageAnswer": "ภาษาที่ใช้ใน{{country}}รวมถึง{{languages}}",
           "operationQuestion": "JoinOrigin ดำเนินงานใน{{country}}หรือไม่?",
-          "operationAnswer": "ใช่ JoinOrigin ไม่มีสำนักงานท้องถิ่น แพลตฟอร์มช่วยให้ผู้คนค้นหาหรือเริ่มต้นชุมชนได้ทุกที่ใน{{country}}"
+          "operationAnswer": "ใช่ JoinOrigin ไม่มีสำนักงานท้องถิ่น แพลตฟอร์มช่วยให้ผู้คนค้นหาหรือเริ่มต้น Origins ได้ทุกที่ใน{{country}}"
         },
         "region": {
-          "communitiesQuestion": "จะหาชุมชนใน{{region}}ได้อย่างไร?",
-          "communitiesAnswer": "สำรวจหน้าของเมืองใน{{region}} — {{cities}} — หรือเริ่มชุมชนของคุณเอง ศูนย์กลาง /location แสดงรายการชุมชนทุกประเภทใน{{region}}",
+          "communitiesQuestion": "จะหา Origins ใน{{region}}ได้อย่างไร?",
+          "communitiesAnswer": "สำรวจหน้าของเมืองใน{{region}} — {{cities}} — หรือเริ่ม Origin ของคุณเอง ศูนย์กลาง /location แสดงรายการ Origins ทุกประเภทใน{{region}}",
           "countryQuestion": "{{region}}อยู่ในประเทศใด?",
           "countryAnswer": "{{region}}เป็นส่วนหนึ่งของ{{country}} โดยมีเมืองหลวงคือ{{capital}}",
           "languageQuestion": "มีภาษาอะไรบ้างที่ใช้ใน{{region}}?",
           "languageAnswer": "ภาษาที่ใช้ใน{{region}}รวมถึง{{languages}}",
           "operationQuestion": "JoinOrigin ดำเนินงานใน{{region}}หรือไม่?",
-          "operationAnswer": "ใช่ JoinOrigin ไม่มีสำนักงานท้องถิ่น แพลตฟอร์มช่วยให้ผู้คนค้นหาหรือเริ่มต้นชุมชนได้ทุกที่ใน{{region}}"
+          "operationAnswer": "ใช่ JoinOrigin ไม่มีสำนักงานท้องถิ่น แพลตฟอร์มช่วยให้ผู้คนค้นหาหรือเริ่มต้น Origins ได้ทุกที่ใน{{region}}"
         }
       }
     },
     "groupTypes": {
-      "startup": "ชุมชนสตาร์ทอัพ",
-      "creative": "ชุมชนสร้างสรรค์และดีไซน์",
-      "political": "ชุมชนการเมืองและพลเมือง",
-      "meetup": "การพบปะและกิจกรรมชุมชน",
-      "smallBusiness": "ชุมชนธุรกิจขนาดเล็ก"
+      "startup": "Origins สตาร์ทอัพ",
+      "creative": "Origins สร้างสรรค์และดีไซน์",
+      "political": "Origins การเมืองและพลเมือง",
+      "meetup": "การพบปะและกิจกรรม Origin",
+      "smallBusiness": "Origins ธุรกิจขนาดเล็ก"
     },
     "guides": {
       "eyebrow": "คู่มือวิธีทำ",
-      "hubEyebrow": "การสร้างชุมชน",
-      "hubTitle": "คู่มือการสร้างชุมชน",
+      "hubEyebrow": "การสร้าง Origins",
+      "hubTitle": "คู่มือการสร้าง Origins",
       "allGuides": "คู่มือทั้งหมด",
       "glossarySection": "อภิธานศัพท์ระบบชุมชน",
       "startLocal": "เริ่มในพื้นที่",
-      "cityCardBody": "สำรวจสถานที่ กลุ่ม และคำแนะนำจริงใน {{city}}",
+      "cityCardBody": "สำรวจพื้นที่ท้องถิ่นและผู้คนเบื้องหลัง Origins ใน {{city}}",
       "overview": "ภาพรวม",
       "stepByStep": "ทีละขั้นตอน",
       "stepNumber": "ขั้นตอนที่ {{number}}",
       "relatedGuides": "คู่มือที่เกี่ยวข้อง",
-      "exploreCommunities": "สำรวจชุมชน",
+      "exploreCommunities": "สำรวจ Origins",
       "howJoinOriginHelps": "JoinOrigin ช่วยได้อย่างไร",
       "keepLearning": "เรียนรู้ต่อไป",
       "translatePage": "แปลหน้านี้",
-      "hubLead": "คู่มือวิธีทำที่ใช้งานได้จริงสิบสองฉบับสำหรับการค้นหา การเข้าร่วม และการเริ่มต้นกลุ่ม — และการสื่อสารในห้องที่ผู้สร้างควบคุม ตั้งแต่การเผยแพร่ไอเดียไปจนถึงการกลั่นกรองที่ดีต่อสุขภาพ",
+      "hubLead": "คู่มือวิธีทำที่ใช้งานได้จริงสิบสองฉบับสำหรับการเริ่มต้นและเติบโต Origins — และการสื่อสารในห้องที่ผู้สร้างควบคุม ตั้งแต่การเผยแพร่ไอเดียไปจนถึงการกลั่นกรองที่ดีต่อสุขภาพ",
       "searchLabel": "ค้นหาคู่มือ",
       "searchPlaceholder": "ค้นหาด้วยชื่อคู่มือหรือคำสำคัญ",
       "emptyState": "ไม่มีคู่มือที่ตรงกับ “{{query}}”",
       "glossaryBandCopy": "เรียนรู้คำศัพท์หลักเบื้องหลังกลุ่ม ห้อง การกลั่นกรอง การต้อนรับสมาชิกใหม่ และวงจรการมีส่วนร่วมใน <1>{{glossary}}</1>",
-      "universalCopy": "คู่มือเป็นสากล — ชุมชนเป็นเรื่องท้องถิ่น ค้นหาหรือเริ่มต้นชุมชนในเมืองใกล้คุณ:",
+      "universalCopy": "Origins เป็นออนไลน์โดยธรรมชาติ และยังมีพื้นที่ท้องถิ่นได้อีกด้วย ค้นหาหรือเริ่มต้น Origin ใกล้คุณ:",
       "continueBuilding": "สร้างต่อด้วยคู่มือถัดไปในซีรีส์",
       "practiceInCity": "นำขั้นตอนเหล่านี้ไปปฏิบัติจริงในเมือง",
-      "howJoinOriginHelpsBody": "JoinOrigin คือระบบปฏิบัติการชุมชนที่ช่วยให้คุณค้นหาหรือเริ่มต้นชุมชน — ขั้นตอนข้างต้นทำงานได้ทั้งบนแพลตฟอร์มและกับเครื่องมือที่คุณมีอยู่แล้ว JoinOrigin จัดการโครงสร้าง การค้นพบ และการจัดระเบียบ เพื่อให้คุณโฟกัสที่สมาชิกของคุณ คลิกเริ่มต้นใช้งานและให้คุณถูกค้นพบ",
-      "keepLearningGuides": "ดูคู่มือทั้งหมดบน<1>ศูนย์รวมคู่มือการสร้างชุมชน</1>",
+      "howJoinOriginHelpsBody": "JoinOrigin คือระบบปฏิบัติการชุมชนที่ช่วยให้คุณค้นหาหรือเริ่มต้น Origins — ขั้นตอนข้างต้นทำงานได้ทั้งบนแพลตฟอร์มและกับเครื่องมือที่คุณมีอยู่แล้ว JoinOrigin จัดการโครงสร้าง การค้นพบ และการจัดระเบียบ เพื่อให้คุณโฟกัสที่สมาชิกของคุณ คลิกเริ่มต้นใช้งานและให้คุณถูกค้นพบ",
+      "keepLearningGuides": "ดูคู่มือทั้งหมดบน<1>ศูนย์รวมคู่มือการสร้าง Origins</1>",
       "keepLearningGlossary": "เรียนรู้คำศัพท์หลักใน<1>อภิธานศัพท์ระบบปฏิบัติการชุมชน</1>",
       "keepLearningLocations": "ค้นหาหน้าเมืองบน<1>ศูนย์รวมสถานที่</1>เพื่อเริ่มต้นในพื้นที่"
     },
@@ -750,17 +750,17 @@
     },
     "metadata": {
       "title": {
-        "communitiesIn": "ชุมชนใน {{name}}",
-        "communitiesInWithRegion": "ชุมชนใน {{name}}, {{region}}",
+        "communitiesIn": "Origins ใน {{name}}",
+        "communitiesInWithRegion": "Origins ใน {{name}}, {{region}}",
         "variantIn": "{{label}} ใน {{name}}",
-        "ideasIn": "30 ไอเดียกิจกรรมชุมชนใน {{name}}"
+        "ideasIn": "30 ไอเดียกิจกรรม Origin ใน {{name}}"
       },
       "description": {
-        "city": "ค้นหาหรือเริ่มต้นชุมชนใน {{city}} — กลุ่มสตาร์ทอัพ ครีเอทีฟ การเมือง การพบปะ และธุรกิจขนาดเล็ก {{waitlist}}",
+        "city": "ค้นหาหรือเริ่มต้น Origins ใน {{city}} — กลุ่มสตาร์ทอัพ ครีเอทีฟ การเมือง การพบปะ และธุรกิจขนาดเล็ก {{waitlist}}",
         "variant": "ค้นหาหรือเริ่มต้น {{label}} ใน {{city}} — สถานที่ กลุ่ม และคำแนะนำจริง {{waitlist}}",
-        "ideas": "ค้นพบ 30 ไอเดียกิจกรรมชุมชนใน {{city}} — เครือข่าย เรียนรู้ กลางแจ้ง มืออาชีพ ครีเอทีฟ และผลกระทบ {{waitlist}}",
-        "country": "ค้นหาหรือเริ่มต้นชุมชนใน {{country}} — จากฉากสตาร์ทอัพไปจนถึงเครือข่ายธุรกิจขนาดเล็ก {{waitlist}}",
-        "region": "ค้นหาหรือเริ่มต้นชุมชนใน {{region}} — การพบปะ กลุ่ม และกิจกรรมทั่วภูมิภาค {{waitlist}}"
+        "ideas": "ค้นพบ 30 ไอเดียกิจกรรม Origin ใน {{city}} — เครือข่าย เรียนรู้ กลางแจ้ง มืออาชีพ ครีเอทีฟ และผลกระทบ {{waitlist}}",
+        "country": "ค้นหาหรือเริ่มต้น Origins ใน {{country}} — จากฉากสตาร์ทอัพไปจนถึงเครือข่ายธุรกิจขนาดเล็ก {{waitlist}}",
+        "region": "ค้นหาหรือเริ่มต้น Origins ใน {{region}} — การพบปะ กลุ่ม และกิจกรรมทั่วภูมิภาค {{waitlist}}"
       },
       "waitlistPhrase": "เข้าร่วม Origin และให้คุณถูกค้นพบวันนี้"
     }
