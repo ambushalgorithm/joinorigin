@@ -51,12 +51,12 @@ describe('CtaBand', () => {
     expect(
       screen.getByRole('heading', {
         level: 2,
-        name: 'Find your people. Start or grow something together.',
+        name: 'Start an Origin. Find the people and resources to move it forward.',
       }),
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        /Join 2,400\+ builders — from first ideas to established companies — on Origin's social collaboration network/i,
+        /Join 2,400\+ builders — from first ideas to established companies — who are already gathering people and resources on Origin/i,
       ),
     ).toBeInTheDocument();
     const joinLink = screen.getByTestId('cta-band-join-button');

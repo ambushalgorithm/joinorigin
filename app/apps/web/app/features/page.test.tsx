@@ -58,10 +58,8 @@ function renderWithTenComparisonTools() {
 
 describe('features page', () => {
   it('exports metadata per the arch pattern (title, description, canonical, keywords)', () => {
-    expect(metadata.title).toBe(
-      'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
-    );
-    expect(metadata.description).toContain('social collaboration network');
+    expect(metadata.title).toBe('Features — Origins, Chat, Projects & Opportunities | JoinOrigin');
+    expect(metadata.description).toContain('every idea finds the people and resources');
     expect(metadata.alternates?.canonical).toBe('http://localhost:3100/features');
     expect(metadata.openGraph?.url).toBe('http://localhost:3100/features');
     expect(metadata.keywords).toEqual(
@@ -73,9 +71,9 @@ describe('features page', () => {
     renderWithI18n(<FeaturesPage />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Everything a community needs, in one calm workspace');
+    expect(headings[0]).toHaveTextContent('Everything an Origin needs, in one calm workspace');
     expect(
-      screen.getByText(/built around eight core objects: profiles, ideas, communities/i),
+      screen.getByText(/built around eight core objects: profiles, ideas, Origins/i),
     ).toBeInTheDocument();
   });
 
@@ -84,14 +82,7 @@ describe('features page', () => {
     // "Core objects" appears twice after the redesign: as the hero eyebrow
     // chip and as the section title (spec sprint-8 §6 eyebrow table).
     expect(screen.getAllByText('Core objects').length).toBeGreaterThanOrEqual(1);
-    for (const object of [
-      'Profiles',
-      'Ideas',
-      'Communities',
-      'Communication',
-      'Feed',
-      'Projects',
-    ]) {
+    for (const object of ['Profiles', 'Ideas', 'Origins', 'Communication', 'Feed', 'Projects']) {
       expect(screen.getByText(object)).toBeInTheDocument();
     }
     const table = screen.getByTestId('features-comparison-table');
@@ -104,7 +95,7 @@ describe('features page', () => {
     expect(screen.queryByText('Reddit')).not.toBeInTheDocument();
     expect(screen.queryByText('GitHub')).not.toBeInTheDocument();
     expect(screen.getByText('Roadmap')).toBeInTheDocument();
-    expect(screen.getByText(/Phase 1 — Community Foundation/)).toBeInTheDocument();
+    expect(screen.getByText(/Phase 1 — Origin Foundation/)).toBeInTheDocument();
   });
 
   it('renders all 10 comparison tools from COMPARISON_KEYS', () => {
@@ -230,15 +221,16 @@ describe('features view — locale-aware internal links (TASK-460)', () => {
 });
 
 /**
- * TASK-478 / TASK-481 — the /features copy reads "ten tools" equivalents in
- * BOTH spots (`features.sectionComparison` = "Why Origin instead of ten
- * tools" and `features.hero.lead` = "…instead of ten separate tools") across
- * ALL 21 locale JSONs. These tests pin the exact committed strings for EN +
- * a sample of non-EN locales (dictionary level AND rendered page level), then
- * guard the full 21-locale regression table so the old "five tools" heading
- * can never come back in either key. The FAQ/mission "five tools" copies are
- * intentionally out of scope (TASK-478), so the negative assertions are
- * scoped strictly to the two copy keys.
+ * TASK-478 / TASK-481 — the /features comparison heading reads "ten tools"
+ * equivalents in `features.sectionComparison` = "Why Origin instead of ten
+ * tools" across ALL 21 locale JSONs. The old "five tools" copy is gone.
+ * Sprint 24 Origin repositioning (TASK-565 deck §5.1) rewrote
+ * `features.hero.lead` (the "…instead of ten separate tools" sentence was
+ * replaced by the co-founder/partner/client/supporter promise), so the
+ * ten-tools guard applies to the comparison heading only. These tests pin
+ * the exact committed strings for EN + a sample of non-EN locales
+ * (dictionary level AND rendered page level), then guard the full 21-locale
+ * regression table so the old "five tools" heading can never come back.
  */
 
 /** Exact `features.sectionComparison` per locale (TASK-478 committed values). */
@@ -266,88 +258,48 @@ const SECTION_COMPARISON_BY_LOCALE: Record<Locale, string> = {
   'zh-TW': '為什麼選擇 Origin 而非十套工具',
 };
 
-/** A "ten tools" fragment that must appear inside `features.hero.lead`. */
-const HERO_LEAD_TEN_TOOLS_MARKER: Record<Locale, string> = {
-  ar: 'عشر أدوات',
-  de: 'zehn getrennten Tools',
-  en: 'ten separate tools',
-  es: 'diez herramientas',
-  fa: 'ده ابزار',
-  fr: 'dix outils',
-  hi: 'दस अलग-अलग टूल',
-  id: 'sepuluh alat',
-  it: 'dieci strumenti',
-  ja: '10の別々のツール',
-  ko: '열 개의 분리된 도구',
-  nl: 'tien losse tools',
-  pl: 'dziesięciu osobnych narzędziach',
-  'pt-BR': 'dez ferramentas',
-  ru: 'десяти отдельных инструментов',
-  th: 'เครื่องมือแยกสิบตัว',
-  tr: 'on ayrı araç',
-  uk: 'десяти окремих інструментів',
-  vi: 'mười công cụ',
-  'zh-CN': '十个分散的工具',
-  'zh-TW': '十套分開的工具',
-};
-
-/** The two TASK-478 copy keys resolved from a locale dictionary. */
-function featuresCopyKeys(locale: Locale): { sectionComparison: string; heroLead: string } {
+/** The `features.sectionComparison` key resolved from a locale dictionary. */
+function sectionComparisonKey(locale: Locale): string {
   const features = getDictionary(locale).features as Record<string, unknown>;
-  return {
-    sectionComparison: features.sectionComparison as string,
-    heroLead: (features.hero as Record<string, unknown>).lead as string,
-  };
+  return features.sectionComparison as string;
 }
 
-describe('features copy — "ten tools" in both spots (TASK-478/TASK-481)', () => {
-  it('reads the ten-tools comparison heading + hero lead in EN', () => {
-    const en = featuresCopyKeys('en');
-    expect(en.sectionComparison).toBe('Why Origin instead of ten tools');
-    expect(en.heroLead).toContain('ten separate tools');
-    // The old "five tools" copy is gone from both keys.
-    expect(en.sectionComparison).not.toContain('five');
-    expect(en.heroLead).not.toContain('five');
+describe('features copy — "ten tools" in the comparison heading (TASK-478/TASK-481)', () => {
+  it('reads the ten-tools comparison heading in EN', () => {
+    expect(sectionComparisonKey('en')).toBe('Why Origin instead of ten tools');
+    // The old "five tools" copy is gone from the heading.
+    expect(sectionComparisonKey('en')).not.toContain('five');
   });
 
-  it('renders the ten-tools copy on the EN /features page', () => {
+  it('renders the ten-tools comparison heading on the EN /features page', () => {
     renderWithI18n(<FeaturesPage />);
     expect(screen.getByText('Why Origin instead of ten tools')).toBeInTheDocument();
-    expect(screen.getByText(/instead of ten separate tools/)).toBeInTheDocument();
-    expect(screen.queryByText(/instead of five separate tools/)).not.toBeInTheDocument();
     expect(screen.queryByText('Why Origin instead of five tools')).not.toBeInTheDocument();
   });
 
   it('reads ten-tools equivalents in a sample of non-EN locales', () => {
     for (const locale of ['de', 'es', 'fr', 'pt-BR'] as const) {
-      const copy = featuresCopyKeys(locale);
-      expect(copy.sectionComparison).toBe(SECTION_COMPARISON_BY_LOCALE[locale]);
-      expect(copy.heroLead).toContain(HERO_LEAD_TEN_TOOLS_MARKER[locale]);
-      // No "five" equivalent left in either key (de "fünf" is the clearest
+      expect(sectionComparisonKey(locale)).toBe(SECTION_COMPARISON_BY_LOCALE[locale]);
+      // No "five" equivalent left in the heading (de "fünf" is the clearest
       // marker; the other sample locales assert their exact ten-tools string).
       if (locale === 'de') {
-        expect(copy.sectionComparison).not.toContain('fünf');
-        expect(copy.heroLead).not.toContain('fünf');
+        expect(sectionComparisonKey(locale)).not.toContain('fünf');
       }
     }
   });
 
-  it('renders the ten-tools copy on a non-EN /features page (de)', () => {
+  it('renders the ten-tools comparison heading on a non-EN /features page (de)', () => {
     renderWithI18n(<FeaturesPage />, 'de');
     expect(screen.getByText('Warum Origin statt zehn Tools')).toBeInTheDocument();
-    expect(screen.getByText(/zehn getrennten Tools/)).toBeInTheDocument();
-    // The old "five tools" heading is gone; the FAQ/mission "five" copies are
-    // intentionally out of scope (TASK-478) and do not render on this page.
+    // The old "five tools" heading is gone (TASK-478); the FAQ/mission
+    // "five" copies are intentionally out of scope and do not render here.
     expect(screen.queryByText('Warum Origin statt fünf Tools')).not.toBeInTheDocument();
-    expect(screen.queryByText(/statt fünf getrennter Tools/)).not.toBeInTheDocument();
   });
 
-  it('carries ten-tools equivalents in both copy keys for ALL 21 locales', () => {
+  it('carries ten-tools equivalents in the comparison heading for ALL 21 locales', () => {
     expect(SUPPORTED_LOCALES).toHaveLength(21);
     for (const locale of SUPPORTED_LOCALES) {
-      const copy = featuresCopyKeys(locale);
-      expect(copy.sectionComparison).toBe(SECTION_COMPARISON_BY_LOCALE[locale]);
-      expect(copy.heroLead).toContain(HERO_LEAD_TEN_TOOLS_MARKER[locale]);
+      expect(sectionComparisonKey(locale)).toBe(SECTION_COMPARISON_BY_LOCALE[locale]);
     }
   });
 });

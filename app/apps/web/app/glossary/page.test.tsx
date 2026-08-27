@@ -100,7 +100,7 @@ function renderWithGlossaryTerms() {
 describe('glossary hub page', () => {
   it('exports hub metadata (title, description, canonical)', () => {
     expect(metadata.title).toBe('Community OS Glossary | JoinOrigin');
-    expect(metadata.description).toContain('community building');
+    expect(metadata.description).toContain('core terms of Origin');
     expect(metadata.alternates?.canonical).toBe('http://localhost:3100/glossary');
     expect(metadata.openGraph?.url).toBe('http://localhost:3100/glossary');
   });

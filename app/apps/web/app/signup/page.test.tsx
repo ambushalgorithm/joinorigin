@@ -17,7 +17,7 @@ import { renderWithI18n } from '../../test-utils';
 describe('signup page', () => {
   it('exports metadata per the arch pattern (title, description, canonical, keywords)', () => {
     expect(metadata.title).toBe('Sign Up — Create Your Account | JoinOrigin');
-    expect(metadata.description).toContain('social collaboration network');
+    expect(metadata.description).toContain('start an Origin around your idea');
     expect(metadata.alternates?.canonical).toBe('http://localhost:3100/signup');
     expect(metadata.openGraph?.url).toBe('http://localhost:3100/signup');
     expect(metadata.keywords).toEqual(

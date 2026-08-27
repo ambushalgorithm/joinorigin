@@ -23,7 +23,7 @@ import { AboutView } from '../../about/about-view';
 export const metadata: Metadata = createMetadata({
   title: 'About — The Operating System for Human Collaboration | JoinOrigin',
   description:
-    "Origin's mission: a social collaboration network where people post ideas, form communities, and build projects together. The network is the product.",
+    "Origin's mission: one space where people start around a goal, gather the people and resources they need, and build together. The network is the product.",
   path: '/nl/about',
   locale: 'nl',
   keywords: [

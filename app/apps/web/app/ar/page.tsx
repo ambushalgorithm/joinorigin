@@ -21,7 +21,7 @@ import { HomeView } from '../home-view';
  * `/ar` and `alternates.languages` `ar` + `en` + `x-default` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
-  title: 'JoinOrigin — Social Collaboration Network & Community OS',
+  title: 'Origin — Social Collaboration Network & Community OS',
   description: SITE.description,
   path: '/ar',
   locale: 'ar',

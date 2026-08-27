@@ -23,7 +23,7 @@ import { ContactView } from '../../contact/contact-view';
 export const metadata: Metadata = createMetadata({
   title: 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
   description:
-    'Questions about JoinOrigin or starting a community? Contact the team — we reply within 2 business days.',
+    'Questions about Origin — or starting your own Origin? Contact the team — we reply within 2 business days.',
   path: '/pt-BR/contact',
   locale: 'pt-BR',
   keywords: [

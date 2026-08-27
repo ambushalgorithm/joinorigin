@@ -37,17 +37,17 @@ export interface SiteRoute {
 export const ROUTES: readonly SiteRoute[] = [
   {
     path: '/',
-    title: 'JoinOrigin — Social Collaboration Network & Community OS',
+    title: 'Origin — Social Collaboration Network & Community OS',
     description:
-      'Origin is a social collaboration network where people post ideas, form communities, and build projects together. Join 2,400+ builders already collaborating.',
+      'Origin is the space you start around a goal — gather the people and resources you need, and move it forward. Join 2,400+ builders already collaborating.',
     changeFrequency: 'weekly',
     priority: 1,
   },
   {
     path: '/features',
-    title: 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
+    title: 'Features — Origins, Chat, Projects & Opportunities | JoinOrigin',
     description:
-      "Explore Origin's features: profiles, ideas, communities, chat, feed, projects, and opportunities — the social collaboration network for real outcomes.",
+      "Explore Origin's features: profiles, ideas, Origins, chat, feed, projects, and opportunities — one space where every idea finds the people and resources to move forward.",
     changeFrequency: 'monthly',
     priority: 0.8,
   },
@@ -55,7 +55,7 @@ export const ROUTES: readonly SiteRoute[] = [
     path: '/community',
     title: 'Community — Find Your People & Build Together | JoinOrigin',
     description:
-      "Join 2,400+ builders on Origin's social collaboration network. Start or join a community around any idea — a small business, AI startup, book club, or run club.",
+      'Join 2,400+ builders on Origin. Start or join an Origin around any idea — a small business, AI startup, book club, or run club.',
     changeFrequency: 'monthly',
     priority: 0.8,
   },
@@ -63,7 +63,7 @@ export const ROUTES: readonly SiteRoute[] = [
     path: '/docs',
     title: 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
     description:
-      'Learn how Origin works: profiles, ideas, communities, chat, feed, projects, and opportunities. Explore the roadmap, tech stack, and open Matrix standards.',
+      'Learn how Origin works: profiles, ideas, Origins, chat, feed, projects, and opportunities. Explore the roadmap, tech stack, and open Matrix standards.',
     changeFrequency: 'monthly',
     priority: 0.8,
   },
@@ -71,7 +71,7 @@ export const ROUTES: readonly SiteRoute[] = [
     path: '/about',
     title: 'About — The Operating System for Human Collaboration | JoinOrigin',
     description:
-      "Origin's mission: a social collaboration network where people post ideas, form communities, and build projects together. The network is the product.",
+      "Origin's mission: one space where people start around a goal, gather the people and resources they need, and build together. The network is the product.",
     changeFrequency: 'monthly',
     priority: 0.8,
   },
@@ -79,7 +79,7 @@ export const ROUTES: readonly SiteRoute[] = [
     path: '/contact',
     title: 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
     description:
-      'Questions about JoinOrigin or starting a community? Contact the team — we reply within 2 business days.',
+      'Questions about Origin — or starting your own Origin? Contact the team — we reply within 2 business days.',
     changeFrequency: 'monthly',
     priority: 0.8,
   },

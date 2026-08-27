@@ -141,7 +141,7 @@ describe('lib/seo llms-full.txt — full-text companion (G-16)', () => {
 
   it('stays plain-text with /en/** headings and no API links', () => {
     expect(text).toContain('### /en/about');
-    expect(text).toContain("Origin's mission: a social collaboration network");
+    expect(text).toContain("Origin's mission: one space where people start around a goal");
     expect(text).not.toMatch(/\/api\//);
     expect(text.trimEnd()).not.toMatch(/\n\n$/);
   });

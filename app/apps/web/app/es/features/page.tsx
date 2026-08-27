@@ -21,9 +21,9 @@ import { FeaturesView } from '../../features/features-view';
  * `/es/features` and `alternates.languages` `es` + `en` + `x-default` → EN canonical.
  */
 export const metadata: Metadata = createMetadata({
-  title: 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
+  title: 'Features — Origins, Chat, Projects & Opportunities | JoinOrigin',
   description:
-    "Explore Origin's features: profiles, ideas, communities, chat, feed, projects, and opportunities — a social collaboration network for real outcomes.",
+    "Explore Origin's features: profiles, ideas, Origins, chat, feed, projects, and opportunities — one space where every idea finds the people and resources to move forward.",
   path: '/es/features',
   locale: 'es',
   keywords: [

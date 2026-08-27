@@ -27,7 +27,7 @@ const mockChipMarqueeServer = ChipMarqueeServer as jest.Mock;
 describe('community page', () => {
   it('exports metadata per the arch pattern (title, description, canonical, keywords)', () => {
     expect(metadata.title).toBe('Community — Find Your People & Build Together | JoinOrigin');
-    expect(metadata.description).toContain('social collaboration network');
+    expect(metadata.description).toContain('find the people to move it forward');
     expect(metadata.alternates?.canonical).toBe('http://localhost:3100/community');
     expect(metadata.openGraph?.url).toBe('http://localhost:3100/community');
     expect(metadata.keywords).toEqual(
@@ -40,9 +40,7 @@ describe('community page', () => {
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent('Where people find each other');
-    expect(
-      screen.getByText(/organized around communities — groups of people who share interests/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Origin is where people gather around goals/i)).toBeInTheDocument();
   });
 
   it('renders values, example communities, and the trust stat', () => {
@@ -50,7 +48,7 @@ describe('community page', () => {
     renderWithI18n(<CommunityPage />);
     expect(screen.getByText('How we run the network')).toBeInTheDocument();
     expect(screen.getByText('People First')).toBeInTheDocument();
-    expect(screen.getByText('Example communities')).toBeInTheDocument();
+    expect(screen.getByText('Example Origins')).toBeInTheDocument();
     // Story B: the wrapper passes <ChipMarqueeServer /> into the view's
     // marquee slot — the mock is instantiated exactly once (the view renders
     // the slot; the real server component's chip links are covered by its own
@@ -61,7 +59,7 @@ describe('community page', () => {
 
   it('renders the FAQ block and mirrors it in FAQPage JSON-LD', () => {
     renderWithI18n(<CommunityPage />);
-    expect(screen.getByText('What communities can I join?')).toBeInTheDocument();
+    expect(screen.getByText('What Origins can I join?')).toBeInTheDocument();
 
     const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
@@ -76,7 +74,7 @@ describe('community page', () => {
     // the card titles must not be wrapped in a link (Story C/D).
     for (const title of [
       'People First',
-      'Communities Drive Growth',
+      'Origins Drive Growth',
       'Collaboration Creates Value',
       'Ownership & Sovereignty',
     ]) {

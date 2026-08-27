@@ -38,7 +38,7 @@ describe('docs page', () => {
     expect(screen.getAllByText('Concepts').length).toBeGreaterThanOrEqual(1);
     for (const concept of [
       'Profiles',
-      'Communities',
+      'Origins',
       'Ideas',
       'Communication',
       'Feed',

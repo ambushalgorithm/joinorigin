@@ -28,7 +28,7 @@ const EN_CONCEPT_LABELS = [
   'Ideas',
   'Projects',
   'Feed',
-  'Communities',
+  'Origins',
   'Communication',
   'Profiles',
   'Opportunities',
@@ -64,7 +64,7 @@ describe('home page', () => {
     expect(screen.getByTestId('start-project-button')).toBeInTheDocument();
     expect(
       screen.getByText(
-        'Create a profile that works like your resume, post your idea as a page, and start or join a community around anything — a brand-new idea, an existing small business, an AI startup, a book club, or a 10k run.',
+        "Create a profile that works like your resume, post your idea as a page, and start an Origin around anything — an idea, a small business, an AI startup, a book club, or a 10k run. Then invite the people who'll move it forward with you.",
       ),
     ).toBeInTheDocument();
   });
@@ -88,17 +88,17 @@ describe('home page', () => {
     expect(screen.getByText('© 2026 JoinOrigin')).toBeInTheDocument();
   });
 
-  it('renders the visible definition paragraph with the exact phrase "social collaboration network"', () => {
+  it('renders the visible definition paragraph with the exact phrase "space you start around a goal"', () => {
     renderPage();
     // Exact-match the definition paragraph (the same phrase is also the first
     // clause of FAQ answer #1, so a substring query would match both).
     const definition = screen.getByText(
-      'Origin is a social collaboration network — the community OS where your ideas, projects, and communities come together in one organized space. JoinOrigin is the brand and the network behind it.',
+      'Origin is the space you start around a goal — an idea, a startup, a small business, or a project. Bring the people and resources it needs, and move it forward together: co-founders, partners, clients, supporters, and your network. JoinOrigin is the brand and the network behind it.',
     );
     expect(definition.tagName).toBe('P');
     // The exact lowercase phrase must appear in the visible <main> copy
     // (discovery §5.1/§6 — LLM entity clarity).
-    expect(definition.textContent?.toLowerCase()).toContain('social collaboration network');
+    expect(definition.textContent?.toLowerCase()).toContain('space you start around a goal');
   });
 
   it('renders the visible FAQ block with one h2 per question and a p answer', () => {
@@ -157,12 +157,10 @@ describe('home page', () => {
   });
 
   it('exports metadata per the arch pattern (title, canonical, keywords)', () => {
-    expect(metadata.title).toBe('JoinOrigin — Social Collaboration Network & Community OS');
-    expect(metadata.description).toContain('social collaboration network');
+    expect(metadata.title).toBe('Origin — Social Collaboration Network & Community OS');
+    expect(metadata.description).toContain('space you start around a goal');
     expect(metadata.alternates?.canonical).toBe('http://localhost:3100/');
-    expect(metadata.openGraph?.title).toBe(
-      'JoinOrigin — Social Collaboration Network & Community OS',
-    );
+    expect(metadata.openGraph?.title).toBe('Origin — Social Collaboration Network & Community OS');
     expect(metadata.keywords).toEqual(
       expect.arrayContaining(['social collaboration network', 'community OS']),
     );

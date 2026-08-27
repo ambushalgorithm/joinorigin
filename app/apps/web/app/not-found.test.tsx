@@ -7,7 +7,7 @@ import NotFound from './not-found';
 /**
  * Unit tests for the styled JoinOrigin 404 boundary (TASK-208), extended for
  * the Sprint 8 redesign (spec sprint-8 §9): local not-found scene, fade-up
- * entrance, and a secondary "Explore communities" ghost link.
+ * entrance, and a secondary "Explore Origins" ghost link.
  *
  * The boundary renders a stable styled page for unknown routes (including the
  * well-known-path probes browsers/DevTools fire at page load) so 404s no
@@ -52,9 +52,9 @@ describe('not-found boundary', () => {
     expect(homeLink).toHaveAttribute('href', '/');
   });
 
-  it('renders the secondary Explore communities link', () => {
+  it('renders the secondary Explore Origins link', () => {
     renderNotFound();
-    const exploreLink = screen.getByRole('link', { name: /Explore communities/ });
+    const exploreLink = screen.getByRole('link', { name: /Explore Origins/ });
     expect(exploreLink).toHaveAttribute('href', '/community');
   });
 });

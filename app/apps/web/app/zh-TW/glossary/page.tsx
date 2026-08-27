@@ -23,7 +23,7 @@ import { GlossaryHubView } from '../../glossary/glossary-hub-view';
 export const metadata: Metadata = createMetadata({
   title: 'Community OS Glossary | JoinOrigin',
   description:
-    'Learn the core terms of community building — community, community manager, community OS, moderation, onboarding, activation, engagement loop, hybrid events, and co-founder.',
+    'Learn the core terms of Origin — Origin, community manager, community OS, moderation, onboarding, activation, engagement loop, hybrid events, and co-founder.',
   path: '/zh-TW/glossary',
   locale: 'zh-TW',
   keywords: [
