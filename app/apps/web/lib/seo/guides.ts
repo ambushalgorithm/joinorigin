@@ -63,10 +63,10 @@ export const GUIDE_SLUGS = [
   'publish-a-small-business-idea',
   'publish-a-startup-concept',
   'find-a-co-founder',
-  'start-a-community',
+  'start-an-origin',
   'first-10-members',
-  'keep-a-community-active',
-  'hybrid-communities',
+  'keep-an-origin-active',
+  'hybrid-origins',
   'organize-a-meetup',
   'moderation',
 ] as const;
@@ -76,7 +76,7 @@ export type GuideSlug = (typeof GUIDE_SLUGS)[number];
 export interface GuidePageEntry {
   /** Dynamic segment value for `app/guides/[slug]/page.tsx`. */
   params: { slug: string };
-  /** Canonical path, e.g. '/guides/start-a-community' or '/<locale>/guides/start-a-community'. */
+  /** Canonical path, e.g. '/guides/start-an-origin' or '/<locale>/guides/start-an-origin'. */
   path: string;
   /** Guide slug. */
   slug: string;
@@ -200,7 +200,7 @@ export function guidePageEntries(locale: Locale = 'en'): GuidePageEntry[] {
       title,
       heading: guideHeading(title, content.heading),
       description:
-        content.description ?? 'Practical, evergreen steps for building and running communities.',
+        content.description ?? 'Practical, evergreen steps for building and running Origins.',
       lastModified: GUIDES_RELEASE_DATE,
       priority: 0.7,
       related: relatedSlugs(slug),
@@ -240,7 +240,7 @@ export function guidePageEntriesWithFallback(locale: Locale = 'en'): GuidePageEn
       title,
       heading: guideHeading(title, content.heading),
       description:
-        content.description ?? 'Practical, evergreen steps for building and running communities.',
+        content.description ?? 'Practical, evergreen steps for building and running Origins.',
       lastModified: GUIDES_RELEASE_DATE,
       priority: 0.7,
       related: relatedSlugs(slug),
@@ -336,7 +336,7 @@ export function guidePageMetadata(
     title: entry.title,
     description: entry.description,
     path: surfacePath,
-    keywords: [entry.slug.replace(/-/g, ' '), 'community', 'how to', 'guide'],
+    keywords: [entry.slug.replace(/-/g, ' '), 'origin', 'how to', 'guide'],
   });
   const languages = guideLanguagesFor(entry.slug, surfaceLocale);
   if (!languages) return meta;
@@ -353,16 +353,16 @@ export function guidePageMetadata(
  *  §1.2; the visible chrome is localized via the active dictionary). */
 export function guideHubMetadata(locale: Locale = 'en'): Metadata {
   const meta = createMetadata({
-    title: 'Community Building Guides | JoinOrigin',
+    title: 'Origin Building Guides | JoinOrigin',
     description:
-      'Community building how-to guides: start a community, organize a meetup, get your first 10 members, find a co-founder, stay active, run hybrid groups, and moderate well.',
+      'Origin building how-to guides: start an Origin, organize a meetup, get your first 10 members, find a co-founder, stay active, run hybrid Origins, and moderate well.',
     path: guideHubPath(locale),
     keywords: [
-      'community building',
-      'how to start a community',
+      'origin building',
+      'how to start an Origin',
       'organize a meetup',
-      'community guides',
-      'community manager',
+      'origin guides',
+      'origin builder',
     ],
   });
   const languages = guideHubLanguagesFor(locale);

@@ -66,9 +66,9 @@ const GLOSSARY_BODY_CHROME: Record<string, string> = {
   whyBody:
     'Community building has its own language, and the terms are often used loosely. A community OS glossary gives organizers, moderators, and founders shared definitions they can rely on.',
   termsIntro:
-    'Here are the core terms every organizer, moderator, and founder uses — each one is defined in practice across the Community Building guides:',
+    'Here are the core terms every organizer, moderator, and founder uses — each one is defined in practice across the Origin Building guides:',
   goDeeperItem1:
-    'Work through the <1>Community Building guides</1> — the step-by-step how-tos behind every term.',
+    'Work through the <1>Origin Building guides</1> — the step-by-step how-tos behind every term.',
   goDeeperItem2: 'See the concepts in practice: <1>New York City</1> and <2>Berlin</2> city pages.',
 };
 
@@ -145,7 +145,7 @@ describe('glossary hub page', () => {
 
   it('cross-links to the guides hub and the flagship city pages (via Trans keys)', () => {
     renderWithGlossaryTerms();
-    expect(screen.getByRole('link', { name: 'Community Building guides' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Origin Building guides' })).toHaveAttribute(
       'href',
       '/en/guides',
     );

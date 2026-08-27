@@ -16,7 +16,8 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'en',
   slug: 'first-10-members',
-  title: 'How to Get Your First 10 Members for a New or Growing Community | JoinOrigin',
+  title: 'How to Get Your First 10 Members for a New or Growing Origin | JoinOrigin',
+  heading: 'How to Get Your First 10 Members for a New or Growing Origin',
   description:
     'Get your first 10 members without a big budget — whether you are launching a new community or re-energizing an existing one, start from your personal network, share invite links, and make the room the place people want to join. Practical steps from JoinOrigin.',
   intro: [

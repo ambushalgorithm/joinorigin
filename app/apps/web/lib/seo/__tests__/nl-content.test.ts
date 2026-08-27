@@ -7,14 +7,14 @@ import createAGroupNl from '../content/nl/guide/create-a-group';
 import createAProjectNl from '../content/nl/guide/create-a-project';
 import findACoFounderNl from '../content/nl/guide/find-a-co-founder';
 import first10MembersNl from '../content/nl/guide/first-10-members';
-import hybridCommunitiesNl from '../content/nl/guide/hybrid-communities';
-import keepCommunityActiveNl from '../content/nl/guide/keep-a-community-active';
+import hybridCommunitiesNl from '../content/nl/guide/hybrid-origins';
+import keepCommunityActiveNl from '../content/nl/guide/keep-an-origin-active';
 import moderationNl from '../content/nl/guide/moderation';
 import organizeMeetupNl from '../content/nl/guide/organize-a-meetup';
 import publishAnIdeaNl from '../content/nl/guide/publish-an-idea';
 import publishASmallBusinessIdeaNl from '../content/nl/guide/publish-a-small-business-idea';
 import publishAStartupConceptNl from '../content/nl/guide/publish-a-startup-concept';
-import startCommunityNl from '../content/nl/guide/start-a-community';
+import startCommunityNl from '../content/nl/guide/start-an-origin';
 
 /**
  * Sprint 18 Dutch translation content tests (TASK-427).
@@ -51,10 +51,10 @@ const NL_GUIDE_SLUGS = [
   'publish-a-small-business-idea',
   'publish-a-startup-concept',
   'find-a-co-founder',
-  'start-a-community',
+  'start-an-origin',
   'first-10-members',
-  'keep-a-community-active',
-  'hybrid-communities',
+  'keep-an-origin-active',
+  'hybrid-origins',
   'organize-a-meetup',
   'moderation',
 ];

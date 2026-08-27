@@ -118,7 +118,7 @@ describe('Story F O(1) locale resolution (TASK-537)', () => {
     'resolves every supported locale prefix /%s via the Set lookup',
     (locale) => {
       expect(localeFromPathname(`/${locale}`)).toBe(locale);
-      expect(localeFromPathname(`/${locale}/guides/start-a-community`)).toBe(locale);
+      expect(localeFromPathname(`/${locale}/guides/start-an-origin`)).toBe(locale);
       expect(localeFromPathname(`/${locale}/`)).toBe(locale);
     },
   );

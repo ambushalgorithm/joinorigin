@@ -521,11 +521,11 @@ export interface GuideLink {
  * for the active locale (TASK-411/TASK-416), so guide links stay localized.
  */
 const GUIDE_PATHS = [
-  { key: 'start-a-community', path: '/guides/start-a-community' },
+  { key: 'start-a-community', path: '/guides/start-an-origin' },
   { key: 'find-a-co-founder', path: '/guides/find-a-co-founder' },
   { key: 'first-10-members', path: '/guides/first-10-members' },
-  { key: 'keep-a-community-active', path: '/guides/keep-a-community-active' },
-  { key: 'hybrid-communities', path: '/guides/hybrid-communities' },
+  { key: 'keep-a-community-active', path: '/guides/keep-an-origin-active' },
+  { key: 'hybrid-communities', path: '/guides/hybrid-origins' },
   { key: 'organize-a-meetup', path: '/guides/organize-a-meetup' },
   { key: 'moderation', path: '/guides/moderation' },
 ] as const satisfies readonly { key: string; path: string }[];

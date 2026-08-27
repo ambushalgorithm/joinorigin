@@ -36,12 +36,12 @@ describe('/de/guides/[slug] route (TASK-421 + TASK-453)', () => {
     const hasContentMock = contentModule.hasContent as jest.Mock;
     hasContentMock.mockImplementation(
       (kind: string, slug: string, locale: string) =>
-        kind === 'guide' && locale === 'de' && slug === 'start-a-community',
+        kind === 'guide' && locale === 'de' && slug === 'start-an-origin',
     );
     try {
       // The committed guide resolves; untranslated guides fall back to EN
       // via the wrapper loader; unknown slugs stay undefined → notFound.
-      expect(guidePageForLocale('start-a-community', 'de')).toBeDefined();
+      expect(guidePageForLocale('start-an-origin', 'de')).toBeDefined();
       expect(guidePageForLocale('organize-a-meetup', 'de')).toBeUndefined();
       expect(
         guidePageForLocale('organize-a-meetup', 'de') ?? guidePageForLocale('organize-a-meetup'),
@@ -58,17 +58,17 @@ describe('/de/guides/[slug] route (TASK-421 + TASK-453)', () => {
     const hasContentMock = contentModule.hasContent as jest.Mock;
     hasContentMock.mockImplementation(
       (kind: string, slug: string, locale: string) =>
-        kind === 'guide' && locale === 'de' && slug === 'start-a-community',
+        kind === 'guide' && locale === 'de' && slug === 'start-an-origin',
     );
     try {
       const meta = await generateMetadata({
-        params: Promise.resolve({ slug: 'start-a-community' }),
+        params: Promise.resolve({ slug: 'start-an-origin' }),
       });
-      expect(meta.alternates?.canonical).toBe('http://localhost:3100/de/guides/start-a-community');
+      expect(meta.alternates?.canonical).toBe('http://localhost:3100/de/guides/start-an-origin');
       expect(meta.alternates?.languages).toEqual({
-        de: 'http://localhost:3100/de/guides/start-a-community',
-        en: 'http://localhost:3100/en/guides/start-a-community',
-        'x-default': 'http://localhost:3100/en/guides/start-a-community',
+        de: 'http://localhost:3100/de/guides/start-an-origin',
+        en: 'http://localhost:3100/en/guides/start-an-origin',
+        'x-default': 'http://localhost:3100/en/guides/start-an-origin',
       });
     } finally {
       hasContentMock.mockRestore();
@@ -79,7 +79,7 @@ describe('/de/guides/[slug] route (TASK-421 + TASK-453)', () => {
     const hasContentMock = contentModule.hasContent as jest.Mock;
     hasContentMock.mockImplementation(
       (kind: string, slug: string, locale: string) =>
-        kind === 'guide' && locale === 'de' && slug === 'start-a-community',
+        kind === 'guide' && locale === 'de' && slug === 'start-an-origin',
     );
     try {
       const meta = await generateMetadata({

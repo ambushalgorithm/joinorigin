@@ -17,6 +17,6 @@ describe('app/llms-full.txt route', () => {
     const body = await response.text();
     expect(body).toBe(buildLlmsFullText());
     expect(body).toContain('# JoinOrigin — llms-full.txt');
-    expect(body).toContain('### /en/guides/start-a-community');
+    expect(body).toContain('### /en/guides/start-an-origin');
   });
 });

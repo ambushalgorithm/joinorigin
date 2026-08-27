@@ -16,7 +16,8 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'en',
   slug: 'organize-a-meetup',
-  title: 'How to Organize a Meetup: Venues, Agenda & Promotion | JoinOrigin',
+  title: 'How to Organize an Origin Meetup: Venues, Agenda & Promotion | JoinOrigin',
+  heading: 'How to Organize an Origin Meetup: Venues, Agenda & Promotion',
   description:
     'Organize a meetup once your group has formed — whether it was founded last month or has been meeting for years — choose a format, book a venue, build an agenda, promote it, and run the night. A practical checklist from JoinOrigin.',
   intro: [

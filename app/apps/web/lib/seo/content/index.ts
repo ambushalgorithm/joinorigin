@@ -283,254 +283,254 @@ import createAGroupGuideAr from './ar/guide/create-a-group';
 import createAProjectGuideAr from './ar/guide/create-a-project';
 import findACoFounderGuideAr from './ar/guide/find-a-co-founder';
 import first10MembersGuideAr from './ar/guide/first-10-members';
-import hybridCommunitiesGuideAr from './ar/guide/hybrid-communities';
-import keepACommunityActiveGuideAr from './ar/guide/keep-a-community-active';
+import hybridCommunitiesGuideAr from './ar/guide/hybrid-origins';
+import keepACommunityActiveGuideAr from './ar/guide/keep-an-origin-active';
 import moderationGuideAr from './ar/guide/moderation';
 import organizeAMeetupGuideAr from './ar/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideAr from './ar/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideAr from './ar/guide/publish-a-startup-concept';
 import publishAnIdeaGuideAr from './ar/guide/publish-an-idea';
-import startACommunityGuideAr from './ar/guide/start-a-community';
+import startACommunityGuideAr from './ar/guide/start-an-origin';
 import createAGroupGuideDe from './de/guide/create-a-group';
 import createAProjectGuideDe from './de/guide/create-a-project';
 import findACoFounderGuideDe from './de/guide/find-a-co-founder';
 import first10MembersGuideDe from './de/guide/first-10-members';
-import hybridCommunitiesGuideDe from './de/guide/hybrid-communities';
-import keepACommunityActiveGuideDe from './de/guide/keep-a-community-active';
+import hybridCommunitiesGuideDe from './de/guide/hybrid-origins';
+import keepACommunityActiveGuideDe from './de/guide/keep-an-origin-active';
 import moderationGuideDe from './de/guide/moderation';
 import organizeAMeetupGuideDe from './de/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideDe from './de/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideDe from './de/guide/publish-a-startup-concept';
 import publishAnIdeaGuideDe from './de/guide/publish-an-idea';
-import startACommunityGuideDe from './de/guide/start-a-community';
+import startACommunityGuideDe from './de/guide/start-an-origin';
 import createAGroupGuideEn from './en/guide/create-a-group';
 import createAProjectGuideEn from './en/guide/create-a-project';
 import findACoFounderGuideEn from './en/guide/find-a-co-founder';
 import first10MembersGuideEn from './en/guide/first-10-members';
-import hybridCommunitiesGuideEn from './en/guide/hybrid-communities';
-import keepACommunityActiveGuideEn from './en/guide/keep-a-community-active';
+import hybridCommunitiesGuideEn from './en/guide/hybrid-origins';
+import keepACommunityActiveGuideEn from './en/guide/keep-an-origin-active';
 import moderationGuideEn from './en/guide/moderation';
 import organizeAMeetupGuideEn from './en/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideEn from './en/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideEn from './en/guide/publish-a-startup-concept';
 import publishAnIdeaGuideEn from './en/guide/publish-an-idea';
-import startACommunityGuideEn from './en/guide/start-a-community';
+import startACommunityGuideEn from './en/guide/start-an-origin';
 import createAGroupGuideEs from './es/guide/create-a-group';
 import createAProjectGuideEs from './es/guide/create-a-project';
 import findACoFounderGuideEs from './es/guide/find-a-co-founder';
 import first10MembersGuideEs from './es/guide/first-10-members';
-import hybridCommunitiesGuideEs from './es/guide/hybrid-communities';
-import keepACommunityActiveGuideEs from './es/guide/keep-a-community-active';
+import hybridCommunitiesGuideEs from './es/guide/hybrid-origins';
+import keepACommunityActiveGuideEs from './es/guide/keep-an-origin-active';
 import moderationGuideEs from './es/guide/moderation';
 import organizeAMeetupGuideEs from './es/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideEs from './es/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideEs from './es/guide/publish-a-startup-concept';
 import publishAnIdeaGuideEs from './es/guide/publish-an-idea';
-import startACommunityGuideEs from './es/guide/start-a-community';
+import startACommunityGuideEs from './es/guide/start-an-origin';
 import createAGroupGuideFa from './fa/guide/create-a-group';
 import createAProjectGuideFa from './fa/guide/create-a-project';
 import findACoFounderGuideFa from './fa/guide/find-a-co-founder';
 import first10MembersGuideFa from './fa/guide/first-10-members';
-import hybridCommunitiesGuideFa from './fa/guide/hybrid-communities';
-import keepACommunityActiveGuideFa from './fa/guide/keep-a-community-active';
+import hybridCommunitiesGuideFa from './fa/guide/hybrid-origins';
+import keepACommunityActiveGuideFa from './fa/guide/keep-an-origin-active';
 import moderationGuideFa from './fa/guide/moderation';
 import organizeAMeetupGuideFa from './fa/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideFa from './fa/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideFa from './fa/guide/publish-a-startup-concept';
 import publishAnIdeaGuideFa from './fa/guide/publish-an-idea';
-import startACommunityGuideFa from './fa/guide/start-a-community';
+import startACommunityGuideFa from './fa/guide/start-an-origin';
 import createAGroupGuideFr from './fr/guide/create-a-group';
 import createAProjectGuideFr from './fr/guide/create-a-project';
 import findACoFounderGuideFr from './fr/guide/find-a-co-founder';
 import first10MembersGuideFr from './fr/guide/first-10-members';
-import hybridCommunitiesGuideFr from './fr/guide/hybrid-communities';
-import keepACommunityActiveGuideFr from './fr/guide/keep-a-community-active';
+import hybridCommunitiesGuideFr from './fr/guide/hybrid-origins';
+import keepACommunityActiveGuideFr from './fr/guide/keep-an-origin-active';
 import moderationGuideFr from './fr/guide/moderation';
 import organizeAMeetupGuideFr from './fr/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideFr from './fr/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideFr from './fr/guide/publish-a-startup-concept';
 import publishAnIdeaGuideFr from './fr/guide/publish-an-idea';
-import startACommunityGuideFr from './fr/guide/start-a-community';
+import startACommunityGuideFr from './fr/guide/start-an-origin';
 import createAGroupGuideHi from './hi/guide/create-a-group';
 import createAProjectGuideHi from './hi/guide/create-a-project';
 import findACoFounderGuideHi from './hi/guide/find-a-co-founder';
 import first10MembersGuideHi from './hi/guide/first-10-members';
-import hybridCommunitiesGuideHi from './hi/guide/hybrid-communities';
-import keepACommunityActiveGuideHi from './hi/guide/keep-a-community-active';
+import hybridCommunitiesGuideHi from './hi/guide/hybrid-origins';
+import keepACommunityActiveGuideHi from './hi/guide/keep-an-origin-active';
 import moderationGuideHi from './hi/guide/moderation';
 import organizeAMeetupGuideHi from './hi/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideHi from './hi/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideHi from './hi/guide/publish-a-startup-concept';
 import publishAnIdeaGuideHi from './hi/guide/publish-an-idea';
-import startACommunityGuideHi from './hi/guide/start-a-community';
+import startACommunityGuideHi from './hi/guide/start-an-origin';
 import createAGroupGuideId from './id/guide/create-a-group';
 import createAProjectGuideId from './id/guide/create-a-project';
 import findACoFounderGuideId from './id/guide/find-a-co-founder';
 import first10MembersGuideId from './id/guide/first-10-members';
-import hybridCommunitiesGuideId from './id/guide/hybrid-communities';
-import keepACommunityActiveGuideId from './id/guide/keep-a-community-active';
+import hybridCommunitiesGuideId from './id/guide/hybrid-origins';
+import keepACommunityActiveGuideId from './id/guide/keep-an-origin-active';
 import moderationGuideId from './id/guide/moderation';
 import organizeAMeetupGuideId from './id/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideId from './id/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideId from './id/guide/publish-a-startup-concept';
 import publishAnIdeaGuideId from './id/guide/publish-an-idea';
-import startACommunityGuideId from './id/guide/start-a-community';
+import startACommunityGuideId from './id/guide/start-an-origin';
 import createAGroupGuideIt from './it/guide/create-a-group';
 import createAProjectGuideIt from './it/guide/create-a-project';
 import findACoFounderGuideIt from './it/guide/find-a-co-founder';
 import first10MembersGuideIt from './it/guide/first-10-members';
-import hybridCommunitiesGuideIt from './it/guide/hybrid-communities';
-import keepACommunityActiveGuideIt from './it/guide/keep-a-community-active';
+import hybridCommunitiesGuideIt from './it/guide/hybrid-origins';
+import keepACommunityActiveGuideIt from './it/guide/keep-an-origin-active';
 import moderationGuideIt from './it/guide/moderation';
 import organizeAMeetupGuideIt from './it/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideIt from './it/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideIt from './it/guide/publish-a-startup-concept';
 import publishAnIdeaGuideIt from './it/guide/publish-an-idea';
-import startACommunityGuideIt from './it/guide/start-a-community';
+import startACommunityGuideIt from './it/guide/start-an-origin';
 import createAGroupGuideJa from './ja/guide/create-a-group';
 import createAProjectGuideJa from './ja/guide/create-a-project';
 import findACoFounderGuideJa from './ja/guide/find-a-co-founder';
 import first10MembersGuideJa from './ja/guide/first-10-members';
-import hybridCommunitiesGuideJa from './ja/guide/hybrid-communities';
-import keepACommunityActiveGuideJa from './ja/guide/keep-a-community-active';
+import hybridCommunitiesGuideJa from './ja/guide/hybrid-origins';
+import keepACommunityActiveGuideJa from './ja/guide/keep-an-origin-active';
 import moderationGuideJa from './ja/guide/moderation';
 import organizeAMeetupGuideJa from './ja/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideJa from './ja/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideJa from './ja/guide/publish-a-startup-concept';
 import publishAnIdeaGuideJa from './ja/guide/publish-an-idea';
-import startACommunityGuideJa from './ja/guide/start-a-community';
+import startACommunityGuideJa from './ja/guide/start-an-origin';
 import createAGroupGuideKo from './ko/guide/create-a-group';
 import createAProjectGuideKo from './ko/guide/create-a-project';
 import findACoFounderGuideKo from './ko/guide/find-a-co-founder';
 import first10MembersGuideKo from './ko/guide/first-10-members';
-import hybridCommunitiesGuideKo from './ko/guide/hybrid-communities';
-import keepACommunityActiveGuideKo from './ko/guide/keep-a-community-active';
+import hybridCommunitiesGuideKo from './ko/guide/hybrid-origins';
+import keepACommunityActiveGuideKo from './ko/guide/keep-an-origin-active';
 import moderationGuideKo from './ko/guide/moderation';
 import organizeAMeetupGuideKo from './ko/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideKo from './ko/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideKo from './ko/guide/publish-a-startup-concept';
 import publishAnIdeaGuideKo from './ko/guide/publish-an-idea';
-import startACommunityGuideKo from './ko/guide/start-a-community';
+import startACommunityGuideKo from './ko/guide/start-an-origin';
 import createAGroupGuideNl from './nl/guide/create-a-group';
 import createAProjectGuideNl from './nl/guide/create-a-project';
 import findACoFounderGuideNl from './nl/guide/find-a-co-founder';
 import first10MembersGuideNl from './nl/guide/first-10-members';
-import hybridCommunitiesGuideNl from './nl/guide/hybrid-communities';
-import keepACommunityActiveGuideNl from './nl/guide/keep-a-community-active';
+import hybridCommunitiesGuideNl from './nl/guide/hybrid-origins';
+import keepACommunityActiveGuideNl from './nl/guide/keep-an-origin-active';
 import moderationGuideNl from './nl/guide/moderation';
 import organizeAMeetupGuideNl from './nl/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideNl from './nl/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideNl from './nl/guide/publish-a-startup-concept';
 import publishAnIdeaGuideNl from './nl/guide/publish-an-idea';
-import startACommunityGuideNl from './nl/guide/start-a-community';
+import startACommunityGuideNl from './nl/guide/start-an-origin';
 import createAGroupGuidePl from './pl/guide/create-a-group';
 import createAProjectGuidePl from './pl/guide/create-a-project';
 import findACoFounderGuidePl from './pl/guide/find-a-co-founder';
 import first10MembersGuidePl from './pl/guide/first-10-members';
-import hybridCommunitiesGuidePl from './pl/guide/hybrid-communities';
-import keepACommunityActiveGuidePl from './pl/guide/keep-a-community-active';
+import hybridCommunitiesGuidePl from './pl/guide/hybrid-origins';
+import keepACommunityActiveGuidePl from './pl/guide/keep-an-origin-active';
 import moderationGuidePl from './pl/guide/moderation';
 import organizeAMeetupGuidePl from './pl/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuidePl from './pl/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuidePl from './pl/guide/publish-a-startup-concept';
 import publishAnIdeaGuidePl from './pl/guide/publish-an-idea';
-import startACommunityGuidePl from './pl/guide/start-a-community';
+import startACommunityGuidePl from './pl/guide/start-an-origin';
 import createAGroupGuidePtbr from './pt-BR/guide/create-a-group';
 import createAProjectGuidePtbr from './pt-BR/guide/create-a-project';
 import findACoFounderGuidePtbr from './pt-BR/guide/find-a-co-founder';
 import first10MembersGuidePtbr from './pt-BR/guide/first-10-members';
-import hybridCommunitiesGuidePtbr from './pt-BR/guide/hybrid-communities';
-import keepACommunityActiveGuidePtbr from './pt-BR/guide/keep-a-community-active';
+import hybridCommunitiesGuidePtbr from './pt-BR/guide/hybrid-origins';
+import keepACommunityActiveGuidePtbr from './pt-BR/guide/keep-an-origin-active';
 import moderationGuidePtbr from './pt-BR/guide/moderation';
 import organizeAMeetupGuidePtbr from './pt-BR/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuidePtbr from './pt-BR/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuidePtbr from './pt-BR/guide/publish-a-startup-concept';
 import publishAnIdeaGuidePtbr from './pt-BR/guide/publish-an-idea';
-import startACommunityGuidePtbr from './pt-BR/guide/start-a-community';
+import startACommunityGuidePtbr from './pt-BR/guide/start-an-origin';
 import createAGroupGuideRu from './ru/guide/create-a-group';
 import createAProjectGuideRu from './ru/guide/create-a-project';
 import findACoFounderGuideRu from './ru/guide/find-a-co-founder';
 import first10MembersGuideRu from './ru/guide/first-10-members';
-import hybridCommunitiesGuideRu from './ru/guide/hybrid-communities';
-import keepACommunityActiveGuideRu from './ru/guide/keep-a-community-active';
+import hybridCommunitiesGuideRu from './ru/guide/hybrid-origins';
+import keepACommunityActiveGuideRu from './ru/guide/keep-an-origin-active';
 import moderationGuideRu from './ru/guide/moderation';
 import organizeAMeetupGuideRu from './ru/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideRu from './ru/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideRu from './ru/guide/publish-a-startup-concept';
 import publishAnIdeaGuideRu from './ru/guide/publish-an-idea';
-import startACommunityGuideRu from './ru/guide/start-a-community';
+import startACommunityGuideRu from './ru/guide/start-an-origin';
 import createAGroupGuideTh from './th/guide/create-a-group';
 import createAProjectGuideTh from './th/guide/create-a-project';
 import findACoFounderGuideTh from './th/guide/find-a-co-founder';
 import first10MembersGuideTh from './th/guide/first-10-members';
-import hybridCommunitiesGuideTh from './th/guide/hybrid-communities';
-import keepACommunityActiveGuideTh from './th/guide/keep-a-community-active';
+import hybridCommunitiesGuideTh from './th/guide/hybrid-origins';
+import keepACommunityActiveGuideTh from './th/guide/keep-an-origin-active';
 import moderationGuideTh from './th/guide/moderation';
 import organizeAMeetupGuideTh from './th/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideTh from './th/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideTh from './th/guide/publish-a-startup-concept';
 import publishAnIdeaGuideTh from './th/guide/publish-an-idea';
-import startACommunityGuideTh from './th/guide/start-a-community';
+import startACommunityGuideTh from './th/guide/start-an-origin';
 import createAGroupGuideTr from './tr/guide/create-a-group';
 import createAProjectGuideTr from './tr/guide/create-a-project';
 import findACoFounderGuideTr from './tr/guide/find-a-co-founder';
 import first10MembersGuideTr from './tr/guide/first-10-members';
-import hybridCommunitiesGuideTr from './tr/guide/hybrid-communities';
-import keepACommunityActiveGuideTr from './tr/guide/keep-a-community-active';
+import hybridCommunitiesGuideTr from './tr/guide/hybrid-origins';
+import keepACommunityActiveGuideTr from './tr/guide/keep-an-origin-active';
 import moderationGuideTr from './tr/guide/moderation';
 import organizeAMeetupGuideTr from './tr/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideTr from './tr/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideTr from './tr/guide/publish-a-startup-concept';
 import publishAnIdeaGuideTr from './tr/guide/publish-an-idea';
-import startACommunityGuideTr from './tr/guide/start-a-community';
+import startACommunityGuideTr from './tr/guide/start-an-origin';
 import createAGroupGuideUk from './uk/guide/create-a-group';
 import createAProjectGuideUk from './uk/guide/create-a-project';
 import findACoFounderGuideUk from './uk/guide/find-a-co-founder';
 import first10MembersGuideUk from './uk/guide/first-10-members';
-import hybridCommunitiesGuideUk from './uk/guide/hybrid-communities';
-import keepACommunityActiveGuideUk from './uk/guide/keep-a-community-active';
+import hybridCommunitiesGuideUk from './uk/guide/hybrid-origins';
+import keepACommunityActiveGuideUk from './uk/guide/keep-an-origin-active';
 import moderationGuideUk from './uk/guide/moderation';
 import organizeAMeetupGuideUk from './uk/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideUk from './uk/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideUk from './uk/guide/publish-a-startup-concept';
 import publishAnIdeaGuideUk from './uk/guide/publish-an-idea';
-import startACommunityGuideUk from './uk/guide/start-a-community';
+import startACommunityGuideUk from './uk/guide/start-an-origin';
 import createAGroupGuideVi from './vi/guide/create-a-group';
 import createAProjectGuideVi from './vi/guide/create-a-project';
 import findACoFounderGuideVi from './vi/guide/find-a-co-founder';
 import first10MembersGuideVi from './vi/guide/first-10-members';
-import hybridCommunitiesGuideVi from './vi/guide/hybrid-communities';
-import keepACommunityActiveGuideVi from './vi/guide/keep-a-community-active';
+import hybridCommunitiesGuideVi from './vi/guide/hybrid-origins';
+import keepACommunityActiveGuideVi from './vi/guide/keep-an-origin-active';
 import moderationGuideVi from './vi/guide/moderation';
 import organizeAMeetupGuideVi from './vi/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideVi from './vi/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideVi from './vi/guide/publish-a-startup-concept';
 import publishAnIdeaGuideVi from './vi/guide/publish-an-idea';
-import startACommunityGuideVi from './vi/guide/start-a-community';
+import startACommunityGuideVi from './vi/guide/start-an-origin';
 import createAGroupGuideZhcn from './zh-CN/guide/create-a-group';
 import createAProjectGuideZhcn from './zh-CN/guide/create-a-project';
 import findACoFounderGuideZhcn from './zh-CN/guide/find-a-co-founder';
 import first10MembersGuideZhcn from './zh-CN/guide/first-10-members';
-import hybridCommunitiesGuideZhcn from './zh-CN/guide/hybrid-communities';
-import keepACommunityActiveGuideZhcn from './zh-CN/guide/keep-a-community-active';
+import hybridCommunitiesGuideZhcn from './zh-CN/guide/hybrid-origins';
+import keepACommunityActiveGuideZhcn from './zh-CN/guide/keep-an-origin-active';
 import moderationGuideZhcn from './zh-CN/guide/moderation';
 import organizeAMeetupGuideZhcn from './zh-CN/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideZhcn from './zh-CN/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideZhcn from './zh-CN/guide/publish-a-startup-concept';
 import publishAnIdeaGuideZhcn from './zh-CN/guide/publish-an-idea';
-import startACommunityGuideZhcn from './zh-CN/guide/start-a-community';
+import startACommunityGuideZhcn from './zh-CN/guide/start-an-origin';
 import createAGroupGuideZhtw from './zh-TW/guide/create-a-group';
 import createAProjectGuideZhtw from './zh-TW/guide/create-a-project';
 import findACoFounderGuideZhtw from './zh-TW/guide/find-a-co-founder';
 import first10MembersGuideZhtw from './zh-TW/guide/first-10-members';
-import hybridCommunitiesGuideZhtw from './zh-TW/guide/hybrid-communities';
-import keepACommunityActiveGuideZhtw from './zh-TW/guide/keep-a-community-active';
+import hybridCommunitiesGuideZhtw from './zh-TW/guide/hybrid-origins';
+import keepACommunityActiveGuideZhtw from './zh-TW/guide/keep-an-origin-active';
 import moderationGuideZhtw from './zh-TW/guide/moderation';
 import organizeAMeetupGuideZhtw from './zh-TW/guide/organize-a-meetup';
 import publishASmallBusinessIdeaGuideZhtw from './zh-TW/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideZhtw from './zh-TW/guide/publish-a-startup-concept';
 import publishAnIdeaGuideZhtw from './zh-TW/guide/publish-an-idea';
-import startACommunityGuideZhtw from './zh-TW/guide/start-a-community';
+import startACommunityGuideZhtw from './zh-TW/guide/start-an-origin';
 import type {
   CityContent,
   ContentKind,
@@ -1189,12 +1189,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'en', content: findACoFounderGuideEn },
   // guide first-10-members (EN source of truth).
   { kind: 'guide', slug: 'first-10-members', locale: 'en', content: first10MembersGuideEn },
-  // guide hybrid-communities (EN source of truth).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'en', content: hybridCommunitiesGuideEn },
-  // guide keep-a-community-active (EN source of truth).
+  // guide hybrid-origins (EN source of truth).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'en', content: hybridCommunitiesGuideEn },
+  // guide keep-an-origin-active (EN source of truth).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'en',
     content: keepACommunityActiveGuideEn,
   },
@@ -1218,8 +1218,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (EN source of truth).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'en', content: publishAnIdeaGuideEn },
-  // guide start-a-community (EN source of truth).
-  { kind: 'guide', slug: 'start-a-community', locale: 'en', content: startACommunityGuideEn },
+  // guide start-an-origin (EN source of truth).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'en', content: startACommunityGuideEn },
 
   // 12×20 guide translations (Sprint 18, TASK-442) — every non-EN locale translates all 12 guides.
   // guide create-a-group (ar translation).
@@ -1230,12 +1230,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'ar', content: findACoFounderGuideAr },
   // guide first-10-members (ar translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'ar', content: first10MembersGuideAr },
-  // guide hybrid-communities (ar translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'ar', content: hybridCommunitiesGuideAr },
-  // guide keep-a-community-active (ar translation).
+  // guide hybrid-origins (ar translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'ar', content: hybridCommunitiesGuideAr },
+  // guide keep-an-origin-active (ar translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'ar',
     content: keepACommunityActiveGuideAr,
   },
@@ -1259,8 +1259,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (ar translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'ar', content: publishAnIdeaGuideAr },
-  // guide start-a-community (ar translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'ar', content: startACommunityGuideAr },
+  // guide start-an-origin (ar translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'ar', content: startACommunityGuideAr },
   // guide create-a-group (de translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'de', content: createAGroupGuideDe },
   // guide create-a-project (de translation).
@@ -1269,12 +1269,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'de', content: findACoFounderGuideDe },
   // guide first-10-members (de translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'de', content: first10MembersGuideDe },
-  // guide hybrid-communities (de translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'de', content: hybridCommunitiesGuideDe },
-  // guide keep-a-community-active (de translation).
+  // guide hybrid-origins (de translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'de', content: hybridCommunitiesGuideDe },
+  // guide keep-an-origin-active (de translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'de',
     content: keepACommunityActiveGuideDe,
   },
@@ -1298,8 +1298,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (de translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'de', content: publishAnIdeaGuideDe },
-  // guide start-a-community (de translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'de', content: startACommunityGuideDe },
+  // guide start-an-origin (de translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'de', content: startACommunityGuideDe },
   // guide create-a-group (es translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'es', content: createAGroupGuideEs },
   // guide create-a-project (es translation).
@@ -1308,12 +1308,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'es', content: findACoFounderGuideEs },
   // guide first-10-members (es translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'es', content: first10MembersGuideEs },
-  // guide hybrid-communities (es translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'es', content: hybridCommunitiesGuideEs },
-  // guide keep-a-community-active (es translation).
+  // guide hybrid-origins (es translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'es', content: hybridCommunitiesGuideEs },
+  // guide keep-an-origin-active (es translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'es',
     content: keepACommunityActiveGuideEs,
   },
@@ -1337,8 +1337,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (es translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'es', content: publishAnIdeaGuideEs },
-  // guide start-a-community (es translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'es', content: startACommunityGuideEs },
+  // guide start-an-origin (es translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'es', content: startACommunityGuideEs },
   // guide create-a-group (fa translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'fa', content: createAGroupGuideFa },
   // guide create-a-project (fa translation).
@@ -1347,12 +1347,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'fa', content: findACoFounderGuideFa },
   // guide first-10-members (fa translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'fa', content: first10MembersGuideFa },
-  // guide hybrid-communities (fa translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'fa', content: hybridCommunitiesGuideFa },
-  // guide keep-a-community-active (fa translation).
+  // guide hybrid-origins (fa translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'fa', content: hybridCommunitiesGuideFa },
+  // guide keep-an-origin-active (fa translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'fa',
     content: keepACommunityActiveGuideFa,
   },
@@ -1376,8 +1376,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (fa translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'fa', content: publishAnIdeaGuideFa },
-  // guide start-a-community (fa translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'fa', content: startACommunityGuideFa },
+  // guide start-an-origin (fa translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'fa', content: startACommunityGuideFa },
   // guide create-a-group (fr translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'fr', content: createAGroupGuideFr },
   // guide create-a-project (fr translation).
@@ -1386,12 +1386,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'fr', content: findACoFounderGuideFr },
   // guide first-10-members (fr translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'fr', content: first10MembersGuideFr },
-  // guide hybrid-communities (fr translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'fr', content: hybridCommunitiesGuideFr },
-  // guide keep-a-community-active (fr translation).
+  // guide hybrid-origins (fr translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'fr', content: hybridCommunitiesGuideFr },
+  // guide keep-an-origin-active (fr translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'fr',
     content: keepACommunityActiveGuideFr,
   },
@@ -1415,8 +1415,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (fr translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'fr', content: publishAnIdeaGuideFr },
-  // guide start-a-community (fr translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'fr', content: startACommunityGuideFr },
+  // guide start-an-origin (fr translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'fr', content: startACommunityGuideFr },
   // guide create-a-group (hi translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'hi', content: createAGroupGuideHi },
   // guide create-a-project (hi translation).
@@ -1425,12 +1425,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'hi', content: findACoFounderGuideHi },
   // guide first-10-members (hi translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'hi', content: first10MembersGuideHi },
-  // guide hybrid-communities (hi translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'hi', content: hybridCommunitiesGuideHi },
-  // guide keep-a-community-active (hi translation).
+  // guide hybrid-origins (hi translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'hi', content: hybridCommunitiesGuideHi },
+  // guide keep-an-origin-active (hi translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'hi',
     content: keepACommunityActiveGuideHi,
   },
@@ -1454,8 +1454,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (hi translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'hi', content: publishAnIdeaGuideHi },
-  // guide start-a-community (hi translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'hi', content: startACommunityGuideHi },
+  // guide start-an-origin (hi translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'hi', content: startACommunityGuideHi },
   // guide create-a-group (id translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'id', content: createAGroupGuideId },
   // guide create-a-project (id translation).
@@ -1464,12 +1464,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'id', content: findACoFounderGuideId },
   // guide first-10-members (id translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'id', content: first10MembersGuideId },
-  // guide hybrid-communities (id translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'id', content: hybridCommunitiesGuideId },
-  // guide keep-a-community-active (id translation).
+  // guide hybrid-origins (id translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'id', content: hybridCommunitiesGuideId },
+  // guide keep-an-origin-active (id translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'id',
     content: keepACommunityActiveGuideId,
   },
@@ -1493,8 +1493,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (id translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'id', content: publishAnIdeaGuideId },
-  // guide start-a-community (id translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'id', content: startACommunityGuideId },
+  // guide start-an-origin (id translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'id', content: startACommunityGuideId },
   // guide create-a-group (it translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'it', content: createAGroupGuideIt },
   // guide create-a-project (it translation).
@@ -1503,12 +1503,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'it', content: findACoFounderGuideIt },
   // guide first-10-members (it translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'it', content: first10MembersGuideIt },
-  // guide hybrid-communities (it translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'it', content: hybridCommunitiesGuideIt },
-  // guide keep-a-community-active (it translation).
+  // guide hybrid-origins (it translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'it', content: hybridCommunitiesGuideIt },
+  // guide keep-an-origin-active (it translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'it',
     content: keepACommunityActiveGuideIt,
   },
@@ -1532,8 +1532,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (it translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'it', content: publishAnIdeaGuideIt },
-  // guide start-a-community (it translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'it', content: startACommunityGuideIt },
+  // guide start-an-origin (it translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'it', content: startACommunityGuideIt },
   // guide create-a-group (ja translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'ja', content: createAGroupGuideJa },
   // guide create-a-project (ja translation).
@@ -1542,12 +1542,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'ja', content: findACoFounderGuideJa },
   // guide first-10-members (ja translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'ja', content: first10MembersGuideJa },
-  // guide hybrid-communities (ja translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'ja', content: hybridCommunitiesGuideJa },
-  // guide keep-a-community-active (ja translation).
+  // guide hybrid-origins (ja translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'ja', content: hybridCommunitiesGuideJa },
+  // guide keep-an-origin-active (ja translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'ja',
     content: keepACommunityActiveGuideJa,
   },
@@ -1571,8 +1571,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (ja translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'ja', content: publishAnIdeaGuideJa },
-  // guide start-a-community (ja translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'ja', content: startACommunityGuideJa },
+  // guide start-an-origin (ja translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'ja', content: startACommunityGuideJa },
   // guide create-a-group (ko translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'ko', content: createAGroupGuideKo },
   // guide create-a-project (ko translation).
@@ -1581,12 +1581,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'ko', content: findACoFounderGuideKo },
   // guide first-10-members (ko translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'ko', content: first10MembersGuideKo },
-  // guide hybrid-communities (ko translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'ko', content: hybridCommunitiesGuideKo },
-  // guide keep-a-community-active (ko translation).
+  // guide hybrid-origins (ko translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'ko', content: hybridCommunitiesGuideKo },
+  // guide keep-an-origin-active (ko translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'ko',
     content: keepACommunityActiveGuideKo,
   },
@@ -1610,8 +1610,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (ko translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'ko', content: publishAnIdeaGuideKo },
-  // guide start-a-community (ko translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'ko', content: startACommunityGuideKo },
+  // guide start-an-origin (ko translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'ko', content: startACommunityGuideKo },
   // guide create-a-group (nl translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'nl', content: createAGroupGuideNl },
   // guide create-a-project (nl translation).
@@ -1620,12 +1620,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'nl', content: findACoFounderGuideNl },
   // guide first-10-members (nl translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'nl', content: first10MembersGuideNl },
-  // guide hybrid-communities (nl translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'nl', content: hybridCommunitiesGuideNl },
-  // guide keep-a-community-active (nl translation).
+  // guide hybrid-origins (nl translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'nl', content: hybridCommunitiesGuideNl },
+  // guide keep-an-origin-active (nl translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'nl',
     content: keepACommunityActiveGuideNl,
   },
@@ -1649,8 +1649,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (nl translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'nl', content: publishAnIdeaGuideNl },
-  // guide start-a-community (nl translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'nl', content: startACommunityGuideNl },
+  // guide start-an-origin (nl translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'nl', content: startACommunityGuideNl },
   // guide create-a-group (pl translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'pl', content: createAGroupGuidePl },
   // guide create-a-project (pl translation).
@@ -1659,12 +1659,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'pl', content: findACoFounderGuidePl },
   // guide first-10-members (pl translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'pl', content: first10MembersGuidePl },
-  // guide hybrid-communities (pl translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'pl', content: hybridCommunitiesGuidePl },
-  // guide keep-a-community-active (pl translation).
+  // guide hybrid-origins (pl translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'pl', content: hybridCommunitiesGuidePl },
+  // guide keep-an-origin-active (pl translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'pl',
     content: keepACommunityActiveGuidePl,
   },
@@ -1688,8 +1688,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (pl translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'pl', content: publishAnIdeaGuidePl },
-  // guide start-a-community (pl translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'pl', content: startACommunityGuidePl },
+  // guide start-an-origin (pl translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'pl', content: startACommunityGuidePl },
   // guide create-a-group (pt-BR translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'pt-BR', content: createAGroupGuidePtbr },
   // guide create-a-project (pt-BR translation).
@@ -1698,17 +1698,17 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'pt-BR', content: findACoFounderGuidePtbr },
   // guide first-10-members (pt-BR translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'pt-BR', content: first10MembersGuidePtbr },
-  // guide hybrid-communities (pt-BR translation).
+  // guide hybrid-origins (pt-BR translation).
   {
     kind: 'guide',
-    slug: 'hybrid-communities',
+    slug: 'hybrid-origins',
     locale: 'pt-BR',
     content: hybridCommunitiesGuidePtbr,
   },
-  // guide keep-a-community-active (pt-BR translation).
+  // guide keep-an-origin-active (pt-BR translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'pt-BR',
     content: keepACommunityActiveGuidePtbr,
   },
@@ -1732,8 +1732,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (pt-BR translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'pt-BR', content: publishAnIdeaGuidePtbr },
-  // guide start-a-community (pt-BR translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'pt-BR', content: startACommunityGuidePtbr },
+  // guide start-an-origin (pt-BR translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'pt-BR', content: startACommunityGuidePtbr },
   // guide create-a-group (ru translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'ru', content: createAGroupGuideRu },
   // guide create-a-project (ru translation).
@@ -1742,12 +1742,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'ru', content: findACoFounderGuideRu },
   // guide first-10-members (ru translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'ru', content: first10MembersGuideRu },
-  // guide hybrid-communities (ru translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'ru', content: hybridCommunitiesGuideRu },
-  // guide keep-a-community-active (ru translation).
+  // guide hybrid-origins (ru translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'ru', content: hybridCommunitiesGuideRu },
+  // guide keep-an-origin-active (ru translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'ru',
     content: keepACommunityActiveGuideRu,
   },
@@ -1771,8 +1771,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (ru translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'ru', content: publishAnIdeaGuideRu },
-  // guide start-a-community (ru translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'ru', content: startACommunityGuideRu },
+  // guide start-an-origin (ru translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'ru', content: startACommunityGuideRu },
   // guide create-a-group (th translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'th', content: createAGroupGuideTh },
   // guide create-a-project (th translation).
@@ -1781,12 +1781,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'th', content: findACoFounderGuideTh },
   // guide first-10-members (th translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'th', content: first10MembersGuideTh },
-  // guide hybrid-communities (th translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'th', content: hybridCommunitiesGuideTh },
-  // guide keep-a-community-active (th translation).
+  // guide hybrid-origins (th translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'th', content: hybridCommunitiesGuideTh },
+  // guide keep-an-origin-active (th translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'th',
     content: keepACommunityActiveGuideTh,
   },
@@ -1810,8 +1810,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (th translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'th', content: publishAnIdeaGuideTh },
-  // guide start-a-community (th translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'th', content: startACommunityGuideTh },
+  // guide start-an-origin (th translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'th', content: startACommunityGuideTh },
   // guide create-a-group (tr translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'tr', content: createAGroupGuideTr },
   // guide create-a-project (tr translation).
@@ -1820,12 +1820,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'tr', content: findACoFounderGuideTr },
   // guide first-10-members (tr translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'tr', content: first10MembersGuideTr },
-  // guide hybrid-communities (tr translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'tr', content: hybridCommunitiesGuideTr },
-  // guide keep-a-community-active (tr translation).
+  // guide hybrid-origins (tr translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'tr', content: hybridCommunitiesGuideTr },
+  // guide keep-an-origin-active (tr translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'tr',
     content: keepACommunityActiveGuideTr,
   },
@@ -1849,8 +1849,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (tr translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'tr', content: publishAnIdeaGuideTr },
-  // guide start-a-community (tr translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'tr', content: startACommunityGuideTr },
+  // guide start-an-origin (tr translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'tr', content: startACommunityGuideTr },
   // guide create-a-group (uk translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'uk', content: createAGroupGuideUk },
   // guide create-a-project (uk translation).
@@ -1859,12 +1859,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'uk', content: findACoFounderGuideUk },
   // guide first-10-members (uk translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'uk', content: first10MembersGuideUk },
-  // guide hybrid-communities (uk translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'uk', content: hybridCommunitiesGuideUk },
-  // guide keep-a-community-active (uk translation).
+  // guide hybrid-origins (uk translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'uk', content: hybridCommunitiesGuideUk },
+  // guide keep-an-origin-active (uk translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'uk',
     content: keepACommunityActiveGuideUk,
   },
@@ -1888,8 +1888,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (uk translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'uk', content: publishAnIdeaGuideUk },
-  // guide start-a-community (uk translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'uk', content: startACommunityGuideUk },
+  // guide start-an-origin (uk translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'uk', content: startACommunityGuideUk },
   // guide create-a-group (vi translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'vi', content: createAGroupGuideVi },
   // guide create-a-project (vi translation).
@@ -1898,12 +1898,12 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'vi', content: findACoFounderGuideVi },
   // guide first-10-members (vi translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'vi', content: first10MembersGuideVi },
-  // guide hybrid-communities (vi translation).
-  { kind: 'guide', slug: 'hybrid-communities', locale: 'vi', content: hybridCommunitiesGuideVi },
-  // guide keep-a-community-active (vi translation).
+  // guide hybrid-origins (vi translation).
+  { kind: 'guide', slug: 'hybrid-origins', locale: 'vi', content: hybridCommunitiesGuideVi },
+  // guide keep-an-origin-active (vi translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'vi',
     content: keepACommunityActiveGuideVi,
   },
@@ -1927,8 +1927,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (vi translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'vi', content: publishAnIdeaGuideVi },
-  // guide start-a-community (vi translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'vi', content: startACommunityGuideVi },
+  // guide start-an-origin (vi translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'vi', content: startACommunityGuideVi },
   // guide create-a-group (zh-CN translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'zh-CN', content: createAGroupGuideZhcn },
   // guide create-a-project (zh-CN translation).
@@ -1937,17 +1937,17 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'zh-CN', content: findACoFounderGuideZhcn },
   // guide first-10-members (zh-CN translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'zh-CN', content: first10MembersGuideZhcn },
-  // guide hybrid-communities (zh-CN translation).
+  // guide hybrid-origins (zh-CN translation).
   {
     kind: 'guide',
-    slug: 'hybrid-communities',
+    slug: 'hybrid-origins',
     locale: 'zh-CN',
     content: hybridCommunitiesGuideZhcn,
   },
-  // guide keep-a-community-active (zh-CN translation).
+  // guide keep-an-origin-active (zh-CN translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'zh-CN',
     content: keepACommunityActiveGuideZhcn,
   },
@@ -1971,8 +1971,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (zh-CN translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'zh-CN', content: publishAnIdeaGuideZhcn },
-  // guide start-a-community (zh-CN translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'zh-CN', content: startACommunityGuideZhcn },
+  // guide start-an-origin (zh-CN translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'zh-CN', content: startACommunityGuideZhcn },
   // guide create-a-group (zh-TW translation).
   { kind: 'guide', slug: 'create-a-group', locale: 'zh-TW', content: createAGroupGuideZhtw },
   // guide create-a-project (zh-TW translation).
@@ -1981,17 +1981,17 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   { kind: 'guide', slug: 'find-a-co-founder', locale: 'zh-TW', content: findACoFounderGuideZhtw },
   // guide first-10-members (zh-TW translation).
   { kind: 'guide', slug: 'first-10-members', locale: 'zh-TW', content: first10MembersGuideZhtw },
-  // guide hybrid-communities (zh-TW translation).
+  // guide hybrid-origins (zh-TW translation).
   {
     kind: 'guide',
-    slug: 'hybrid-communities',
+    slug: 'hybrid-origins',
     locale: 'zh-TW',
     content: hybridCommunitiesGuideZhtw,
   },
-  // guide keep-a-community-active (zh-TW translation).
+  // guide keep-an-origin-active (zh-TW translation).
   {
     kind: 'guide',
-    slug: 'keep-a-community-active',
+    slug: 'keep-an-origin-active',
     locale: 'zh-TW',
     content: keepACommunityActiveGuideZhtw,
   },
@@ -2015,8 +2015,8 @@ const CONTENT_FILES: readonly ContentFileEntry[] = [
   },
   // guide publish-an-idea (zh-TW translation).
   { kind: 'guide', slug: 'publish-an-idea', locale: 'zh-TW', content: publishAnIdeaGuideZhtw },
-  // guide start-a-community (zh-TW translation).
-  { kind: 'guide', slug: 'start-a-community', locale: 'zh-TW', content: startACommunityGuideZhtw },
+  // guide start-an-origin (zh-TW translation).
+  { kind: 'guide', slug: 'start-an-origin', locale: 'zh-TW', content: startACommunityGuideZhtw },
 ];
 
 /** True when committed content exists for (kind, slug) in a locale. */
