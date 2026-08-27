@@ -229,7 +229,7 @@ test.describe('Goal 1 — every public page at /<locale>/** for all 21 locales (
       expect(hub.status).toBe(200);
       expectLang(hub.html, locale);
 
-      const guide = await servedHtml(page, surfacePath(locale, '/guides/start-a-community'));
+      const guide = await servedHtml(page, surfacePath(locale, '/guides/start-an-origin'));
       expect(guide.status).toBe(200);
       expectLang(guide.html, locale);
     }
@@ -575,11 +575,11 @@ test.describe('Goal 7 — per-locale metadata with EN fallback', () => {
   });
 
   test('de guide page uses committed German metadata + per-locale hreflang', async ({ page }) => {
-    await page.goto('/de/guides/start-a-community');
+    await page.goto('/de/guides/start-an-origin');
     await expect(page).toHaveTitle(/^So startest du eine Community/);
     const canonical = page.locator('link[rel="canonical"]');
     expect(new URL((await canonical.getAttribute('href')) ?? '').pathname).toBe(
-      '/de/guides/start-a-community',
+      '/de/guides/start-an-origin',
     );
     await expect(page.locator('link[rel="alternate"][hreflang="de"]')).toHaveCount(1);
     await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveCount(1);
@@ -635,7 +635,7 @@ test.describe('Goal 7 — per-locale metadata with EN fallback', () => {
   });
 
   test('EN guide pages carry the full translated-locale hreflang cluster', async ({ page }) => {
-    await page.goto('/en/guides/start-a-community');
+    await page.goto('/en/guides/start-an-origin');
     // All 20 non-EN locales have committed guide content → full cluster.
     for (const locale of SUPPORTED_LOCALES) {
       await expect(page.locator(`link[rel="alternate"][hreflang="${locale}"]`)).toHaveCount(1);
@@ -819,19 +819,19 @@ test.describe('Follow-up B — all routes are locale-prefixed (TASK-464/466)', (
 
   test('x-default hreflang targets the /en/** surface on EN and non-EN pages', async ({ page }) => {
     // EN page: x-default → the /en/** surface itself.
-    await page.goto('/en/guides/start-a-community');
+    await page.goto('/en/guides/start-an-origin');
     const enXDefault = page.locator('link[rel="alternate"][hreflang="x-default"]');
     await expect(enXDefault).toHaveCount(1);
     expect(new URL((await enXDefault.getAttribute('href')) ?? '').pathname).toBe(
-      '/en/guides/start-a-community',
+      '/en/guides/start-an-origin',
     );
 
     // Non-EN page: x-default → the /en/** canonical counterpart.
-    await page.goto('/de/guides/start-a-community');
+    await page.goto('/de/guides/start-an-origin');
     const deXDefault = page.locator('link[rel="alternate"][hreflang="x-default"]');
     await expect(deXDefault).toHaveCount(1);
     expect(new URL((await deXDefault.getAttribute('href')) ?? '').pathname).toBe(
-      '/en/guides/start-a-community',
+      '/en/guides/start-an-origin',
     );
   });
 

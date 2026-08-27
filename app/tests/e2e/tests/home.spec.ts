@@ -168,7 +168,7 @@ test('Story A — home Concepts tiles are non-interactive cards (no nav, no hove
   expect(styleAfter).toEqual(styleBefore);
 });
 
-test('Story B — home Example-communities chips are links to the mapped group-type variant pages', async ({
+test('Story B — home Example Origins chips are links to the mapped group-type variant pages', async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });

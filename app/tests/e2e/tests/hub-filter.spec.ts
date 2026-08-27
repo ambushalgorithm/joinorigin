@@ -33,7 +33,7 @@ test.describe('/location hub search/filter (TASK-317)', () => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
     await page.goto('/en/location');
-    await expect(page.locator('h1')).toContainText('Communities by City');
+    await expect(page.locator('h1')).toContainText('Origins by City');
 
     const search = page.getByRole('searchbox', { name: 'Search locations' });
     await expect(search).toBeVisible();
@@ -97,7 +97,7 @@ test.describe('/location hub search/filter (TASK-317)', () => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
     await page.goto('/en/location');
-    await expect(page.locator('h1')).toContainText('Communities by City');
+    await expect(page.locator('h1')).toContainText('Origins by City');
 
     const search = page.getByRole('searchbox', { name: 'Search locations' });
     await expect(search).toBeVisible();
@@ -144,7 +144,7 @@ test.describe('Browse-locations 5-section search filters WITHIN each section (TA
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
     await page.goto('/en/location');
-    await expect(page.locator('h1')).toContainText('Communities by City');
+    await expect(page.locator('h1')).toContainText('Origins by City');
 
     const search = page.getByRole('searchbox', { name: 'Search locations' });
     await expect(search).toBeVisible();
@@ -161,31 +161,31 @@ test.describe('Browse-locations 5-section search filters WITHIN each section (TA
     await expect(page.getByTestId('location-hub-directory-regions')).toBeVisible();
     await expect(
       page.getByTestId('location-hub-directory-regions').getByRole('link', {
-        name: 'Communities in Berlin, Germany',
+        name: 'Origins in Berlin, Germany',
       }),
     ).toBeVisible();
     await expect(page.getByTestId('location-hub-directory-cities')).toBeVisible();
     await expect(
       page.getByTestId('location-hub-directory-cities').getByRole('link', {
-        name: 'Communities in Berlin',
+        name: 'Origins in Berlin',
       }),
     ).toBeVisible();
     await expect(page.getByTestId('location-hub-directory-communityTypes')).toBeVisible();
     await expect(
       page.getByTestId('location-hub-directory-communityTypes').getByRole('link', {
-        name: 'Startup communities in Berlin',
+        name: 'Startup Origins in Berlin',
       }),
     ).toBeVisible();
     await expect(page.getByTestId('location-hub-directory-eventIdeas')).toBeVisible();
     await expect(
       page.getByTestId('location-hub-directory-eventIdeas').getByRole('link', {
-        name: '30 community event ideas in Berlin',
+        name: '30 Origin event ideas in Berlin',
       }),
     ).toBeVisible();
     // Non-Berlin entries in a matching section are filtered out too.
     await expect(
       page.getByTestId('location-hub-directory-cities').getByRole('link', {
-        name: 'Communities in Munich, Bavaria',
+        name: 'Origins in Munich, Bavaria',
       }),
     ).toHaveCount(0);
   });
@@ -211,7 +211,7 @@ test.describe('Browse-locations 5-section search filters WITHIN each section (TA
     await expect(page.getByTestId('location-hub-directory-communityTypes')).toBeVisible();
     await expect(
       page.getByTestId('location-hub-directory-communityTypes').getByRole('link', {
-        name: 'Startup communities in Berlin',
+        name: 'Startup Origins in Berlin',
       }),
     ).toBeVisible();
   });
@@ -232,17 +232,17 @@ test.describe('Browse-locations 5-section search filters WITHIN each section (TA
     await expect(
       page
         .getByTestId('location-hub-directory-countries')
-        .getByRole('link', { name: 'Communities in Germany' }),
+        .getByRole('link', { name: 'Origins in Germany' }),
     ).toBeVisible();
     await expect(
       page
         .getByTestId('location-hub-directory-regions')
-        .getByRole('link', { name: 'Communities in Berlin, Germany' }),
+        .getByRole('link', { name: 'Origins in Berlin, Germany' }),
     ).toBeVisible();
     await expect(
       page
         .getByTestId('location-hub-directory-cities')
-        .getByRole('link', { name: 'Communities in Berlin' }),
+        .getByRole('link', { name: 'Origins in Berlin' }),
     ).toBeVisible();
     // Event ideas match through the dataset country name in searchText
     // (TASK-485) — the Berlin + Munich ideas pages resolve for "germany".
@@ -250,12 +250,12 @@ test.describe('Browse-locations 5-section search filters WITHIN each section (TA
     await expect(
       page
         .getByTestId('location-hub-directory-eventIdeas')
-        .getByRole('link', { name: '30 community event ideas in Berlin' }),
+        .getByRole('link', { name: '30 Origin event ideas in Berlin' }),
     ).toBeVisible();
     await expect(
       page
         .getByTestId('location-hub-directory-eventIdeas')
-        .getByRole('link', { name: '30 community event ideas in Munich' }),
+        .getByRole('link', { name: '30 Origin event ideas in Munich' }),
     ).toBeVisible();
   });
 
@@ -279,7 +279,7 @@ test.describe('Browse-locations searchText inventory search (TASK-485/TASK-487)'
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
     await page.goto('/en/location');
-    await expect(page.locator('h1')).toContainText('Communities by City');
+    await expect(page.locator('h1')).toContainText('Origins by City');
 
     const search = page.getByRole('searchbox', { name: 'Search locations' });
     await expect(search).toBeVisible();
@@ -293,16 +293,16 @@ test.describe('Browse-locations searchText inventory search (TASK-485/TASK-487)'
     await expect(
       directory
         .getByTestId('location-hub-directory-countries')
-        .getByRole('link', { name: 'Communities in Colombia' }),
+        .getByRole('link', { name: 'Origins in Colombia' }),
     ).toBeVisible();
 
     // All 3 Colombian content-rich cities resolve (Bogota, Medellin,
     // Barranquilla — the 56-city content-rich set, TASK-484).
     const cities = directory.getByTestId('location-hub-directory-cities');
     for (const city of [
-      'Communities in Bogota, Bogota D.C.',
-      'Communities in Medellin, Antioquia',
-      'Communities in Barranquilla, Atlantico',
+      'Origins in Bogota, Bogota D.C.',
+      'Origins in Medellin, Antioquia',
+      'Origins in Barranquilla, Atlantico',
     ]) {
       await expect(cities.getByRole('link', { name: city })).toBeVisible();
     }
@@ -312,27 +312,25 @@ test.describe('Browse-locations searchText inventory search (TASK-485/TASK-487)'
     await expect(
       directory
         .getByTestId('location-hub-directory-communityTypes')
-        .getByRole('link', { name: 'Startup communities in Bogota' }),
+        .getByRole('link', { name: 'Startup Origins in Bogota' }),
     ).toBeVisible();
     await expect(
       directory
         .getByTestId('location-hub-directory-communityTypes')
-        .getByRole('link', { name: 'Political & civic communities in Medellin' }),
+        .getByRole('link', { name: 'Political & civic Origins in Medellin' }),
     ).toBeVisible();
     await expect(
       directory
         .getByTestId('location-hub-directory-eventIdeas')
-        .getByRole('link', { name: '30 community event ideas in Barranquilla' }),
+        .getByRole('link', { name: '30 Origin event ideas in Barranquilla' }),
     ).toBeVisible();
 
     // Non-Colombian entries are filtered out.
-    await expect(cities.getByRole('link', { name: 'Communities in Milan, Lombardy' })).toHaveCount(
-      0,
-    );
+    await expect(cities.getByRole('link', { name: 'Origins in Milan, Lombardy' })).toHaveCount(0);
     await expect(
       directory
         .getByTestId('location-hub-directory-countries')
-        .getByRole('link', { name: 'Communities in Italy' }),
+        .getByRole('link', { name: 'Origins in Italy' }),
     ).toHaveCount(0);
   });
 
@@ -352,12 +350,10 @@ test.describe('Browse-locations searchText inventory search (TASK-485/TASK-487)'
     await expect(
       directory
         .getByTestId('location-hub-directory-countries')
-        .getByRole('link', { name: 'Communities in Italy' }),
+        .getByRole('link', { name: 'Origins in Italy' }),
     ).toBeVisible();
     const cities = directory.getByTestId('location-hub-directory-cities');
-    await expect(
-      cities.getByRole('link', { name: 'Communities in Milan, Lombardy' }),
-    ).toBeVisible();
+    await expect(cities.getByRole('link', { name: 'Origins in Milan, Lombardy' })).toBeVisible();
 
     // Exactly 5 community-type variants + the single ideas page for Milan.
     await expect(
@@ -366,18 +362,18 @@ test.describe('Browse-locations searchText inventory search (TASK-485/TASK-487)'
     await expect(
       directory
         .getByTestId('location-hub-directory-communityTypes')
-        .getByRole('link', { name: 'Startup communities in Milan' }),
+        .getByRole('link', { name: 'Startup Origins in Milan' }),
     ).toBeVisible();
     await expect(
       directory
         .getByTestId('location-hub-directory-eventIdeas')
-        .getByRole('link', { name: '30 community event ideas in Milan' }),
+        .getByRole('link', { name: '30 Origin event ideas in Milan' }),
     ).toBeVisible();
 
     // Colombian entries are filtered out of the Italy view.
-    await expect(
-      cities.getByRole('link', { name: 'Communities in Bogota, Bogota D.C.' }),
-    ).toHaveCount(0);
+    await expect(cities.getByRole('link', { name: 'Origins in Bogota, Bogota D.C.' })).toHaveCount(
+      0,
+    );
   });
 });
 
@@ -388,7 +384,7 @@ test.describe('/guides hub search/filter (TASK-317)', () => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
     await page.goto('/en/guides');
-    await expect(page.locator('h1')).toContainText('Community Building Guides');
+    await expect(page.locator('h1')).toContainText('Origin Building Guides');
 
     const search = page.getByRole('searchbox', { name: 'Search guides' });
     await expect(search).toBeVisible();

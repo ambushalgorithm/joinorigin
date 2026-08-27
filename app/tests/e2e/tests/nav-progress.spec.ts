@@ -99,7 +99,7 @@ test('never flashes on fast (<100ms) navigations', async ({ page }) => {
 
   await page.locator('a[href="/en/location/united-states"]').first().click();
   await page.waitForURL('**/location/united-states', { timeout: 20_000 });
-  await expect(page.locator('main h1')).toContainText('Communities in the United States', {
+  await expect(page.locator('main h1')).toContainText('Origins in the United States', {
     timeout: 20_000,
   });
 
@@ -123,7 +123,7 @@ test('appears only when a transition exceeds 100ms, then hides on content render
 
   await page.locator('a[href="/en/location/united-states"]').first().click();
   await page.waitForURL('**/location/united-states', { timeout: 30_000 });
-  await expect(page.locator('main h1')).toContainText('Communities in the United States', {
+  await expect(page.locator('main h1')).toContainText('Origins in the United States', {
     timeout: 30_000,
   });
 
@@ -161,7 +161,7 @@ test('reduced-motion still reports slow transitions (bar appears, no animation)'
 
   await page.locator('a[href="/en/location/united-states"]').first().click();
   await page.waitForURL('**/location/united-states', { timeout: 30_000 });
-  await expect(page.locator('main h1')).toContainText('Communities in the United States', {
+  await expect(page.locator('main h1')).toContainText('Origins in the United States', {
     timeout: 30_000,
   });
 
