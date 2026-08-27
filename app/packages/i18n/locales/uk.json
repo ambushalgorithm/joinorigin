@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "Спільноти за містами",
-      "country": "Спільноти в цій країні",
-      "region": "Спільноти в цьому регіоні",
-      "city": "Спільноти в цьому місті",
-      "variant": "Тип спільноти",
-      "ideas": "Ідеї для заходів спільноти"
+      "hub": "Origins за містами",
+      "country": "Origins у цій країні",
+      "region": "Origins у цьому регіоні",
+      "city": "Origins у цьому місті",
+      "variant": "Тип Origin",
+      "ideas": "Ідеї для заходів Origin"
     },
     "breadcrumb": {
       "home": "Головна",
-      "hub": "Спільноти за містами"
+      "hub": "Origins за містами"
     },
     "location": {
-      "presenceClaim": "Знайдіть або створіть спільноту в {{city}}",
+      "presenceClaim": "Знайдіть або створіть Origin у {{city}}",
       "hubEntity": "своєму місті",
-      "communitiesIn": "Спільноти в {{city}}",
+      "communitiesIn": "Origins у {{city}}",
       "cityFacts": "Факти про місто",
-      "exploreCommunities": "Дослідити спільноти",
-      "exploreGroupTypes": "Дослідити типи спільнот",
-      "groupTypesInCity": "Типи спільнот у місті",
+      "exploreCommunities": "Дослідити Origins",
+      "exploreGroupTypes": "Дослідити типи Origin",
+      "groupTypesInCity": "Типи Origin у місті",
       "flagshipCities": "Ключові міста",
-      "nearbyCities": "Спільноти в сусідніх містах",
-      "guidesTitle": "Гайди зі створення спільноти",
+      "nearbyCities": "Origins у сусідніх містах",
+      "guidesTitle": "Гайди зі створення Origin",
       "stepByStepGuide": "Покроковий гайд",
       "ideasLink": "30 ідей для заходів спільноти",
       "faqHeading": "Часті запитання",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "Типові формати",
       "variantHowToTitle": "Як почати",
       "browseLocations": "Переглянути локації",
-      "directoryBannerLabel": "Місця та спільноти",
+      "directoryBannerLabel": "Місця та Origins",
       "directoryBannerTitle": "Приєднуйтеся до мережі",
-      "directoryBannerCopy": "Перегляньте кожне місце та спільноту в мережі. Знайдіть те, що підходить вам, або створіть його у своєму місті.",
-      "hubIntro": "Кожна країна, регіон, місто, тип спільноти та ідея події в мережі — знайдіть спільноту, яку шукаєте, або створіть її у своєму місті.",
-      "hubLead": "Досліджуйте спільноти за містами по всьому світу — групи стартапів, творчі, політичні, мітапи та малий бізнес.",
+      "directoryBannerCopy": "Перегляньте кожне місце та Origin у мережі. Знайдіть те, що підходить вам, або створіть його у своєму місті.",
+      "hubIntro": "Кожна країна, регіон, місто, тип Origin та ідея події в мережі — знайдіть Origin, який шукаєте, або створіть його у своєму місті.",
+      "hubLead": "Досліджуйте Origins за містами по всьому світу — групи стартапів, творчі, політичні, мітапи та малий бізнес.",
       "directoryTotal": "Переглянути локації ({{count}})",
       "searchLocationsLabel": "Пошук локацій",
-      "searchLocationsPlaceholder": "Пошук за містом, країною або типом спільноти",
+      "searchLocationsPlaceholder": "Пошук за містом, країною або типом Origin",
       "emptyState": "Жодна локація не збігається з «{{query}}».",
       "attribution": "Дані про локації © GeoNames, CC BY 4.0; дані про міста © SimpleMaps (worldcities basic), CC BY 4.0.",
       "directoryKinds": {
         "country": "Країна",
         "region": "Регіон",
         "city": "Місто",
-        "variant": "Тип спільноти",
-        "ideas": "Ідеї подій спільноти",
+        "variant": "Тип Origin",
+        "ideas": "Ідеї подій Origin",
         "fallback": "Локація"
       },
       "directorySectionTitles": {
         "countries": "Країни",
         "regions": "Регіони",
         "cities": "Міста",
-        "communityTypes": "Типи спільнот",
+        "communityTypes": "Типи Origin",
         "eventIdeas": "Ідеї подій"
       },
       "guideCardTitles": {
-        "start-a-community": "Заснувати спільноту",
+        "start-a-community": "Заснувати Origin",
         "organize-a-meetup": "Організувати мітап",
         "first-10-members": "Залучити перших 10 учасників",
         "find-a-co-founder": "Знайти співзасновника",
-        "keep-a-community-active": "Підтримувати спільноту активною",
-        "hybrid-communities": "Керувати гібридними спільнотами",
-        "moderation": "Модерувати свою спільноту"
+        "keep-a-community-active": "Підтримувати Origin активним",
+        "hybrid-communities": "Керувати гібридними Origins",
+        "moderation": "Модерувати свій Origin"
       },
       "countryFacts": "Факти про країну",
       "regionFacts": "Факти про регіон",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "Як знайти спільноти в {{country}}?",
-          "communitiesAnswer": "Центр /location перелічує всі спільноти в {{country}}. Досліджуйте типи спільнот — стартапи, креативні, політичні, зустрічі та малий бізнес — зокрема в {{cities}}.",
+          "communitiesQuestion": "Як знайти Origins у {{country}}?",
+          "communitiesAnswer": "Центр /location перелічує всі Origins у {{country}}. Досліджуйте типи Origin — стартапи, креативні, політичні, зустрічі та малий бізнес — зокрема в {{cities}}.",
           "populationQuestion": "Скільки людей живе в {{country}}?",
           "populationAnswer": "Набір даних фіксує населення {{population}} для {{country}}.",
           "capitalQuestion": "Яка столиця {{country}}?",
@@ -645,53 +645,53 @@
           "languageQuestion": "Якими мовами розмовляють у {{country}}?",
           "languageAnswer": "Серед мов, якими розмовляють у {{country}}, — {{languages}}.",
           "operationQuestion": "Чи працює JoinOrigin у {{country}}?",
-          "operationAnswer": "Так. У JoinOrigin немає місцевих офісів. Платформа допомагає людям знаходити або створювати спільноти в будь-якому місці в {{country}}."
+          "operationAnswer": "Так. У JoinOrigin немає місцевих офісів. Платформа допомагає людям знаходити або створювати Origins у будь-якому місці в {{country}}."
         },
         "region": {
-          "communitiesQuestion": "Як знайти спільноти в {{region}}?",
-          "communitiesAnswer": "Досліджуйте сторінки міст у {{region}} — {{cities}} — або створіть власну спільноту. Центр /location перелічує всі типи спільнот у {{region}}.",
+          "communitiesQuestion": "Як знайти Origins у {{region}}?",
+          "communitiesAnswer": "Досліджуйте сторінки міст у {{region}} — {{cities}} — або створіть власний Origin. Центр /location перелічує всі типи Origin у {{region}}.",
           "countryQuestion": "У якій країні розташований {{region}}?",
           "countryAnswer": "{{region}} — частина {{country}}, столицею якої є {{capital}}.",
           "languageQuestion": "Якими мовами розмовляють у {{region}}?",
           "languageAnswer": "Серед мов, якими розмовляють у {{region}}, — {{languages}}.",
           "operationQuestion": "Чи працює JoinOrigin у {{region}}?",
-          "operationAnswer": "Так. У JoinOrigin немає місцевих офісів. Платформа допомагає людям знаходити або створювати спільноти в будь-якому місці в {{region}}."
+          "operationAnswer": "Так. У JoinOrigin немає місцевих офісів. Платформа допомагає людям знаходити або створювати Origins у будь-якому місці в {{region}}."
         }
       }
     },
     "groupTypes": {
-      "startup": "Стартап-спільноти",
-      "creative": "Креативні та дизайн-спільноти",
-      "political": "Політичні та громадянські спільноти",
-      "meetup": "Мітапи та заходи спільноти",
-      "smallBusiness": "Спільноти малого бізнесу"
+      "startup": "Стартап-Origins",
+      "creative": "Креативні та дизайн-Origins",
+      "political": "Політичні та громадянські Origins",
+      "meetup": "Мітапи та заходи Origin",
+      "smallBusiness": "Origins малого бізнесу"
     },
     "guides": {
       "eyebrow": "Практичний гайд",
-      "hubEyebrow": "Побудова спільноти",
-      "hubTitle": "Гайди з побудови спільноти",
+      "hubEyebrow": "Побудова Origins",
+      "hubTitle": "Гайди з побудови Origins",
       "allGuides": "Усі гайди",
       "glossarySection": "Глосарій системи спільноти",
       "startLocal": "Почніть локально",
-      "cityCardBody": "Дослідіть реальні місця, групи та гайди в {{city}}.",
+      "cityCardBody": "Дослідіть локальні простори та людей, що стоять за Origins у {{city}}.",
       "overview": "Огляд",
       "stepByStep": "Крок за кроком",
       "stepNumber": "Крок {{number}}.",
       "relatedGuides": "Пов'язані гайди",
-      "exploreCommunities": "Дослідити спільноти",
+      "exploreCommunities": "Дослідити Origins",
       "howJoinOriginHelps": "Як JoinOrigin може допомогти",
       "keepLearning": "Продовжуйте вчитися",
       "translatePage": "Перекласти цю сторінку",
-      "hubLead": "Дванадцять практичних позачасових гайдів про те, як знаходити, приєднуватися до груп і засновувати їх — і спілкуватися в кімнаті, якою керує творець. Від публікації ідеї до здорової модерації.",
+      "hubLead": "Дванадцять практичних позачасових гайдів про те, як створювати та розвивати Origins — і спілкуватися в кімнаті, якою керує творець. Від публікації ідеї до здорової модерації.",
       "searchLabel": "Пошук гайдів",
       "searchPlaceholder": "Пошук за назвою гайду або ключовим словом",
       "emptyState": "Жоден гайд не збігається з «{{query}}».",
       "glossaryBandCopy": "Вивчіть основні терміни груп, кімнат, модерації, онбордингу та циклів залученості в <1>{{glossary}}</1>.",
-      "universalCopy": "Гайди універсальні — спільноти локальні. Знайдіть або заснуйте спільноту у місті поблизу вас:",
+      "universalCopy": "Origins за своєю природою онлайн і при цьому можуть мати локальний простір. Знайдіть або заснуйте Origin поблизу вас:",
       "continueBuilding": "Продовжуйте будувати з наступним гайдом серії.",
       "practiceInCity": "Застосуйте ці кроки на практиці в реальному місті.",
-      "howJoinOriginHelpsBody": "JoinOrigin — це операційна система спільнот, яка допомагає знаходити або засновувати спільноти — кроки вище працюють на платформі та з інструментами, які у вас уже є. JoinOrigin бере на себе структуру, пошук та організацію, щоб ви могли зосередитися на своїх учасниках. Натисніть «Почати» і дайте себе знайти.",
-      "keepLearningGuides": "Перегляньте всі гайди в <1>хабі побудови спільнот</1>.",
+      "howJoinOriginHelpsBody": "JoinOrigin — це операційна система спільнот, яка допомагає знаходити або засновувати Origins — кроки вище працюють на платформі та з інструментами, які у вас уже є. JoinOrigin бере на себе структуру, пошук та організацію, щоб ви могли зосередитися на своїх учасниках. Натисніть «Почати» і дайте себе знайти.",
+      "keepLearningGuides": "Перегляньте всі гайди в <1>хабі побудови Origins</1>.",
       "keepLearningGlossary": "Вивчіть основні терміни в <1>глосарії операційної системи спільнот</1>.",
       "keepLearningLocations": "Знайдіть сторінку міста в <1>хабі локацій</1>, щоб почати локально."
     },
@@ -751,17 +751,17 @@
     "metadata": {
       "waitlistPhrase": "Приєднуйтеся до Origin і дайте себе знайти вже сьогодні.",
       "title": {
-        "communitiesIn": "Спільноти в {{name}}",
-        "communitiesInWithRegion": "Спільноти в {{name}}, {{region}}",
+        "communitiesIn": "Origins у {{name}}",
+        "communitiesInWithRegion": "Origins у {{name}}, {{region}}",
         "variantIn": "{{label}} в {{name}}",
-        "ideasIn": "30 ідей подій спільноти в {{name}}"
+        "ideasIn": "30 ідей подій Origin у {{name}}"
       },
       "description": {
-        "city": "Знайдіть або заснуйте спільноти в {{city}} — стартап-групи, творчі, політичні, мітап-групи та групи малого бізнесу. {{waitlist}}",
+        "city": "Знайдіть або заснуйте Origins у {{city}} — стартап-групи, творчі, політичні, мітап-групи та групи малого бізнесу. {{waitlist}}",
         "variant": "Знайдіть або заснуйте {{label}} у {{city}} — реальні майданчики, групи та гайди. {{waitlist}}",
-        "ideas": "Відкрийте 30 ідей подій спільноти в {{city}} — нетворкінг, навчання, активний відпочинок, професійні, творчі та соціальні події. {{waitlist}}",
-        "country": "Знайдіть або заснуйте спільноти в {{country}} — від стартап-сцен до мереж малого бізнесу. {{waitlist}}",
-        "region": "Знайдіть або заснуйте спільноти в {{region}} — мітапи, групи та події в регіоні. {{waitlist}}"
+        "ideas": "Відкрийте 30 ідей подій Origin у {{city}} — нетворкінг, навчання, активний відпочинок, професійні, творчі та соціальні події. {{waitlist}}",
+        "country": "Знайдіть або заснуйте Origins у {{country}} — від стартап-сцен до мереж малого бізнесу. {{waitlist}}",
+        "region": "Знайдіть або заснуйте Origins у {{region}} — мітапи, групи та події в регіоні. {{waitlist}}"
       }
     }
   }

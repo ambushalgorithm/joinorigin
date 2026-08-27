@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "Cộng đồng theo thành phố",
-      "country": "Cộng đồng tại quốc gia này",
-      "region": "Cộng đồng tại khu vực này",
-      "city": "Cộng đồng tại thành phố này",
-      "variant": "Loại cộng đồng",
-      "ideas": "Ý tưởng sự kiện cộng đồng"
+      "hub": "Origins theo thành phố",
+      "country": "Origins tại quốc gia này",
+      "region": "Origins tại khu vực này",
+      "city": "Origins tại thành phố này",
+      "variant": "Loại Origin",
+      "ideas": "Ý tưởng sự kiện Origin"
     },
     "breadcrumb": {
       "home": "Trang chủ",
-      "hub": "Cộng đồng theo Thành phố"
+      "hub": "Origins theo Thành phố"
     },
     "location": {
-      "presenceClaim": "Tìm hoặc bắt đầu một cộng đồng tại {{city}}",
+      "presenceClaim": "Tìm hoặc bắt đầu một Origin tại {{city}}",
       "hubEntity": "thành phố của bạn",
-      "communitiesIn": "Cộng đồng tại {{city}}",
+      "communitiesIn": "Origins tại {{city}}",
       "cityFacts": "Sự thật về thành phố",
-      "exploreCommunities": "Khám phá cộng đồng",
-      "exploreGroupTypes": "Khám phá các loại cộng đồng",
-      "groupTypesInCity": "Các loại cộng đồng trong thành phố",
+      "exploreCommunities": "Khám phá Origins",
+      "exploreGroupTypes": "Khám phá các loại Origin",
+      "groupTypesInCity": "Các loại Origin trong thành phố",
       "flagshipCities": "Các thành phố tiêu biểu",
-      "nearbyCities": "Cộng đồng ở các thành phố lân cận",
-      "guidesTitle": "Hướng dẫn bắt đầu một cộng đồng",
+      "nearbyCities": "Origins ở các thành phố lân cận",
+      "guidesTitle": "Hướng dẫn bắt đầu một Origin",
       "stepByStepGuide": "Hướng dẫn từng bước",
       "ideasLink": "30 ý tưởng sự kiện cộng đồng",
       "faqHeading": "Câu hỏi thường gặp",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "Các hình thức điển hình",
       "variantHowToTitle": "Cách bắt đầu",
       "browseLocations": "Duyệt địa điểm",
-      "directoryBannerLabel": "Địa điểm và cộng đồng",
+      "directoryBannerLabel": "Địa điểm và Origins",
       "directoryBannerTitle": "Tham gia mạng lưới",
-      "directoryBannerCopy": "Duyệt qua mọi địa điểm và cộng đồng trong mạng lưới. Tìm cộng đồng phù hợp với bạn hoặc bắt đầu một cộng đồng tại thành phố của bạn.",
-      "hubIntro": "Mọi quốc gia, khu vực, thành phố, loại cộng đồng và ý tưởng sự kiện trong mạng lưới — tìm cộng đồng bạn đang tìm kiếm hoặc bắt đầu một cộng đồng tại thành phố của bạn.",
-      "hubLead": "Khám phá các cộng đồng theo thành phố trên toàn thế giới — nhóm khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ.",
+      "directoryBannerCopy": "Duyệt qua mọi địa điểm và Origin trong mạng lưới. Tìm Origin phù hợp với bạn hoặc bắt đầu một Origin tại thành phố của bạn.",
+      "hubIntro": "Mọi quốc gia, khu vực, thành phố, loại Origin và ý tưởng sự kiện trong mạng lưới — tìm Origin bạn đang tìm kiếm hoặc bắt đầu một Origin tại thành phố của bạn.",
+      "hubLead": "Khám phá các Origins theo thành phố trên toàn thế giới — nhóm khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ.",
       "directoryTotal": "Duyệt địa điểm ({{count}})",
       "searchLocationsLabel": "Tìm kiếm địa điểm",
-      "searchLocationsPlaceholder": "Tìm kiếm theo thành phố, quốc gia hoặc loại cộng đồng",
+      "searchLocationsPlaceholder": "Tìm kiếm theo thành phố, quốc gia hoặc loại Origin",
       "emptyState": "Không có địa điểm nào khớp với “{{query}}”.",
       "attribution": "Dữ liệu địa điểm © GeoNames contributors, CC BY 4.0; dữ liệu thành phố © SimpleMaps (worldcities basic), CC BY 4.0.",
       "directoryKinds": {
         "country": "Quốc gia",
         "region": "Khu vực",
         "city": "Thành phố",
-        "variant": "Loại cộng đồng",
-        "ideas": "Ý tưởng sự kiện cộng đồng",
+        "variant": "Loại Origin",
+        "ideas": "Ý tưởng sự kiện Origin",
         "fallback": "Địa điểm"
       },
       "directorySectionTitles": {
         "countries": "Quốc gia",
         "regions": "Khu vực",
         "cities": "Thành phố",
-        "communityTypes": "Loại cộng đồng",
+        "communityTypes": "Loại Origin",
         "eventIdeas": "Ý tưởng sự kiện"
       },
       "guideCardTitles": {
-        "start-a-community": "Bắt đầu một cộng đồng",
+        "start-a-community": "Bắt đầu một Origin",
         "organize-a-meetup": "Tổ chức một buổi gặp gỡ",
         "first-10-members": "Có được 10 thành viên đầu tiên",
         "find-a-co-founder": "Tìm một đồng sáng lập",
-        "keep-a-community-active": "Giữ cho cộng đồng hoạt động",
-        "hybrid-communities": "Vận hành cộng đồng kết hợp",
-        "moderation": "Điều hành cộng đồng của bạn"
+        "keep-a-community-active": "Giữ cho Origin hoạt động",
+        "hybrid-communities": "Vận hành Origins kết hợp",
+        "moderation": "Điều hành Origin của bạn"
       },
       "countryFacts": "Thông tin về quốc gia",
       "regionFacts": "Thông tin về khu vực",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "Làm cách nào để tìm cộng đồng tại {{country}}?",
-          "communitiesAnswer": "Trung tâm /location liệt kê mọi cộng đồng tại {{country}}. Khám phá các loại cộng đồng — khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ — bao gồm tại {{cities}}.",
+          "communitiesQuestion": "Làm cách nào để tìm Origins tại {{country}}?",
+          "communitiesAnswer": "Trung tâm /location liệt kê mọi Origins tại {{country}}. Khám phá các loại Origin — khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ — bao gồm tại {{cities}}.",
           "populationQuestion": "Có bao nhiêu người sống tại {{country}}?",
           "populationAnswer": "Bộ dữ liệu ghi nhận dân số {{population}} cho {{country}}.",
           "capitalQuestion": "Thủ đô của {{country}} là gì?",
@@ -645,52 +645,52 @@
           "languageQuestion": "Những ngôn ngữ nào được sử dụng tại {{country}}?",
           "languageAnswer": "Các ngôn ngữ được sử dụng tại {{country}} bao gồm {{languages}}.",
           "operationQuestion": "JoinOrigin có hoạt động tại {{country}} không?",
-          "operationAnswer": "Có. JoinOrigin không có văn phòng địa phương. Nền tảng giúp mọi người tìm hoặc bắt đầu cộng đồng ở bất kỳ đâu tại {{country}}."
+          "operationAnswer": "Có. JoinOrigin không có văn phòng địa phương. Nền tảng giúp mọi người tìm hoặc bắt đầu Origins ở bất kỳ đâu tại {{country}}."
         },
         "region": {
-          "communitiesQuestion": "Làm cách nào để tìm cộng đồng tại {{region}}?",
-          "communitiesAnswer": "Khám phá các trang thành phố tại {{region}} — {{cities}} — hoặc bắt đầu cộng đồng của riêng bạn. Trung tâm /location liệt kê mọi loại cộng đồng tại {{region}}.",
+          "communitiesQuestion": "Làm cách nào để tìm Origins tại {{region}}?",
+          "communitiesAnswer": "Khám phá các trang thành phố tại {{region}} — {{cities}} — hoặc bắt đầu Origin của riêng bạn. Trung tâm /location liệt kê mọi loại Origin tại {{region}}.",
           "countryQuestion": "{{region}} nằm ở quốc gia nào?",
           "countryAnswer": "{{region}} là một phần của {{country}}, thủ đô là {{capital}}.",
           "languageQuestion": "Những ngôn ngữ nào được sử dụng tại {{region}}?",
           "languageAnswer": "Các ngôn ngữ được sử dụng tại {{region}} bao gồm {{languages}}.",
           "operationQuestion": "JoinOrigin có hoạt động tại {{region}} không?",
-          "operationAnswer": "Có. JoinOrigin không có văn phòng địa phương. Nền tảng giúp mọi người tìm hoặc bắt đầu cộng đồng ở bất kỳ đâu tại {{region}}."
+          "operationAnswer": "Có. JoinOrigin không có văn phòng địa phương. Nền tảng giúp mọi người tìm hoặc bắt đầu Origins ở bất kỳ đâu tại {{region}}."
         }
       }
     },
     "groupTypes": {
-      "startup": "Cộng đồng khởi nghiệp",
-      "creative": "Cộng đồng sáng tạo & thiết kế",
-      "political": "Cộng đồng chính trị & công dân",
-      "meetup": "Buổi gặp gỡ & sự kiện cộng đồng",
-      "smallBusiness": "Cộng đồng doanh nghiệp nhỏ"
+      "startup": "Origins khởi nghiệp",
+      "creative": "Origins sáng tạo & thiết kế",
+      "political": "Origins chính trị & công dân",
+      "meetup": "Buổi gặp gỡ & sự kiện Origin",
+      "smallBusiness": "Origins doanh nghiệp nhỏ"
     },
     "guides": {
       "eyebrow": "Hướng dẫn cách làm",
-      "hubEyebrow": "Xây dựng cộng đồng",
-      "hubTitle": "Hướng dẫn xây dựng cộng đồng",
-      "hubLead": "Mười hai hướng dẫn thực tế, bền vững để tìm, tham gia và bắt đầu các nhóm — và giao tiếp trong một phòng do người sáng tạo kiểm soát. Từ việc công bố một ý tưởng đến điều hành cộng đồng lành mạnh.",
+      "hubEyebrow": "Xây dựng Origins",
+      "hubTitle": "Hướng dẫn xây dựng Origins",
+      "hubLead": "Mười hai hướng dẫn thực tế, bền vững để bắt đầu và phát triển Origins — và giao tiếp trong một phòng do người sáng tạo kiểm soát. Từ việc công bố một ý tưởng đến điều hành lành mạnh.",
       "allGuides": "Tất cả hướng dẫn",
       "searchLabel": "Tìm kiếm hướng dẫn",
       "searchPlaceholder": "Tìm kiếm theo tiêu đề hoặc từ khóa",
       "emptyState": "Không có hướng dẫn nào khớp với “{{query}}”.",
       "glossarySection": "Bảng thuật ngữ Hệ điều hành Cộng đồng",
       "glossaryBandCopy": "Tìm hiểu các thuật ngữ cốt lõi đằng sau các nhóm, phòng, điều hành, tiếp nhận thành viên và vòng tương tác trong <1>{{glossary}}</1>.",
-      "universalCopy": "Hướng dẫn mang tính phổ quát — cộng đồng mang tính địa phương. Tìm hoặc bắt đầu một cộng đồng tại một thành phố gần bạn:",
+      "universalCopy": "Origins về bản chất là trực tuyến và cũng có thể có một không gian địa phương. Tìm hoặc bắt đầu một Origin gần bạn:",
       "startLocal": "Bắt đầu tại địa phương",
-      "cityCardBody": "Khám phá địa điểm, nhóm và hướng dẫn thực tế tại {{city}}.",
+      "cityCardBody": "Khám phá các không gian địa phương và những người đứng sau Origins tại {{city}}.",
       "overview": "Tổng quan",
       "stepByStep": "Từng bước",
       "stepNumber": "Bước {{number}}.",
       "relatedGuides": "Hướng dẫn liên quan",
       "continueBuilding": "Tiếp tục xây dựng với hướng dẫn tiếp theo trong chuỗi.",
       "practiceInCity": "Đưa các bước này vào thực tế tại một thành phố thực.",
-      "exploreCommunities": "Khám phá cộng đồng",
+      "exploreCommunities": "Khám phá Origins",
       "howJoinOriginHelps": "JoinOrigin có thể giúp như thế nào",
-      "howJoinOriginHelpsBody": "JoinOrigin là một hệ điều hành cộng đồng giúp bạn tìm hoặc bắt đầu các cộng đồng — các bước trên hoạt động trên nền tảng và với những công cụ bạn đã có. JoinOrigin lo phần cấu trúc, khám phá và tổ chức để bạn tập trung vào thành viên của mình. Nhấp Bắt đầu và được khám phá.",
+      "howJoinOriginHelpsBody": "JoinOrigin là một hệ điều hành cộng đồng giúp bạn tìm hoặc bắt đầu các Origins — các bước trên hoạt động trên nền tảng và với những công cụ bạn đã có. JoinOrigin lo phần cấu trúc, khám phá và tổ chức để bạn tập trung vào thành viên của mình. Nhấp Bắt đầu và được khám phá.",
       "keepLearning": "Tiếp tục học hỏi",
-      "keepLearningGuides": "Duyệt tất cả hướng dẫn trên <1>trung tâm Xây dựng cộng đồng</1>.",
+      "keepLearningGuides": "Duyệt tất cả hướng dẫn trên <1>trung tâm Xây dựng Origins</1>.",
       "keepLearningGlossary": "Tìm hiểu các thuật ngữ cốt lõi trong <1>bảng thuật ngữ Hệ điều hành Cộng đồng</1>.",
       "keepLearningLocations": "Tìm trang thành phố trên <1>trung tâm địa điểm</1> để bắt đầu tại địa phương.",
       "translatePage": "Dịch trang này"
@@ -748,17 +748,17 @@
     "metadata": {
       "waitlistPhrase": "Tham gia Origin và được khám phá ngay hôm nay.",
       "title": {
-        "communitiesIn": "Cộng đồng tại {{name}}",
-        "communitiesInWithRegion": "Cộng đồng tại {{name}}, {{region}}",
+        "communitiesIn": "Origins tại {{name}}",
+        "communitiesInWithRegion": "Origins tại {{name}}, {{region}}",
         "variantIn": "{{label}} tại {{name}}",
-        "ideasIn": "30 ý tưởng sự kiện cộng đồng tại {{name}}"
+        "ideasIn": "30 ý tưởng sự kiện Origin tại {{name}}"
       },
       "description": {
-        "city": "Tìm hoặc bắt đầu cộng đồng tại {{city}} — các nhóm khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ. {{waitlist}}",
+        "city": "Tìm hoặc bắt đầu Origins tại {{city}} — các nhóm khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ. {{waitlist}}",
         "variant": "Tìm hoặc bắt đầu {{label}} tại {{city}} — địa điểm, nhóm và hướng dẫn thực tế. {{waitlist}}",
-        "ideas": "Khám phá 30 ý tưởng sự kiện cộng đồng tại {{city}} — các sự kiện kết nối, học hỏi, ngoài trời, chuyên môn, sáng tạo và tác động. {{waitlist}}",
-        "country": "Tìm hoặc bắt đầu cộng đồng tại {{country}} — từ các hệ sinh thái khởi nghiệp đến mạng lưới doanh nghiệp nhỏ. {{waitlist}}",
-        "region": "Tìm hoặc bắt đầu cộng đồng tại {{region}} — các buổi gặp gỡ, nhóm và sự kiện trên khắp khu vực. {{waitlist}}"
+        "ideas": "Khám phá 30 ý tưởng sự kiện Origin tại {{city}} — các sự kiện kết nối, học hỏi, ngoài trời, chuyên môn, sáng tạo và tác động. {{waitlist}}",
+        "country": "Tìm hoặc bắt đầu Origins tại {{country}} — từ các hệ sinh thái khởi nghiệp đến mạng lưới doanh nghiệp nhỏ. {{waitlist}}",
+        "region": "Tìm hoặc bắt đầu Origins tại {{region}} — các buổi gặp gỡ, nhóm và sự kiện trên khắp khu vực. {{waitlist}}"
       }
     },
     "cta": {

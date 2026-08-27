@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "مجتمعات حسب المدينة",
-      "country": "مجتمعات في هذا البلد",
-      "region": "مجتمعات في هذه المنطقة",
-      "city": "مجتمعات في هذه المدينة",
-      "variant": "نوع المجتمع",
-      "ideas": "أفكار الفعاليات المجتمعية"
+      "hub": "Origins حسب المدينة",
+      "country": "Origins في هذا البلد",
+      "region": "Origins في هذه المنطقة",
+      "city": "Origins في هذه المدينة",
+      "variant": "نوع Origin",
+      "ideas": "أفكار فعاليات Origin"
     },
     "breadcrumb": {
       "home": "الرئيسية",
-      "hub": "المجتمعات حسب المدينة"
+      "hub": "Origins حسب المدينة"
     },
     "location": {
-      "presenceClaim": "ابحث عن مجتمع أو أنشئه في {{city}}",
+      "presenceClaim": "ابحث عن Origin أو أنشئه في {{city}}",
       "hubEntity": "مدينتك",
-      "communitiesIn": "مجتمعات في {{city}}",
+      "communitiesIn": "Origins في {{city}}",
       "cityFacts": "حقائق عن المدينة",
-      "exploreCommunities": "استكشف المجتمعات",
-      "exploreGroupTypes": "استكشف أنواع المجتمعات",
-      "groupTypesInCity": "أنواع المجتمعات في المدينة",
+      "exploreCommunities": "استكشف Origins",
+      "exploreGroupTypes": "استكشف أنواع Origin",
+      "groupTypesInCity": "أنواع Origin في المدينة",
       "flagshipCities": "مدن رئيسية",
-      "nearbyCities": "مجتمعات في المدن القريبة",
-      "guidesTitle": "أدلة لبدء مجتمع",
+      "nearbyCities": "Origins في المدن القريبة",
+      "guidesTitle": "أدلة لبدء Origin",
       "stepByStepGuide": "دليل خطوة بخطوة",
       "ideasLink": "30 فكرة لفعاليات مجتمعية",
       "faqHeading": "الأسئلة الشائعة",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "التنسيقات النموذجية",
       "variantHowToTitle": "كيف تبدأ",
       "browseLocations": "تصفح المواقع",
-      "directoryBannerLabel": "أماكن ومجتمعات",
+      "directoryBannerLabel": "أماكن و Origins",
       "directoryBannerTitle": "انضم إلى الشبكة",
-      "directoryBannerCopy": "تصفح كل مكان ومجتمع على الشبكة. ابحث عن ما يناسبك أو أنشئ واحدًا في مدينتك.",
-      "hubIntro": "كل دولة ومنطقة ومدينة ونوع مجتمع وفكرة حدث على الشبكة — ابحث عن المجتمع الذي تبحث عنه أو أنشئ واحدًا في مدينتك.",
-      "hubLead": "استكشف المجتمعات حسب المدينة حول العالم — مجموعات الشركات الناشئة والإبداعية والسياسية واللقاءات والشركات الصغيرة.",
+      "directoryBannerCopy": "تصفح كل مكان و Origin على الشبكة. ابحث عن ما يناسبك أو أنشئ واحدًا في مدينتك.",
+      "hubIntro": "كل دولة ومنطقة ومدينة ونوع Origin وفكرة حدث على الشبكة — ابحث عن Origin الذي تبحث عنه أو أنشئ واحدًا في مدينتك.",
+      "hubLead": "استكشف Origins حسب المدينة حول العالم — مجموعات الشركات الناشئة والإبداعية والسياسية واللقاءات والشركات الصغيرة.",
       "directoryTotal": "تصفح المواقع ({{count}})",
       "searchLocationsLabel": "ابحث في المواقع",
-      "searchLocationsPlaceholder": "ابحث حسب المدينة أو البلد أو نوع المجتمع",
+      "searchLocationsPlaceholder": "ابحث حسب المدينة أو البلد أو نوع Origin",
       "emptyState": "لا توجد مواقع تطابق «{{query}}».",
       "attribution": "بيانات المواقع © مساهمون GeoNames، رخصة CC BY 4.0؛ بيانات المدن © SimpleMaps (worldcities basic)، رخصة CC BY 4.0.",
       "directoryKinds": {
         "country": "بلد",
         "region": "منطقة",
         "city": "مدينة",
-        "variant": "نوع المجتمع",
-        "ideas": "أفكار الفعاليات المجتمعية",
+        "variant": "نوع Origin",
+        "ideas": "أفكار فعاليات Origin",
         "fallback": "موقع"
       },
       "directorySectionTitles": {
         "countries": "البلدان",
         "regions": "المناطق",
         "cities": "المدن",
-        "communityTypes": "أنواع المجتمع",
+        "communityTypes": "أنواع Origin",
         "eventIdeas": "أفكار الفعاليات"
       },
       "guideCardTitles": {
-        "start-a-community": "ابدأ مجتمعًا",
+        "start-a-community": "ابدأ Origin",
         "organize-a-meetup": "نظّم لقاءً",
         "first-10-members": "احصل على أول 10 أعضاء",
         "find-a-co-founder": "اعثر على شريك مؤسس",
-        "keep-a-community-active": "أبقِ المجتمع نشطًا",
-        "hybrid-communities": "إدارة المجتمعات الهجينة",
-        "moderation": "الإشراف على مجتمعك"
+        "keep-a-community-active": "أبقِ Origin نشطًا",
+        "hybrid-communities": "إدارة Origins الهجينة",
+        "moderation": "الإشراف على Origin الخاص بك"
       },
       "countryFacts": "حقائق عن الدولة",
       "regionFacts": "حقائق عن المنطقة",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "كيف أجد المجتمعات في {{country}}؟",
-          "communitiesAnswer": "يعرض مركز /location جميع المجتمعات في {{country}}. استكشف أنواع المجتمعات — الشركات الناشئة والإبداعية والسياسية واللقاءات والأعمال الصغيرة — بما في ذلك في {{cities}}.",
+          "communitiesQuestion": "كيف أجد Origins في {{country}}؟",
+          "communitiesAnswer": "يعرض مركز /location جميع Origins في {{country}}. استكشف أنواع Origin — الشركات الناشئة والإبداعية والسياسية واللقاءات والأعمال الصغيرة — بما في ذلك في {{cities}}.",
           "populationQuestion": "كم عدد السكان في {{country}}؟",
           "populationAnswer": "يسجل مجموعة البيانات عدد سكان يبلغ {{population}} في {{country}}.",
           "capitalQuestion": "ما هي عاصمة {{country}}؟",
@@ -645,52 +645,52 @@
           "languageQuestion": "ما اللغات المستخدمة في {{country}}؟",
           "languageAnswer": "تشمل اللغات المستخدمة في {{country}} {{languages}}.",
           "operationQuestion": "هل تعمل JoinOrigin في {{country}}؟",
-          "operationAnswer": "نعم. لا توجد مكاتب محلية لـ JoinOrigin. تساعد المنصة الأشخاص في العثور على المجتمعات أو إنشائها في أي مكان في {{country}}."
+          "operationAnswer": "نعم. لا توجد مكاتب محلية لـ JoinOrigin. تساعد المنصة الأشخاص في العثور على Origins أو إنشائها في أي مكان في {{country}}."
         },
         "region": {
-          "communitiesQuestion": "كيف أجد المجتمعات في {{region}}؟",
-          "communitiesAnswer": "استكشف صفحات المدن في {{region}} — {{cities}} — أو ابدأ مجتمعك الخاص. يعرض مركز /location جميع أنواع المجتمعات في {{region}}.",
+          "communitiesQuestion": "كيف أجد Origins في {{region}}؟",
+          "communitiesAnswer": "استكشف صفحات المدن في {{region}} — {{cities}} — أو ابدأ Origin الخاص بك. يعرض مركز /location جميع أنواع Origin في {{region}}.",
           "countryQuestion": "في أي دولة تقع {{region}}؟",
           "countryAnswer": "{{region}} جزء من {{country}}، وعاصمتها {{capital}}.",
           "languageQuestion": "ما اللغات المستخدمة في {{region}}؟",
           "languageAnswer": "تشمل اللغات المستخدمة في {{region}} {{languages}}.",
           "operationQuestion": "هل تعمل JoinOrigin في {{region}}؟",
-          "operationAnswer": "نعم. لا توجد مكاتب محلية لـ JoinOrigin. تساعد المنصة الأشخاص في العثور على المجتمعات أو إنشائها في أي مكان في {{region}}."
+          "operationAnswer": "نعم. لا توجد مكاتب محلية لـ JoinOrigin. تساعد المنصة الأشخاص في العثور على Origins أو إنشائها في أي مكان في {{region}}."
         }
       }
     },
     "groupTypes": {
-      "startup": "مجتمعات الشركات الناشئة",
-      "creative": "مجتمعات الإبداع والتصميم",
-      "political": "المجتمعات السياسية والمدنية",
-      "meetup": "لقاءات وفعاليات المجتمع",
-      "smallBusiness": "مجتمعات الأعمال الصغيرة"
+      "startup": "Origins للشركات الناشئة",
+      "creative": "Origins للإبداع والتصميم",
+      "political": "Origins السياسية والمدنية",
+      "meetup": "لقاءات وفعاليات Origin",
+      "smallBusiness": "Origins للأعمال الصغيرة"
     },
     "guides": {
       "eyebrow": "دليل إرشادي",
-      "hubEyebrow": "بناء المجتمع",
-      "hubTitle": "أدلة بناء المجتمع",
-      "hubLead": "اثنا عشر دليلًا عمليًا دائمًا للعثور على المجموعات والانضمام إليها وبدئها — والتواصل في غرفة يتحكم فيها المنشئ. من نشر فكرة إلى الإشراف الصحي.",
+      "hubEyebrow": "بناء Origins",
+      "hubTitle": "أدلة بناء Origins",
+      "hubLead": "اثنا عشر دليلًا عمليًا دائمًا لبدء Origins وتنميتها — والتواصل في غرفة يتحكم فيها المنشئ. من نشر فكرة إلى الإشراف الصحي.",
       "allGuides": "كل الأدلة",
       "searchLabel": "ابحث في الأدلة",
       "searchPlaceholder": "ابحث حسب عنوان الدليل أو كلمة مفتاحية",
       "emptyState": "لا توجد أدلة تطابق «{{query}}».",
       "glossarySection": "مسرد نظام المجتمع",
       "glossaryBandCopy": "تعلّم المصطلحات الأساسية وراء المجموعات والغرف والإشراف والإدماج وحلقات التفاعل في <1>{{glossary}}</1>.",
-      "universalCopy": "الأدلة عالمية — والمجتمعات محلية. ابحث عن مجتمع أو ابدأه في مدينة قريبة منك:",
+      "universalCopy": "Origins على الإنترنت بطبيعتها، ويمكن أن يكون لها أيضًا مساحة محلية. ابحث عن Origin أو ابدأه بالقرب منك:",
       "startLocal": "ابدأ محليًا",
-      "cityCardBody": "استكشف أماكن ومجموعات وأدلة حقيقية في {{city}}.",
+      "cityCardBody": "استكشف المساحات المحلية والأشخاص الذين يقفون خلف Origins في {{city}}.",
       "overview": "نظرة عامة",
       "stepByStep": "خطوة بخطوة",
       "stepNumber": "الخطوة {{number}}.",
       "relatedGuides": "أدلة ذات صلة",
       "continueBuilding": "واصل البناء مع الدليل التالي في السلسلة.",
       "practiceInCity": "طبّق هذه الخطوات في مدينة حقيقية.",
-      "exploreCommunities": "استكشف المجتمعات",
+      "exploreCommunities": "استكشف Origins",
       "howJoinOriginHelps": "كيف يمكن لـ JoinOrigin المساعدة",
-      "howJoinOriginHelpsBody": "JoinOrigin نظام تشغيل مجتمعي يساعدك على العثور على المجتمعات أو بدئها — الخطوات أعلاه تعمل على المنصة ومع الأدوات التي تملكها بالفعل. يتولى JoinOrigin البنية والاكتشاف والتنظيم حتى تركز على أعضائك. اضغط «ابدأ الآن» وكن مكتشفًا.",
+      "howJoinOriginHelpsBody": "JoinOrigin نظام تشغيل مجتمعي يساعدك على العثور على Origins أو بدئها — الخطوات أعلاه تعمل على المنصة ومع الأدوات التي تملكها بالفعل. يتولى JoinOrigin البنية والاكتشاف والتنظيم حتى تركز على أعضائك. اضغط «ابدأ الآن» وكن مكتشفًا.",
       "keepLearning": "واصل التعلم",
-      "keepLearningGuides": "تصفح كل الأدلة في <1>مركز بناء المجتمع</1>.",
+      "keepLearningGuides": "تصفح كل الأدلة في <1>مركز بناء Origins</1>.",
       "keepLearningGlossary": "تعلّم المصطلحات الأساسية في <1>مسرد نظام المجتمع</1>.",
       "keepLearningLocations": "اعثر على صفحة مدينة في <1>مركز المواقع</1> للبدء محليًا.",
       "translatePage": "ترجمة هذه الصفحة"
@@ -748,17 +748,17 @@
     "metadata": {
       "waitlistPhrase": "انضم إلى Origin وكن مكتشفًا اليوم.",
       "title": {
-        "communitiesIn": "مجتمعات في {{name}}",
-        "communitiesInWithRegion": "مجتمعات في {{name}}، {{region}}",
+        "communitiesIn": "Origins في {{name}}",
+        "communitiesInWithRegion": "Origins في {{name}}، {{region}}",
         "variantIn": "{{label}} في {{name}}",
-        "ideasIn": "30 فكرة لفعاليات مجتمعية في {{name}}"
+        "ideasIn": "30 فكرة لفعاليات Origin في {{name}}"
       },
       "description": {
-        "city": "اعثر على مجتمعات أو ابدأها في {{city}} — مجموعات الشركات الناشئة والإبداع والسياسة واللقاءات والأعمال الصغيرة. {{waitlist}}",
+        "city": "اعثر على Origins أو ابدأها في {{city}} — مجموعات الشركات الناشئة والإبداع والسياسة واللقاءات والأعمال الصغيرة. {{waitlist}}",
         "variant": "اعثر على {{label}} أو ابدأها في {{city}} — أماكن ومجموعات وأدلة حقيقية. {{waitlist}}",
-        "ideas": "اكتشف 30 فكرة لفعاليات مجتمعية في {{city}} — فعاليات تواصل وتعليم وخارجية ومهنية وإبداعية وتأثيرية. {{waitlist}}",
-        "country": "اعثر على مجتمعات أو ابدأها في {{country}} — من مشاهد الشركات الناشئة إلى شبكات الأعمال الصغيرة. {{waitlist}}",
-        "region": "اعثر على مجتمعات أو ابدأها في {{region}} — لقاءات ومجموعات وفعاليات عبر المنطقة. {{waitlist}}"
+        "ideas": "اكتشف 30 فكرة لفعاليات Origin في {{city}} — فعاليات تواصل وتعليم وخارجية ومهنية وإبداعية وتأثيرية. {{waitlist}}",
+        "country": "اعثر على Origins أو ابدأها في {{country}} — من مشاهد الشركات الناشئة إلى شبكات الأعمال الصغيرة. {{waitlist}}",
+        "region": "اعثر على Origins أو ابدأها في {{region}} — لقاءات ومجموعات وفعاليات عبر المنطقة. {{waitlist}}"
       }
     },
     "cta": {

@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "Сообщества по городам",
-      "country": "Сообщества в этой стране",
-      "region": "Сообщества в этом регионе",
-      "city": "Сообщества в этом городе",
-      "variant": "Тип сообщества",
-      "ideas": "Идеи для мероприятий сообщества"
+      "hub": "Origins по городам",
+      "country": "Origins в этой стране",
+      "region": "Origins в этом регионе",
+      "city": "Origins в этом городе",
+      "variant": "Тип Origin",
+      "ideas": "Идеи для мероприятий Origin"
     },
     "breadcrumb": {
       "home": "Главная",
-      "hub": "Сообщества по городам"
+      "hub": "Origins по городам"
     },
     "location": {
-      "presenceClaim": "Найдите или создайте сообщество в {{city}}",
+      "presenceClaim": "Найдите или создайте Origin в {{city}}",
       "hubEntity": "своём городе",
-      "communitiesIn": "Сообщества в {{city}}",
+      "communitiesIn": "Origins в {{city}}",
       "cityFacts": "Факты о городе",
-      "exploreCommunities": "Изучить сообщества",
-      "exploreGroupTypes": "Изучить типы сообществ",
-      "groupTypesInCity": "Типы сообществ в городе",
+      "exploreCommunities": "Изучить Origins",
+      "exploreGroupTypes": "Изучить типы Origin",
+      "groupTypesInCity": "Типы Origin в городе",
       "flagshipCities": "Ключевые города",
-      "nearbyCities": "Сообщества в соседних городах",
-      "guidesTitle": "Гайды по созданию сообщества",
+      "nearbyCities": "Origins в соседних городах",
+      "guidesTitle": "Гайды по созданию Origin",
       "stepByStepGuide": "Пошаговое руководство",
       "ideasLink": "30 идей для мероприятий сообщества",
       "faqHeading": "Часто задаваемые вопросы",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "Типичные форматы",
       "variantHowToTitle": "Как начать",
       "browseLocations": "Обзор местоположений",
-      "directoryBannerLabel": "Места и сообщества",
+      "directoryBannerLabel": "Места и Origins",
       "directoryBannerTitle": "Вступите в сеть",
-      "directoryBannerCopy": "Просмотрите каждое место и сообщество в сети. Найдите то, что подходит вам, или создайте его в своём городе.",
-      "hubIntro": "Каждая страна, регион, город, тип сообщества и идея события в сети — найдите сообщество, которое ищете, или создайте его в своём городе.",
-      "hubLead": "Изучайте сообщества по городам по всему миру — группы стартапов, творческие, политические, митапы и малый бизнес.",
+      "directoryBannerCopy": "Просмотрите каждое место и Origin в сети. Найдите то, что подходит вам, или создайте его в своём городе.",
+      "hubIntro": "Каждая страна, регион, город, тип Origin и идея события в сети — найдите Origin, который ищете, или создайте его в своём городе.",
+      "hubLead": "Изучайте Origins по городам по всему миру — группы стартапов, творческие, политические, митапы и малый бизнес.",
       "directoryTotal": "Обзор местоположений ({{count}})",
       "searchLocationsLabel": "Поиск местоположений",
-      "searchLocationsPlaceholder": "Ищите по городу, стране или типу сообщества",
+      "searchLocationsPlaceholder": "Ищите по городу, стране или типу Origin",
       "emptyState": "Ни одно местоположение не соответствует «{{query}}».",
       "attribution": "Данные о местоположениях © GeoNames contributors, CC BY 4.0; данные о городах © SimpleMaps (worldcities basic), CC BY 4.0.",
       "directoryKinds": {
         "country": "Страна",
         "region": "Регион",
         "city": "Город",
-        "variant": "Тип сообщества",
-        "ideas": "Идеи мероприятий сообщества",
+        "variant": "Тип Origin",
+        "ideas": "Идеи мероприятий Origin",
         "fallback": "Местоположение"
       },
       "directorySectionTitles": {
         "countries": "Страны",
         "regions": "Регионы",
         "cities": "Города",
-        "communityTypes": "Типы сообществ",
+        "communityTypes": "Типы Origin",
         "eventIdeas": "Идеи мероприятий"
       },
       "guideCardTitles": {
-        "start-a-community": "Создать сообщество",
+        "start-a-community": "Создать Origin",
         "organize-a-meetup": "Организовать встречу",
         "first-10-members": "Привлеките первых 10 участников",
         "find-a-co-founder": "Найти сооснователя",
-        "keep-a-community-active": "Поддерживать активность сообщества",
-        "hybrid-communities": "Развивать гибридные сообщества",
-        "moderation": "Модерировать своё сообщество"
+        "keep-a-community-active": "Поддерживать активность Origin",
+        "hybrid-communities": "Развивать гибридные Origins",
+        "moderation": "Модерировать свой Origin"
       },
       "countryFacts": "О стране",
       "regionFacts": "О регионе",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "Как найти сообщества в {{country}}?",
-          "communitiesAnswer": "Центр /location перечисляет все сообщества в {{country}}. Изучите типы сообществ — стартапы, креативные, политические, встречи и малый бизнес — в том числе в {{cities}}.",
+          "communitiesQuestion": "Как найти Origins в {{country}}?",
+          "communitiesAnswer": "Центр /location перечисляет все Origins в {{country}}. Изучите типы Origin — стартапы, креативные, политические, встречи и малый бизнес — в том числе в {{cities}}.",
           "populationQuestion": "Сколько человек живёт в {{country}}?",
           "populationAnswer": "В наборе данных указано население {{population}} для {{country}}.",
           "capitalQuestion": "Какова столица {{country}}?",
@@ -645,53 +645,53 @@
           "languageQuestion": "На каких языках говорят в {{country}}?",
           "languageAnswer": "Среди языков {{country}} — {{languages}}.",
           "operationQuestion": "Работает ли JoinOrigin в {{country}}?",
-          "operationAnswer": "Да. У JoinOrigin нет местных офисов. Платформа помогает людям находить или создавать сообщества в любом месте {{country}}."
+          "operationAnswer": "Да. У JoinOrigin нет местных офисов. Платформа помогает людям находить или создавать Origins в любом месте {{country}}."
         },
         "region": {
-          "communitiesQuestion": "Как найти сообщества в {{region}}?",
-          "communitiesAnswer": "Изучите страницы городов в {{region}} — {{cities}} — или создайте собственное сообщество. Центр /location перечисляет все типы сообществ в {{region}}.",
+          "communitiesQuestion": "Как найти Origins в {{region}}?",
+          "communitiesAnswer": "Изучите страницы городов в {{region}} — {{cities}} — или создайте собственный Origin. Центр /location перечисляет все типы Origin в {{region}}.",
           "countryQuestion": "В какой стране находится {{region}}?",
           "countryAnswer": "{{region}} — часть {{country}}, столица которой {{capital}}.",
           "languageQuestion": "На каких языках говорят в {{region}}?",
           "languageAnswer": "Среди языков {{region}} — {{languages}}.",
           "operationQuestion": "Работает ли JoinOrigin в {{region}}?",
-          "operationAnswer": "Да. У JoinOrigin нет местных офисов. Платформа помогает людям находить или создавать сообщества в любом месте {{region}}."
+          "operationAnswer": "Да. У JoinOrigin нет местных офисов. Платформа помогает людям находить или создавать Origins в любом месте {{region}}."
         }
       }
     },
     "groupTypes": {
-      "startup": "Стартап-сообщества",
-      "creative": "Креативные и дизайн-сообщества",
-      "political": "Политические и гражданские сообщества",
-      "meetup": "Митапы и мероприятия сообщества",
-      "smallBusiness": "Сообщества малого бизнеса"
+      "startup": "Стартап-Origins",
+      "creative": "Креативные и дизайн-Origins",
+      "political": "Политические и гражданские Origins",
+      "meetup": "Митапы и мероприятия Origin",
+      "smallBusiness": "Origins малого бизнеса"
     },
     "guides": {
       "eyebrow": "Практическое руководство",
-      "hubEyebrow": "Построение сообщества",
-      "hubTitle": "Гайды по построению сообщества",
+      "hubEyebrow": "Построение Origins",
+      "hubTitle": "Гайды по построению Origins",
       "allGuides": "Все гайды",
       "glossarySection": "Глоссарий системы сообщества",
       "startLocal": "Начните локально",
-      "cityCardBody": "Изучите реальные места, группы и гайды в {{city}}.",
+      "cityCardBody": "Изучите локальные пространства и людей, стоящих за Origins в {{city}}.",
       "overview": "Обзор",
       "stepByStep": "Пошагово",
       "stepNumber": "Шаг {{number}}.",
       "relatedGuides": "Связанные гайды",
-      "exploreCommunities": "Изучить сообщества",
+      "exploreCommunities": "Изучить Origins",
       "howJoinOriginHelps": "Как JoinOrigin может помочь",
       "keepLearning": "Продолжайте учиться",
       "translatePage": "Перевести эту страницу",
-      "hubLead": "Двенадцать практических вечнозелёных руководств о том, как находить, вступать и создавать группы — и общаться в комнате, управляемой создателем. От публикации идеи до здоровой модерации.",
+      "hubLead": "Двенадцать практических вечнозелёных руководств о том, как создавать и развивать Origins — и общаться в комнате, управляемой создателем. От публикации идеи до здоровой модерации.",
       "searchLabel": "Поиск гайдов",
       "searchPlaceholder": "Ищите по названию гайда или ключевому слову",
       "emptyState": "Ни один гайд не соответствует «{{query}}».",
       "glossaryBandCopy": "Изучите ключевые термины, стоящие за группами, комнатами, модерацией, онбордингом и циклами вовлечённости, в <1>{{glossary}}</1>.",
-      "universalCopy": "Гайды универсальны — сообщества локальны. Найдите или создайте сообщество в городе рядом с вами:",
+      "universalCopy": "Origins по своей природе онлайн и при этом могут иметь локальное пространство. Найдите или создайте Origin рядом с вами:",
       "continueBuilding": "Продолжайте строить вместе со следующим гайдом из серии.",
       "practiceInCity": "Примените эти шаги на практике в реальном городе.",
-      "howJoinOriginHelpsBody": "JoinOrigin — это операционная система сообщества, которая помогает находить или создавать сообщества: шаги выше работают на платформе и с инструментами, которые у вас уже есть. JoinOrigin берёт на себя структуру, поиск и организацию, чтобы вы могли сосредоточиться на своих участниках. Нажмите «Начать» и заявите о себе.",
-      "keepLearningGuides": "Просмотрите все гайды в <1>хабе по построению сообщества</1>.",
+      "howJoinOriginHelpsBody": "JoinOrigin — это операционная система сообщества, которая помогает находить или создавать Origins: шаги выше работают на платформе и с инструментами, которые у вас уже есть. JoinOrigin берёт на себя структуру, поиск и организацию, чтобы вы могли сосредоточиться на своих участниках. Нажмите «Начать» и заявите о себе.",
+      "keepLearningGuides": "Просмотрите все гайды в <1>хабе по построению Origins</1>.",
       "keepLearningGlossary": "Изучите ключевые термины в <1>глоссарии системы сообщества</1>.",
       "keepLearningLocations": "Найдите страницу города в <1>хабе местоположений</1>, чтобы начать локально."
     },
@@ -751,17 +751,17 @@
     "metadata": {
       "waitlistPhrase": "Присоединяйтесь к Origin и заявите о себе уже сегодня.",
       "title": {
-        "communitiesIn": "Сообщества в {{name}}",
-        "communitiesInWithRegion": "Сообщества в {{name}}, {{region}}",
+        "communitiesIn": "Origins в {{name}}",
+        "communitiesInWithRegion": "Origins в {{name}}, {{region}}",
         "variantIn": "{{label}} в {{name}}",
-        "ideasIn": "30 идей мероприятий сообщества в {{name}}"
+        "ideasIn": "30 идей мероприятий Origin в {{name}}"
       },
       "description": {
-        "city": "Найдите или создайте сообщества в {{city}} — стартап-, креативные, политические, митап- и малые бизнес-группы. {{waitlist}}",
+        "city": "Найдите или создайте Origins в {{city}} — стартап-, креативные, политические, митап- и малые бизнес-группы. {{waitlist}}",
         "variant": "Найдите или создайте {{label}} в {{city}} — реальные места, группы и инструкции. {{waitlist}}",
-        "ideas": "Откройте для себя 30 идей мероприятий сообщества в {{city}} — нетворкинг, обучение, мероприятия на открытом воздухе, профессиональные, креативные и социально значимые события. {{waitlist}}",
-        "country": "Найдите или создайте сообщества в {{country}} — от стартап-сцен до сетей малого бизнеса. {{waitlist}}",
-        "region": "Найдите или создайте сообщества в {{region}} — митапы, группы и мероприятия по всему региону. {{waitlist}}"
+        "ideas": "Откройте для себя 30 идей мероприятий Origin в {{city}} — нетворкинг, обучение, мероприятия на открытом воздухе, профессиональные, креативные и социально значимые события. {{waitlist}}",
+        "country": "Найдите или создайте Origins в {{country}} — от стартап-сцен до сетей малого бизнеса. {{waitlist}}",
+        "region": "Найдите или создайте Origins в {{region}} — митапы, группы и мероприятия по всему региону. {{waitlist}}"
       }
     }
   }

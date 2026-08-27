@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "शहर के अनुसार समुदाय",
-      "country": "इस देश में समुदाय",
-      "region": "इस क्षेत्र में समुदाय",
-      "city": "इस शहर में समुदाय",
-      "variant": "समुदाय प्रकार",
-      "ideas": "सामुदायिक कार्यक्रम विचार"
+      "hub": "शहर के अनुसार Origins",
+      "country": "इस देश में Origins",
+      "region": "इस क्षेत्र में Origins",
+      "city": "इस शहर में Origins",
+      "variant": "Origin प्रकार",
+      "ideas": "Origin कार्यक्रम विचार"
     },
     "breadcrumb": {
       "home": "होम",
-      "hub": "शहर के अनुसार समुदाय"
+      "hub": "शहर के अनुसार Origins"
     },
     "location": {
-      "presenceClaim": "{{city}} में समुदाय खोजें या शुरू करें",
+      "presenceClaim": "{{city}} में Origin खोजें या शुरू करें",
       "hubEntity": "अपने शहर",
-      "communitiesIn": "{{city}} में समुदाय",
+      "communitiesIn": "{{city}} में Origins",
       "cityFacts": "शहर के तथ्य",
-      "exploreCommunities": "समुदाय देखें",
-      "exploreGroupTypes": "समुदाय प्रकार देखें",
-      "groupTypesInCity": "शहर में समुदाय प्रकार",
+      "exploreCommunities": "Origins देखें",
+      "exploreGroupTypes": "Origin प्रकार देखें",
+      "groupTypesInCity": "शहर में Origin प्रकार",
       "flagshipCities": "प्रमुख शहर",
-      "nearbyCities": "पास के शहरों में समुदाय",
-      "guidesTitle": "समुदाय शुरू करने की मार्गदर्शिकाएँ",
+      "nearbyCities": "पास के शहरों में Origins",
+      "guidesTitle": "Origin शुरू करने की मार्गदर्शिकाएँ",
       "stepByStepGuide": "चरण-दर-चरण मार्गदर्शिका",
       "ideasLink": "30 सामुदायिक कार्यक्रम विचार",
       "faqHeading": "अक्सर पूछे जाने वाले प्रश्न",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "सामान्य प्रारूप",
       "variantHowToTitle": "कैसे शुरू करें",
       "browseLocations": "स्थान ब्राउज़ करें",
-      "directoryBannerLabel": "स्थान और समुदाय",
+      "directoryBannerLabel": "स्थान और Origins",
       "directoryBannerTitle": "नेटवर्क से जुड़ें",
-      "directoryBannerCopy": "नेटवर्क पर हर स्थान और समुदाय देखें। वह खोजें जो आपके लिए सही है, या अपने शहर में एक शुरू करें।",
-      "hubIntro": "नेटवर्क पर हर देश, क्षेत्र, शहर, समुदाय प्रकार और इवेंट विचार — वह समुदाय खोजें जिसे आप ढूंढ रहे हैं या अपने शहर में एक शुरू करें।",
-      "hubLead": "दुनिया भर के शहरों में समुदायों का अन्वेषण करें — स्टार्टअप, रचनात्मक, राजनीतिक, मीटअप और छोटे व्यवसाय समूह।",
+      "directoryBannerCopy": "नेटवर्क पर हर स्थान और Origin देखें। वह खोजें जो आपके लिए सही है, या अपने शहर में एक शुरू करें।",
+      "hubIntro": "नेटवर्क पर हर देश, क्षेत्र, शहर, Origin प्रकार और इवेंट विचार — वह Origin खोजें जिसे आप ढूंढ रहे हैं या अपने शहर में एक शुरू करें।",
+      "hubLead": "दुनिया भर के शहरों में Origins का अन्वेषण करें — स्टार्टअप, रचनात्मक, राजनीतिक, मीटअप और छोटे व्यवसाय समूह।",
       "directoryTotal": "स्थान ब्राउज़ करें ({{count}})",
       "searchLocationsLabel": "स्थान खोजें",
-      "searchLocationsPlaceholder": "शहर, देश या समुदाय प्रकार से खोजें",
+      "searchLocationsPlaceholder": "शहर, देश या Origin प्रकार से खोजें",
       "emptyState": "“{{query}}” से कोई स्थान मेल नहीं खाता।",
       "attribution": "स्थान डेटा © GeoNames योगदानकर्ता, CC BY 4.0; शहर डेटा © SimpleMaps (worldcities basic), CC BY 4.0।",
       "directoryKinds": {
         "country": "देश",
         "region": "क्षेत्र",
         "city": "शहर",
-        "variant": "समुदाय प्रकार",
-        "ideas": "सामुदायिक कार्यक्रम विचार",
+        "variant": "Origin प्रकार",
+        "ideas": "Origin कार्यक्रम विचार",
         "fallback": "स्थान"
       },
       "directorySectionTitles": {
         "countries": "देश",
         "regions": "क्षेत्र",
         "cities": "शहर",
-        "communityTypes": "समुदाय प्रकार",
+        "communityTypes": "Origin प्रकार",
         "eventIdeas": "कार्यक्रम विचार"
       },
       "guideCardTitles": {
-        "start-a-community": "समुदाय शुरू करें",
+        "start-a-community": "Origin शुरू करें",
         "organize-a-meetup": "मीटअप आयोजित करें",
         "first-10-members": "अपने पहले 10 सदस्य पाएँ",
         "find-a-co-founder": "सह-संस्थापक खोजें",
-        "keep-a-community-active": "समुदाय को सक्रिय रखें",
-        "hybrid-communities": "हाइब्रिड समुदाय चलाएँ",
-        "moderation": "अपने समुदाय को मॉडरेट करें"
+        "keep-a-community-active": "Origin को सक्रिय रखें",
+        "hybrid-communities": "हाइब्रिड Origins चलाएँ",
+        "moderation": "अपने Origin को मॉडरेट करें"
       },
       "countryFacts": "देश के तथ्य",
       "regionFacts": "क्षेत्र के तथ्य",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "{{country}} में समुदाय कैसे खोजें?",
-          "communitiesAnswer": "/location हब {{country}} के सभी समुदायों को सूचीबद्ध करता है। स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समुदायों के प्रकार देखें, जिनमें {{cities}} भी शामिल हैं।",
+          "communitiesQuestion": "{{country}} में Origins कैसे खोजें?",
+          "communitiesAnswer": "/location हब {{country}} के सभी Origins को सूचीबद्ध करता है। स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय Origins के प्रकार देखें, जिनमें {{cities}} भी शामिल हैं।",
           "populationQuestion": "{{country}} में कितने लोग रहते हैं?",
           "populationAnswer": "डेटासेट {{country}} की जनसंख्या {{population}} दर्ज करता है।",
           "capitalQuestion": "{{country}} की राजधानी क्या है?",
@@ -645,53 +645,53 @@
           "languageQuestion": "{{country}} में कौन सी भाषाएँ बोली जाती हैं?",
           "languageAnswer": "{{country}} में बोली जाने वाली भाषाओं में {{languages}} शामिल हैं।",
           "operationQuestion": "क्या JoinOrigin {{country}} में काम करता है?",
-          "operationAnswer": "हाँ। JoinOrigin के कोई स्थानीय कार्यालय नहीं हैं। यह प्लेटफ़ॉर्म {{country}} में कहीं भी समुदाय खोजने या शुरू करने में मदद करता है।"
+          "operationAnswer": "हाँ। JoinOrigin के कोई स्थानीय कार्यालय नहीं हैं। यह प्लेटफ़ॉर्म {{country}} में कहीं भी Origin खोजने या शुरू करने में मदद करता है।"
         },
         "region": {
-          "communitiesQuestion": "{{region}} में समुदाय कैसे खोजें?",
-          "communitiesAnswer": "{{region}} के शहर पृष्ठ — {{cities}} — देखें या अपना समुदाय शुरू करें। /location हब {{region}} के सभी समुदाय प्रकारों को सूचीबद्ध करता है।",
+          "communitiesQuestion": "{{region}} में Origins कैसे खोजें?",
+          "communitiesAnswer": "{{region}} के शहर पृष्ठ — {{cities}} — देखें या अपना Origin शुरू करें। /location हब {{region}} के सभी Origin प्रकारों को सूचीबद्ध करता है।",
           "countryQuestion": "{{region}} किस देश में है?",
           "countryAnswer": "{{region}} {{country}} का हिस्सा है, जिसकी राजधानी {{capital}} है।",
           "languageQuestion": "{{region}} में कौन सी भाषाएँ बोली जाती हैं?",
           "languageAnswer": "{{region}} में बोली जाने वाली भाषाओं में {{languages}} शामिल हैं।",
           "operationQuestion": "क्या JoinOrigin {{region}} में काम करता है?",
-          "operationAnswer": "हाँ। JoinOrigin के कोई स्थानीय कार्यालय नहीं हैं। यह प्लेटफ़ॉर्म {{region}} में कहीं भी समुदाय खोजने या शुरू करने में मदद करता है।"
+          "operationAnswer": "हाँ। JoinOrigin के कोई स्थानीय कार्यालय नहीं हैं। यह प्लेटफ़ॉर्म {{region}} में कहीं भी Origin खोजने या शुरू करने में मदद करता है।"
         }
       }
     },
     "groupTypes": {
-      "startup": "स्टार्टअप समुदाय",
-      "creative": "क्रिएटिव और डिज़ाइन समुदाय",
-      "political": "राजनीतिक और नागरिक समुदाय",
-      "meetup": "सामुदायिक मीटअप और कार्यक्रम",
-      "smallBusiness": "छोटे व्यवसाय समुदाय"
+      "startup": "स्टार्टअप Origins",
+      "creative": "क्रिएटिव और डिज़ाइन Origins",
+      "political": "राजनीतिक और नागरिक Origins",
+      "meetup": "Origin मीटअप और कार्यक्रम",
+      "smallBusiness": "छोटे व्यवसाय Origins"
     },
     "guides": {
       "eyebrow": "हाउ-टू गाइड",
-      "hubEyebrow": "समुदाय निर्माण",
-      "hubTitle": "समुदाय निर्माण मार्गदर्शिकाएँ",
+      "hubEyebrow": "Origin निर्माण",
+      "hubTitle": "Origin निर्माण मार्गदर्शिकाएँ",
       "allGuides": "सभी मार्गदर्शिकाएँ",
       "glossarySection": "सामुदायिक OS शब्दावली",
       "startLocal": "स्थानीय रूप से शुरू करें",
-      "cityCardBody": "{{city}} में वास्तविक स्थानों, समूहों और गाइडों को देखें।",
+      "cityCardBody": "{{city}} के Origins के पीछे के स्थानीय स्थानों और लोगों को देखें।",
       "overview": "अवलोकन",
       "stepByStep": "चरण-दर-चरण",
       "stepNumber": "चरण {{number}}।",
       "relatedGuides": "संबंधित मार्गदर्शिकाएँ",
-      "exploreCommunities": "समुदाय देखें",
+      "exploreCommunities": "Origins देखें",
       "howJoinOriginHelps": "JoinOrigin कैसे मदद कर सकता है",
       "keepLearning": "सीखते रहें",
       "translatePage": "इस पृष्ठ का अनुवाद करें",
-      "hubLead": "समूहों को खोजने, शामिल होने और शुरू करने — और एक निर्माता-नियंत्रित रूम में संवाद करने — के लिए बारह व्यावहारिक, सदाबहार हाउ-टू गाइड। किसी विचार को प्रकाशित करने से लेकर स्वस्थ मॉडरेशन तक।",
+      "hubLead": "Origins को शुरू करने और बढ़ाने — और एक निर्माता-नियंत्रित रूम में संवाद करने — के लिए बारह व्यावहारिक, सदाबहार हाउ-टू गाइड। किसी विचार को प्रकाशित करने से लेकर स्वस्थ मॉडरेशन तक।",
       "searchLabel": "गाइड खोजें",
       "searchPlaceholder": "गाइड शीर्षक या कीवर्ड से खोजें",
       "emptyState": "“{{query}}” से कोई गाइड मेल नहीं खाता।",
       "glossaryBandCopy": "<1>{{glossary}}</1> में समूहों, रूम, मॉडरेशन, ऑनबोर्डिंग और जुड़ाव लूप के पीछे के मुख्य शब्द सीखें।",
-      "universalCopy": "गाइड सार्वभौमिक हैं — समुदाय स्थानीय हैं। अपने नज़दीकी शहर में कोई समुदाय खोजें या शुरू करें:",
+      "universalCopy": "Origins स्वभाव से ऑनलाइन होते हैं, और उनका कोई स्थानीय स्थान भी हो सकता है। अपने पास कोई Origin खोजें या शुरू करें:",
       "continueBuilding": "श्रृंखला की अगली गाइड के साथ निर्माण जारी रखें।",
       "practiceInCity": "इन चरणों को एक वास्तविक शहर में अभ्यास में लाएँ।",
-      "howJoinOriginHelpsBody": "JoinOrigin एक कम्युनिटी OS है जो आपको समुदाय खोजने या शुरू करने में मदद करता है — उपरोक्त चरण प्लेटफ़ॉर्म पर और आपके पास पहले से मौजूद टूल के साथ काम करते हैं। JoinOrigin संरचना, खोज और संगठन का ध्यान रखता है ताकि आप अपने सदस्यों पर ध्यान केंद्रित कर सकें। Get Started पर क्लिक करें और खोजे जाएँ।",
-      "keepLearningGuides": "सभी गाइड <1>Community Building हब</1> पर देखें।",
+      "howJoinOriginHelpsBody": "JoinOrigin एक कम्युनिटी OS है जो आपको Origins खोजने या शुरू करने में मदद करता है — उपरोक्त चरण प्लेटफ़ॉर्म पर और आपके पास पहले से मौजूद टूल के साथ काम करते हैं। JoinOrigin संरचना, खोज और संगठन का ध्यान रखता है ताकि आप अपने सदस्यों पर ध्यान केंद्रित कर सकें। Get Started पर क्लिक करें और खोजे जाएँ।",
+      "keepLearningGuides": "सभी गाइड <1>Origin Building हब</1> पर देखें।",
       "keepLearningGlossary": "<1>Community OS शब्दावली</1> में मुख्य शब्द सीखें।",
       "keepLearningLocations": "स्थानीय रूप से शुरू करने के लिए <1>स्थान हब</1> पर एक शहर पेज खोजें।"
     },
@@ -751,17 +751,17 @@
     "metadata": {
       "waitlistPhrase": "Origin से जुड़ें और आज ही खोजे जाएँ।",
       "title": {
-        "communitiesIn": "{{name}} में समुदाय",
-        "communitiesInWithRegion": "{{name}}, {{region}} में समुदाय",
+        "communitiesIn": "{{name}} में Origins",
+        "communitiesInWithRegion": "{{name}}, {{region}} में Origins",
         "variantIn": "{{name}} में {{label}}",
-        "ideasIn": "{{name}} में 30 सामुदायिक कार्यक्रम विचार"
+        "ideasIn": "{{name}} में 30 Origin कार्यक्रम विचार"
       },
       "description": {
-        "city": "{{city}} में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। {{waitlist}}",
+        "city": "{{city}} में Origins खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। {{waitlist}}",
         "variant": "{{city}} में {{label}} खोजें या शुरू करें — वास्तविक स्थान, समूह और हाउ-टू। {{waitlist}}",
-        "ideas": "{{city}} में 30 सामुदायिक कार्यक्रम विचार खोजें — नेटवर्किंग, सीखने, बाहरी, पेशेवर, क्रिएटिव और प्रभाव इवेंट। {{waitlist}}",
-        "country": "{{country}} में समुदाय खोजें या शुरू करें — स्टार्टअप सीन से लेकर छोटे व्यवसाय नेटवर्क तक। {{waitlist}}",
-        "region": "{{region}} में समुदाय खोजें या शुरू करें — पूरे क्षेत्र में मीटअप, समूह और इवेंट। {{waitlist}}"
+        "ideas": "{{city}} में 30 Origin कार्यक्रम विचार खोजें — नेटवर्किंग, सीखने, बाहरी, पेशेवर, क्रिएटिव और प्रभाव इवेंट। {{waitlist}}",
+        "country": "{{country}} में Origins खोजें या शुरू करें — स्टार्टअप सीन से लेकर छोटे व्यवसाय नेटवर्क तक। {{waitlist}}",
+        "region": "{{region}} में Origins खोजें या शुरू करें — पूरे क्षेत्र में मीटअप, समूह और इवेंट। {{waitlist}}"
       }
     }
   }

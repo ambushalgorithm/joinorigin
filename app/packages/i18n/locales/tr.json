@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "Şehre göre topluluklar",
-      "country": "Bu ülkedeki topluluklar",
-      "region": "Bu bölgedeki topluluklar",
-      "city": "Bu şehirdeki topluluklar",
-      "variant": "Topluluk türü",
-      "ideas": "Topluluk etkinliği fikirleri"
+      "hub": "Şehre göre Origins",
+      "country": "Bu ülkedeki Origins",
+      "region": "Bu bölgedeki Origins",
+      "city": "Bu şehirdeki Origins",
+      "variant": "Origin türü",
+      "ideas": "Origin etkinliği fikirleri"
     },
     "breadcrumb": {
       "home": "Ana Sayfa",
-      "hub": "Şehre Göre Topluluklar"
+      "hub": "Şehre Göre Origins"
     },
     "location": {
-      "presenceClaim": "{{city}} şehrinde bir topluluk bulun veya başlatın",
+      "presenceClaim": "{{city}} şehrinde bir Origin bulun veya başlatın",
       "hubEntity": "şehriniz",
-      "communitiesIn": "{{city}} şehrindeki topluluklar",
+      "communitiesIn": "{{city}} şehrindeki Origins",
       "cityFacts": "Şehir bilgileri",
-      "exploreCommunities": "Toplulukları keşfedin",
-      "exploreGroupTypes": "Topluluk türlerini keşfedin",
-      "groupTypesInCity": "Şehirdeki topluluk türleri",
+      "exploreCommunities": "Origins'i keşfedin",
+      "exploreGroupTypes": "Origin türlerini keşfedin",
+      "groupTypesInCity": "Şehirdeki Origin türleri",
       "flagshipCities": "Amiral şehirler",
-      "nearbyCities": "Yakın şehirlerdeki topluluklar",
-      "guidesTitle": "Topluluk başlatma rehberleri",
+      "nearbyCities": "Yakın şehirlerdeki Origins",
+      "guidesTitle": "Origin başlatma rehberleri",
       "stepByStepGuide": "Adım adım rehber",
       "ideasLink": "30 topluluk etkinliği fikri",
       "faqHeading": "Sıkça sorulan sorular",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "Tipik formatlar",
       "variantHowToTitle": "Nasıl başlanır",
       "browseLocations": "Konumlara göz atın",
-      "directoryBannerLabel": "Yerler ve Topluluklar",
+      "directoryBannerLabel": "Yerler ve Origins",
       "directoryBannerTitle": "Ağa katılın",
-      "directoryBannerCopy": "Ağdaki her yeri ve topluluğu keşfedin. Size uygun olanı bulun veya şehrinizde bir tane başlatın.",
-      "hubIntro": "Ağdaki her ülke, bölge, şehir, topluluk türü ve etkinlik fikri — aradığınız topluluğu bulun veya şehrinizde bir tane başlatın.",
-      "hubLead": "Dünyanın her yerindeki şehirlere göre toplulukları keşfedin — girişim, yaratıcı, politik, buluşma ve küçük işletme grupları.",
+      "directoryBannerCopy": "Ağdaki her yeri ve Origin'i keşfedin. Size uygun olanı bulun veya şehrinizde bir tane başlatın.",
+      "hubIntro": "Ağdaki her ülke, bölge, şehir, Origin türü ve etkinlik fikri — aradığınız Origin'i bulun veya şehrinizde bir tane başlatın.",
+      "hubLead": "Dünyanın her yerindeki şehirlere göre Origins'i keşfedin — girişim, yaratıcı, politik, buluşma ve küçük işletme grupları.",
       "directoryTotal": "Konumlara göz atın ({{count}})",
       "searchLocationsLabel": "Konumlarda ara",
-      "searchLocationsPlaceholder": "Şehre, ülkeye veya topluluk türüne göre ara",
+      "searchLocationsPlaceholder": "Şehre, ülkeye veya Origin türüne göre ara",
       "emptyState": "“{{query}}” ile eşleşen konum bulunamadı.",
       "attribution": "Konum verileri © GeoNames katkıda bulunanlar, CC BY 4.0; şehir verileri © SimpleMaps (worldcities basic), CC BY 4.0.",
       "directoryKinds": {
         "country": "Ülke",
         "region": "Bölge",
         "city": "Şehir",
-        "variant": "Topluluk türü",
-        "ideas": "Topluluk etkinliği fikirleri",
+        "variant": "Origin türü",
+        "ideas": "Origin etkinliği fikirleri",
         "fallback": "Konum"
       },
       "directorySectionTitles": {
         "countries": "Ülkeler",
         "regions": "Bölgeler",
         "cities": "Şehirler",
-        "communityTypes": "Topluluk türleri",
+        "communityTypes": "Origin türleri",
         "eventIdeas": "Etkinlik fikirleri"
       },
       "guideCardTitles": {
-        "start-a-community": "Bir topluluk başlatın",
+        "start-a-community": "Bir Origin başlatın",
         "organize-a-meetup": "Bir buluşma düzenleyin",
         "first-10-members": "İlk 10 üyenizi edinin",
         "find-a-co-founder": "Bir kurucu ortak bulun",
-        "keep-a-community-active": "Bir topluluğu aktif tutun",
-        "hybrid-communities": "Hibrit topluluklar yürütün",
-        "moderation": "Topluluğunuzu moderasyonla yönetin"
+        "keep-a-community-active": "Bir Origin'i aktif tutun",
+        "hybrid-communities": "Hibrit Origins yürütün",
+        "moderation": "Origin'inizi moderasyonla yönetin"
       },
       "countryFacts": "Ülke hakkında",
       "regionFacts": "Bölge hakkında",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "{{country}}'de toplulukları nasıl bulurum?",
-          "communitiesAnswer": "/location merkezi {{country}}'deki tüm toplulukları listeler. Startup, yaratıcı, siyasi, buluşma ve küçük işletme topluluk türlerini — {{cities}} dahil — keşfedin.",
+          "communitiesQuestion": "{{country}}'de Origins'i nasıl bulurum?",
+          "communitiesAnswer": "/location merkezi {{country}}'deki tüm Origins'i listeler. Startup, yaratıcı, siyasi, buluşma ve küçük işletme Origin türlerini — {{cities}} dahil — keşfedin.",
           "populationQuestion": "{{country}}'de kaç kişi yaşıyor?",
           "populationAnswer": "Veri seti {{country}} için {{population}} nüfus kaydediyor.",
           "capitalQuestion": "{{country}}'nin başkenti neresidir?",
@@ -645,53 +645,53 @@
           "languageQuestion": "{{country}}'de hangi diller konuşuluyor?",
           "languageAnswer": "{{country}}'de konuşulan diller arasında {{languages}} bulunur.",
           "operationQuestion": "JoinOrigin {{country}}'de faaliyet gösteriyor mu?",
-          "operationAnswer": "Evet. JoinOrigin'in yerel ofisleri yoktur. Platform, insanların {{country}}'nin her yerinde topluluk bulmasına veya başlatmasına yardımcı olur."
+          "operationAnswer": "Evet. JoinOrigin'in yerel ofisleri yoktur. Platform, insanların {{country}}'nin her yerinde Origins bulmasına veya başlatmasına yardımcı olur."
         },
         "region": {
-          "communitiesQuestion": "{{region}}'de toplulukları nasıl bulurum?",
-          "communitiesAnswer": "{{region}}'deki şehir sayfalarını — {{cities}} — keşfedin veya kendi topluluğunuzu başlatın. /location merkezi {{region}}'deki tüm topluluk türlerini listeler.",
+          "communitiesQuestion": "{{region}}'de Origins'i nasıl bulurum?",
+          "communitiesAnswer": "{{region}}'deki şehir sayfalarını — {{cities}} — keşfedin veya kendi Origin'inizi başlatın. /location merkezi {{region}}'deki tüm Origin türlerini listeler.",
           "countryQuestion": "{{region}} hangi ülkededir?",
           "countryAnswer": "{{region}}, başkenti {{capital}} olan {{country}}'nin bir parçasıdır.",
           "languageQuestion": "{{region}}'de hangi diller konuşuluyor?",
           "languageAnswer": "{{region}}'de konuşulan diller arasında {{languages}} bulunur.",
           "operationQuestion": "JoinOrigin {{region}}'de faaliyet gösteriyor mu?",
-          "operationAnswer": "Evet. JoinOrigin'in yerel ofisleri yoktur. Platform, insanların {{region}}'nin her yerinde topluluk bulmasına veya başlatmasına yardımcı olur."
+          "operationAnswer": "Evet. JoinOrigin'in yerel ofisleri yoktur. Platform, insanların {{region}}'nin her yerinde Origins bulmasına veya başlatmasına yardımcı olur."
         }
       }
     },
     "groupTypes": {
-      "startup": "Girişim toplulukları",
-      "creative": "Yaratıcı ve tasarım toplulukları",
-      "political": "Siyasi ve sivil topluluklar",
-      "meetup": "Topluluk buluşmaları ve etkinlikleri",
-      "smallBusiness": "Küçük işletme toplulukları"
+      "startup": "Girişim Origins",
+      "creative": "Yaratıcı ve tasarım Origins",
+      "political": "Siyasi ve sivil Origins",
+      "meetup": "Origin buluşmaları ve etkinlikleri",
+      "smallBusiness": "Küçük işletme Origins"
     },
     "guides": {
       "eyebrow": "Nasıl yapılır rehberi",
-      "hubEyebrow": "Topluluk kurma",
-      "hubTitle": "Topluluk Kurma Rehberleri",
+      "hubEyebrow": "Origins kurma",
+      "hubTitle": "Origins Kurma Rehberleri",
       "allGuides": "Tüm rehberler",
       "glossarySection": "Topluluk İşletim Sistemi sözlüğü",
       "startLocal": "Yerelden başlayın",
-      "cityCardBody": "{{city}} şehrindeki gerçek mekanları, grupları ve rehberleri keşfedin.",
+      "cityCardBody": "{{city}} şehrindeki Origins'in arkasındaki yerel alanları ve insanları keşfedin.",
       "overview": "Genel bakış",
       "stepByStep": "Adım adım",
       "stepNumber": "Adım {{number}}.",
       "relatedGuides": "İlgili rehberler",
-      "exploreCommunities": "Toplulukları keşfedin",
+      "exploreCommunities": "Origins'i keşfedin",
       "howJoinOriginHelps": "JoinOrigin nasıl yardımcı olabilir",
       "keepLearning": "Öğrenmeye devam edin",
       "translatePage": "Bu sayfayı çevir",
-      "hubLead": "Grupları bulmak, katılmak ve başlatmak — ve yaratıcının kontrolündeki bir odada iletişim kurmak için on iki pratik, kalıcı nasıl yapılır rehberi. Bir fikri yayınlamaktan sağlıklı moderasyona kadar.",
+      "hubLead": "Origins başlatmak ve büyütmek — ve yaratıcının kontrolündeki bir odada iletişim kurmak için on iki pratik, kalıcı nasıl yapılır rehberi. Bir fikri yayınlamaktan sağlıklı moderasyona kadar.",
       "searchLabel": "Rehberlerde ara",
       "searchPlaceholder": "Rehber başlığına veya anahtar kelimeye göre ara",
       "emptyState": "“{{query}}” ile eşleşen rehber bulunamadı.",
       "glossaryBandCopy": "Grupların, odaların, moderasyonun, karşılama süreçlerinin ve etkileşim döngülerinin arkasındaki temel terimleri <1>{{glossary}}</1> içinde öğrenin.",
-      "universalCopy": "Rehberler evrenseldir — topluluklar yereldir. Size yakın bir şehirde bir topluluk bulun veya başlatın:",
+      "universalCopy": "Origins doğası gereği çevrimiçidir ve ayrıca yerel bir alana da sahip olabilir. Size yakın bir Origin bulun veya başlatın:",
       "continueBuilding": "Serideki bir sonraki rehberle inşa etmeye devam edin.",
       "practiceInCity": "Bu adımları gerçek bir şehirde uygulamaya koyun.",
-      "howJoinOriginHelpsBody": "JoinOrigin, toplulukları bulmanıza veya başlatmanıza yardımcı olan bir topluluk işletim sistemidir — yukarıdaki adımlar platformda ve hâlihazırda kullandığınız araçlarla çalışır. JoinOrigin; yapıyı, keşfedilmeyi ve organizasyonu yönetir, böylece siz üyelerinize odaklanabilirsiniz. Başlayın'a tıklayın ve keşfedilin.",
-      "keepLearningGuides": "<1>Topluluk Kurma merkezindeki</1> tüm rehberlere göz atın.",
+      "howJoinOriginHelpsBody": "JoinOrigin, Origins bulmanıza veya başlatmanıza yardımcı olan bir topluluk işletim sistemidir — yukarıdaki adımlar platformda ve hâlihazırda kullandığınız araçlarla çalışır. JoinOrigin; yapıyı, keşfedilmeyi ve organizasyonu yönetir, böylece siz üyelerinize odaklanabilirsiniz. Başlayın'a tıklayın ve keşfedilin.",
+      "keepLearningGuides": "<1>Origins Kurma merkezindeki</1> tüm rehberlere göz atın.",
       "keepLearningGlossary": "<1>Topluluk İşletim Sistemi sözlüğündeki</1> temel terimleri öğrenin.",
       "keepLearningLocations": "Yerelden başlamak için <1>konumlar merkezinde</1> bir şehir sayfası bulun."
     },
@@ -751,17 +751,17 @@
     "metadata": {
       "waitlistPhrase": "Origin'e katılın ve bugün keşfedilin.",
       "title": {
-        "communitiesIn": "{{name}} şehrindeki topluluklar",
-        "communitiesInWithRegion": "{{name}}, {{region}} şehrindeki topluluklar",
+        "communitiesIn": "{{name}} şehrindeki Origins",
+        "communitiesInWithRegion": "{{name}}, {{region}} şehrindeki Origins",
         "variantIn": "{{name}} şehrindeki {{label}}",
-        "ideasIn": "{{name}} şehrinde 30 topluluk etkinliği fikri"
+        "ideasIn": "{{name}} şehrinde 30 Origin etkinliği fikri"
       },
       "description": {
-        "city": "{{city}} şehrinde topluluklar bulun veya başlatın — girişim, yaratıcı, siyasi, buluşma ve küçük işletme grupları. {{waitlist}}",
+        "city": "{{city}} şehrinde Origins bulun veya başlatın — girişim, yaratıcı, siyasi, buluşma ve küçük işletme grupları. {{waitlist}}",
         "variant": "{{city}} şehrinde {{label}} bulun veya başlatın — gerçek mekanlar, gruplar ve nasıl yapılır rehberleri. {{waitlist}}",
-        "ideas": "{{city}} şehrinde 30 topluluk etkinliği fikri keşfedin — ağ kurma, öğrenme, açık hava, profesyonel, yaratıcı ve etki etkinlikleri. {{waitlist}}",
-        "country": "{{country}} ülkesinde topluluklar bulun veya başlatın — girişim sahnelerinden küçük işletme ağlarına. {{waitlist}}",
-        "region": "{{region}} bölgesinde topluluklar bulun veya başlatın — bölge genelinde buluşmalar, gruplar ve etkinlikler. {{waitlist}}"
+        "ideas": "{{city}} şehrinde 30 Origin etkinliği fikri keşfedin — ağ kurma, öğrenme, açık hava, profesyonel, yaratıcı ve etki etkinlikleri. {{waitlist}}",
+        "country": "{{country}} ülkesinde Origins bulun veya başlatın — girişim sahnelerinden küçük işletme ağlarına. {{waitlist}}",
+        "region": "{{region}} bölgesinde Origins bulun veya başlatın — bölge genelinde buluşmalar, gruplar ve etkinlikler. {{waitlist}}"
       }
     }
   }

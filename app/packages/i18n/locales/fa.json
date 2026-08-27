@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "جوامع بر اساس شهر",
-      "country": "جوامع در این کشور",
-      "region": "جوامع در این منطقه",
-      "city": "جوامع در این شهر",
-      "variant": "نوع جامعه",
-      "ideas": "ایده‌های رویداد جامعه"
+      "hub": "Origins بر اساس شهر",
+      "country": "Origins در این کشور",
+      "region": "Origins در این منطقه",
+      "city": "Origins در این شهر",
+      "variant": "نوع Origin",
+      "ideas": "ایده‌های رویداد Origin"
     },
     "breadcrumb": {
       "home": "خانه",
-      "hub": "جوامع بر اساس شهر"
+      "hub": "Origins بر اساس شهر"
     },
     "location": {
-      "presenceClaim": "یک جامعه در {{city}} پیدا کنید یا راه‌اندازی کنید",
+      "presenceClaim": "یک Origin در {{city}} پیدا کنید یا راه‌اندازی کنید",
       "hubEntity": "شهر خود",
-      "communitiesIn": "جوامع در {{city}}",
+      "communitiesIn": "Origins در {{city}}",
       "cityFacts": "حقایق شهر",
-      "exploreCommunities": "کاوش جوامع",
-      "exploreGroupTypes": "کاوش انواع جوامع",
-      "groupTypesInCity": "انواع جوامع در شهر",
+      "exploreCommunities": "کاوش Origins",
+      "exploreGroupTypes": "کاوش انواع Origin",
+      "groupTypesInCity": "انواع Origin در شهر",
       "flagshipCities": "شهرهای شاخص",
-      "nearbyCities": "جوامع در شهرهای نزدیک",
-      "guidesTitle": "راهنماهای راه‌اندازی جامعه",
+      "nearbyCities": "Origins در شهرهای نزدیک",
+      "guidesTitle": "راهنماهای راه‌اندازی Origin",
       "stepByStepGuide": "راهنمای گام‌به‌گام",
       "ideasLink": "۳۰ ایده رویداد جامعه",
       "faqHeading": "پرسش‌های پرتکرار",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "قالبهای معمول",
       "variantHowToTitle": "چگونه شروع کنیم",
       "browseLocations": "مرور مکان‌ها",
-      "directoryBannerLabel": "مکان‌ها و جوامع",
+      "directoryBannerLabel": "مکان‌ها و Origins",
       "directoryBannerTitle": "به شبکه بپیوندید",
-      "directoryBannerCopy": "هر مکان و جامعه‌ای در شبکه را مرور کنید. مورد مناسب خود را بیابید یا یکی در شهر خود راه‌اندازی کنید.",
-      "hubIntro": "هر کشور، منطقه، شهر، نوع جامعه و ایده رویداد در شبکه — جامعه‌ای را که به دنبالش هستید پیدا کنید یا یکی در شهر خود راه‌اندازی کنید.",
-      "hubLead": "جوامع را بر اساس شهر در سراسر جهان کاوش کنید — گروه‌های استارتاپی، خلاق، سیاسی، ملاقات و مشاغل کوچک.",
+      "directoryBannerCopy": "هر مکان و Origin در شبکه را مرور کنید. مورد مناسب خود را بیابید یا یکی در شهر خود راه‌اندازی کنید.",
+      "hubIntro": "هر کشور، منطقه، شهر، نوع Origin و ایده رویداد در شبکه — Origin مورد نظر خود را پیدا کنید یا یکی در شهر خود راه‌اندازی کنید.",
+      "hubLead": "Origins را بر اساس شهر در سراسر جهان کاوش کنید — گروه‌های استارتاپی، خلاق، سیاسی، ملاقات و مشاغل کوچک.",
       "directoryTotal": "مرور مکان‌ها ({{count}})",
       "searchLocationsLabel": "جستجوی مکان‌ها",
-      "searchLocationsPlaceholder": "جستجو بر اساس شهر، کشور یا نوع جامعه",
+      "searchLocationsPlaceholder": "جستجو بر اساس شهر، کشور یا نوع Origin",
       "emptyState": "هیچ مکانی با «{{query}}» مطابقت ندارد.",
       "attribution": "داده‌های مکان © مشارکت‌کنندگان GeoNames، CC BY 4.0؛ داده‌های شهر © SimpleMaps (worldcities basic)، CC BY 4.0.",
       "directoryKinds": {
         "country": "کشور",
         "region": "منطقه",
         "city": "شهر",
-        "variant": "نوع جامعه",
-        "ideas": "ایده‌های رویداد جامعه",
+        "variant": "نوع Origin",
+        "ideas": "ایده‌های رویداد Origin",
         "fallback": "مکان"
       },
       "directorySectionTitles": {
         "countries": "کشورها",
         "regions": "منطقه‌ها",
         "cities": "شهرها",
-        "communityTypes": "انواع جامعه",
+        "communityTypes": "انواع Origin",
         "eventIdeas": "ایده‌های رویداد"
       },
       "guideCardTitles": {
-        "start-a-community": "راه‌اندازی یک جامعه",
+        "start-a-community": "راه‌اندازی یک Origin",
         "organize-a-meetup": "سازمان‌دهی یک گردهمایی",
         "first-10-members": "۱۰ عضو اول را جذب کنید",
         "find-a-co-founder": "هم‌بنیان‌گذار پیدا کنید",
-        "keep-a-community-active": "جامعه را فعال نگه دارید",
-        "hybrid-communities": "جوامع ترکیبی بسازید",
-        "moderation": "جامعهٔ خود را مدیریت کنید"
+        "keep-a-community-active": "Origin را فعال نگه دارید",
+        "hybrid-communities": "Origins ترکیبی بسازید",
+        "moderation": "Origin خود را مدیریت کنید"
       },
       "countryFacts": "حقایق کشور",
       "regionFacts": "حقایق منطقه",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "چگونه جوامع را در {{country}} پیدا کنم؟",
-          "communitiesAnswer": "مرکز /location همه جوامع را در {{country}} فهرست می‌کند. انواع جامعه — استارتاپ، خلاق، سیاسی، دیدار و کسب‌وکار کوچک — را از جمله در {{cities}} بررسی کنید.",
+          "communitiesQuestion": "چگونه Origins را در {{country}} پیدا کنم؟",
+          "communitiesAnswer": "مرکز /location همه Origins را در {{country}} فهرست می‌کند. انواع Origin — استارتاپ، خلاق، سیاسی، دیدار و کسب‌وکار کوچک — را از جمله در {{cities}} بررسی کنید.",
           "populationQuestion": "چند نفر در {{country}} زندگی می‌کنند؟",
           "populationAnswer": "مجموعه داده جمعیت {{population}} را برای {{country}} ثبت می‌کند.",
           "capitalQuestion": "پایتخت {{country}} چیست؟",
@@ -645,53 +645,53 @@
           "languageQuestion": "در {{country}} چه زبان‌هایی صحبت می‌شود؟",
           "languageAnswer": "زبان‌های رایج در {{country}} شامل {{languages}} است.",
           "operationQuestion": "آیا JoinOrigin در {{country}} فعالیت می‌کند؟",
-          "operationAnswer": "بله. JoinOrigin دفتر محلی ندارد. این پلتفرم به افراد کمک می‌کند در هر جای {{country}} جامعه‌ای پیدا کنند یا ایجاد کنند."
+          "operationAnswer": "بله. JoinOrigin دفتر محلی ندارد. این پلتفرم به افراد کمک می‌کند در هر جای {{country}} Origin پیدا کنند یا ایجاد کنند."
         },
         "region": {
-          "communitiesQuestion": "چگونه جوامع را در {{region}} پیدا کنم؟",
-          "communitiesAnswer": "صفحه‌های شهرها را در {{region}} — {{cities}} — بررسی کنید یا جامعه خود را ایجاد کنید. مرکز /location همه انواع جامعه را در {{region}} فهرست می‌کند.",
+          "communitiesQuestion": "چگونه Origins را در {{region}} پیدا کنم؟",
+          "communitiesAnswer": "صفحه‌های شهرها را در {{region}} — {{cities}} — بررسی کنید یا Origin خود را ایجاد کنید. مرکز /location همه انواع Origin را در {{region}} فهرست می‌کند.",
           "countryQuestion": "{{region}} در کدام کشور قرار دارد؟",
           "countryAnswer": "{{region}} بخشی از {{country}} است که پایتخت آن {{capital}} است.",
           "languageQuestion": "در {{region}} چه زبان‌هایی صحبت می‌شود؟",
           "languageAnswer": "زبان‌های رایج در {{region}} شامل {{languages}} است.",
           "operationQuestion": "آیا JoinOrigin در {{region}} فعالیت می‌کند؟",
-          "operationAnswer": "بله. JoinOrigin دفتر محلی ندارد. این پلتفرم به افراد کمک می‌کند در هر جای {{region}} جامعه‌ای پیدا کنند یا ایجاد کنند."
+          "operationAnswer": "بله. JoinOrigin دفتر محلی ندارد. این پلتفرم به افراد کمک می‌کند در هر جای {{region}} Origin پیدا کنند یا ایجاد کنند."
         }
       }
     },
     "groupTypes": {
-      "startup": "جوامع استارتاپی",
-      "creative": "جوامع خلاق و طراحی",
-      "political": "جوامع سیاسی و مدنی",
-      "meetup": "گردهمایی‌ها و رویدادهای جامعه",
-      "smallBusiness": "جوامع کسب‌وکار کوچک"
+      "startup": "Origins استارتاپی",
+      "creative": "Origins خلاق و طراحی",
+      "political": "Origins سیاسی و مدنی",
+      "meetup": "گردهمایی‌ها و رویدادهای Origin",
+      "smallBusiness": "Origins کسب‌وکار کوچک"
     },
     "guides": {
       "eyebrow": "راهنمای آموزشی",
-      "hubEyebrow": "ساخت جامعه",
-      "hubTitle": "راهنماهای ساخت جامعه",
+      "hubEyebrow": "ساخت Origins",
+      "hubTitle": "راهنماهای ساخت Origins",
       "allGuides": "همه راهنماها",
       "glossarySection": "واژه‌نامه سیستم جامعه",
       "startLocal": "محلی شروع کنید",
-      "cityCardBody": "مکان‌ها، گروه‌ها و راهنماهای واقعی در {{city}} را کاوش کنید.",
+      "cityCardBody": "فضاهای محلی و افراد پشت Origins در {{city}} را کاوش کنید.",
       "overview": "مرور کلی",
       "stepByStep": "گام‌به‌گام",
       "stepNumber": "گام {{number}}.",
       "relatedGuides": "راهنماهای مرتبط",
-      "exploreCommunities": "کاوش جوامع",
+      "exploreCommunities": "کاوش Origins",
       "howJoinOriginHelps": "چگونه JoinOrigin می‌تواند کمک کند",
       "keepLearning": "به یادگیری ادامه دهید",
       "translatePage": "ترجمه این صفحه",
-      "hubLead": "دوازده راهنمای عملی و همیشگی برای یافتن، پیوستن و راه‌اندازی گروه‌ها — و ارتباط در اتاقی که سازنده کنترل می‌کند. از انتشار یک ایده تا مدیریت سالم.",
+      "hubLead": "دوازده راهنمای عملی و همیشگی برای راه‌اندازی و رشد Origins — و ارتباط در اتاقی که سازنده کنترل می‌کند. از انتشار یک ایده تا مدیریت سالم.",
       "searchLabel": "جستجوی راهنماها",
       "searchPlaceholder": "جستجو بر اساس عنوان راهنما یا کلیدواژه",
       "emptyState": "هیچ راهنمایی با «{{query}}» مطابقت ندارد.",
       "glossaryBandCopy": "اصطلاحات اصلی پشت گروه‌ها، اتاق‌ها، مدیریت، پذیرش و حلقه‌های مشارکت را در <1>{{glossary}}</1> بیاموزید.",
-      "universalCopy": "راهنماها جهانی هستند — جوامع محلی‌اند. جامعه‌ای در شهری نزدیک خود پیدا کنید یا راه‌اندازی کنید:",
+      "universalCopy": "Origins ذاتاً آنلاین هستند و می‌توانند فضای محلی نیز داشته باشند. یک Origin در نزدیکی خود پیدا کنید یا راه‌اندازی کنید:",
       "continueBuilding": "ساخت را با راهنمای بعدی این مجموعه ادامه دهید.",
       "practiceInCity": "این گام‌ها را در یک شهر واقعی به کار بگیرید.",
-      "howJoinOriginHelpsBody": "JoinOrigin یک سیستم‌عامل جامعه است که به شما در یافتن یا راه‌اندازی جوامع کمک می‌کند — گام‌های بالا روی پلتفرم و با ابزارهایی که از قبل دارید کار می‌کنند. JoinOrigin ساختار، کشف و سازمان‌دهی را بر عهده می‌گیرد تا شما بتوانید روی اعضای خود تمرکز کنید. روی «شروع کنید» کلیک کنید و دیده شوید.",
-      "keepLearningGuides": "همه راهنماها را در <1>مرکز ساخت جامعه</1> مرور کنید.",
+      "howJoinOriginHelpsBody": "JoinOrigin یک سیستم‌عامل جامعه است که به شما در یافتن یا راه‌اندازی Origins کمک می‌کند — گام‌های بالا روی پلتفرم و با ابزارهایی که از قبل دارید کار می‌کنند. JoinOrigin ساختار، کشف و سازمان‌دهی را بر عهده می‌گیرد تا شما بتوانید روی اعضای خود تمرکز کنید. روی «شروع کنید» کلیک کنید و دیده شوید.",
+      "keepLearningGuides": "همه راهنماها را در <1>مرکز ساخت Origins</1> مرور کنید.",
       "keepLearningGlossary": "اصطلاحات اصلی را در <1>واژه‌نامهٔ سیستم جامعه</1> بیاموزید.",
       "keepLearningLocations": "برای شروع محلی، صفحه‌ای از شهر را در <1>مرکز مکان‌ها</1> پیدا کنید."
     },
@@ -751,17 +751,17 @@
     "metadata": {
       "waitlistPhrase": "به Origin بپیوندید و همین امروز دیده شوید.",
       "title": {
-        "communitiesIn": "جوامع در {{name}}",
-        "communitiesInWithRegion": "جوامع در {{name}}، {{region}}",
+        "communitiesIn": "Origins در {{name}}",
+        "communitiesInWithRegion": "Origins در {{name}}، {{region}}",
         "variantIn": "{{label}} در {{name}}",
-        "ideasIn": "۳۰ ایده رویداد جامعه در {{name}}"
+        "ideasIn": "۳۰ ایده رویداد Origin در {{name}}"
       },
       "description": {
-        "city": "جوامعی را در {{city}} پیدا کنید یا راه‌اندازی کنید — گروه‌های استارتاپی، خلاق، سیاسی، گردهمایی و کسب‌وکار کوچک. {{waitlist}}",
+        "city": "Origins را در {{city}} پیدا کنید یا راه‌اندازی کنید — گروه‌های استارتاپی، خلاق، سیاسی، گردهمایی و کسب‌وکار کوچک. {{waitlist}}",
         "variant": "{{label}} را در {{city}} پیدا کنید یا راه‌اندازی کنید — مکان‌ها، گروه‌ها و راهنماهای واقعی. {{waitlist}}",
-        "ideas": "۳۰ ایده رویداد جامعه را در {{city}} کشف کنید — رویدادهای شبکه‌ای، یادگیری، فضای باز، حرفه‌ای، خلاق و تأثیرگذار. {{waitlist}}",
-        "country": "جوامعی را در {{country}} پیدا کنید یا راه‌اندازی کنید — از صحنه‌های استارتاپی تا شبکه‌های کسب‌وکار کوچک. {{waitlist}}",
-        "region": "جوامعی را در {{region}} پیدا کنید یا راه‌اندازی کنید — گردهمایی‌ها، گروه‌ها و رویدادها در سراسر منطقه. {{waitlist}}"
+        "ideas": "۳۰ ایده رویداد Origin را در {{city}} کشف کنید — رویدادهای شبکه‌ای، یادگیری، فضای باز، حرفه‌ای، خلاق و تأثیرگذار. {{waitlist}}",
+        "country": "Origins را در {{country}} پیدا کنید یا راه‌اندازی کنید — از صحنه‌های استارتاپی تا شبکه‌های کسب‌وکار کوچک. {{waitlist}}",
+        "region": "Origins را در {{region}} پیدا کنید یا راه‌اندازی کنید — گردهمایی‌ها، گروه‌ها و رویدادها در سراسر منطقه. {{waitlist}}"
       }
     }
   }

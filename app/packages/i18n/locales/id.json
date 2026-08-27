@@ -560,28 +560,28 @@
   },
   "seoContent": {
     "eyebrow": {
-      "hub": "Komunitas per kota",
-      "country": "Komunitas di negara ini",
-      "region": "Komunitas di wilayah ini",
-      "city": "Komunitas di kota ini",
-      "variant": "Jenis komunitas",
-      "ideas": "Ide acara komunitas"
+      "hub": "Origins per kota",
+      "country": "Origins di negara ini",
+      "region": "Origins di wilayah ini",
+      "city": "Origins di kota ini",
+      "variant": "Jenis Origin",
+      "ideas": "Ide acara Origin"
     },
     "breadcrumb": {
       "home": "Beranda",
-      "hub": "Komunitas per Kota"
+      "hub": "Origins per Kota"
     },
     "location": {
-      "presenceClaim": "Temukan atau mulai komunitas di {{city}}",
+      "presenceClaim": "Temukan atau mulai Origin di {{city}}",
       "hubEntity": "kota Anda",
-      "communitiesIn": "Komunitas di {{city}}",
+      "communitiesIn": "Origins di {{city}}",
       "cityFacts": "Fakta kota",
-      "exploreCommunities": "Jelajahi komunitas",
-      "exploreGroupTypes": "Jelajahi jenis komunitas",
-      "groupTypesInCity": "Jenis komunitas di kota ini",
+      "exploreCommunities": "Jelajahi Origins",
+      "exploreGroupTypes": "Jelajahi jenis Origin",
+      "groupTypesInCity": "Jenis Origin di kota ini",
       "flagshipCities": "Kota utama",
-      "nearbyCities": "Komunitas di kota sekitar",
-      "guidesTitle": "Panduan memulai komunitas",
+      "nearbyCities": "Origins di kota sekitar",
+      "guidesTitle": "Panduan memulai Origin",
       "stepByStepGuide": "Panduan langkah demi langkah",
       "ideasLink": "30 ide acara komunitas",
       "faqHeading": "Pertanyaan yang sering diajukan",
@@ -590,39 +590,39 @@
       "variantFormatsTitle": "Format umum",
       "variantHowToTitle": "Cara memulai",
       "browseLocations": "Jelajahi lokasi",
-      "directoryBannerLabel": "Tempat dan Komunitas",
+      "directoryBannerLabel": "Tempat dan Origins",
       "directoryBannerTitle": "Gabung ke jaringan",
-      "directoryBannerCopy": "Jelajahi setiap tempat dan komunitas di jaringan. Temukan yang cocok untuk Anda, atau mulailah satu di kota Anda.",
-      "hubIntro": "Setiap negara, wilayah, kota, jenis komunitas, dan ide acara di jaringan — temukan komunitas yang Anda cari atau mulailah satu di kota Anda.",
-      "hubLead": "Jelajahi komunitas per kota di seluruh dunia — grup startup, kreatif, politik, meetup, dan usaha kecil.",
+      "directoryBannerCopy": "Jelajahi setiap tempat dan Origin di jaringan. Temukan yang cocok untuk Anda, atau mulailah satu di kota Anda.",
+      "hubIntro": "Setiap negara, wilayah, kota, jenis Origin, dan ide acara di jaringan — temukan Origin yang Anda cari atau mulailah satu di kota Anda.",
+      "hubLead": "Jelajahi Origins per kota di seluruh dunia — grup startup, kreatif, politik, meetup, dan usaha kecil.",
       "directoryTotal": "Jelajahi lokasi ({{count}})",
       "searchLocationsLabel": "Cari lokasi",
-      "searchLocationsPlaceholder": "Cari berdasarkan kota, negara, atau jenis komunitas",
+      "searchLocationsPlaceholder": "Cari berdasarkan kota, negara, atau jenis Origin",
       "emptyState": "Tidak ada lokasi yang cocok dengan “{{query}}”.",
       "attribution": "Data lokasi © kontributor GeoNames, CC BY 4.0; data kota © SimpleMaps (worldcities basic), CC BY 4.0.",
       "directoryKinds": {
         "country": "Negara",
         "region": "Wilayah",
         "city": "Kota",
-        "variant": "Jenis komunitas",
-        "ideas": "Ide acara komunitas",
+        "variant": "Jenis Origin",
+        "ideas": "Ide acara Origin",
         "fallback": "Lokasi"
       },
       "directorySectionTitles": {
         "countries": "Negara",
         "regions": "Wilayah",
         "cities": "Kota",
-        "communityTypes": "Jenis komunitas",
+        "communityTypes": "Jenis Origin",
         "eventIdeas": "Ide acara"
       },
       "guideCardTitles": {
-        "start-a-community": "Mulai sebuah komunitas",
+        "start-a-community": "Mulai sebuah Origin",
         "organize-a-meetup": "Selenggarakan meetup",
         "first-10-members": "Dapatkan 10 anggota pertama Anda",
         "find-a-co-founder": "Temukan co-founder",
-        "keep-a-community-active": "Jaga komunitas tetap aktif",
-        "hybrid-communities": "Jalankan komunitas hibrida",
-        "moderation": "Moderasi komunitas Anda"
+        "keep-a-community-active": "Jaga Origin tetap aktif",
+        "hybrid-communities": "Jalankan Origins hibrida",
+        "moderation": "Moderasi Origin Anda"
       },
       "countryFacts": "Fakta negara",
       "regionFacts": "Fakta wilayah",
@@ -636,8 +636,8 @@
       },
       "faqTemplates": {
         "country": {
-          "communitiesQuestion": "Bagaimana cara menemukan komunitas di {{country}}?",
-          "communitiesAnswer": "Hub /location mencantumkan semua komunitas di {{country}}. Jelajahi jenis komunitas — startup, kreatif, politik, meetup, dan usaha kecil — termasuk di {{cities}}.",
+          "communitiesQuestion": "Bagaimana cara menemukan Origins di {{country}}?",
+          "communitiesAnswer": "Hub /location mencantumkan semua Origins di {{country}}. Jelajahi jenis Origin — startup, kreatif, politik, meetup, dan usaha kecil — termasuk di {{cities}}.",
           "populationQuestion": "Berapa jumlah penduduk di {{country}}?",
           "populationAnswer": "Dataset mencatat populasi {{population}} untuk {{country}}.",
           "capitalQuestion": "Apa ibu kota {{country}}?",
@@ -645,53 +645,53 @@
           "languageQuestion": "Bahasa apa yang digunakan di {{country}}?",
           "languageAnswer": "Bahasa yang digunakan di {{country}} meliputi {{languages}}.",
           "operationQuestion": "Apakah JoinOrigin beroperasi di {{country}}?",
-          "operationAnswer": "Ya. JoinOrigin tidak memiliki kantor lokal. Platform ini membantu orang menemukan atau memulai komunitas di mana pun di {{country}}."
+          "operationAnswer": "Ya. JoinOrigin tidak memiliki kantor lokal. Platform ini membantu orang menemukan atau memulai Origins di mana pun di {{country}}."
         },
         "region": {
-          "communitiesQuestion": "Bagaimana cara menemukan komunitas di {{region}}?",
-          "communitiesAnswer": "Jelajahi halaman kota di {{region}} — {{cities}} — atau mulai komunitas Anda sendiri. Hub /location mencantumkan semua jenis komunitas di {{region}}.",
+          "communitiesQuestion": "Bagaimana cara menemukan Origins di {{region}}?",
+          "communitiesAnswer": "Jelajahi halaman kota di {{region}} — {{cities}} — atau mulai Origin Anda sendiri. Hub /location mencantumkan semua jenis Origin di {{region}}.",
           "countryQuestion": "{{region}} berada di negara apa?",
           "countryAnswer": "{{region}} adalah bagian dari {{country}} yang ibu kotanya {{capital}}.",
           "languageQuestion": "Bahasa apa yang digunakan di {{region}}?",
           "languageAnswer": "Bahasa yang digunakan di {{region}} meliputi {{languages}}.",
           "operationQuestion": "Apakah JoinOrigin beroperasi di {{region}}?",
-          "operationAnswer": "Ya. JoinOrigin tidak memiliki kantor lokal. Platform ini membantu orang menemukan atau memulai komunitas di mana pun di {{region}}."
+          "operationAnswer": "Ya. JoinOrigin tidak memiliki kantor lokal. Platform ini membantu orang menemukan atau memulai Origins di mana pun di {{region}}."
         }
       }
     },
     "groupTypes": {
-      "startup": "Komunitas startup",
-      "creative": "Komunitas kreatif & desain",
-      "political": "Komunitas politik & sipil",
-      "meetup": "Meetup & acara komunitas",
-      "smallBusiness": "Komunitas usaha kecil"
+      "startup": "Origins startup",
+      "creative": "Origins kreatif & desain",
+      "political": "Origins politik & sipil",
+      "meetup": "Meetup & acara Origin",
+      "smallBusiness": "Origins usaha kecil"
     },
     "guides": {
       "eyebrow": "Panduan cara",
-      "hubEyebrow": "Membangun komunitas",
-      "hubTitle": "Panduan Membangun Komunitas",
+      "hubEyebrow": "Membangun Origins",
+      "hubTitle": "Panduan Membangun Origins",
       "allGuides": "Semua panduan",
       "glossarySection": "Glosarium OS Komunitas",
       "startLocal": "Mulai secara lokal",
-      "cityCardBody": "Jelajahi tempat, grup, dan panduan nyata di {{city}}.",
+      "cityCardBody": "Jelajahi ruang dan orang lokal di balik Origins di {{city}}.",
       "overview": "Ringkasan",
       "stepByStep": "Langkah demi langkah",
       "stepNumber": "Langkah {{number}}.",
       "relatedGuides": "Panduan terkait",
-      "exploreCommunities": "Jelajahi komunitas",
+      "exploreCommunities": "Jelajahi Origins",
       "howJoinOriginHelps": "Bagaimana JoinOrigin dapat membantu",
       "keepLearning": "Terus belajar",
       "translatePage": "Terjemahkan halaman ini",
-      "hubLead": "Dua belas panduan praktis yang selalu relevan untuk menemukan, bergabung dengan, dan memulai grup — serta berkomunikasi dalam ruang yang dikendalikan kreator. Dari menerbitkan ide hingga moderasi yang sehat.",
+      "hubLead": "Dua belas panduan praktis yang selalu relevan untuk memulai dan mengembangkan Origins — serta berkomunikasi dalam ruang yang dikendalikan kreator. Dari menerbitkan ide hingga moderasi yang sehat.",
       "searchLabel": "Cari panduan",
       "searchPlaceholder": "Cari berdasarkan judul panduan atau kata kunci",
       "emptyState": "Tidak ada panduan yang cocok dengan “{{query}}”.",
       "glossaryBandCopy": "Pelajari istilah inti di balik grup, ruang, moderasi, onboarding, dan lingkar keterlibatan di <1>{{glossary}}</1>.",
-      "universalCopy": "Panduan bersifat universal — komunitas bersifat lokal. Temukan atau mulai komunitas di kota dekat Anda:",
+      "universalCopy": "Origins pada dasarnya online, dan juga dapat memiliki ruang lokal. Temukan atau mulai Origin di dekat Anda:",
       "continueBuilding": "Lanjutkan membangun dengan panduan berikutnya dalam seri ini.",
       "practiceInCity": "Praktikkan langkah-langkah ini di kota yang sesungguhnya.",
-      "howJoinOriginHelpsBody": "JoinOrigin adalah OS komunitas yang membantu Anda menemukan atau memulai komunitas — langkah-langkah di atas berfungsi di platform dan dengan alat yang sudah Anda miliki. JoinOrigin menangani struktur, penemuan, dan organisasi sehingga Anda dapat fokus pada anggota Anda. Klik Mulai dan mulailah ditemukan.",
-      "keepLearningGuides": "Jelajahi semua panduan di <1>pusat Membangun Komunitas</1>.",
+      "howJoinOriginHelpsBody": "JoinOrigin adalah OS komunitas yang membantu Anda menemukan atau memulai Origins — langkah-langkah di atas berfungsi di platform dan dengan alat yang sudah Anda miliki. JoinOrigin menangani struktur, penemuan, dan organisasi sehingga Anda dapat fokus pada anggota Anda. Klik Mulai dan mulailah ditemukan.",
+      "keepLearningGuides": "Jelajahi semua panduan di <1>pusat Membangun Origins</1>.",
       "keepLearningGlossary": "Pelajari istilah inti di <1>glosarium OS Komunitas</1>.",
       "keepLearningLocations": "Temukan halaman kota di <1>pusat lokasi</1> untuk memulai secara lokal."
     },
@@ -751,17 +751,17 @@
     "metadata": {
       "waitlistPhrase": "Bergabunglah dengan Origin dan mulailah ditemukan hari ini.",
       "title": {
-        "communitiesIn": "Komunitas di {{name}}",
-        "communitiesInWithRegion": "Komunitas di {{name}}, {{region}}",
+        "communitiesIn": "Origins di {{name}}",
+        "communitiesInWithRegion": "Origins di {{name}}, {{region}}",
         "variantIn": "{{label}} di {{name}}",
-        "ideasIn": "30 ide acara komunitas di {{name}}"
+        "ideasIn": "30 ide acara Origin di {{name}}"
       },
       "description": {
-        "city": "Temukan atau mulai komunitas di {{city}} — grup startup, kreatif, politik, meetup, dan usaha kecil. {{waitlist}}",
+        "city": "Temukan atau mulai Origins di {{city}} — grup startup, kreatif, politik, meetup, dan usaha kecil. {{waitlist}}",
         "variant": "Temukan atau mulai {{label}} di {{city}} — tempat, grup, dan panduan nyata. {{waitlist}}",
-        "ideas": "Temukan 30 ide acara komunitas di {{city}} — acara jejaring, pembelajaran, luar ruangan, profesional, kreatif, dan berdampak. {{waitlist}}",
-        "country": "Temukan atau mulai komunitas di {{country}} — dari ekosistem startup hingga jaringan usaha kecil. {{waitlist}}",
-        "region": "Temukan atau mulai komunitas di {{region}} — meetup, grup, dan acara di seluruh wilayah. {{waitlist}}"
+        "ideas": "Temukan 30 ide acara Origin di {{city}} — acara jejaring, pembelajaran, luar ruangan, profesional, kreatif, dan berdampak. {{waitlist}}",
+        "country": "Temukan atau mulai Origins di {{country}} — dari ekosistem startup hingga jaringan usaha kecil. {{waitlist}}",
+        "region": "Temukan atau mulai Origins di {{region}} — meetup, grup, dan acara di seluruh wilayah. {{waitlist}}"
       }
     }
   }
