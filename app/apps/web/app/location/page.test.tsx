@@ -69,7 +69,7 @@ describe('/location hub page', () => {
     await renderHubPage();
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Communities by City');
+    expect(headings[0]).toHaveTextContent('Origins by City');
   });
 
   it('renders breadcrumbs, flagship-city links, guides, and the waitlist CTA', async () => {
@@ -77,7 +77,7 @@ describe('/location hub page', () => {
 
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('Home')).toBeInTheDocument();
-    expect(within(breadcrumbs).getByText('Communities by City')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Origins by City')).toBeInTheDocument();
 
     // TASK-480: the hub links the content-rich flagship list — every
     // content-rich city (tier-irrelevant), the active locale's country/area
@@ -90,7 +90,7 @@ describe('/location hub page', () => {
 
     // Guide cross-links.
     const guideLinks = screen.getByTestId('location-guide-links');
-    expect(within(guideLinks).getByText('Start a community')).toBeInTheDocument();
+    expect(within(guideLinks).getByText('Start an Origin')).toBeInTheDocument();
     expect(within(guideLinks).getByText('Organize a meetup')).toBeInTheDocument();
 
     // Waitlist CTA band wired to the analytics source.
@@ -120,7 +120,7 @@ describe('/location hub page', () => {
 
     // Full indexable set rendered initially (registry-driven).
     const directory = screen.getByTestId('location-hub-directory');
-    expect(within(directory).getByText('Communities in Berlin')).toBeInTheDocument();
+    expect(within(directory).getByText('Origins in Berlin')).toBeInTheDocument();
     expect(within(directory).getByText('Communities in the United States')).toBeInTheDocument();
   });
 
@@ -134,7 +134,7 @@ describe('/location hub page', () => {
     // Debounce (~180ms real time) must elapse before the visible set changes.
     await waitFor(() => {
       const directory = screen.getByTestId('location-hub-directory');
-      expect(within(directory).getByText('Communities in Berlin')).toBeInTheDocument();
+      expect(within(directory).getByText('Origins in Berlin')).toBeInTheDocument();
       expect(
         within(directory).queryByText('Communities in the United States'),
       ).not.toBeInTheDocument();
@@ -146,8 +146,8 @@ describe('/location hub page', () => {
 
     await waitFor(() => {
       const directory = screen.getByTestId('location-hub-directory');
-      expect(within(directory).getByText('Startup communities in Berlin')).toBeInTheDocument();
-      expect(within(directory).queryByText('Communities in Berlin')).not.toBeInTheDocument();
+      expect(within(directory).getByText('Startup Origins in Berlin')).toBeInTheDocument();
+      expect(within(directory).queryByText('Origins in Berlin')).not.toBeInTheDocument();
     });
   });
 
@@ -180,12 +180,12 @@ describe('/location hub page', () => {
     await waitFor(() => {
       // The Cities section keeps its Berlin match…
       const cities = screen.getByTestId('location-hub-directory-cities');
-      expect(within(cities).getByText('Communities in Berlin')).toBeInTheDocument();
+      expect(within(cities).getByText('Origins in Berlin')).toBeInTheDocument();
       // …while the Countries section collapses (no country card matches).
       expect(screen.queryByTestId('location-hub-directory-countries')).not.toBeInTheDocument();
       // Community types still match Berlin variants within their section.
       const types = screen.getByTestId('location-hub-directory-communityTypes');
-      expect(within(types).getByText('Startup communities in Berlin')).toBeInTheDocument();
+      expect(within(types).getByText('Startup Origins in Berlin')).toBeInTheDocument();
     });
   });
 
@@ -209,7 +209,7 @@ describe('/location hub page', () => {
       // Guide-link card titles resolve through the forwarded locale's
       // dictionary (not hardcoded EN).
       const guideLinks = screen.getByTestId('location-guide-links');
-      expect(within(guideLinks).getByText('Starte eine Community')).toBeInTheDocument();
+      expect(within(guideLinks).getByText('Starte ein Origin')).toBeInTheDocument();
       expect(within(guideLinks).queryByText('Start a community')).not.toBeInTheDocument();
     } finally {
       mockServerLocale.locale = 'en';
@@ -227,7 +227,7 @@ describe('/location hub page', () => {
 
       // The hub intro resolves through the route-locale dictionary.
       expect(screen.getByTestId('location-intro')).toHaveTextContent(
-        'Jedes Land, jede Region, jede Stadt, jeder Community-Typ und jede Veranstaltungsidee im Netzwerk',
+        'Jedes Land, jede Region, jede Stadt, jeder Origin-Typ und jede Veranstaltungsidee im Netzwerk',
       );
 
       // The inventory banner band mirrors the /community "Join the network"
@@ -237,7 +237,7 @@ describe('/location hub page', () => {
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          'Durchstöbere jeden Ort und jede Community im Netzwerk. Finde die, die zu dir passt, oder gründe eine in deiner Stadt.',
+          'Durchstöbere jeden Ort und jedes Origin im Netzwerk. Finde das, das zu dir passt, oder gründe eines in deiner Stadt.',
         ),
       ).toBeInTheDocument();
       const explore = screen.getByTestId('location-inventory-explore');
@@ -257,12 +257,12 @@ describe('/location hub page', () => {
     const total = buildLocationViewData(hubEntry()!).hubDirectory?.length ?? 0;
     const banner = screen.getByTestId('location-inventory-banner');
     expect(banner).toHaveTextContent(String(total));
-    expect(banner).toHaveTextContent('Places and Communities');
+    expect(banner).toHaveTextContent('Places and Origins');
 
     // BodyCopy explainer.
     expect(
       screen.getByText(
-        'Browse every place and community on the network. Find the one that fits you, or start one in your city.',
+        'Browse every place and Origin on the network. Find the one that fits you, or start one in your city.',
       ),
     ).toBeInTheDocument();
 
@@ -328,13 +328,11 @@ describe('/location hub — language toggle translation (TASK-477/TASK-481)', ()
     await renderHubPageWithToggle('en');
 
     // Initial EN surface (MenuHero h1 + presence claim + breadcrumbs).
-    expect(
-      screen.getByRole('heading', { level: 1, name: 'Communities by City' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'Origins by City' })).toBeInTheDocument();
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('Home')).toBeInTheDocument();
-    expect(within(breadcrumbs).getByText('Communities by City')).toBeInTheDocument();
-    expect(screen.getByText('Find or start a community in your city')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Origins by City')).toBeInTheDocument();
+    expect(screen.getByText('Find or start an Origin in your city')).toBeInTheDocument();
 
     // Toggle to de — the h1, claim, and breadcrumb chrome re-translate even
     // though the view model is still the EN route build.
@@ -342,13 +340,13 @@ describe('/location hub — language toggle translation (TASK-477/TASK-481)', ()
 
     await waitFor(() => {
       expect(
-        screen.getByRole('heading', { level: 1, name: 'Communities nach Stadt' }),
+        screen.getByRole('heading', { level: 1, name: 'Origins nach Stadt' }),
       ).toBeInTheDocument();
     });
-    expect(screen.getByText('Community in deiner Stadt finden oder gründen')).toBeInTheDocument();
+    expect(screen.getByText('Ein Origin in deiner Stadt finden oder gründen')).toBeInTheDocument();
     const deCrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(deCrumbs).getByText('Startseite')).toBeInTheDocument();
-    expect(within(deCrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
+    expect(within(deCrumbs).getByText('Origins nach Stadt')).toBeInTheDocument();
   });
 
   it('re-translates the hero h1, presence claim, and breadcrumbs when toggled de → en', async () => {
@@ -359,25 +357,25 @@ describe('/location hub — language toggle translation (TASK-477/TASK-481)', ()
 
     // Initial de surface.
     expect(
-      screen.getByRole('heading', { level: 1, name: 'Communities nach Stadt' }),
+      screen.getByRole('heading', { level: 1, name: 'Origins nach Stadt' }),
     ).toBeInTheDocument();
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('Startseite')).toBeInTheDocument();
-    expect(within(breadcrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
-    expect(screen.getByText('Community in deiner Stadt finden oder gründen')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Origins nach Stadt')).toBeInTheDocument();
+    expect(screen.getByText('Ein Origin in deiner Stadt finden oder gründen')).toBeInTheDocument();
 
     // Toggle to en — chrome re-translates back with the same DE view model.
     await user.click(screen.getByText('switch-en'));
 
     await waitFor(() => {
       expect(
-        screen.getByRole('heading', { level: 1, name: 'Communities by City' }),
+        screen.getByRole('heading', { level: 1, name: 'Origins by City' }),
       ).toBeInTheDocument();
     });
-    expect(screen.getByText('Find or start a community in your city')).toBeInTheDocument();
+    expect(screen.getByText('Find or start an Origin in your city')).toBeInTheDocument();
     const enCrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(enCrumbs).getByText('Home')).toBeInTheDocument();
-    expect(within(enCrumbs).getByText('Communities by City')).toBeInTheDocument();
+    expect(within(enCrumbs).getByText('Origins by City')).toBeInTheDocument();
   });
 
   it('never mixes the route-locale claim city with toggled claim chrome', async () => {
@@ -388,12 +386,14 @@ describe('/location hub — language toggle translation (TASK-477/TASK-481)', ()
     mockServerLocale.locale = 'de';
     await renderHubPageWithToggle('en');
 
-    expect(screen.getByText('Find or start a community in your city')).toBeInTheDocument();
-    expect(screen.queryByText('Find or start a community in deiner Stadt')).not.toBeInTheDocument();
+    expect(screen.getByText('Find or start an Origin in your city')).toBeInTheDocument();
+    expect(screen.queryByText('Find or start an Origin in deiner Stadt')).not.toBeInTheDocument();
 
     await user.click(screen.getByText('switch-de'));
     await waitFor(() => {
-      expect(screen.getByText('Community in deiner Stadt finden oder gründen')).toBeInTheDocument();
+      expect(
+        screen.getByText('Ein Origin in deiner Stadt finden oder gründen'),
+      ).toBeInTheDocument();
     });
     expect(
       screen.queryByText('Community in your city finden oder gründen'),

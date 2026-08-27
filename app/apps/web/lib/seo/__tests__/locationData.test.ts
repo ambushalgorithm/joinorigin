@@ -79,8 +79,8 @@ describe('lib/seo locationData — 5-type group-type taxonomy', () => {
     // Display labels come from the seoContent.groupTypes.* chrome (TASK-416),
     // never from the config — the config carries keys only.
     expect(getGroupType('meetup').key).toBe('meetup');
-    expect(groupTypeLabel('small-business')).toBe('Small business communities');
-    expect(groupTypeLabel('startup')).toBe('Startup communities');
+    expect(groupTypeLabel('small-business')).toBe('Small business Origins');
+    expect(groupTypeLabel('startup')).toBe('Startup Origins');
   });
 
   it('reserves the ideas slug for idea pages (§3.4)', () => {

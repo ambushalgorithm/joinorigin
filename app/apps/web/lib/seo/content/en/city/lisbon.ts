@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'lisbon',
   pageTitles: {
-    city: 'Communities in Lisbon | JoinOrigin',
+    city: 'Origins in Lisbon | JoinOrigin',
     cityDescription:
-      'Find or start communities in Lisbon — startup, creative, political, meetup, and small business groups across the Portuguese capital. JoinOrigin waitlist.',
+      'Find or start Origins in Lisbon — startup, creative, political, meetup, and small business groups across the Portuguese capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Lisbon | JoinOrigin',
-      creative: 'Creative communities in Lisbon | JoinOrigin',
-      political: 'Political & civic communities in Lisbon | JoinOrigin',
-      meetup: 'Meetup & social communities in Lisbon | JoinOrigin',
-      'small-business': 'Small business communities in Lisbon | JoinOrigin',
+      startup: 'Startup Origins in Lisbon | JoinOrigin',
+      creative: 'Creative Origins in Lisbon | JoinOrigin',
+      political: 'Political & civic Origins in Lisbon | JoinOrigin',
+      meetup: 'Meetup & social Origins in Lisbon | JoinOrigin',
+      'small-business': 'Small business Origins in Lisbon | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Lisbon — founders, engineers, and operators around Príncipe Real, LX Factory, and the tech scene. JoinOrigin waitlist.',
+        'Find or start startup Origins in Lisbon — founders, engineers, and operators around Príncipe Real, LX Factory, and the tech scene. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Lisbon — studios, galleries, and collectives across Marvila, LX Factory, and the old town. JoinOrigin waitlist.',
+        'Find or start creative Origins in Lisbon — studios, galleries, and collectives across Marvila, LX Factory, and the old town. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Lisbon — freguesia councils, housing activism, and local campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Lisbon — freguesia councils, housing activism, and local campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Lisbon — miradouro picnics, tasca evenings, and beach days. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Lisbon — miradouro picnics, tasca evenings, and beach days. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Lisbon — market traders, pastelaria owners, and neighbourhood shops. JoinOrigin waitlist.',
+        'Find or start small business Origins in Lisbon — market traders, pastelaria owners, and neighbourhood shops. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Lisbon | JoinOrigin',
+    ideas: '30 Origin event ideas in Lisbon | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Lisbon — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Lisbon — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Lisbon is a city of viewpoints. The miradouros — the terraces that overlook the red rooftops, the Tagus river, and the bridges — are where the city gathers to watch the sun set, share a snack, and talk. Below them, the hills of Alfama, Bairro Alto, and Graça hold a tasca culture of small bars and family kitchens that keeps community life intimate and warm.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Lisbon’s startup scene has become one of Europe’s most talked-about, powered by the Web Summit’s global draw, a wave of international founders, and a home-grown community around Príncipe Real, Cais do Sodré, and the LX Factory creative quarter. The city’s strengths include B2B SaaS, marketplaces, tourism tech, and fintech, with a growing climate-tech scene around the Atlantic. Coworking spaces and startup cafés host founder breakfasts, pitch evenings, and demo days, while NOVA and ISCTE feed graduates into early teams. English is the default in most international groups, and the city’s quality of life — light, food, and beach — makes it a magnet for remote workers and serial founders. The community is small enough that reputations travel fast and warm enough that introductions happen easily. The Portuguese rhythm shapes events: relaxed, social, and happily late. Starting a startup community in Lisbon works best with a narrow vertical and a regular rhythm — a monthly B2B SaaS table or an AI builders night builds a loyal following faster than a generalist group.',
+      'Lisbon’s startup scene has become one of Europe’s most talked-about, powered by the Web Summit’s global draw, a wave of international founders, and a home-grown community around Príncipe Real, Cais do Sodré, and the LX Factory creative quarter. The city’s strengths include B2B SaaS, marketplaces, tourism tech, and fintech, with a growing climate-tech scene around the Atlantic. Coworking spaces and startup cafés host founder breakfasts, pitch evenings, and demo days, while NOVA and ISCTE feed graduates into early teams. English is the default in most international groups, and the city’s quality of life — light, food, and beach — makes it a magnet for remote workers and serial founders. The community is small enough that reputations travel fast and warm enough that introductions happen easily. The Portuguese rhythm shapes events: relaxed, social, and happily late. Starting a startup Origin in Lisbon works best with a narrow vertical and a regular rhythm — a monthly B2B SaaS table or an AI builders night builds a loyal following faster than a generalist group.',
     creative:
-      'Lisbon’s creative communities are booming: the old town’s azulejo-tiled streets, the fado houses of Alfama, and the converted factory spaces of LX Factory and Marvila give artists, designers, and musicians a distinctive stage. Marvila has become the new creative frontier, with studios in former warehouses, while LX Factory hosts galleries, design offices, and street-art walls under one industrial roof. The city’s craft traditions — tile painting, ceramics, and guitar-making — connect old workshops with new makers. Formats include open studio weekends, gallery walkthroughs, design critiques, and street-art walks, with miradouro sunsets and tasca dinners providing the natural closing ritual. Independent cinemas and bookshops add a literary thread, and the city’s festivals — from Santo António’s street parties to the summer music circuit — give creatives a steady calendar. International artists and remote creatives mix freely with local makers, giving the scene an unusually open character. Starting a creative community in Lisbon is realistic: pick a craft, a district, and a regular evening, and the density of curious, skilled people will find you.',
+      'Lisbon’s creative communities are booming: the old town’s azulejo-tiled streets, the fado houses of Alfama, and the converted factory spaces of LX Factory and Marvila give artists, designers, and musicians a distinctive stage. Marvila has become the new creative frontier, with studios in former warehouses, while LX Factory hosts galleries, design offices, and street-art walls under one industrial roof. The city’s craft traditions — tile painting, ceramics, and guitar-making — connect old workshops with new makers. Formats include open studio weekends, gallery walkthroughs, design critiques, and street-art walks, with miradouro sunsets and tasca dinners providing the natural closing ritual. Independent cinemas and bookshops add a literary thread, and the city’s festivals — from Santo António’s street parties to the summer music circuit — give creatives a steady calendar. International artists and remote creatives mix freely with local makers, giving the scene an unusually open character. Starting a creative Origin in Lisbon is realistic: pick a craft, a district, and a regular evening, and the density of curious, skilled people will find you.',
     political:
-      'Lisbon’s civic life runs through the freguesias — the small parish councils that give each neighbourhood a real voice in local planning. Housing is the defining issue: the city’s popularity with tourists and remote workers has pushed rents up sharply, producing active tenant movements and campaigns for affordable housing that are among Europe’s most visible. Neighbourhood associations and civic platforms organise around public space, heritage, and the pace of development, while community centres host meetings, classes, and volunteer groups. The city’s riverside transformation — from highways to promenades — shows what organised residents can achieve, and new debates about tourism, short-term lets, and green space continue that tradition. The political culture is consultative and patient: Lisboetas expect to be heard, and well-organised groups get results. Starting a political community means choosing a concrete issue and a small geography, then partnering with existing associations — the landscape is rich enough that collaboration beats competition.',
+      'Lisbon’s civic life runs through the freguesias — the small parish councils that give each neighbourhood a real voice in local planning. Housing is the defining issue: the city’s popularity with tourists and remote workers has pushed rents up sharply, producing active tenant movements and campaigns for affordable housing that are among Europe’s most visible. Neighbourhood associations and civic platforms organise around public space, heritage, and the pace of development, while community centres host meetings, classes, and volunteer groups. The city’s riverside transformation — from highways to promenades — shows what organised residents can achieve, and new debates about tourism, short-term lets, and green space continue that tradition. The political culture is consultative and patient: Lisboetas expect to be heard, and well-organised groups get results. Starting a political Origin means choosing a concrete issue and a small geography, then partnering with existing associations — the landscape is rich enough that collaboration beats competition.',
     meetup:
-      'Lisbon’s meetup scene is built on the miradouro, the tasca, and the beach. The viewpoints — Graça, Senhora do Monte, Santa Catarina — fill every evening with couples, families, and groups of friends watching the sun drop behind the river, and a weekly sunset gathering is the easiest community to start in the city. The old town’s tascas and small bars host fado nights, card games, and long dinners, while the Tagus riverfront promenades are made for walking groups. The beaches at Carcavelos and across the river bring surfers, swimmers, and picnickers together on warm weekends. Formats include miradouro picnics, tasca crawls, tram-28 adventures, language exchanges (Portuguese–English), and outdoor classes in Parque Eduardo VII. The city is compact and walkable, and the Portuguese love of conversation means strangers become regulars quickly. Starting a meetup in Lisbon means choosing a repeatable format and a fixed spot — a weekly sunset or a monthly beach day — and the city’s warmth does the rest.',
+      'Lisbon’s meetup scene is built on the miradouro, the tasca, and the beach. The viewpoints — Graça, Senhora do Monte, Santa Catarina — fill every evening with couples, families, and groups of friends watching the sun drop behind the river, and a weekly sunset gathering is the easiest Origin to start in the city. The old town’s tascas and small bars host fado nights, card games, and long dinners, while the Tagus riverfront promenades are made for walking groups. The beaches at Carcavelos and across the river bring surfers, swimmers, and picnickers together on warm weekends. Formats include miradouro picnics, tasca crawls, tram-28 adventures, language exchanges (Portuguese–English), and outdoor classes in Parque Eduardo VII. The city is compact and walkable, and the Portuguese love of conversation means strangers become regulars quickly. Starting a meetup in Lisbon means choosing a repeatable format and a fixed spot — a weekly sunset or a monthly beach day — and the city’s warmth does the rest.',
     'small-business':
-      'Lisbon small business communities are anchored by the city’s markets, pastelarias, and family-run tascas. Mercado da Ribeira — now the famous Time Out Market — and the municipal markets across the city host communities of stallholders who share suppliers, schedules, and gossip. The pastelaria, the bakery-café where Lisboetas start every day with coffee and a pastel de nata, is both a business and a social hub, and owners form tight networks of trust. Family shops in the old town and the newer creative commerce of LX Factory share the same practical questions about rent, permits, and seasonal staff. The chamber of commerce offers workshops on digitalisation and exporting, while the city’s festivals give traders a shared calendar. What binds these groups is place and routine: a market hall or a pastelaria street is a natural community with a collective stake in the neighbourhood’s morning. Starting a small business community is very achievable: a monthly trader breakfast at a market hall, with rotating topics like rent, permits, and tourism, reliably attracts owners who rarely have peers to talk with.',
+      'Lisbon small business communities are anchored by the city’s markets, pastelarias, and family-run tascas. Mercado da Ribeira — now the famous Time Out Market — and the municipal markets across the city host communities of stallholders who share suppliers, schedules, and gossip. The pastelaria, the bakery-café where Lisboetas start every day with coffee and a pastel de nata, is both a business and a social hub, and owners form tight networks of trust. Family shops in the old town and the newer creative commerce of LX Factory share the same practical questions about rent, permits, and seasonal staff. The chamber of commerce offers workshops on digitalisation and exporting, while the city’s festivals give traders a shared calendar. What binds these groups is place and routine: a market hall or a pastelaria street is a natural community with a collective stake in the neighbourhood’s morning. Starting a small business Origin is very achievable: a monthly trader breakfast at a market hall, with rotating topics like rent, permits, and tourism, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Lisbon is an ideal city for testing new community event ideas: the miradouros are free venues with the best sunsets in Europe, the beaches are close, and the city’s conversational culture makes strangers into regulars quickly. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Lisbon, from viewpoints and tascas to market halls and LX Factory studios. Some ideas work as one-off events; others are designed to become recurring communities with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Lisbon’s light do the rest.',
+      'Lisbon is an ideal city for testing new Origin event ideas: the miradouros are free venues with the best sunsets in Europe, the beaches are close, and the city’s conversational culture makes strangers into regulars quickly. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Lisbon, from viewpoints and tascas to market halls and LX Factory studios. Some ideas work as one-off events; others are designed to become recurring Origins with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Lisbon’s light do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -430,22 +430,22 @@ const content: CityContent = {
           'No. Many Lisbon groups run in English or are bilingual, especially in tech and creative scenes. A little Portuguese opens doors with neighbours and market traders.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Lisbon communities start, and the city’s conversational culture gives you a proven pattern. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Lisbon Origins start, and the city’s conversational culture gives you a proven pattern. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Lisbon?',
+      question: 'How do I find an Origin in Lisbon?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real neighbourhoods, venues, and formats where Lisboetas gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real neighbourhoods, venues, and formats where Lisboetas gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Lisbon?',
+      question: 'Is it realistic to start an Origin in Lisbon?',
       answer:
-        'Yes. Lisbon has viewpoints, beaches, and tascas as free venues, plus a famously welcoming culture. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Lisbon has viewpoints, beaches, and tascas as free venues, plus a famously welcoming culture. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Lisbon?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Lisboetas find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Lisboetas find or start Origins.',
     },
   ],
 };

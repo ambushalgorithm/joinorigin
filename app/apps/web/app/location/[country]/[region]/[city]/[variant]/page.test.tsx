@@ -71,7 +71,7 @@ describe('/location/[country]/[region]/[city]/[variant] route', () => {
     renderWithI18n(<LocationView data={data} />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Startup communities in Berlin');
+    expect(headings[0]).toHaveTextContent('Startup Origins in Berlin');
   });
 
   it('renders the un-gated dubai startup variant (TASK-474)', () => {
@@ -87,7 +87,7 @@ describe('/location/[country]/[region]/[city]/[variant] route', () => {
     renderWithI18n(<LocationView data={data} />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Startup communities in Dubai');
+    expect(headings[0]).toHaveTextContent('Startup Origins in Dubai');
   });
 
   it('renders the un-gated buenos-aires startup variant (TASK-474)', () => {
@@ -103,7 +103,7 @@ describe('/location/[country]/[region]/[city]/[variant] route', () => {
     renderWithI18n(<LocationView data={data} />);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Startup communities in Buenos Aires');
+    expect(headings[0]).toHaveTextContent('Startup Origins in Buenos Aires');
   });
 
   it('renders the ideas view: 30-idea grid in 6 categories', () => {
@@ -117,7 +117,7 @@ describe('/location/[country]/[region]/[city]/[variant] route', () => {
     renderWithI18n(<LocationView data={data} />);
 
     const headings = screen.getAllByRole('heading', { level: 1 });
-    expect(headings[0]).toHaveTextContent('30 community event ideas in Berlin');
+    expect(headings[0]).toHaveTextContent('30 Origin event ideas in Berlin');
 
     const grids = screen.getAllByTestId('location-idea-grid');
     expect(grids).toHaveLength(6); // 6 categories

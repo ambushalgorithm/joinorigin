@@ -66,9 +66,7 @@ describe('MenuHero', () => {
 
   it('resolves the H1 through the active locale dictionary when titleKey is set (TASK-477)', () => {
     renderHero({ titleKey: 'seoContent.breadcrumb.hub' });
-    expect(
-      screen.getByRole('heading', { level: 1, name: 'Communities by City' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'Origins by City' })).toBeInTheDocument();
   });
 
   it('re-translates the H1 through the active locale on a de load (TASK-477)', () => {
@@ -79,7 +77,7 @@ describe('MenuHero', () => {
       'de',
     );
     expect(
-      screen.getByRole('heading', { level: 1, name: 'Communities nach Stadt' }),
+      screen.getByRole('heading', { level: 1, name: 'Origins nach Stadt' }),
     ).toBeInTheDocument();
   });
 

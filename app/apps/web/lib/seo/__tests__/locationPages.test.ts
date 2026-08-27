@@ -58,7 +58,7 @@ describe('lib/seo locationPages — EN canonical surface', () => {
       city: 'new-york',
     });
     expect(nyc?.path).toBe('/en/location/united-states/new-york/new-york');
-    expect(nyc?.title).toBe('Communities in New York City, New York | JoinOrigin');
+    expect(nyc?.title).toBe('Origins in New York City, New York | JoinOrigin');
     expect(nyc?.tier).toBe(1);
     expect(nyc?.indexable).toBe(true);
   });
@@ -66,7 +66,7 @@ describe('lib/seo locationPages — EN canonical surface', () => {
   it('derives the Berlin city page path from the flagship region override', () => {
     const berlin = entries.find((entry) => entry.kind === 'city' && entry.params.city === 'berlin');
     expect(berlin?.path).toBe('/en/location/germany/berlin/berlin');
-    expect(berlin?.title).toBe('Communities in Berlin | JoinOrigin'); // no ", Berlin" suffix
+    expect(berlin?.title).toBe('Origins in Berlin | JoinOrigin'); // no ", Berlin" suffix
     expect(berlin?.indexable).toBe(true);
   });
 
@@ -222,7 +222,7 @@ describe('lib/seo locationPages — EN canonical surface', () => {
     );
     expect(startup?.title).toBe(
       `${en('seoContent.metadata.title.variantIn', {
-        label: 'Startup communities',
+        label: 'Startup Origins',
         name: 'Berlin',
       })} | JoinOrigin`,
     );
@@ -438,10 +438,10 @@ describe('lib/seo locationPages — per-locale (de) Berlin + Munich surface', ()
     // The de ideas page title embeds the de dictionary phrase
     // (seoContent.location.ideasLink: "30 Ideen für Community-Events").
     expect(deIdeas!.title).toContain(getT(getDictionary('de'))('seoContent.location.ideasLink'));
-    // EN canonical uses the EN phrase — never the de literal.
+    // EN canonical uses the Origin phrase — never the de literal.
     const enIdeas = locationPageEntries().find((entry) => entry.kind === 'ideas');
     expect(enIdeas).toBeDefined();
-    expect(enIdeas!.title).toContain(getT(getDictionary('en'))('seoContent.location.ideasLink'));
+    expect(enIdeas!.title).toContain('30 Origin event ideas');
   });
 });
 

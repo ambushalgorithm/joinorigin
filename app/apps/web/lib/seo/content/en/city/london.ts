@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'london',
   pageTitles: {
-    city: 'Communities in London | JoinOrigin',
+    city: 'Origins in London | JoinOrigin',
     cityDescription:
-      'Find or start communities in London — startup, creative, political, meetup, and small business groups across the capital. JoinOrigin waitlist.',
+      'Find or start Origins in London — startup, creative, political, meetup, and small business groups across the capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in London | JoinOrigin',
-      creative: 'Creative communities in London | JoinOrigin',
-      political: 'Political & civic communities in London | JoinOrigin',
-      meetup: 'Meetup & social communities in London | JoinOrigin',
-      'small-business': 'Small business communities in London | JoinOrigin',
+      startup: 'Startup Origins in London | JoinOrigin',
+      creative: 'Creative Origins in London | JoinOrigin',
+      political: 'Political & civic Origins in London | JoinOrigin',
+      meetup: 'Meetup & social Origins in London | JoinOrigin',
+      'small-business': 'Small business Origins in London | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in London — founders, engineers, and operators around Shoreditch, King’s Cross, and the City. JoinOrigin waitlist.',
+        'Find or start startup Origins in London — founders, engineers, and operators around Shoreditch, King’s Cross, and the City. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in London — studios, galleries, and collectives across East London, Peckham, and the South Bank. JoinOrigin waitlist.',
+        'Find or start creative Origins in London — studios, galleries, and collectives across East London, Peckham, and the South Bank. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in London — resident associations, tenants’ unions, and local campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in London — resident associations, tenants’ unions, and local campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in London — pub groups, book clubs, running clubs, and language exchanges. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in London — pub groups, book clubs, running clubs, and language exchanges. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in London — market traders, independent shops, and high-street networks. JoinOrigin waitlist.',
+        'Find or start small business Origins in London — market traders, independent shops, and high-street networks. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in London | JoinOrigin',
+    ideas: '30 Origin event ideas in London | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in London — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in London — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'London is a capital city built on layers: Roman walls beneath medieval streets, Victorian terraces beside glass towers, and a population drawn from every corner of the world. That density makes it one of the best cities on earth for communities. Whatever you care about — a craft, an industry, a cause, or simply meeting new people — somewhere in the 32 boroughs a group already gathers, and starting a new one is a realistic next step.',
@@ -47,7 +47,7 @@ const content: CityContent = {
     'Universities include UCL, Imperial College London, LSE, and King’s College London.',
     'Finance and legal districts in the City; tech clusters in Shoreditch and King’s Cross.',
     'Public anchors: Hyde Park, Regent’s Park, Hampstead Heath, Victoria Park, and the canals.',
-    'Deep pub and market culture — a natural base for meetups and small business communities.',
+    'Deep pub and market culture — a natural base for meetups and small business Origins.',
   ],
   variantEnrichment: {
     startup: {
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'London’s startup scene is one of Europe’s largest, spanning fintech in the City and Canary Wharf, media and marketplaces around Shoreditch, and a growing deep-tech corridor through King’s Cross. Founders cluster in coworking spaces along Old Street — the old Silicon Roundabout — while UCL, Imperial, and the LSE feed graduates into accelerators and early teams. What distinguishes London is breadth plus access: a founder can meet an investor at breakfast, a designer at lunch, and a regulator at an evening panel without leaving zone one. Community patterns are well established: pitch nights, demo days, founder breakfasts, and industry-specific happy hours run every week of the year. Newcomers usually enter by attending open meetups, joining a coworking community, or volunteering at one of the city’s many conferences. Honest advice for starting a startup community here is to pick a narrow vertical — fintech, climate, AI builders, or healthtech — because generalist groups dilute quickly in a market this dense.',
+      'London’s startup scene is one of Europe’s largest, spanning fintech in the City and Canary Wharf, media and marketplaces around Shoreditch, and a growing deep-tech corridor through King’s Cross. Founders cluster in coworking spaces along Old Street — the old Silicon Roundabout — while UCL, Imperial, and the LSE feed graduates into accelerators and early teams. What distinguishes London is breadth plus access: a founder can meet an investor at breakfast, a designer at lunch, and a regulator at an evening panel without leaving zone one. Community patterns are well established: pitch nights, demo days, founder breakfasts, and industry-specific happy hours run every week of the year. Newcomers usually enter by attending open meetups, joining a coworking community, or volunteering at one of the city’s many conferences. Honest advice for starting a startup Origin here is to pick a narrow vertical — fintech, climate, AI builders, or healthtech — because generalist groups dilute quickly in a market this dense.',
     creative:
-      'London creative communities span fashion, film, music, design, and fine art, and they draw on one of the world’s deepest pools of studios, galleries, and cultural institutions. East London — Hackney Wick, Dalston, Shoreditch — hosts the densest cluster of artist studios and project spaces, while Peckham and Deptford have become the newer creative frontiers. UAL, Goldsmiths, and the RCA graduate thousands of makers into a freelance economy that runs on referrals, making community membership a practical career asset. Meetup patterns include open studio weekends, portfolio reviews, design critiques, and music production circles that share equipment and feedback. Fashion and film workers organise through ateliers and production offices, often sharing casting calls and crew lists within their groups. The scale is enormous, yet scenes stay surprisingly findable because word travels through specific studios, Instagram accounts, and print fairs. Anyone starting a creative community in London should specialise: one craft, one borough, or one career stage builds identity far faster than a general arts club.',
+      'London creative communities span fashion, film, music, design, and fine art, and they draw on one of the world’s deepest pools of studios, galleries, and cultural institutions. East London — Hackney Wick, Dalston, Shoreditch — hosts the densest cluster of artist studios and project spaces, while Peckham and Deptford have become the newer creative frontiers. UAL, Goldsmiths, and the RCA graduate thousands of makers into a freelance economy that runs on referrals, making community membership a practical career asset. Meetup patterns include open studio weekends, portfolio reviews, design critiques, and music production circles that share equipment and feedback. Fashion and film workers organise through ateliers and production offices, often sharing casting calls and crew lists within their groups. The scale is enormous, yet scenes stay surprisingly findable because word travels through specific studios, Instagram accounts, and print fairs. Anyone starting a creative Origin in London should specialise: one craft, one borough, or one career stage builds identity far faster than a general arts club.',
     political:
-      'London’s political and civic communities operate at every level, from ward meetings and resident associations to citywide tenants’ unions and campaign groups on housing, transport, climate, and air quality. The city is divided into 32 boroughs, each with its own council, which keeps a surprising amount of power genuinely local — a resident can attend a ward meeting or a tenants’ association gathering a few streets away. Housing is the defining issue: groups like the London Renters Union run workshops, clinics, and campaigns that are open to newcomers. Civic tech volunteers build tools for open data and council transparency, while countless community groups care for parks, estates, and neighbourhood centres. Campaigners also organise around clean-air zones, school streets, and the nightly economy, so there is a cause for almost every interest. The culture rewards persistence and local knowledge — organisers who show up to real meetings. Starting a civic community means picking a concrete issue and a small geography, then partnering with existing organisations rather than duplicating them.',
+      'London’s political and civic communities operate at every level, from ward meetings and resident associations to citywide tenants’ unions and campaign groups on housing, transport, climate, and air quality. The city is divided into 32 boroughs, each with its own council, which keeps a surprising amount of power genuinely local — a resident can attend a ward meeting or a tenants’ association gathering a few streets away. Housing is the defining issue: groups like the London Renters Union run workshops, clinics, and campaigns that are open to newcomers. Civic tech volunteers build tools for open data and council transparency, while countless community groups care for parks, estates, and neighbourhood centres. Campaigners also organise around clean-air zones, school streets, and the nightly economy, so there is a cause for almost every interest. The culture rewards persistence and local knowledge — organisers who show up to real meetings. Starting a civic Origin means picking a concrete issue and a small geography, then partnering with existing organisations rather than duplicating them.',
     meetup:
       'London’s meetup scene is vast and varied, powered by the pub, the park, and the city’s endless supply of curious newcomers. Book clubs meet in pub function rooms, running groups pound the parks at dawn, language exchanges fill cafés in the evening, and board game nights spread across community halls. The Tube makes cross-borough attendance normal, so groups can grow far beyond one neighbourhood without losing their core. Popular formats include weekly pub quizzes, Parkrun and weekend walking groups, canal-side strolls, and low-stakes socials where newcomers are explicitly welcomed. The density means a niche interest — a hobby, a language, a sport — can usually find its people within a couple of evenings out. If you want to start a meetup, choose a repeatable format, lock a venue that will host you every time, and announce the first three dates up front. London’s scale does the rest of the work.',
     'small-business':
-      'London’s small business community is a patchwork of market traders, independent shops, restaurateurs, craftspeople, and freelancers who share the same practical questions about rent, rates, licences, and footfall. Markets like Borough, Portobello Road, and Columbia Road are not just places to shop — they are communities with traders’ associations, shared calendars, and a collective stake in the street’s reputation. Business improvement districts and chambers of commerce organise training, networking, and lobbying on behalf of thousands of small firms. What binds these groups together is place: a high street or market corridor forms a natural community where owners know each other’s names. Newcomers typically join by attending a trader’s meeting, taking a council workshop, or visiting a chamber event. Starting a small business community is very achievable: a monthly roundtable at a local café, with rotating topics like payroll, rates, and online selling, reliably attracts owners who rarely have peers to talk with.',
+      'London’s small business community is a patchwork of market traders, independent shops, restaurateurs, craftspeople, and freelancers who share the same practical questions about rent, rates, licences, and footfall. Markets like Borough, Portobello Road, and Columbia Road are not just places to shop — they are communities with traders’ associations, shared calendars, and a collective stake in the street’s reputation. Business improvement districts and chambers of commerce organise training, networking, and lobbying on behalf of thousands of small firms. What binds these groups together is place: a high street or market corridor forms a natural community where owners know each other’s names. Newcomers typically join by attending a trader’s meeting, taking a council workshop, or visiting a chamber event. Starting a small business Origin is very achievable: a monthly roundtable at a local café, with rotating topics like payroll, rates, and online selling, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'London rewards the organiser who picks a real place and a repeatable format. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a venue type that genuinely exists in London, from pub function rooms and market halls to Hampstead Heath and community libraries. Some ideas work as one-off events; others are designed to become recurring communities. The honesty rule is simple: every venue is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let London’s density do the rest.',
+      'London rewards the organiser who picks a real place and a repeatable format. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a venue type that genuinely exists in London, from pub function rooms and market halls to Hampstead Heath and community libraries. Some ideas work as one-off events; others are designed to become recurring Origins. The honesty rule is simple: every venue is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let London’s density do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -430,22 +430,22 @@ const content: CityContent = {
           'No. Pubs, libraries, parks, and community centres host events for the price of a drink or nothing at all. Start with a free public venue and a clear format.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most London communities start. The how-to guides walk through the first event to a stable community, and the venue suggestions here are all real kinds of places in the city.',
+          'Yes — recurring formats are how most London Origins start. The how-to guides walk through the first event to a stable Origin, and the venue suggestions here are all real kinds of places in the city.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in London?',
+      question: 'How do I find an Origin in London?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real boroughs, venues, and formats where Londoners gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real boroughs, venues, and formats where Londoners gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in London?',
+      question: 'Is it realistic to start an Origin in London?',
       answer:
-        'Yes. London has enormous density, free public spaces, and a culture of showing up. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. London has enormous density, free public spaces, and a culture of showing up. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in London?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Londoners find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Londoners find or start Origins.',
     },
   ],
 };

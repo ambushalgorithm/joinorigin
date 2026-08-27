@@ -175,7 +175,7 @@ describe('/location page — Story H i18n completeness (TASK-518)', () => {
     ).toBeInTheDocument();
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('Startseite')).toBeInTheDocument();
-    expect(within(breadcrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Origins nach Stadt')).toBeInTheDocument();
     expect(within(breadcrumbs).getByText('Vereinigte Arabische Emirate')).toBeInTheDocument();
     expect(
       within(breadcrumbs).queryByText('Communities in United Arab Emirates'),
@@ -224,9 +224,9 @@ describe('/location page — Story H i18n completeness (TASK-518)', () => {
     const data = buildLocationViewData(hcmc!);
     renderWithI18n(<LocationView data={data} />);
 
-    expect(screen.getByText('Find or start a community in Ho Chi Minh City')).toBeInTheDocument();
+    expect(screen.getByText('Find or start an Origin in Ho Chi Minh City')).toBeInTheDocument();
     expect(
-      screen.queryByText('Find or start a community in ho chi minh city'),
+      screen.queryByText('Find or start an Origin in ho chi minh city'),
     ).not.toBeInTheDocument();
   });
 

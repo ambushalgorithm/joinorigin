@@ -77,16 +77,14 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
 
   it('every directory entry carries its associated country for geo ordering (TASK-480)', () => {
     const directory = hubDirectoryEntries('en');
-    const germany = directory.find((entry) => entry.name === 'Communities in Germany');
+    const germany = directory.find((entry) => entry.name === 'Origins in Germany');
     expect(germany?.countryIso2).toBe('DE');
-    const berlin = directory.find((entry) => entry.name === 'Communities in Berlin');
+    const berlin = directory.find((entry) => entry.name === 'Origins in Berlin');
     expect(berlin?.countryIso2).toBe('DE');
     // Community types + Event ideas resolve via their associated city's country.
-    const berlinStartup = directory.find((entry) => entry.name === 'Startup communities in Berlin');
+    const berlinStartup = directory.find((entry) => entry.name === 'Startup Origins in Berlin');
     expect(berlinStartup?.countryIso2).toBe('DE');
-    const berlinIdeas = directory.find(
-      (entry) => entry.name === '30 community event ideas in Berlin',
-    );
+    const berlinIdeas = directory.find((entry) => entry.name === '30 Origin event ideas in Berlin');
     expect(berlinIdeas?.countryIso2).toBe('DE');
   });
 
@@ -94,8 +92,8 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
     // IP-country = DE: German entries rank first in every section.
     const deIp = hubDirectoryEntries('en', 'DE');
     const cityNames = deIp.filter((entry) => entry.section === 'cities').map((entry) => entry.name);
-    expect(cityNames[0]).toBe('Communities in Berlin');
-    expect(cityNames[1]).toBe('Communities in Munich, Bavaria');
+    expect(cityNames[0]).toBe('Origins in Berlin');
+    expect(cityNames[1]).toBe('Origins in Munich, Bavaria');
     // ...then the EN-locale-area cities, then the rest, alphabetical overall.
     // TASK-484: the regions section is the full content-rich region set (54)
     // — with a DE IP the German regions (Bavaria + Berlin) lead alphabetically.
@@ -103,12 +101,12 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
       .filter((entry) => entry.section === 'regions')
       .map((entry) => entry.name);
     expect(regionNames[0]).toBe('Communities in Bavaria');
-    expect(regionNames[1]).toBe('Communities in Berlin, Germany');
+    expect(regionNames[1]).toBe('Origins in Berlin, Germany');
     // Community types + event ideas rank via their city's country.
     const types = deIp
       .filter((entry) => entry.section === 'communityTypes')
       .map((entry) => entry.name);
-    expect(types[0]).toBe('Community meetups & events in Berlin');
+    expect(types[0]).toBe('Creative & design Origins in Berlin');
   });
 
   it('orders by locale-language matches first when no IP-country is present (null-safe fallback)', () => {
@@ -118,7 +116,7 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
       .filter((entry) => entry.section === 'cities')
       .map((entry) => entry.name);
     expect(cityNames[0]).toBe('Communities in Berlin');
-    expect(cityNames[1]).toBe('Communities in Munich, Bavaria');
+    expect(cityNames[1]).toBe('Origins in Munich, Bavaria');
   });
 
   it('keeps alphabetical order within a section when neither IP nor locale matches', () => {
@@ -138,13 +136,13 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
     expect(hub).toBeDefined();
     const data = buildLocationViewData(hub!, 'en', 'DE');
     const cities = (data.hubDirectory ?? []).filter((entry) => entry.section === 'cities');
-    expect(cities[0].name).toBe('Communities in Berlin');
+    expect(cities[0].name).toBe('Origins in Berlin');
     // Without an IP country the same surface falls back to locale ordering.
     const fallback = buildLocationViewData(hub!, 'en');
     const fallbackCities = (fallback.hubDirectory ?? []).filter(
       (entry) => entry.section === 'cities',
     );
-    expect(fallbackCities[0].name).not.toBe('Communities in Berlin');
+    expect(fallbackCities[0].name).not.toBe('Origins in Berlin');
   });
 });
 
@@ -278,7 +276,7 @@ describe('lib/seo locationView — TASK-482 flagship/start-local + browse-locati
     // Concrete: US entries lead every section.
     const cities = directory.filter((entry) => entry.section === 'cities');
     expect(cities[0].countryIso2).toBe('US');
-    expect(cities[0].name).toBe('Communities in Austin, Texas');
+    expect(cities[0].name).toBe('Origins in Austin, Texas');
     // Community types + event ideas rank via their associated city's country.
     const types = directory.filter((entry) => entry.section === 'communityTypes');
     expect(types[0].countryIso2).toBe('US');
@@ -304,9 +302,9 @@ describe('lib/seo locationView — TASK-482 flagship/start-local + browse-locati
     assertSectionOrder(directory, localeCountryCodes('en'), 'JP');
     const cities = directory.filter((entry) => entry.section === 'cities');
     expect(cities[0].countryIso2).toBe('JP');
-    expect(cities[0].name).toBe('Communities in Osaka');
+    expect(cities[0].name).toBe('Origins in Osaka');
     expect(cities[1].countryIso2).toBe('JP');
-    expect(cities[1].name).toBe('Communities in Tokyo');
+    expect(cities[1].name).toBe('Origins in Tokyo');
     // JP ideas rank first even though ja is not the active locale.
     const ideas = directory.filter((entry) => entry.section === 'eventIdeas');
     expect(ideas[0].countryIso2).toBe('JP');
@@ -434,7 +432,7 @@ describe('lib/seo locationView — TASK-484 complete content-rich inventory + se
     expect(berlinCity?.searchText).toContain('Deutschland');
     expect(berlinCity?.searchText).toContain('Berlin');
     // EN name is always part of the searchable text.
-    expect(berlinCity?.searchText).toContain('Communities in Berlin');
+    expect(berlinCity?.searchText).toContain('Origins in Berlin');
   });
 
   it('membership is identical across locale surfaces (paths forward to the ACTIVE surface)', () => {
@@ -455,15 +453,15 @@ describe('lib/seo locationView — TASK-484 complete content-rich inventory + se
     const directory = hubDirectoryEntries('en');
     const matches = filterByKeyword(directory, 'colombia', (entry) => entry.searchText);
     // The country card resolves through its dataset country name, not the
-    // EN card title ("Communities in Colombia" would NOT match "colombia"
+    // EN card title ("Origins in Colombia" would NOT match "colombia"
     // on name alone — it matches via the searchText country name).
     const country = matches.find((entry) => entry.section === 'countries');
     expect(country?.name).toBe('Communities in Colombia');
     // All 3 Colombian content-rich cities resolve through the country name.
     const cities = matches.filter((entry) => entry.section === 'cities').map((entry) => entry.name);
-    expect(cities).toContain('Communities in Bogota, Bogota D.C.');
-    expect(cities).toContain('Communities in Medellin, Antioquia');
-    expect(cities).toContain('Communities in Barranquilla, Atlantico');
+    expect(cities).toContain('Origins in Bogota, Bogota D.C.');
+    expect(cities).toContain('Origins in Medellin, Antioquia');
+    expect(cities).toContain('Origins in Barranquilla, Atlantico');
     // Community types + event ideas scoped to Colombia resolve too (15 + 3).
     expect(matches.filter((entry) => entry.section === 'communityTypes').length).toBe(
       3 /* cities */ * 5,
@@ -477,7 +475,7 @@ describe('lib/seo locationView — TASK-484 complete content-rich inventory + se
     const country = matches.find((entry) => entry.section === 'countries');
     expect(country?.name).toBe('Communities in Italy');
     const cities = matches.filter((entry) => entry.section === 'cities').map((entry) => entry.name);
-    expect(cities).toEqual(['Communities in Milan, Lombardy']);
+    expect(cities).toEqual(['Origins in Milan, Lombardy']);
     // Milan's 5 community types + ideas page resolve through the country name.
     expect(matches.filter((entry) => entry.section === 'communityTypes').length).toBe(5);
     expect(matches.filter((entry) => entry.section === 'eventIdeas').length).toBe(1);
@@ -494,7 +492,7 @@ describe('lib/seo locationView — TASK-484 complete content-rich inventory + se
     );
     expect(milan).toBeDefined();
     // Display name + country + region are all searchable.
-    expect(milan?.searchText).toContain('Communities in Milan, Lombardy');
+    expect(milan?.searchText).toContain('Origins in Milan, Lombardy');
     expect(milan?.searchText).toContain('Italy');
     expect(milan?.searchText).toContain('Lombardy');
 
@@ -506,7 +504,7 @@ describe('lib/seo locationView — TASK-484 complete content-rich inventory + se
       (entry) => entry.section === 'cities' && entry.name.includes('Berlin'),
     );
     expect(berlin).toBeDefined();
-    expect(berlin?.searchText).toContain('Communities in Berlin'); // EN name
+    expect(berlin?.searchText).toContain('Origins in Berlin'); // EN name
     expect(berlin?.searchText).toContain('Deutschland'); // de country name
     expect(berlin?.searchText).toContain('Berlin'); // de region name
   });

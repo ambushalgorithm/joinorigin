@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'warsaw',
   pageTitles: {
-    city: 'Communities in Warsaw | JoinOrigin',
+    city: 'Origins in Warsaw | JoinOrigin',
     cityDescription:
-      'Find or start communities in Warsaw — startup, creative, political, meetup, and small business groups across the Polish capital. JoinOrigin waitlist.',
+      'Find or start Origins in Warsaw — startup, creative, political, meetup, and small business groups across the Polish capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Warsaw | JoinOrigin',
-      creative: 'Creative communities in Warsaw | JoinOrigin',
-      political: 'Political & civic communities in Warsaw | JoinOrigin',
-      meetup: 'Meetup & social communities in Warsaw | JoinOrigin',
-      'small-business': 'Small business communities in Warsaw | JoinOrigin',
+      startup: 'Startup Origins in Warsaw | JoinOrigin',
+      creative: 'Creative Origins in Warsaw | JoinOrigin',
+      political: 'Political & civic Origins in Warsaw | JoinOrigin',
+      meetup: 'Meetup & social Origins in Warsaw | JoinOrigin',
+      'small-business': 'Small business Origins in Warsaw | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Warsaw — founders, engineers, and operators around Wola, The Heart, and the tech scene. JoinOrigin waitlist.',
+        'Find or start startup Origins in Warsaw — founders, engineers, and operators around Wola, The Heart, and the tech scene. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Warsaw — studios, galleries, and collectives across Praga, the Vistula, and the city centre. JoinOrigin waitlist.',
+        'Find or start creative Origins in Warsaw — studios, galleries, and collectives across Praga, the Vistula, and the city centre. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Warsaw — district councils, participatory budgeting, and local campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Warsaw — district councils, participatory budgeting, and local campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Warsaw — Vistula riverbank evenings, milk bars, and park life. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Warsaw — Vistula riverbank evenings, milk bars, and park life. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Warsaw — market traders, food hall vendors, and neighbourhood shops. JoinOrigin waitlist.',
+        'Find or start small business Origins in Warsaw — market traders, food hall vendors, and neighbourhood shops. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Warsaw | JoinOrigin',
+    ideas: '30 Origin event ideas in Warsaw | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Warsaw — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Warsaw — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Warsaw is a city that rebuilt itself from rubble and turned resilience into a way of life. The reconstructed Old Town, the Palace of Culture, and the glass towers of Wola tell the story of a capital that keeps reinventing. This history shapes its communities: Warsaw residents organise — for their streets, their parks, their rivers — with a seriousness that visitors often find inspiring.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Warsaw’s startup scene is the largest in Central Europe, powered by a deep IT and engineering talent pool, a strong e-commerce and fintech track record, and hubs like The Heart and the coworking floors of Wola’s office towers. Allegro, the home-grown marketplace, proved that Polish companies can build at global scale, and a steady stream of engineers from the Warsaw University of Technology and SGH keeps the pipeline full. The scene is pragmatic and export-oriented: founders build for the European market early, and English is common in international groups. Formats include founder breakfasts, pitch evenings, demo days, and IT networking nights that connect startups with the outsourcing companies that dominate the local economy. The city’s rhythm is professional — meetings start on time and agendas are respected — but the Vistula riverbanks provide the after-hours release valve. Starting a startup community in Warsaw works best with a narrow vertical and a regular rhythm — a monthly e-commerce founders table or an AI builders night builds a loyal following faster than a generalist group.',
+      'Warsaw’s startup scene is the largest in Central Europe, powered by a deep IT and engineering talent pool, a strong e-commerce and fintech track record, and hubs like The Heart and the coworking floors of Wola’s office towers. Allegro, the home-grown marketplace, proved that Polish companies can build at global scale, and a steady stream of engineers from the Warsaw University of Technology and SGH keeps the pipeline full. The scene is pragmatic and export-oriented: founders build for the European market early, and English is common in international groups. Formats include founder breakfasts, pitch evenings, demo days, and IT networking nights that connect startups with the outsourcing companies that dominate the local economy. The city’s rhythm is professional — meetings start on time and agendas are respected — but the Vistula riverbanks provide the after-hours release valve. Starting a startup Origin in Warsaw works best with a narrow vertical and a regular rhythm — a monthly e-commerce founders table or an AI builders night builds a loyal following faster than a generalist group.',
     creative:
-      'Warsaw’s creative communities have grown out of the city’s reinvention: Praga’s industrial courtyards now host studios and galleries, the Vistula banks carry art events and open-air stages, and the city centre’s theatres and design studios work at a European level. The Academy of Fine Arts and the city’s film and music schools feed a steady stream of graduates into a scene known for graphic design, illustration, theatre, and electronic music. Formats include open studio weekends in Praga, gallery walkthroughs, portfolio reviews, and music production circles, with the riverbanks providing the city’s most popular exhibition space in summer. The city’s history adds depth — museums and memorials inspire artists who turn the past into new work. The scene is compact and connected, and collaborations cross disciplines easily. Starting a creative community in Warsaw is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
+      'Warsaw’s creative communities have grown out of the city’s reinvention: Praga’s industrial courtyards now host studios and galleries, the Vistula banks carry art events and open-air stages, and the city centre’s theatres and design studios work at a European level. The Academy of Fine Arts and the city’s film and music schools feed a steady stream of graduates into a scene known for graphic design, illustration, theatre, and electronic music. Formats include open studio weekends in Praga, gallery walkthroughs, portfolio reviews, and music production circles, with the riverbanks providing the city’s most popular exhibition space in summer. The city’s history adds depth — museums and memorials inspire artists who turn the past into new work. The scene is compact and connected, and collaborations cross disciplines easily. Starting a creative Origin in Warsaw is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
     political:
-      'Warsaw’s civic life is one of Poland’s most organised, with participatory budgeting — the budżet obywatelski — giving residents a direct vote on hundreds of neighbourhood projects every year. District councils and neighbourhood associations shape how parks, crossings, and cultural venues develop, and housing is a growing concern as the city’s popularity pushes rents up. Community centres across the city host meetings, language classes, and volunteer groups, while civic tech volunteers build tools for transparency and citizen reporting. The city’s history — from the wartime resistance to the post-communist transition — left a culture of seriousness about public life: Warsaw residents expect to be consulted and are willing to show up. The political culture rewards preparation and persistence. Starting a political community means choosing a concrete issue and a small geography, then partnering with existing associations and the district council — the landscape is organised enough that collaboration beats competition.',
+      'Warsaw’s civic life is one of Poland’s most organised, with participatory budgeting — the budżet obywatelski — giving residents a direct vote on hundreds of neighbourhood projects every year. District councils and neighbourhood associations shape how parks, crossings, and cultural venues develop, and housing is a growing concern as the city’s popularity pushes rents up. Community centres across the city host meetings, language classes, and volunteer groups, while civic tech volunteers build tools for transparency and citizen reporting. The city’s history — from the wartime resistance to the post-communist transition — left a culture of seriousness about public life: Warsaw residents expect to be consulted and are willing to show up. The political culture rewards preparation and persistence. Starting a political Origin means choosing a concrete issue and a small geography, then partnering with existing associations and the district council — the landscape is organised enough that collaboration beats competition.',
     meetup:
-      'Warsaw’s meetup scene runs on the Vistula, the milk bar, and the board game café. In summer the river boulevards turn into the city’s living room — cafés, beach bars, and improvised games stretch along the water until late, and a weekly riverbank gathering is the easiest community to start. Lazienki Park’s lawns and peacocks draw picnics and outdoor classes, while Praga’s courtyards and street corners host a grittier, artsy social scene. The bar mleczny, the state-era milk bar, is an unlikely community anchor: shared tables, cheap food, and a mix of generations. Board game cafés fill the winter evenings, and language exchanges (Polish–English) run across the centre. The city is green and walkable, and the Polish love of direct conversation means strangers become regulars quickly. Starting a meetup in Warsaw means choosing a repeatable format and a fixed venue — a weekly riverbank meet or a monthly park picnic — and the city’s energy does the rest.',
+      'Warsaw’s meetup scene runs on the Vistula, the milk bar, and the board game café. In summer the river boulevards turn into the city’s living room — cafés, beach bars, and improvised games stretch along the water until late, and a weekly riverbank gathering is the easiest Origin to start. Lazienki Park’s lawns and peacocks draw picnics and outdoor classes, while Praga’s courtyards and street corners host a grittier, artsy social scene. The bar mleczny, the state-era milk bar, is an unlikely community anchor: shared tables, cheap food, and a mix of generations. Board game cafés fill the winter evenings, and language exchanges (Polish–English) run across the centre. The city is green and walkable, and the Polish love of direct conversation means strangers become regulars quickly. Starting a meetup in Warsaw means choosing a repeatable format and a fixed venue — a weekly riverbank meet or a monthly park picnic — and the city’s energy does the rest.',
     'small-business':
-      'Warsaw small business communities are anchored by the city’s food halls, bazaars, and neighbourhood streets. Hala Koszyki, the restored market hall, hosts a community of food vendors who share suppliers, schedules, and gossip, while Bazar Różyckiego in Praga keeps an older bazaar tradition alive. Family shops in Mokotów and Żoliborz form friendly networks of owners who compare notes on rent, VAT, and footfall. The chamber of commerce offers workshops on digitalisation and exporting, and the city’s street festivals give traders a shared calendar. The coffee and craft-brew scene has added a young layer of makers who collaborate on pop-ups and festivals. What binds these groups is place and momentum: a market hall or a shopping street is a natural community with a collective stake in the neighbourhood’s revival. Starting a small business community is very achievable: a monthly trader breakfast at a food hall, with rotating topics like rent, VAT, and online selling, reliably attracts owners who rarely have peers to talk with.',
+      'Warsaw small business communities are anchored by the city’s food halls, bazaars, and neighbourhood streets. Hala Koszyki, the restored market hall, hosts a community of food vendors who share suppliers, schedules, and gossip, while Bazar Różyckiego in Praga keeps an older bazaar tradition alive. Family shops in Mokotów and Żoliborz form friendly networks of owners who compare notes on rent, VAT, and footfall. The chamber of commerce offers workshops on digitalisation and exporting, and the city’s street festivals give traders a shared calendar. The coffee and craft-brew scene has added a young layer of makers who collaborate on pop-ups and festivals. What binds these groups is place and momentum: a market hall or a shopping street is a natural community with a collective stake in the neighbourhood’s revival. Starting a small business Origin is very achievable: a monthly trader breakfast at a food hall, with rotating topics like rent, VAT, and online selling, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Warsaw is an ideal city for testing new community event ideas: the Vistula boulevards are a free summer venue, the parks are generous, and the city’s civic tradition means residents show up for well-organised events. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Warsaw, from riverbank cafés and milk bars to food halls and board game cafés. Some ideas work as one-off events; others are designed to become recurring communities with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Warsaw’s energy do the rest.',
+      'Warsaw is an ideal city for testing new Origin event ideas: the Vistula boulevards are a free summer venue, the parks are generous, and the city’s civic tradition means residents show up for well-organised events. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Warsaw, from riverbank cafés and milk bars to food halls and board game cafés. Some ideas work as one-off events; others are designed to become recurring Origins with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Pick the idea that matches your interests, find a venue that will host you, and let Warsaw’s energy do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -426,22 +426,22 @@ const content: CityContent = {
           'No. Many Warsaw groups run in English or are bilingual, especially in tech and creative scenes. A little Polish opens doors with neighbours and market traders.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Warsaw communities start, and the city’s civic tradition gives you a proven pattern. The how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Warsaw Origins start, and the city’s civic tradition gives you a proven pattern. The how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Warsaw?',
+      question: 'How do I find an Origin in Warsaw?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real districts, venues, and formats where Warszawiacy gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real districts, venues, and formats where Warszawiacy gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Warsaw?',
+      question: 'Is it realistic to start an Origin in Warsaw?',
       answer:
-        'Yes. Warsaw has the Vistula boulevards, generous parks, a strong café culture, and a serious civic tradition. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Warsaw has the Vistula boulevards, generous parks, a strong café culture, and a serious civic tradition. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -451,7 +451,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Warsaw?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Warsaw residents find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Warsaw residents find or start Origins.',
     },
   ],
 };

@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'en',
   slug: 'kyiv',
   pageTitles: {
-    city: 'Communities in Kyiv | JoinOrigin',
+    city: 'Origins in Kyiv | JoinOrigin',
     cityDescription:
-      'Find or start communities in Kyiv — startup, creative, political, meetup, and small business groups across the Ukrainian capital. JoinOrigin waitlist.',
+      'Find or start Origins in Kyiv — startup, creative, political, meetup, and small business groups across the Ukrainian capital. JoinOrigin waitlist.',
     variants: {
-      startup: 'Startup communities in Kyiv | JoinOrigin',
-      creative: 'Creative communities in Kyiv | JoinOrigin',
-      political: 'Political & civic communities in Kyiv | JoinOrigin',
-      meetup: 'Meetup & social communities in Kyiv | JoinOrigin',
-      'small-business': 'Small business communities in Kyiv | JoinOrigin',
+      startup: 'Startup Origins in Kyiv | JoinOrigin',
+      creative: 'Creative Origins in Kyiv | JoinOrigin',
+      political: 'Political & civic Origins in Kyiv | JoinOrigin',
+      meetup: 'Meetup & social Origins in Kyiv | JoinOrigin',
+      'small-business': 'Small business Origins in Kyiv | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Find or start startup communities in Kyiv — founders, engineers, and operators around Unit.City, Podil, and the IT scene. JoinOrigin waitlist.',
+        'Find or start startup Origins in Kyiv — founders, engineers, and operators around Unit.City, Podil, and the IT scene. JoinOrigin waitlist.',
       creative:
-        'Find or start creative communities in Kyiv — studios, galleries, and collectives across Podil, the art factories, and the centre. JoinOrigin waitlist.',
+        'Find or start creative Origins in Kyiv — studios, galleries, and collectives across Podil, the art factories, and the centre. JoinOrigin waitlist.',
       political:
-        'Find or start political and civic communities in Kyiv — volunteer networks, hromada initiatives, and local campaigns. JoinOrigin waitlist.',
+        'Find or start political and civic Origins in Kyiv — volunteer networks, hromada initiatives, and local campaigns. JoinOrigin waitlist.',
       meetup:
-        'Find or start meetup and social communities in Kyiv — Dnipro embankment evenings, café culture, and park life. JoinOrigin waitlist.',
+        'Find or start meetup and social Origins in Kyiv — Dnipro embankment evenings, café culture, and park life. JoinOrigin waitlist.',
       'small-business':
-        'Find or start small business communities in Kyiv — market traders, café owners, and neighbourhood shops. JoinOrigin waitlist.',
+        'Find or start small business Origins in Kyiv — market traders, café owners, and neighbourhood shops. JoinOrigin waitlist.',
     },
-    ideas: '30 community event ideas in Kyiv | JoinOrigin',
+    ideas: '30 Origin event ideas in Kyiv | JoinOrigin',
     ideasDescription:
-      'Discover 30 community event ideas in Kyiv — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
+      'Discover 30 Origin event ideas in Kyiv — networking, learning, outdoor, professional, creative, and impact events. JoinOrigin waitlist.',
   },
   intro: [
     'Kyiv is a city with an extraordinary capacity for community. Its modern history — the Maidan protests, the volunteer movements that followed, and the resilience demanded since 2022 — has produced a civil society that organises fast and helps neighbours first. Volunteer networks, community kitchens, and support groups are woven into everyday life, and the city’s famous café culture keeps conversations flowing between them.',
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Kyiv’s startup and IT scene is one of Europe’s largest, built on a deep engineering talent pool and a culture of shipping software for global markets. Unit.City, the innovation park on the left bank, anchors the ecosystem with offices, events, and accelerators, while coworking floors across Podil and the centre host a dense community of product teams, outsourcing companies, and founders. KPI and the Kyiv-Mohyla Academy feed graduates into early teams, and strengths include B2B SaaS, game development, AI, and cybersecurity. Formats include founder breakfasts, pitch evenings, demo days, and IT networking nights that connect startups with the outsourcing giants of the local economy. The community is internationally oriented — English is common in product groups — and remarkably resilient: projects continue across borders and time zones. Starting a startup community in Kyiv works best with a narrow vertical and a regular rhythm — a monthly B2B SaaS table or an AI builders night builds a loyal following faster than a generalist group.',
+      'Kyiv’s startup and IT scene is one of Europe’s largest, built on a deep engineering talent pool and a culture of shipping software for global markets. Unit.City, the innovation park on the left bank, anchors the ecosystem with offices, events, and accelerators, while coworking floors across Podil and the centre host a dense community of product teams, outsourcing companies, and founders. KPI and the Kyiv-Mohyla Academy feed graduates into early teams, and strengths include B2B SaaS, game development, AI, and cybersecurity. Formats include founder breakfasts, pitch evenings, demo days, and IT networking nights that connect startups with the outsourcing giants of the local economy. The community is internationally oriented — English is common in product groups — and remarkably resilient: projects continue across borders and time zones. Starting a startup Origin in Kyiv works best with a narrow vertical and a regular rhythm — a monthly B2B SaaS table or an AI builders night builds a loyal following faster than a generalist group.',
     creative:
-      'Kyiv’s creative communities are as bold as the city’s murals: Podil’s studios and galleries, the converted workshops of Art-Zavod Platforma, and the street-art walls that cover whole buildings give artists, designers, and musicians a distinctive stage. The city’s traditions — embroidery, ceramics, and folk illustration — connect old workshops with contemporary makers, while the Academy and the art schools feed a steady stream of graduates into a scene known for graphic design, music, and cinema. Formats include open studio weekends in Podil, mural walks with artist talks, design critiques, and music production circles, with the city’s cafés providing the natural meeting point after every event. The scene is compact and connected, and Ukrainian creativity — honed by history — is taken seriously internationally. Starting a creative community in Kyiv is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
+      'Kyiv’s creative communities are as bold as the city’s murals: Podil’s studios and galleries, the converted workshops of Art-Zavod Platforma, and the street-art walls that cover whole buildings give artists, designers, and musicians a distinctive stage. The city’s traditions — embroidery, ceramics, and folk illustration — connect old workshops with contemporary makers, while the Academy and the art schools feed a steady stream of graduates into a scene known for graphic design, music, and cinema. Formats include open studio weekends in Podil, mural walks with artist talks, design critiques, and music production circles, with the city’s cafés providing the natural meeting point after every event. The scene is compact and connected, and Ukrainian creativity — honed by history — is taken seriously internationally. Starting a creative Origin in Kyiv is realistic: pick a craft, a district, and a regular evening, and the density of curious, talented people will find you.',
     political:
-      'Kyiv’s civic life runs on volunteer energy and a powerful sense of hromada — community. The Maidan protests of 2013–14 and the full-scale war since 2022 forged a civil society that organises quickly and helps neighbours first: volunteer hubs coordinate aid, community kitchens feed those in need, and support networks check on the vulnerable. City councils and district administrations keep local decisions close, and residents regularly organise around parks, utilities, and housing. The political culture values action and trust: Kyiv residents respect organisers who deliver, and newcomers are welcomed into networks that take care of each other. Safety comes first — gatherings follow official guidance — but the community spirit is constant, from small street initiatives to citywide campaigns. Starting a political or civic community means choosing a concrete issue and a small geography, then partnering with an established volunteer hub — the landscape is rich enough that collaboration beats competition.',
+      'Kyiv’s civic life runs on volunteer energy and a powerful sense of hromada — community. The Maidan protests of 2013–14 and the full-scale war since 2022 forged a civil society that organises quickly and helps neighbours first: volunteer hubs coordinate aid, community kitchens feed those in need, and support networks check on the vulnerable. City councils and district administrations keep local decisions close, and residents regularly organise around parks, utilities, and housing. The political culture values action and trust: Kyiv residents respect organisers who deliver, and newcomers are welcomed into networks that take care of each other. Safety comes first — gatherings follow official guidance — but the community spirit is constant, from small street initiatives to citywide campaigns. Starting a political or civic Origin means choosing a concrete issue and a small geography, then partnering with an established volunteer hub — the landscape is rich enough that collaboration beats competition.',
     meetup:
       'Kyiv’s meetup scene runs on café culture, the Dnipro, and the city’s warm social rhythm. Podil’s cafés and specialty-coffee bars fill with friends and strangers alike, and a weekly table at the same spot becomes a community in itself. The Dnipro embankment is the city’s great outdoor stage — walks, runs, and bike rides stretch along the water, while Hydropark’s beaches and riverbanks host summer days. Mariinskyi Park and Holosiivskyi Park offer green escapes for picnics and games, and board game cafés carry the winter evenings. Language exchanges (Ukrainian–English) run across the centre, and the city’s volunteer culture means even casual meetups often end with someone organizing help for someone in need. The rhythm is genuine and direct — Kyiv people say what they think and mean what they say. Starting a meetup in Kyiv means choosing a repeatable format and a fixed venue, following safety guidance, and letting the city’s warmth do the rest.',
     'small-business':
-      'Kyiv small business communities are anchored by the city’s markets, cafés, and neighbourhood streets. Bessarabskyi Market, the historic covered market in the centre, hosts a community of stallholders who share suppliers, schedules, and gossip, while the food halls and farmers’ markets of the left bank add a modern layer. The city’s famous café scene — roasters, specialty bars, and family coffee shops — forms a tight network of owners who compare notes on sourcing, staff, and seasonality. The chamber of commerce offers workshops on registration and digitalisation, and the city’s festivals give traders a shared calendar. What binds these groups is place and craft: a market hall or a café street is a natural community with a collective stake in the neighbourhood’s life. Starting a small business community is very achievable: a monthly trader coffee at a market hall, with rotating topics like registration, rent, and delivery, reliably attracts owners who rarely have peers to talk with.',
+      'Kyiv small business communities are anchored by the city’s markets, cafés, and neighbourhood streets. Bessarabskyi Market, the historic covered market in the centre, hosts a community of stallholders who share suppliers, schedules, and gossip, while the food halls and farmers’ markets of the left bank add a modern layer. The city’s famous café scene — roasters, specialty bars, and family coffee shops — forms a tight network of owners who compare notes on sourcing, staff, and seasonality. The chamber of commerce offers workshops on registration and digitalisation, and the city’s festivals give traders a shared calendar. What binds these groups is place and craft: a market hall or a café street is a natural community with a collective stake in the neighbourhood’s life. Starting a small business Origin is very achievable: a monthly trader coffee at a market hall, with rotating topics like registration, rent, and delivery, reliably attracts owners who rarely have peers to talk with.',
   },
   ideaPage: {
     intro:
-      'Kyiv is a city where communities form fast and care deeply: the café culture gives every group a venue, the Dnipro embankment gives summer gatherings a stage, and the volunteer spirit means people show up. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Kyiv, from cafés and markets to parks and art factories. Some ideas work as one-off events; others are designed to become recurring communities with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Organisers should always follow official safety guidance. Pick the idea that matches your interests, find a venue that will host you, and let Kyiv’s warmth do the rest.',
+      'Kyiv is a city where communities form fast and care deeply: the café culture gives every group a venue, the Dnipro embankment gives summer gatherings a stage, and the volunteer spirit means people show up. The thirty ideas below are grouped into six categories — networking, learning, social and outdoor, professional and industry, creative and maker, and impact and local. Each includes who it is for, a short pitch, and a suggested venue type that genuinely exists in Kyiv, from cafés and markets to parks and art factories. Some ideas work as one-off events; others are designed to become recurring Origins with a weekly rhythm. The honesty rule is simple: every venue suggestion is a real kind of place in this city, and every format is simple enough for a first-time organiser to run. Organisers should always follow official safety guidance. Pick the idea that matches your interests, find a venue that will host you, and let Kyiv’s warmth do the rest.',
     categories: [
       {
         name: 'Networking',
@@ -429,22 +429,22 @@ const content: CityContent = {
           'No. Many Kyiv groups run in English or are bilingual, especially in tech and creative scenes. A little Ukrainian opens doors with neighbours and market traders.',
       },
       {
-        question: 'Can these events become real communities?',
+        question: 'Can these events become real Origins?',
         answer:
-          'Yes — recurring formats are how most Kyiv communities start, and the city’s volunteer spirit gives you a proven pattern. Always follow official safety guidance, and the how-to guides walk through the first event to a stable community.',
+          'Yes — recurring formats are how most Kyiv Origins start, and the city’s volunteer spirit gives you a proven pattern. Always follow official safety guidance, and the how-to guides walk through the first event to a stable Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'How do I find a community in Kyiv?',
+      question: 'How do I find an Origin in Kyiv?',
       answer:
-        'Use the group-type pages for startup, creative, political, meetup, and small business communities. Each describes the real districts, venues, and formats where Kyiv residents gather. JoinOrigin is live — create your profile and find or start your community today.',
+        'Use the group-type pages for startup, creative, political, meetup, and small business Origins. Each describes the real districts, venues, and formats where Kyiv residents gather. JoinOrigin is live — create your profile and find or start your Origin today.',
     },
     {
-      question: 'Is it realistic to start a community in Kyiv?',
+      question: 'Is it realistic to start an Origin in Kyiv?',
       answer:
-        'Yes. Kyiv has cafés, parks, and the Dnipro embankment as venues, plus a deeply rooted volunteer culture. The guides cover starting a community, organizing a meetup, and getting your first ten members.',
+        'Yes. Kyiv has cafés, parks, and the Dnipro embankment as venues, plus a deeply rooted volunteer culture. The guides cover starting an Origin, organizing a meetup, and getting your first ten members.',
     },
     {
       question: 'Are the venue suggestions on this page real?',
@@ -454,7 +454,7 @@ const content: CityContent = {
     {
       question: 'Does JoinOrigin have an office in Kyiv?',
       answer:
-        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Kyiv residents find or start communities.',
+        'No. JoinOrigin has no local offices or staff. All community descriptions reflect the real city landscape, and the platform helps Kyiv residents find or start Origins.',
     },
   ],
 };

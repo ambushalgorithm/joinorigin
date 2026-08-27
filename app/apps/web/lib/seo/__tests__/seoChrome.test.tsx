@@ -40,7 +40,7 @@ describe('seoContent chrome — RTL contract (TASK-310 §7.1)', () => {
 
     // Presence claim — localized chrome, not the EN default.
     expect(
-      screen.getByText('ابحث عن مجتمع أو أنشئه في Berlin', { exact: false }),
+      screen.getByText('ابحث عن Origin أو أنشئه في Berlin', { exact: false }),
     ).toBeInTheDocument();
     // City facts section heading is Arabic chrome.
     expect(screen.getByText('حقائق عن المدينة')).toBeInTheDocument();
@@ -60,11 +60,11 @@ describe('seoContent chrome — locale-aware number formatting (R7)', () => {
   it('getT interpolates {{city}} in the presence claim template', () => {
     const en = getT(getDictionary('en'));
     expect(en('seoContent.location.presenceClaim', { city: 'Berlin' })).toBe(
-      'Find or start a community in Berlin',
+      'Find or start an Origin in Berlin',
     );
     const de = getT(getDictionary('de'));
     expect(de('seoContent.location.presenceClaim', { city: 'Berlin' })).toBe(
-      'Community in Berlin finden oder gründen',
+      'Ein Origin in Berlin finden oder gründen',
     );
   });
 });
@@ -77,16 +77,16 @@ describe('seoContent chrome — active-locale chrome switching (design §7.1)', 
 
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('Startseite')).toBeInTheDocument();
-    expect(within(breadcrumbs).getByText('Communities nach Stadt')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Origins nach Stadt')).toBeInTheDocument();
 
     // Section headings in German chrome.
     expect(screen.getByText('Stadt-Fakten')).toBeInTheDocument();
-    expect(screen.getByText('Community-Typen entdecken')).toBeInTheDocument();
+    expect(screen.getByText('Origin-Typen entdecken')).toBeInTheDocument();
     expect(screen.getByText('Häufig gestellte Fragen')).toBeInTheDocument();
 
     // Group-type chrome labels via seoContent.groupTypes.*.
     const groupLinks = screen.getByTestId('location-group-type-links');
-    expect(within(groupLinks).getByText('Startup-Communities')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('Startup-Origins')).toBeInTheDocument();
     expect(within(groupLinks).getByText('30 Ideen für Community-Events')).toBeInTheDocument();
   });
 
@@ -96,7 +96,7 @@ describe('seoContent chrome — active-locale chrome switching (design §7.1)', 
     renderWithI18n(<LocationView data={data} />, 'en');
 
     expect(screen.getByText('City facts')).toBeInTheDocument();
-    expect(screen.getByText('Explore community types')).toBeInTheDocument();
+    expect(screen.getByText('Explore Origin types')).toBeInTheDocument();
     expect(screen.getByText('Frequently asked questions')).toBeInTheDocument();
   });
 });
@@ -114,7 +114,7 @@ describe('seoContent chrome — variant enrichment sections (TASK-319)', () => {
 
     // Section headings come from seoContent.* chrome keys + the localized
     // group-type label ({{type}} interpolation).
-    expect(screen.getByText('Where Startup communities gather')).toBeInTheDocument();
+    expect(screen.getByText('Where Startup Origins gather')).toBeInTheDocument();
     expect(screen.getByText('Typical formats')).toBeInTheDocument();
     expect(screen.getByText('How to start')).toBeInTheDocument();
 
@@ -138,7 +138,7 @@ describe('seoContent chrome — variant enrichment sections (TASK-319)', () => {
     const data = buildLocationViewData(entry!, 'de');
     renderWithI18n(<LocationView data={data} />, 'de');
 
-    expect(screen.getByText('Wo sich Startup-Communities treffen')).toBeInTheDocument();
+    expect(screen.getByText('Wo sich Startup-Origins treffen')).toBeInTheDocument();
     expect(screen.getByText('Typische Formate')).toBeInTheDocument();
     expect(screen.getByText('So startest du')).toBeInTheDocument();
     // German body copy from the de Berlin content file.
@@ -171,7 +171,7 @@ describe('seoContent.location.exploreCommunities — missing chrome key fix (TAS
     // The flagship-cities cards use seoContent.location.exploreCommunities as
     // their body — the key must resolve to the localized label.
     const flagshipGrid = screen.getByTestId('location-flagship-cities');
-    expect(within(flagshipGrid).getAllByText('Explore communities').length).toBeGreaterThan(0);
+    expect(within(flagshipGrid).getAllByText('Explore Origins').length).toBeGreaterThan(0);
 
     // The raw key string must never surface in the rendered DOM.
     expect(screen.queryByText('seoContent.location.exploreCommunities')).not.toBeInTheDocument();
@@ -184,7 +184,7 @@ describe('seoContent.location.exploreCommunities — missing chrome key fix (TAS
     renderWithI18n(<LocationView data={data} />, 'de');
 
     const flagshipGrid = screen.getByTestId('location-flagship-cities');
-    expect(within(flagshipGrid).getAllByText('Communities entdecken').length).toBeGreaterThan(0);
+    expect(within(flagshipGrid).getAllByText('Origins entdecken').length).toBeGreaterThan(0);
     expect(document.body.textContent).not.toContain('seoContent.location.exploreCommunities');
   });
 });

@@ -244,16 +244,16 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
     const hub = locationPageEntries().find((entry) => entry.kind === 'hub');
     const enData = buildLocationViewData(hub!, 'en');
     expect(enData.hubIntro).toBe(
-      'Every country, region, city, community type, and event idea on the network — find the community you are looking for or start one in your city.',
+      'Every country, region, city, Origin type, and event idea on the network — find the Origin you are looking for or start one in your city.',
     );
     expect(enData.hubLead).toBe(
-      'Explore communities by city around the world — startup, creative, political, meetup, and small business groups.',
+      'Explore Origins by city around the world — startup, creative, political, meetup, and small business groups.',
     );
 
     // Route-locale value: the de surface carries the German translation.
     const deData = buildLocationViewData(hub!, 'de');
     expect(deData.hubIntro).toContain('Jedes Land, jede Region, jede Stadt');
-    expect(deData.hubLead).toContain('Entdecke Communities in Städten');
+    expect(deData.hubLead).toContain('Entdecke Origins in Städten');
 
     // Non-hub kinds never carry the hub chrome keys.
     const germany = resolveLocationEntry({ country: 'germany' })!;
@@ -334,7 +334,7 @@ describe('lib/seo locationView — un-gated city sections (Sprint 20, TASK-474)'
     expect(dubaiStartup?.path).toBe('/en/location/united-arab-emirates/dubai/dubai/startup');
     const dubaiData = buildLocationViewData(dubaiStartup!);
     expect(dubaiData.groupType).toBe('startup');
-    expect(dubaiData.heading).toBe('Startup communities in Dubai');
+    expect(dubaiData.heading).toBe('Startup Origins in Dubai');
     // Variant pages carry the same Explore community types mesh.
     expect(dubaiData.groupTypeLinks.length).toBeGreaterThan(0);
 
@@ -351,7 +351,7 @@ describe('lib/seo locationView — un-gated city sections (Sprint 20, TASK-474)'
     );
     const buenosData = buildLocationViewData(buenosStartup!);
     expect(buenosData.groupType).toBe('startup');
-    expect(buenosData.heading).toBe('Startup communities in Buenos Aires');
+    expect(buenosData.heading).toBe('Startup Origins in Buenos Aires');
   });
 
   it('un-gated city group-type links resolve in the registry (every mesh link real)', () => {

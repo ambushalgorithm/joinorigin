@@ -109,8 +109,8 @@ describe('lib/seo locationView — resolve + view model', () => {
     expect(entry).toBeDefined();
     const data = buildLocationViewData(entry!);
 
-    expect(data.heading).toBe('Communities in Berlin');
-    expect(data.eyebrow).toBe('Communities in this city');
+    expect(data.heading).toBe('Origins in Berlin');
+    expect(data.eyebrow).toBe('Origins in this city');
     expect(data.kind).toBe('city');
     expect(data.indexable).toBe(true);
     expect(data.path).toBe('/en/location/germany/berlin/berlin');
@@ -120,7 +120,7 @@ describe('lib/seo locationView — resolve + view model', () => {
     // names (names[locale], EN fallback) instead of the EN registry titles.
     expect(data.breadcrumbs.map((crumb) => crumb.name)).toEqual([
       'Home',
-      'Communities by City',
+      'Origins by City',
       'Germany',
       'State of Berlin',
       'Berlin',
@@ -165,7 +165,7 @@ describe('lib/seo locationView — resolve + view model', () => {
     });
     const data = buildLocationViewData(entry!);
     expect(data.kind).toBe('variant');
-    expect(data.heading).toBe('Startup communities in New York City');
+    expect(data.heading).toBe('Startup Origins in New York City');
     // Variant intros wrap into a single-element paragraph array.
     expect(Array.isArray(data.intro)).toBe(true);
     expect(data.intro).toHaveLength(1);

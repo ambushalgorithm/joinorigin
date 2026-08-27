@@ -100,16 +100,16 @@ describe('/location/[country]/[region]/[city] route', () => {
 
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Communities in Berlin');
+    expect(headings[0]).toHaveTextContent('Origins in Berlin');
 
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
-    expect(within(breadcrumbs).getByText('Communities by City')).toBeInTheDocument();
+    expect(within(breadcrumbs).getByText('Origins by City')).toBeInTheDocument();
     // TASK-516 — country/region/city crumbs use localized dataset names.
     expect(within(breadcrumbs).getByText('Germany')).toBeInTheDocument();
     expect(within(breadcrumbs).getByText('State of Berlin')).toBeInTheDocument();
 
     const groupLinks = screen.getByTestId('location-group-type-links');
-    expect(within(groupLinks).getByText('Startup communities')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('Startup Origins')).toBeInTheDocument();
     expect(within(groupLinks).getByText('30 community event ideas')).toBeInTheDocument();
 
     expect(screen.getByTestId('location-faq')).toBeInTheDocument();
@@ -125,7 +125,7 @@ describe('/location/[country]/[region]/[city] route', () => {
     const payloads = scripts.map((script) => JSON.parse(script.textContent ?? '{}'));
     const city = payloads.find((p) => p['@type'] === 'City');
     expect(city).toBeDefined();
-    expect(city?.name).toBe('Communities in Berlin');
+    expect(city?.name).toBe('Origins in Berlin');
     expect(city?.url).toBe('http://localhost:3100/en/location/germany/berlin/berlin');
     // Real GeoNames coordinates — never fabricated.
     expect(city?.geo).toMatchObject({ '@type': 'GeoCoordinates' });
@@ -133,7 +133,7 @@ describe('/location/[country]/[region]/[city] route', () => {
     expect(typeof city?.geo?.longitude).toBe('number');
   });
 
-  it('renders the un-gated dubai city view: Explore community types + nearby cities (TASK-474)', () => {
+  it('renders the un-gated dubai city view: Explore Origin types + nearby cities (TASK-474)', () => {
     const entry = resolveLocationEntry({
       country: 'united-arab-emirates',
       region: 'dubai',
@@ -145,11 +145,11 @@ describe('/location/[country]/[region]/[city] route', () => {
 
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Communities in Dubai');
+    expect(headings[0]).toHaveTextContent('Origins in Dubai');
 
     // Explore community types — un-gated for Tier-2 content cities.
     const groupLinks = screen.getByTestId('location-group-type-links');
-    expect(within(groupLinks).getByText('Startup communities')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('Startup Origins')).toBeInTheDocument();
     expect(within(groupLinks).getByText('30 community event ideas')).toBeInTheDocument();
 
     // Communities in nearby cities — same-region siblings render too.
@@ -169,10 +169,10 @@ describe('/location/[country]/[region]/[city] route', () => {
 
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Communities in Buenos Aires');
+    expect(headings[0]).toHaveTextContent('Origins in Buenos Aires');
 
     const groupLinks = screen.getByTestId('location-group-type-links');
-    expect(within(groupLinks).getByText('Startup communities')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('Startup Origins')).toBeInTheDocument();
 
     const siblingGrid = screen.getByTestId('location-sibling-cities');
     expect(within(siblingGrid).getAllByRole('link').length).toBeGreaterThan(0);
