@@ -297,7 +297,7 @@ describe('location view — locale-aware internal links (TASK-460)', () => {
     // Breadcrumb hub link, group-type link, guide cross-link all prefixed.
     expect(linkByHref('/en/location')).toBeDefined();
     expect(linkByHref('/en/location/germany/berlin/berlin/startup')).toBeDefined();
-    expect(linkByHref('/en/guides/start-a-community')).toBeDefined();
+    expect(linkByHref('/en/guides/start-an-origin')).toBeDefined();
   });
 
   it('keeps the /en/** prefix on an /en/** load (table row 2)', () => {
@@ -305,7 +305,7 @@ describe('location view — locale-aware internal links (TASK-460)', () => {
     renderLocationForLocale('en', berlinData);
     expect(linkByHref('/en/location')).toBeDefined();
     expect(linkByHref('/en/location/germany/berlin/berlin/startup')).toBeDefined();
-    expect(linkByHref('/en/guides/start-a-community')).toBeDefined();
+    expect(linkByHref('/en/guides/start-an-origin')).toBeDefined();
   });
 
   it('renders /de/** links on a /de/** load (table row 3)', () => {
@@ -313,7 +313,7 @@ describe('location view — locale-aware internal links (TASK-460)', () => {
     renderLocationForLocale('de', berlinData);
     expect(linkByHref('/de/location')).toBeDefined();
     expect(linkByHref('/de/location/germany/berlin/berlin/startup')).toBeDefined();
-    expect(linkByHref('/de/guides/start-a-community')).toBeDefined();
+    expect(linkByHref('/de/guides/start-an-origin')).toBeDefined();
   });
 
   it('renders /de/** links on an unprefixed path with an active de locale (URL-driven)', () => {
@@ -321,6 +321,6 @@ describe('location view — locale-aware internal links (TASK-460)', () => {
     renderLocationForLocale('de', berlinData);
     expect(linkByHref('/de/location')).toBeDefined();
     expect(linkByHref('/de/location/germany/berlin/berlin/startup')).toBeDefined();
-    expect(linkByHref('/de/guides/start-a-community')).toBeDefined();
+    expect(linkByHref('/de/guides/start-an-origin')).toBeDefined();
   });
 });

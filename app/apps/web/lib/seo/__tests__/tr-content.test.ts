@@ -7,14 +7,14 @@ import createAGroupTr from '../content/tr/guide/create-a-group';
 import createAProjectTr from '../content/tr/guide/create-a-project';
 import findACoFounderTr from '../content/tr/guide/find-a-co-founder';
 import first10MembersTr from '../content/tr/guide/first-10-members';
-import hybridCommunitiesTr from '../content/tr/guide/hybrid-communities';
-import keepCommunityActiveTr from '../content/tr/guide/keep-a-community-active';
+import hybridCommunitiesTr from '../content/tr/guide/hybrid-origins';
+import keepCommunityActiveTr from '../content/tr/guide/keep-an-origin-active';
 import moderationTr from '../content/tr/guide/moderation';
 import organizeMeetupTr from '../content/tr/guide/organize-a-meetup';
 import publishAnIdeaTr from '../content/tr/guide/publish-an-idea';
 import publishASmallBusinessIdeaTr from '../content/tr/guide/publish-a-small-business-idea';
 import publishAStartupConceptTr from '../content/tr/guide/publish-a-startup-concept';
-import startCommunityTr from '../content/tr/guide/start-a-community';
+import startCommunityTr from '../content/tr/guide/start-an-origin';
 
 /**
  * Sprint 18 Turkish translation content tests (TASK-429).
@@ -51,10 +51,10 @@ const TR_GUIDE_SLUGS = [
   'publish-a-small-business-idea',
   'publish-a-startup-concept',
   'find-a-co-founder',
-  'start-a-community',
+  'start-an-origin',
   'first-10-members',
-  'keep-a-community-active',
-  'hybrid-communities',
+  'keep-an-origin-active',
+  'hybrid-origins',
   'organize-a-meetup',
   'moderation',
 ];

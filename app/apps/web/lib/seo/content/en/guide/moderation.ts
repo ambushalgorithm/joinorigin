@@ -17,7 +17,8 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'en',
   slug: 'moderation',
-  title: 'Community Moderation: How to Keep Groups Healthy & Welcoming | JoinOrigin',
+  title: 'Origin Moderation: How to Keep Groups Healthy & Welcoming | JoinOrigin',
+  heading: 'Origin Moderation: How to Keep Groups Healthy & Welcoming',
   description:
     'Moderate a community with clear rules, early action, and de-escalation — whether you are setting up a brand-new group or fixing the culture of an established one, creator control is Matrix room ownership, with roles enforced in Element. Practical steps from JoinOrigin.',
   intro: [

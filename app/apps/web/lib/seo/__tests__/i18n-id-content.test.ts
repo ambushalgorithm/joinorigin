@@ -18,14 +18,14 @@ import createAGroupGuideId from '../content/id/guide/create-a-group';
 import createAProjectGuideId from '../content/id/guide/create-a-project';
 import findACoFounderGuideId from '../content/id/guide/find-a-co-founder';
 import first10MembersGuideId from '../content/id/guide/first-10-members';
-import hybridCommunitiesGuideId from '../content/id/guide/hybrid-communities';
-import keepCommunityActiveGuideId from '../content/id/guide/keep-a-community-active';
+import hybridCommunitiesGuideId from '../content/id/guide/hybrid-origins';
+import keepCommunityActiveGuideId from '../content/id/guide/keep-an-origin-active';
 import moderationGuideId from '../content/id/guide/moderation';
 import organizeMeetupGuideId from '../content/id/guide/organize-a-meetup';
 import publishAnIdeaGuideId from '../content/id/guide/publish-an-idea';
 import publishASmallBusinessIdeaGuideId from '../content/id/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideId from '../content/id/guide/publish-a-startup-concept';
-import startCommunityGuideId from '../content/id/guide/start-a-community';
+import startCommunityGuideId from '../content/id/guide/start-an-origin';
 import jakartaCityId from '../content/id/city/jakarta';
 
 const GUIDE_SLUGS = [
@@ -33,14 +33,14 @@ const GUIDE_SLUGS = [
   'create-a-project',
   'find-a-co-founder',
   'first-10-members',
-  'hybrid-communities',
-  'keep-a-community-active',
+  'hybrid-origins',
+  'keep-an-origin-active',
   'moderation',
   'organize-a-meetup',
   'publish-an-idea',
   'publish-a-small-business-idea',
   'publish-a-startup-concept',
-  'start-a-community',
+  'start-an-origin',
 ] as const;
 
 const idGuides = [

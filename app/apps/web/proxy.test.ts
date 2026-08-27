@@ -341,25 +341,25 @@ describe('/en/* forces English (TASK-448)', () => {
 
 describe('non-EN locale-prefixed paths force their locale (TASK-444)', () => {
   it.each([
-    ['es', '/es/guides/start-a-community'],
-    ['ja', '/ja/guides/start-a-community'],
-    ['ar', '/ar/guides/start-a-community'],
-    ['fr', '/fr/guides/start-a-community'],
-    ['hi', '/hi/guides/start-a-community'],
-    ['id', '/id/guides/start-a-community'],
-    ['it', '/it/guides/start-a-community'],
-    ['ko', '/ko/guides/start-a-community'],
-    ['nl', '/nl/guides/start-a-community'],
-    ['pl', '/pl/guides/start-a-community'],
-    ['ru', '/ru/guides/start-a-community'],
-    ['th', '/th/guides/start-a-community'],
-    ['tr', '/tr/guides/start-a-community'],
-    ['uk', '/uk/guides/start-a-community'],
-    ['vi', '/vi/guides/start-a-community'],
-    ['fa', '/fa/guides/start-a-community'],
-    ['pt-BR', '/pt-BR/guides/start-a-community'],
-    ['zh-CN', '/zh-CN/guides/start-a-community'],
-    ['zh-TW', '/zh-TW/guides/start-a-community'],
+    ['es', '/es/guides/start-an-origin'],
+    ['ja', '/ja/guides/start-an-origin'],
+    ['ar', '/ar/guides/start-an-origin'],
+    ['fr', '/fr/guides/start-an-origin'],
+    ['hi', '/hi/guides/start-an-origin'],
+    ['id', '/id/guides/start-an-origin'],
+    ['it', '/it/guides/start-an-origin'],
+    ['ko', '/ko/guides/start-an-origin'],
+    ['nl', '/nl/guides/start-an-origin'],
+    ['pl', '/pl/guides/start-an-origin'],
+    ['ru', '/ru/guides/start-an-origin'],
+    ['th', '/th/guides/start-an-origin'],
+    ['tr', '/tr/guides/start-an-origin'],
+    ['uk', '/uk/guides/start-an-origin'],
+    ['vi', '/vi/guides/start-an-origin'],
+    ['fa', '/fa/guides/start-an-origin'],
+    ['pt-BR', '/pt-BR/guides/start-an-origin'],
+    ['zh-CN', '/zh-CN/guides/start-an-origin'],
+    ['zh-TW', '/zh-TW/guides/start-an-origin'],
   ])('forces %s for %s despite a conflicting Accept-Language', (locale, path) => {
     const response = runProxyAt(`http://localhost${path}`, {
       'accept-language': 'en',
@@ -392,7 +392,7 @@ describe('non-EN locale-prefixed paths force their locale (TASK-444)', () => {
   it('localeFromPathname resolves every locale prefix incl. en and ignores non-locale paths', () => {
     expect(localeFromPathname('/es')).toBe('es');
     expect(localeFromPathname('/es/guides')).toBe('es');
-    expect(localeFromPathname('/pt-BR/guides/start-a-community')).toBe('pt-BR');
+    expect(localeFromPathname('/pt-BR/guides/start-an-origin')).toBe('pt-BR');
     expect(localeFromPathname('/zh-CN/guides')).toBe('zh-CN');
     expect(localeFromPathname('/zh-TW/guides')).toBe('zh-TW');
     expect(localeFromPathname('/en')).toBe('en');
@@ -452,7 +452,7 @@ describe('unprefixed routes redirect per Accept-Language only (TASK-464 + TASK-4
 
 describe('no cookie is ever written (TASK-468)', () => {
   it('never sets a cookie on prefixed surfaces', () => {
-    const response = runProxyAt('http://localhost/vi/guides/start-a-community', {
+    const response = runProxyAt('http://localhost/vi/guides/start-an-origin', {
       'accept-language': 'en',
     });
     expect(response.headers.get('x-joinorigin-locale')).toBe('vi');
@@ -460,7 +460,7 @@ describe('no cookie is ever written (TASK-468)', () => {
   });
 
   it.each(SUPPORTED_LOCALES)('never sets a cookie on /%s/guides/... first visit', (locale) => {
-    const response = runProxyAt(`http://localhost/${locale}/guides/start-a-community`);
+    const response = runProxyAt(`http://localhost/${locale}/guides/start-an-origin`);
     expect(response.headers.get('x-joinorigin-locale')).toBe(locale);
     expect(response.cookies.getAll()).toHaveLength(0);
   });
@@ -481,7 +481,7 @@ describe('no cookie is ever written (TASK-468)', () => {
 
 describe('CF-IPCountry geo forwarding (TASK-479)', () => {
   it('forwards CF-IPCountry as x-joinorigin-ip-country on pass-through request headers', () => {
-    const response = runProxyAt('http://localhost/en/guides/start-a-community', {
+    const response = runProxyAt('http://localhost/en/guides/start-an-origin', {
       'cf-ipcountry': 'DE',
     });
     expect(response.status).toBe(200);
@@ -508,7 +508,7 @@ describe('CF-IPCountry geo forwarding (TASK-479)', () => {
   });
 
   it('does not set x-joinorigin-ip-country when CF-IPCountry is absent', () => {
-    const passThrough = runProxyAt('http://localhost/en/guides/start-a-community');
+    const passThrough = runProxyAt('http://localhost/en/guides/start-an-origin');
     expect(passThrough.headers.get(IP_COUNTRY_HEADER)).toBeNull();
     expect(passThrough.headers.get('x-middleware-request-x-joinorigin-ip-country')).toBeNull();
 
@@ -539,7 +539,7 @@ describe('Story F matcher trim + O(1) locale resolution (TASK-537)', () => {
       '/location/germany/berlin/berlin',
       '/en/features',
       '/de/location/germany/berlin/berlin',
-      '/vi/guides/start-a-community',
+      '/vi/guides/start-an-origin',
     ]) {
       expect(unstable_doesMiddlewareMatch({ config, url })).toBe(true);
     }
@@ -583,7 +583,7 @@ describe('Story F matcher trim + O(1) locale resolution (TASK-537)', () => {
   it('localeFromPathname resolves all 21 supported locales via the O(1) Set lookup', () => {
     for (const locale of SUPPORTED_LOCALES) {
       expect(localeFromPathname(`/${locale}`)).toBe(locale);
-      expect(localeFromPathname(`/${locale}/guides/start-a-community`)).toBe(locale);
+      expect(localeFromPathname(`/${locale}/guides/start-an-origin`)).toBe(locale);
     }
   });
 

@@ -1,4 +1,38 @@
 /** @type {import('next').NextConfig} */
+
+// Wave-3 guides slug renames (TASK-573) — old community-centric slugs now
+// 301-redirect to the Origin slugs so existing URLs + SEO equity transfer.
+// Mirrors SUPPORTED_LOCALES in packages/i18n/src/resolve.ts (21 locales).
+const GUIDE_LOCALES = [
+  'en',
+  'es',
+  'pt-BR',
+  'fr',
+  'de',
+  'ru',
+  'ja',
+  'ko',
+  'zh-CN',
+  'zh-TW',
+  'ar',
+  'hi',
+  'id',
+  'tr',
+  'it',
+  'pl',
+  'nl',
+  'vi',
+  'th',
+  'uk',
+  'fa',
+];
+
+const GUIDE_SLUG_REDIRECTS = [
+  { oldSlug: 'start-a-community', newSlug: 'start-an-origin' },
+  { oldSlug: 'keep-a-community-active', newSlug: 'keep-an-origin-active' },
+  { oldSlug: 'hybrid-communities', newSlug: 'hybrid-origins' },
+];
+
 const nextConfig = {
   reactStrictMode: true,
   // Standalone output: emits a self-contained `.next/standalone` folder with
@@ -104,6 +138,23 @@ const nextConfig = {
         ],
       },
     ];
+  },
+  // TASK-573 — permanent (301) redirects from the renamed community-centric
+  // guide slugs to their Origin slugs, for the unprefixed tree and every
+  // `/ <locale>/guides/...` variant (all 21 locales).
+  async redirects() {
+    return GUIDE_SLUG_REDIRECTS.flatMap(({ oldSlug, newSlug }) => [
+      {
+        source: `/guides/${oldSlug}`,
+        destination: `/guides/${newSlug}`,
+        permanent: true,
+      },
+      ...GUIDE_LOCALES.map((locale) => ({
+        source: `/${locale}/guides/${oldSlug}`,
+        destination: `/${locale}/guides/${newSlug}`,
+        permanent: true,
+      })),
+    ]);
   },
 };
 

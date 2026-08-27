@@ -96,7 +96,7 @@ describe('lib/seo llms.txt — serialization shape', () => {
   it('renders absolute URLs at the /en/** canonical surface via absoluteUrl', () => {
     const text = buildLlmsText();
     expect(text).toContain(absoluteUrl('/en/about'));
-    expect(text).toContain(absoluteUrl('/en/guides/start-a-community'));
+    expect(text).toContain(absoluteUrl('/en/guides/start-an-origin'));
     expect(text).toContain(absoluteUrl('/en/location'));
     expect(text).toContain(absoluteUrl('/en/glossary'));
   });
@@ -124,7 +124,7 @@ describe('lib/seo llms-full.txt — full-text companion (G-16)', () => {
   });
 
   it('expands guide pages with their full intro + steps + FAQ', () => {
-    // The start-a-community guide's intro sentence appears in full.
+    // The start-an-origin guide's intro sentence appears in full.
     expect(text).toContain('The hardest part of starting a community');
     // A guide step title appears with its body.
     expect(text).toContain('Define a clear purpose');

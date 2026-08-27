@@ -10,14 +10,14 @@ import createAGroupGuideAr from '../content/ar/guide/create-a-group';
 import createAProjectGuideAr from '../content/ar/guide/create-a-project';
 import findACoFounderGuideAr from '../content/ar/guide/find-a-co-founder';
 import first10MembersGuideAr from '../content/ar/guide/first-10-members';
-import hybridCommunitiesGuideAr from '../content/ar/guide/hybrid-communities';
-import keepCommunityActiveGuideAr from '../content/ar/guide/keep-a-community-active';
+import hybridCommunitiesGuideAr from '../content/ar/guide/hybrid-origins';
+import keepCommunityActiveGuideAr from '../content/ar/guide/keep-an-origin-active';
 import moderationGuideAr from '../content/ar/guide/moderation';
 import organizeMeetupGuideAr from '../content/ar/guide/organize-a-meetup';
 import publishAnIdeaGuideAr from '../content/ar/guide/publish-an-idea';
 import publishASmallBusinessIdeaGuideAr from '../content/ar/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideAr from '../content/ar/guide/publish-a-startup-concept';
-import startCommunityGuideAr from '../content/ar/guide/start-a-community';
+import startCommunityGuideAr from '../content/ar/guide/start-an-origin';
 
 /**
  * i18n-ar-s18 (TASK-433) — Arabic translation content tests.

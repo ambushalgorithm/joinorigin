@@ -33,10 +33,10 @@ const GUIDE_SLUGS = [
   'publish-a-small-business-idea',
   'publish-a-startup-concept',
   'find-a-co-founder',
-  'start-a-community',
+  'start-an-origin',
   'first-10-members',
-  'keep-a-community-active',
-  'hybrid-communities',
+  'keep-an-origin-active',
+  'hybrid-origins',
   'organize-a-meetup',
   'moderation',
 ];

@@ -54,8 +54,8 @@ const GUIDE_FOOTER_CHROME: Record<string, unknown> = {
   continueBuilding: 'Continue building with the next guide in the series.',
   practiceInCity: 'Put these steps into practice in a real city.',
   howJoinOriginHelpsBody:
-    'JoinOrigin is a community OS that helps you find or start communities — the steps above work on the platform and with the tools you already have. JoinOrigin handles the structure, discovery, and organization so you can focus on your members. Click Get Started and get discovered.',
-  keepLearningGuides: 'Browse all guides on the <1>Community Building hub</1>.',
+    'JoinOrigin is a community OS that helps you find or start Origins — the steps above work on the platform and with the tools you already have. JoinOrigin handles the structure, discovery, and organization so you can focus on your members. Click Get Started and get discovered.',
+  keepLearningGuides: 'Browse all guides on the <1>Origin Building hub</1>.',
   keepLearningGlossary: 'Learn the core terms in the <1>Community OS glossary</1>.',
   keepLearningLocations: 'Find a city page on the <1>locations hub</1> to start local.',
 };
@@ -84,12 +84,12 @@ describe('guides/[slug] page — static params + metadata', () => {
     expect(params).toHaveLength(12);
     expect(params.map((p) => p.slug)).toEqual(
       expect.arrayContaining([
-        'start-a-community',
+        'start-an-origin',
         'organize-a-meetup',
         'first-10-members',
         'find-a-co-founder',
-        'keep-a-community-active',
-        'hybrid-communities',
+        'keep-an-origin-active',
+        'hybrid-origins',
         'moderation',
         'publish-an-idea',
         'create-a-project',
@@ -101,17 +101,15 @@ describe('guides/[slug] page — static params + metadata', () => {
   });
 
   it('generateMetadata derives per-guide title/description/canonical', async () => {
-    const entry = guidePageEntry('start-a-community');
+    const entry = guidePageEntry('start-an-origin');
     const metadata = await generateMetadata({
-      params: Promise.resolve({ slug: 'start-a-community' }),
+      params: Promise.resolve({ slug: 'start-an-origin' }),
     });
     expect(metadata.title).toBe(entry?.title);
     expect(metadata.description).toBe(entry?.description);
-    expect(metadata.alternates?.canonical).toBe(
-      'http://localhost:3100/en/guides/start-a-community',
-    );
+    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/en/guides/start-an-origin');
     expect(metadata.keywords).toEqual(
-      expect.arrayContaining(['start a community', 'community', 'how to', 'guide']),
+      expect.arrayContaining(['start an origin', 'origin', 'how to', 'guide']),
     );
   });
 
@@ -119,15 +117,13 @@ describe('guides/[slug] page — static params + metadata', () => {
     // The cluster is complete once per-locale translations land (Group 3/4);
     // whenever it exists, `en` and `x-default` resolve to the EN canonical.
     const metadata = await generateMetadata({
-      params: Promise.resolve({ slug: 'start-a-community' }),
+      params: Promise.resolve({ slug: 'start-an-origin' }),
     });
-    expect(metadata.alternates?.canonical).toBe(
-      'http://localhost:3100/en/guides/start-a-community',
-    );
+    expect(metadata.alternates?.canonical).toBe('http://localhost:3100/en/guides/start-an-origin');
     const languages = metadata.alternates?.languages as Record<string, string> | undefined;
     if (languages) {
-      expect(languages.en).toBe('http://localhost:3100/en/guides/start-a-community');
-      expect(languages['x-default']).toBe('http://localhost:3100/en/guides/start-a-community');
+      expect(languages.en).toBe('http://localhost:3100/en/guides/start-an-origin');
+      expect(languages['x-default']).toBe('http://localhost:3100/en/guides/start-an-origin');
     }
   });
 });
@@ -261,7 +257,7 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
     expect(screen.getByText('Put these steps into practice in a real city.')).toBeInTheDocument();
     expect(
       screen.getByText(
-        'JoinOrigin is a community OS that helps you find or start communities — the steps above work on the platform and with the tools you already have. JoinOrigin handles the structure, discovery, and organization so you can focus on your members. Click Get Started and get discovered.',
+        'JoinOrigin is a community OS that helps you find or start Origins — the steps above work on the platform and with the tools you already have. JoinOrigin handles the structure, discovery, and organization so you can focus on your members. Click Get Started and get discovered.',
       ),
     ).toBeInTheDocument();
   });
@@ -269,7 +265,7 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
   it('renders the keep-learning links from Trans keys (TASK-414)', () => {
     renderWithGuideI18n(<GuideView entry={entry} content={content} />);
     // All-routes-prefixed (TASK-464): unprefixed EN renders /en/** links.
-    expect(screen.getByRole('link', { name: 'Community Building hub' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Origin Building hub' })).toHaveAttribute(
       'href',
       '/en/guides',
     );
@@ -286,14 +282,14 @@ describe('guide view — single H1 + FAQ mirror + cross-links', () => {
 
 describe('guide page wrapper', () => {
   it('renders GuidePage with a single H1', async () => {
-    const page = await GuidePage({ params: Promise.resolve({ slug: 'start-a-community' }) });
+    const page = await GuidePage({ params: Promise.resolve({ slug: 'start-an-origin' }) });
     renderWithGuideI18n(page);
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
   });
 
   it('mirrors the visible FAQ block 1:1 in FAQPage JSON-LD (server wrapper)', async () => {
-    const slug = 'start-a-community';
+    const slug = 'start-an-origin';
     const content = getGuideContent(slug, 'en');
     if (!content) throw new Error('missing guide content');
 
@@ -316,11 +312,11 @@ describe('guide page wrapper', () => {
   it('renders the forwarded locale’s guide body on the canonical route (TASK-446)', async () => {
     mockServerLocale.locale = 'de';
     try {
-      const page = await GuidePage({ params: Promise.resolve({ slug: 'start-a-community' }) });
+      const page = await GuidePage({ params: Promise.resolve({ slug: 'start-an-origin' }) });
       renderWithGuideI18n(page);
 
-      const deContent = getGuideContent('start-a-community', 'de');
-      const enContent = getGuideContent('start-a-community', 'en');
+      const deContent = getGuideContent('start-an-origin', 'de');
+      const enContent = getGuideContent('start-an-origin', 'en');
       if (!deContent || !enContent) throw new Error('missing guide fixtures');
 
       // The body resolves the active locale — H1 (suffix-stripped, G-9) + a
@@ -352,17 +348,17 @@ describe('guide page wrapper', () => {
       locale === 'en' ? realGuides.guidePageForLocale(slug, 'en') : undefined,
     );
     try {
-      const page = await GuidePage({ params: Promise.resolve({ slug: 'start-a-community' }) });
+      const page = await GuidePage({ params: Promise.resolve({ slug: 'start-an-origin' }) });
       renderWithGuideI18n(page);
 
-      const enContent = getGuideContent('start-a-community', 'en');
+      const enContent = getGuideContent('start-an-origin', 'en');
       if (!enContent) throw new Error('missing guide content');
       expect(screen.getAllByRole('heading', { level: 1 })[0]).toHaveTextContent(
         (enContent.title ?? '').replace(/\s*\|\s*JoinOrigin\s*$/, ''),
       );
       // The loader tried the locale surface first, then the EN fallback.
-      expect(forLocaleMock).toHaveBeenCalledWith('start-a-community', 'de');
-      expect(forLocaleMock).toHaveBeenCalledWith('start-a-community');
+      expect(forLocaleMock).toHaveBeenCalledWith('start-an-origin', 'de');
+      expect(forLocaleMock).toHaveBeenCalledWith('start-an-origin');
     } finally {
       forLocaleMock.mockRestore();
       mockServerLocale.locale = 'en';
@@ -392,7 +388,7 @@ function renderGuideForLocale(locale: Locale, ui: ReactElement) {
 }
 
 describe('guide view — locale-aware internal links (TASK-460)', () => {
-  const slug = 'start-a-community';
+  const slug = 'start-an-origin';
   const entry = guidePageEntry(slug);
   const content = getGuideContent(slug, 'en');
   if (!entry || !content) {

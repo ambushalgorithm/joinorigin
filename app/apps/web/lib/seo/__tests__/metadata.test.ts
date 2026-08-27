@@ -188,12 +188,12 @@ describe('lib/seo createMetadata', () => {
     const meta = createMetadata({
       title: 'T',
       description: 'D',
-      path: '/de/guides/start-a-community',
+      path: '/de/guides/start-an-origin',
       locale: 'de',
-      languages: { ja: absoluteUrl('/ja/guides/start-a-community') },
+      languages: { ja: absoluteUrl('/ja/guides/start-an-origin') },
     });
     expect(meta.alternates?.languages).toEqual({
-      ja: absoluteUrl('/ja/guides/start-a-community'),
+      ja: absoluteUrl('/ja/guides/start-an-origin'),
     });
   });
 });

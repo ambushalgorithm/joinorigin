@@ -158,40 +158,40 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
   it('guide card titles resolve from seoContent.location.guideCardTitles.* (TASK-416)', () => {
     const links = guideLinksFor('hub', 'en');
     expect(links[0]).toEqual({
-      title: 'Start a community',
-      path: '/guides/start-a-community',
+      title: 'Start an Origin',
+      path: '/guides/start-an-origin',
     });
     expect(links[1]).toEqual({
       title: 'Find a co-founder',
       path: '/guides/find-a-co-founder',
     });
     expect(links.map((link) => link.title)).toEqual([
-      'Start a community',
+      'Start an Origin',
       'Find a co-founder',
       'Get your first 10 members',
-      'Keep a community active',
-      'Run hybrid communities',
+      'Keep an Origin active',
+      'Run hybrid Origins',
       'Organize a meetup',
-      'Moderate your community',
+      'Moderate your Origin',
     ]);
     // Every kind preserves the exact 7-title list + the exact 7 paths
     // (TASK-489) — identical to the /location hub set.
     for (const kind of ['hub', 'country', 'region', 'city', 'variant', 'ideas'] as const) {
       expect(guideLinksFor(kind, 'en').map((link) => link.title)).toEqual([
-        'Start a community',
+        'Start an Origin',
         'Find a co-founder',
         'Get your first 10 members',
-        'Keep a community active',
-        'Run hybrid communities',
+        'Keep an Origin active',
+        'Run hybrid Origins',
         'Organize a meetup',
-        'Moderate your community',
+        'Moderate your Origin',
       ]);
       expect(guideLinksFor(kind, 'en').map((link) => link.path)).toEqual([
-        '/guides/start-a-community',
+        '/guides/start-an-origin',
         '/guides/find-a-co-founder',
         '/guides/first-10-members',
-        '/guides/keep-a-community-active',
-        '/guides/hybrid-communities',
+        '/guides/keep-an-origin-active',
+        '/guides/hybrid-origins',
         '/guides/organize-a-meetup',
         '/guides/moderation',
       ]);
@@ -207,11 +207,11 @@ describe('lib/seo locationView — warm set + sibling mesh', () => {
     // 7-guide "Guides for starting a community" set — the same paths as the
     // /location hub, so every location screen renders the same cross-links.
     const expectedPaths = [
-      '/guides/start-a-community',
+      '/guides/start-an-origin',
       '/guides/find-a-co-founder',
       '/guides/first-10-members',
-      '/guides/keep-a-community-active',
-      '/guides/hybrid-communities',
+      '/guides/keep-an-origin-active',
+      '/guides/hybrid-origins',
       '/guides/organize-a-meetup',
       '/guides/moderation',
     ];

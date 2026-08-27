@@ -49,13 +49,13 @@ function flagshipLinks(): Array<{ path: string; description: string }> {
 /** Curated guide links — all 12 L1 guides, terse descriptions. */
 function guideLinks(): Array<{ path: string; description: string }> {
   const terse = new Map<string, string>([
-    ['start-a-community', 'Start a community.'],
+    ['start-an-origin', 'Start an Origin.'],
     ['organize-a-meetup', 'Organize a meetup.'],
     ['first-10-members', 'Get your first 10 members.'],
     ['find-a-co-founder', 'Find a co-founder.'],
-    ['keep-a-community-active', 'Keep a community active.'],
-    ['hybrid-communities', 'Run hybrid communities.'],
-    ['moderation', 'Moderate a community.'],
+    ['keep-an-origin-active', 'Keep an Origin active.'],
+    ['hybrid-origins', 'Run hybrid Origins.'],
+    ['moderation', 'Moderate an Origin.'],
     ['publish-an-idea', 'Publish an idea.'],
     ['create-a-project', 'Create a project.'],
     ['create-a-group', 'Create a group.'],

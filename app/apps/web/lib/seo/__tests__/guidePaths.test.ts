@@ -26,9 +26,9 @@ describe('guidePaths (Story F F1 shared mechanism)', () => {
   });
 
   it('builds locale-prefixed guide detail paths', () => {
-    expect(guidePath('start-a-community', 'en')).toBe('/en/guides/start-a-community');
-    expect(guidePath('start-a-community', 'de')).toBe('/de/guides/start-a-community');
-    expect(guidePath('start-a-community')).toBe('/en/guides/start-a-community');
+    expect(guidePath('start-an-origin', 'en')).toBe('/en/guides/start-an-origin');
+    expect(guidePath('start-an-origin', 'de')).toBe('/de/guides/start-an-origin');
+    expect(guidePath('start-an-origin')).toBe('/en/guides/start-an-origin');
   });
 
   it('builds locale-prefixed glossary hub paths', () => {

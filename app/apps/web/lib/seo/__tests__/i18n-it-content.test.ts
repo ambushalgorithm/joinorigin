@@ -20,14 +20,14 @@ import createAGroupGuideIt from '../content/it/guide/create-a-group';
 import createAProjectGuideIt from '../content/it/guide/create-a-project';
 import findACoFounderGuideIt from '../content/it/guide/find-a-co-founder';
 import first10MembersGuideIt from '../content/it/guide/first-10-members';
-import hybridCommunitiesGuideIt from '../content/it/guide/hybrid-communities';
-import keepCommunityActiveGuideIt from '../content/it/guide/keep-a-community-active';
+import hybridCommunitiesGuideIt from '../content/it/guide/hybrid-origins';
+import keepCommunityActiveGuideIt from '../content/it/guide/keep-an-origin-active';
 import moderationGuideIt from '../content/it/guide/moderation';
 import organizeMeetupGuideIt from '../content/it/guide/organize-a-meetup';
 import publishAnIdeaGuideIt from '../content/it/guide/publish-an-idea';
 import publishASmallBusinessIdeaGuideIt from '../content/it/guide/publish-a-small-business-idea';
 import publishAStartupConceptGuideIt from '../content/it/guide/publish-a-startup-concept';
-import startCommunityGuideIt from '../content/it/guide/start-a-community';
+import startCommunityGuideIt from '../content/it/guide/start-an-origin';
 import milanCityIt from '../content/it/city/milan';
 
 const GUIDE_SLUGS = [
@@ -35,14 +35,14 @@ const GUIDE_SLUGS = [
   'create-a-project',
   'find-a-co-founder',
   'first-10-members',
-  'hybrid-communities',
-  'keep-a-community-active',
+  'hybrid-origins',
+  'keep-an-origin-active',
   'moderation',
   'organize-a-meetup',
   'publish-an-idea',
   'publish-a-small-business-idea',
   'publish-a-startup-concept',
-  'start-a-community',
+  'start-an-origin',
 ] as const;
 
 const itGuides = [

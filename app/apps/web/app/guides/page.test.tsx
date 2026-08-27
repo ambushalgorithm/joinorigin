@@ -39,14 +39,14 @@ const mockServerLocale: { locale: Locale } = { locale: 'en' };
  *  i18n-en-keys merge; kept here so the view tests run green in isolation). */
 const GUIDES_CHROME: Record<string, unknown> = {
   hubLead:
-    'Twelve practical, evergreen how-to guides for finding, joining, and starting groups — and communicating in a creator-controlled room. From publishing an idea to healthy moderation.',
+    'Twelve practical, evergreen how-to guides for starting and growing Origins — and communicating in a creator-controlled room. From publishing an idea to healthy moderation.',
   searchLabel: 'Search guides',
   searchPlaceholder: 'Search by guide title or keyword',
   emptyState: 'No guides match “{{query}}”.',
   glossaryBandCopy:
     'Learn the core terms behind groups, rooms, moderation, onboarding, and engagement loops in the <1>{{glossary}}</1>.',
   universalCopy:
-    'Guides are universal — communities are local. Find or start a community in a city near you:',
+    'Origins are online by nature, and they can also have a local space. Find or start an Origin near you:',
 };
 
 function renderWithGuidesI18n(ui: ReactElement) {
@@ -69,8 +69,8 @@ function renderWithGuidesI18n(ui: ReactElement) {
 
 describe('guides hub page', () => {
   it('exports hub metadata (title, description, canonical at /en/guides)', () => {
-    expect(metadata.title).toBe('Community Building Guides | JoinOrigin');
-    expect(metadata.description?.toLowerCase() ?? '').toContain('community building');
+    expect(metadata.title).toBe('Origin Building Guides | JoinOrigin');
+    expect(metadata.description?.toLowerCase() ?? '').toContain('origin building');
     expect(metadata.alternates?.canonical).toBe('http://localhost:3100/en/guides');
     expect(metadata.openGraph?.url).toBe('http://localhost:3100/en/guides');
   });
@@ -79,7 +79,7 @@ describe('guides hub page', () => {
     renderWithGuidesI18n(await GuidesHubPage());
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Community Building Guides');
+    expect(headings[0]).toHaveTextContent('Origin Building Guides');
   });
 
   it('renders the hero lead from the dictionary key (TASK-414 MenuPageShell lead plumbing)', async () => {
@@ -142,7 +142,7 @@ describe('guides hub page', () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        'Guides are universal — communities are local. Find or start a community in a city near you:',
+        'Origins are online by nature, and they can also have a local space. Find or start an Origin near you:',
       ),
     ).toBeInTheDocument();
   });
@@ -193,14 +193,14 @@ describe('guides hub page', () => {
         );
       }
       // German titles are visibly different from EN — assert one marker.
-      const enTitle = guidePageEntries().find((e) => e.slug === 'start-a-community')?.title;
-      const deTitle = deEntries.find((e) => e.slug === 'start-a-community')?.title;
-      const deHeading = deEntries.find((e) => e.slug === 'start-a-community')?.heading;
+      const enTitle = guidePageEntries().find((e) => e.slug === 'start-an-origin')?.title;
+      const deTitle = deEntries.find((e) => e.slug === 'start-an-origin')?.title;
+      const deHeading = deEntries.find((e) => e.slug === 'start-an-origin')?.heading;
       expect(deTitle).toBeDefined();
       expect(deTitle).not.toBe(enTitle);
       expect(screen.getByRole('link', { name: deHeading! })).toHaveAttribute(
         'href',
-        '/de/guides/start-a-community',
+        '/de/guides/start-an-origin',
       );
     } finally {
       mockServerLocale.locale = 'en';
