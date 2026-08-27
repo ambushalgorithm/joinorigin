@@ -28,9 +28,9 @@ test.describe.configure({ mode: 'serial' });
 export const MENU_PAGES = [
   {
     path: '/en',
-    h1: 'Ideas, projects and community collaboration space — where new and existing teams find their Origin.',
+    h1: 'Where every idea, startup, and project finds the people and resources to move it forward — Origin.',
   },
-  { path: '/en/features', h1: 'Everything a community needs, in one calm workspace' },
+  { path: '/en/features', h1: 'Everything an Origin needs, in one calm workspace' },
   { path: '/en/community', h1: 'Where people find each other' },
   { path: '/en/docs', h1: 'JoinOrigin docs' },
   { path: '/en/about', h1: 'The most valuable asset is your network' },
@@ -285,17 +285,25 @@ test.describe('/features ten-tools copy (TASK-478)', () => {
     const response = await page.goto('/en/features');
     expect(response?.status()).toBe(200);
     await expect(page.locator('h1')).toContainText(
-      'Everything a community needs, in one calm workspace',
+      'Everything an Origin needs, in one calm workspace',
     );
 
-    // BOTH spots (TASK-478): comparison section heading + hero lead.
+    // BOTH spots (TASK-478, updated by the Sprint 24 Wave-2 reframe): the
+    // comparison section heading keeps the ten-tools differentiation, and the
+    // hero lead is the approved Origin-first copy (eight core objects + the
+    // co-founder/partner/client/supporter promise — no "community", no
+    // "ten separate tools" phrasing).
     await expect(page.getByText('Why Origin instead of ten tools', { exact: true })).toBeVisible();
-    await expect(page.getByText(/instead of ten separate tools/)).toBeVisible();
+    await expect(page.getByText(/Origin is built around eight core objects/)).toBeVisible();
+    await expect(
+      page.getByText(/find the co-founders, partners, clients, and supporters/),
+    ).toBeVisible();
 
     // The old five-tools phrasing is gone from the visible page copy.
     const mainText = await page.locator('main').innerText();
     expect(mainText).not.toContain('five tools');
     expect(mainText).not.toContain('five separate tools');
+    expect(mainText).not.toContain('instead of ten separate tools');
     // The comparison table still enumerates the ten tools.
     await expect(page.getByTestId('features-comparison-table')).toBeVisible();
     expect(await page.locator('[data-testid="features-comparison-table"] tbody tr').count()).toBe(
@@ -311,14 +319,17 @@ test.describe('/features ten-tools copy (TASK-478)', () => {
     expect(response?.status()).toBe(200);
     await expect(page.locator('html')).toHaveAttribute('lang', 'de');
 
-    // Both spots in German (committed values, TASK-478).
+    // Both spots in German (committed values, TASK-478): the comparison
+    // heading keeps the ten-tools differentiation; the hero lead is the
+    // approved Origin-first copy.
     await expect(page.getByText('Warum Origin statt zehn Tools', { exact: true })).toBeVisible();
-    await expect(page.getByText(/statt in zehn getrennten Tools/)).toBeVisible();
+    await expect(page.getByText(/Origin ist um acht Kernobjekte/)).toBeVisible();
 
     // The old fünf-tools phrasing is gone from the visible copy.
     const mainText = await page.locator('main').innerText();
     expect(mainText).not.toContain('fünf Tools');
     expect(mainText).not.toContain('fünf getrennten Tools');
+    expect(mainText).not.toContain('statt in zehn getrennten Tools');
   });
 });
 

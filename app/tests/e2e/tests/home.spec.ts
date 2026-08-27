@@ -43,9 +43,10 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
   await expect(page.getByText('Log In')).toBeVisible();
   await expect(page.getByTestId('get-started-button')).toBeVisible();
 
-  // Hero left: typewriter heading completes to the full two-tone copy.
+  // Hero left: typewriter heading completes to the full two-tone copy
+  // (Sprint 24 Wave-2 Origin-repositioning headline, TASK-568).
   await expect(page.locator('h1')).toContainText(
-    'Ideas, projects and community collaboration space — where new and existing teams find their Origin.',
+    'Where every idea, startup, and project finds the people and resources to move it forward — Origin.',
     {
       timeout: 15_000,
     },
@@ -58,7 +59,7 @@ test('homepage renders the header, hero, ticker and footer', async ({ page }) =>
 
   // Logo ticker + footer.
   await expect(page.getByText('Trusted by teams at')).toBeVisible();
-  await expect(page.getByText('Where teams find their origin')).toBeVisible();
+  await expect(page.getByText('Where teams find their Origin')).toBeVisible();
   await expect(page.getByTestId('footer-waitlist-button')).toBeVisible();
   await expect(page.getByText('© 2026 JoinOrigin')).toBeVisible();
 });

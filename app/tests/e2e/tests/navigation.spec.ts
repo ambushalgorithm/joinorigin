@@ -64,7 +64,7 @@ const TRANSITIONS: readonly Transition[] = [
     origin: '/en',
     target: '/en/features',
     linkSelector: '[data-testid="footer"] a[href="/en/features"]',
-    targetH1: 'Everything a community needs, in one calm workspace',
+    targetH1: 'Everything an Origin needs, in one calm workspace',
     budget: 160,
   },
   {

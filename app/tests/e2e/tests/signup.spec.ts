@@ -43,7 +43,7 @@ test.describe('signup page — SSR clean copy (TASK-555/559)', () => {
     const body = (await page.locator('body').innerText()).toLowerCase();
     // Clean, indexable signup copy — heading + Get Started submit.
     expect(body).toContain('create your account');
-    expect(body).toContain('get discovered on the community os');
+    expect(body).toContain('get discovered on origin');
     expect(body).toContain('get started');
     // The semantic name/email form is present in the static markup.
     await expect(page.getByTestId('signup-name-input')).toBeVisible();
@@ -69,7 +69,7 @@ test.describe('signup page — SSR clean copy (TASK-555/559)', () => {
       timeout: 15_000,
     });
     await expect(page.getByTestId('signup-subcopy')).toContainText(
-      "We'll email you when your workspace is ready.",
+      "We'll email you when your Origin is ready.",
     );
     // The in-development disclosure is revealed — the only dev-status surface.
     await expect(page.getByTestId('signup-disclosure')).toContainText('Origin is in development.');

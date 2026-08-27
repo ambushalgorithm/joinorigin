@@ -87,20 +87,23 @@ describe('TypewriterHeading', () => {
   });
 
   describe('brand-token accent split (TASK-563)', () => {
-    // Locales that place grammar AFTER the brand word: the literal accent
-    // (`Origin.` / `Origin。`) is absent from the headline, so the old
-    // `indexOf(accentText)` + `length - accentLength` fallback sliced
-    // mid-phrase. The emphasized fragment must start with the brand word.
+    // Sprint 24 Wave-2 (Origin repositioning): every locale headline now ENDS
+    // on the brand word ("— Origin." / "— Origin。" / "— Origin"), so the
+    // emphasized fragment is the brand token plus sentence punctuation. The
+    // regression guard (TASK-563) still holds: the fragment must start with
+    // the brand word "Origin" and never slice mid-phrase — the `notStartsWith`
+    // fragments below would match if the old `indexOf(accentText)` fallback
+    // ever split at a stray "Origin" occurrence elsewhere in the headline.
     const TRAILING_GRAMMAR_CASES: Array<{
       locale: Locale;
       expectedAccent: string;
       notStartsWith: string[];
     }> = [
-      { locale: 'id', expectedAccent: 'Origin mereka.', notStartsWith: ['mereka.'] },
-      { locale: 'ko', expectedAccent: 'Origin을 찾는 곳.', notStartsWith: ['을 찾는 곳.'] },
-      { locale: 'ja', expectedAccent: 'Originを見つける場所。', notStartsWith: ['見つける場所。'] },
-      { locale: 'tr', expectedAccent: "Origin'ini bulduğu yer.", notStartsWith: ['ğu yer.'] },
-      { locale: 'vi', expectedAccent: 'Origin của mình.', notStartsWith: ['a mình.'] },
+      { locale: 'id', expectedAccent: 'Origin.', notStartsWith: ['mereka.'] },
+      { locale: 'ko', expectedAccent: 'Origin.', notStartsWith: ['을 찾는 곳.'] },
+      { locale: 'ja', expectedAccent: 'Origin。', notStartsWith: ['見つける場所。'] },
+      { locale: 'tr', expectedAccent: 'Origin.', notStartsWith: ['ğu yer.'] },
+      { locale: 'vi', expectedAccent: 'Origin.', notStartsWith: ['a mình.'] },
       { locale: 'th', expectedAccent: 'Origin', notStartsWith: ['พบ Origin'] },
       { locale: 'zh-TW', expectedAccent: 'Origin。', notStartsWith: ['。'] },
     ];

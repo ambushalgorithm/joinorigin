@@ -260,7 +260,7 @@ test.describe('nav-only locale switch (TASK-488)', () => {
 
     await page.goto('/en/features');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-    await expect(page.locator('h1')).toContainText('Everything a community needs');
+    await expect(page.locator('h1')).toContainText('Everything an Origin needs');
     expect(loads).toBe(1);
 
     const headerSwitcher = page.getByTestId('language-switcher-header');
@@ -274,7 +274,7 @@ test.describe('nav-only locale switch (TASK-488)', () => {
     await expect(page).toHaveURL(/\/de\/features(?:\/|$)/, { timeout: 15_000 });
     await expect(page.locator('html')).toHaveAttribute('lang', 'de');
     // Translated chrome renders on the de surface.
-    await expect(page.locator('h1')).toContainText('Alles, was eine Community braucht', {
+    await expect(page.locator('h1')).toContainText('Alles, was ein Origin braucht', {
       timeout: 15_000,
     });
     // No two-step toggle-then-reload: the switch is a single client-side
