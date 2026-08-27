@@ -44,7 +44,7 @@ describe('Footer', () => {
     renderFooter();
 
     expect(screen.getByText('JoinOrigin')).toBeInTheDocument();
-    expect(screen.getByText('Where teams find their origin')).toBeInTheDocument();
+    expect(screen.getByText('Where teams find their Origin')).toBeInTheDocument();
     for (const label of ['Explore', 'Product', 'Company', 'Legal']) {
       expect(screen.getByText(label)).toBeInTheDocument();
     }
