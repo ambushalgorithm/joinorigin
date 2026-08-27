@@ -578,6 +578,7 @@ export function Header() {
 
       {mobileOpen ? (
         <MobilePanel data-testid="mobile-menu">
+          <LanguageSwitcher variant="mobile-panel" />
           <MobileGroupLabel>{t('common.nav.explore')}</MobileGroupLabel>
           {EXPLORE_LINKS.map((link) => (
             <MobileLink key={link.href} href={localizePath(link.href)} onClick={closeMobile}>
@@ -589,7 +590,6 @@ export function Header() {
               {t(link.key)}
             </MobileLink>
           ))}
-          <LanguageSwitcher variant="mobile-panel" />
           <MobileLogInButton
             href={localizePath('/signup')}
             data-testid="mobile-login-button"
