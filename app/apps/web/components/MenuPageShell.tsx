@@ -13,6 +13,7 @@ import CtaBand, { type CtaBandProps } from './CtaBand';
 import Footer from './Footer';
 import Header from './Header';
 import MenuHero, { type MenuHeroProps } from './MenuHero';
+import TaglineStrip from './TaglineStrip';
 import { SECTION_BAND_GLASS } from './menuTokens';
 
 /**
@@ -42,6 +43,10 @@ import { SECTION_BAND_GLASS } from './menuTokens';
  *  - `banded` (default true) gives the children a glassy backdrop; legal
  *    pages pass false for a plain canvas (views still render explicit
  *    `SectionBand`s for the per-section rhythm on content pages).
+ * Sprint 24 brand addendum (TASK-561): the thin NON-sticky `TaglineStrip`
+ * renders ABOVE `<Header />` so every menu page carries the footer tagline as
+ * an eyebrow; the homepage (`home-view.tsx`) never renders this shell, so the
+ * strip is automatically excluded there.
  */
 
 export interface MenuPageShellProps {
@@ -139,6 +144,7 @@ export function MenuPageShell({
       <DomThemeProvider theme={theme}>
         <PageRoot data-testid="menu-page">
           <Screen style={{ padding: 0, backgroundColor: 'transparent' }}>
+            <TaglineStrip />
             <Header />
             <main>
               {heroWithLead ? <MenuHero {...heroWithLead} /> : null}

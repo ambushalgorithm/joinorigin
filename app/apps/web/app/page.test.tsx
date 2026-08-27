@@ -78,7 +78,7 @@ describe('home page', () => {
   it('renders the partner logo ticker and slim footer', () => {
     renderPage();
     expect(screen.getByText('Trusted by teams at')).toBeInTheDocument();
-    expect(screen.getByText('Where teams find their origin')).toBeInTheDocument();
+    expect(screen.getByText('Where teams find their Origin')).toBeInTheDocument();
     // Every primary join CTA reads "Get Started" (header, hero, footer).
     expect(screen.getAllByText('Get Started').length).toBeGreaterThanOrEqual(3);
     const footerCta = screen.getByTestId('footer-waitlist-button');
