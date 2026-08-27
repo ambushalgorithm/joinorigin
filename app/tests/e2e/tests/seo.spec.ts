@@ -59,8 +59,8 @@ const PATHS = [
 
 /** Expected per-page <title> (discovery §5 + layout default). */
 const EXPECTED_TITLES: Record<string, string> = {
-  '/en': 'JoinOrigin — Social Collaboration Network & Community OS',
-  '/en/features': 'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
+  '/en': 'Origin — Social Collaboration Network & Community OS',
+  '/en/features': 'Features — Origins, Chat, Projects & Opportunities | JoinOrigin',
   '/en/community': 'Community — Find Your People & Build Together | JoinOrigin',
   '/en/docs': 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
   '/en/about': 'About — The Operating System for Human Collaboration | JoinOrigin',
@@ -207,13 +207,26 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
   });
 
   test('meta descriptions are ≤ 160 chars per discovery §6 keyword rule', async ({ page }) => {
+    // Sprint 24 Wave-2 (TASK-568) known deviation: the PM-approved reframe
+    // deck (sprint-24-origin-reframe-copy.md §9.3) proposes three descriptions
+    // that exceed the discovery §6 160-char rule and were applied verbatim by
+    // fe-origin-copy (TASK-567) — /features (169), /community (170), /signup
+    // (168). Tracked in app/docs/design/sprint-24-origin-validation.md; all
+    // OTHER paths must still respect the rule (any new over-length
+    // description fails).
+    const APPROVED_OVERLENGTH = new Set(['/en/features', '/en/community', '/en/signup']);
+    const APPROVED_MAX = 170;
     for (const path of PATHS) {
       await page.goto(path);
       const content =
         (await page.locator('meta[name="description"]').getAttribute('content')) ?? '';
-      // Fixed by fe-fix-menu-seo (TASK-220): all 8 page descriptions now
-      // respect the 160-char discovery §6 keyword rule.
-      expect(content.length, `description length on ${path}`).toBeLessThanOrEqual(160);
+      if (APPROVED_OVERLENGTH.has(path)) {
+        expect(content.length, `approved over-length description on ${path}`).toBeLessThanOrEqual(
+          APPROVED_MAX,
+        );
+      } else {
+        expect(content.length, `description length on ${path}`).toBeLessThanOrEqual(160);
+      }
     }
   });
 });
@@ -743,14 +756,15 @@ test.describe('LLM-crawler friendliness: single H1 + semantic structure (arch §
     });
   }
 
-  test('home includes the visible definition paragraph with "social collaboration network"', async ({
-    page,
-  }) => {
+  test('home includes the visible Origin-first definition paragraph', async ({ page }) => {
     await page.goto('/');
     const mainText = (await page.locator('main').innerText()).toLowerCase();
-    // Fixed by fe-fix-home (TASK-219): the home <main> now renders the
-    // discovery §5.1 definition paragraph directly under the hero with the
-    // exact phrase "social collaboration network" (LLM entity clarity).
-    expect(mainText).toContain('social collaboration network');
+    // Sprint 24 Wave-2 (TASK-568): the PM-approved reframe deck rewrote the
+    // home definition Origin-first and dropped the literal "social
+    // collaboration network" phrase (it remains in the home <title> + meta).
+    // The definition paragraph renders directly under the hero and teaches
+    // the core noun (LLM entity clarity).
+    expect(mainText).toContain('origin is the space you start around a goal');
+    expect(mainText).toContain('bring the people and resources it needs');
   });
 });

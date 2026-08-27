@@ -592,7 +592,7 @@ test.describe('Goal 7 — per-locale metadata with EN fallback', () => {
     await page.goto('/es/features');
     // No translated static copy — title stays EN.
     await expect(page).toHaveTitle(
-      'Features — Communities, Chat, Projects & Opportunities | JoinOrigin',
+      'Features — Origins, Chat, Projects & Opportunities | JoinOrigin',
     );
     const canonical = page.locator('link[rel="canonical"]');
     expect(new URL((await canonical.getAttribute('href')) ?? '').pathname).toBe('/es/features');
