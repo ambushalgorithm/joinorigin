@@ -17,19 +17,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'pl',
   slug: 'first-10-members',
-  title: 'Jak zdobyć pierwszych 10 członków dla nowej lub rosnącej społeczności | JoinOrigin',
+  title: 'Jak zdobyć pierwszych 10 członków dla nowego lub rosnącego Origin | JoinOrigin',
   description:
-    'Zdobywaj pierwszych 10 członków bez dużego budżetu — niezależnie od tego, czy rozpoczynasz nową społeczność, czy ożywiasz istniejącą, zacznij od osobistej sieci, udostępniaj linki zapraszające i spraw, aby pokój był miejscem, do którego ludzie chcą dołączyć. Praktyczne kroki od JoinOrigin.',
+    'Zdobywaj pierwszych 10 członków bez dużego budżetu — niezależnie od tego, czy rozpoczynasz nowe Origin, czy ożywiasz istniejące, zacznij od osobistej sieci, udostępniaj linki zapraszające i spraw, aby pokój był miejscem, do którego ludzie chcą dołączyć. Praktyczne kroki od JoinOrigin.',
   intro: [
-    'Pierwszych dziesięciu członków jest najtrudniej zdobyć i są najważniejsi, bo definiują kulturę społeczności, zanim ma ona jakąkolwiek reputację przyciągającą nieznajomych — i są równie cenni, gdy istniejąca społeczność utknęła lub się restartuje, bo zaangażowany rdzeń to to, co zamienia cichą grupę w żywą. Ten problem pierwszych dziesięciu to fundamentalnie problem łączenia ludzi i to rdzeń problemu, który rozwiązuje JoinOrigin.',
+    'Pierwszych dziesięciu członków jest najtrudniej zdobyć i są najważniejsi, bo definiują kulturę Origin, zanim ma ono jakąkolwiek reputację przyciągającą nieznajomych — i są równie cenni, gdy istniejące Origin utknęło lub się restartuje, bo zaangażowany rdzeń to to, co zamienia cichą grupę w żywą. Ten problem pierwszych dziesięciu to fundamentalnie problem łączenia ludzi i to rdzeń problemu, który rozwiązuje JoinOrigin.',
     'JoinOrigin to system operacyjny społeczności zbudowany wokół cyfrowej pętli połącz→dołącz→pokój: publikujesz grupę, jej pokój jest tworzony automatycznie, a członkowie dołączają przez link. Pokój jest powierzchnią dołączania — każda osoba, która kliknie Dołącz lub wejdzie przez link zapraszający, ląduje w pokoju grupy, jedynym miejscu, w którym żyje społeczność i w którym nowi członkowie od razu czują się połączeni. JoinOrigin nie rekrutuje członków ani nie prowadzi wydarzeń — ta część należy do Ciebie. Platforma dramatycznie ułatwia odkrywanie i dołączanie; wczesny wzrost wciąż pochodzi z osobistego zasięgu: ludzi, których bezpośrednio zapraszasz linkiem, tych, których oni przyprowadzają, i tych, którzy zostają, bo pokój wydaje się żywy.',
-    'Ten poradnik rozbija problem pierwszych dziesięciu członków na konkretne kroki — niezależnie od tego, czy zaczynasz nową społeczność, czy ożywiasz istniejącą: rozpoczęcie od ludzi, których już znasz, opublikowanie grupy, aby miała pokój do dołączenia, osobiste zapraszanie linkami, przeprowadzenie pierwszego spotkania, które zamienia uczestników w promotorów, i zbudowanie prostego nawyku poleceń, aby każdy członek przyprowadzał następnego — a każdy krok pokazuje, gdzie pomaga JoinOrigin.',
+    'Ten poradnik rozbija problem pierwszych dziesięciu członków na konkretne kroki — niezależnie od tego, czy zaczynasz nowe Origin, czy ożywiasz istniejące: rozpoczęcie od ludzi, których już znasz, opublikowanie grupy, aby miała pokój do dołączenia, osobiste zapraszanie linkami, przeprowadzenie pierwszego spotkania, które zamienia uczestników w promotorów, i zbudowanie prostego nawyku poleceń, aby każdy członek przyprowadzał następnego — a każdy krok pokazuje, gdzie pomaga JoinOrigin.',
   ],
   dataPoints: [
     'Osobiste zaproszenia konwertują znacznie skuteczniej niż publiczne posty czy płatne reklamy.',
     'Link zapraszający usuwa każdą barierę: jedno kliknięcie i nowy członek jest w pokoju.',
     'Dziesięciu aktywnych członków to wystarczający dowód społeczny, aby większość ludzi poczuła, że grupa jest prawdziwa i warta dołączenia.',
-    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować lub zakładać społeczności — nie rekrutuje członków ani nie prowadzi wydarzeń.',
+    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować lub zakładać Origins — nie rekrutuje członków ani nie prowadzi wydarzeń.',
   ],
   faq: [
     {
@@ -50,7 +50,7 @@ const content: GuideContent = {
     {
       question: 'Czy JoinOrigin może mi pomóc znaleźć członków?',
       answer:
-        'Tak. JoinOrigin pomaga ludziom odkrywać i zakładać społeczności — to miejsce, w którym ludzie szukający grupy mogą znaleźć Twoją i dołączyć do jej pokoju przez link. Kroki z tego poradnika — osobiste zaproszenia i świetne pierwsze spotkanie — to najbardziej niezawodne sposoby na znalezienie pierwszych członków.',
+        'Tak. JoinOrigin pomaga ludziom odkrywać i zakładać Origins — to miejsce, w którym ludzie szukający grupy mogą znaleźć Twoje i dołączyć do jego pokoju przez link. Kroki z tego poradnika — osobiste zaproszenia i świetne pierwsze spotkanie — to najbardziej niezawodne sposoby na znalezienie pierwszych członków.',
     },
   ],
   sections: [

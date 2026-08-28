@@ -1,11 +1,11 @@
 import type { GuideContent } from '../../types';
 
 /**
- * „Hybride Communities“ — zeitlose L1-Anleitung (Design §6.1, TASK-326).
+ * „Hybride Origins“ — zeitlose L1-Anleitung (Design §6.1, TASK-326).
  *
  * Neu auf das digitale Verbinden→Beitreten→Raum-Modell ausgerichtet: Der Raum
  * ist das, was den Online- und den (nachgelagerten) Präsenz-Teil einer
- * hybriden Community verbindet — eine Community, ein Raum, zwei Einstiegspunkte.
+ * hybriden Origin verbindet — ein Origin, ein Raum, zwei Einstiegspunkte.
  * Der JoinOrigin-Wert ist in die Einleitung und jeden Schritt eingewoben
  * (pro Schritt `joinOriginNote`), mit ehrlicher Rahmung — JoinOrigin stellt
  * keine Event-Tools bereit und besetzt keine hybriden Events. Einzelnes H1,
@@ -17,23 +17,23 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'de',
   slug: 'hybrid-origins',
-  title: 'Hybride Communities: So führst du Präsenz + Online zusammen | JoinOrigin',
+  title: 'Hybride Origins: So führst du Präsenz + Online zusammen | JoinOrigin',
   description:
-    'Führe eine hybride Community, in der der Raum Präsenz- und Online-Mitglieder verbindet — ob du frisch startest oder eine bestehende Community hybrid machst — wähle die richtigen Tools, gestalte gleichberechtigte Teilnahme und halte beide Zielgruppen engagiert. Von JoinOrigin.',
+    'Führe ein hybrides Origin, in dem der Raum Präsenz- und Online-Mitglieder verbindet — ob du frisch startest oder ein bestehendes Origin hybrid machst — wähle die richtigen Tools, gestalte gleichberechtigte Teilnahme und halte beide Zielgruppen engagiert. Von JoinOrigin.',
   intro: [
-    'Eine hybride Community bringt Menschen gleichzeitig an zwei Orten zusammen — physisch in einer Räumlichkeit und virtuell durch einen Bildschirm — und die echte Herausforderung dreht sich wieder um Menschen: sicherzustellen, dass sich beide Zielgruppen als Teil einer verbundenen Community fühlen, nicht als zwei getrennte. JoinOrigin ist genau mit diesem Menschen-verbinden-Ziel gebaut, und das Modell funktioniert für eine Community, die bereits existiert, genauso wie für eine, die gerade erst startet — eine etablierte Präsenz-Gruppe kann eine Online-Hälfte hinzufügen, und eine Online-Community kann beginnen, sich lokal zu treffen.',
-    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Communities zu finden, beizutreten und zu starten — so hat eine hybride Gruppe einen Raum, der den Online- und den (nachgelagerten) Präsenz-Teil verbindet: lokale und entfernte Mitglieder sehen dieselbe Community, denselben Rhythmus und dieselben nächsten Schritte. Im digitalen Verbinden→Beitreten→Raum-Modell ist der Raum die beständige Fläche, auf der beide Hälften der Community zwischen Treffen leben; das Präsenz-Event ist eine nachgelagerte Konsequenz, die der Raum vorher und nachher zusammenhält. JoinOrigin stellt keine Event-Tools bereit und besetzt keine hybriden Events — die Plattform gibt jeder Community — hybrid eingeschlossen — einen einzigen Raum, in dem ihre Mitglieder verbunden bleiben.',
+    'Ein hybrides Origin bringt Menschen gleichzeitig an zwei Orten zusammen — physisch in einer Räumlichkeit und virtuell durch einen Bildschirm — und die echte Herausforderung dreht sich wieder um Menschen: sicherzustellen, dass sich beide Zielgruppen als Teil einer verbundenen Community fühlen, nicht als zwei getrennte. JoinOrigin ist genau mit diesem Menschen-verbinden-Ziel gebaut, und das Modell funktioniert für ein Origin, das bereits existiert, genauso wie für eines, das gerade erst startet — eine etablierte Präsenz-Gruppe kann eine Online-Hälfte hinzufügen, und ein Online-Origin kann beginnen, sich lokal zu treffen.',
+    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Origins zu finden, beizutreten und zu starten — so hat eine hybride Gruppe einen Raum, der den Online- und den (nachgelagerten) Präsenz-Teil verbindet: lokale und entfernte Mitglieder sehen dieselbe Community, denselben Rhythmus und dieselben nächsten Schritte. Im digitalen Verbinden→Beitreten→Raum-Modell ist der Raum die beständige Fläche, auf der beide Hälften der Community zwischen Treffen leben; das Präsenz-Event ist eine nachgelagerte Konsequenz, die der Raum vorher und nachher zusammenhält. JoinOrigin stellt keine Event-Tools bereit und besetzt keine hybriden Events — die Plattform gibt jedem Origin — hybrid eingeschlossen — einen einzigen Raum, in dem ihre Mitglieder verbunden bleiben.',
     'Diese Anleitung deckt die praktischen Entscheidungen ab, die hybride Communities erfolgreich machen — für neue und bestehende Gruppen gleichermaßen: entscheiden, ob hybrid das richtige Modell ist, den Raum bauen, den beide Zielgruppen teilen, ein Format und Tools wählen, die passen, das Treffen so gestalten, dass Präsenz- und Online-Mitglieder dieselbe Erfahrung teilen, den Raum so managen, dass keine Seite dominiert, und einen beständigen Raum halten, der die Community zwischen Treffen zusammenhält. Jeder Schritt zeigt, wo JoinOrigin hilft.',
   ],
   dataPoints: [
-    'Eine hybride Community ist eine Community mit zwei Einstiegspunkten, nicht zwei Zielgruppen, die separat bedient werden müssen.',
+    'Ein hybrides Origin ist ein Origin mit zwei Einstiegspunkten, nicht zwei Zielgruppen, die separat bedient werden müssen.',
     'Der Raum ist das Verbindungsgewebe: ein gemeinsamer Ort, an dem beide Zielgruppen dieselben Updates, Notizen und nächsten Schritte sehen.',
     'Einfache, zuverlässige Tools — ein Videolink, ein gemeinsames Dokument — reduzieren die Reibung, die hybride Treffen tötet.',
-    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Communities zu finden oder zu starten; es stellt keine Event-Tools bereit und besetzt keine hybriden Events.',
+    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Origins zu finden oder zu starten; es stellt keine Event-Tools bereit und besetzt keine hybriden Events.',
   ],
   faq: [
     {
-      question: 'Wann sollte eine Community hybrid werden?',
+      question: 'Wann sollte ein Origin hybrid werden?',
       answer:
         'Wenn ein Teil deiner Zielgruppe zuverlässig nicht persönlich teilnehmen kann — wegen Entfernung, Zeitplan oder Mobilität — und die Community trotzdem eine gemeinsame Identität will. Wenn alle sich lokal treffen können, ist ein persönliches Treffen einfacher und oft besser.',
     },
@@ -48,13 +48,13 @@ const content: GuideContent = {
         'Gestalte für gleichberechtigte Teilnahme: Führe eine hybride Vorstellungsrunde durch, sprich entfernte Mitglieder explizit an, teile den Bildschirm für alles Visuelle und nutze ein gemeinsames Dokument, in dem beide Seiten schreiben können. Benenne eine Person, die die entfernte Seite kontinuierlich beobachtet.',
     },
     {
-      question: 'Kann JoinOrigin mir helfen, eine hybride Community zu führen?',
+      question: 'Kann JoinOrigin mir helfen, ein hybrides Origin zu führen?',
       answer:
-        'Ja. JoinOrigin hilft Menschen, Communities zu finden und zu starten — ein Raum, in dem lokale und entfernte Mitglieder verbunden bleiben. JoinOrigin stellt keine Event-Tools bereit, daher funktionieren die praktischen hybriden Praktiken dieser Anleitung mit Tools, die du bereits hast.',
+        'Ja. JoinOrigin hilft Menschen, Origins zu finden und zu starten — ein Raum, in dem lokale und entfernte Mitglieder verbunden bleiben. JoinOrigin stellt keine Event-Tools bereit, daher funktionieren die praktischen hybriden Praktiken dieser Anleitung mit Tools, die du bereits hast.',
     },
   ],
   sections: [
-    'Entscheide, ob hybrid das richtige Modell ist. Gehe hybrid, wenn es Sinn ergibt, sich persönlich zu treffen. Wenn die meisten Mitglieder sich lokal treffen können, macht das persönliche Treffen die Bindung stärker — hybrid erlaubt es, Vertrauen schneller aufzubauen und Menschen gründlicher zu lesen. JoinOrigin ist darauf ausgelegt, jeder Community zu helfen, Mitglieder zu finden und zu halten, aber die Format-Entscheidung liegt bei dir. Gehe nur hybrid, wenn es Sinn ergibt, sich persönlich zu treffen.',
+    'Entscheide, ob hybrid das richtige Modell ist. Gehe hybrid, wenn es Sinn ergibt, sich persönlich zu treffen. Wenn die meisten Mitglieder sich lokal treffen können, macht das persönliche Treffen die Bindung stärker — hybrid erlaubt es, Vertrauen schneller aufzubauen und Menschen gründlicher zu lesen. JoinOrigin ist darauf ausgelegt, jedem Origin zu helfen, Mitglieder zu finden und zu halten, aber die Format-Entscheidung liegt bei dir. Gehe nur hybrid, wenn es Sinn ergibt, sich persönlich zu treffen.',
     'Baue den Raum, der beide Zielgruppen verbindet. Stelle vor allem anderen sicher, dass die Community einen gemeinsamen Raum hat, in dem entfernte und lokale Mitglieder sprechen, Updates teilen und dieselben nächsten Schritte sehen. Der Raum ist das, was hybrid wie eine Community statt wie zwei fühlen lässt. Auf JoinOrigin hat jede Gruppe ab dem Veröffentlichen einen Raum — die beständige Fläche, die den Online- und den Präsenz-Teil zusammenhält. Richte einen gemeinsamen Raum ein, dem beide Zielgruppen beitreten können.',
     'Wähle ein zuverlässiges Video-Tool und ein gemeinsames Dokument. Halte den Stack minimal: einen Videocall-Link für entfernte Mitglieder, ein Dokument für Notizen und geteilte Links und einen Kalendereintrag. Komplexität ist der Feind konsistenter hybrider Treffen. JoinOrigin stellt keine Event-Tools bereit — halte den Stack minimal. Die Plattform ist der beständige Raum, in dem Link und Dokument leben, nicht das Event-Tool selbst.',
     'Gestalte die Tagesordnung für zwei Zielgruppen. Führe eine Vorstellungsrunde durch, die entfernte Mitglieder namentlich einbezieht, halte alles Visuelle auf einem geteilten Bildschirm und lass Raum für die Online-Seite zu sprechen. Eine hybride Tagesordnung benennt beide Zielgruppen explizit. Auf JoinOrigin teilen beide Zielgruppen einen Community-Raum, was „für zwei Zielgruppen gestalten“ zu einer natürlichen Passung macht. Benenne beide Zielgruppen explizit in der Tagesordnung.',
@@ -68,7 +68,7 @@ const content: GuideContent = {
       title: 'Entscheide, ob hybrid das richtige Modell ist',
       body: 'Gehe hybrid, wenn es Sinn ergibt, sich persönlich zu treffen. Wenn die meisten Mitglieder sich lokal treffen können, macht das persönliche Treffen die Bindung stärker — hybrid erlaubt es, Vertrauen schneller aufzubauen und Menschen gründlicher zu lesen.',
       joinOriginNote:
-        'JoinOrigin ist darauf ausgelegt, jeder Community zu helfen, Mitglieder zu finden und zu halten, aber die Format-Entscheidung liegt bei dir. Gehe nur hybrid, wenn es Sinn ergibt, sich persönlich zu treffen.',
+        'JoinOrigin ist darauf ausgelegt, jedem Origin zu helfen, Mitglieder zu finden und zu halten, aber die Format-Entscheidung liegt bei dir. Gehe nur hybrid, wenn es Sinn ergibt, sich persönlich zu treffen.',
     },
     {
       title: 'Baue den Raum, der beide Zielgruppen verbindet',

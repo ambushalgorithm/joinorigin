@@ -23,15 +23,15 @@ const content: GuideContent = {
   description:
     'Organisiere ein Meetup, sobald deine Gruppe geformt ist — ob sie letzten Monat gegründet wurde oder sich seit Jahren trifft — wähle ein Format, buche einen Ort, baue eine Tagesordnung auf, bewirb es und führe den Abend durch. Eine praktische Checkliste von JoinOrigin.',
   intro: [
-    'Ein Meetup ist ein wiederkehrendes Präsenz-Event, bei dem Menschen sich um ein gemeinsames Interesse versammeln — und auf JoinOrigin ist es ein natürlicher nächster Schritt nach der Kommunikation im Raum. Der digitale Weg kommt zuerst: Menschen finden eine Gruppe über einen Link und treten ihr bei, und der Raum der Gruppe wird der Ort, an dem Mitglieder zwischen Treffen sprechen, planen und verbunden bleiben. Das Präsenz-Meetup ist der nächste Schritt dieser geformten Community — ob die Gruppe letzten Monat gegründet wurde oder sich seit Jahren informell trifft, der Raum gibt ihr ein organisiertes Zuhause, aus dem ein Meetup wachsen kann.',
-    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Communities zu finden und eigene zu starten — so hat ein Meetup ein Zuhause, in dem interessierte Mitglieder die Gruppe entdecken, ihrem Raum beitreten und das Treffen koordinieren können, statt von der Kontaktliste einer Person abzuhängen. JoinOrigin bucht keine Orte und besetzt keine Events — der gesamte Zweck der Plattform ist es, Menschen zu verbinden, die ein Interesse teilen, und das Treffen selbst liegt bei dir.',
-    'Diese Anleitung deckt den gesamten Lebenszyklus eines Meetups ab, nachdem die Gruppe existiert — für eine neu gegründete Gruppe und für eine, die sich seit Jahren trifft: ein Format wählen, das zu deiner Zielgruppe passt, einen Ort finden und buchen, ohne das Budget zu sprengen, eine Tagesordnung mit klarem Anfang und Ende bauen, das Event dort bewerben, wo deine Zielgruppe tatsächlich hinschaut, und den Abend so führen, dass Teilnehmende das nächste wollen. Jeder Schritt enthält eine Notiz dazu, wie JoinOrigin hilft — und der erste Schritt dreht sich um die digitale Gruppe, denn ohne Gruppe und Raum gibt es keine Community, die sich treffen kann.',
+    'Ein Meetup ist ein wiederkehrendes Präsenz-Event, bei dem Menschen sich um ein gemeinsames Interesse versammeln — und auf JoinOrigin ist es ein natürlicher nächster Schritt nach der Kommunikation im Raum. Der digitale Weg kommt zuerst: Menschen finden eine Gruppe über einen Link und treten ihr bei, und der Raum der Gruppe wird der Ort, an dem Mitglieder zwischen Treffen sprechen, planen und verbunden bleiben. Das Präsenz-Meetup ist der nächste Schritt dieses geformten Origins — ob die Gruppe letzten Monat gegründet wurde oder sich seit Jahren informell trifft, der Raum gibt ihr ein organisiertes Zuhause, aus dem ein Meetup wachsen kann.',
+    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Origins zu finden und eigene zu starten — so hat ein Meetup ein Zuhause, in dem interessierte Mitglieder die Gruppe entdecken, ihrem Raum beitreten und das Treffen koordinieren können, statt von der Kontaktliste einer Person abzuhängen. JoinOrigin bucht keine Orte und besetzt keine Events — der gesamte Zweck der Plattform ist es, Menschen zu verbinden, die ein Interesse teilen, und das Treffen selbst liegt bei dir.',
+    'Diese Anleitung deckt den gesamten Lebenszyklus eines Meetups ab, nachdem die Gruppe existiert — für eine neu gegründete Gruppe und für eine, die sich seit Jahren trifft: ein Format wählen, das zu deiner Zielgruppe passt, einen Ort finden und buchen, ohne das Budget zu sprengen, eine Tagesordnung mit klarem Anfang und Ende bauen, das Event dort bewerben, wo deine Zielgruppe tatsächlich hinschaut, und den Abend so führen, dass Teilnehmende das nächste wollen. Jeder Schritt enthält eine Notiz dazu, wie JoinOrigin hilft — und der erste Schritt dreht sich um die digitale Gruppe, denn ohne Gruppe und Raum gibt es kein Origin, das sich treffen kann.',
   ],
   dataPoints: [
     'Ein einfaches Meetup braucht nur drei Dinge: ein Format, einen Ort und einen Bewerbungskanal.',
     'Abend-Meetups unter der Woche und Wochenend-Morgen-Sessions sind die häufigsten wiederkehrenden Formate.',
     'Die meisten Orte — Bibliotheken, Cafés, Coworking-Spaces — bieten kostenlose oder günstige Flächen für Community-Events.',
-    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Communities zu finden oder zu starten; es bucht keine Orte und besetzt keine Events.',
+    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Origins zu finden oder zu starten; es bucht keine Orte und besetzt keine Events.',
   ],
   faq: [
     {
@@ -52,7 +52,7 @@ const content: GuideContent = {
     {
       question: 'Kann JoinOrigin mir helfen, Meetups zu organisieren?',
       answer:
-        'Ja. JoinOrigin hilft Menschen, Communities zu finden und zu starten — ein organisiertes digitales Zuhause, in dem der Raum der Gruppe der Ort ist, an dem Mitglieder koordinieren und ein Meetup entdeckt werden kann. JoinOrigin organisiert selbst keine Events, daher sind die praktischen Schritte dieser Anleitung dein Part.',
+        'Ja. JoinOrigin hilft Menschen, Origins zu finden und zu starten — ein organisiertes digitales Zuhause, in dem der Raum der Gruppe der Ort ist, an dem Mitglieder koordinieren und ein Meetup entdeckt werden kann. JoinOrigin organisiert selbst keine Events, daher sind die praktischen Schritte dieser Anleitung dein Part.',
     },
   ],
   sections: [
@@ -61,9 +61,9 @@ const content: GuideContent = {
     'Wähle ein Datum und einen Rhythmus. Abende unter der Woche und Wochenend-Morgen funktionieren für die meisten Zielgruppen am besten. Wähle einen wiederkehrenden Slot — monatlich ist Standard — und schütze ihn wie einen Termin, damit Menschen eine Gewohnheit aufbauen können. JoinOrigin macht den Rhythmus einer Community an einem Ort sichtbar, sodass Mitglieder den nächsten Termin kennen, ohne danach suchen zu müssen. Schütze deinen wiederkehrenden Slot wie einen Termin.',
     'Buche früh einen Ort. Bibliotheken, Cafés, Coworking-Lounges, Gemeindezentren und Parks veranstalten Community-Events zu niedrigen oder keinen Kosten. Bestätige Kapazität, Öffnungszeiten und etwaige Buchungsanforderungen schriftlich. JoinOrigin bucht keine Orte und koordiniert keine physischen Räume — sein Designfokus liegt darauf, Menschen im digitalen Raum zu verbinden. Bestätige Kapazität und Öffnungszeiten direkt und schriftlich mit dem Ort.',
     'Entwirf eine leichte Tagesordnung. Halte sie einfach: Begrüßung und Einleitung, Hauptaktivität, offene Diskussion, Abschluss und nächster Termin. Plane insgesamt 60–90 Minuten und veröffentliche die Tagesordnung mit der Event-Ankündigung und im Raum. JoinOrigin ist ein Community-Betriebssystem, in dem gemeinsame Artefakte wie Tagesordnungen und Notizen neben der Community leben. Eine einfache veröffentlichte Tagesordnung erledigt die Arbeit.',
-    'Bewirb dort, wo deine Zielgruppe bereits ist. Teile das Event in Nischen-Gruppen, lokalen Newslettern, Community-Pinnwänden und relevanten Social-Kanälen — und weise alle auf den Beitrittslink der Gruppe hin, damit Teilnehmende zu Mitgliedern werden statt zu Einmal-Gästen. JoinOrigin ist der Ort, an dem Menschen, die eine Community suchen, sie finden und über einen Link beitreten. Bewirb in den Nischen-Gruppen und Newslettern, in denen deine Zielgruppe sich bereits versammelt, und teile den Beitrittslink mit jeder:m Teilnehmenden.',
+    'Bewirb dort, wo deine Zielgruppe bereits ist. Teile das Event in Nischen-Gruppen, lokalen Newslettern, Community-Pinnwänden und relevanten Social-Kanälen — und weise alle auf den Beitrittslink der Gruppe hin, damit Teilnehmende zu Mitgliedern werden statt zu Einmal-Gästen. JoinOrigin ist der Ort, an dem Menschen, die ein Origin suchen, sie finden und über einen Link beitreten. Bewirb in den Nischen-Gruppen und Newslettern, in denen deine Zielgruppe sich bereits versammelt, und teile den Beitrittslink mit jeder:m Teilnehmenden.',
     'Führe den Abend mit klarem Rhythmus durch. Beginne pünktlich, begrüße Nachzügler:innen, halte die Hauptaktivität auf Kurs und schließe mit der Ankündigung des nächsten Termins. Ende pünktlich — es ist das stärkste Respekt-Signal. JoinOrigin besetzt keine Events — die Erfahrung liegt bei dir. Die Plattform hält die Geschichte der Community in einem organisierten Raum — das Versprechen, den Rhythmus und die Menschen. Pünktlich zu enden ist das stärkste Respekt-Signal.',
-    'Folge innerhalb von 24 Stunden im Raum nach. Danke Teilnehmenden, teile Links oder Notizen und lade zu Feedback ein, wo die ganze Gruppe es sehen kann. Die Nachbereitung verwandelt ein einzelnes Event in eine wiederkehrende Community. JoinOrigin gibt einer Community einen beständigen Raum, in dem Zusammenfassung, nächster Termin und Feedback leben — ein einzelnes Event wird zur wiederkehrenden Community. Werde entdeckt und halte den Schwung.',
+    'Folge innerhalb von 24 Stunden im Raum nach. Danke Teilnehmenden, teile Links oder Notizen und lade zu Feedback ein, wo die ganze Gruppe es sehen kann. Die Nachbereitung verwandelt ein einzelnes Event in eine wiederkehrende Community. JoinOrigin gibt einem Origin einen beständigen Raum, in dem Zusammenfassung, nächster Termin und Feedback leben — ein einzelnes Event wird zur wiederkehrenden Community. Werde entdeckt und halte den Schwung.',
   ],
   steps: [
     {
@@ -100,7 +100,7 @@ const content: GuideContent = {
       title: 'Bewirb dort, wo deine Zielgruppe bereits ist',
       body: 'Teile das Event in Nischen-Gruppen, lokalen Newslettern, Community-Pinnwänden und relevanten Social-Kanälen — und weise alle auf den Beitrittslink der Gruppe hin, damit Teilnehmende zu Mitgliedern werden statt zu Einmal-Gästen.',
       joinOriginNote:
-        'JoinOrigin ist der Ort, an dem Menschen, die eine Community suchen, sie finden und über einen Link beitreten. Bewirb in den Nischen-Gruppen und Newslettern, in denen deine Zielgruppe sich bereits versammelt, und teile den Beitrittslink mit jeder:m Teilnehmenden.',
+        'JoinOrigin ist der Ort, an dem Menschen, die ein Origin suchen, sie finden und über einen Link beitreten. Bewirb in den Nischen-Gruppen und Newslettern, in denen deine Zielgruppe sich bereits versammelt, und teile den Beitrittslink mit jeder:m Teilnehmenden.',
     },
     {
       title: 'Führe den Abend mit klarem Rhythmus durch',
@@ -112,7 +112,7 @@ const content: GuideContent = {
       title: 'Folge innerhalb von 24 Stunden im Raum nach',
       body: 'Danke Teilnehmenden, teile Links oder Notizen und lade zu Feedback ein, wo die ganze Gruppe es sehen kann. Die Nachbereitung verwandelt ein einzelnes Event in eine wiederkehrende Community.',
       joinOriginNote:
-        'JoinOrigin gibt einer Community einen beständigen Raum, in dem Zusammenfassung, nächster Termin und Feedback leben — ein einzelnes Event wird zur wiederkehrenden Community. Werde entdeckt und halte den Schwung.',
+        'JoinOrigin gibt einem Origin einen beständigen Raum, in dem Zusammenfassung, nächster Termin und Feedback leben — ein einzelnes Event wird zur wiederkehrenden Community. Werde entdeckt und halte den Schwung.',
     },
   ],
 };

@@ -370,7 +370,7 @@ describe('lib/seo locationPages — per-locale (de) Berlin + Munich surface', ()
     const startup = berlin.find(
       (entry) => entry.kind === 'variant' && entry.groupType === 'startup',
     );
-    expect(startup?.title).toBe('Startup-Communities in Berlin | JoinOrigin');
+    expect(startup?.title).toBe('Startup-Origins in Berlin | JoinOrigin');
     expect(startup?.indexable).toBe(true);
     const ideas = berlin.find((entry) => entry.kind === 'ideas');
     expect(ideas?.title).toBe('30 Ideen für Origin-Events in Berlin | JoinOrigin');
@@ -383,11 +383,11 @@ describe('lib/seo locationPages — per-locale (de) Berlin + Munich surface', ()
     // overrides — assert the registry carries the committed German copy.
     const startup = de.find((entry) => entry.kind === 'variant' && entry.groupType === 'startup');
     expect(startup?.description).toBe(
-      'Finde oder gründe Startup-Communities in Berlin – Gründer:innen, Builders und frühe Teams in Mitte und Kreuzberg. JoinOrigin-Warteliste.',
+      'Finde oder gründe Startup-Origins in Berlin – Gründer:innen, Builders und frühe Teams in Mitte und Kreuzberg. JoinOrigin-Warteliste.',
     );
     const city = de.find((entry) => entry.kind === 'city');
     expect(city?.description).toBe(
-      'Finde oder gründe Communities in Berlin – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
+      'Finde oder gründe Origins in Berlin – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
     );
   });
 

@@ -33,7 +33,7 @@ const content: GuideContent = {
   ],
   faq: [
     {
-      question: 'Jaka jest różnica między grupą a społecznością?',
+      question: 'Jaka jest różnica między grupą a Origin?',
       answer:
         'Na JoinOrigin to ten sam obiekt. Grupa (lub społeczność) to opublikowany, dostępny do dołączenia obiekt z publiczną stroną i pokojem. Strona grupy wyraża obietnicę; pokój to miejsce, w którym łączą się członkowie. Społeczności otrzymują przestrzeń Matrix, która przechowuje pokoje grupy, a główny pokój to miejsce, w którym żyje grupa.',
     },

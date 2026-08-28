@@ -18,19 +18,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'de',
   slug: 'moderation',
-  title: 'Community-Moderation: So hältst du Gruppen gesund & einladend | JoinOrigin',
+  title: 'Origin-Moderation: So hältst du Gruppen gesund & einladend | JoinOrigin',
   description:
-    'Moderiere eine Community mit klaren Regeln, frühem Handeln und Deeskalation — ob du eine brandneue Gruppe einrichtest oder die Kultur einer etablierten reparierst — Ersteller:innen-Kontrolle ist Matrix-Raumbesitz, mit Rollen, die in Element durchgesetzt werden. Praktische Schritte von JoinOrigin.',
+    'Moderiere ein Origin mit klaren Regeln, frühem Handeln und Deeskalation — ob du eine brandneue Gruppe einrichtest oder die Kultur eines etablierten reparierst — Ersteller:innen-Kontrolle ist Matrix-Raumbesitz, mit Rollen, die in Element durchgesetzt werden. Praktische Schritte von JoinOrigin.',
   intro: [
     'Jede Community, die wächst, steht irgendwann vor einem Moment, der ihre Kultur testet — ein hitziger Streit, ein Spammer, ein Mitglied, das andere unwohl macht, oder ein Missverständnis, das eskaliert. Moderation ist die Praxis, den Raum zu schützen, damit die Community einladend bleiben kann, und sie wird nur nötig, weil Communities aus Menschen bestehen, die sich miteinander verbinden. Dieses Verbinden ist das Kernproblem, bei dem JoinOrigin hilft — und die Praktiken gelten genauso für eine etablierte Community, die ihre Kultur repariert, wie für eine neue Gruppe, die Erwartungen setzt, bevor das erste Mitglied kommt.',
-    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Communities zu finden, zu starten und zu organisieren — und in seinem digitalen Modell lebt eine Community in einem von der ersteller:in kontrollierten Raum. Ersteller:innen-Kontrolle ist Standard-Matrix-Raumbesitz: Die ersteller:in kann Mitglieder einladen und entfernen, Rollen zuweisen, Raum-Einstellungen bearbeiten, Nachrichten anheften und den Raum archivieren — alles nativ in Element, dem Standard-Chat-Client, durchgesetzt, ohne eigenes Berechtigungssystem. Dieser Besitz ist das Rückgrat der Moderation auf JoinOrigin: Die ersteller:in entscheidet, wer dazugehört, was die Regeln sind und was passiert, wenn eine Regel gebrochen wird. JoinOrigin moderiert keine Dritt-Communities und stellt kein Moderationspersonal. Die Plattform ist auf gesunde Community-Struktur ausgelegt, und die Praktiken dieser Anleitung sind die menschlichen Praktiken, die jede:r Organisator:in braucht.',
+    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Origins zu finden, zu starten und zu organisieren — und in seinem digitalen Modell lebt eine Community in einem von der ersteller:in kontrollierten Raum. Ersteller:innen-Kontrolle ist Standard-Matrix-Raumbesitz: Die ersteller:in kann Mitglieder einladen und entfernen, Rollen zuweisen, Raum-Einstellungen bearbeiten, Nachrichten anheften und den Raum archivieren — alles nativ in Element, dem Standard-Chat-Client, durchgesetzt, ohne eigenes Berechtigungssystem. Dieser Besitz ist das Rückgrat der Moderation auf JoinOrigin: Die ersteller:in entscheidet, wer dazugehört, was die Regeln sind und was passiert, wenn eine Regel gebrochen wird. JoinOrigin moderiert keine Dritt-Communities und stellt kein Moderationspersonal. Die Plattform ist auf gesunde Community-Struktur ausgelegt, und die Praktiken dieser Anleitung sind die menschlichen Praktiken, die jede:r Organisator:in braucht.',
     'Diese Anleitung legt ein praktisches Moderationssystem dar — ob deine Community brandneu ist oder jahrelange Geschichte aufzuarbeiten hat: schriftliche Community-Regeln, die kurz und konkret sind, ein klarer Durchsetzungsweg mit Verwarnungen vor Entfernungen, Techniken zur Deeskalation angespannter Situationen und ehrliche Ratschläge dazu, wann du Mitglieder einbeziehst und wann du allein handelst. Jeder Schritt zeigt, wo JoinOrigin hilft.',
   ],
   dataPoints: [
     'Klare, schriftliche Community-Regeln reduzieren Konflikte, indem sie Erwartungen vor Vorfällen setzen.',
     'Ersteller:innen-Kontrolle auf JoinOrigin ist Matrix-Raumbesitz: einladen/entfernen, Rollen, Einstellungen, anheften, archivieren.',
     'Ein gestufter Durchsetzungsweg — warnen, dann einschränken, dann entfernen — ist fairer und leichter zu verteidigen als Sofort-Banns.',
-    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Communities zu finden, zu starten und zu organisieren; es moderiert keine Dritt-Communities und stellt kein Moderationspersonal.',
+    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Origins zu finden, zu starten und zu organisieren; es moderiert keine Dritt-Communities und stellt kein Moderationspersonal.',
   ],
   faq: [
     {
@@ -49,7 +49,7 @@ const content: GuideContent = {
         'Nachdem klare Verwarnungen nicht gewirkt haben, oder sofort bei Verhalten, das Mitglieder gefährdet — Belästigung, Drohungen oder Doxxing. Der Test ist, ob die Person den Raum für andere aktiv unsicher macht. Auf JoinOrigin ist Entfernen das Entfernen eines Mitglieds aus dem Raum durch die Rauminhaber:in.',
     },
     {
-      question: 'Kann JoinOrigin mir helfen, meine Community zu moderieren?',
+      question: 'Kann JoinOrigin mir helfen, mein Origin zu moderieren?',
       answer:
         'Ja. JoinOrigin ist ein Community-Betriebssystem, in dem Ersteller:innen-Kontrolle Matrix-Raumbesitz ist — einladen/entfernen, Rollen, Einstellungen, anheften und archivieren, in Element durchgesetzt. JoinOrigin moderiert keine Communities, daher sind die Praktiken dieser Anleitung — klare Regeln, gestufte Durchsetzung, ruhige Deeskalation — dein Part.',
     },

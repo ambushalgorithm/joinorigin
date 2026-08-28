@@ -1,7 +1,7 @@
 import type { GuideContent } from '../../types';
 
 /**
- * „Jak założyć społeczność" — ponadczasowy poradnik L1 (design §6.1,
+ * „Jak założyć Origin" — ponadczasowy poradnik L1 (design §6.1,
  * TASK-326) w polskim tłumaczeniu.
  *
  * Skoncentrowany na cyfrowym modelu połącz→dołącz→pokój: opublikuj grupę →
@@ -17,11 +17,11 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'pl',
   slug: 'start-an-origin',
-  title: 'Jak założyć społeczność: poradnik krok po kroku | JoinOrigin',
+  title: 'Jak założyć Origin: poradnik krok po kroku | JoinOrigin',
   description:
-    'Dowiedz się, jak założyć społeczność — lub dać istniejącej jeden cyfrowy dom — opublikuj grupę, otwórz jej pokój i sprowadź członków przez link do dołączenia. Praktyczne kroki od JoinOrigin.',
+    'Dowiedz się, jak założyć Origin — lub dać istniejącemu jeden cyfrowy dom — opublikuj grupę, otwórz jej pokój i sprowadź członków przez link do dołączenia. Praktyczne kroki od JoinOrigin.',
   intro: [
-    'Najtrudniejszą częścią zakładania społeczności rzadko jest miejsce, agenda czy budżet — to znalezienie pierwszych ludzi, którzy dzielą Twoje zainteresowanie, i danie im jednego jasnego miejsca do połączenia. To dokładnie problem, który rozwiązuje JoinOrigin.',
+    'Najtrudniejszą częścią zakładania Origin rzadko jest miejsce, agenda czy budżet — to znalezienie pierwszych ludzi, którzy dzielą Twoje zainteresowanie, i danie im jednego jasnego miejsca do połączenia. To dokładnie problem, który rozwiązuje JoinOrigin.',
     'JoinOrigin to system operacyjny społeczności zbudowany wokół cyfrowej pętli: publikujesz grupę, jej pokój jest tworzony automatycznie, a członkowie dołączają przez link. Pokój to miejsce, w którym faktycznie żyje społeczność — kontrolowany przez twórcę pokój Matrix, w którym członkowie rozmawiają, dzielą się aktualizacjami i planują razem od pierwszego dnia, zamiast rozpraszać się po arkuszach, rozproszonych wiadomościach i formularzach rejestracyjnych. Wydarzenia stacjonarne istnieją tylko jako konsekwencja dalszego kroku: gdy grupa się uformuje, a jej pokój ożyje, członkowie mogą zdecydować się na spotkania twarzą w twarz — a JoinOrigin nie prowadzi lokalnych wydarzeń. Cały sens platformy to łączenie ludzi, którzy inaczej nigdy by się nie spotkali, dlatego każdy krok w tym poradniku odwzorowuje coś, w czym pomaga JoinOrigin.',
     "Podejście działa dla każdego typu społeczności: kręgu założycieli, klubu książki, lokalnej grupy biegowej, sieci małych firm czy online'owej społeczności zawodowej — i działa niezależnie od tego, czy zaczynasz od zera, czy formalizujesz grupę, która już spotyka się nieformalnie. Podstawowa zasada jest prosta — ludzie dołączają z powodu jasnej obietnicy i zostają, ponieważ doświadczenie rzetelnie spełnia tę obietnicę. Nie potrzebujesz dużego budżetu, miejsca ani istniejącej publiczności, aby zacząć; potrzebujesz jasnego celu, realistycznego pierwszego kroku i dyscypliny, aby go powtarzać.",
   ],
@@ -29,13 +29,13 @@ const content: GuideContent = {
     'Większość odnoszących sukcesy społeczności zaczyna od wąskiej, konkretnej grupy docelowej, a nie od „wszystkich zainteresowanych”.',
     'Opublikowanie grupy tworzy jej pokój natychmiast — nigdy nie ma kroku „utwórz czat później”.',
     'Link do dołączenia to najprostsze zaproszenie: jeden link, jedno kliknięcie i nowy członek jest w pokoju.',
-    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować lub zakładać społeczności — nie prowadzi lokalnych wydarzeń ani nie deklaruje lokalnego personelu.',
+    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować lub zakładać Origins — nie prowadzi lokalnych wydarzeń ani nie deklaruje lokalnego personelu.',
   ],
   faq: [
     {
-      question: 'Ile czasu zajmuje założenie społeczności?',
+      question: 'Ile czasu zajmuje założenie Origin?',
       answer:
-        'Możesz opublikować grupę i otworzyć jej pokój w ciągu kilku tygodni, jeśli utrzymasz mały zakres: jeden cel, jeden link do dołączenia i stały strumień osobistych zaproszeń. Sama społeczność potrzebuje kilku miesięcy konsekwentnego uczestnictwa w pokoju, zanim poczuje się ustalona.',
+        'Możesz opublikować grupę i otworzyć jej pokój w ciągu kilku tygodni, jeśli utrzymasz mały zakres: jeden cel, jeden link do dołączenia i stały strumień osobistych zaproszeń. Samo Origin potrzebuje kilku miesięcy konsekwentnego uczestnictwa w pokoju, zanim poczuje się ustalone.',
     },
     {
       question: 'Czy potrzebuję pieniędzy lub miejsca, aby zacząć?',
@@ -43,12 +43,12 @@ const content: GuideContent = {
         'Nie. Cyfrowy rdzeń społeczności — opublikowana grupa i jej pokój — nic nie kosztuje i nie potrzebuje miejsca. Wiele grup decyduje się później na spotkania stacjonarne; biblioteki, kawiarnie, parki i salony coworkingowe w większości miast hostują pierwsze spotkania za darmo.',
     },
     {
-      question: 'Jaki jest najczęstszy błąd przy zakładaniu społeczności?',
+      question: 'Jaki jest najczęstszy błąd przy zakładaniu Origin?',
       answer:
         'Próba obsłużenia wszystkich. Społeczność z niejasnym celem przyciąga niewielu zaangażowanych członków. Określ jedną konkretną grupę docelową i jeden jasny rezultat, umieść to na stronie grupy i pozwól społeczności ewoluować od tego punktu.',
     },
     {
-      question: 'Jak JoinOrigin może mi pomóc założyć społeczność?',
+      question: 'Jak JoinOrigin może mi pomóc założyć Origin?',
       answer:
         'Opublikowanie grupy na JoinOrigin automatycznie tworzy jej pokój, a członkowie dołączają przez link — jeden zorganizowany cyfrowy dom dla celu, ludzi i rozmów społeczności. JoinOrigin nie prowadzi lokalnych wydarzeń, więc praktyczne kroki z tego poradnika działają na platformie i z narzędziami, które już masz.',
     },

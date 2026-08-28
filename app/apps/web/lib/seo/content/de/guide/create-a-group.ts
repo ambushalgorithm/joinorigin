@@ -34,9 +34,9 @@ const content: GuideContent = {
   ],
   faq: [
     {
-      question: 'Was ist der Unterschied zwischen einer Gruppe und einer Community?',
+      question: 'Was ist der Unterschied zwischen einer Gruppe und einem Origin?',
       answer:
-        'Auf JoinOrigin sind sie dasselbe Objekt. Eine Gruppe (oder Community) ist ein veröffentlichtes, beitrittsfähiges Objekt mit einer öffentlichen Seite und einem Raum. Die Gruppenseite nennt das Versprechen; der Raum ist der Ort, an dem Mitglieder sich verbinden. Communities bekommen einen Matrix-Space, der die Räume der Gruppe hält, und der Hauptraum ist der Ort, an dem die Gruppe lebt.',
+        'Auf JoinOrigin sind sie dasselbe Objekt. Eine Gruppe (oder ein Origin) ist ein veröffentlichtes, beitrittsfähiges Objekt mit einer öffentlichen Seite und einem Raum. Die Gruppenseite nennt das Versprechen; der Raum ist der Ort, an dem Mitglieder sich verbinden. Origins bekommen einen Matrix-Space, der die Räume der Gruppe hält, und der Hauptraum ist der Ort, an dem die Gruppe lebt.',
     },
     {
       question: 'Wann wird der Gruppenraum erstellt?',

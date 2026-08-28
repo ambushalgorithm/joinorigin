@@ -57,7 +57,7 @@ const content: GuideContent = {
     },
   ],
   sections: [
-    'Zacznij od istniejącej grupy i jej pokoju. Projekt wyrasta z grupy, która ma już zaufanie i rozpęd. Przyjrzyj się rozmowom w pokoju grupy i znajdź powtarzającą się potrzebę — rzecz, o której członkowie ciągle mówią „powinniśmy to zrobić”. JoinOrigin utrzymuje społeczność w pokoju kontrolowanym przez twórcę, a projekt to kolejna warstwa na tym pokoju. Nazwij powtarzającą się potrzebę w grupie i sprawdź, czy ktoś chce na nią odpowiedzieć działaniem.',
+    'Zacznij od istniejącej grupy i jej pokoju. Projekt wyrasta z grupy, która ma już zaufanie i rozpęd. Przyjrzyj się rozmowom w pokoju grupy i znajdź powtarzającą się potrzebę — rzecz, o której członkowie ciągle mówią „powinniśmy to zrobić”. JoinOrigin utrzymuje Origin w pokoju kontrolowanym przez twórcę, a projekt to kolejna warstwa na tym pokoju. Nazwij powtarzającą się potrzebę w grupie i sprawdź, czy ktoś chce na nią odpowiedzieć działaniem.',
     'Określ zakres, który faktycznie może zostać dostarczony. Zapisz, co projekt ma wytworzyć, dla kogo i w jakim czasie. Utrzymaj pierwszą wersję na tyle małą, aby grupa mogła ją ukończyć. JoinOrigin jest zaprojektowany wokół projektów z publicznymi stronami — jasny zakres sprawia, że strona jest czytelna, a pokój skupiony. Jedno zdanie mówiące, co i kiedy zostanie dostarczone, wystarczy na start.',
     'Napisz stronę projektu. Strona powinna przedstawiać cel projektu, problem, który rozwiązuje, kto nad nim pracuje i czego potrzebuje. Bądź szczery co do etapu — wczesny szkic jest w porządku. Opublikowanie projektu na JoinOrigin automatycznie tworzy jego stronę i pokój, a twórca kontroluje pokój od początku. Opublikuj opis projektu w miejscu, do którego grupa może odsyłać ludzi.',
     'Opublikuj projekt i otwórz jego pokój. Publikacja to moment, w którym projekt staje się realny: publiczna strona plus pokój, w którym żyje praca. Na JoinOrigin pokój jest tworzony automatycznie w tym samym momencie — nie ma osobnego kroku konfiguracji, a twórca jest jego właścicielem. Na JoinOrigin strona, pokój i zespół roboczy to jedna publikacja. Jeśli wolisz, utwórz stronę i pokój w narzędziach, których grupa już używa.',
@@ -71,7 +71,7 @@ const content: GuideContent = {
       title: 'Zacznij od istniejącej grupy i jej pokoju',
       body: 'Projekt wyrasta z grupy, która ma już zaufanie i rozpęd. Przyjrzyj się rozmowom w pokoju grupy i znajdź powtarzającą się potrzebę — rzecz, o której członkowie ciągle mówią „powinniśmy to zrobić”.',
       joinOriginNote:
-        'JoinOrigin utrzymuje społeczność w pokoju kontrolowanym przez twórcę, a projekt to kolejna warstwa na tym pokoju. Nazwij powtarzającą się potrzebę w grupie i sprawdź, czy ktoś chce na nią odpowiedzieć działaniem.',
+        'JoinOrigin utrzymuje Origin w pokoju kontrolowanym przez twórcę, a projekt to kolejna warstwa na tym pokoju. Nazwij powtarzającą się potrzebę w grupie i sprawdź, czy ktoś chce na nią odpowiedzieć działaniem.',
     },
     {
       title: 'Określ zakres, który faktycznie może zostać dostarczony',
