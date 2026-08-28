@@ -1,9 +1,9 @@
 import { test, expect, type Page } from '@playwright/test';
 
 // TASK-584: the prod server runs on the per-slot port set by the orchestrator
-// (JOINORIGIN_WEB_PORT, see playwright.config.ts) — mirror the same env read
+// (APP_PORT, see playwright.config.ts) — mirror the same env read
 // so browser contexts point at the actual slot server, not a hardcoded port.
-const WEB_PORT = Number(process.env.JOINORIGIN_WEB_PORT ?? 3100);
+const WEB_PORT = Number(process.env.APP_PORT ?? 3100);
 
 /**
  * Sprint 19 E2E validation — locale routing correctness + all-routes-prefixed

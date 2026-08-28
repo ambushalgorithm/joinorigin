@@ -3,9 +3,9 @@ import { test, expect } from '@playwright/test';
 import { leadsCsvRow, waitForHydration } from './helpers';
 
 // TASK-584: the prod server runs on the per-slot port set by the orchestrator
-// (JOINORIGIN_WEB_PORT, see playwright.config.ts) — mirror the same env read
+// (APP_PORT, see playwright.config.ts) — mirror the same env read
 // so referrer assertions stay green when the slot port is not the default.
-const WEB_PORT = Number(process.env.JOINORIGIN_WEB_PORT ?? 3100);
+const WEB_PORT = Number(process.env.APP_PORT ?? 3100);
 
 /**
  * JoinOrigin homescreen e2e coverage (Sprint 3).
