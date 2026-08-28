@@ -12,9 +12,9 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'vi',
   slug: 'vietnam',
-  title: 'Cộng đồng tại Việt Nam | JoinOrigin',
+  title: 'Origin tại Việt Nam | JoinOrigin',
   description:
-    'Tìm hoặc bắt đầu cộng đồng tại Việt Nam — từ hệ sinh thái khởi nghiệp ở TP.HCM đến các mạng lưới doanh nghiệp nhỏ trên toàn quốc. Tham gia JoinOrigin ngay hôm nay.',
+    'Tìm hoặc bắt đầu Origin tại Việt Nam — từ hệ sinh thái khởi nghiệp ở TP.HCM đến các mạng lưới doanh nghiệp nhỏ trên toàn quốc. Tham gia JoinOrigin ngay hôm nay.',
   intro:
     'Cộng đồng Việt Nam còn trẻ, vận động nhanh và tập trung vào hai cực đô thị khổng lồ: TP.HCM ở phía nam và Hà Nội ở phía bắc. TP.HCM, trung tâm thương mại của đất nước, sở hữu hệ sinh thái khởi nghiệp sôi động nhất — các buổi gặp gỡ founder, cộng đồng lập trình viên và tập thể thiết kế lấp đầy không gian làm việc chung và quán cà phê khắp Quận 1, Quận 3 và các quận mới phía đông. Văn hóa cà phê Việt Nam là chất keo xã hội: vô số nhóm chỉ đơn giản gặp nhau tại một quán quen, nơi một chiếc bàn trở thành điểm hẹn thường xuyên trong tuần. Đời sống cộng đồng cũng dựa trên truyền thống sâu sắc — văn hóa tương trợ hàng xóm (tình làng nghĩa xóm) và lịch lễ hội Tết cùng các dịp khác giữ cho mọi người kết nối ngoài vòng chuyên môn. Tiếng Việt là ngôn ngữ chính, tiếng Anh phổ biến trong giới trẻ chuyên nghiệp và cộng đồng quốc tế. Với bất kỳ ai đang xây dựng sự nghiệp hay một cộng đồng, Việt Nam ghi nhận sự năng nổ và kiên định: môi trường cởi mở, chi phí buổi gặp đầu tiên thấp, và mọi người phản hồi tốt với sự nhiệt tình thật sự.',
   dataPoints: [
@@ -25,7 +25,7 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'Làm thế nào để tìm cộng đồng tại Việt Nam?',
+      question: 'Làm thế nào để tìm Origin tại Việt Nam?',
       answer:
         'Bắt đầu từ hub /location và chọn trang TP.HCM, sau đó khám phá các trang nhóm — khởi nghiệp, sáng tạo, chính trị, meetup và doanh nghiệp nhỏ. Nhiều nhóm cũng điều phối qua ứng dụng nhắn tin và mạng xã hội.',
     },
@@ -37,7 +37,7 @@ const content: CountryContent = {
     {
       question: 'JoinOrigin có hoạt động tại Việt Nam không?',
       answer:
-        'Có. JoinOrigin không có văn phòng địa phương. Nền tảng giúp mọi người tìm hoặc bắt đầu cộng đồng ở bất kỳ đâu tại Việt Nam, và trang TP.HCM được dịch sang tiếng Việt để phục vụ người dùng địa phương.',
+        'Có. JoinOrigin không có văn phòng địa phương. Nền tảng giúp mọi người tìm hoặc bắt đầu Origins ở bất kỳ đâu tại Việt Nam, và trang TP.HCM được dịch sang tiếng Việt để phục vụ người dùng địa phương.',
     },
   ],
 };

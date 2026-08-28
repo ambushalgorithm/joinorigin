@@ -65,7 +65,7 @@ const content: GuideContent = {
     'Chia sẻ ý tưởng với các cộng đồng nhà sáng lập. Các startup phát triển qua mạng lưới nhà sáng lập. Chia sẻ trang ý tưởng với các nhóm nhà sáng lập, cộng đồng khởi nghiệp, vườn ươm, và bất kỳ ai biết vấn đề. Tham gia trên JoinOrigin là một hành động duy nhất — nhấp Tham gia trên trang công khai hoặc theo một liên kết mời trực tiếp từ một thành viên. Một liên kết ngắn, rõ ràng đến ý tưởng của bạn là đủ.',
     'Mời những người tin tưởng và thử nghiệm sớm. Mời những người chia sẻ tham vọng: đồng sáng lập tiềm năng, chuyên gia lĩnh vực, và người dùng sẵn lòng thử một phiên bản thô. JoinOrigin làm cho việc khám phá dễ dàng hơn — một nơi những người đang tìm một ý tưởng có thể tìm thấy ý tưởng của bạn và tham gia qua một liên kết. Lời mời cá nhân vẫn làm phần nặng nhọc, và mỗi người tham gia trở thành một kênh đến mạng lưới của riêng họ.',
     'Tổ chức các cuộc trò chuyện có cấu trúc trong phòng. Hỏi những người tham gia điều gì làm họ hào hứng, điều gì làm họ lo lắng, và họ sẽ làm gì đầu tiên. Một phòng startup là một cuộc phỏng vấn liên tục — các câu trả lời định hình ý tưởng. JoinOrigin không vận hành các cuộc trò chuyện này; phòng là của bạn để định hình. Nền tảng mang lại cho ý tưởng một phòng nơi quan tâm trở thành hiểu biết, và người sáng lập sở hữu phòng đó. Tổ chức các cuộc trò chuyện trực tiếp trong phòng.',
-    'Dùng phòng để hình thành một đội thử nghiệm. Khi đúng người xuất hiện, đề xuất một thử nghiệm nhỏ — một nguyên mẫu, một trang đích, hoặc một buổi làm việc — và xem đội làm việc cùng nhau như thế nào. JoinOrigin mang lại cho cộng đồng một phòng chung cho công việc và dự án của họ, một nơi tự nhiên để một thử nghiệm xuất hiện. Một nguyên mẫu thực tế nhỏ là bài kiểm tra mức độ phù hợp đáng tin cậy nhất.',
+    'Dùng phòng để hình thành một đội thử nghiệm. Khi đúng người xuất hiện, đề xuất một thử nghiệm nhỏ — một nguyên mẫu, một trang đích, hoặc một buổi làm việc — và xem đội làm việc cùng nhau như thế nào. JoinOrigin mang lại cho Origins một phòng chung cho công việc và dự án của họ, một nơi tự nhiên để một thử nghiệm xuất hiện. Một nguyên mẫu thực tế nhỏ là bài kiểm tra mức độ phù hợp đáng tin cậy nhất.',
     'Đưa phòng vào bảng tin khi bạn xác nhận. Tiếp tục đăng cập nhật, giữ phòng sống, và để đà của ý tưởng trở nên hiện hữu với một mạng lưới rộng hơn. Bảng tin biến một ý tưởng thành bằng chứng mọi người quan tâm. Trên JoinOrigin cập nhật phòng chảy vào bảng tin — vòng lặp tăng trưởng nơi mỗi thành viên mới mở rộng bề mặt khám phá. Được khám phá và phát triển.',
   ],
   steps: [
@@ -109,7 +109,7 @@ const content: GuideContent = {
       title: 'Dùng phòng để hình thành một đội thử nghiệm',
       body: 'Khi đúng người xuất hiện, đề xuất một thử nghiệm nhỏ — một nguyên mẫu, một trang đích, hoặc một buổi làm việc — và xem đội làm việc cùng nhau như thế nào.',
       joinOriginNote:
-        'JoinOrigin mang lại cho cộng đồng một phòng chung cho công việc và dự án của họ, một nơi tự nhiên để một thử nghiệm xuất hiện. Một nguyên mẫu thực tế nhỏ là bài kiểm tra mức độ phù hợp đáng tin cậy nhất.',
+        'JoinOrigin mang lại cho Origins một phòng chung cho công việc và dự án của họ, một nơi tự nhiên để một thử nghiệm xuất hiện. Một nguyên mẫu thực tế nhỏ là bài kiểm tra mức độ phù hợp đáng tin cậy nhất.',
     },
     {
       title: 'Đưa phòng vào bảng tin khi bạn xác nhận',

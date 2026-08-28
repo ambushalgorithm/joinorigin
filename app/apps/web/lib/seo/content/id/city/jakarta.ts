@@ -12,40 +12,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'id',
   slug: 'jakarta',
-  title: 'Komunitas di Jakarta | JoinOrigin',
+  title: 'Origins di Jakarta | JoinOrigin',
   description:
-    'Temukan atau mulai komunitas di Jakarta — grup startup, kreatif, politik, meetup, dan usaha kecil. Bergabunglah dengan daftar tunggu JoinOrigin.',
+    'Temukan atau mulai Origins di Jakarta — grup startup, kreatif, politik, meetup, dan usaha kecil. Bergabunglah dengan daftar tunggu JoinOrigin.',
   pageTitles: {
-    city: 'Komunitas di Jakarta | JoinOrigin',
+    city: 'Origins di Jakarta | JoinOrigin',
     cityDescription:
-      'Temukan atau mulai komunitas di Jakarta — grup startup, kreatif, politik, meetup, dan usaha kecil. Bergabunglah dengan daftar tunggu JoinOrigin.',
+      'Temukan atau mulai Origins di Jakarta — grup startup, kreatif, politik, meetup, dan usaha kecil. Bergabunglah dengan daftar tunggu JoinOrigin.',
     variants: {
-      startup: 'Komunitas startup di Jakarta | JoinOrigin',
-      creative: 'Komunitas kreatif & desain di Jakarta | JoinOrigin',
-      political: 'Komunitas politik & sipil di Jakarta | JoinOrigin',
-      meetup: 'Meetup & acara komunitas di Jakarta | JoinOrigin',
-      'small-business': 'Komunitas usaha kecil di Jakarta | JoinOrigin',
+      startup: 'Origin startup di Jakarta | JoinOrigin',
+      creative: 'Origin kreatif & desain di Jakarta | JoinOrigin',
+      political: 'Origin politik & sipil di Jakarta | JoinOrigin',
+      meetup: 'Meetup & acara Origin di Jakarta | JoinOrigin',
+      'small-business': 'Origin usaha kecil di Jakarta | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Temukan atau mulai komunitas startup di Jakarta — pendiri, pembangun, dan tim awal di SCBD, Sudirman, dan Kuningan. Daftar tunggu JoinOrigin.',
+        'Temukan atau mulai Origin startup di Jakarta — pendiri, pembangun, dan tim awal di SCBD, Sudirman, dan Kuningan. Daftar tunggu JoinOrigin.',
       creative:
-        'Temukan atau mulai komunitas kreatif & desain di Jakarta — galeri, venue musik indie, dan studio desain di Kemang dan Senopati. Daftar tunggu JoinOrigin.',
+        'Temukan atau mulai Origin kreatif & desain di Jakarta — galeri, venue musik indie, dan studio desain di Kemang dan Senopati. Daftar tunggu JoinOrigin.',
       political:
-        'Temukan atau mulai komunitas politik & sipil di Jakarta — relawan banjir, advokasi lalu lintas, dan aksi kualitas udara. Daftar tunggu JoinOrigin.',
+        'Temukan atau mulai Origin politik & sipil di Jakarta — relawan banjir, advokasi lalu lintas, dan aksi kualitas udara. Daftar tunggu JoinOrigin.',
       meetup:
-        'Temukan atau mulai meetup & acara komunitas di Jakarta — Monas, Kota Tua, kafe Kemang, dan lari Minggu pagi. Daftar tunggu JoinOrigin.',
+        'Temukan atau mulai meetup & acara Origin di Jakarta — Monas, Kota Tua, kafe Kemang, dan lari Minggu pagi. Daftar tunggu JoinOrigin.',
       'small-business':
-        'Temukan atau mulai komunitas usaha kecil di Jakarta — pedagang pasar, pemilik kafe, dan butik di Tanah Abang serta Kemang. Daftar tunggu JoinOrigin.',
+        'Temukan atau mulai Origin usaha kecil di Jakarta — pedagang pasar, pemilik kafe, dan butik di Tanah Abang serta Kemang. Daftar tunggu JoinOrigin.',
     },
-    ideas: '30 ide acara komunitas di Jakarta | JoinOrigin',
+    ideas: '30 ide acara Origin di Jakarta | JoinOrigin',
     ideasDescription:
-      '30 ide realistis untuk acara komunitas di Jakarta — jejaring, pembelajaran, sosial & luar ruangan, profesional, kreatif, serta dampak & lokal. Untuk acara Anda berikutnya.',
+      '30 ide realistis untuk acara Origin di Jakarta — jejaring, pembelajaran, sosial & luar ruangan, profesional, kreatif, serta dampak & lokal. Untuk acara Anda berikutnya.',
   },
   intro: [
     'Jakarta adalah ibu kota dan mesin ekonomi Indonesia, kota yang luas dan penuh energi tempat para pendiri startup, pegawai negeri, dan budaya jalanan yang terkenal hangat berbagi jalan yang sama. Komunitas kota ini tersebar di distrik-distrik yang khas — SCBD dan Sudirman untuk bisnis dan teknologi, Kemang dan Senopati untuk hiburan malam dan budaya kreatif, Kota Tua untuk sejarah, dan kawasan pemukiman luas di selatan dan timur untuk kehidupan keluarga dan lingkungan.',
     'Institusi menopang kehidupan komunitas Jakarta: Universitas Indonesia di Depok, jaringan alumni Gadjah Mada, dan puluhan kampus memasok aliran mahasiswa dan lulusan yang terus-menerus, sementara ekosistem startup kota ini — rumah bagi beberapa perusahaan teknologi terbesar di Asia Tenggara — menarik talenta dari seluruh nusantara. Monas, taman-taman kota, dan ruang acara di mal memberi grup tempat yang gratis dan mudah, meskipun kemacetan membuat titik pertemuan di pusat kota menjadi penting.',
-    'Untuk menemukan atau memulai komunitas, Jakarta menghargai penyelenggara yang menghormati lalu lintas: pilih venue yang mudah dijangkau, mulai tepat waktu, dan sediakan makanan serta kopi — budaya keramahtamahan kota ini menjadikan makan bersama cara tercepat untuk membangun rasa memiliki.',
+    'Untuk menemukan atau memulai Origin, Jakarta menghargai penyelenggara yang menghormati lalu lintas: pilih venue yang mudah dijangkau, mulai tepat waktu, dan sediakan makanan serta kopi — budaya keramahtamahan kota ini menjadikan makan bersama cara tercepat untuk membangun rasa memiliki.',
   ],
   dataPoints: [
     'Kurang lebih 8,5 juta penduduk di dalam kota; ibu kota Indonesia.',
@@ -169,19 +169,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Ekosistem startup Jakarta adalah jantung ekonomi digital Indonesia, rumah bagi beberapa perusahaan teknologi terbesar di Asia Tenggara dan kumpulan pendiri yang dalam membangun fintech, e-commerce, dan logistik untuk negara berpenduduk ratusan juta. Para pendiri berkumpul di SCBD, Sudirman, dan Kuningan, tempat coworking space, akselerator, dan program universitas menciptakan lingkaran talenta dan modal yang padat. Pasarnya sangat besar dan tumbuh cepat, yang berarti produk yang memecahkan masalah lokal — pembayaran, pengiriman, social commerce — bisa berkembang pesat, dan kedekatan kota dengan pemerintah dan regulasi membuat pendiri yang paham kebijakan lebih kuat. Budayanya kolaboratif dan optimis: orang berbagi secara terbuka, acaranya energik, dan kehangatan keramahtamahan Indonesia terlihat bahkan di rapat pitch. Bahasa Inggris dan Bahasa Indonesia sama-sama berfungsi di ekosistem ini. Format berulang mencakup sarapan pendiri, malam pitch, lingkaran fintech dan e-commerce, serta hackathon akhir pekan. Memulai komunitas startup di sini paling baik dilakukan dengan vertikal yang sempit dan venue tetap dekat MRT; skala dan energi Jakarta melakukan sisanya.',
+      'Ekosistem startup Jakarta adalah jantung ekonomi digital Indonesia, rumah bagi beberapa perusahaan teknologi terbesar di Asia Tenggara dan kumpulan pendiri yang dalam membangun fintech, e-commerce, dan logistik untuk negara berpenduduk ratusan juta. Para pendiri berkumpul di SCBD, Sudirman, dan Kuningan, tempat coworking space, akselerator, dan program universitas menciptakan lingkaran talenta dan modal yang padat. Pasarnya sangat besar dan tumbuh cepat, yang berarti produk yang memecahkan masalah lokal — pembayaran, pengiriman, social commerce — bisa berkembang pesat, dan kedekatan kota dengan pemerintah dan regulasi membuat pendiri yang paham kebijakan lebih kuat. Budayanya kolaboratif dan optimis: orang berbagi secara terbuka, acaranya energik, dan kehangatan keramahtamahan Indonesia terlihat bahkan di rapat pitch. Bahasa Inggris dan Bahasa Indonesia sama-sama berfungsi di ekosistem ini. Format berulang mencakup sarapan pendiri, malam pitch, lingkaran fintech dan e-commerce, serta hackathon akhir pekan. Memulai Origin startup di sini paling baik dilakukan dengan vertikal yang sempit dan venue tetap dekat MRT; skala dan energi Jakarta melakukan sisanya.',
     creative:
-      'Kancah kreatif Jakarta muda, ramai, dan campurannya luar biasa. Kemang dan Senopati adalah jantung kreatifnya — galeri, venue musik indie, studio desain, dan kafe yang tetap hidup hingga larut malam. Blok M dan kawasan seni Cipete menampung kancah galeri yang berkembang, sementara jalan-jalan kolonial Kota Tua menjadi kanvas seni jalanan, jalan foto, dan acara sejarah. Industri film dan musik kota ini adalah yang terbesar di Asia Tenggara, memasok aliran talenta yang konstan ke studio dan rumah produksi, dan merek mode serta desainnya semakin terlihat secara regional. Budaya kafe adalah mesin kreatif yang sesungguhnya — banyak komunitas dimulai dari kopi dan tumbuh menjadi pameran, label, dan kolektif. Format umum mencakup showcase indie, jalan seni, pasar kerajinan, dan open-mic. Memulai komunitas kreatif di Jakarta sangat realistis: pilih kerajinan dan venue dengan audiens yang sudah ada — Kemang untuk musik, Cipete untuk seni — dan energi muda kota ini akan menarik orang masuk.',
+      'Kancah kreatif Jakarta muda, ramai, dan campurannya luar biasa. Kemang dan Senopati adalah jantung kreatifnya — galeri, venue musik indie, studio desain, dan kafe yang tetap hidup hingga larut malam. Blok M dan kawasan seni Cipete menampung kancah galeri yang berkembang, sementara jalan-jalan kolonial Kota Tua menjadi kanvas seni jalanan, jalan foto, dan acara sejarah. Industri film dan musik kota ini adalah yang terbesar di Asia Tenggara, memasok aliran talenta yang konstan ke studio dan rumah produksi, dan merek mode serta desainnya semakin terlihat secara regional. Budaya kafe adalah mesin kreatif yang sesungguhnya — banyak komunitas dimulai dari kopi dan tumbuh menjadi pameran, label, dan kolektif. Format umum mencakup showcase indie, jalan seni, pasar kerajinan, dan open-mic. Memulai Origin kreatif di Jakarta sangat realistis: pilih kerajinan dan venue dengan audiens yang sudah ada — Kemang untuk musik, Cipete untuk seni — dan energi muda kota ini akan menarik orang masuk.',
     political:
-      'Kehidupan kewargaan Jakarta dibentuk oleh tekanan kota raksasa: banjir, lalu lintas, dan kualitas udara adalah isu yang konstan dan nyata yang menyatukan warga. Banjir kota yang terkenal telah melahirkan jaringan sukarelawan aktif untuk pembersihan sungai, evakuasi banjir, dan kesiapsiagaan lingkungan — sistem RT/RW memberi setiap blok struktur siap pakai untuk aksi kewargaan. Lalu lintas dan transportasi umum adalah topik hangat, dengan komuter yang mengadvokasi MRT, bus rapid transit, dan ruang pejalan kaki. Keterjangkauan perumahan penting di kota tempat harga sewa dan tanah tinggi dan terus naik. Kampus universitas dan lembaga riset menambah lapisan yang digerakkan bukti. Budayanya menghargai kehangatan dan ketekunan: hadir di rapat yang nyata, membangun hubungan dengan tetangga, dan mengambil peran yang terlihat lebih penting daripada komentar. Memulai komunitas politik di sini berarti memilih satu isu konkret dan geografi yang kecil — ruas sungai, simpang lalu lintas, blok RT/RW — lalu bermitra dengan struktur sukarelawan dan komunitas yang sudah ada. Jakarta menghargai aksi yang stabil dan terlihat.',
+      'Kehidupan kewargaan Jakarta dibentuk oleh tekanan kota raksasa: banjir, lalu lintas, dan kualitas udara adalah isu yang konstan dan nyata yang menyatukan warga. Banjir kota yang terkenal telah melahirkan jaringan sukarelawan aktif untuk pembersihan sungai, evakuasi banjir, dan kesiapsiagaan lingkungan — sistem RT/RW memberi setiap blok struktur siap pakai untuk aksi kewargaan. Lalu lintas dan transportasi umum adalah topik hangat, dengan komuter yang mengadvokasi MRT, bus rapid transit, dan ruang pejalan kaki. Keterjangkauan perumahan penting di kota tempat harga sewa dan tanah tinggi dan terus naik. Kampus universitas dan lembaga riset menambah lapisan yang digerakkan bukti. Budayanya menghargai kehangatan dan ketekunan: hadir di rapat yang nyata, membangun hubungan dengan tetangga, dan mengambil peran yang terlihat lebih penting daripada komentar. Memulai Origin politik di sini berarti memilih satu isu konkret dan geografi yang kecil — ruas sungai, simpang lalu lintas, blok RT/RW — lalu bermitra dengan struktur sukarelawan dan komunitas yang sudah ada. Jakarta menghargai aksi yang stabil dan terlihat.',
     meetup:
       'Kancah meetup Jakarta hangat, berpusat pada makanan, dan dibangun di sekitar ritme kota. Taman Monas dan halaman pusat kota menampung lari pagi, jalan sore, dan piknik akhir pekan, sementara alun-alun Kota Tua menarik pejalan sejarah, fotografer, dan pecinta kuliner jalanan. Kemang dan Senopati adalah jantung kafe dan hiburan malam — klub buku, pertukaran bahasa, malam board game, dan malam musik live memenuhi kalender, dan budaya makanan kota yang terkenal menjadikan jalan kuliner dan makan bersama format yang alami. Mal dan atap SCBD serta Sudirman menampung acara yang lebih besar yang butuh AC dan ruang. Lalu lintas adalah kendala besar — grup memilih venue dekat MRT atau titik ojek daring, dan penyelenggara yang tepat waktu memenangkan loyalitas. Grup di sini cenderung ramah, informal, dan terbuka, sejalan dengan keramahtamahan kota. Memulai meetup sangat realistis: pilih format yang bisa diulang — jalan sejarah, lari Minggu — dan titik pertemuan tetap yang mudah dijangkau, jalankan tiga sesi di waktu dan tempat yang sama, dan kehangatan Jakarta akan mengambil alih.',
     'small-business':
-      'Komunitas usaha kecil Jakarta berjalan di atas pasar konsumen kota yang sangat besar. Pasar tradisional — Tanah Abang, Pasar Baru, dan pasar jalanan di distrik-distrik — berjalan di atas jaringan pedagang yang mengelola lapak, festival, dan suara kolektif tentang sewa dan aturan, dengan Tanah Abang sebagai salah satu pasar tekstil terbesar di Asia Tenggara. Ekonomi barunya berbeda: kafe dan restoran Kemang dan Senopati, butik di selatan, dan lapisan besar penjual daring yang menjalankan merek dari rumah atau studio kecil. Pembayaran digital dan e-commerce ada di mana-mana, dan pemilik terus bertukar catatan tentang platform, logistik, dan tren. Kamar dagang dan asosiasi industri menjalankan klinik praktis tentang perizinan, e-commerce, dan perekrutan. Yang menyatukan grup-grup ini adalah geografi dan selera: pasar atau koridor berbagi pelanggan, lalu lintas pejalan kaki, dan siklus tren yang sama. Memulai komunitas usaha kecil di Jakarta sangat bisa dicapai — sarapan bulanan untuk pemilik di satu jalan, dengan topik praktis bergilir, secara andal mengisi ruangan.',
+      'Komunitas usaha kecil Jakarta berjalan di atas pasar konsumen kota yang sangat besar. Pasar tradisional — Tanah Abang, Pasar Baru, dan pasar jalanan di distrik-distrik — berjalan di atas jaringan pedagang yang mengelola lapak, festival, dan suara kolektif tentang sewa dan aturan, dengan Tanah Abang sebagai salah satu pasar tekstil terbesar di Asia Tenggara. Ekonomi barunya berbeda: kafe dan restoran Kemang dan Senopati, butik di selatan, dan lapisan besar penjual daring yang menjalankan merek dari rumah atau studio kecil. Pembayaran digital dan e-commerce ada di mana-mana, dan pemilik terus bertukar catatan tentang platform, logistik, dan tren. Kamar dagang dan asosiasi industri menjalankan klinik praktis tentang perizinan, e-commerce, dan perekrutan. Yang menyatukan grup-grup ini adalah geografi dan selera: pasar atau koridor berbagi pelanggan, lalu lintas pejalan kaki, dan siklus tren yang sama. Memulai Origin usaha kecil di Jakarta sangat bisa dicapai — sarapan bulanan untuk pemilik di satu jalan, dengan topik praktis bergilir, secara andal mengisi ruangan.',
   },
   ideaPage: {
     intro:
-      'Jakarta adalah kota yang luar biasa untuk ide acara komunitas: populasinya besar, makanannya legendaris, dan kehangatan kota membuat orang datang. Tiga puluh ide di bawah dikelompokkan ke dalam enam kategori: jejaring, pembelajaran, sosial dan luar ruangan, profesional dan industri, kreatif dan pembuat, serta dampak dan lokal. Masing-masing menyertakan untuk siapa, pitch singkat, dan jenis venue yang disarankan yang benar-benar ada di Jakarta, dari taman Monas dan alun-alun Kota Tua hingga lantai coworking SCBD dan kafe Kemang. Beberapa ide berfungsi sebagai acara sekali jalan; yang lain dirancang untuk menjadi komunitas berulang dengan hari dan tempat tetap. Aturan kejujurannya sederhana: setiap saran venue adalah jenis tempat nyata di kota ini, dan setiap format cukup sederhana untuk dijalankan penyelenggara pertama kali. Pilih ide yang sesuai dengan minat Anda, temukan venue yang mudah dijangkau, dan biarkan kehangatan Jakarta melakukan sisanya.',
+      'Jakarta adalah kota yang luar biasa untuk ide acara komunitas: populasinya besar, makanannya legendaris, dan kehangatan kota membuat orang datang. Tiga puluh ide di bawah dikelompokkan ke dalam enam kategori: jejaring, pembelajaran, sosial dan luar ruangan, profesional dan industri, kreatif dan pembuat, serta dampak dan lokal. Masing-masing menyertakan untuk siapa, pitch singkat, dan jenis venue yang disarankan yang benar-benar ada di Jakarta, dari taman Monas dan alun-alun Kota Tua hingga lantai coworking SCBD dan kafe Kemang. Beberapa ide berfungsi sebagai acara sekali jalan; yang lain dirancang untuk menjadi Origin berulang dengan hari dan tempat tetap. Aturan kejujurannya sederhana: setiap saran venue adalah jenis tempat nyata di kota ini, dan setiap format cukup sederhana untuk dijalankan penyelenggara pertama kali. Pilih ide yang sesuai dengan minat Anda, temukan venue yang mudah dijangkau, dan biarkan kehangatan Jakarta melakukan sisanya.',
     categories: [
       {
         name: 'Jejaring',
@@ -425,7 +425,7 @@ const content: CityContent = {
       {
         question: 'Bagaimana cara memilih salah satu ide ini?',
         answer:
-          'Sesuaikan kategori dengan minat Anda dan audiens yang bisa Anda jangkau. Di Jakarta, format berulang dengan venue tetap yang mudah dijangkau — lari pagi, jalan sejarah, sarapan bulanan — membangun komunitas paling cepat.',
+          'Sesuaikan kategori dengan minat Anda dan audiens yang bisa Anda jangkau. Di Jakarta, format berulang dengan venue tetap yang mudah dijangkau — lari pagi, jalan sejarah, sarapan bulanan — membangun Origin paling cepat.',
       },
       {
         question: 'Apakah saya harus bisa Bahasa Indonesia untuk menyelenggarakan?',
@@ -433,22 +433,22 @@ const content: CityContent = {
           'Tidak. Banyak grup Jakarta berjalan bilingual atau dalam bahasa Inggris, dan kancah startup serta kreatifnya internasional. Pengumuman bilingual biasanya menggandakan jangkauan Anda.',
       },
       {
-        question: 'Bisakah acara ini menjadi komunitas sungguhan?',
+        question: 'Bisakah acara ini menjadi Origin sungguhan?',
         answer:
-          'Ya — format berulang adalah cara kebanyakan komunitas Jakarta dimulai, dan kehangatan kota membuat anggota kembali. Panduan cara menjelaskan dari acara pertama hingga komunitas yang stabil.',
+          'Ya — format berulang adalah cara kebanyakan Origins Jakarta dimulai, dan kehangatan kota membuat anggota kembali. Panduan cara menjelaskan dari acara pertama hingga Origin yang stabil.',
       },
     ],
   },
   faq: [
     {
-      question: 'Bagaimana cara menemukan komunitas di Jakarta?',
+      question: 'Bagaimana cara menemukan Origins di Jakarta?',
       answer:
-        'Gunakan halaman jenis grup untuk komunitas startup, kreatif, politik, meetup, dan usaha kecil. Masing-masing menggambarkan distrik, venue, dan format nyata tempat warga Jakarta berkumpul. JoinOrigin sudah berjalan — buat profil Anda dan temukan atau mulai komunitas Anda hari ini.',
+        'Gunakan halaman jenis grup untuk Origin startup, kreatif, politik, meetup, dan usaha kecil. Masing-masing menggambarkan distrik, venue, dan format nyata tempat warga Jakarta berkumpul. JoinOrigin sudah berjalan — buat profil Anda dan temukan atau mulai Origin Anda hari ini.',
     },
     {
-      question: 'Apakah realistis memulai komunitas di Jakarta?',
+      question: 'Apakah realistis memulai Origin di Jakarta?',
       answer:
-        'Ya. Jakarta punya populasi besar, kancah startup yang kuat, dan budaya yang terkenal hangat. Panduan mencakup memulai komunitas, menyelenggarakan meetup, dan mendapatkan sepuluh anggota pertama Anda.',
+        'Ya. Jakarta punya populasi besar, kancah startup yang kuat, dan budaya yang terkenal hangat. Panduan mencakup memulai Origin, menyelenggarakan meetup, dan mendapatkan sepuluh anggota pertama Anda.',
     },
     {
       question: 'Apakah saran venue di halaman ini nyata?',
@@ -458,7 +458,7 @@ const content: CityContent = {
     {
       question: 'Apakah JoinOrigin punya kantor di Jakarta?',
       answer:
-        'Tidak. JoinOrigin tidak memiliki kantor atau staf lokal. Semua deskripsi komunitas mencerminkan lanskap kota yang nyata, dan platform membantu warga Jakarta menemukan atau memulai komunitas.',
+        'Tidak. JoinOrigin tidak memiliki kantor atau staf lokal. Semua deskripsi Origin mencerminkan lanskap kota yang nyata, dan platform membantu warga Jakarta menemukan atau memulai Origins.',
     },
   ],
 };

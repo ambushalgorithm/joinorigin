@@ -401,8 +401,8 @@ describe('lib/seo locationView — Story H i18n completeness (TASK-518)', () => 
     expect(hcmc).toBeDefined();
     // vi has committed content → the committed pageTitles title wins.
     const vi = buildLocationViewData(hcmc!, 'vi');
-    expect(vi.heading).toBe('Cộng đồng tại TP. Hồ Chí Minh');
-    expect(vi.headingLocalized?.vi).toBe('Cộng đồng tại TP. Hồ Chí Minh');
+    expect(vi.heading).toBe('Origin tại TP. Hồ Chí Minh');
+    expect(vi.headingLocalized?.vi).toBe('Origin tại TP. Hồ Chí Minh');
     // de has no committed content → the de dataset city name ("Ho-Chi-Minh-
     // Stadt"), never the EN dataset name or the EN registry heading.
     const de = buildLocationViewData(hcmc!, 'de');

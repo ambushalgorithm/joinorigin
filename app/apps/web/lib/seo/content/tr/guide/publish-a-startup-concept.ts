@@ -66,7 +66,7 @@ const content: GuideContent = {
     'Konsepti kurucu topluluklarıyla paylaşın. Girişimler kurucu ağlarıyla büyür. Fikir sayfasını kurucu gruplarıyla, girişim topluluklarıyla, hızlandırıcılarla ve sorunu bilen herkesle paylaşın. JoinOrigin’de katılmak tek bir eylemdir — herkese açık sayfada Katıl’a tıklamak ya da bir üyenin doğrudan davet bağlantısını takip etmek. Konseptinize giden tek kısa, net bir bağlantı işi görür.',
     'İlk inananları ve test edenleri davet edin. İddiayı paylaşan insanları davet edin: potansiyel kurucu ortaklar, alan uzmanları ve kaba bir sürümü denemeye istekli kullanıcılar. JoinOrigin keşfi kolaylaştırır — bir fikir arayan insanların sizinkini bulup bir bağlantıyla katılabileceği bir yer. Kişisel davetler hâlâ asıl işi yapar ve katılan her kişi kendi ağına açılan bir kanal olur.',
     'Odada yapılandırılmış sohbetler yürütün. Katılanlara neyin heyecanlandırdığını, neyin endişelendirdiğini ve ilk olarak ne yapacaklarını sorun. Bir girişim odası sürekli bir mülakattır — yanıtlar konsepti şekillendirir. JoinOrigin bu sohbetleri yürütmez; oda sizin şekillendireceğiniz yerdir. Platform, konsepte ilginin içgörüye dönüştüğü tek bir oda verir ve o odaya oluşturan kişi sahiptir. Sohbetleri doğrudan odada yürütün.',
-    'Odayı bir deneme ekibi oluşturmak için kullanın. Doğru insanlar ortaya çıktığında küçük bir deneme önerin — bir prototip, bir açılış sayfası ya da bir çalışma oturumu — ve ekibin birlikte nasıl çalıştığını görün. JoinOrigin, topluluklara işleri ve projeleri için ortak bir oda verir; bu da bir denemenin ortaya çıkması için doğal bir yerdir. Küçük, gerçek bir prototip uyumun en güvenilir testidir.',
+    'Odayı bir deneme ekibi oluşturmak için kullanın. Doğru insanlar ortaya çıktığında küçük bir deneme önerin — bir prototip, bir açılış sayfası ya da bir çalışma oturumu — ve ekibin birlikte nasıl çalıştığını görün. JoinOrigin, Origins işleri ve projeleri için ortak bir oda verir; bu da bir denemenin ortaya çıkması için doğal bir yerdir. Küçük, gerçek bir prototip uyumun en güvenilir testidir.',
     'Doğrularken odayı akışa besleyin. Güncellemeler yayınlamaya devam edin, odayı canlı tutun ve konseptin ivmesinin daha geniş bir ağ tarafından görünür olmasına izin verin. Akış, bir konsepti insanların önemsediğinin kanıtına dönüştürür. JoinOrigin’de oda güncellemeleri akışa akar — her yeni üyenin keşif yüzeyini genişlettiği büyüme döngüsü. Keşfedilin ve büyüyün.',
   ],
   steps: [
@@ -110,7 +110,7 @@ const content: GuideContent = {
       title: 'Odayı bir deneme ekibi oluşturmak için kullanın',
       body: 'Doğru insanlar ortaya çıktığında küçük bir deneme önerin — bir prototip, bir açılış sayfası ya da bir çalışma oturumu — ve ekibin birlikte nasıl çalıştığını görün.',
       joinOriginNote:
-        'JoinOrigin, topluluklara işleri ve projeleri için ortak bir oda verir; bu da bir denemenin ortaya çıkması için doğal bir yerdir. Küçük, gerçek bir prototip uyumun en güvenilir testidir.',
+        'JoinOrigin, Origins işleri ve projeleri için ortak bir oda verir; bu da bir denemenin ortaya çıkması için doğal bir yerdir. Küçük, gerçek bir prototip uyumun en güvenilir testidir.',
     },
     {
       title: 'Doğrularken odayı akışa besleyin',

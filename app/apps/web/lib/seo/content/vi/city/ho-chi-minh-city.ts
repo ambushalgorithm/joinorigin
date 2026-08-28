@@ -14,40 +14,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'vi',
   slug: 'ho-chi-minh-city',
-  title: 'Cộng đồng tại TP. Hồ Chí Minh | JoinOrigin',
+  title: 'Origin tại TP. Hồ Chí Minh | JoinOrigin',
   description:
-    'Tìm hoặc bắt đầu cộng đồng tại TP. Hồ Chí Minh — các nhóm khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ. Tham gia danh sách chờ JoinOrigin.',
+    'Tìm hoặc bắt đầu Origin tại TP. Hồ Chí Minh — các nhóm khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ. Tham gia danh sách chờ JoinOrigin.',
   pageTitles: {
-    city: 'Cộng đồng tại TP. Hồ Chí Minh | JoinOrigin',
+    city: 'Origin tại TP. Hồ Chí Minh | JoinOrigin',
     cityDescription:
-      'Tìm hoặc bắt đầu cộng đồng tại TP. Hồ Chí Minh — các nhóm khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ. Tham gia danh sách chờ JoinOrigin.',
+      'Tìm hoặc bắt đầu Origin tại TP. Hồ Chí Minh — các nhóm khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ. Tham gia danh sách chờ JoinOrigin.',
     variants: {
-      startup: 'Cộng đồng khởi nghiệp tại TP. Hồ Chí Minh | JoinOrigin',
-      creative: 'Cộng đồng sáng tạo & thiết kế tại TP. Hồ Chí Minh | JoinOrigin',
-      political: 'Cộng đồng chính trị & công dân tại TP. Hồ Chí Minh | JoinOrigin',
-      meetup: 'Buổi gặp gỡ & sự kiện cộng đồng tại TP. Hồ Chí Minh | JoinOrigin',
-      'small-business': 'Cộng đồng doanh nghiệp nhỏ tại TP. Hồ Chí Minh | JoinOrigin',
+      startup: 'Origin khởi nghiệp tại TP. Hồ Chí Minh | JoinOrigin',
+      creative: 'Origin sáng tạo & thiết kế tại TP. Hồ Chí Minh | JoinOrigin',
+      political: 'Origin chính trị & công dân tại TP. Hồ Chí Minh | JoinOrigin',
+      meetup: 'Buổi gặp gỡ & sự kiện Origin tại TP. Hồ Chí Minh | JoinOrigin',
+      'small-business': 'Origin doanh nghiệp nhỏ tại TP. Hồ Chí Minh | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Tìm hoặc bắt đầu cộng đồng khởi nghiệp tại TP. Hồ Chí Minh — nhà sáng lập, đội ngũ kỹ thuật và vòng tròn fintech/edtech tại Quận 1 và Quận 3. Tham gia danh sách chờ JoinOrigin.',
+        'Tìm hoặc bắt đầu Origin khởi nghiệp tại TP. Hồ Chí Minh — nhà sáng lập, đội ngũ kỹ thuật và vòng tròn fintech/edtech tại Quận 1 và Quận 3. Tham gia danh sách chờ JoinOrigin.',
       creative:
-        'Tìm hoặc bắt đầu cộng đồng sáng tạo & thiết kế tại TP. Hồ Chí Minh — studio, phòng trưng bày và sân khấu nhạc indie tại Quận 3, Thảo Điền và khu phố cổ. Tham gia danh sách chờ JoinOrigin.',
+        'Tìm hoặc bắt đầu Origin sáng tạo & thiết kế tại TP. Hồ Chí Minh — studio, phòng trưng bày và sân khấu nhạc indie tại Quận 3, Thảo Điền và khu phố cổ. Tham gia danh sách chờ JoinOrigin.',
       political:
-        'Tìm hoặc bắt đầu cộng đồng chính trị & công dân tại TP. Hồ Chí Minh — tình nguyện kênh rạch, giao thông, chống ngập và bảo tồn di sản. Tham gia danh sách chờ JoinOrigin.',
+        'Tìm hoặc bắt đầu Origin chính trị & công dân tại TP. Hồ Chí Minh — tình nguyện kênh rạch, giao thông, chống ngập và bảo tồn di sản. Tham gia danh sách chờ JoinOrigin.',
       meetup:
-        'Tìm hoặc bắt đầu các buổi gặp gỡ & sự kiện cộng đồng tại TP. Hồ Chí Minh — quán cà phê Quận 3, chợ Bến Thành, công viên Tao Đàn và bờ sông Sài Gòn. Tham gia danh sách chờ JoinOrigin.',
+        'Tìm hoặc bắt đầu các buổi gặp gỡ & sự kiện Origin tại TP. Hồ Chí Minh — quán cà phê Quận 3, chợ Bến Thành, công viên Tao Đàn và bờ sông Sài Gòn. Tham gia danh sách chờ JoinOrigin.',
       'small-business':
-        'Tìm hoặc bắt đầu cộng đồng doanh nghiệp nhỏ tại TP. Hồ Chí Minh — mạng lưới tiểu thương chợ Bến Thành, Bình Tây và các nhà bán online. Tham gia danh sách chờ JoinOrigin.',
+        'Tìm hoặc bắt đầu Origin doanh nghiệp nhỏ tại TP. Hồ Chí Minh — mạng lưới tiểu thương chợ Bến Thành, Bình Tây và các nhà bán online. Tham gia danh sách chờ JoinOrigin.',
     },
-    ideas: '30 ý tưởng sự kiện cộng đồng tại TP. Hồ Chí Minh | JoinOrigin',
+    ideas: '30 ý tưởng sự kiện Origin tại TP. Hồ Chí Minh | JoinOrigin',
     ideasDescription:
-      'Khám phá 30 ý tưởng sự kiện cộng đồng tại TP. Hồ Chí Minh — các sự kiện kết nối, học hỏi, ngoài trời, chuyên môn, sáng tạo và tác động. Tham gia danh sách chờ JoinOrigin.',
+      'Khám phá 30 ý tưởng sự kiện Origin tại TP. Hồ Chí Minh — các sự kiện kết nối, học hỏi, ngoài trời, chuyên môn, sáng tạo và tác động. Tham gia danh sách chờ JoinOrigin.',
   },
   intro: [
     'TP. Hồ Chí Minh là đầu tàu kinh tế của Việt Nam, một thành phố chuyển động nhanh của xe máy, quán cà phê và dân số trẻ đang xây dựng tương lai của đất nước. Năng lượng của thành phố tập trung ở Quận 1 và Quận 3 — quán cà phê, không gian làm việc chung và nhà hàng tụ lại quanh khu phố Pháp cũ — trong khi các quận mới ở phía đông và nam giữ các khu công nghệ và sản xuất.',
     'Các tổ chức neo giữ đời sống cộng đồng của thành phố: các cơ sở của Đại học Quốc gia Việt Nam, Đại học Khoa học Xã hội và Nhân văn, và danh sách các chương trình quốc tế ngày càng nhiều nuôi dưỡng một dòng sinh viên liên tục, trong khi hệ sinh thái khởi nghiệp — một trong những hệ sinh thái sôi động nhất Đông Nam Á — thu hút nhà sáng lập từ khắp đất nước và khu vực. Chợ Bến Thành, bờ sông và các công viên của thành phố cho các nhóm những địa điểm ngoài trời miễn phí, quen thuộc.',
-    'Để tìm hoặc bắt đầu một cộng đồng, TP. Hồ Chí Minh đền đáp năng lượng và sự chân thật: văn hóa của thành phố nhanh, trẻ và lạc quan, và các nhóm gặp gỡ thường xuyên bên cà phê hoặc ẩm thực đường phố nhanh chóng xây dựng lòng trung thành.',
+    'Để tìm hoặc bắt đầu một Origin, TP. Hồ Chí Minh đền đáp năng lượng và sự chân thật: văn hóa của thành phố nhanh, trẻ và lạc quan, và các nhóm gặp gỡ thường xuyên bên cà phê hoặc ẩm thực đường phố nhanh chóng xây dựng lòng trung thành.',
   ],
   dataPoints: [
     'Khoảng 14 triệu dân trong vùng đô thị; thủ phủ thương mại của Việt Nam.',
@@ -171,19 +171,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Hệ sinh thái khởi nghiệp của TP. Hồ Chí Minh là một trong những hệ sinh thái sôi động nhất Đông Nam Á, được tiếp năng lượng bởi dân số trẻ, đầy tham vọng và nền kinh tế kỹ thuật số tăng trưởng nhanh của đất nước. Nhà sáng lập tập trung ở Quận 1 và Quận 3, nơi các không gian làm việc chung, vườn ươm và chương trình đại học tại Đại học Quốc gia Việt Nam tạo một vòng lặp dày đặc giữa nhân tài và vốn. Điểm mạnh của thành phố trải rộng qua fintech, edtech, logistics và ứng dụng tiêu dùng phục vụ thị trường nội địa lớn của Việt Nam và ngày càng xuất khẩu ra khu vực. Văn hóa trẻ và lạc quan: các buổi gặp đầy năng lượng, mọi người háo hức học hỏi, và nhà sáng lập thành công hào phóng chia sẻ lời khuyên. Tiếng Anh phổ biến trong hệ sinh thái, và nhân tài quốc tế bị thu hút bởi năng lượng và chi phí sinh hoạt của thành phố. Các hình thức lặp lại gồm bữa sáng nhà sáng lập, buổi tối thuyết trình, vòng tròn fintech và edtech, và hackathon cuối tuần. Bắt đầu một cộng đồng khởi nghiệp ở đây hiệu quả nhất với một ngành dọc hẹp và một địa điểm cố định ở các quận trung tâm; đà của thành phố làm phần còn lại.',
+      'Hệ sinh thái khởi nghiệp của TP. Hồ Chí Minh là một trong những hệ sinh thái sôi động nhất Đông Nam Á, được tiếp năng lượng bởi dân số trẻ, đầy tham vọng và nền kinh tế kỹ thuật số tăng trưởng nhanh của đất nước. Nhà sáng lập tập trung ở Quận 1 và Quận 3, nơi các không gian làm việc chung, vườn ươm và chương trình đại học tại Đại học Quốc gia Việt Nam tạo một vòng lặp dày đặc giữa nhân tài và vốn. Điểm mạnh của thành phố trải rộng qua fintech, edtech, logistics và ứng dụng tiêu dùng phục vụ thị trường nội địa lớn của Việt Nam và ngày càng xuất khẩu ra khu vực. Văn hóa trẻ và lạc quan: các buổi gặp đầy năng lượng, mọi người háo hức học hỏi, và nhà sáng lập thành công hào phóng chia sẻ lời khuyên. Tiếng Anh phổ biến trong hệ sinh thái, và nhân tài quốc tế bị thu hút bởi năng lượng và chi phí sinh hoạt của thành phố. Các hình thức lặp lại gồm bữa sáng nhà sáng lập, buổi tối thuyết trình, vòng tròn fintech và edtech, và hackathon cuối tuần. Bắt đầu một Origin khởi nghiệp ở đây hiệu quả nhất với một ngành dọc hẹp và một địa điểm cố định ở các quận trung tâm; đà của thành phố làm phần còn lại.',
     creative:
-      'Bối cảnh sáng tạo của TP. Hồ Chí Minh trẻ và chuyển động nhanh, với các phòng trưng bày, nhạc indie và studio thiết kế nhân lên khắp Quận 3, Thảo Điền và khu phố cổ. Ngành phim của thành phố đang tăng trưởng nhanh, các thương hiệu thiết kế và thời trang đang giành sự chú ý của khu vực, và văn hóa ẩm thực đường phố cùng cà phê cho người sáng tạo một sân khấu luôn sẵn sàng. Nghệ thuật đường phố nở rộ ở Quận 5 và khu phố cổ, và các rạp chiếu phim độc lập cùng phòng trưng bày ở trung tâm tổ chức suất chiếu và khai mạc thường xuyên. Văn hóa cà phê là động cơ sáng tạo của thành phố — nhiều tập thể và cộng đồng bắt đầu bên cà phê và lớn lên thành triển lãm, hãng đĩa và studio. Các trường nghệ thuật và thiết kế nuôi một dòng sinh viên tốt nghiệp liên tục vào nền kinh tế tự do chuyển động nhanh. Các hình thức phổ biến gồm trình diễn indie, đi bộ nghệ thuật, chợ thủ công và open-mic. Bắt đầu một cộng đồng sáng tạo tại TP. Hồ Chí Minh là thực tế: chọn một nghề và một địa điểm có khán giả sẵn có, và sự sáng tạo trẻ trung của thành phố sẽ kéo mọi người đến.',
+      'Bối cảnh sáng tạo của TP. Hồ Chí Minh trẻ và chuyển động nhanh, với các phòng trưng bày, nhạc indie và studio thiết kế nhân lên khắp Quận 3, Thảo Điền và khu phố cổ. Ngành phim của thành phố đang tăng trưởng nhanh, các thương hiệu thiết kế và thời trang đang giành sự chú ý của khu vực, và văn hóa ẩm thực đường phố cùng cà phê cho người sáng tạo một sân khấu luôn sẵn sàng. Nghệ thuật đường phố nở rộ ở Quận 5 và khu phố cổ, và các rạp chiếu phim độc lập cùng phòng trưng bày ở trung tâm tổ chức suất chiếu và khai mạc thường xuyên. Văn hóa cà phê là động cơ sáng tạo của thành phố — nhiều tập thể và cộng đồng bắt đầu bên cà phê và lớn lên thành triển lãm, hãng đĩa và studio. Các trường nghệ thuật và thiết kế nuôi một dòng sinh viên tốt nghiệp liên tục vào nền kinh tế tự do chuyển động nhanh. Các hình thức phổ biến gồm trình diễn indie, đi bộ nghệ thuật, chợ thủ công và open-mic. Bắt đầu một Origin sáng tạo tại TP. Hồ Chí Minh là thực tế: chọn một nghề và một địa điểm có khán giả sẵn có, và sự sáng tạo trẻ trung của thành phố sẽ kéo mọi người đến.',
     political:
-      'Đời sống công dân của TP. Hồ Chí Minh được định hình bởi tăng trưởng nhanh: giao thông, kênh rạch, ngập lụt và di sản là những vấn đề thường trực, hữu hình. Mạng lưới kênh rạch của thành phố — huyết mạch thoát nước và giao thông của đô thị cũ — là trọng tâm của các nhóm tình nguyện dọn dẹp và phục hồi, và người dân phối hợp chống ngập ở các khu phố trũng. Giao thông và giao thông công cộng là chủ đề nóng, với người đi lại vận động cho metro, xe buýt và không gian dành cho người đi bộ. Bảo tồn di sản là một phong trào đang lớn quanh khu phố cổ và các tòa nhà thời Pháp ở trung tâm. Giá nhà ở phải chăng và quyền thuê nhà quan trọng trong một thành phố nơi người trẻ đổ về làm việc và học tập. Các cơ sở đại học và viện nghiên cứu thêm một lớp dựa trên bằng chứng. Văn hóa đền đáp năng lượng và kiên trì: xuất hiện tại một cuộc họp thực sự và đảm nhận vai trò hữu hình quan trọng hơn bình luận. Bắt đầu một cộng đồng chính trị ở đây nghĩa là chọn một vấn đề cụ thể và một phạm vi địa lý nhỏ — một con kênh, một công viên, một dãy nhà di sản — rồi hợp tác với các cấu trúc tình nguyện và cộng đồng đã tồn tại. TP. Hồ Chí Minh đền đáp hành động đều đặn, hữu hình.',
+      'Đời sống công dân của TP. Hồ Chí Minh được định hình bởi tăng trưởng nhanh: giao thông, kênh rạch, ngập lụt và di sản là những vấn đề thường trực, hữu hình. Mạng lưới kênh rạch của thành phố — huyết mạch thoát nước và giao thông của đô thị cũ — là trọng tâm của các nhóm tình nguyện dọn dẹp và phục hồi, và người dân phối hợp chống ngập ở các khu phố trũng. Giao thông và giao thông công cộng là chủ đề nóng, với người đi lại vận động cho metro, xe buýt và không gian dành cho người đi bộ. Bảo tồn di sản là một phong trào đang lớn quanh khu phố cổ và các tòa nhà thời Pháp ở trung tâm. Giá nhà ở phải chăng và quyền thuê nhà quan trọng trong một thành phố nơi người trẻ đổ về làm việc và học tập. Các cơ sở đại học và viện nghiên cứu thêm một lớp dựa trên bằng chứng. Văn hóa đền đáp năng lượng và kiên trì: xuất hiện tại một cuộc họp thực sự và đảm nhận vai trò hữu hình quan trọng hơn bình luận. Bắt đầu một Origin chính trị ở đây nghĩa là chọn một vấn đề cụ thể và một phạm vi địa lý nhỏ — một con kênh, một công viên, một dãy nhà di sản — rồi hợp tác với các cấu trúc tình nguyện và cộng đồng đã tồn tại. TP. Hồ Chí Minh đền đáp hành động đều đặn, hữu hình.',
     meetup:
       'Bối cảnh gặp gỡ của TP. Hồ Chí Minh chạy trên hai thiết chế địa phương tuyệt vời: cà phê và ẩm thực đường phố. Các quán cà phê Quận 3 và Thảo Điền đón tiếp câu lạc bộ sách, trao đổi ngôn ngữ, buổi tối board game và buổi sáng cà phê freelancer, trong khi các góc ẩm thực đường phố Quận 1 và Quận 5 là sân khấu cho hình thức yêu thích của thành phố — chuyến đi bộ ẩm thực, nơi một nhóm ăn qua một quận với những điểm dừng kể chuyện. Chợ Bến Thành và chợ Bình Tây thu hút người yêu chợ, và công viên Tao Đàn cùng các lối đi bộ bờ sông đón tiếp các buổi chạy sáng, đi bộ và picnic. Dân số trẻ và cộng đồng quốc tế lớn giữ cho các nhóm nói tiếng Anh dồi dào, và người mới đến được chào đón nhanh chóng. Các nhóm ở đây có xu hướng tràn đầy năng lượng, thân mật và hướng đến ẩm thực, khớp với tính cách của thành phố. Bắt đầu một buổi gặp gỡ là thực tế: chọn một hình thức lặp lại — một chuyến đi bộ ẩm thực, một buổi chạy chủ nhật — và một điểm hẹn cố định ở các quận trung tâm, tổ chức ba buổi cùng thời gian và địa điểm, và năng lượng của thành phố sẽ tiếp quản.',
     'small-business':
-      'Cộng đồng doanh nghiệp nhỏ của TP. Hồ Chí Minh trải dài từ các khu chợ huyền thoại đến nền kinh tế mới tăng trưởng nhanh. Chợ Bến Thành và Bình Tây vận hành trên mạng lưới tiểu thương quản lý sạp hàng, lễ hội và tiếng nói chung về tiền thuê và quy tắc, phục vụ cả người dân địa phương lẫn lượng du khách khổng lồ của thành phố. Nền kinh tế mới khác biệt: quán cà phê và nhà hàng Quận 1 và Thảo Điền, các cửa hàng boutique ở trung tâm, và một tầng người bán online đang bùng nổ vận hành thương hiệu từ các studio nhỏ. Văn hóa cà phê và ẩm thực đường phố của Việt Nam cho các doanh nghiệp thực phẩm nhỏ một thị trường lớn, trung thành, và thanh toán số cùng thương mại điện tử giờ là công cụ chuẩn. Phòng thương mại và các hiệp hội ngành tổ chức các buổi hướng dẫn thực tế về giấy phép, thương mại điện tử và tuyển dụng. Điều giữ các nhóm này lại với nhau là địa lý và thị hiếu: một khu chợ hoặc một dãy phố chia sẻ khách hàng, lượng người qua lại và cùng một chu kỳ xu hướng. Bắt đầu một cộng đồng doanh nghiệp nhỏ tại TP. Hồ Chí Minh rất khả thi — một bữa sáng hàng tháng cho chủ cửa hàng trên một con phố, với các chủ đề thực tế luân phiên, đáng tin cậy lấp đầy một căn phòng.',
+      'Cộng đồng doanh nghiệp nhỏ của TP. Hồ Chí Minh trải dài từ các khu chợ huyền thoại đến nền kinh tế mới tăng trưởng nhanh. Chợ Bến Thành và Bình Tây vận hành trên mạng lưới tiểu thương quản lý sạp hàng, lễ hội và tiếng nói chung về tiền thuê và quy tắc, phục vụ cả người dân địa phương lẫn lượng du khách khổng lồ của thành phố. Nền kinh tế mới khác biệt: quán cà phê và nhà hàng Quận 1 và Thảo Điền, các cửa hàng boutique ở trung tâm, và một tầng người bán online đang bùng nổ vận hành thương hiệu từ các studio nhỏ. Văn hóa cà phê và ẩm thực đường phố của Việt Nam cho các doanh nghiệp thực phẩm nhỏ một thị trường lớn, trung thành, và thanh toán số cùng thương mại điện tử giờ là công cụ chuẩn. Phòng thương mại và các hiệp hội ngành tổ chức các buổi hướng dẫn thực tế về giấy phép, thương mại điện tử và tuyển dụng. Điều giữ các nhóm này lại với nhau là địa lý và thị hiếu: một khu chợ hoặc một dãy phố chia sẻ khách hàng, lượng người qua lại và cùng một chu kỳ xu hướng. Bắt đầu một Origin doanh nghiệp nhỏ tại TP. Hồ Chí Minh rất khả thi — một bữa sáng hàng tháng cho chủ cửa hàng trên một con phố, với các chủ đề thực tế luân phiên, đáng tin cậy lấp đầy một căn phòng.',
   },
   ideaPage: {
     intro:
-      'TP. Hồ Chí Minh là một thành phố tuyệt vời cho các ý tưởng sự kiện cộng đồng: ẩm thực huyền thoại, văn hóa cà phê đẳng cấp thế giới, và dân số trẻ khiến mọi người xuất hiện. Ba mươi ý tưởng dưới đây được nhóm thành sáu danh mục: kết nối, học hỏi, xã hội và ngoài trời, chuyên môn và ngành, sáng tạo và chế tác, và tác động và địa phương. Mỗi ý tưởng gồm nó dành cho ai, một lời giới thiệu ngắn, và một loại địa điểm gợi ý thực sự tồn tại tại TP. Hồ Chí Minh, từ chợ Bến Thành và quán cà phê Quận 3 đến các lối đi bộ bờ sông và các sàn làm việc chung trung tâm. Một số ý tưởng hoạt động như sự kiện một lần; những ý tưởng khác được thiết kế để trở thành cộng đồng định kỳ với một ngày và địa điểm cố định. Quy tắc trung thực đơn giản: mọi gợi ý địa điểm là một loại nơi thực tế trong thành phố này, và mọi hình thức đủ đơn giản để một người tổ chức lần đầu chạy được. Chọn ý tưởng khớp với sở thích của bạn, tìm một địa điểm ở các quận trung tâm, và để năng lượng của thành phố làm phần còn lại.',
+      'TP. Hồ Chí Minh là một thành phố tuyệt vời cho các ý tưởng sự kiện cộng đồng: ẩm thực huyền thoại, văn hóa cà phê đẳng cấp thế giới, và dân số trẻ khiến mọi người xuất hiện. Ba mươi ý tưởng dưới đây được nhóm thành sáu danh mục: kết nối, học hỏi, xã hội và ngoài trời, chuyên môn và ngành, sáng tạo và chế tác, và tác động và địa phương. Mỗi ý tưởng gồm nó dành cho ai, một lời giới thiệu ngắn, và một loại địa điểm gợi ý thực sự tồn tại tại TP. Hồ Chí Minh, từ chợ Bến Thành và quán cà phê Quận 3 đến các lối đi bộ bờ sông và các sàn làm việc chung trung tâm. Một số ý tưởng hoạt động như sự kiện một lần; những ý tưởng khác được thiết kế để trở thành Origin định kỳ với một ngày và địa điểm cố định. Quy tắc trung thực đơn giản: mọi gợi ý địa điểm là một loại nơi thực tế trong thành phố này, và mọi hình thức đủ đơn giản để một người tổ chức lần đầu chạy được. Chọn ý tưởng khớp với sở thích của bạn, tìm một địa điểm ở các quận trung tâm, và để năng lượng của thành phố làm phần còn lại.',
     categories: [
       {
         name: 'Kết nối',
@@ -428,7 +428,7 @@ const content: CityContent = {
       {
         question: 'Làm thế nào tôi chọn một trong những ý tưởng này?',
         answer:
-          'Khớp danh mục với sở thích của bạn và đối tượng bạn có thể tiếp cận. Tại TP. Hồ Chí Minh, các hình thức định kỳ với một địa điểm cố định — một chuyến đi bộ ẩm thực, một buổi chạy chủ nhật, một bữa sáng hàng tháng — xây dựng cộng đồng nhanh nhất.',
+          'Khớp danh mục với sở thích của bạn và đối tượng bạn có thể tiếp cận. Tại TP. Hồ Chí Minh, các hình thức định kỳ với một địa điểm cố định — một chuyến đi bộ ẩm thực, một buổi chạy chủ nhật, một bữa sáng hàng tháng — xây dựng Origin nhanh nhất.',
       },
       {
         question: 'Tôi có cần nói tiếng Việt để tổ chức không?',
@@ -436,22 +436,22 @@ const content: CityContent = {
           'Không. Nhiều nhóm tại TP. Hồ Chí Minh vận hành song ngữ hoặc bằng tiếng Anh, và cộng đồng quốc tế rất lớn. Một thông báo song ngữ thường tăng gấp đôi tầm với của bạn.',
       },
       {
-        question: 'Các sự kiện này có thể trở thành cộng đồng thực sự không?',
+        question: 'Các sự kiện này có thể trở thành Origins thực sự không?',
         answer:
-          'Có — các hình thức định kỳ là cách hầu hết cộng đồng tại TP. Hồ Chí Minh bắt đầu, và năng lượng của thành phố duy trì chúng. Các hướng dẫn cách làm đi qua từ sự kiện đầu tiên đến một cộng đồng ổn định.',
+          'Có — các hình thức định kỳ là cách hầu hết Origins tại TP. Hồ Chí Minh bắt đầu, và năng lượng của thành phố duy trì chúng. Các hướng dẫn cách làm đi qua từ sự kiện đầu tiên đến một Origin ổn định.',
       },
     ],
   },
   faq: [
     {
-      question: 'Làm thế nào tôi tìm một cộng đồng tại TP. Hồ Chí Minh?',
+      question: 'Làm thế nào tôi tìm một Origin tại TP. Hồ Chí Minh?',
       answer:
-        'Dùng các trang loại nhóm cho cộng đồng khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ. Mỗi trang mô tả các quận, địa điểm và hình thức thực tế nơi cư dân tụ họp. JoinOrigin đã hoạt động — tạo hồ sơ của bạn và tìm hoặc bắt đầu cộng đồng của bạn ngay hôm nay.',
+        'Dùng các trang loại nhóm cho Origin khởi nghiệp, sáng tạo, chính trị, gặp gỡ và doanh nghiệp nhỏ. Mỗi trang mô tả các quận, địa điểm và hình thức thực tế nơi cư dân tụ họp. JoinOrigin đã hoạt động — tạo hồ sơ của bạn và tìm hoặc bắt đầu Origin của bạn ngay hôm nay.',
     },
     {
-      question: 'Bắt đầu một cộng đồng tại TP. Hồ Chí Minh có thực tế không?',
+      question: 'Bắt đầu một Origin tại TP. Hồ Chí Minh có thực tế không?',
       answer:
-        'Có. Thành phố có dân số trẻ, hệ sinh thái khởi nghiệp bùng nổ và văn hóa ẩm thực cùng cà phê huyền thoại. Các hướng dẫn bao phủ việc bắt đầu một cộng đồng, tổ chức một buổi gặp gỡ và có mười thành viên đầu tiên.',
+        'Có. Thành phố có dân số trẻ, hệ sinh thái khởi nghiệp bùng nổ và văn hóa ẩm thực cùng cà phê huyền thoại. Các hướng dẫn bao phủ việc bắt đầu một Origin, tổ chức một buổi gặp gỡ và có mười thành viên đầu tiên.',
     },
     {
       question: 'Các gợi ý địa điểm trên trang này có thực không?',
@@ -461,7 +461,7 @@ const content: CityContent = {
     {
       question: 'JoinOrigin có văn phòng tại TP. Hồ Chí Minh không?',
       answer:
-        'Không. JoinOrigin không có văn phòng hoặc nhân viên địa phương. Mọi mô tả cộng đồng phản ánh bối cảnh thành phố thực tế, và nền tảng giúp cư dân tìm hoặc bắt đầu cộng đồng.',
+        'Không. JoinOrigin không có văn phòng hoặc nhân viên địa phương. Mọi mô tả Origin phản ánh bối cảnh thành phố thực tế, và nền tảng giúp cư dân tìm hoặc bắt đầu Origins.',
     },
   ],
 };

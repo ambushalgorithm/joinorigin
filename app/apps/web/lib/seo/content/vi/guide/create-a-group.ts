@@ -6,7 +6,7 @@ import type { GuideContent } from '../../types';
  * Viết theo vòng lặp cốt lõi màn hình sản phẩm §2: công bố một nhóm →
  * trang nhóm công khai → Tham gia qua liên kết → phòng tự tạo NGAY KHI
  * CÔNG BỐ → người sáng lập kiểm soát phòng → bảng tin/mời phát triển.
- * Một nhóm là một cộng đồng: trang công khai nêu lời hứa, phòng là nơi
+ * Một nhóm là một Origin: trang công khai nêu lời hứa, phòng là nơi
  * thành viên kết nối, và thành viên tham gia qua một liên kết. Nền tảng
  * đã hoạt động: tạo một nhóm công bố trang và mở phòng của nó ngay bây
  * giờ. "Room" được gắn với phòng Matrix (§6.3). Cụm từ này không bao giờ
@@ -20,21 +20,21 @@ const content: GuideContent = {
   description:
     'Tạo một nhóm trên JoinOrigin — công bố một trang nhóm, mở phòng của nó tự động, và mời thành viên qua một liên kết tham gia. Các bước thực tế từ JoinOrigin.',
   intro: [
-    'Mọi cộng đồng — dù hoàn toàn mới hay đã gặp gỡ thân mật trong nhiều tháng — vận hành trên cùng hai động thái: quyết định nó dành cho ai, và cho những người đó một nơi rõ ràng để kết nối. Một nhóm không có mái nhà không bao giờ hình thành đúng cách; quan tâm phân tán qua tin nhắn, bảng tính, và các cuộc trò chuyện một lần, và không gì giữ lại được. Trang nhóm và phòng của nó chính là mái nhà đó, và tạo chúng tốt là sự khác biệt giữa một cộng đồng thực sự và một danh sách tên.',
-    'Vòng lặp JoinOrigin hoạt động như thế này: bạn công bố một nhóm, trang công khai của nó xuất hiện, và phòng của nó được tự động tạo tại thời điểm công bố. Mọi người khám phá nhóm qua mục Khám phá hoặc theo một liên kết tham gia, việc tham gia chỉ là một cú nhấp, và họ đặt chân vào phòng — một phòng Matrix do người sáng lập kiểm soát, nơi cộng đồng thực sự sống. Người sáng lập sở hữu phòng từ giây đầu tiên và kiểm soát ai tham gia và cách nhóm hoạt động.',
+    'Mọi Origin — dù hoàn toàn mới hay đã gặp gỡ thân mật trong nhiều tháng — vận hành trên cùng hai động thái: quyết định nó dành cho ai, và cho những người đó một nơi rõ ràng để kết nối. Một nhóm không có mái nhà không bao giờ hình thành đúng cách; quan tâm phân tán qua tin nhắn, bảng tính, và các cuộc trò chuyện một lần, và không gì giữ lại được. Trang nhóm và phòng của nó chính là mái nhà đó, và tạo chúng tốt là sự khác biệt giữa một Origin thực sự và một danh sách tên.',
+    'Vòng lặp JoinOrigin hoạt động như thế này: bạn công bố một nhóm, trang công khai của nó xuất hiện, và phòng của nó được tự động tạo tại thời điểm công bố. Mọi người khám phá nhóm qua mục Khám phá hoặc theo một liên kết tham gia, việc tham gia chỉ là một cú nhấp, và họ đặt chân vào phòng — một phòng Matrix do người sáng lập kiểm soát, nơi Origin thực sự sống. Người sáng lập sở hữu phòng từ giây đầu tiên và kiểm soát ai tham gia và cách nhóm hoạt động.',
     'Hướng dẫn này bao phủ toàn bộ hành trình — dù nhóm mới hay đã tồn tại trên giấy: chọn đối tượng và mục đích, viết một trang nhóm mọi người có thể tìm thấy, công bố nhóm và mở phòng của nó, đặt kỳ vọng với tư cách người sáng lập, chia sẻ liên kết tham gia, mời các thành viên đầu tiên, bắt đầu các cuộc trò chuyện đầu tiên, và giữ phòng sôi động để nhóm tiếp tục phát triển.',
   ],
   dataPoints: [
     'Các nhóm rõ ràng nhất bắt đầu với một đối tượng và một lời hứa — sự cụ thể là một tính năng tăng trưởng.',
-    'Trên JoinOrigin, công bố một nhóm tự động tạo phòng của nó — cộng đồng có một nơi để kết nối từ giây đầu tiên.',
+    'Trên JoinOrigin, công bố một nhóm tự động tạo phòng của nó — Origin có một nơi để kết nối từ giây đầu tiên.',
     'Một liên kết tham gia là lời mời đơn giản nhất: một liên kết, một cú nhấp, và một thành viên mới đã ở trong phòng.',
     'JoinOrigin là một hệ điều hành cộng đồng giúp mọi người tìm, tham gia, và bắt đầu các nhóm — công bố nhóm của bạn và phòng của nó mở ngay lập tức.',
   ],
   faq: [
     {
-      question: 'Sự khác biệt giữa một nhóm và một cộng đồng là gì?',
+      question: 'Sự khác biệt giữa một nhóm và một Origin là gì?',
       answer:
-        'Trên JoinOrigin chúng là cùng một đối tượng. Một nhóm (hoặc cộng đồng) là một đối tượng được công bố, có thể tham gia với một trang công khai và một phòng. Trang nhóm nêu lời hứa; phòng là nơi thành viên kết nối. Cộng đồng có một Không gian Matrix chứa các phòng của nhóm, và phòng chính là nơi nhóm sống.',
+        'Trên JoinOrigin chúng là cùng một đối tượng. Một nhóm (hoặc Origin) là một đối tượng được công bố, có thể tham gia với một trang công khai và một phòng. Trang nhóm nêu lời hứa; phòng là nơi thành viên kết nối. Origins có một Không gian Matrix chứa các phòng của nhóm, và phòng chính là nơi nhóm sống.',
     },
     {
       question: 'Phòng nhóm được tạo khi nào?',
