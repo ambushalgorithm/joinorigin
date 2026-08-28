@@ -69,7 +69,7 @@ describe('filterByKeyword against the Browse-locations searchText (TASK-485/TASK
     // The country card matches through the dataset country name in
     // searchText — its card title alone does not contain "colombia".
     const country = matches.find((entry) => entry.section === 'countries');
-    expect(country?.name).toBe('Communities in Colombia');
+    expect(country?.name).toBe('Origins in Colombia');
     const cities = matches.filter((entry) => entry.section === 'cities').map((e) => e.name);
     expect(cities).toContain('Origins in Bogota, Bogota D.C.');
     expect(cities).toContain('Origins in Medellin, Antioquia');
@@ -79,7 +79,7 @@ describe('filterByKeyword against the Browse-locations searchText (TASK-485/TASK
   it('"italy" matches the Italy country card + Milan + Milan community types/ideas', () => {
     const matches = filter('ITALY'); // case-insensitive
     const country = matches.find((entry) => entry.section === 'countries');
-    expect(country?.name).toBe('Communities in Italy');
+    expect(country?.name).toBe('Origins in Italy');
     const cities = matches.filter((entry) => entry.section === 'cities').map((e) => e.name);
     expect(cities).toEqual(['Origins in Milan, Lombardy']);
     expect(matches.filter((entry) => entry.section === 'communityTypes')).toHaveLength(5);

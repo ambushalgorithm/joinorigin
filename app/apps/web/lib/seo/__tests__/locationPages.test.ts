@@ -373,7 +373,7 @@ describe('lib/seo locationPages — per-locale (de) Berlin + Munich surface', ()
     expect(startup?.title).toBe('Startup-Communities in Berlin | JoinOrigin');
     expect(startup?.indexable).toBe(true);
     const ideas = berlin.find((entry) => entry.kind === 'ideas');
-    expect(ideas?.title).toBe('30 Ideen für Community-Events in Berlin | JoinOrigin');
+    expect(ideas?.title).toBe('30 Ideen für Origin-Events in Berlin | JoinOrigin');
     expect(ideas?.indexable).toBe(true);
     expect(berlin.every((entry) => entry.indexable)).toBe(true);
   });

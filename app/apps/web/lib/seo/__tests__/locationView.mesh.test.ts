@@ -197,7 +197,7 @@ describe('lib/seo locationView — country data points + FAQ templates (TASK-496
     const germany = resolveLocationEntry({ country: 'germany' })!;
     const data = buildLocationViewData(germany);
     expect(data.faq.length).toBe(3);
-    expect(data.faq[0].question).toBe('How do I find communities in Germany?');
+    expect(data.faq[0].question).toBe('How do I find Origins in Germany?');
     // The authored FAQ is NOT replaced by the template (no duplicate
     // template entries are appended).
     expect(data.faq.some((entry) => entry.question === 'How many people live in Germany?')).toBe(

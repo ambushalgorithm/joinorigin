@@ -87,7 +87,7 @@ describe('seoContent chrome — active-locale chrome switching (design §7.1)', 
     // Group-type chrome labels via seoContent.groupTypes.*.
     const groupLinks = screen.getByTestId('location-group-type-links');
     expect(within(groupLinks).getByText('Startup-Origins')).toBeInTheDocument();
-    expect(within(groupLinks).getByText('30 Ideen für Community-Events')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('30 Ideen für Origin-Events')).toBeInTheDocument();
   });
 
   it('renders EN chrome for the default locale (body copy stays content-file driven)', () => {

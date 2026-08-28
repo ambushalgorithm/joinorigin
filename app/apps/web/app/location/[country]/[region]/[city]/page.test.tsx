@@ -110,7 +110,7 @@ describe('/location/[country]/[region]/[city] route', () => {
 
     const groupLinks = screen.getByTestId('location-group-type-links');
     expect(within(groupLinks).getByText('Startup Origins')).toBeInTheDocument();
-    expect(within(groupLinks).getByText('30 community event ideas')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('30 Origin event ideas')).toBeInTheDocument();
 
     expect(screen.getByTestId('location-faq')).toBeInTheDocument();
     expect(screen.getByTestId('location-cta-band')).toBeInTheDocument();
