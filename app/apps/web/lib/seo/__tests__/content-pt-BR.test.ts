@@ -207,7 +207,7 @@ describe('lib/seo content pt-BR — predominant-locale city files (TASK-425)', (
     };
     for (const city of PTBR_CITIES) {
       const cityName = CITY_NAMES[city.slug];
-      expect(city.pageTitles?.city).toContain('Comunidades');
+      expect(city.pageTitles?.city).toContain('Origins');
       expect(city.pageTitles?.cityDescription ?? '').toContain(cityName);
       for (const type of GROUP_TYPES) {
         expect(city.pageTitles?.variants?.[type.key] ?? '').toContain(cityName);

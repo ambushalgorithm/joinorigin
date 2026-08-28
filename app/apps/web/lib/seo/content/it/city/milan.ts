@@ -13,33 +13,33 @@ const content: CityContent = {
   slug: 'milan',
   title: 'Origins a Milano | JoinOrigin',
   description:
-    "Trova o avvia community a Milano — gruppi di startup, creativi, politici, meetup e piccole imprese nella capitale lombarda. Lista d'attesa di JoinOrigin.",
+    "Trova o avvia Origins a Milano — gruppi di startup, creativi, politici, meetup e piccole imprese nella capitale lombarda. Lista d'attesa di JoinOrigin.",
   pageTitles: {
     city: 'Origins a Milano | JoinOrigin',
     cityDescription:
-      "Trova o avvia community a Milano — gruppi di startup, creativi, politici, meetup e piccole imprese nella capitale lombarda. Lista d'attesa di JoinOrigin.",
+      "Trova o avvia Origins a Milano — gruppi di startup, creativi, politici, meetup e piccole imprese nella capitale lombarda. Lista d'attesa di JoinOrigin.",
     variants: {
-      startup: 'Community di startup a Milano | JoinOrigin',
-      creative: 'Community creative a Milano | JoinOrigin',
-      political: 'Community politiche e civiche a Milano | JoinOrigin',
-      meetup: 'Meetup e community sociali a Milano | JoinOrigin',
-      'small-business': 'Community di piccole imprese a Milano | JoinOrigin',
+      startup: 'Origins di startup a Milano | JoinOrigin',
+      creative: 'Origins creativi a Milano | JoinOrigin',
+      political: 'Origins politici e civici a Milano | JoinOrigin',
+      meetup: 'Meetup e Origins sociali a Milano | JoinOrigin',
+      'small-business': 'Origins di piccole imprese a Milano | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        "Trova o avvia community di startup a Milano — fondatori, ingegneri e operatori attorno a Porta Nuova, Isola e la scena fintech. Lista d'attesa di JoinOrigin.",
+        "Trova o avvia Origins di startup a Milano — fondatori, ingegneri e operatori attorno a Porta Nuova, Isola e la scena fintech. Lista d'attesa di JoinOrigin.",
       creative:
-        "Trova o avvia community creative a Milano — studi di design, atelier di moda e gallerie tra Brera, Navigli e Lambrate. Lista d'attesa di JoinOrigin.",
+        "Trova o avvia Origins creativi a Milano — studi di design, atelier di moda e gallerie tra Brera, Navigli e Lambrate. Lista d'attesa di JoinOrigin.",
       political:
-        "Trova o avvia community politiche e civiche a Milano — comitati di quartiere, attivismo per la casa e campagne di rigenerazione urbana. Lista d'attesa di JoinOrigin.",
+        "Trova o avvia Origins politici e civici a Milano — comitati di quartiere, attivismo per la casa e campagne di rigenerazione urbana. Lista d'attesa di JoinOrigin.",
       meetup:
-        "Trova o avvia meetup e community sociali a Milano — aperitivi serali, ritrovi sui Navigli e vita nei parchi. Lista d'attesa di JoinOrigin.",
+        "Trova o avvia meetup e Origins sociali a Milano — aperitivi serali, ritrovi sui Navigli e vita nei parchi. Lista d'attesa di JoinOrigin.",
       'small-business':
-        "Trova o avvia community di piccole imprese a Milano — commercianti di mercato, atelier e reti di negozi di famiglia. Lista d'attesa di JoinOrigin.",
+        "Trova o avvia Origins di piccole imprese a Milano — commercianti di mercato, atelier e reti di negozi di famiglia. Lista d'attesa di JoinOrigin.",
     },
     ideas: '30 idee per eventi Origin a Milano | JoinOrigin',
     ideasDescription:
-      "Scopri 30 idee per eventi di community a Milano — eventi di networking, apprendimento, all'aperto, professionali, creativi e di impatto. Lista d'attesa di JoinOrigin.",
+      "Scopri 30 idee per eventi Origin a Milano — eventi di networking, apprendimento, all'aperto, professionali, creativi e di impatto. Lista d'attesa di JoinOrigin.",
   },
   intro: [
     "Milano è il motore dell'Italia — la capitale della moda, del design e della finanza — ma le sue community girano su un carburante molto più antico: l'aperitivo. Ogni sera, i bar della città servono drink con generosi buffet, e il rituale di stare al bancone con colleghi, vicini e sconosciuti è la colla sociale della città. I canali dei Navigli, le strade acciottolate di Brera e le torri di Porta Nuova ospitano ciascuno la propria versione di questo appuntamento serale.",
@@ -168,15 +168,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      "La scena startup di Milano è diventata la più attiva d'Italia, ancorata al distretto degli affari di Porta Nuova, dove torri di vetro ospitano acceleratori, fondi di venture capital e aziende tech internazionali. Il patrimonio industriale e creativo della città dà al suo ecosistema un sapore distintivo: fashion tech, design tech e fintech sono punti di forza ricorrenti, e Politecnico e Bocconi alimentano un bacino profondo di ingegneri e laureati in economia. Isola, un tempo quartiere operaio, ora ospita hub di innovazione e caffè per startup, mentre i Navigli portano l'energia serale. I formati includono colazioni tra fondatori, serate di pitch, demo day e happy hour fintech che ruotano tra terrazze d'ufficio e bar lungo i canali. La community è internazionale — l'inglese è comune nei meetup, mentre l'italiano resta il default per molti gruppi locali. La cultura di Milano è più formale di quella di Roma: le presentazioni contano, e una referenza calorosa apre le porte. Avviare qui una community di startup funziona meglio con una verticale ristretta e un ritmo regolare — un tavolo mensile fashion-tech o una serata di builder di IA costruisce un seguito fedele più velocemente di un gruppo generalista.",
+      "La scena startup di Milano è diventata la più attiva d'Italia, ancorata al distretto degli affari di Porta Nuova, dove torri di vetro ospitano acceleratori, fondi di venture capital e aziende tech internazionali. Il patrimonio industriale e creativo della città dà al suo ecosistema un sapore distintivo: fashion tech, design tech e fintech sono punti di forza ricorrenti, e Politecnico e Bocconi alimentano un bacino profondo di ingegneri e laureati in economia. Isola, un tempo quartiere operaio, ora ospita hub di innovazione e caffè per startup, mentre i Navigli portano l'energia serale. I formati includono colazioni tra fondatori, serate di pitch, demo day e happy hour fintech che ruotano tra terrazze d'ufficio e bar lungo i canali. La community è internazionale — l'inglese è comune nei meetup, mentre l'italiano resta il default per molti gruppi locali. La cultura di Milano è più formale di quella di Roma: le presentazioni contano, e una referenza calorosa apre le porte. Avviare qui un Origin di startup funziona meglio con una verticale ristretta e un ritmo regolare — un tavolo mensile fashion-tech o una serata di builder di IA costruisce un seguito fedele più velocemente di un gruppo generalista.",
     creative:
-      "Milano è la capitale del design in Italia e probabilmente nel mondo: il Salone del Mobile e la Settimana della Moda portano in città professionisti creativi da ogni continente, e gli studi, gli atelier e le gallerie della città lavorano a standard globali tutto l'anno. Brera è il cuore del distretto dell'arte e del design, l'area di Tortona ospita le mostre più famose della settimana del design e le ex fabbriche di Lambrate sono diventate spazi maker dove vengono prototipati mobili, oggetti e tecnologia. Il sistema della moda attorno al Quadrilatero della Moda collega atelier, modellisti e designer emergenti in una rete stretta guidata dalle referenze. I formati includono open day degli studi, visite alle gallerie, revisioni dei portfolio e serate di critica del design, con l'aperitivo come rituale di chiusura naturale. La scena è compatta e connessa — un buon progetto può viaggiare da un laboratorio di Lambrate a una galleria di Brera in una settimana. Avviare una community creativa a Milano è realistico: scegli un mestiere, un distretto e una serata regolare, e la densità di persone qualificate e ambiziose ti troverà.",
+      "Milano è la capitale del design in Italia e probabilmente nel mondo: il Salone del Mobile e la Settimana della Moda portano in città professionisti creativi da ogni continente, e gli studi, gli atelier e le gallerie della città lavorano a standard globali tutto l'anno. Brera è il cuore del distretto dell'arte e del design, l'area di Tortona ospita le mostre più famose della settimana del design e le ex fabbriche di Lambrate sono diventate spazi maker dove vengono prototipati mobili, oggetti e tecnologia. Il sistema della moda attorno al Quadrilatero della Moda collega atelier, modellisti e designer emergenti in una rete stretta guidata dalle referenze. I formati includono open day degli studi, visite alle gallerie, revisioni dei portfolio e serate di critica del design, con l'aperitivo come rituale di chiusura naturale. La scena è compatta e connessa — un buon progetto può viaggiare da un laboratorio di Lambrate a una galleria di Brera in una settimana. Avviare un Origin creativo a Milano è realistico: scegli un mestiere, un distretto e una serata regolare, e la densità di persone qualificate e ambiziose ti troverà.",
     political:
-      "La vita civica di Milano è plasmata dalla trasformazione della città da potenza industriale a città globale dei servizi — e dalle battaglie su chi ne beneficia. I grattacieli di Porta Nuova simboleggiano il boom, mentre i comitati di quartiere di Isola, Scalo Farini e della periferia fanno campagna per alloggi a prezzi accessibili, spazi verdi e una giusta quota della rigenerazione. La casa è una questione definitoria: gli affitti sono saliti con le fortune della città, e le associazioni di inquilini organizzano serate informative e cliniche legali aperte ai nuovi arrivati. I processi di bilancio partecipativo e consultazione pubblica della città danno ai residenti organizzati un'influenza reale su parchi, strade ed edifici civici. I centri comunitari di tutta la città ospitano riunioni, corsi di lingua e gruppi di volontariato. La cultura politica premia la preparazione e la cortesia: gli attivisti milanesi sono organizzati, e i gruppi ben preparati vengono presi sul serio. Avviare una community politica significa scegliere una questione concreta e una piccola geografia, poi collaborare con i comitati esistenti — il panorama è abbastanza ricco che la collaborazione batte la competizione.",
+      "La vita civica di Milano è plasmata dalla trasformazione della città da potenza industriale a città globale dei servizi — e dalle battaglie su chi ne beneficia. I grattacieli di Porta Nuova simboleggiano il boom, mentre i comitati di quartiere di Isola, Scalo Farini e della periferia fanno campagna per alloggi a prezzi accessibili, spazi verdi e una giusta quota della rigenerazione. La casa è una questione definitoria: gli affitti sono saliti con le fortune della città, e le associazioni di inquilini organizzano serate informative e cliniche legali aperte ai nuovi arrivati. I processi di bilancio partecipativo e consultazione pubblica della città danno ai residenti organizzati un'influenza reale su parchi, strade ed edifici civici. I centri comunitari di tutta la città ospitano riunioni, corsi di lingua e gruppi di volontariato. La cultura politica premia la preparazione e la cortesia: gli attivisti milanesi sono organizzati, e i gruppi ben preparati vengono presi sul serio. Avviare un Origin politico significa scegliere una questione concreta e una piccola geografia, poi collaborare con i comitati esistenti — il panorama è abbastanza ricco che la collaborazione batte la competizione.",
     meetup:
       "La scena dei meetup di Milano è costruita sull'aperitivo, sui Navigli e sul parco. Il drink serale con buffet è il grande livellatore sociale della città: impiegati, studenti e pensionati stanno agli stessi banconi, e un gruppo che adotta un bar regolare diventa presto parte dell'arredamento. I canali dei Navigli sono la destinazione classica — passeggiate al tramonto, bar lungo i canali e barche che trasformano le uscite di gruppo in feste galleggianti. Il Parco Sempione offre prati verdi all'ombra del castello, e il lago dell'Idroscalo attira nuotatori, canottieri e pic-nic in estate. I formati includono aperitivi settimanali, serate di giochi da tavolo e trivia, gite in bici nella campagna lombarda pianeggiante e scambi linguistici (italiano–inglese). Il ritmo serale della città è perfetto per i meetup — un gruppo che inizia alle sette e si sposta a cena segue il copione locale. Avviare un meetup a Milano significa scegliere un formato ripetibile e una sede fissa, e l'amore della città per la buona compagnia fa il resto.",
     'small-business':
-      "Le community di piccole imprese di Milano sono ancorate dai mercati, dagli atelier e dai laboratori di famiglia della città. I mercati coperti come Via Fauche e viale Papiniano non sono solo luoghi dove fare la spesa — sono community di banchisti che condividono fornitori, turni e pettegolezzi. Le botteghe — laboratori artigianali che fanno scarpe, cornici, lampade e gioielli — si concentrano a Brera e Porta Genova, dove i titolari si conoscono da decenni. L'economia dell'aperitivo aggiunge uno strato di titolari di bar e ristoranti che coordinano fornitori e logistica notturna. La camera di commercio offre workshop su permessi, digitalizzazione ed export, mentre le fiere dell'artigianato e i mercati del design danno ai maker un calendario condiviso. Ciò che lega questi gruppi è l'orgoglio del mestiere e il luogo: una galleria del mercato o una via di laboratori è una community naturale con un interesse collettivo nella qualità e nel passaggio di clienti. Avviare una community di piccole imprese è molto realizzabile: una colazione mensile dei commercianti in una galleria del mercato, con argomenti a rotazione come affitti, permessi e vendita online, attira in modo affidabile titolari che raramente hanno pari con cui parlare.",
+      "Le community di piccole imprese di Milano sono ancorate dai mercati, dagli atelier e dai laboratori di famiglia della città. I mercati coperti come Via Fauche e viale Papiniano non sono solo luoghi dove fare la spesa — sono community di banchisti che condividono fornitori, turni e pettegolezzi. Le botteghe — laboratori artigianali che fanno scarpe, cornici, lampade e gioielli — si concentrano a Brera e Porta Genova, dove i titolari si conoscono da decenni. L'economia dell'aperitivo aggiunge uno strato di titolari di bar e ristoranti che coordinano fornitori e logistica notturna. La camera di commercio offre workshop su permessi, digitalizzazione ed export, mentre le fiere dell'artigianato e i mercati del design danno ai maker un calendario condiviso. Ciò che lega questi gruppi è l'orgoglio del mestiere e il luogo: una galleria del mercato o una via di laboratori è una community naturale con un interesse collettivo nella qualità e nel passaggio di clienti. Avviare un Origin di piccole imprese è molto realizzabile: una colazione mensile dei commercianti in una galleria del mercato, con argomenti a rotazione come affitti, permessi e vendita online, attira in modo affidabile titolari che raramente hanno pari con cui parlare.",
   },
   ideaPage: {
     intro:
@@ -441,12 +441,12 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: 'Come trovo una community a Milano?',
+      question: 'Come trovo un Origin a Milano?',
       answer:
-        'Usa le pagine dei tipi di gruppo per le community di startup, creative, politiche, meetup e piccole imprese. Ognuna descrive i distretti, le sedi e i formati reali dove i milanesi si riuniscono. JoinOrigin è attivo — crea il tuo profilo e trova o avvia la tua community oggi.',
+        'Usa le pagine dei tipi di gruppo per gli Origins di startup, creativi, politici, meetup e piccole imprese. Ognuna descrive i distretti, le sedi e i formati reali dove i milanesi si riuniscono. JoinOrigin è attivo — crea il tuo profilo e trova o avvia il tuo Origin oggi.',
     },
     {
-      question: 'È realistico avviare una community a Milano?',
+      question: 'È realistico avviare un Origin a Milano?',
       answer:
         "Sì. Milano ha bar dell'aperitivo ovunque, parchi generosi e una forte cultura associativa. Le guide coprono l'avvio di una community, l'organizzazione di un meetup e l'ottenimento dei primi dieci membri.",
     },
@@ -458,7 +458,7 @@ const content: CityContent = {
     {
       question: 'JoinOrigin ha un ufficio a Milano?',
       answer:
-        'No. JoinOrigin non ha uffici locali né personale locale. Tutte le descrizioni delle community riflettono il paesaggio urbano reale, e la piattaforma aiuta i milanesi a trovare o avviare community.',
+        'No. JoinOrigin non ha uffici locali né personale locale. Tutte le descrizioni delle community riflettono il paesaggio urbano reale, e la piattaforma aiuta i milanesi a trovare o avviare Origins.',
     },
   ],
 };

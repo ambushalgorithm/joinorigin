@@ -16,19 +16,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'it',
   slug: 'first-10-members',
-  title: 'Come ottenere i tuoi primi 10 membri per una community nuova o in crescita | JoinOrigin',
+  title: 'Come ottenere i tuoi primi 10 membri per un Origin nuovo o in crescita | JoinOrigin',
   description:
-    'Ottieni i tuoi primi 10 membri senza un grande budget — che tu stia lanciando una community nuova o rivitalizzandone una esistente, parti dalla tua rete personale, condividi link di invito e rendi la stanza il posto dove le persone vogliono entrare. Passi pratici da JoinOrigin.',
+    'Ottieni i tuoi primi 10 membri senza un grande budget — che tu stia lanciando un Origin nuovo o rivitalizzandone una esistente, parti dalla tua rete personale, condividi link di invito e rendi la stanza il posto dove le persone vogliono entrare. Passi pratici da JoinOrigin.',
   intro: [
-    'I primi dieci membri sono i più difficili da ottenere e i più importanti, perché definiscono la cultura di una community prima che abbia una reputazione per attrarre estranei — e sono altrettanto preziosi quando una community esistente è ferma o riparte, perché un nucleo impegnato è ciò che trasforma un gruppo silenzioso in uno vivo. Quel problema dei primi dieci è fondamentalmente un problema di connessione tra persone, ed è il problema centrale che JoinOrigin risolve.',
+    'I primi dieci membri sono i più difficili da ottenere e i più importanti, perché definiscono la cultura di una community prima che abbia una reputazione per attrarre estranei — e sono altrettanto preziosi quando un Origin esistente è fermo o riparte, perché un nucleo impegnato è ciò che trasforma un gruppo silenzioso in uno vivo. Quel problema dei primi dieci è fondamentalmente un problema di connessione tra persone, ed è il problema centrale che JoinOrigin risolve.',
     "JoinOrigin è un sistema operativo di comunità costruito attorno al ciclo digitale connetti→unisciti→stanza: pubblichi un gruppo, la sua stanza viene creata automaticamente e i membri entrano tramite un link. La stanza è la superficie di adesione — ogni persona che clicca su Unisciti o segue un link di invito arriva nella stanza del gruppo, l'unico luogo dove la community vive e dove i nuovi membri si sentono subito connessi. JoinOrigin non recluta membri né gestisce eventi — quella parte è tua. La piattaforma rende scoperta e adesione molto più facili; la crescita iniziale arriva comunque dalla portata personale: le persone che inviti direttamente con un link, quelle che portano loro e quelle che restano perché la stanza sembra viva.",
-    'Questa guida scompone il problema dei primi dieci membri in passi concreti — che tu stia iniziando una community nuova o rivitalizzandone una esistente: partire dalle persone che già conosci, pubblicare il tuo gruppo così ha una stanza a cui unirsi, invitare personalmente con link, organizzare un primo incontro che trasformi i partecipanti in promotori e costruire una semplice abitudine di segnalazione così ogni membro porta il successivo — e ogni passo mostra dove JoinOrigin aiuta.',
+    'Questa guida scompone il problema dei primi dieci membri in passi concreti — che tu stia iniziando un Origin nuovo o rivitalizzandone una esistente: partire dalle persone che già conosci, pubblicare il tuo gruppo così ha una stanza a cui unirsi, invitare personalmente con link, organizzare un primo incontro che trasformi i partecipanti in promotori e costruire una semplice abitudine di segnalazione così ogni membro porta il successivo — e ogni passo mostra dove JoinOrigin aiuta.',
   ],
   dataPoints: [
     'Gli inviti personali convertono a un tasso molto più alto dei post pubblici o degli annunci a pagamento.',
     'Un link di invito rimuove ogni barriera: un clic e un nuovo membro è nella stanza.',
     'Dieci membri attivi sono una prova sociale sufficiente perché la maggior parte delle persone senta che un gruppo è reale e vale la pena unirsi.',
-    'JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare o avviare community — non recluta membri né gestisce eventi.',
+    'JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare o avviare Origins — non recluta membri né gestisce eventi.',
   ],
   faq: [
     {
@@ -49,16 +49,16 @@ const content: GuideContent = {
     {
       question: 'JoinOrigin può aiutarmi a trovare membri?',
       answer:
-        'Sì. JoinOrigin aiuta le persone a scoprire e avviare community — un luogo dove le persone che cercano un gruppo possono trovare il tuo e unirsi alla sua stanza tramite un link. I passi di questa guida — inviti personali e un ottimo primo incontro — sono i modi più affidabili per trovare i tuoi primi membri.',
+        'Sì. JoinOrigin aiuta le persone a scoprire e avviare Origins — un luogo dove le persone che cercano un gruppo possono trovare il tuo e unirsi alla sua stanza tramite un link. I passi di questa guida — inviti personali e un ottimo primo incontro — sono i modi più affidabili per trovare i tuoi primi membri.',
     },
   ],
   sections: [
-    'Elenca cinquanta persone che già conosci. Scrivi chiunque corrisponda allo scopo della community: amici, colleghi, compagni di classe, ex colleghi, vicini e conoscenti online. Ti servono circa cinque volte più nomi dei dieci che vuoi. JoinOrigin dà alla tua community una casa visibile e una stanza che le persone possono trovare — ma i primi nomi arrivano comunque dalle persone che conosci. Elenca cinquanta e tratta ognuno come una presentazione personale.',
+    'Elenca cinquanta persone che già conosci. Scrivi chiunque corrisponda allo scopo della community: amici, colleghi, compagni di classe, ex colleghi, vicini e conoscenti online. Ti servono circa cinque volte più nomi dei dieci che vuoi. JoinOrigin dà al tuo Origin una casa visibile e una stanza che le persone possono trovare — ma i primi nomi arrivano comunque dalle persone che conosci. Elenca cinquanta e tratta ognuno come una presentazione personale.',
     "Pubblica il tuo gruppo e apri la sua stanza. Una community a cui non puoi indicare non esiste ancora — e una la cui casa è dispersa tra chat ed elenchi è quasi altrettanto difficile da far crescere. Pubblica il gruppo con una missione chiara e lascia che la sua stanza venga creata automaticamente così c'è un luogo reale dove i membri possano arrivare. Pubblicare un gruppo su JoinOrigin crea automaticamente la sua stanza — la stanza è la superficie di adesione e il creatore la possiede dall'inizio. Se preferisci, imposta il tuo gruppo e la sua stanza negli strumenti che già usi prima di invitare chiunque.",
     "Invita personalmente con una richiesta specifica e un link. Invia un messaggio breve che nomina la community, la prima data o la prima conversazione e perché pensi che la apprezzerà — e includi il link di invito. I messaggi personali battono i post generici, e una data specifica batte una promessa vaga. JoinOrigin rimuove l'attrito dell'adesione una volta che le persone ti trovano — un link, un clic, dentro la stanza. Un messaggio personale breve con una data specifica e un link converte meglio di qualsiasi post pubblico.",
     'Chiedi a ogni invitato di portare una persona. Rendilo una parte normale della richiesta: "Porta un amico a cui potrebbe piacere". Gli inviti di segnalazione sono il modo in cui le piccole reti si compongono in community reali. JoinOrigin dà ai membri una casa condivisibile per la community — così le conversazioni di segnalazione puntano a un link reale e a una stanza reale. Rendi "porta un amico" parte della richiesta e dai loro il link da condividere.',
     "Organizza un primo incontro davvero buono. Spendi la tua energia sull'esperienza, non sul numero di partecipanti: un benvenuto caloroso, un formato chiaro e un'ora di fine definita. Le persone che godono del primo incontro porteranno i prossimi dieci. JoinOrigin non gestisce eventi — l'esperienza è tua. La piattaforma aiuta la community a formarsi attorno ad essa: una stanza dove i membri possono indicare dopo e mantenere viva la connessione.",
-    "Invita ogni partecipante nella stanza. Alla fine dell'incontro, condividi il link di invito e aggiungi chiunque voglia restare. La stanza è dove la community vive tra un incontro e l'altro — un membro che si è unito alla stanza è un membro che probabilmente tornerà. JoinOrigin mantiene l'adesione e la comunicazione della tua community in una stanza organizzata invece di un foglio di iscrizioni. Un semplice link alla stanza mantiene possibile il follow-up.",
+    "Invita ogni partecipante nella stanza. Alla fine dell'incontro, condividi il link di invito e aggiungi chiunque voglia restare. La stanza è dove la community vive tra un incontro e l'altro — un membro che si è unito alla stanza è un membro che probabilmente tornerà. JoinOrigin mantiene l'adesione e la comunicazione del tuo Origin in una stanza organizzata invece di un foglio di iscrizioni. Un semplice link alla stanza mantiene possibile il follow-up.",
     'Segui entro 24 ore con una prossima data. Ringrazia ogni partecipante, condividi un riepilogo di un paragrafo e conferma il prossimo incontro — nella stanza, dove tutti possono vederlo. Il follow-up è dove un partecipante occasionale diventa membro. Su JoinOrigin un follow-up ha una casa naturale — un unico posto dove vivono il riepilogo e la prossima data. Un ringraziamento personale entro 24 ore è ciò che converte un partecipante in membro.',
     'Rendi banale invitare gli altri. Dai ai membri una frase che possono ripetere e un link che possono condividere: "È un meetup mensile per nuovi fondatori per condividere lezioni — unisciti qui". Una descrizione breve e chiara è lo strumento di reclutamento più efficace. JoinOrigin permette a una community di essere descritta, trovata e raggiunta in un unico posto — i membri possono indicare le persone alla stanza invece di spiegarla. Dai ai membri una frase e un link che possono ripetere.',
   ],
@@ -67,7 +67,7 @@ const content: GuideContent = {
       title: 'Elenca cinquanta persone che già conosci',
       body: 'Scrivi chiunque corrisponda allo scopo della community: amici, colleghi, compagni di classe, ex colleghi, vicini e conoscenti online. Ti servono circa cinque volte più nomi dei dieci che vuoi.',
       joinOriginNote:
-        'JoinOrigin dà alla tua community una casa visibile e una stanza che le persone possono trovare — ma i primi nomi arrivano comunque dalle persone che conosci. Elenca cinquanta e tratta ognuno come una presentazione personale.',
+        'JoinOrigin dà al tuo Origin una casa visibile e una stanza che le persone possono trovare — ma i primi nomi arrivano comunque dalle persone che conosci. Elenca cinquanta e tratta ognuno come una presentazione personale.',
     },
     {
       title: 'Pubblica il tuo gruppo e apri la sua stanza',
@@ -97,7 +97,7 @@ const content: GuideContent = {
       title: 'Invita ogni partecipante nella stanza',
       body: "Alla fine dell'incontro, condividi il link di invito e aggiungi chiunque voglia restare. La stanza è dove la community vive tra un incontro e l'altro — un membro che si è unito alla stanza è un membro che probabilmente tornerà.",
       joinOriginNote:
-        "JoinOrigin mantiene l'adesione e la comunicazione della tua community in una stanza organizzata invece di un foglio di iscrizioni. Un semplice link alla stanza mantiene possibile il follow-up.",
+        "JoinOrigin mantiene l'adesione e la comunicazione del tuo Origin in una stanza organizzata invece di un foglio di iscrizioni. Un semplice link alla stanza mantiene possibile il follow-up.",
     },
     {
       title: 'Segui entro 24 ore con una prossima data',

@@ -26,7 +26,7 @@ const content: GuideContent = {
     'Les présentations chaleureuses et le travail partagé produisent les relations de cofondation les plus durables.',
     'Une page d’idée publiée avec un salon donne aux personnes intéressées un endroit réel pour trouver l’idée et lancer une conversation.',
     'Un court projet d’essai — un prototype, une page d’atterrissage ou un pilote payant — teste les styles de travail plus vite que les entretiens.',
-    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver des communautés et des collaborateurs ; ce n’est pas un service de mise en relation et il n’a pas de bureaux locaux.',
+    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver des Origins et des collaborateurs ; ce n’est pas un service de mise en relation et il n’a pas de bureaux locaux.',
   ],
   faq: [
     {
@@ -47,7 +47,7 @@ const content: GuideContent = {
     {
       question: 'JoinOrigin peut-il m’aider à trouver un cofondateur ?',
       answer:
-        'JoinOrigin aide les personnes à trouver des communautés et des collaborateurs — y compris le genre de communautés où les fondateurs se rencontrent — avec une page d’idée et un salon où les conversations peuvent avoir lieu. JoinOrigin ne fait pas d’appariement de fondateurs, alors le réseautage et le projet d’essai décrits dans ce guide sont votre chemin le plus fiable.',
+        'JoinOrigin aide les personnes à trouver des Origins et des collaborateurs — y compris le genre de communautés où les fondateurs se rencontrent — avec une page d’idée et un salon où les conversations peuvent avoir lieu. JoinOrigin ne fait pas d’appariement de fondateurs, alors le réseautage et le projet d’essai décrits dans ce guide sont votre chemin le plus fiable.',
     },
   ],
   sections: [

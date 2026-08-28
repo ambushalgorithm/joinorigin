@@ -15,19 +15,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'fr',
   slug: 'moderation',
-  title: 'Modération de communauté : comment garder des groupes sains et accueillants | JoinOrigin',
+  title: 'Modération d’un Origin : comment garder des groupes sains et accueillants | JoinOrigin',
   description:
     'Modérez une communauté avec des règles claires, une action précoce et la désescalade — que vous configuriez un tout nouveau groupe ou répariez la culture d’un groupe établi, le contrôle du créateur est la propriété du salon Matrix, avec des rôles appliqués dans Element. Étapes pratiques de JoinOrigin.',
   intro: [
     'Toute communauté qui grandit finira par affronter un moment qui met sa culture à l’épreuve — une dispute animée, un spammeur, un membre qui met les autres mal à l’aise, ou un malentendu qui dégénère. La modération est la pratique qui protège l’espace pour que la communauté puisse rester accueillante, et elle ne devient nécessaire que parce que les communautés sont faites de personnes qui se connectent entre elles. Cette connexion est le problème central que JoinOrigin aide à résoudre — et les pratiques s’appliquent aussi bien à une communauté établie qui répare sa culture qu’à un nouveau groupe qui définit les attentes avant l’arrivée du premier membre.',
-    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver, créer et organiser des communautés — et dans son modèle numérique, une communauté vit dans un salon contrôlé par le créateur. Le contrôle du créateur est la propriété standard d’un salon Matrix : le créateur peut inviter et retirer des membres, attribuer des rôles, modifier les réglages du salon, épingler des messages et archiver le salon — le tout appliqué nativement dans Element, le client de messagerie par défaut, sans système d’autorisation personnalisé. Cette propriété est l’épine dorsale de la modération sur JoinOrigin : le créateur décide qui appartient, quelles sont les règles et ce qui se passe quand une règle est enfreinte. JoinOrigin ne modère pas les communautés tierces et ne fournit pas de personnel de modération. La plateforme est conçue autour d’une structure communautaire saine, et les pratiques de ce guide sont les pratiques humaines dont tout organisateur a besoin.',
-    'Ce guide présente un système de modération pratique — que votre communauté soit toute nouvelle ou ait des années d’histoire à assainir : des règles communautaires écrites, courtes et spécifiques, un chemin d’application clair avec des avertissements avant les exclusions, des techniques pour désamorcer les situations tendues et des conseils honnêtes sur le moment d’impliquer les membres et le moment d’agir seul. Chaque étape montre où JoinOrigin aide.',
+    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver, créer et organiser des Origins — et dans son modèle numérique, une communauté vit dans un salon contrôlé par le créateur. Le contrôle du créateur est la propriété standard d’un salon Matrix : le créateur peut inviter et retirer des membres, attribuer des rôles, modifier les réglages du salon, épingler des messages et archiver le salon — le tout appliqué nativement dans Element, le client de messagerie par défaut, sans système d’autorisation personnalisé. Cette propriété est l’épine dorsale de la modération sur JoinOrigin : le créateur décide qui appartient, quelles sont les règles et ce qui se passe quand une règle est enfreinte. JoinOrigin ne modère pas les communautés tierces et ne fournit pas de personnel de modération. La plateforme est conçue autour d’une structure communautaire saine, et les pratiques de ce guide sont les pratiques humaines dont tout organisateur a besoin.',
+    'Ce guide présente un système de modération pratique — que votre Origin soit tout nouveau ou ait des années d’histoire à assainir : des règles communautaires écrites, courtes et spécifiques, un chemin d’application clair avec des avertissements avant les exclusions, des techniques pour désamorcer les situations tendues et des conseils honnêtes sur le moment d’impliquer les membres et le moment d’agir seul. Chaque étape montre où JoinOrigin aide.',
   ],
   dataPoints: [
     'Des règles communautaires claires et écrites réduisent les conflits en définissant les attentes avant que les incidents ne surviennent.',
     'Le contrôle du créateur sur JoinOrigin est la propriété du salon Matrix : inviter/retirer, rôles, réglages, épingler, archiver.',
     'Un chemin d’application par étapes — avertir, puis limiter, puis retirer — est plus juste et plus facile à défendre que des bannissements instantanés.',
-    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver, créer et organiser des communautés ; il ne modère pas les communautés tierces et ne fournit pas de personnel de modération.',
+    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver, créer et organiser des Origins ; il ne modère pas les communautés tierces et ne fournit pas de personnel de modération.',
   ],
   faq: [
     {
@@ -46,7 +46,7 @@ const content: GuideContent = {
         'Après que des avertissements clairs n’ont pas fonctionné, ou immédiatement pour des comportements qui mettent les membres en danger — harcèlement, menaces ou doxxing. Le test est de savoir si la personne rend activement l’espace dangereux pour les autres. Sur JoinOrigin, le retrait consiste pour le propriétaire du salon à retirer un membre du salon.',
     },
     {
-      question: 'JoinOrigin peut-il m’aider à modérer ma communauté ?',
+      question: 'JoinOrigin peut-il m’aider à modérer mon Origin ?',
       answer:
         'Oui. JoinOrigin est un système d’exploitation communautaire où le contrôle du créateur est la propriété du salon Matrix — inviter/retirer, rôles, réglages, épingler et archiver, appliqués dans Element. JoinOrigin ne modère pas les communautés, donc les pratiques de ce guide — règles claires, application par étapes, désescalade calme — vous appartiennent de mettre en œuvre.',
     },

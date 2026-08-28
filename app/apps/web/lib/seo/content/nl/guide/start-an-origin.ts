@@ -1,7 +1,7 @@
 import type { GuideContent } from '../../types';
 
 /**
- * « Hoe start je een community » — tijdloze L1-handleiding (design §6.1, TASK-326).
+ * « Hoe start je een Origin » — tijdloze L1-handleiding (design §6.1, TASK-326).
  *
  * Nederlandse vertaling van de EN-content, herijkt op het digitale
  * verbind→sluit-aan→kamer-model: publiceer de groep → kamer automatisch
@@ -15,11 +15,11 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'nl',
   slug: 'start-an-origin',
-  title: 'Hoe start je een community: een stapsgewijze handleiding | JoinOrigin',
+  title: 'Hoe start je een Origin: een stapsgewijze handleiding | JoinOrigin',
   description:
     'Leer hoe je een community start — of een bestaande één digitaal thuis geeft — publiceer een groep, open de kamer en haal leden binnen via een join-link. Praktische stappen van JoinOrigin.',
   intro: [
-    'Het moeilijkste aan het starten van een community is zelden de locatie, de agenda of het budget — het is het vinden van de eerste mensen die jouw interesse delen en hen één duidelijke plek geven om te verbinden. Dat is precies het probleem dat JoinOrigin oplost.',
+    'Het moeilijkste aan het starten van een Origin is zelden de locatie, de agenda of het budget — het is het vinden van de eerste mensen die jouw interesse delen en hen één duidelijke plek geven om te verbinden. Dat is precies het probleem dat JoinOrigin oplost.',
     'JoinOrigin is een community-besturingssysteem dat is gebouwd rond de digitale loop: je publiceert een groep, de kamer wordt automatisch aangemaakt en leden sluiten via een link aan. De kamer is waar de community echt leeft — een door de maker beheerde Matrix-kamer waar leden vanaf dag één praten, updates delen en samen plannen, in plaats van verspreid over spreadsheets, losse berichten en aanmeldformulieren. Fysieke bijeenkomsten bestaan alleen als gevolg: zodra een groep is gevormd en de kamer leeft, kunnen leden ervoor kiezen elkaar fysiek te ontmoeten — en JoinOrigin organiseert geen lokale evenementen. Het hele punt van het platform is mensen verbinden die elkaar anders nooit zouden ontmoeten, daarom sluit elke stap in deze handleiding aan bij iets waar JoinOrigin bij helpt.',
     'De aanpak werkt voor elk communitytype: een founderskring, een boekenclub, een lokale loopgroep, een netwerk van kleine bedrijven of een online professionele community — en hij werkt zowel wanneer je vanaf nul begint als wanneer je een groep formaliseert die al informeel bijeenkomt. Het kernprincipe is simpel — mensen sluiten aan vanwege een duidelijke belofte en blijven omdat de ervaring die belofte betrouwbaar waarmaakt. Je hebt geen groot budget, een locatie of een bestaand publiek nodig om te beginnen; je hebt een duidelijk doel, een realistische eerste stap en de discipline om het te herhalen nodig.',
   ],
@@ -31,7 +31,7 @@ const content: GuideContent = {
   ],
   faq: [
     {
-      question: 'Hoe lang duurt het om een community te starten?',
+      question: 'Hoe lang duurt het om een Origin te starten?',
       answer:
         'Je kunt binnen een paar weken een groep publiceren en de kamer openen als je de reikwijdte klein houdt: één doel, één join-link en een gestage stroom persoonlijke uitnodigingen. De community zelf kost een paar maanden van consistente deelname in de kamer voordat hij gevestigd voelt.',
     },
@@ -41,12 +41,12 @@ const content: GuideContent = {
         'Nee. De digitale kern van een community — een gepubliceerde groep en de kamer — kost niets en heeft geen locatie nodig. Veel groepen kiezen er later voor elkaar fysiek te ontmoeten; bibliotheken, coffeeshops, parken en coworking-lounges bieden in de meeste steden gratis plek voor eerste bijeenkomsten.',
     },
     {
-      question: 'Wat is de meest gemaakte fout bij het starten van een community?',
+      question: 'Wat is de meest gemaakte fout bij het starten van een Origin?',
       answer:
         'Iedereen willen bedienen. Een community met een vaag doel trekt weinig toegewijde leden. Definieer één specifiek publiek en één duidelijk resultaat, zet het op de groeps-pagina en laat de community daaruit groeien.',
     },
     {
-      question: 'Hoe kan JoinOrigin mij helpen een community te starten?',
+      question: 'Hoe kan JoinOrigin mij helpen een Origin te starten?',
       answer:
         'Een groep publiceren op JoinOrigin maakt automatisch de kamer aan en leden sluiten via een link aan — één georganiseerd digitaal thuis voor het doel, de mensen en het gesprek van een community. JoinOrigin organiseert geen lokale evenementen, dus de praktische stappen in deze handleiding werken op het platform en met de tools die je al hebt.',
     },
@@ -59,7 +59,7 @@ const content: GuideContent = {
     'Kies een format en een ritme (een vervolgkeuze). Zodra de groep vorm krijgt, kies je een terugkerend format — een maandelijkse discussie, een wekelijkse werksessie, een praatje of een sociale wandeling. Terugkerend verslaat eenmalig omdat gewoontes vreemden in leden veranderen. Dit is een vervolgkeuze: de groep kan later fysiek samenkomen, maar de kamer is al het thuis van de community. Op JoinOrigin kunnen organisatoren hun format één keer beschrijven en kunnen leden vóór aansluiting zien wat ze kunnen verwachten — wat de aarzeling vermindert die eerste-timers tegenhoudt. Kies je format en benoem het in elke uitnodiging.',
     'Organiseer een geweldige eerste bijeenkomst. Als leden ervoor kiezen elkaar fysiek te ontmoeten — kom dan vroeg, begroet iedereen persoonlijk, houd een korte voorstelronde en eindig met een duidelijke volgende datum. Het doel van de eerste bijeenkomst is geen omvang; het is dat iedereen terug wil komen. JoinOrigin bemant of organiseert geen bijeenkomsten — de ervaring is aan jou om te ontwerpen. Het platform helpt de community eromheen te vormen: één gedeelde kamer waar de datum, de terugblik en de volgende stappen leven.',
     'Verzamel feedback en verbeter. Vraag leden na de eerste weken wat ze meer of minder willen — in de kamer en bij bijeenkomsten. Pas het format, het tijdstip of de locatie aan op hun antwoorden, niet op wat jij je had voorgesteld. JoinOrigin bewaart het gedeelde geheugen van een community op één plek — notities, beslissingen en waar leden om vroegen — zodat verbetering zichtbaar is in plaats van verloren. Vraag leden na elke bijeenkomst direct in de kamer.',
-    'Houd een consistent ritme aan en groei langzaam. Houd maandenlang dezelfde dag en hetzelfde format aan voordat je uitbreidt. Groei stapelt zich op via verwijzingen wanneer elk lid in één zin kan beschrijven wat de community is en de join-link kan delen. JoinOrigin helpt je community vindbaar en verbonden te blijven naarmate hij groeit — één plek waar het ritme, de belofte, de kamer en de mensen zichtbaar zijn. Word ontdekt en groei.',
+    'Houd een consistent ritme aan en groei langzaam. Houd maandenlang dezelfde dag en hetzelfde format aan voordat je uitbreidt. Groei stapelt zich op via verwijzingen wanneer elk lid in één zin kan beschrijven wat de community is en de join-link kan delen. JoinOrigin helpt je Origin vindbaar en verbonden te blijven naarmate hij groeit — één plek waar het ritme, de belofte, de kamer en de mensen zichtbaar zijn. Word ontdekt en groei.',
   ],
   steps: [
     {
@@ -108,7 +108,7 @@ const content: GuideContent = {
       title: 'Houd een consistent ritme aan en groei langzaam',
       body: 'Houd maandenlang dezelfde dag en hetzelfde format aan voordat je uitbreidt. Groei stapelt zich op via verwijzingen wanneer elk lid in één zin kan beschrijven wat de community is en de join-link kan delen.',
       joinOriginNote:
-        'JoinOrigin helpt je community vindbaar en verbonden te blijven naarmate hij groeit — één plek waar het ritme, de belofte, de kamer en de mensen zichtbaar zijn. Word ontdekt en groei.',
+        'JoinOrigin helpt je Origin vindbaar en verbonden te blijven naarmate hij groeit — één plek waar het ritme, de belofte, de kamer en de mensen zichtbaar zijn. Word ontdekt en groei.',
     },
   ],
 };

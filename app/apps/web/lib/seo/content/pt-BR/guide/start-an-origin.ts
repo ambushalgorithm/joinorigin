@@ -1,7 +1,7 @@
 import type { GuideContent } from '../../types';
 
 /**
- * "Como Começar uma Comunidade" — guia L1 sempre-verde (design §6.1,
+ * "Como Criar um Origin" — guia L1 sempre-verde (design §6.1,
  * TASK-326).
  *
  * Recentralizado no modelo digital conectar→participar→sala: publicar o grupo
@@ -17,11 +17,11 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'pt-BR',
   slug: 'start-an-origin',
-  title: 'Como Começar uma Comunidade: Um Guia Passo a Passo | JoinOrigin',
+  title: 'Como Criar um Origin: Um Guia Passo a Passo | JoinOrigin',
   description:
-    'Aprenda a começar uma comunidade — ou dar a uma existente um único lar digital — publique um grupo, abra a sala dele e traga membros por um link de participação. Passos práticos da JoinOrigin.',
+    'Aprenda a começar um Origin — ou dar a uma existente um único lar digital — publique um grupo, abra a sala dele e traga membros por um link de participação. Passos práticos da JoinOrigin.',
   intro: [
-    'A parte mais difícil de começar uma comunidade raramente é o espaço, a pauta ou o orçamento — é encontrar as primeiras pessoas que compartilham seu interesse e dar a elas um lugar claro para se conectar. É exatamente esse o problema que a JoinOrigin resolve.',
+    'A parte mais difícil de começar um Origin raramente é o espaço, a pauta ou o orçamento — é encontrar as primeiras pessoas que compartilham seu interesse e dar a elas um lugar claro para se conectar. É exatamente esse o problema que a JoinOrigin resolve.',
     'A JoinOrigin é um sistema operacional de comunidades construído em torno do loop digital: você publica um grupo, a sala dele é criada automaticamente e os membros entram por um link. A sala é onde a comunidade realmente vive — uma sala Matrix controlada pelo criador, onde os membros conversam, compartilham atualizações e planejam juntos desde o primeiro dia, em vez de se espalharem por planilhas, mensagens dispersas e formulários de inscrição. Eventos presenciais existem apenas como consequência posterior: uma vez que um grupo se forma e a sala dele está viva, os membros podem escolher se encontrar presencialmente — e a JoinOrigin não organiza eventos locais. O ponto inteiro da plataforma é conectar pessoas que de outra forma nunca se encontrariam, por isso cada passo deste guia mapeia algo com que a JoinOrigin ajuda.',
     'A abordagem funciona para qualquer tipo de comunidade: um círculo de fundadores, um clube do livro, um grupo local de corrida, uma rede de pequenas empresas ou uma comunidade profissional online — e funciona esteja você começando do zero ou formalizando um grupo que já se reúne informalmente. O princípio central é simples — as pessoas entram por causa de uma promessa clara e ficam porque a experiência cumpre essa promessa de forma confiável. Você não precisa de um grande orçamento, um espaço ou um público existente para começar; precisa de um propósito claro, um primeiro passo realista e a disciplina de repeti-lo.',
   ],
@@ -29,11 +29,11 @@ const content: GuideContent = {
     'A maioria das comunidades bem-sucedidas começa com um público estreito e específico, não com "todos os interessados".',
     'Publicar um grupo cria a sala dele instantaneamente — nunca existe um passo de "criar o chat depois".',
     'Um link de participação é o convite mais simples: um link, um clique, e um novo membro está na sala.',
-    'A JoinOrigin é um sistema operacional de comunidades desenhado para ajudar as pessoas a encontrar ou começar comunidades — ela não organiza eventos locais nem afirma ter equipe local.',
+    'A JoinOrigin é um sistema operacional de comunidades desenhado para ajudar as pessoas a encontrar ou começar Origins — ela não organiza eventos locais nem afirma ter equipe local.',
   ],
   faq: [
     {
-      question: 'Quanto tempo leva para começar uma comunidade?',
+      question: 'Quanto tempo leva para começar um Origin?',
       answer:
         'Você pode publicar um grupo e abrir a sala dele em poucas semanas se mantiver o escopo pequeno: um propósito, um link de participação e um fluxo constante de convites pessoais. A comunidade em si leva alguns meses de participação consistente na sala antes de parecer estabelecida.',
     },
@@ -43,12 +43,12 @@ const content: GuideContent = {
         'Não. O núcleo digital de uma comunidade — um grupo publicado e a sala dele — não custa nada e não precisa de espaço. Muitos grupos depois escolhem se encontrar presencialmente; bibliotecas, cafeterias, parques e lounges de coworking recebem primeiros encontros gratuitamente na maioria das cidades.',
     },
     {
-      question: 'Qual é o erro mais comum ao começar uma comunidade?',
+      question: 'Qual é o erro mais comum ao começar um Origin?',
       answer:
         'Tentar atender a todos. Uma comunidade com propósito vago atrai poucos membros comprometidos. Defina um público específico e um resultado claro, coloque-os na página do grupo e deixe a comunidade evoluir a partir daí.',
     },
     {
-      question: 'Como a JoinOrigin pode me ajudar a começar uma comunidade?',
+      question: 'Como a JoinOrigin pode me ajudar a começar um Origin?',
       answer:
         'Publicar um grupo na JoinOrigin cria automaticamente a sala dele e os membros entram por um link — um lar digital organizado para o propósito, as pessoas e a conversa de uma comunidade. A JoinOrigin não organiza eventos locais, então os passos práticos deste guia funcionam na plataforma e com as ferramentas que você já tem.',
     },
@@ -61,7 +61,7 @@ const content: GuideContent = {
     'Escolha um formato e uma cadência (uma escolha posterior). Quando o grupo começa a se formar, escolha um formato recorrente — uma discussão mensal, uma sessão de trabalho semanal, uma palestra ou uma caminhada social. Recorrente vence avulso porque hábitos são o que transformam estranhos em membros. Essa é uma escolha posterior: o grupo pode se reunir presencialmente depois, mas a sala já é o lar da comunidade. Na JoinOrigin, os organizadores podem descrever seu formato uma vez e os membros podem ver o que esperar antes de participar — o que reduz a hesitação que trava iniciantes. Escolha seu formato e declare-o em todo convite.',
     'Faça um ótimo primeiro encontro. Se os membros escolherem se encontrar presencialmente — chegue cedo, cumprimente cada pessoa, faça uma rodada curta de apresentações e termine com uma próxima data clara. O objetivo do primeiro encontro não é o tamanho; é que todos saiam querendo voltar. A JoinOrigin não opera nem conduz encontros — a experiência é sua para desenhar. A plataforma ajuda a comunidade a se formar em torno dela: uma sala compartilhada onde a data, o resumo e os próximos passos vivem.',
     'Colete feedback e itere. Depois das primeiras semanas, pergunte aos membros o que querem mais ou menos — na sala e nos encontros. Ajuste o formato, o horário ou o espaço com base nas respostas deles, não no que você imaginou. A JoinOrigin mantém a memória compartilhada de uma comunidade em um só lugar — anotações, decisões e o que os membros pediram — para que a iteração seja visível em vez de perdida. Pergunte diretamente aos membros na sala após cada encontro.',
-    'Publique um ritmo consistente e cresça devagar. Mantenha o mesmo dia e formato por vários meses antes de expandir. O crescimento se compõe por indicações quando cada membro consegue descrever o que a comunidade é em uma frase e compartilhar o link de participação. A JoinOrigin ajuda sua comunidade a permanecer encontrável e conectada enquanto cresce — um lugar onde o ritmo, a promessa, a sala e as pessoas são visíveis. Seja descoberto e cresça.',
+    'Publique um ritmo consistente e cresça devagar. Mantenha o mesmo dia e formato por vários meses antes de expandir. O crescimento se compõe por indicações quando cada membro consegue descrever o que a comunidade é em uma frase e compartilhar o link de participação. A JoinOrigin ajuda seu Origin a permanecer encontrável e conectada enquanto cresce — um lugar onde o ritmo, a promessa, a sala e as pessoas são visíveis. Seja descoberto e cresça.',
   ],
   steps: [
     {
@@ -110,7 +110,7 @@ const content: GuideContent = {
       title: 'Publique um ritmo consistente e cresça devagar',
       body: 'Mantenha o mesmo dia e formato por vários meses antes de expandir. O crescimento se compõe por indicações quando cada membro consegue descrever o que a comunidade é em uma frase e compartilhar o link de participação.',
       joinOriginNote:
-        'A JoinOrigin ajuda sua comunidade a permanecer encontrável e conectada enquanto cresce — um lugar onde o ritmo, a promessa, a sala e as pessoas são visíveis. Seja descoberto e cresça.',
+        'A JoinOrigin ajuda seu Origin a permanecer encontrável e conectada enquanto cresce — um lugar onde o ritmo, a promessa, a sala e as pessoas são visíveis. Seja descoberto e cresça.',
     },
   ],
 };

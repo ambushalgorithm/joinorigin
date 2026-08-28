@@ -24,14 +24,14 @@ const content: GuideContent = {
     "Organizza un meetup una volta che il tuo gruppo si è formato — che sia stato fondato il mese scorso o si incontri da anni — scegli un formato, prenota una sede, costruisci un'agenda, promuovilo e gestisci la serata. Una checklist pratica da JoinOrigin.",
   intro: [
     'Un meetup è un evento ricorrente in presenza dove le persone si riuniscono attorno a un interesse condiviso — e su JoinOrigin è un passo naturale successivo dopo aver comunicato nella stanza. Il percorso digitale viene prima: le persone trovano e si uniscono a un gruppo tramite un link, e la stanza del gruppo diventa il luogo dove i membri parlano, pianificano e restano connessi tra gli incontri. Il meetup in presenza è il passo successivo di quella community formata — che il gruppo sia stato fondato il mese scorso o si incontri informalmente da anni, la stanza gli dà una casa organizzata da cui può crescere un meetup.',
-    "JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare community a cui unirsi e ad avviarne di proprie — quindi un meetup ha una casa dove i membri interessati possono scoprire il gruppo, unirsi alla sua stanza e coordinare l'incontro invece di dipendere dalla lista di contatti di una persona. JoinOrigin non prenota sedi né fornisce personale per eventi — lo scopo dell'intera piattaforma è connettere persone che condividono un interesse, e l'incontro stesso è tuo da gestire.",
+    "JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare Origins a cui unirsi e ad avviarne di proprie — quindi un meetup ha una casa dove i membri interessati possono scoprire il gruppo, unirsi alla sua stanza e coordinare l'incontro invece di dipendere dalla lista di contatti di una persona. JoinOrigin non prenota sedi né fornisce personale per eventi — lo scopo dell'intera piattaforma è connettere persone che condividono un interesse, e l'incontro stesso è tuo da gestire.",
     "Questa guida copre l'intero ciclo di vita di un meetup dopo che il gruppo esiste — per un gruppo appena formato e per uno che si riunisce da anni: scegliere un formato che si adatti al tuo pubblico, trovare e prenotare una sede senza sforare il budget, costruire un'agenda con un inizio e una fine chiari, promuovere l'evento dove il tuo pubblico cerca davvero e gestire la serata così i partecipanti se ne vadano volendo il prossimo. Ogni passo include una nota su come JoinOrigin aiuta — e il primo passo riguarda il gruppo digitale, perché senza un gruppo e la sua stanza non c'è una community da incontrare.",
   ],
   dataPoints: [
     'Un meetup semplice ha bisogno solo di tre cose: un formato, una sede e un canale di promozione.',
     'I meetup serali nei giorni feriali e le sessioni mattutine del weekend sono i formati ricorrenti più comuni.',
     'La maggior parte delle sedi — biblioteche, caffè, spazi di coworking — offrono spazi gratuiti o a basso costo per eventi comunitari.',
-    'JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare o avviare community; non prenota sedi né fornisce personale per eventi.',
+    'JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare o avviare Origins; non prenota sedi né fornisce personale per eventi.',
   ],
   faq: [
     {
@@ -52,7 +52,7 @@ const content: GuideContent = {
     {
       question: 'JoinOrigin può aiutarmi a organizzare meetup?',
       answer:
-        'Sì. JoinOrigin aiuta le persone a trovare e avviare community — una casa digitale organizzata dove la stanza di un gruppo è il luogo in cui i membri si coordinano e dove un meetup può essere scoperto. JoinOrigin non organizza eventi da sé, quindi i passi pratici di questa guida sono tuoi da gestire.',
+        'Sì. JoinOrigin aiuta le persone a trovare e avviare Origins — una casa digitale organizzata dove la stanza di un gruppo è il luogo in cui i membri si coordinano e dove un meetup può essere scoperto. JoinOrigin non organizza eventi da sé, quindi i passi pratici di questa guida sono tuoi da gestire.',
     },
   ],
   sections: [

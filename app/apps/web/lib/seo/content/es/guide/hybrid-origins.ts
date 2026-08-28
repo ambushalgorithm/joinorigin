@@ -17,19 +17,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'es',
   slug: 'hybrid-origins',
-  title: 'Comunidades híbridas: cómo gestionar lo presencial y lo en línea juntos | JoinOrigin',
+  title: 'Origins híbridos: cómo gestionar lo presencial y lo en línea juntos | JoinOrigin',
   description:
-    'Gestiona una comunidad híbrida donde la sala conecta a los miembros presenciales y en línea — ya sea que estés empezando desde cero o haciendo híbrida una comunidad existente — elige las herramientas adecuadas, diseña la participación equitativa y mantén a ambas audiencias comprometidas. De JoinOrigin.',
+    'Gestiona un Origin híbrido donde la sala conecta a los miembros presenciales y en línea — ya sea que estés empezando desde cero o haciendo híbrido un Origin existente — elige las herramientas adecuadas, diseña la participación equitativa y mantén a ambas audiencias comprometidas. De JoinOrigin.',
   intro: [
     'Una comunidad híbrida reúne a las personas en dos lugares a la vez — físicamente en un espacio y virtualmente a través de una pantalla — y el verdadero reto vuelve a ser de personas: conseguir que ambas audiencias sientan que pertenecen a una sola comunidad conectada, no a dos separadas. JoinOrigin está construido precisamente con ese objetivo de conectar personas, y el modelo funciona tanto para una comunidad que ya existe como para una que apenas comienza: un grupo presencial consolidado puede añadir una mitad en línea, y una comunidad en línea puede empezar a reunirse localmente.',
-    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, unirse y crear comunidades — de modo que un grupo híbrido tiene una sola sala que conecta las partes en línea y (posteriormente) presenciales: los miembros locales y remotos ven la misma comunidad, el mismo ritmo y los mismos siguientes pasos. En el modelo digital conectar→unirse→sala, la sala es la superficie persistente donde viven ambas mitades de la comunidad entre reuniones; el evento presencial es una consecuencia posterior que la sala mantiene unida antes y después. JoinOrigin no ofrece herramientas de eventos ni gestiona eventos híbridos: la plataforma da a cualquier comunidad — híbrida incluida — una sola sala donde sus miembros se mantienen conectados.',
+    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, unirse y crear Origins — de modo que un grupo híbrido tiene una sola sala que conecta las partes en línea y (posteriormente) presenciales: los miembros locales y remotos ven la misma comunidad, el mismo ritmo y los mismos siguientes pasos. En el modelo digital conectar→unirse→sala, la sala es la superficie persistente donde viven ambas mitades de la comunidad entre reuniones; el evento presencial es una consecuencia posterior que la sala mantiene unida antes y después. JoinOrigin no ofrece herramientas de eventos ni gestiona eventos híbridos: la plataforma da a cualquier comunidad — híbrida incluida — una sola sala donde sus miembros se mantienen conectados.',
     'Esta guía cubre las decisiones prácticas que hacen que las comunidades híbridas tengan éxito — tanto para grupos nuevos como para los existentes: decidir si el modelo híbrido es el adecuado, construir la sala que ambas audiencias comparten, elegir un formato y herramientas que encajen, diseñar la reunión para que los miembros presenciales y en línea compartan la misma experiencia, gestionar el espacio para que ningún lado domine y mantener una sala persistente que mantenga unida a la comunidad entre reuniones. Cada paso muestra dónde ayuda JoinOrigin.',
   ],
   dataPoints: [
     'Una comunidad híbrida es una comunidad con dos puntos de entrada, no dos audiencias a las que atender por separado.',
     'La sala es el tejido conectivo: un lugar compartido donde ambas audiencias ven las mismas novedades, notas y siguientes pasos.',
     'Las herramientas simples y fiables — un enlace de video, un documento compartido — reducen la fricción que mata las reuniones híbridas.',
-    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar o crear comunidades; no ofrece herramientas de eventos ni gestiona eventos híbridos.',
+    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar o crear Origins; no ofrece herramientas de eventos ni gestiona eventos híbridos.',
   ],
   faq: [
     {
@@ -50,7 +50,7 @@ const content: GuideContent = {
     {
       question: '¿Puede JoinOrigin ayudarme a gestionar una comunidad híbrida?',
       answer:
-        'Sí. JoinOrigin ayuda a las personas a encontrar y crear comunidades: una sala donde los miembros locales y remotos se mantienen conectados. JoinOrigin no ofrece herramientas de eventos, por lo que las prácticas híbridas prácticas de esta guía funcionan con las herramientas que ya tienes.',
+        'Sí. JoinOrigin ayuda a las personas a encontrar y crear Origins: una sala donde los miembros locales y remotos se mantienen conectados. JoinOrigin no ofrece herramientas de eventos, por lo que las prácticas híbridas prácticas de esta guía funcionan con las herramientas que ya tienes.',
     },
   ],
   sections: [

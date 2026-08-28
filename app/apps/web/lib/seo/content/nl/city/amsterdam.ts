@@ -13,29 +13,29 @@ const content: CityContent = {
   pageTitles: {
     city: 'Origins in Amsterdam | JoinOrigin',
     cityDescription:
-      'Vind of start community’s in Amsterdam — startup-, creatieve, politieke, meetup- en kleine-bedrijfsgroepen in de Nederlandse hoofdstad. Wachtlijst van JoinOrigin.',
+      'Vind of start Origins in Amsterdam — startup-, creatieve, politieke, meetup- en kleine-bedrijfsgroepen in de Nederlandse hoofdstad. Wachtlijst van JoinOrigin.',
     variants: {
-      startup: 'Startup-community’s in Amsterdam | JoinOrigin',
-      creative: 'Creatieve community’s in Amsterdam | JoinOrigin',
-      political: 'Politieke & burgerlijke community’s in Amsterdam | JoinOrigin',
-      meetup: 'Meetup- & sociale community’s in Amsterdam | JoinOrigin',
-      'small-business': 'Kleine-bedrijven-community’s in Amsterdam | JoinOrigin',
+      startup: 'Startup-Origins in Amsterdam | JoinOrigin',
+      creative: 'Creatieve Origins in Amsterdam | JoinOrigin',
+      political: 'Politieke & burgerlijke Origins in Amsterdam | JoinOrigin',
+      meetup: 'Meetup- & sociale Origins in Amsterdam | JoinOrigin',
+      'small-business': 'Kleine-bedrijven-Origins in Amsterdam | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Vind of start startup-community’s in Amsterdam — founders, engineers en operators rond TQ, de Zuidas en de fintech-scene. Wachtlijst van JoinOrigin.',
+        'Vind of start startup-Origins in Amsterdam — founders, engineers en operators rond TQ, de Zuidas en de fintech-scene. Wachtlijst van JoinOrigin.',
       creative:
-        'Vind of start creatieve community’s in Amsterdam — studio’s, galeries en collectieven in NDSM, de Jordaan en Oost. Wachtlijst van JoinOrigin.',
+        'Vind of start creatieve Origins in Amsterdam — studio’s, galeries en collectieven in NDSM, de Jordaan en Oost. Wachtlijst van JoinOrigin.',
       political:
-        'Vind of start politieke en burgerlijke community’s in Amsterdam — stadsdeelraden, woonactivism en buurtnetwerken. Wachtlijst van JoinOrigin.',
+        'Vind of start politieke en burgerlijke Origins in Amsterdam — stadsdeelraden, woonactivism en buurtnetwerken. Wachtlijst van JoinOrigin.',
       meetup:
-        'Vind of start meetup- en sociale community’s in Amsterdam — bruine cafés, borrels, fietsgroepen en bijeenkomsten aan de grachten. Wachtlijst van JoinOrigin.',
+        'Vind of start meetup- en sociale Origins in Amsterdam — bruine cafés, borrels, fietsgroepen en bijeenkomsten aan de grachten. Wachtlijst van JoinOrigin.',
       'small-business':
-        'Vind of start kleine-bedrijven-community’s in Amsterdam — winkels in de Jordaan, marktkooplieden van de Albert Cuyp en buurtnetwerken. Wachtlijst van JoinOrigin.',
+        'Vind of start kleine-bedrijven-Origins in Amsterdam — winkels in de Jordaan, marktkooplieden van de Albert Cuyp en buurtnetwerken. Wachtlijst van JoinOrigin.',
     },
     ideas: '30 ideeën voor Origin-evenementen in Amsterdam | JoinOrigin',
     ideasDescription:
-      'Ontdek 30 ideeën voor community-evenementen in Amsterdam — netwerk-, leer-, outdoor-, professionele, creatieve en impactevenementen. Wachtlijst van JoinOrigin.',
+      'Ontdek 30 ideeën voor Origin-evenementen in Amsterdam — netwerk-, leer-, outdoor-, professionele, creatieve en impactevenementen. Wachtlijst van JoinOrigin.',
   },
   intro: [
     'Amsterdam is een compacte stad waar iedereen wel iemand kent die iemand kent. De grachtengordel, de Jordaan, De Pijp, Oost en Noord hebben elk hun eigen karakter, maar de hele stad staat op menselijke schaal — je fietst in vijftien minuten van de ene community naar de andere. De fiets is het echte sociale netwerk: groepstochten, fietsende ouders die carpoolen en na het werk naar een barbecue in het park fietsen horen bij het dagelijks leven.',
@@ -438,14 +438,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: 'Hoe vind ik een community in Amsterdam?',
+      question: 'Hoe vind ik een Origin in Amsterdam?',
       answer:
-        'Gebruik de groepstype-pagina’s voor startup-, creatieve, politieke, meetup- en kleine-bedrijven-community’s. Elke pagina beschrijft de echte buurten, locaties en formats waar Amsterdammers samenkomen. JoinOrigin is live — maak je profiel aan en vind of start vandaag je community.',
+        'Gebruik de groepstype-pagina’s voor startup-, creatieve, politieke, meetup- en kleine-bedrijven-community’s. Elke pagina beschrijft de echte buurten, locaties en formats waar Amsterdammers samenkomen. JoinOrigin is live — maak je profiel aan en vind of start vandaag je Origin.',
     },
     {
-      question: 'Is het realistisch om een community in Amsterdam te starten?',
+      question: 'Is het realistisch om een Origin in Amsterdam te starten?',
       answer:
-        'Ja. Amsterdam is compact, gastvrij en vol natuurlijke locaties — bruine cafés, parken en buurthuizen. De handleidingen behandelen het starten van een community, het organiseren van een meetup en het binnenhalen van je eerste tien leden.',
+        'Ja. Amsterdam is compact, gastvrij en vol natuurlijke locaties — bruine cafés, parken en buurthuizen. De handleidingen behandelen het starten van een Origin, het organiseren van een meetup en het binnenhalen van je eerste tien leden.',
     },
     {
       question: 'Zijn de locatiesuggesties op deze pagina echt?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Heeft JoinOrigin een kantoor in Amsterdam?',
       answer:
-        'Nee. JoinOrigin heeft geen lokale kantoren of personeel. Alle communitybeschrijvingen weerspiegelen het echte stadslandschap en het platform helpt Amsterdammers community’s te vinden of te starten.',
+        'Nee. JoinOrigin heeft geen lokale kantoren of personeel. Alle communitybeschrijvingen weerspiegelen het echte stadslandschap en het platform helpt Amsterdammers Origins te vinden of te starten.',
     },
   ],
 };

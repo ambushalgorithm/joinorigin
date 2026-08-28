@@ -10,40 +10,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'pt-BR',
   slug: 'rio-de-janeiro',
-  title: 'Comunidades no Rio de Janeiro | JoinOrigin',
+  title: 'Origins no Rio de Janeiro | JoinOrigin',
   description:
-    'Encontre ou comece comunidades no Rio de Janeiro — grupos de startups, criativos, políticos, encontros e pequenas empresas. Lista de espera da JoinOrigin.',
+    'Encontre ou comece Origins no Rio de Janeiro — grupos de startups, criativos, políticos, encontros e pequenas empresas. Lista de espera da JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades no Rio de Janeiro | JoinOrigin',
+    city: 'Origins no Rio de Janeiro | JoinOrigin',
     cityDescription:
-      'Encontre ou comece comunidades no Rio de Janeiro — grupos de startups, criativos, políticos, encontros e pequenas empresas. Lista de espera da JoinOrigin.',
+      'Encontre ou comece Origins no Rio de Janeiro — grupos de startups, criativos, políticos, encontros e pequenas empresas. Lista de espera da JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups no Rio de Janeiro | JoinOrigin',
-      creative: 'Comunidades criativas no Rio de Janeiro | JoinOrigin',
-      political: 'Comunidades políticas e cívicas no Rio de Janeiro | JoinOrigin',
-      meetup: 'Encontros e comunidades sociais no Rio de Janeiro | JoinOrigin',
-      'small-business': 'Comunidades de pequenas empresas no Rio de Janeiro | JoinOrigin',
+      startup: 'Origins de startups no Rio de Janeiro | JoinOrigin',
+      creative: 'Origins criativos no Rio de Janeiro | JoinOrigin',
+      political: 'Origins políticos e cívicos no Rio de Janeiro | JoinOrigin',
+      meetup: 'Encontros e Origins sociais no Rio de Janeiro | JoinOrigin',
+      'small-business': 'Origins de pequenas empresas no Rio de Janeiro | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encontre ou comece comunidades de startups no Rio de Janeiro — fundadores, engenheiros e operadores em Botafogo, Ipanema e no Centro. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins de startups no Rio de Janeiro — fundadores, engenheiros e operadores em Botafogo, Ipanema e no Centro. Lista de espera da JoinOrigin.',
       creative:
-        'Encontre ou comece comunidades criativas no Rio de Janeiro — estúdios, escolas de samba e coletivos em Lapa, Santa Teresa e no Centro. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins criativos no Rio de Janeiro — estúdios, escolas de samba e coletivos em Lapa, Santa Teresa e no Centro. Lista de espera da JoinOrigin.',
       political:
-        'Encontre ou comece comunidades políticas e cívicas no Rio de Janeiro — moradia, transporte e participação comunitária. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins políticos e cívicos no Rio de Janeiro — moradia, transporte e participação comunitária. Lista de espera da JoinOrigin.',
       meetup:
-        'Encontre ou comece comunidades de encontros no Rio de Janeiro — praia, trilhas na floresta e rodas de samba. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins de encontros no Rio de Janeiro — praia, trilhas na floresta e rodas de samba. Lista de espera da JoinOrigin.',
       'small-business':
-        'Encontre ou comece comunidades de pequenas empresas no Rio de Janeiro — quiosques, feirantes e lojas de bairro. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins de pequenas empresas no Rio de Janeiro — quiosques, feirantes e lojas de bairro. Lista de espera da JoinOrigin.',
     },
-    ideas: '30 ideias de eventos comunitários no Rio de Janeiro | JoinOrigin',
+    ideas: '30 ideias de eventos de Origins no Rio de Janeiro | JoinOrigin',
     ideasDescription:
-      'Descubra 30 ideias de eventos comunitários no Rio de Janeiro — eventos de networking, aprendizado, ao ar livre, profissionais, criativos e de impacto. Lista de espera da JoinOrigin.',
+      'Descubra 30 ideias de eventos de Origins no Rio de Janeiro — eventos de networking, aprendizado, ao ar livre, profissionais, criativos e de impacto. Lista de espera da JoinOrigin.',
   },
   intro: [
     'O Rio de Janeiro é a segunda maior cidade do Brasil — cerca de 6,7 milhões de pessoas dentro dos limites da cidade e mais de treze milhões na região metropolitana — situada entre o oceano, as montanhas e a Floresta da Tijuca de um jeito que molda todas as partes da sua vida. As praias de Copacabana, Ipanema e Leblon são as salas de estar da cidade: vôlei, futevôlei, corrida e encontros casuais acontecem lá todos os dias do ano.',
     'O Rio é a capital cultural da música e do carnaval brasileiros: as escolas de samba se preparam o ano todo para os desfiles, o bairro da Lapa abriga uma vida noturna lendária e rodas de samba, e os blocos de rua transformam bairros inteiros em festivais. Marcos como o Pão de Açúcar, o Cristo Redentor, o Jardim Botânico e a Escadaria Selarón atraem visitantes, mas também são partes reais da vida cotidiana. UFRJ, PUC-Rio e UERJ alimentam fluxos constantes de estudantes e pesquisadores nas comunidades da cidade, e a cidade também é um polo crescente de trabalho criativo, tecnologia e economia do oceano.',
-    'O Rio é uma cidade de forte sentimento comunitário — a palavra comunidade é usada com orgulho — e sua geografia cria lugares de encontro naturais. Para encontrar ou começar uma comunidade, o Rio recompensa um formato casual e caloroso: uma sessão de praia, uma roda de samba, uma visita guiada a uma favela com um guia local, uma trilha na floresta. A cidade funciona por relacionamentos e boca a boca, então um evento semanal consistente com boas-vindas calorosas vai se espalhar rápido.',
+    'O Rio é uma cidade de forte sentimento comunitário — a palavra comunidade é usada com orgulho — e sua geografia cria lugares de encontro naturais. Para encontrar ou começar um Origin, o Rio recompensa um formato casual e caloroso: uma sessão de praia, uma roda de samba, uma visita guiada a uma favela com um guia local, uma trilha na floresta. A cidade funciona por relacionamentos e boca a boca, então um evento semanal consistente com boas-vindas calorosas vai se espalhar rápido.',
   ],
   dataPoints: [
     'Cerca de 6,7 milhões de moradores; mais de 13 milhões na região metropolitana.',
@@ -167,15 +167,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'A cena de startups do Rio de Janeiro é menor do que a de São Paulo, mas distinta, construída sobre os pontos fortes da cidade na economia do oceano, nas indústrias criativas, no turismo e na tecnologia climática. Botafogo e Ipanema abrigam coworkings e escritórios de startups, o Centro ancora a camada corporativa, e universidades como UFRJ e PUC-Rio alimentam talento em engenharia e pesquisa. O que torna o Rio diferente é a qualidade de vida: fundadores trabalham na praia, investidores fazem reuniões com vista para o mar, e a cena funciona por relacionamentos e boca a boca em vez de instituições formais. A cidade é um polo natural para tech do oceano e do clima — energia das ondas, resiliência costeira, turismo sustentável — e sua economia criativa dá às startups acesso incomum a designers, cineastas e músicos. Formatos estabelecidos incluem cafés da manhã de fundadores, noites de demo e painéis do setor, muitos amigáveis para iniciantes. Conselho honesto para começar uma comunidade de startups no Rio: escolha um vertical, ancore-se a um bairro e abrace o estilo caloroso e informal da cidade — um evento semanal consistente na praia construirá uma base fiel.',
+      'A cena de startups do Rio de Janeiro é menor do que a de São Paulo, mas distinta, construída sobre os pontos fortes da cidade na economia do oceano, nas indústrias criativas, no turismo e na tecnologia climática. Botafogo e Ipanema abrigam coworkings e escritórios de startups, o Centro ancora a camada corporativa, e universidades como UFRJ e PUC-Rio alimentam talento em engenharia e pesquisa. O que torna o Rio diferente é a qualidade de vida: fundadores trabalham na praia, investidores fazem reuniões com vista para o mar, e a cena funciona por relacionamentos e boca a boca em vez de instituições formais. A cidade é um polo natural para tech do oceano e do clima — energia das ondas, resiliência costeira, turismo sustentável — e sua economia criativa dá às startups acesso incomum a designers, cineastas e músicos. Formatos estabelecidos incluem cafés da manhã de fundadores, noites de demo e painéis do setor, muitos amigáveis para iniciantes. Conselho honesto para começar um Origin de startups no Rio: escolha um vertical, ancore-se a um bairro e abrace o estilo caloroso e informal da cidade — um evento semanal consistente na praia construirá uma base fiel.',
     creative:
-      'As comunidades criativas do Rio de Janeiro são inseparáveis da identidade da cidade: samba, bossa nova, carnaval, cinema e arte de rua cresceram dos bairros desta cidade e permanecem vivos em locais por todo o Rio. A Lapa é o coração musical — seus bares e rodas de samba atraem locais e visitantes todas as noites da semana — enquanto Santa Teresa abriga estúdios de artistas e cafés boêmios em suas ruas de encosta. A cultura do carnaval da cidade é uma indústria criativa o ano todo: escolas de samba, costureiras de fantasia e músicos se preparam por meses, e os blocos de rua transformam bairros em palcos. Os murais da zona portuária e a Escadaria Selarón adicionam uma camada de arte de rua famosa no mundo. A UFRJ e as instituições de artes da cidade alimentam novos talentos a cada ano. Começar uma comunidade criativa no Rio significa escolher uma disciplina e um bairro e depois usar a profunda cultura musical e visual da cidade para construir algo com alma genuína.',
+      'As comunidades criativas do Rio de Janeiro são inseparáveis da identidade da cidade: samba, bossa nova, carnaval, cinema e arte de rua cresceram dos bairros desta cidade e permanecem vivos em locais por todo o Rio. A Lapa é o coração musical — seus bares e rodas de samba atraem locais e visitantes todas as noites da semana — enquanto Santa Teresa abriga estúdios de artistas e cafés boêmios em suas ruas de encosta. A cultura do carnaval da cidade é uma indústria criativa o ano todo: escolas de samba, costureiras de fantasia e músicos se preparam por meses, e os blocos de rua transformam bairros em palcos. Os murais da zona portuária e a Escadaria Selarón adicionam uma camada de arte de rua famosa no mundo. A UFRJ e as instituições de artes da cidade alimentam novos talentos a cada ano. Começar um Origin criativo no Rio significa escolher uma disciplina e um bairro e depois usar a profunda cultura musical e visual da cidade para construir algo com alma genuína.',
     political:
-      'As comunidades políticas e cívicas do Rio de Janeiro são moldadas pela geografia dramática da cidade e por suas desigualdades profundas: favelas, bairros formais e ativos ambientais existem lado a lado, e as associações de moradores são uma força poderosa na vida local. Moradia e direito à terra são questões definidoras — muitas comunidades se organizam em torno de posse, melhorias e serviços públicos — e as favelas da cidade têm uma forte tradição de autoorganização e ajuda mútua. Enchentes, risco de deslizamento e mudança climática movem redes de preparação e ativismo ambiental, enquanto grupos de transporte e mobilidade pressionam por melhor serviço de metrô e ônibus. Comunidades de tech cívica constroem ferramentas para dados abertos e participação pública, e redes de voluntários organizam limpezas de praia, plantio de árvores e programas sociais. A cultura política recompensa persistência, confiança comunitária e construção genuína de relacionamentos — organizadores que vivem nas e com as comunidades são os que movem as coisas para frente. Começar uma comunidade cívica no Rio geralmente significa escolher uma questão concreta e uma geografia pequena e depois fazer parceria com o rico cenário de associações existente.',
+      'As comunidades políticas e cívicas do Rio de Janeiro são moldadas pela geografia dramática da cidade e por suas desigualdades profundas: favelas, bairros formais e ativos ambientais existem lado a lado, e as associações de moradores são uma força poderosa na vida local. Moradia e direito à terra são questões definidoras — muitas comunidades se organizam em torno de posse, melhorias e serviços públicos — e as favelas da cidade têm uma forte tradição de autoorganização e ajuda mútua. Enchentes, risco de deslizamento e mudança climática movem redes de preparação e ativismo ambiental, enquanto grupos de transporte e mobilidade pressionam por melhor serviço de metrô e ônibus. Comunidades de tech cívica constroem ferramentas para dados abertos e participação pública, e redes de voluntários organizam limpezas de praia, plantio de árvores e programas sociais. A cultura política recompensa persistência, confiança comunitária e construção genuína de relacionamentos — organizadores que vivem nas e com as comunidades são os que movem as coisas para frente. Começar um Origin cívico no Rio geralmente significa escolher uma questão concreta e uma geografia pequena e depois fazer parceria com o rico cenário de associações existente.',
     meetup:
       'A cultura de encontros do Rio de Janeiro é construída na praia e nas colinas: vôlei de praia e futevôlei racha em Copacabana, encontros ao pôr do sol em Ipanema, trilhas de domingo pela Floresta da Tijuca e rodas de samba na Lapa. A geografia da cidade cria pontos de encontro naturais — um quiosque de praia, uma entrada de trilha, uma praça de bairro — e o clima tropical significa que formatos ao ar livre rodam o ano todo. O Rio também é uma cidade de festivais: os blocos da temporada de carnaval e as muitas celebrações de bairro dão aos grupos ocasiões prontas para se reunir. O estilo social caloroso e informal da cidade significa que recém-chegados são recebidos rápido e o boca a boca espalha eventos depressa. Formatos com poder de permanência são simples e repetíveis: uma sessão semanal de praia, uma trilha mensal, uma noite fixa de samba. Conselho honesto para começar um encontro no Rio: escolha um ponto de encontro marcante, um formato que combine com a energia casual da cidade e deixe o calor das pessoas fazer o trabalho de crescimento.',
     'small-business':
-      'As comunidades de pequenas empresas do Rio de Janeiro são construídas nas ruas, praias e mercados da cidade: o dono do quiosque na praia de Copacabana, o dono de bar da Lapa, o ateliê de Santa Teresa, o feirante e a boutique de Ipanema compartilham todas as questões práticas sobre aluguel, licenças, equipe e o ritmo das temporadas de turismo. Os mercados e feiras da cidade dão aos feirantes comunidades naturais, e corredores comerciais em Copacabana, Ipanema e no Centro reúnem clusters de lojas com interesse compartilhado em movimento de pedestres. Associações comerciais e centros de pequenas empresas da cidade oferecem oficinas sobre licenciamento, crédito e venda digital, e a enorme economia de turismo da cidade significa que muitos pequenos negócios vivem e morrem pelo planejamento sazonal. Os quiosques de praia são uma instituição única do Rio — pequenos negócios licenciados que ancoram a vida na praia. Novos participantes normalmente se conectam participando de uma reunião de corredor, fazendo uma oficina municipal ou entrando em um coletivo de feirantes. Começar uma comunidade de pequenas empresas aqui é realista: uma mesa redonda mensal em um café de bairro, com temas rotativos como aluguel, seguro e planejamento da temporada de carnaval, atrai de forma confiável donos que raramente têm pares com quem conversar.',
+      'As comunidades de pequenas empresas do Rio de Janeiro são construídas nas ruas, praias e mercados da cidade: o dono do quiosque na praia de Copacabana, o dono de bar da Lapa, o ateliê de Santa Teresa, o feirante e a boutique de Ipanema compartilham todas as questões práticas sobre aluguel, licenças, equipe e o ritmo das temporadas de turismo. Os mercados e feiras da cidade dão aos feirantes comunidades naturais, e corredores comerciais em Copacabana, Ipanema e no Centro reúnem clusters de lojas com interesse compartilhado em movimento de pedestres. Associações comerciais e centros de pequenas empresas da cidade oferecem oficinas sobre licenciamento, crédito e venda digital, e a enorme economia de turismo da cidade significa que muitos pequenos negócios vivem e morrem pelo planejamento sazonal. Os quiosques de praia são uma instituição única do Rio — pequenos negócios licenciados que ancoram a vida na praia. Novos participantes normalmente se conectam participando de uma reunião de corredor, fazendo uma oficina municipal ou entrando em um coletivo de feirantes. Começar um Origin de pequenas empresas aqui é realista: uma mesa redonda mensal em um café de bairro, com temas rotativos como aluguel, seguro e planejamento da temporada de carnaval, atrai de forma confiável donos que raramente têm pares com quem conversar.',
   },
   ideaPage: {
     intro:
@@ -439,14 +439,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: 'Como encontro uma comunidade no Rio de Janeiro?',
+      question: 'Como encontro um Origin no Rio de Janeiro?',
       answer:
-        'Comece pelas páginas de tipo de grupo: comunidades de startups, criativas, políticas, de encontros e de pequenas empresas. Cada uma descreve os bairros, locais e formatos reais onde os cariocas se reúnem. A JoinOrigin está no ar — crie seu perfil e encontre ou comece sua comunidade hoje.',
+        'Comece pelas páginas de tipo de grupo: Origins de startups, criativos, políticos, de encontros e de pequenas empresas. Cada uma descreve os bairros, locais e formatos reais onde os cariocas se reúnem. A JoinOrigin está no ar — crie seu perfil e encontre ou comece seu Origin hoje.',
     },
     {
-      question: 'É realista começar uma comunidade no Rio de Janeiro?',
+      question: 'É realista começar um Origin no Rio de Janeiro?',
       answer:
-        'Sim. A cidade tem locais públicos gratuitos, uma cultura social calorosa e uma vida musical rica. Os guias cobrem como começar uma comunidade, organizar um encontro e conseguir seus primeiros dez membros.',
+        'Sim. A cidade tem locais públicos gratuitos, uma cultura social calorosa e uma vida musical rica. Os guias cobrem como começar um Origin, organizar um encontro e conseguir seus primeiros dez membros.',
     },
     {
       question: 'As sugestões de locais nesta página são reais?',
@@ -456,7 +456,7 @@ const content: CityContent = {
     {
       question: 'A JoinOrigin tem um escritório no Rio de Janeiro?',
       answer:
-        'Não. A JoinOrigin não tem escritórios nem equipe locais. Todas as descrições de comunidade refletem o cenário real da cidade, e a plataforma ajuda os cariocas a encontrar ou começar comunidades.',
+        'Não. A JoinOrigin não tem escritórios nem equipe locais. Todas as descrições de comunidade refletem o cenário real da cidade, e a plataforma ajuda os cariocas a encontrar ou começar Origins.',
     },
   ],
 };

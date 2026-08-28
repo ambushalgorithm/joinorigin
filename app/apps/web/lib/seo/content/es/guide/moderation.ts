@@ -19,19 +19,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'es',
   slug: 'moderation',
-  title: 'Moderación de la comunidad: cómo mantener grupos sanos y acogedores | JoinOrigin',
+  title: 'Moderación de Origins: cómo mantener grupos sanos y acogedores | JoinOrigin',
   description:
     'Modera una comunidad con reglas claras, acción temprana y desescalada — ya sea que estés configurando un grupo totalmente nuevo o arreglando la cultura de uno consolidado — el control del creador es la propiedad de la sala Matrix, con roles aplicados en Element. Pasos prácticos de JoinOrigin.',
   intro: [
     'Toda comunidad que crece acabará enfrentando un momento que pone a prueba su cultura: una discusión acalorada, un spammer, un miembro que incomoda a otros o un malentendido que escala. La moderación es la práctica de proteger el espacio para que la comunidad pueda seguir siendo acogedora, y solo se vuelve necesaria porque las comunidades están hechas de personas que se conectan entre sí. Esa conexión es el problema central con el que JoinOrigin ayuda — y las prácticas se aplican tanto a una comunidad consolidada que arregla su cultura como a un grupo nuevo que fija expectativas antes de que llegue el primer miembro.',
-    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, crear y organizar comunidades — y en su modelo digital, una comunidad vive en una sala controlada por el creador. El control del creador es la propiedad estándar de la sala Matrix: el creador puede invitar y eliminar miembros, asignar roles, editar la configuración de la sala, fijar mensajes y archivar la sala — todo aplicado de forma nativa dentro de Element, el cliente de chat por defecto, sin un sistema de permisos personalizado. Esa propiedad es la columna vertebral de la moderación en JoinOrigin: el creador decide quién pertenece, cuáles son las reglas y qué ocurre cuando se rompe una regla. JoinOrigin no modera comunidades de terceros ni ofrece personal de moderación. La plataforma está diseñada en torno a una estructura comunitaria sana, y las prácticas de esta guía son las prácticas humanas que todo organizador necesita.',
-    'Esta guía expone un sistema de moderación práctico — ya sea que tu comunidad sea totalmente nueva o tenga años de historia que limpiar: reglas comunitarias escritas, cortas y específicas, un camino de aplicación claro con advertencias antes de las expulsiones, técnicas para desescalar situaciones tensas y consejo honesto sobre cuándo involucrar a los miembros y cuándo actuar solo. Cada paso muestra dónde ayuda JoinOrigin.',
+    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, crear y organizar Origins — y en su modelo digital, una comunidad vive en una sala controlada por el creador. El control del creador es la propiedad estándar de la sala Matrix: el creador puede invitar y eliminar miembros, asignar roles, editar la configuración de la sala, fijar mensajes y archivar la sala — todo aplicado de forma nativa dentro de Element, el cliente de chat por defecto, sin un sistema de permisos personalizado. Esa propiedad es la columna vertebral de la moderación en JoinOrigin: el creador decide quién pertenece, cuáles son las reglas y qué ocurre cuando se rompe una regla. JoinOrigin no modera comunidades de terceros ni ofrece personal de moderación. La plataforma está diseñada en torno a una estructura comunitaria sana, y las prácticas de esta guía son las prácticas humanas que todo organizador necesita.',
+    'Esta guía expone un sistema de moderación práctico — ya sea que tu Origin sea totalmente nuevo o tenga años de historia que limpiar: reglas comunitarias escritas, cortas y específicas, un camino de aplicación claro con advertencias antes de las expulsiones, técnicas para desescalar situaciones tensas y consejo honesto sobre cuándo involucrar a los miembros y cuándo actuar solo. Cada paso muestra dónde ayuda JoinOrigin.',
   ],
   dataPoints: [
     'Las reglas comunitarias claras y escritas reducen los conflictos al fijar expectativas antes de que ocurran los incidentes.',
     'El control del creador en JoinOrigin es la propiedad de la sala Matrix: invitar/eliminar, roles, configuración, fijar y archivar.',
     'Un camino de aplicación por etapas — advertir, luego limitar, luego eliminar — es más justo y más fácil de defender que las expulsiones instantáneas.',
-    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, crear y organizar comunidades; no modera comunidades de terceros ni ofrece personal de moderación.',
+    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, crear y organizar Origins; no modera comunidades de terceros ni ofrece personal de moderación.',
   ],
   faq: [
     {
@@ -50,7 +50,7 @@ const content: GuideContent = {
         'Después de que las advertencias claras no hayan funcionado, o de inmediato ante comportamientos que pongan en peligro a los miembros: acoso, amenazas o doxing. La prueba es si la persona está haciendo activamente que el espacio sea inseguro para otros. En JoinOrigin, la eliminación es el propietario de la sala eliminando a un miembro de la sala.',
     },
     {
-      question: '¿Puede JoinOrigin ayudarme a moderar mi comunidad?',
+      question: '¿Puede JoinOrigin ayudarme a moderar mi Origin?',
       answer:
         'Sí. JoinOrigin es un sistema operativo comunitario donde el control del creador es la propiedad de la sala Matrix: invitar/eliminar, roles, configuración, fijar y archivar, aplicados en Element. JoinOrigin no modera comunidades, por lo que las prácticas de esta guía — reglas claras, aplicación por etapas y desescalada tranquila — son tuyas para aplicarlas.',
     },

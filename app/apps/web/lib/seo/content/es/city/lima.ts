@@ -13,40 +13,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'es',
   slug: 'lima',
-  title: 'Comunidades en Lima | JoinOrigin',
+  title: 'Origins en Lima | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Lima — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Lima — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades en Lima | JoinOrigin',
+    city: 'Origins en Lima | JoinOrigin',
     cityDescription:
-      'Encuentra o crea comunidades en Lima — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+      'Encuentra o crea Origins en Lima — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups en Lima | JoinOrigin',
-      creative: 'Comunidades creativas y de diseño en Lima | JoinOrigin',
-      political: 'Comunidades políticas y cívicas en Lima | JoinOrigin',
+      startup: 'Origins de startups en Lima | JoinOrigin',
+      creative: 'Origins creativos y de diseño en Lima | JoinOrigin',
+      political: 'Origins políticos y cívicos en Lima | JoinOrigin',
       meetup: 'Encuentros y eventos comunitarios en Lima | JoinOrigin',
-      'small-business': 'Comunidades de pequeñas empresas en Lima | JoinOrigin',
+      'small-business': 'Origins de pequeñas empresas en Lima | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encuentra o crea comunidades de startups en Lima — fundadores, constructores y equipos tempranos en Miraflores y San Isidro. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de startups en Lima — fundadores, constructores y equipos tempranos en Miraflores y San Isidro. Lista de espera de JoinOrigin.',
       creative:
-        'Encuentra o crea comunidades creativas y de diseño en Lima — galerías, estudios y peñas en Barranco, Miraflores y el Centro Histórico. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins creativos y de diseño en Lima — galerías, estudios y peñas en Barranco, Miraflores y el Centro Histórico. Lista de espera de JoinOrigin.',
       political:
-        'Encuentra o crea comunidades políticas y cívicas en Lima — vivienda, movilidad, agua y participación. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins políticos y cívicos en Lima — vivienda, movilidad, agua y participación. Lista de espera de JoinOrigin.',
       meetup:
         'Encuentra o crea encuentros y eventos comunitarios en Lima — paseos por el Malecón, playas de la Costa Verde y cevicherías. Lista de espera de JoinOrigin.',
       'small-business':
-        'Encuentra o crea comunidades de pequeñas empresas en Lima — cevicherías, bodegas y boutiques de Barranco. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de pequeñas empresas en Lima — cevicherías, bodegas y boutiques de Barranco. Lista de espera de JoinOrigin.',
     },
-    ideas: '30 ideas de eventos comunitarios en Lima | JoinOrigin',
+    ideas: '30 ideas de eventos de Origins en Lima | JoinOrigin',
     ideasDescription:
       '30 ideas realistas para eventos comunitarios en Lima — networking, aprendizaje, sociales y exteriores, profesionales, creativos e impacto. Para tu próximo evento.',
   },
   intro: [
     'Lima es la capital del Perú y una ciudad de unos 7,7 millones de habitantes — con más de diez millones en el área metropolitana — situada en la costa del Pacífico, donde el océano se encuentra con el desierto. La ciudad es famosa en todo el mundo por su comida: el ceviche, el pisco sour y una escena gastronómica que ha convertido a Lima en una capital culinaria global, con restaurantes, mercados y escuelas de cocina que alimentan una cultura profunda de comer juntos.',
     'La ciudad es el centro económico y de startups del Perú, con una escena fintech y creativa en crecimiento, y sus barrios tienen personalidades distintas: Miraflores y Barranco para los cafés, el arte y los acantilados del océano; San Isidro para los negocios; y el Centro Histórico para las capas profundas de la historia: plazas coloniales, la universidad de San Marcos fundada en 1551 y huacas preincaicas (ruinas antiguas) en medio de las calles modernas. La PUCP, San Marcos y otras universidades alimentan flujos constantes de estudiantes e investigadores hacia las comunidades locales.',
-    'El clima de Lima es famosamente gris — una niebla costera llamada garúa cubre el cielo gran parte del año — pero la vida social de la ciudad es cálida y animada: el Malecón, las playas de la Costa Verde, los bares de Barranco y las cevicherías de cada barrio. Para encontrar o crear una comunidad, Lima recompensa elegir un barrio, un buen lugar y un grupo que celebre la comida de la ciudad y su cultura orgullosa y hospitalaria.',
+    'El clima de Lima es famosamente gris — una niebla costera llamada garúa cubre el cielo gran parte del año — pero la vida social de la ciudad es cálida y animada: el Malecón, las playas de la Costa Verde, los bares de Barranco y las cevicherías de cada barrio. Para encontrar o crear un Origin, Lima recompensa elegir un barrio, un buen lugar y un grupo que celebre la comida de la ciudad y su cultura orgullosa y hospitalaria.',
   ],
   dataPoints: [
     'Unos 7,7 millones de habitantes; más de 10 millones en el área metropolitana.',
@@ -170,15 +170,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'La escena de startups de Lima es la más grande del Perú y una fuerza en ascenso en América Latina, construida sobre un mercado de consumo en crecimiento, una fuerte ola fintech y una cultura alimentaria que está generando su propia industria food-tech. Miraflores y San Isidro concentran la mayor densidad de espacios de coworking y startups respaldadas por capital de riesgo, mientras que universidades como la PUCP y San Marcos alimentan año tras año a ingenieros y fundadores. Lo que hace distintiva a la escena es su conexión con las fortalezas del Perú: la gastronomía está produciendo una capa food-tech de startups de reparto, logística y cocinas, y la brecha de inclusión financiera del país ha hecho del fintech un foco natural. La escena es más pequeña y más colaborativa que la de Ciudad de México o São Paulo, lo que significa que los recién llegados pueden conocer genuinamente a la mayoría de las personas relevantes en unos meses. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear una comunidad de startups en Lima: elige una vertical, ancla en Miraflores o Barranco y apóyate en la calidez de la ciudad: un evento semanal constante construirá seguidores leales.',
+      'La escena de startups de Lima es la más grande del Perú y una fuerza en ascenso en América Latina, construida sobre un mercado de consumo en crecimiento, una fuerte ola fintech y una cultura alimentaria que está generando su propia industria food-tech. Miraflores y San Isidro concentran la mayor densidad de espacios de coworking y startups respaldadas por capital de riesgo, mientras que universidades como la PUCP y San Marcos alimentan año tras año a ingenieros y fundadores. Lo que hace distintiva a la escena es su conexión con las fortalezas del Perú: la gastronomía está produciendo una capa food-tech de startups de reparto, logística y cocinas, y la brecha de inclusión financiera del país ha hecho del fintech un foco natural. La escena es más pequeña y más colaborativa que la de Ciudad de México o São Paulo, lo que significa que los recién llegados pueden conocer genuinamente a la mayoría de las personas relevantes en unos meses. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear un Origin de startups en Lima: elige una vertical, ancla en Miraflores o Barranco y apóyate en la calidez de la ciudad: un evento semanal constante construirá seguidores leales.',
     creative:
-      'Las comunidades creativas de Lima prosperan en Barranco, el distrito bohemio de la ciudad con galerías, estudios de artistas, bares y acantilados sobre el océano. El barrio ha sido hogar de poetas, pintores y músicos peruanos durante generaciones, y su energía se extiende ahora al diseño, el cine y las artes culinarias en auge de la ciudad. Miraflores añade centros culturales y una escena de galerías sofisticada, mientras que el Centro Histórico superpone arquitectura colonial con museos que cuentan la historia profunda del Perú. Las peñas de la ciudad — espacios para la música tradicional peruana — mantienen viva la cultura andina y criolla, y el auge gastronómico ha convertido a los chefs en celebridades y a las escuelas de cocina en centros comunitarios. La niebla gris costera da a la ciudad una cultura creativa íntima e interior: los cafés, los estudios y las galerías son donde vive la escena. Crear una comunidad creativa en Lima significa elegir una disciplina y un barrio, y luego usar la rica herencia cultural de la ciudad y su audiencia orgullosa y expresiva para construir algo con alma real.',
+      'Las comunidades creativas de Lima prosperan en Barranco, el distrito bohemio de la ciudad con galerías, estudios de artistas, bares y acantilados sobre el océano. El barrio ha sido hogar de poetas, pintores y músicos peruanos durante generaciones, y su energía se extiende ahora al diseño, el cine y las artes culinarias en auge de la ciudad. Miraflores añade centros culturales y una escena de galerías sofisticada, mientras que el Centro Histórico superpone arquitectura colonial con museos que cuentan la historia profunda del Perú. Las peñas de la ciudad — espacios para la música tradicional peruana — mantienen viva la cultura andina y criolla, y el auge gastronómico ha convertido a los chefs en celebridades y a las escuelas de cocina en centros comunitarios. La niebla gris costera da a la ciudad una cultura creativa íntima e interior: los cafés, los estudios y las galerías son donde vive la escena. Crear un Origin creativo en Lima significa elegir una disciplina y un barrio, y luego usar la rica herencia cultural de la ciudad y su audiencia orgullosa y expresiva para construir algo con alma real.',
     political:
-      'Las comunidades políticas y cívicas de Lima están moldeadas por la escala de la ciudad, sus desigualdades y su papel como capital nacional: la vivienda, la movilidad, el agua y la seguridad pública son los temas que animan la organización local. La ciudad está dividida en distritos con alcaldes elegidos, lo que mantiene accesible la política local: los vecinos pueden asistir a las sesiones del concejo distrital y dar forma a las decisiones sobre uso del suelo y espacio público en su propio barrio. La asequibilidad de la vivienda y los asentamientos informales organizan grupos de inquilinos y movimientos comunitarios, mientras que los defensores del transporte y la movilidad impulsan un mejor servicio de Metro y buses en una de las ciudades más congestionadas de la región. La conciencia del clima y del agua es una prioridad creciente en una ciudad desértica, y las comunidades de civic tech construyen herramientas para datos abiertos y participación. La cultura política recompensa la persistencia, la construcción de confianza y el conocimiento del barrio. Crear una comunidad cívica en Lima suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con el denso paisaje existente de organizaciones.',
+      'Las comunidades políticas y cívicas de Lima están moldeadas por la escala de la ciudad, sus desigualdades y su papel como capital nacional: la vivienda, la movilidad, el agua y la seguridad pública son los temas que animan la organización local. La ciudad está dividida en distritos con alcaldes elegidos, lo que mantiene accesible la política local: los vecinos pueden asistir a las sesiones del concejo distrital y dar forma a las decisiones sobre uso del suelo y espacio público en su propio barrio. La asequibilidad de la vivienda y los asentamientos informales organizan grupos de inquilinos y movimientos comunitarios, mientras que los defensores del transporte y la movilidad impulsan un mejor servicio de Metro y buses en una de las ciudades más congestionadas de la región. La conciencia del clima y del agua es una prioridad creciente en una ciudad desértica, y las comunidades de civic tech construyen herramientas para datos abiertos y participación. La cultura política recompensa la persistencia, la construcción de confianza y el conocimiento del barrio. Crear un Origin cívico en Lima suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con el denso paisaje existente de organizaciones.',
     meetup:
       'La cultura de encuentros de Lima se construye sobre el Malecón, el paseo que corre por los acantilados del océano en Miraflores, y sobre las plazas, los cafés y las cevicherías que anclan la vida diaria. Caminatas y carreras de fin de semana por el Malecón, sesiones de surf en las playas de la Costa Verde, recorridos de ceviche por los mercados de barrio y sociales de café en Barranco: la ciudad funciona con estos ritmos. El clima gris y templado es en realidad un regalo para los organizadores: nunca hace demasiado calor ni demasiado frío, y los formatos al aire libre funcionan todo el año. La cultura alimentaria de la ciudad hace de comer juntos el formato social por defecto, y su creciente población internacional apoya los intercambios de idiomas y los sociales para recién llegados. Los formatos con poder de permanencia son simples y repetibles: una caminata por el Malecón, un recorrido mensual de ceviche, una noche de trivia fija. Consejo honesto para crear un encuentro en Lima: elige un barrio, un punto de encuentro emblemático y un formato que celebre la comida y la calidez de la ciudad: los limeños aparecerán por un grupo que se sienta real.',
     'small-business':
-      'Las comunidades de pequeñas empresas de Lima se construyen sobre las calles y los mercados de la ciudad: la cevichería, la bodega, la tienda-galería de Barranco, la boutique de Miraflores y el vendedor de mercado comparten preguntas prácticas sobre alquiler, permisos, personal y el flujo de clientes. Los mercados de la ciudad son comunidades en sí mismos — los vendedores se coordinan en torno a suministros, seguridad y clientes habituales — y los corredores comerciales de Miraflores, Barranco y el Centro concentran grupos de tiendas con un interés compartido en el tránsito peatonal. El auge gastronómico ha creado una poderosa red de negocios de comida: las cevicherías, los restaurantes chifa y las escuelas de cocina se alimentan mutuamente de clientes y talento. Las asociaciones comerciales y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de vendedores de mercado. Crear una comunidad de pequeñas empresas aquí es realista: una mesa redonda mensual en un café o cevichería de barrio, con temas rotativos como alquiler, seguros y pagos digitales, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
+      'Las comunidades de pequeñas empresas de Lima se construyen sobre las calles y los mercados de la ciudad: la cevichería, la bodega, la tienda-galería de Barranco, la boutique de Miraflores y el vendedor de mercado comparten preguntas prácticas sobre alquiler, permisos, personal y el flujo de clientes. Los mercados de la ciudad son comunidades en sí mismos — los vendedores se coordinan en torno a suministros, seguridad y clientes habituales — y los corredores comerciales de Miraflores, Barranco y el Centro concentran grupos de tiendas con un interés compartido en el tránsito peatonal. El auge gastronómico ha creado una poderosa red de negocios de comida: las cevicherías, los restaurantes chifa y las escuelas de cocina se alimentan mutuamente de clientes y talento. Las asociaciones comerciales y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de vendedores de mercado. Crear un Origin de pequeñas empresas aquí es realista: una mesa redonda mensual en un café o cevichería de barrio, con temas rotativos como alquiler, seguros y pagos digitales, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
   },
   ideaPage: {
     intro:
@@ -441,14 +441,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: '¿Cómo encuentro una comunidad en Lima?',
+      question: '¿Cómo encuentro un Origin en Lima?',
       answer:
-        'Empieza por las páginas de tipos de grupo: comunidades de startups, creativas, políticas, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los limeños. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu comunidad hoy mismo.',
+        'Empieza por las páginas de tipos de grupo: Origins de startups, creativos, políticos, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los limeños. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu Origin hoy mismo.',
     },
     {
-      question: '¿Es realista crear una comunidad en Lima?',
+      question: '¿Es realista crear un Origin en Lima?',
       answer:
-        'Sí. La ciudad tiene lugares públicos gratuitos, un clima templado todo el año y una cultura cálida y hospitalaria. Las guías cubren cómo crear una comunidad, organizar un encuentro y conseguir tus primeros diez miembros.',
+        'Sí. La ciudad tiene lugares públicos gratuitos, un clima templado todo el año y una cultura cálida y hospitalaria. Las guías cubren cómo crear un Origin, organizar un encuentro y conseguir tus primeros diez miembros.',
     },
     {
       question: '¿Las sugerencias de lugares de esta página son reales?',
@@ -458,7 +458,7 @@ const content: CityContent = {
     {
       question: '¿JoinOrigin tiene una oficina en Lima?',
       answer:
-        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los limeños a encontrar o crear comunidades.',
+        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los limeños a encontrar o crear Origins.',
     },
   ],
 };

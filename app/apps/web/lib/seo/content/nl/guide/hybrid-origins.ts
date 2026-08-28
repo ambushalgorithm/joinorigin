@@ -5,7 +5,7 @@ import type { GuideContent } from '../../types';
  *
  * Nederlandse vertaling van de EN-content, herijkt op het digitale
  * verbind→sluit-aan→kamer-model: de kamer is wat de online en (als gevolg)
- * fysieke delen van een hybride community verbindt — één community, één
+ * fysieke delen van een hybride Origin verbindt — één community, één
  * kamer, twee ingangen. De waarde van JoinOrigin zit in de intro en elke
  * stap (per stap een `joinOriginNote`), met eerlijke framing — JoinOrigin
  * biedt geen eventtools en bemant geen hybride evenementen. «Kamer»
@@ -16,19 +16,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'nl',
   slug: 'hybrid-origins',
-  title: 'Hybride community’s: hoe je fysiek en online samen laat draaien | JoinOrigin',
+  title: 'Hybride Origins: hoe je fysiek en online samen laat draaien | JoinOrigin',
   description:
-    'Draai een hybride community waarin de kamer fysieke en online leden verbindt — of je nu vers start of een bestaande community hybride maakt, kies de juiste tools, ontwerp gelijkwaardige deelname en houd beide doelgroepen betrokken. Van JoinOrigin.',
+    'Draai een hybride Origin waarin de kamer fysieke en online leden verbindt — of je nu vers start of een bestaand Origin hybride maakt, kies de juiste tools, ontwerp gelijkwaardige deelname en houd beide doelgroepen betrokken. Van JoinOrigin.',
   intro: [
     'Een hybride community brengt mensen op twee plekken tegelijk samen — fysiek in een locatie en virtueel achter een scherm — en de echte uitdaging gaat weer over mensen: ervoor zorgen dat beide doelgroepen het gevoel hebben bij één verbonden community te horen, niet bij twee losse. JoinOrigin is gebouwd met precies dat mensen-verbinden-doel, en het model werkt net zo goed voor een community die al bestaat als voor een die net begint — een gevestigde fysieke groep kan een online helft toevoegen, en een online community kan lokaal beginnen samenkomen.',
-    'JoinOrigin is een community-besturingssysteem dat mensen helpt community’s te vinden, ernaar toe te gaan en te starten — dus een hybride groep heeft één kamer die de online en (als gevolg) fysieke delen verbindt: lokale en externe leden zien dezelfde community, hetzelfde ritme en dezelfde volgende stappen. In het digitale verbind→sluit-aan→kamer-model is de kamer het blijvende oppervlak waar beide helften van de community tussen bijeenkomsten leven; het fysieke evenement is een gevolg dat de kamer voor en na bijeenhoudt. JoinOrigin biedt geen eventtools en bemant geen hybride evenementen — het platform geeft elke community — hybride of niet — één kamer waar leden verbonden blijven.',
+    'JoinOrigin is een community-besturingssysteem dat mensen helpt Origins te vinden, ernaar toe te gaan en te starten — dus een hybride groep heeft één kamer die de online en (als gevolg) fysieke delen verbindt: lokale en externe leden zien dezelfde community, hetzelfde ritme en dezelfde volgende stappen. In het digitale verbind→sluit-aan→kamer-model is de kamer het blijvende oppervlak waar beide helften van de community tussen bijeenkomsten leven; het fysieke evenement is een gevolg dat de kamer voor en na bijeenhoudt. JoinOrigin biedt geen eventtools en bemant geen hybride evenementen — het platform geeft elke community — hybride of niet — één kamer waar leden verbonden blijven.',
     'Deze handleiding behandelt de praktische beslissingen die hybride community’s laten slagen — voor nieuwe en bestaande groepen: beslissen of hybride het juiste model is, de kamer bouwen die beide doelgroepen delen, een format en tools kiezen die passen, de bijeenkomst zo ontwerpen dat fysieke en online leden dezelfde ervaring delen, de ruimte beheren zodat geen kant domineert en een blijvende kamer houden die de community tussen bijeenkomsten bijeenhoudt. Elke stap laat zien waar JoinOrigin helpt.',
   ],
   dataPoints: [
     'Een hybride community is één community met twee ingangen, geen twee doelgroepen die apart bediend moeten worden.',
     'De kamer is het verbindende weefsel: één gedeelde plek waar beide doelgroepen dezelfde updates, notities en volgende stappen zien.',
     'Eenvoudige, betrouwbare tools — één videolink, één gedeeld document — verminderen de frictie die hybride bijeenkomsten doet mislukken.',
-    'JoinOrigin is een community-besturingssysteem dat mensen helpt community’s te vinden of te starten; het biedt geen eventtools en bemant geen hybride evenementen.',
+    'JoinOrigin is een community-besturingssysteem dat mensen helpt Origins te vinden of te starten; het biedt geen eventtools en bemant geen hybride evenementen.',
   ],
   faq: [
     {
@@ -47,9 +47,9 @@ const content: GuideContent = {
         'Ontwerp voor gelijkwaardige deelname: houd een hybride voorstelronde, noem externe leden expliciet, deel het scherm voor visuals en gebruik een gedeeld document waar beide kanten kunnen schrijven. Wijs één persoon aan die continu op de externe kant let.',
     },
     {
-      question: 'Kan JoinOrigin mij helpen een hybride community te draaien?',
+      question: 'Kan JoinOrigin mij helpen een hybride Origin te draaien?',
       answer:
-        'Ja. JoinOrigin helpt mensen community’s te vinden en te starten — één kamer waar lokale en externe leden verbonden blijven. JoinOrigin biedt geen eventtools, dus de praktische hybride praktijken in deze handleiding werken met tools die je al hebt.',
+        'Ja. JoinOrigin helpt mensen Origins te vinden en te starten — één kamer waar lokale en externe leden verbonden blijven. JoinOrigin biedt geen eventtools, dus de praktische hybride praktijken in deze handleiding werken met tools die je al hebt.',
     },
   ],
   sections: [

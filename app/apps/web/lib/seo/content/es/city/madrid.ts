@@ -13,35 +13,35 @@ const content: CityContent = {
   kind: 'city',
   locale: 'es',
   slug: 'madrid',
-  title: 'Comunidades en Madrid | JoinOrigin',
+  title: 'Origins en Madrid | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Madrid — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital española. Lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Madrid — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital española. Lista de espera de JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades en Madrid | JoinOrigin',
+    city: 'Origins en Madrid | JoinOrigin',
     cityDescription:
-      'Encuentra o crea comunidades en Madrid — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital española. Lista de espera de JoinOrigin.',
+      'Encuentra o crea Origins en Madrid — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital española. Lista de espera de JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups en Madrid | JoinOrigin',
-      creative: 'Comunidades creativas en Madrid | JoinOrigin',
-      political: 'Comunidades políticas y cívicas en Madrid | JoinOrigin',
-      meetup: 'Comunidades de encuentros y sociales en Madrid | JoinOrigin',
-      'small-business': 'Comunidades de pequeñas empresas en Madrid | JoinOrigin',
+      startup: 'Origins de startups en Madrid | JoinOrigin',
+      creative: 'Origins creativos en Madrid | JoinOrigin',
+      political: 'Origins políticos y cívicos en Madrid | JoinOrigin',
+      meetup: 'Origins de encuentros y sociales en Madrid | JoinOrigin',
+      'small-business': 'Origins de pequeñas empresas en Madrid | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encuentra o crea comunidades de startups en Madrid — fundadores, ingenieros y operadores en torno a Malasaña, Gran Vía y los hubs tech. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de startups en Madrid — fundadores, ingenieros y operadores en torno a Malasaña, Gran Vía y los hubs tech. Lista de espera de JoinOrigin.',
       creative:
-        'Encuentra o crea comunidades creativas en Madrid — estudios, galerías y colectivos en Lavapiés, Matadero y Malasaña. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins creativos en Madrid — estudios, galerías y colectivos en Lavapiés, Matadero y Malasaña. Lista de espera de JoinOrigin.',
       political:
-        'Encuentra o crea comunidades políticas y cívicas en Madrid — juntas de distrito, asociaciones de vecinos y campañas locales. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins políticos y cívicos en Madrid — juntas de distrito, asociaciones de vecinos y campañas locales. Lista de espera de JoinOrigin.',
       meetup:
-        'Encuentra o crea comunidades de encuentros y sociales en Madrid — rutas de tapas, vida de terraza, el parque del Retiro y reuniones de barrio. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de encuentros y sociales en Madrid — rutas de tapas, vida de terraza, el parque del Retiro y reuniones de barrio. Lista de espera de JoinOrigin.',
       'small-business':
-        'Encuentra o crea comunidades de pequeñas empresas en Madrid — comerciantes de mercado, tiendas familiares y redes de barrio. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de pequeñas empresas en Madrid — comerciantes de mercado, tiendas familiares y redes de barrio. Lista de espera de JoinOrigin.',
     },
-    ideas: '30 ideas de eventos comunitarios en Madrid | JoinOrigin',
+    ideas: '30 ideas de eventos de Origins en Madrid | JoinOrigin',
     ideasDescription:
-      'Descubre 30 ideas de eventos comunitarios en Madrid — eventos de networking, aprendizaje, exteriores, profesionales, creativos e impacto. Lista de espera de JoinOrigin.',
+      'Descubre 30 ideas de eventos de Origins en Madrid — eventos de networking, aprendizaje, exteriores, profesionales, creativos e impacto. Lista de espera de JoinOrigin.',
   },
   intro: [
     'Madrid es una ciudad que vive al aire libre y hasta tarde. El día empieza con un café en una terraza, fluye por el rastro del domingo y termina con tapas en La Latina o Chueca mucho después de medianoche. Este ritmo hace fácil la vida comunitaria: casi toda reunión tiene un lugar natural — una terraza de bar, una plaza, un rincón del parque del Retiro — y casi todo el mundo está abierto a una conversación.',
@@ -170,15 +170,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'La escena de startups de Madrid ha madurado rápidamente hasta convertirse en la más grande de España, anclada por sedes corporativas, grandes universidades y una comunidad de capital de riesgo en crecimiento en torno a Malasaña y Gran Vía. La ciudad combina la estabilidad de una capital con la informalidad de un barrio: los fundadores se reúnen en espacios de coworking y hubs tech durante el día y continúan las conversaciones en azoteas por la noche. Las fortalezas incluyen SaaS, marketplaces, fintech y una escena de IA en rápido crecimiento, con fuertes lazos con América Latina que hacen de Madrid un puente natural para los fundadores hispanohablantes. Los formatos incluyen desayunos de fundadores, tardes de pitch, días de demo y happy hours de la industria que rotan entre salas de bancos reconvertidos y cafés de startups. La escena es genuinamente internacional: el inglés es común en los encuentros, mientras que el español sigue siendo el idioma por defecto de muchos grupos locales. El ritmo tardío de la ciudad da forma a los eventos: las cenas se alargan y el networking suele continuar en una terraza. Crear una comunidad de startups en Madrid funciona mejor con una vertical estrecha y un ritmo regular: una mesa mensual de fundadores de SaaS o una noche de constructores de IA construye seguidores leales más rápido que un grupo generalista.',
+      'La escena de startups de Madrid ha madurado rápidamente hasta convertirse en la más grande de España, anclada por sedes corporativas, grandes universidades y una comunidad de capital de riesgo en crecimiento en torno a Malasaña y Gran Vía. La ciudad combina la estabilidad de una capital con la informalidad de un barrio: los fundadores se reúnen en espacios de coworking y hubs tech durante el día y continúan las conversaciones en azoteas por la noche. Las fortalezas incluyen SaaS, marketplaces, fintech y una escena de IA en rápido crecimiento, con fuertes lazos con América Latina que hacen de Madrid un puente natural para los fundadores hispanohablantes. Los formatos incluyen desayunos de fundadores, tardes de pitch, días de demo y happy hours de la industria que rotan entre salas de bancos reconvertidos y cafés de startups. La escena es genuinamente internacional: el inglés es común en los encuentros, mientras que el español sigue siendo el idioma por defecto de muchos grupos locales. El ritmo tardío de la ciudad da forma a los eventos: las cenas se alargan y el networking suele continuar en una terraza. Crear un Origin de startups en Madrid funciona mejor con una vertical estrecha y un ritmo regular: una mesa mensual de fundadores de SaaS o una noche de constructores de IA construye seguidores leales más rápido que un grupo generalista.',
     creative:
-      'Las comunidades creativas de Madrid están ancladas por el Triángulo del Arte de los museos — el Prado, la Reina Sofía y el Thyssen — y se energizan con los barrios que los rodean. Lavapiés se ha convertido en la frontera creativa, con estudios, galerías y artistas internacionales, mientras que Matadero Madrid, un antiguo matadero reconvertido, acoge un programa anual de exposiciones, residencias y eventos maker. Malasaña lleva el espíritu indie de la movida, la explosión cultural que siguió a los años del franquismo, y todavía alberga estudios de diseño, tiendas de discos y cultura del fanzine. Los formatos incluyen fines de semana de estudio abierto, visitas guiadas a galerías, noches de portafolio y círculos de producción musical, con las horas tardías de la ciudad convirtiendo las críticas nocturnas en conversaciones de madrugada. Los cines independientes y los cafés de librería añaden un hilo literario que conecta a escritores, traductores y editores. La escena es lo bastante grande para sostener comunidades de nicho y lo bastante compacta para que la palabra viaje rápido. Crear una comunidad creativa en Madrid es realista: elige un oficio, un barrio y una noche regular, y la densidad de personas curiosas y talentosas te encontrará.',
+      'Las comunidades creativas de Madrid están ancladas por el Triángulo del Arte de los museos — el Prado, la Reina Sofía y el Thyssen — y se energizan con los barrios que los rodean. Lavapiés se ha convertido en la frontera creativa, con estudios, galerías y artistas internacionales, mientras que Matadero Madrid, un antiguo matadero reconvertido, acoge un programa anual de exposiciones, residencias y eventos maker. Malasaña lleva el espíritu indie de la movida, la explosión cultural que siguió a los años del franquismo, y todavía alberga estudios de diseño, tiendas de discos y cultura del fanzine. Los formatos incluyen fines de semana de estudio abierto, visitas guiadas a galerías, noches de portafolio y círculos de producción musical, con las horas tardías de la ciudad convirtiendo las críticas nocturnas en conversaciones de madrugada. Los cines independientes y los cafés de librería añaden un hilo literario que conecta a escritores, traductores y editores. La escena es lo bastante grande para sostener comunidades de nicho y lo bastante compacta para que la palabra viaje rápido. Crear un Origin creativo en Madrid es realista: elige un oficio, un barrio y una noche regular, y la densidad de personas curiosas y talentosas te encontrará.',
     political:
-      'El paisaje cívico de Madrid está definido por sus asociaciones de vecinos, asociaciones de barrio que fueron centrales en la recuperación de la democracia tras los años del franquismo y que todavía gestionan la vida local hoy. La ciudad está dividida en distritos con juntas elegidas, y las plataformas cívicas nacidas del movimiento 15-M siguen dando forma a los debates sobre vivienda, movilidad y espacio público. La vivienda es el tema definitorio: la economía turística ha subido los alquileres, produciendo sindicatos de inquilinos y campañas por la vivienda pública y asequible que atraen atención nacional. El proyecto Madrid Río — una autopista convertida en parque fluvial — es la prueba más visible de que los vecinos organizados pueden ganar grandes transformaciones. Los centros comunitarios de cada distrito acogen reuniones, clases y grupos de voluntarios. La cultura política recompensa la persistencia y la presencia: los vecinos que acuden a las asambleas y hablan con claridad consiguen resultados. Crear una comunidad política significa elegir un tema concreto y una geografía pequeña, y luego aliarse con las asociaciones existentes — el paisaje es lo bastante rico como para que la colaboración supere a la competencia.',
+      'El paisaje cívico de Madrid está definido por sus asociaciones de vecinos, asociaciones de barrio que fueron centrales en la recuperación de la democracia tras los años del franquismo y que todavía gestionan la vida local hoy. La ciudad está dividida en distritos con juntas elegidas, y las plataformas cívicas nacidas del movimiento 15-M siguen dando forma a los debates sobre vivienda, movilidad y espacio público. La vivienda es el tema definitorio: la economía turística ha subido los alquileres, produciendo sindicatos de inquilinos y campañas por la vivienda pública y asequible que atraen atención nacional. El proyecto Madrid Río — una autopista convertida en parque fluvial — es la prueba más visible de que los vecinos organizados pueden ganar grandes transformaciones. Los centros comunitarios de cada distrito acogen reuniones, clases y grupos de voluntarios. La cultura política recompensa la persistencia y la presencia: los vecinos que acuden a las asambleas y hablan con claridad consiguen resultados. Crear un Origin político significa elegir un tema concreto y una geografía pequeña, y luego aliarse con las asociaciones existentes — el paisaje es lo bastante rico como para que la colaboración supere a la competencia.',
     meetup:
       'La escena de encuentros de Madrid se construye sobre la terraza, el bar de tapas y la noche. Barrios como Malasaña, Chueca y La Latina viven al aire libre: las terrazas se llenan desde el café de la mañana hasta los tragos de medianoche, y los callejones de tapas de la Cava Baja convierten comer en un deporte social. El parque del Retiro y las orillas de Madrid Río ofrecen escapes verdes para picnics, juegos y clases al aire libre, mientras que el rastro del domingo convierte las calles de La Latina en una fiesta en movimiento. Los formatos incluyen reuniones semanales de terraza, rutas de tapas, intercambios de idiomas (español–inglés), noches de juegos de mesa y paseos nocturnos por el casco antiguo. Las horas de la ciudad son generosas: un encuentro que empieza a las nueve de la noche es perfectamente normal. Los recién llegados son bienvenidos con calidez, y la densidad de la ciudad significa que un grupo pequeño puede llenar una terraza sin esfuerzo. Crear un encuentro en Madrid significa elegir un formato repetible y un lugar fijo — un encuentro semanal de terraza o una ruta mensual de tapas — y el amor de la ciudad por la compañía hace el resto.',
     'small-business':
-      'Las comunidades de pequeñas empresas de Madrid están ancladas por los mercados, el rastro y la tradición de tienda familiar de la ciudad. Galerías de mercado como San Miguel, San Antón y Vallehermoso no son solo destinos gastronómicos: son comunidades de puestos que comparten proveedores, horarios y cotilleos. El rastro, el mercado de pulgas dominical, lleva siglos funcionando y todavía acoge comerciantes que se conocen entre generaciones. Las tiendas familiares de Salamanca, Chamberí y los barrios forman redes amistosas de dueños que comparan notas sobre alquiler, personal y afluencia. La cámara de comercio ofrece talleres sobre permisos, digitalización y financiación, mientras que las asociaciones comerciales de barrio organizan promociones conjuntas y eventos callejeros. Lo que une a estos grupos es el lugar: una galería de mercado o una calle comercial es una comunidad natural con un interés colectivo en la vida del barrio. Crear una comunidad de pequeñas empresas es muy alcanzable: un desayuno mensual de comerciantes en una galería de mercado, con temas rotativos como alquiler, permisos y venta en línea, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
+      'Las comunidades de pequeñas empresas de Madrid están ancladas por los mercados, el rastro y la tradición de tienda familiar de la ciudad. Galerías de mercado como San Miguel, San Antón y Vallehermoso no son solo destinos gastronómicos: son comunidades de puestos que comparten proveedores, horarios y cotilleos. El rastro, el mercado de pulgas dominical, lleva siglos funcionando y todavía acoge comerciantes que se conocen entre generaciones. Las tiendas familiares de Salamanca, Chamberí y los barrios forman redes amistosas de dueños que comparan notas sobre alquiler, personal y afluencia. La cámara de comercio ofrece talleres sobre permisos, digitalización y financiación, mientras que las asociaciones comerciales de barrio organizan promociones conjuntas y eventos callejeros. Lo que une a estos grupos es el lugar: una galería de mercado o una calle comercial es una comunidad natural con un interés colectivo en la vida del barrio. Crear un Origin de pequeñas empresas es muy alcanzable: un desayuno mensual de comerciantes en una galería de mercado, con temas rotativos como alquiler, permisos y venta en línea, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
   },
   ideaPage: {
     intro:
@@ -444,14 +444,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: '¿Cómo encuentro una comunidad en Madrid?',
+      question: '¿Cómo encuentro un Origin en Madrid?',
       answer:
-        'Usa las páginas de tipos de grupo para comunidades de startups, creativas, políticas, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los madrileños. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu comunidad hoy mismo.',
+        'Usa las páginas de tipos de grupo para Origins de startups, creativos, políticos, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los madrileños. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu Origin hoy mismo.',
     },
     {
-      question: '¿Es realista crear una comunidad en Madrid?',
+      question: '¿Es realista crear un Origin en Madrid?',
       answer:
-        'Sí. Madrid tiene terrazas y plazas por todas partes, generoso espacio de parques y una fuerte tradición asociativa. Las guías cubren cómo crear una comunidad, organizar un encuentro y conseguir tus primeros diez miembros.',
+        'Sí. Madrid tiene terrazas y plazas por todas partes, generoso espacio de parques y una fuerte tradición asociativa. Las guías cubren cómo crear un Origin, organizar un encuentro y conseguir tus primeros diez miembros.',
     },
     {
       question: '¿Las sugerencias de lugares de esta página son reales?',
@@ -461,7 +461,7 @@ const content: CityContent = {
     {
       question: '¿JoinOrigin tiene una oficina en Madrid?',
       answer:
-        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los madrileños a encontrar o crear comunidades.',
+        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los madrileños a encontrar o crear Origins.',
     },
   ],
 };

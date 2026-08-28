@@ -13,35 +13,35 @@ const content: CityContent = {
   kind: 'city',
   locale: 'es',
   slug: 'barcelona',
-  title: 'Comunidades en Barcelona | JoinOrigin',
+  title: 'Origins en Barcelona | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Barcelona — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital catalana. Lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Barcelona — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital catalana. Lista de espera de JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades en Barcelona | JoinOrigin',
+    city: 'Origins en Barcelona | JoinOrigin',
     cityDescription:
-      'Encuentra o crea comunidades en Barcelona — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital catalana. Lista de espera de JoinOrigin.',
+      'Encuentra o crea Origins en Barcelona — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital catalana. Lista de espera de JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups en Barcelona | JoinOrigin',
-      creative: 'Comunidades creativas en Barcelona | JoinOrigin',
-      political: 'Comunidades políticas y cívicas en Barcelona | JoinOrigin',
-      meetup: 'Comunidades de encuentros y sociales en Barcelona | JoinOrigin',
-      'small-business': 'Comunidades de pequeñas empresas en Barcelona | JoinOrigin',
+      startup: 'Origins de startups en Barcelona | JoinOrigin',
+      creative: 'Origins creativos en Barcelona | JoinOrigin',
+      political: 'Origins políticos y cívicos en Barcelona | JoinOrigin',
+      meetup: 'Origins de encuentros y sociales en Barcelona | JoinOrigin',
+      'small-business': 'Origins de pequeñas empresas en Barcelona | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encuentra o crea comunidades de startups en Barcelona — fundadores, ingenieros y operadores en torno al 22@, Poblenou y la escena tech. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de startups en Barcelona — fundadores, ingenieros y operadores en torno al 22@, Poblenou y la escena tech. Lista de espera de JoinOrigin.',
       creative:
-        'Encuentra o crea comunidades creativas en Barcelona — estudios, galerías y colectivos en El Raval, Poblenou y Gràcia. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins creativos en Barcelona — estudios, galerías y colectivos en El Raval, Poblenou y Gràcia. Lista de espera de JoinOrigin.',
       political:
-        'Encuentra o crea comunidades políticas y cívicas en Barcelona — asambleas de barrio, activismo por la vivienda y campañas locales. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins políticos y cívicos en Barcelona — asambleas de barrio, activismo por la vivienda y campañas locales. Lista de espera de JoinOrigin.',
       meetup:
-        'Encuentra o crea comunidades de encuentros y sociales en Barcelona — reuniones en plazas, rutas de tapas, sesiones de playa y vida de terraza. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de encuentros y sociales en Barcelona — reuniones en plazas, rutas de tapas, sesiones de playa y vida de terraza. Lista de espera de JoinOrigin.',
       'small-business':
-        'Encuentra o crea comunidades de pequeñas empresas en Barcelona — comerciantes de mercado, vermuterías y redes de tiendas de barrio. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de pequeñas empresas en Barcelona — comerciantes de mercado, vermuterías y redes de tiendas de barrio. Lista de espera de JoinOrigin.',
     },
-    ideas: '30 ideas de eventos comunitarios en Barcelona | JoinOrigin',
+    ideas: '30 ideas de eventos de Origins en Barcelona | JoinOrigin',
     ideasDescription:
-      'Descubre 30 ideas de eventos comunitarios en Barcelona — eventos de networking, aprendizaje, exteriores, profesionales, creativos e impacto. Lista de espera de JoinOrigin.',
+      'Descubre 30 ideas de eventos de Origins en Barcelona — eventos de networking, aprendizaje, exteriores, profesionales, creativos e impacto. Lista de espera de JoinOrigin.',
   },
   intro: [
     'Barcelona es una ciudad de plazas. Desde las soleadas plazas de Gràcia hasta los patios escondidos de El Born, el espacio público es el escenario de la vida comunitaria: partidos de fútbol improvisados, tardes de vermut, torres de castells y conversaciones nocturnas bajo los plátanos. El clima mediterráneo de la ciudad alarga la temporada de reuniones casi todo el año, y la playa de la Barceloneta la extiende hasta la orilla.',
@@ -170,15 +170,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'La escena de startups de Barcelona ha crecido en torno al distrito de innovación 22@ en Poblenou, donde antiguas fábricas textiles albergan ahora aceleradoras, fondos de capital de riesgo y miles de startups. Las fortalezas de la ciudad son visibles en sus empresas: movilidad, health tech, SaaS y marketplaces, con una fuerte comunidad internacional de fundadores atraídos por el clima y la calidad de vida. El Mobile World Congress pone a la ciudad en el calendario global cada primavera y mantiene un rumor de eventos paralelos durante todo el año. Los espacios de coworking de Poblenou y El Born acogen desayunos de fundadores, tardes de pitch y días de demo, mientras que la UPC y la Pompeu Fabra aportan graduados a los equipos tempranos. La comunidad es genuinamente internacional: el inglés es común en los encuentros, y el catalán y el español aparecen según la sala. El ritmo mediterráneo da forma a la escena: los eventos son relajados, la puntualidad es flexible y las azoteas son tan importantes como las salas de juntas. Crear una comunidad de startups en Barcelona funciona mejor con una vertical estrecha y un ritmo regular: una mesa mensual de fundadores de movilidad o una noche de constructores de IA construye seguidores leales más rápido que un grupo generalista.',
+      'La escena de startups de Barcelona ha crecido en torno al distrito de innovación 22@ en Poblenou, donde antiguas fábricas textiles albergan ahora aceleradoras, fondos de capital de riesgo y miles de startups. Las fortalezas de la ciudad son visibles en sus empresas: movilidad, health tech, SaaS y marketplaces, con una fuerte comunidad internacional de fundadores atraídos por el clima y la calidad de vida. El Mobile World Congress pone a la ciudad en el calendario global cada primavera y mantiene un rumor de eventos paralelos durante todo el año. Los espacios de coworking de Poblenou y El Born acogen desayunos de fundadores, tardes de pitch y días de demo, mientras que la UPC y la Pompeu Fabra aportan graduados a los equipos tempranos. La comunidad es genuinamente internacional: el inglés es común en los encuentros, y el catalán y el español aparecen según la sala. El ritmo mediterráneo da forma a la escena: los eventos son relajados, la puntualidad es flexible y las azoteas son tan importantes como las salas de juntas. Crear un Origin de startups en Barcelona funciona mejor con una vertical estrecha y un ritmo regular: una mesa mensual de fundadores de movilidad o una noche de constructores de IA construye seguidores leales más rápido que un grupo generalista.',
     creative:
-      'Las comunidades creativas de Barcelona viven entre el casco antiguo y las fábricas reconvertidas de Poblenou: El Raval y El Born acogen galerías y estudios, Gràcia lleva una tradición bohemia de talleres y artesanía, y el 22@ se ha convertido en el hogar de estudios de diseño y maker en antiguas naves industriales. Escuelas de arte como EINA, BAU y la Massana alimentan un flujo constante de diseñadores, ilustradores y makers en una escena conocida por el diseño gráfico, el arte callejero y la artesanía del mueble. Los formatos incluyen fines de semana de estudio abierto, revisiones de portafolio, críticas de diseño y círculos de producción musical, con azoteas que convierten las inauguraciones de exposiciones en fiestas nocturnas. Los festivales de la ciudad — de La Mercè a las fiestas mayores de barrio — dan a los creativos un calendario natural de plazos y escaparates. La escena es lo bastante compacta como para que la palabra viaje rápido, y la luz y el ritmo mediterráneos impregnan el trabajo. Crear una comunidad creativa en Barcelona es realista: elige un oficio, un barrio y una noche regular, y la densidad de personas curiosas y talentosas te encontrará.',
+      'Las comunidades creativas de Barcelona viven entre el casco antiguo y las fábricas reconvertidas de Poblenou: El Raval y El Born acogen galerías y estudios, Gràcia lleva una tradición bohemia de talleres y artesanía, y el 22@ se ha convertido en el hogar de estudios de diseño y maker en antiguas naves industriales. Escuelas de arte como EINA, BAU y la Massana alimentan un flujo constante de diseñadores, ilustradores y makers en una escena conocida por el diseño gráfico, el arte callejero y la artesanía del mueble. Los formatos incluyen fines de semana de estudio abierto, revisiones de portafolio, críticas de diseño y círculos de producción musical, con azoteas que convierten las inauguraciones de exposiciones en fiestas nocturnas. Los festivales de la ciudad — de La Mercè a las fiestas mayores de barrio — dan a los creativos un calendario natural de plazos y escaparates. La escena es lo bastante compacta como para que la palabra viaje rápido, y la luz y el ritmo mediterráneos impregnan el trabajo. Crear un Origin creativo en Barcelona es realista: elige un oficio, un barrio y una noche regular, y la densidad de personas curiosas y talentosas te encontrará.',
     political:
-      'Barcelona tiene una de las tradiciones más fuertes de organización cívica de Europa: las asociaciones de vecinos fueron centrales en la recuperación de la ciudad tras el franquismo y siguen anclando la vida local hoy. La vivienda es el tema definitorio: la economía turística ha exprimido el mercado de alquiler, produciendo sindicatos de inquilinos activos, huelgas de alquiler y campañas por la vivienda pública que atraen atención internacional. La ciudad está dividida en diez distritos con consejos elegidos, y los centros cívicos dan a cada barrio un hogar físico para reuniones, clases y grupos de voluntarios. La movilidad y el espacio público también se disputan: las supermanzanas, las calles peatonales y los corredores verdes se planifican y se defienden en consultas comunitarias reales. La cultura política valora la participación: los residentes esperan ser escuchados, y los grupos bien organizados consiguen resultados. Crear una comunidad política significa elegir un tema concreto y una geografía pequeña — una cuadra, un barrio o una política de vivienda — y luego aliarse con las asociaciones existentes en lugar de duplicarlas. El paisaje es lo bastante rico como para que la colaboración supere a la competencia.',
+      'Barcelona tiene una de las tradiciones más fuertes de organización cívica de Europa: las asociaciones de vecinos fueron centrales en la recuperación de la ciudad tras el franquismo y siguen anclando la vida local hoy. La vivienda es el tema definitorio: la economía turística ha exprimido el mercado de alquiler, produciendo sindicatos de inquilinos activos, huelgas de alquiler y campañas por la vivienda pública que atraen atención internacional. La ciudad está dividida en diez distritos con consejos elegidos, y los centros cívicos dan a cada barrio un hogar físico para reuniones, clases y grupos de voluntarios. La movilidad y el espacio público también se disputan: las supermanzanas, las calles peatonales y los corredores verdes se planifican y se defienden en consultas comunitarias reales. La cultura política valora la participación: los residentes esperan ser escuchados, y los grupos bien organizados consiguen resultados. Crear un Origin político significa elegir un tema concreto y una geografía pequeña — una cuadra, un barrio o una política de vivienda — y luego aliarse con las asociaciones existentes en lugar de duplicarlas. El paisaje es lo bastante rico como para que la colaboración supere a la competencia.',
     meetup:
       'La escena de encuentros de Barcelona funciona en la plaza, la terraza y la playa. Barrios como Gràcia y El Born viven al aire libre: las plazas se llenan de familias, amigos y juegos improvisados, mientras que el vermut dominical convierte las terrazas en instituciones sociales. La playa de la Barceloneta y el paseo marítimo acogen vóley, pádel y reuniones al atardecer que atraen a gente de toda la ciudad. El parque de la Ciutadella y Montjuïc ofrecen escapes verdes para picnics y ejercicio al aire libre. Los formatos incluyen encuentros semanales en la plaza, rutas de tapas, intercambios de idiomas (catalán, español, inglés) y noches de juegos de mesa en los muchos cafés de juegos de la ciudad. El clima mediterráneo hace larga la temporada al aire libre, y la densidad de la ciudad significa que un grupo pequeño puede llenar una terraza sin esfuerzo. Los recién llegados son bienvenidos con calidez, aunque un poco de catalán o español abre puertas. Crear un encuentro en Barcelona significa elegir un formato repetible y un lugar fijo — un encuentro semanal en la plaza o un vermut dominical — y el amor de la ciudad por el espacio público hace el resto.',
     'small-business':
-      'Las comunidades de pequeñas empresas de Barcelona están ancladas por los mercados, los gremios y las calles de barrio de la ciudad. La Boqueria en las Ramblas y el restaurado Mercat de Sant Antoni no son solo mercados de comida: son comunidades estrechas de puestos que comparten proveedores, horarios y cotilleos. Los gremios, gremios comerciales con siglos de historia, siguen organizando muchos oficios, mientras que las asociaciones de comerciantes del casco antiguo gestionan promociones conjuntas y ferias callejeras. Las fiestas mayores — los festivales anuales de barrio — las planifican comités de comerciantes y vecinos que se conocen por su nombre. La cámara de comercio y los grupos empresariales de distrito ofrecen talleres sobre permisos, digitalización y financiación, a menudo en catalán, español e inglés. Lo que une a estos grupos es el lugar: una galería de mercado, una calle comercial o una plaza es una comunidad natural con un interés colectivo en el tránsito peatonal y la identidad del barrio. Crear una comunidad de pequeñas empresas es muy alcanzable: un desayuno mensual de comerciantes en una galería de mercado, con temas rotativos como alquiler, permisos y venta en línea, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
+      'Las comunidades de pequeñas empresas de Barcelona están ancladas por los mercados, los gremios y las calles de barrio de la ciudad. La Boqueria en las Ramblas y el restaurado Mercat de Sant Antoni no son solo mercados de comida: son comunidades estrechas de puestos que comparten proveedores, horarios y cotilleos. Los gremios, gremios comerciales con siglos de historia, siguen organizando muchos oficios, mientras que las asociaciones de comerciantes del casco antiguo gestionan promociones conjuntas y ferias callejeras. Las fiestas mayores — los festivales anuales de barrio — las planifican comités de comerciantes y vecinos que se conocen por su nombre. La cámara de comercio y los grupos empresariales de distrito ofrecen talleres sobre permisos, digitalización y financiación, a menudo en catalán, español e inglés. Lo que une a estos grupos es el lugar: una galería de mercado, una calle comercial o una plaza es una comunidad natural con un interés colectivo en el tránsito peatonal y la identidad del barrio. Crear un Origin de pequeñas empresas es muy alcanzable: un desayuno mensual de comerciantes en una galería de mercado, con temas rotativos como alquiler, permisos y venta en línea, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
   },
   ideaPage: {
     intro:
@@ -445,14 +445,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: '¿Cómo encuentro una comunidad en Barcelona?',
+      question: '¿Cómo encuentro un Origin en Barcelona?',
       answer:
-        'Usa las páginas de tipos de grupo para comunidades de startups, creativas, políticas, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los barceloneses. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu comunidad hoy mismo.',
+        'Usa las páginas de tipos de grupo para Origins de startups, creativos, políticos, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los barceloneses. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu Origin hoy mismo.',
     },
     {
-      question: '¿Es realista crear una comunidad en Barcelona?',
+      question: '¿Es realista crear un Origin en Barcelona?',
       answer:
-        'Sí. Barcelona tiene plazas, terrazas y la playa como lugares gratuitos, además de una fuerte tradición asociativa. Las guías cubren cómo crear una comunidad, organizar un encuentro y conseguir tus primeros diez miembros.',
+        'Sí. Barcelona tiene plazas, terrazas y la playa como lugares gratuitos, además de una fuerte tradición asociativa. Las guías cubren cómo crear un Origin, organizar un encuentro y conseguir tus primeros diez miembros.',
     },
     {
       question: '¿Las sugerencias de lugares de esta página son reales?',
@@ -462,7 +462,7 @@ const content: CityContent = {
     {
       question: '¿JoinOrigin tiene una oficina en Barcelona?',
       answer:
-        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los barceloneses a encontrar o crear comunidades.',
+        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los barceloneses a encontrar o crear Origins.',
     },
   ],
 };

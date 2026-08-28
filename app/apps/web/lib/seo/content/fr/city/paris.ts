@@ -11,31 +11,31 @@ const content: CityContent = {
   locale: 'fr',
   slug: 'paris',
   pageTitles: {
-    city: 'Communautés à Paris | JoinOrigin',
+    city: 'Origins à Paris | JoinOrigin',
     cityDescription:
-      'Trouvez ou créez des communautés à Paris — groupes startups, créatifs, politiques, meetups et petites entreprises dans toute la capitale. Liste d’attente JoinOrigin.',
+      'Trouvez ou créez des Origins à Paris — groupes startups, créatifs, politiques, meetups et petites entreprises dans toute la capitale. Liste d’attente JoinOrigin.',
     variants: {
-      startup: 'Communautés de startups à Paris | JoinOrigin',
-      creative: 'Communautés créatives à Paris | JoinOrigin',
-      political: 'Communautés politiques et citoyennes à Paris | JoinOrigin',
-      meetup: 'Meetups et communautés sociales à Paris | JoinOrigin',
-      'small-business': 'Communautés de petites entreprises à Paris | JoinOrigin',
+      startup: 'Origins de startups à Paris | JoinOrigin',
+      creative: 'Origins créatifs à Paris | JoinOrigin',
+      political: 'Origins politiques et citoyens à Paris | JoinOrigin',
+      meetup: 'Meetups et Origins sociaux à Paris | JoinOrigin',
+      'small-business': 'Origins de petites entreprises à Paris | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Trouvez ou créez des communautés de startups à Paris — fondateurs, ingénieurs et opérateurs autour de Station F, du Sentier et de La Défense. Liste d’attente JoinOrigin.',
+        'Trouvez ou créez des Origins de startups à Paris — fondateurs, ingénieurs et opérateurs autour de Station F, du Sentier et de La Défense. Liste d’attente JoinOrigin.',
       creative:
-        'Trouvez ou créez des communautés créatives à Paris — ateliers, galeries et collectifs au Marais, à Belleville et autour du canal Saint-Martin. Liste d’attente JoinOrigin.',
+        'Trouvez ou créez des Origins créatifs à Paris — ateliers, galeries et collectifs au Marais, à Belleville et autour du canal Saint-Martin. Liste d’attente JoinOrigin.',
       political:
-        'Trouvez ou créez des communautés politiques et citoyennes à Paris — associations, conseils d’arrondissement et campagnes locales. Liste d’attente JoinOrigin.',
+        'Trouvez ou créez des Origins politiques et citoyens à Paris — associations, conseils d’arrondissement et campagnes locales. Liste d’attente JoinOrigin.',
       meetup:
-        'Trouvez ou créez des meetups et communautés sociales à Paris — apéros, tables de café, échanges linguistiques et rassemblements dans les parcs. Liste d’attente JoinOrigin.',
+        'Trouvez ou créez des meetups et Origins sociaux à Paris — apéros, tables de café, échanges linguistiques et rassemblements dans les parcs. Liste d’attente JoinOrigin.',
       'small-business':
-        'Trouvez ou créez des communautés de petites entreprises à Paris — commerçants de marché, propriétaires de cafés et boutiques, et réseaux d’artisans. Liste d’attente JoinOrigin.',
+        'Trouvez ou créez des Origins de petites entreprises à Paris — commerçants de marché, propriétaires de cafés et boutiques, et réseaux d’artisans. Liste d’attente JoinOrigin.',
     },
-    ideas: '30 idées d’événements communautaires à Paris | JoinOrigin',
+    ideas: '30 idées d’événements Origin à Paris | JoinOrigin',
     ideasDescription:
-      'Découvrez 30 idées d’événements communautaires à Paris — événements de réseautage, d’apprentissage, de plein air, professionnels, créatifs et à impact. Liste d’attente JoinOrigin.',
+      'Découvrez 30 idées d’événements Origin à Paris — événements de réseautage, d’apprentissage, de plein air, professionnels, créatifs et à impact. Liste d’attente JoinOrigin.',
   },
   intro: [
     'Paris s’organise autour de l’arrondissement — vingt districts qui s’enroulent depuis la Seine comme une coquille d’escargot, chacun avec ses places, ses marchés et ses fidélités. Une communauté qui choisit un arrondissement et s’y montre chaque semaine devient rapidement un meuble du quartier. Les cafés, qui bordent presque chaque rue, servent de lieux de communauté informels où les groupes réclament une table comme les Berlinois réclament un Stammtisch.',
@@ -164,15 +164,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Paris a bâti l’un des écosystèmes de start-ups les plus visibles d’Europe autour de Station F, l’ancien entrepôt de fret géant qui abrite aujourd’hui des centaines de jeunes entreprises, et autour de La French Tech, un label national qui connecte les fondateurs aux mentors et aux marchés internationaux. Le quartier historique du textile, le Sentier, est devenu le cœur de la jeune scène tech, tandis que La Défense ancre l’innovation des grandes entreprises et que les Grandes Écoles fournissent un vivier profond d’ingénieurs et de diplômés en commerce. Les formats récurrents incluent les petits-déjeuners de fondateurs, les soirées pitch, les journées de démonstration et les apéros sectoriels où les équipes fintech, IA et climat comparent leurs notes autour d’un verre. L’anglais est de plus en plus courant dans les meetups, ce qui aide les fondateurs internationaux à s’intégrer avant que leur français ne s’améliore. Ce qui rend Paris distinct, c’est le mélange d’infrastructures soutenues par l’État — financements publics, incubateurs et événements — avec une forte culture du café qui garde la scène informelle. Lancer une communauté de startups ici fonctionne mieux avec un vertical étroit et un rythme régulier : une soirée mensuelle de builders IA ou une table de climate tech fédère plus vite qu’un groupe généraliste.',
+      'Paris a bâti l’un des écosystèmes de start-ups les plus visibles d’Europe autour de Station F, l’ancien entrepôt de fret géant qui abrite aujourd’hui des centaines de jeunes entreprises, et autour de La French Tech, un label national qui connecte les fondateurs aux mentors et aux marchés internationaux. Le quartier historique du textile, le Sentier, est devenu le cœur de la jeune scène tech, tandis que La Défense ancre l’innovation des grandes entreprises et que les Grandes Écoles fournissent un vivier profond d’ingénieurs et de diplômés en commerce. Les formats récurrents incluent les petits-déjeuners de fondateurs, les soirées pitch, les journées de démonstration et les apéros sectoriels où les équipes fintech, IA et climat comparent leurs notes autour d’un verre. L’anglais est de plus en plus courant dans les meetups, ce qui aide les fondateurs internationaux à s’intégrer avant que leur français ne s’améliore. Ce qui rend Paris distinct, c’est le mélange d’infrastructures soutenues par l’État — financements publics, incubateurs et événements — avec une forte culture du café qui garde la scène informelle. Lancer un Origin de startups ici fonctionne mieux avec un vertical étroit et un rythme régulier : une soirée mensuelle de builders IA ou une table de climate tech fédère plus vite qu’un groupe généraliste.',
     creative:
-      'La vie créative parisienne est tissée dans les rues de la ville : ateliers à Belleville et Ménilmontant, galeries au Marais, studios de mode dans le Sentier et scènes de cinéma et de musique dans les 11e et 19e arrondissements. Le canal Saint-Martin est devenu une ligne de rassemblement pour artistes, designers et musiciens, tandis que des écoles comme l’École des Arts Décoratifs et les Beaux-Arts diplôment un flux régulier de créateurs dans une économie indépendante construite sur la collaboration. Les week-ends studios ouverts, les revues de portfolios, les visites de galeries et les soirées de critique de design sont les formats standards, et beaucoup de collectifs partagent non seulement l’espace mais aussi l’équipement — presses à imprimer, caméras, machines à coudre. L’échelle de la ville signifie que les communautés peuvent être aussi de niche qu’un groupe d’imprimeurs risographes ou aussi larges qu’un festival d’art de quartier. Lancer une communauté créative à Paris est réaliste : choisissez un métier, un arrondissement et une soirée régulière, et la densité de personnes curieuses et compétentes vous trouvera.',
+      'La vie créative parisienne est tissée dans les rues de la ville : ateliers à Belleville et Ménilmontant, galeries au Marais, studios de mode dans le Sentier et scènes de cinéma et de musique dans les 11e et 19e arrondissements. Le canal Saint-Martin est devenu une ligne de rassemblement pour artistes, designers et musiciens, tandis que des écoles comme l’École des Arts Décoratifs et les Beaux-Arts diplôment un flux régulier de créateurs dans une économie indépendante construite sur la collaboration. Les week-ends studios ouverts, les revues de portfolios, les visites de galeries et les soirées de critique de design sont les formats standards, et beaucoup de collectifs partagent non seulement l’espace mais aussi l’équipement — presses à imprimer, caméras, machines à coudre. L’échelle de la ville signifie que les communautés peuvent être aussi de niche qu’un groupe d’imprimeurs risographes ou aussi larges qu’un festival d’art de quartier. Lancer un Origin créatif à Paris est réaliste : choisissez un métier, un arrondissement et une soirée régulière, et la densité de personnes curieuses et compétentes vous trouvera.',
     political:
-      'Paris a une profonde tradition civique organisée à travers l’association loi 1901 — une forme juridique utilisée par des milliers de groupes de quartier, de sociétés culturelles et de projets bénévoles. Chacun des vingt arrondissements a sa propre mairie et son propre conseil, ce qui garde la politique locale accessible : les résidents peuvent assister aux séances du conseil, rejoindre des associations de quartier et influer sur les décisions concernant le logement, les écoles et l’espace public. Le logement est une préoccupation déterminante, et les groupes de locataires organisent des soirées d’information et des ateliers sur la loi sur les loyers ouverts aux nouveaux venus. Les activistes du climat et de la mobilité s’organisent autour des rues sans voiture, du vélo et du verdissement urbain, tandis que les bénévoles civic tech construisent des outils pour le budget participatif et les données de la ville. La culture récompense la persévérance : les Parisiens rejoignent un groupe par confiance, et la confiance se construit en se présentant aux vraies réunions pendant des mois. Lancer une communauté politique signifie choisir un problème concret et un petit territoire, puis s’associer aux associations existantes plutôt que de les dupliquer — le paysage est assez riche pour que la collaboration batte la concurrence.',
+      'Paris a une profonde tradition civique organisée à travers l’association loi 1901 — une forme juridique utilisée par des milliers de groupes de quartier, de sociétés culturelles et de projets bénévoles. Chacun des vingt arrondissements a sa propre mairie et son propre conseil, ce qui garde la politique locale accessible : les résidents peuvent assister aux séances du conseil, rejoindre des associations de quartier et influer sur les décisions concernant le logement, les écoles et l’espace public. Le logement est une préoccupation déterminante, et les groupes de locataires organisent des soirées d’information et des ateliers sur la loi sur les loyers ouverts aux nouveaux venus. Les activistes du climat et de la mobilité s’organisent autour des rues sans voiture, du vélo et du verdissement urbain, tandis que les bénévoles civic tech construisent des outils pour le budget participatif et les données de la ville. La culture récompense la persévérance : les Parisiens rejoignent un groupe par confiance, et la confiance se construit en se présentant aux vraies réunions pendant des mois. Lancer un Origin politique signifie choisir un problème concret et un petit territoire, puis s’associer aux associations existantes plutôt que de les dupliquer — le paysage est assez riche pour que la collaboration batte la concurrence.',
     meetup:
       'La scène meetup parisienne tourne autour du café, du banc de parc et de l’apéro — le verre du soir qui transforme les inconnus en habitués. Les groupes se rassemblent pour des échanges linguistiques, des clubs de lecture, des jeux de société, des balades photo et des séances de course le long de la Seine et du canal Saint-Martin. Le bar à jeux est un lieu typiquement parisien qui accueille des soirées jeux décontractées toute la semaine. Des parcs comme les Buttes-Chaumont et le Luxembourg se remplissent de pique-niques, de projections en plein air et de sports improvisés quand le temps est beau. Ce que remarquent les nouveaux venus, c’est le rituel : la même table au même café, le même banc, la même balade du samedi, répétés jusqu’à devenir une habitude. Les résidents internationaux animent de nombreux groupes anglophones ou bilingues, donc les nouveaux venus peuvent s’intégrer rapidement. Si vous voulez lancer un meetup, choisissez un format répétable et un lieu qui vous accueillera à chaque fois — un apéro hebdomadaire, une table linguistique mensuelle — et laissez la densité de Parisiens curieux faire le reste.',
     'small-business':
-      'Les communautés de petites entreprises parisiennes sont ancrées par les marchés, les passages et les rues de quartier de la ville. Le Marché d’Aligre, le Marché des Enfants Rouges et les marchés couverts de chaque arrondissement ne sont pas seulement des destinations de shopping — ce sont des communautés soudées de commerçants qui partagent calendriers, fournisseurs et conseils. Les passages couverts, galeries marchandes couvertes du XIXe siècle, accueillent encore des artisans, des librairies et des cafés qui traitent leur couloir comme une entreprise partagée. Les bistrots et boulangeries forment leurs propres réseaux de propriétaires qui comparent leurs notes sur les loyers, les effectifs et la logistique de livraison. Les chambres de commerce et les groupes d’entreprises d’arrondissement proposent des ateliers sur la paperasse, la digitalisation et le financement, souvent en français et en anglais. Ce qui relie ces groupes, c’est le lieu : une halle de marché ou un passage est une communauté naturelle avec un intérêt collectif dans le flux de visiteurs. Lancer une communauté de petites entreprises est très réalisable : une table ronde mensuelle dans un café de quartier, avec des sujets tournants comme le loyer, la paie et la vente en ligne, attire fidèlement des propriétaires qui n’ont rarement de pairs avec qui parler.',
+      'Les communautés de petites entreprises parisiennes sont ancrées par les marchés, les passages et les rues de quartier de la ville. Le Marché d’Aligre, le Marché des Enfants Rouges et les marchés couverts de chaque arrondissement ne sont pas seulement des destinations de shopping — ce sont des communautés soudées de commerçants qui partagent calendriers, fournisseurs et conseils. Les passages couverts, galeries marchandes couvertes du XIXe siècle, accueillent encore des artisans, des librairies et des cafés qui traitent leur couloir comme une entreprise partagée. Les bistrots et boulangeries forment leurs propres réseaux de propriétaires qui comparent leurs notes sur les loyers, les effectifs et la logistique de livraison. Les chambres de commerce et les groupes d’entreprises d’arrondissement proposent des ateliers sur la paperasse, la digitalisation et le financement, souvent en français et en anglais. Ce qui relie ces groupes, c’est le lieu : une halle de marché ou un passage est une communauté naturelle avec un intérêt collectif dans le flux de visiteurs. Lancer un Origin de petites entreprises est très réalisable : une table ronde mensuelle dans un café de quartier, avec des sujets tournants comme le loyer, la paie et la vente en ligne, attire fidèlement des propriétaires qui n’ont rarement de pairs avec qui parler.',
   },
   ideaPage: {
     intro:
@@ -439,14 +439,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: 'Comment trouver une communauté à Paris ?',
+      question: 'Comment trouver un Origin à Paris ?',
       answer:
-        'Utilisez les pages par type de groupe pour les communautés de startups, créatives, politiques, meetups et de petites entreprises. Chacune décrit les vrais arrondissements, lieux et formats où les Parisiens se rassemblent. JoinOrigin est en ligne — créez votre profil et trouvez ou créez votre communauté dès aujourd’hui.',
+        'Utilisez les pages par type de groupe pour les Origins de startups, créatifs, politiques, meetups et de petites entreprises. Chacune décrit les vrais arrondissements, lieux et formats où les Parisiens se rassemblent. JoinOrigin est en ligne — créez votre profil et trouvez ou créez votre Origin dès aujourd’hui.',
     },
     {
-      question: 'Est-il réaliste de créer une communauté à Paris ?',
+      question: 'Est-il réaliste de créer un Origin à Paris ?',
       answer:
-        'Oui. Paris a des cafés partout, un espace public généreux et une forte culture associative. Les guides couvrent la création d’une communauté, l’organisation d’un meetup et l’obtention de vos dix premiers membres.',
+        'Oui. Paris a des cafés partout, un espace public généreux et une forte culture associative. Les guides couvrent la création d’un Origin, l’organisation d’un meetup et l’obtention de vos dix premiers membres.',
     },
     {
       question: 'Les suggestions de lieux sur cette page sont-elles réelles ?',
@@ -456,7 +456,7 @@ const content: CityContent = {
     {
       question: 'JoinOrigin a-t-il un bureau à Paris ?',
       answer:
-        'Non. JoinOrigin n’a ni bureaux locaux ni personnel local. Toutes les descriptions de communautés reflètent le paysage réel de la ville, et la plateforme aide les Parisiens à trouver ou créer des communautés.',
+        'Non. JoinOrigin n’a ni bureaux locaux ni personnel local. Toutes les descriptions de communautés reflètent le paysage réel de la ville, et la plateforme aide les Parisiens à trouver ou créer des Origins.',
     },
   ],
 };
