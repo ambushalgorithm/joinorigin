@@ -560,10 +560,11 @@ test.describe('Goal 7 — per-locale metadata with EN fallback', () => {
     page,
   }) => {
     await page.goto('/de/location/germany/berlin/berlin');
-    // German description from the committed de content file.
+    // German description from the committed de content file (Wave-5: the
+    // entity reframe — "Finde oder gründe Origins in Berlin").
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       'content',
-      /Finde oder gründe Communities in Berlin/,
+      /Finde oder gründe Origins in Berlin/,
     );
     // Canonical + hreflang point at the /de/ surface.
     const canonical = page.locator('link[rel="canonical"]');
@@ -577,7 +578,9 @@ test.describe('Goal 7 — per-locale metadata with EN fallback', () => {
 
   test('de guide page uses committed German metadata + per-locale hreflang', async ({ page }) => {
     await page.goto('/de/guides/start-an-origin');
-    await expect(page).toHaveTitle(/^So startest du eine Community/);
+    // Wave-5 (TASK-580): the de guide was retitled to the Origin model —
+    // "So startest du ein Origin: …".
+    await expect(page).toHaveTitle(/^So startest du ein Origin/);
     const canonical = page.locator('link[rel="canonical"]');
     expect(new URL((await canonical.getAttribute('href')) ?? '').pathname).toBe(
       '/de/guides/start-an-origin',

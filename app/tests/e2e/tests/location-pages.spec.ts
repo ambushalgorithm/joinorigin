@@ -1372,7 +1372,10 @@ test.describe('Story G: content-rich country/region prose + predominant-locale c
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/es/location/colombia');
     await expect(page.locator('html')).toHaveAttribute('lang', 'es');
-    await expect(page.locator('h1')).toContainText('Comunidades en Colombia');
+    // Wave-5 (TASK-579): the es country page title/H1 was reframed to the
+    // Origin model — "Origins en Colombia" (previously "Comunidades en
+    // Colombia").
+    await expect(page.locator('h1')).toContainText('Origins en Colombia');
 
     // The Spanish-authored intro (G2: ≥150 words) — the predominant-locale
     // content file (TASK-502), not the EN fallback.
@@ -1389,7 +1392,7 @@ test.describe('Story G: content-rich country/region prose + predominant-locale c
     await expect(points).toContainText('La capital es Bogotá');
     const faq = page.getByTestId('location-faq');
     await expect(faq).toBeVisible();
-    await expect(faq.getByText('¿Cómo encuentro comunidades en Colombia?')).toBeVisible();
+    await expect(faq.getByText('¿Cómo encuentro Origins en Colombia?')).toBeVisible();
   });
 
   test('de germany country page renders the German intro (predominant-locale content)', async ({
@@ -1420,7 +1423,7 @@ test.describe('Story G: content-rich country/region prose + predominant-locale c
     await expect(points).toContainText('Die Bundeshauptstadt ist Berlin');
     const faq = page.getByTestId('location-faq');
     await expect(faq).toBeVisible();
-    await expect(faq.getByText('Wie finde ich Communities in Deutschland?')).toBeVisible();
+    await expect(faq.getByText('Wie finde ich Origins in Deutschland?')).toBeVisible();
   });
 
   test('country page FAQ shows the replacement sourcing line — never the fabrication line (cross-check Story E)', async ({
@@ -1462,11 +1465,12 @@ test.describe('Story H: /location i18n completeness (TASK-519)', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'es');
 
     // The Countries section (TASK-480 section keys render per-locale) shows
-    // the Colombia card with its committed Spanish title (TASK-515) — never
-    // the EN registry title.
+    // the Colombia card with its committed Spanish title (TASK-515; Wave-5
+    // TASK-579 reframed it to the Origin model) — never the EN registry
+    // title.
     const countries = page.getByTestId('location-hub-directory-countries');
     await expect(countries).toBeVisible();
-    const colombiaCard = countries.getByRole('link', { name: 'Comunidades en Colombia' });
+    const colombiaCard = countries.getByRole('link', { name: 'Origins en Colombia' });
     await expect(colombiaCard).toBeVisible();
     await expect(colombiaCard).toHaveAttribute('href', '/es/location/colombia');
     await expect(countries.getByText('Communities in Colombia')).toHaveCount(0);
