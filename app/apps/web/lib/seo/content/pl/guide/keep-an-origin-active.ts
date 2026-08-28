@@ -17,23 +17,23 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'pl',
   slug: 'keep-an-origin-active',
-  title: 'Jak utrzymać społeczność aktywną i zaangażowaną | JoinOrigin',
+  title: 'Jak utrzymać Origin aktywne i zaangażowane | JoinOrigin',
   description:
-    'Utrzymuj swoją społeczność aktywną — niezależnie od tego, czy jest nowa i szuka rytmu, czy uznana i dryfuje — wykorzystaj pokój i jego aktualności jako powierzchnię utrzymania, buduj rytuały, dziel obciążenie organizatora i twórz małe ścieżki wkładu. Praktyczne kroki od JoinOrigin.',
+    'Utrzymuj swoje Origin aktywne — niezależnie od tego, czy jest nowe i szuka rytmu, czy uznane i dryfuje — wykorzystaj pokój i jego aktualności jako powierzchnię utrzymania, buduj rytuały, dziel obciążenie organizatora i twórz małe ścieżki wkładu. Praktyczne kroki od JoinOrigin.',
   intro: [
-    'Większość społeczności nie umiera przez zły start; umiera przez ciszę — w momencie, gdy ludzie przestają czuć się połączeni i po cichu odpływają. Utrzymanie społeczności w aktywności jest zatem problemem łączenia ludzi: ludzie zostają, gdy czują, że przynależą, a czują przynależność, gdy istnieje widoczne, zorganizowane miejsce, w którym żyje społeczność. Dokładnie tym jest JoinOrigin — i te same mechaniki działają niezależnie od tego, czy społeczność ma kilka tygodni i wciąż szuka rytmu, czy ma lata i dryfuje w ciszę.',
-    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować, zakładać i organizować społeczności — a w jego cyfrowym modelu pokój jest powierzchnią utrzymania: kontrolowany przez twórcę pokój Matrix, w którym rytuały, aktualizacje i wkłady pozostają widoczne, a którego aktywność trafia do aktualności utrzymujących członków w kontakcie między spotkaniami. Wydarzenia stacjonarne pozostają konsekwencją dalszego kroku uformowanej społeczności, nigdy rdzeniem — to pokój i jego aktualności utrzymują społeczność przy życiu z dnia na dzień. JoinOrigin nie zarządza społecznościami ani nie obsadza wydarzeń — platforma utrzymuje społeczności w kontakcie między spotkaniami, a organizacja należy do Ciebie.',
+    'Większość społeczności nie umiera przez zły start; umiera przez ciszę — w momencie, gdy ludzie przestają czuć się połączeni i po cichu odpływają. Utrzymanie Origin w aktywności jest zatem problemem łączenia ludzi: ludzie zostają, gdy czują, że przynależą, a czują przynależność, gdy istnieje widoczne, zorganizowane miejsce, w którym żyje społeczność. Dokładnie tym jest JoinOrigin — i te same mechaniki działają niezależnie od tego, czy Origin ma kilka tygodni i wciąż szuka rytmu, czy ma lata i dryfuje w ciszę.',
+    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować, zakładać i organizować Origins — a w jego cyfrowym modelu pokój jest powierzchnią utrzymania: kontrolowany przez twórcę pokój Matrix, w którym rytuały, aktualizacje i wkłady pozostają widoczne, a którego aktywność trafia do aktualności utrzymujących członków w kontakcie między spotkaniami. Wydarzenia stacjonarne pozostają konsekwencją dalszego kroku uformowanej społeczności, nigdy rdzeniem — to pokój i jego aktualności utrzymują społeczność przy życiu z dnia na dzień. JoinOrigin nie zarządza społecznościami ani nie obsadza wydarzeń — platforma utrzymuje społeczności w kontakcie między spotkaniami, a organizacja należy do Ciebie.',
     'Ten poradnik obejmuje praktyczne mechaniki zdrowej, aktywnej społeczności — od pierwszych tygodni po starcie po społeczność działającą od lat: ustanowienie rytuałów, które czynią uczestnictwo nawykiem, tworzenie wspólnych artefaktów w pokoju, rozłożenie obciążenia organizatora, aby żadna pojedyncza osoba się nie wypaliła, otwarcie małych ścieżek wkładu, aby każdy członek mógł dodawać wartość, oraz mierzenie sygnałów mówiących, czy społeczność faktycznie żyje. Każdy krok odwzorowuje, jak pomaga JoinOrigin.',
   ],
   dataPoints: [
     'Powtarzające się rytuały — stały rytm pokoju, regularny format, wspólny artefakt — zamieniają zainteresowanie w nawyk.',
     'Aktywność pokoju między spotkaniami utrzymuje członków w poczuciu połączenia; cisza jest tym, co ich odpycha.',
     'Małe ścieżki wkładu (przypięta notatka, rotujący gospodarz, wyróżnienie członka) dają członkom poczucie współwłasności.',
-    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować, zakładać i organizować społeczności; nie zarządza społecznościami ani nie obsadza wydarzeń.',
+    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować, zakładać i organizować Origins; nie zarządza społecznościami ani nie obsadza wydarzeń.',
   ],
   faq: [
     {
-      question: 'Jak często powinna spotykać się aktywna społeczność?',
+      question: 'Jak często powinno spotykać się aktywne Origin?',
       answer:
         'Miesięcznie to najbardziej zrównoważona podstawa dla spotkań stacjonarnych; pokój powinien być aktywny co tydzień — zameldowania, aktualizacje i małe rozmowy. Konsekwencja liczy się bardziej niż częstotliwość: niezawodny cotygodniowy rytm pokoju bije sporadyczny.',
     },
@@ -48,9 +48,9 @@ const content: GuideContent = {
         'Twórz w pokoju punkty styku o niskim wysiłku: wspólny dokument, wyróżnienie członka, regularny wątek zameldowań lub aktualizację „kto nad czym pracuje”. Celem jest widoczne tętno w pokoju i jego aktualnościach, nie ciągłe powiadomienia.',
     },
     {
-      question: 'Czy JoinOrigin może mi pomóc utrzymać społeczność aktywną?',
+      question: 'Czy JoinOrigin może mi pomóc utrzymać moje Origin aktywne?',
       answer:
-        'Tak. JoinOrigin pomaga ludziom znajdować, zakładać i organizować społeczności — jeden pokój i aktualności, w których społeczność pozostaje widoczna między spotkaniami. Praktyki z tego poradnika — rytuały, wspólne role i małe wkłady — działają na platformie i z narzędziami, które już masz.',
+        'Tak. JoinOrigin pomaga ludziom znajdować, zakładać i organizować Origins — jeden pokój i aktualności, w których społeczność pozostaje widoczna między spotkaniami. Praktyki z tego poradnika — rytuały, wspólne role i małe wkłady — działają na platformie i z narzędziami, które już masz.',
     },
   ],
   sections: [

@@ -19,7 +19,7 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'pl',
   slug: 'moderation',
-  title: 'Moderacja społeczności: jak utrzymać grupy zdrowe i przyjazne | JoinOrigin',
+  title: 'Moderacja Origins: jak utrzymać grupy zdrowe i przyjazne | JoinOrigin',
   description:
     'Moderuj społeczność jasnymi zasadami, wczesnym działaniem i deeskalacją — niezależnie od tego, czy konfigurujesz zupełnie nową grupę, czy naprawiasz kulturę ustalonej, kontrola twórcy to właścicielstwo pokoju Matrix, z rolami egzekwowanymi w Element. Praktyczne kroki od JoinOrigin.',
   intro: [
@@ -31,7 +31,7 @@ const content: GuideContent = {
     'Jasne, pisemne zasady społeczności zmniejszają konflikty, ustawiając oczekiwania przed incydentami.',
     'Kontrola twórcy na JoinOrigin to właścicielstwo pokoju Matrix: zapraszanie/usuwanie, role, ustawienia, przypinanie, archiwizowanie.',
     'Stopniowana ścieżka egzekwowania — ostrzeżenie, potem ograniczenie, potem usunięcie — jest sprawiedliwsza i łatwiejsza do obrony niż natychmiastowe bany.',
-    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować, zakładać i organizować społeczności; nie moderuje społeczności zewnętrznych ani nie dostarcza personelu moderacyjnego.',
+    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować, zakładać i organizować Origins; nie moderuje społeczności zewnętrznych ani nie dostarcza personelu moderacyjnego.',
   ],
   faq: [
     {
@@ -45,12 +45,12 @@ const content: GuideContent = {
         'Najpierw prywatnie. Odezwij się jeden na jeden, powtórz zasadę i jej skutek oraz daj osobie szansę na dostosowanie się. Publiczne przywołania zwykle eskalują. Utrzymuj publiczny zapis zasad, ale stosuj je prywatnie — w DM lub prywatnym pokoju.',
     },
     {
-      question: 'Kiedy powinienem usunąć kogoś ze społeczności?',
+      question: 'Kiedy powinienem usunąć kogoś z Origin?',
       answer:
         'Po tym, jak jasne ostrzeżenia nie zadziałały, lub natychmiast w przypadku zachowań zagrażających członkom — nękania, gróźb lub doxxingu. Test brzmi: czy osoba aktywnie czyni przestrzeń niebezpieczną dla innych. Na JoinOrigin usunięcie to usunięcie członka z pokoju przez właściciela pokoju.',
     },
     {
-      question: 'Czy JoinOrigin może mi pomóc moderować moją społeczność?',
+      question: 'Czy JoinOrigin może mi pomóc moderować moje Origin?',
       answer:
         'Tak. JoinOrigin to system operacyjny społeczności, w którym kontrola twórcy to właścicielstwo pokoju Matrix — zapraszanie/usuwanie, role, ustawienia, przypinanie i archiwizowanie egzekwowane w Element. JoinOrigin nie moderuje społeczności, więc praktyki z tego poradnika — jasne zasady, stopniowane egzekwowanie, spokojna deeskalacja — należą do Ciebie.',
     },

@@ -13,29 +13,29 @@ const content: CityContent = {
   pageTitles: {
     city: 'Origins in München | JoinOrigin',
     cityDescription:
-      'Finde oder gründe Communities in München – Startup, Kreativ, politisch, Meetup und Kleinunternehmen in der bayerischen Landeshauptstadt. JoinOrigin-Warteliste.',
+      'Finde oder gründe Origins in München – Startup, Kreativ, politisch, Meetup und Kleinunternehmen in der bayerischen Landeshauptstadt. JoinOrigin-Warteliste.',
     variants: {
-      startup: 'Startup-Communities in München | JoinOrigin',
-      creative: 'Kreativ-Communities in München | JoinOrigin',
-      political: 'Politische & bürgerschaftliche Communities in München | JoinOrigin',
-      meetup: 'Meetup- & soziale Communities in München | JoinOrigin',
-      'small-business': 'Kleinunternehmer-Communities in München | JoinOrigin',
+      startup: 'Startup-Origins in München | JoinOrigin',
+      creative: 'Kreativ-Origins in München | JoinOrigin',
+      political: 'Politische & bürgerschaftliche Origins in München | JoinOrigin',
+      meetup: 'Meetup- & soziale Origins in München | JoinOrigin',
+      'small-business': 'Kleinunternehmer-Origins in München | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Finde oder gründe Startup-Communities in München – Gründer:innen, Entwickler:innen und Operator:innen rund um UnternehmerTUM, Werksviertel und den Tech-Korridor. JoinOrigin-Warteliste.',
+        'Finde oder gründe Startup-Origins in München – Gründer:innen, Entwickler:innen und Operator:innen rund um UnternehmerTUM, Werksviertel und den Tech-Korridor. JoinOrigin-Warteliste.',
       creative:
-        'Finde oder gründe Kreativ-Communities in München – Studios, Galerien und Kollektive in Schwabing, Glockenbach und im Kunstareal. JoinOrigin-Warteliste.',
+        'Finde oder gründe Kreativ-Origins in München – Studios, Galerien und Kollektive in Schwabing, Glockenbach und im Kunstareal. JoinOrigin-Warteliste.',
       political:
-        'Finde oder gründe politische und bürgerschaftliche Communities in München – Bürgerinitiativen, Bezirksausschüsse und lokale Kampagnen. JoinOrigin-Warteliste.',
+        'Finde oder gründe politische und bürgerschaftliche Origins in München – Bürgerinitiativen, Bezirksausschüsse und lokale Kampagnen. JoinOrigin-Warteliste.',
       meetup:
-        'Finde oder gründe Meetup- und soziale Communities in München – Biergärten, Stammtische, Wandervereine und Treffen an der Isar. JoinOrigin-Warteliste.',
+        'Finde oder gründe Meetup- und soziale Origins in München – Biergärten, Stammtische, Wandervereine und Treffen an der Isar. JoinOrigin-Warteliste.',
       'small-business':
-        'Finde oder gründe Kleinunternehmer-Communities in München – Händler am Viktualienmarkt, Handwerksbetriebe und Nachbarschafts-Läden. JoinOrigin-Warteliste.',
+        'Finde oder gründe Kleinunternehmer-Origins in München – Händler am Viktualienmarkt, Handwerksbetriebe und Nachbarschafts-Läden. JoinOrigin-Warteliste.',
     },
     ideas: '30 Ideen für Origin-Events in München | JoinOrigin',
     ideasDescription:
-      'Entdecke 30 Ideen für Community-Events in München – Networking, Lernen, Draußen, Beruf, Kreativ & Impact. JoinOrigin-Warteliste.',
+      'Entdecke 30 Ideen für Origin-Events in München – Networking, Lernen, Draußen, Beruf, Kreativ & Impact. JoinOrigin-Warteliste.',
   },
   intro: [
     'München ist eine Stadt, in der das Community-Leben so sorgfältig konstruiert ist wie ihre Maschinen. Die bayerische Landeshauptstadt verbindet eine tiefe Tradition bürgerschaftlicher Institutionen — Biergärten, Vereine und Stammtische — mit einer modernen Tech-Ökonomie rund um BMW, Siemens und eine dichte Startup-Szene. Das Ergebnis ist ein Ort, an dem der Beitritt zu einer Gruppe kulturell normal ist: Fast jede:r Münchner:in gehört zu mindestens einem Verein, Club oder festen Stammtisch.',
@@ -166,17 +166,17 @@ const content: CityContent = {
     startup:
       'Die Münchner Startup-Szene wird von der Ingenieurs-DNA der Stadt angetrieben: der TUM und ihrem UnternehmerTUM-Hub, den Konzernlaboren von BMW und Siemens und einer tiefen Bank von Forschenden in Mobilität, KI und Climate Tech. Das Werksviertel, das umgebaute Industrieviertel nahe dem Ostbahnhof, ist zum kreativen Zuhause der Szene geworden, während Maxvorstadt und Schwabing Coworking-Spaces und Tech-Cafés beherbergen. Die Community ist deutschsprachiger als die Berlins, aber Englisch ist in Deep-Tech- und KI-Kreisen üblich, wo internationale Forschende Seite an Seite mit lokalen Gründer:innen arbeiten. Wiederkehrende Formate sind Gründer:innen-Frühstücke, Pitch-Abende, Demo-Tage und Corporate-Startup-Events, die frühe Teams mit den Industriegiganten von nebenan verbinden. Münchens Kultur belohnt Zuverlässigkeit: Gruppen, die eine feste Zeit buchen, guten Kaffee servieren und auf die Minute beginnen, bauen treue Anhängerschaften auf. Eine Startup-Community hier zu gründen funktioniert am besten mit einer engen Vertikale — Deep Tech, Mobilität oder Klima — und einem regelmäßigen Rhythmus, der der Vorliebe der Stadt für Struktur statt Spontaneität entspricht.',
     creative:
-      'Die kreativen Communities Münchens sind ruhiger als die Berlins, aber tief verwurzelt: Die Galerien und Museen des Kunstareals verankern die bildende Kunst, Schwabing trägt ein Jahrhundert Künstler-Cafés und Buchhandlungen, und Glockenbach und Haidhausen beherbergen die dichtesten Cluster an Studios und Projektflächen. Die AdBK und die Design- und Musikhochschulen Münchens speisen einen steten Strom von Absolvent:innen in eine freiberufliche Ökonomie, die auf Empfehlungen und Handwerk basiert. Formate sind offene Studio-Wochenenden, Galerie-Rundgänge, Portfolio-Reviews und Musikproduktions-Zirkel, die sich Proberäume teilen. Der Reichtum der Stadt zeigt sich in den Orten — gut ausgestattete Ateliers, professionelle Druckereien und schöne Kaffeehäuser — und ihre Ordnung zeigt sich darin, wie Communities sich organisieren: feste Abende, klare Strukturen, zuverlässige Gastgeber:innen. Kreativ-Communities hier sind tendenziell kleiner und bedachter, was Macher:innen passt, die Tiefe über Masse stellen. Eine kreative Community in München zu gründen ist realistisch: Wähle ein Handwerk, einen Stadtbezirk und einen regelmäßigen Abend, und die Dichte neugieriger, qualifizierter Menschen in dieser Stadt findet dich.',
+      'Die kreativen Communities Münchens sind ruhiger als die Berlins, aber tief verwurzelt: Die Galerien und Museen des Kunstareals verankern die bildende Kunst, Schwabing trägt ein Jahrhundert Künstler-Cafés und Buchhandlungen, und Glockenbach und Haidhausen beherbergen die dichtesten Cluster an Studios und Projektflächen. Die AdBK und die Design- und Musikhochschulen Münchens speisen einen steten Strom von Absolvent:innen in eine freiberufliche Ökonomie, die auf Empfehlungen und Handwerk basiert. Formate sind offene Studio-Wochenenden, Galerie-Rundgänge, Portfolio-Reviews und Musikproduktions-Zirkel, die sich Proberäume teilen. Der Reichtum der Stadt zeigt sich in den Orten — gut ausgestattete Ateliers, professionelle Druckereien und schöne Kaffeehäuser — und ihre Ordnung zeigt sich darin, wie Communities sich organisieren: feste Abende, klare Strukturen, zuverlässige Gastgeber:innen. Kreativ-Communities hier sind tendenziell kleiner und bedachter, was Macher:innen passt, die Tiefe über Masse stellen. Ein kreatives Origin in München zu gründen ist realistisch: Wähle ein Handwerk, einen Stadtbezirk und einen regelmäßigen Abend, und die Dichte neugieriger, qualifizierter Menschen in dieser Stadt findet dich.',
     political:
       'Die bürgerschaftliche Landschaft Münchens wird vom Bezirksausschuss geprägt — den Stadtbezirksausschüssen, die jedem der 25 Stadtbezirke eine echte Stimme in der lokalen Planung geben — und von einer starken Tradition des Bürgerbegehrens, bei dem Bürgerinitiativen öffentliche Abstimmungen erzwingen können. Wohnen, Mobilität und Grünflächen sind die Themen, die Bewohner:innen bewegen: Miet- und Dichtedebatten, Rad- und Tramprojekte und der Erhalt der Biergärten und Isar-Wiesen der Stadt haben alle aktive Kampagnen. Nachbarschaftszentren, Gemeinschaftsgärten und Kirchenhallen beherbergen Versammlungen, bei denen Neuzugänge willkommen sind. Die politische Kultur schätzt Kompetenz und Prozess: Münchner:innen reagieren auf gut organisierte Initiativen mit klaren Vorschlägen, und sie belohnen Gruppen, die ihre Hausaufgaben machen. Civic-Tech-Freiwillige bauen Werkzeuge für Bürgerhaushalte und Stadtdaten, während unzählige Freiwilligenprojekte sich um Parks, Bibliotheken und Geflüchtetenhilfe kümmern. Eine politische Community zu gründen bedeutet, ein konkretes Thema und eine kleine Geografie zu wählen und dann mit bestehenden Initiativen zu kooperieren — die Landschaft ist organisiert genug, dass Zusammenarbeit Wettbewerb schlägt.',
     meetup:
       'Die Meetup-Szene Münchens baut auf dem Biergarten, der Isar und dem Alpenverein auf. Die Biergärten der Stadt — der Englische Garten mit seinem Chinesischen Turm, der riesige Hirschgarten und Terrassen an der Isar — sind öffentliche Wohnzimmer, in denen Stammtische, Familientische und spontane Spiele nebeneinander existieren. Im Sommer wird die Isar zu einer Schwimm- und Grill-Ader, die Gruppen von Freund:innen und Neuzugezogenen zu denselben Sandbänken und Wiesen zieht. Der Winter tauscht den Fluss gegen Skiclubs und Indoor-Spieleabende, den deutschen Brettspiel-Abend, der Cafés und Vereinsräume füllt. Die Struktur der Stadt zeigt sich in den Formaten: Wandervereine planen Wochenendausflüge in die Alpen Monate im Voraus, Laufgruppen treffen sich jede Woche am selben Parktor, und Sprachaustausche laufen nach festem Abendplan. Neuzugezogene, die einem Verein beitreten oder einen Stammtisch-Tisch beanspruchen, finden schnell Zugehörigkeit. Ein Meetup in München zu starten bedeutet, ein wiederholbares Format und einen Ort zu wählen, der euch jedes Mal aufnimmt — die Liebe der Stadt zur Regelmäßigkeit erledigt den Rest.',
     'small-business':
-      'Münchner Kleinunternehmer-Communities werden vom Viktualienmarkt — dem berühmten täglichen Markt der Stadt — und von der Handwerkstradition verankert, die den bayerischen Handel bis heute prägt. Markthändler:innen, Bäcker:innen, Metzger:innen, Brauer:innen und Werkstattbesitzer:innen bilden enge Netzwerke aus Lieferant:innen, Ausbildungsplätzen und gemeinsamen Kalendern. Stadtbezirke wie Haidhausen und Au bewahren Cluster von Familienbetrieben, deren Inhaber:innen sich beim Namen kennen. Die Handwerkskammer und die Industrie- und Handelskammer bieten strukturierte Ausbildungen, Lehrstellen und Unternehmensberatung, und die Brauerei-Taprooms Münchens beherbergen alles von Lieferanten-Dinners bis zu Branchen-Abenden. Was diese Gruppen verbindet, ist Handwerksstolz und Ort: Eine Markthalle oder eine Werkstattstraße ist eine natürliche Community mit einem gemeinsamen Interesse an Qualität und Laufkundschaft. Neuzugänge schließen sich typischerweise über einen Kammer-Workshop, einen Markttisch oder ein Taproom-Event an. Eine Kleinunternehmer-Community zu gründen ist gut machbar: Ein monatlicher Runder Tisch in einem Bezirks-Café, mit rotierenden Themen wie Ausbildung, Miete und Digitalisierung, zieht zuverlässig Inhaber:innen an, die selten Gleichgesinnte zum Reden haben — und auch Neulinge ohne eigenes Geschäft sind willkommen, denn viele Treffen suchen gezielt Nachbar:innen mit Ideen für den Stadtteil.',
+      'Münchner Kleinunternehmer-Communities werden vom Viktualienmarkt — dem berühmten täglichen Markt der Stadt — und von der Handwerkstradition verankert, die den bayerischen Handel bis heute prägt. Markthändler:innen, Bäcker:innen, Metzger:innen, Brauer:innen und Werkstattbesitzer:innen bilden enge Netzwerke aus Lieferant:innen, Ausbildungsplätzen und gemeinsamen Kalendern. Stadtbezirke wie Haidhausen und Au bewahren Cluster von Familienbetrieben, deren Inhaber:innen sich beim Namen kennen. Die Handwerkskammer und die Industrie- und Handelskammer bieten strukturierte Ausbildungen, Lehrstellen und Unternehmensberatung, und die Brauerei-Taprooms Münchens beherbergen alles von Lieferanten-Dinners bis zu Branchen-Abenden. Was diese Gruppen verbindet, ist Handwerksstolz und Ort: Eine Markthalle oder eine Werkstattstraße ist eine natürliche Community mit einem gemeinsamen Interesse an Qualität und Laufkundschaft. Neuzugänge schließen sich typischerweise über einen Kammer-Workshop, einen Markttisch oder ein Taproom-Event an. Ein Kleinunternehmer-Origin zu gründen ist gut machbar: Ein monatlicher Runder Tisch in einem Bezirks-Café, mit rotierenden Themen wie Ausbildung, Miete und Digitalisierung, zieht zuverlässig Inhaber:innen an, die selten Gleichgesinnte zum Reden haben — und auch Neulinge ohne eigenes Geschäft sind willkommen, denn viele Treffen suchen gezielt Nachbar:innen mit Ideen für den Stadtteil.',
   },
   ideaPage: {
     intro:
-      'München ist eine ideale Stadt, um neue Ideen für Community-Events zu testen: Biergärten und Parks sind großzügig, die Isar bietet kostenlose Sommer-Treffpunkte, und die Vereinskultur der Stadt bedeutet, dass Bewohner:innen auftauchen, wenn etwas gut organisiert ist. Die dreißig Ideen unten sind in sechs Kategorien gegliedert — Networking, Lernen, Sozial & Draußen, Beruf & Branche, Kreativ & Machen sowie Impact & Lokal. Jede nennt, für wen sie ist, einen kurzen Pitch und eine vorgeschlagene Ortsart, die es in München wirklich gibt — von Biergarten-Tischen und Kaffeehaus-Hinterzimmern bis zu den Isar-Ufern und Alpenvereins-Hütten. Manche Ideen funktionieren als einmalige Events; andere sind dafür gemacht, zu wiederkehrenden Communities mit Stammtisch-Rhythmus zu werden. Die Ehrlichkeitsregel ist einfach: Jeder Ortsvorschlag ist eine echte Ortsart in dieser Stadt, und jedes Format ist einfach genug, dass eine Erstveranstalter:in es durchziehen kann. Wähle die Idee, die zu deinen Interessen passt, finde einen Ort, der dich aufnimmt, und überlasse den Rest der Struktur Münchens.',
+      'München ist eine ideale Stadt, um neue Ideen für Origin-Events zu testen: Biergärten und Parks sind großzügig, die Isar bietet kostenlose Sommer-Treffpunkte, und die Vereinskultur der Stadt bedeutet, dass Bewohner:innen auftauchen, wenn etwas gut organisiert ist. Die dreißig Ideen unten sind in sechs Kategorien gegliedert — Networking, Lernen, Sozial & Draußen, Beruf & Branche, Kreativ & Machen sowie Impact & Lokal. Jede nennt, für wen sie ist, einen kurzen Pitch und eine vorgeschlagene Ortsart, die es in München wirklich gibt — von Biergarten-Tischen und Kaffeehaus-Hinterzimmern bis zu den Isar-Ufern und Alpenvereins-Hütten. Manche Ideen funktionieren als einmalige Events; andere sind dafür gemacht, zu wiederkehrenden Origins mit Stammtisch-Rhythmus zu werden. Die Ehrlichkeitsregel ist einfach: Jeder Ortsvorschlag ist eine echte Ortsart in dieser Stadt, und jedes Format ist einfach genug, dass eine Erstveranstalter:in es durchziehen kann. Wähle die Idee, die zu deinen Interessen passt, finde einen Ort, der dich aufnimmt, und überlasse den Rest der Struktur Münchens.',
     categories: [
       {
         name: 'Networking',
@@ -432,20 +432,20 @@ const content: CityContent = {
       {
         question: 'Können aus diesen Events echte Communities werden?',
         answer:
-          'Ja — wiederkehrende Formate sind der Weg, auf dem die meisten Münchner Communities starten, und die Vereinskultur liefert ein bewährtes Muster. Die Ratgeber erklären den Weg vom ersten Event zur stabilen Community.',
+          'Ja — wiederkehrende Formate sind der Weg, auf dem die meisten Münchner Origins starten, und die Vereinskultur liefert ein bewährtes Muster. Die Ratgeber erklären den Weg vom ersten Event zum stabilen Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'Wie finde ich eine Community in München?',
+      question: 'Wie finde ich ein Origin in München?',
       answer:
-        'Nutze die Unterseiten für Startup-, Kreativ-, politische, Meetup- und Kleinunternehmer-Communities. Jede beschreibt die echten Stadtbezirke, Orte und Formate, an denen Münchner:innen sich treffen. JoinOrigin ist live — erstelle dein Profil und finde oder gründe noch heute deine Community.',
+        'Nutze die Unterseiten für Startup-, Kreativ-, politische, Meetup- und Kleinunternehmer-Origins. Jede beschreibt die echten Stadtbezirke, Orte und Formate, an denen Münchner:innen sich treffen. JoinOrigin ist live — erstelle dein Profil und finde oder gründe noch heute dein Origin.',
     },
     {
-      question: 'Ist es realistisch, in München eine Community zu gründen?',
+      question: 'Ist es realistisch, in München ein Origin zu gründen?',
       answer:
-        'Ja. München hat reichlich Orte, großzügige Parks und Biergärten und eine starke Vereinskultur. Die Ratgeber behandeln Community-Gründung, Meetup-Organisation und die ersten zehn Mitglieder.',
+        'Ja. München hat reichlich Orte, großzügige Parks und Biergärten und eine starke Vereinskultur. Die Ratgeber behandeln Origin-Gründung, Meetup-Organisation und die ersten zehn Mitglieder.',
     },
     {
       question: 'Sind die Ortsvorschläge auf dieser Seite echt?',
@@ -455,7 +455,7 @@ const content: CityContent = {
     {
       question: 'Hat JoinOrigin ein Büro in München?',
       answer:
-        'Nein. JoinOrigin hat keine lokalen Büros oder Mitarbeitenden. Alle Community-Beschreibungen spiegeln die echte Stadtlandschaft wider, und die Plattform hilft Münchner:innen, Communities zu finden oder zu gründen.',
+        'Nein. JoinOrigin hat keine lokalen Büros oder Mitarbeitenden. Alle Community-Beschreibungen spiegeln die echte Stadtlandschaft wider, und die Plattform hilft Münchner:innen, Origins zu finden oder zu gründen.',
     },
   ],
 };

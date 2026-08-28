@@ -67,7 +67,7 @@ const content: GuideContent = {
     'Teile das Konzept mit Gründer:innen-Communities. Startups wachsen durch Gründer:innen-Netzwerke. Teile die Ideenseite mit Gründer:innen-Gruppen, Startup-Communities, Acceleratoren und allen, die das Problem kennen. Beitreten auf JoinOrigin ist eine einzelne Aktion — Klicken auf Beitreten auf der öffentlichen Seite oder Folgen eines direkten Einladungslinks von einem Mitglied. Ein kurzer, klarer Link zu deinem Konzept erledigt die Arbeit.',
     'Lade frühe Überzeugte und Tester:innen ein. Lade die Menschen ein, die den Ehrgeiz teilen: potenzielle Co-Gründer:innen, Fachexpert:innen und Nutzer:innen, die bereit sind, eine grobe Version auszuprobieren. JoinOrigin macht das Entdecken einfacher — ein Ort, an dem Menschen, die eine Idee suchen, deine finden und über einen Link beitreten können. Persönliche Einladungen leisten weiterhin die schwere Arbeit, und jede beitretende Person wird zu einem Kanal in ihr eigenes Netzwerk.',
     'Führe strukturierte Gespräche im Raum. Frag Beitretende, was sie begeistert, was sie beunruhigt und was sie zuerst tun würden. Ein Startup-Raum ist ein fortlaufendes Interview — die Antworten formen das Konzept. JoinOrigin führt diese Gespräche nicht; der Raum gehört dir, um ihn zu gestalten. Die Plattform gibt dem Konzept einen Raum, in dem Interesse zu Erkenntnis wird, und die ersteller:in besitzt diesen Raum. Führe die Gespräche direkt im Raum.',
-    'Nutze den Raum, um ein Trial-Team zu formen. Wenn die richtigen Menschen auftauchen, schlage einen kleinen Test vor — einen Prototyp, eine Landingpage oder eine Arbeitssitzung — und sieh, wie das Team zusammenarbeitet. JoinOrigin gibt Communities einen gemeinsamen Raum für ihre Arbeit und Projekte, ein natürlicher Ort, an dem ein Test entstehen kann. Ein kleiner echter Prototyp ist der zuverlässigste Passungstest.',
+    'Nutze den Raum, um ein Trial-Team zu formen. Wenn die richtigen Menschen auftauchen, schlage einen kleinen Test vor — einen Prototyp, eine Landingpage oder eine Arbeitssitzung — und sieh, wie das Team zusammenarbeitet. JoinOrigin gibt Origins einen gemeinsamen Raum für ihre Arbeit und Projekte, ein natürlicher Ort, an dem ein Test entstehen kann. Ein kleiner echter Prototyp ist der zuverlässigste Passungstest.',
     'Speise den Raum in den Feed, während du validierst. Poste weiter Updates, halte den Raum lebendig und lass den Schwung des Konzepts für ein größeres Netzwerk sichtbar werden. Der Feed macht aus einem Konzept einen Beweis, dass Menschen sich kümmern. Auf JoinOrigin fließen Raum-Updates in den Feed — die Wachstumsschleife, in der jedes neue Mitglied die Entdeckungsfläche erweitert. Werde entdeckt und wachse.',
   ],
   steps: [
@@ -111,7 +111,7 @@ const content: GuideContent = {
       title: 'Nutze den Raum, um ein Trial-Team zu formen',
       body: 'Wenn die richtigen Menschen auftauchen, schlage einen kleinen Test vor — einen Prototyp, eine Landingpage oder eine Arbeitssitzung — und sieh, wie das Team zusammenarbeitet.',
       joinOriginNote:
-        'JoinOrigin gibt Communities einen gemeinsamen Raum für ihre Arbeit und Projekte, ein natürlicher Ort, an dem ein Test entstehen kann. Ein kleiner echter Prototyp ist der zuverlässigste Passungstest.',
+        'JoinOrigin gibt Origins einen gemeinsamen Raum für ihre Arbeit und Projekte, ein natürlicher Ort, an dem ein Test entstehen kann. Ein kleiner echter Prototyp ist der zuverlässigste Passungstest.',
     },
     {
       title: 'Speise den Raum in den Feed, während du validierst',

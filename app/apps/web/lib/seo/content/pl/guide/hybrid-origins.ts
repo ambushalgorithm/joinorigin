@@ -18,23 +18,23 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'pl',
   slug: 'hybrid-origins',
-  title: 'Społeczności hybrydowe: jak prowadzić stacjonarnie + online razem | JoinOrigin',
+  title: 'Hybrydowe Origins: jak prowadzić stacjonarnie + online razem | JoinOrigin',
   description:
     "Prowadź społeczność hybrydową, w której pokój łączy członków stacjonarnych i online'owych — niezależnie od tego, czy zaczynasz od zera, czy czynisz istniejącą społeczność hybrydową, wybierz właściwe narzędzia, zaprojektuj równy udział i utrzymuj zaangażowanie obu grup odbiorców. Od JoinOrigin.",
   intro: [
     "Społeczność hybrydowa gromadzi ludzi w dwóch miejscach naraz — fizycznie w miejscu i wirtualnie przez ekran — a prawdziwe wyzwanie znów dotyczy ludzi: upewnienia się, że obie grupy odbiorców czują, że należą do jednej połączonej społeczności, a nie do dwóch oddzielnych. JoinOrigin jest zbudowany właśnie wokół tego celu łączenia ludzi, a model działa tak samo dla społeczności, która już istnieje, jak dla dopiero powstającej — ustalona grupa stacjonarna może dodać online'ową połowę, a online'owa społeczność może zacząć spotykać się lokalnie.",
-    "JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować, dołączać i zakładać społeczności — więc grupa hybrydowa ma jeden pokój łączący online'owe i (dalsze) stacjonarne części: lokalni i zdalni członkowie widzą tę samą społeczność, ten sam rytm i te same następne kroki. W cyfrowym modelu połącz→dołącz→pokój pokój jest trwałą powierzchnią, w której obie połowy społeczności żyją między spotkaniami; wydarzenie stacjonarne to konsekwencja dalszego kroku, którą pokój spina przed i po. JoinOrigin nie dostarcza narzędzi wydarzeń ani nie obsadza wydarzeń hybrydowych — platforma daje każdej społeczności — także hybrydowej — jeden pokój, w którym jej członkowie pozostają w kontakcie.",
+    "JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować, dołączać i zakładać Origins — więc grupa hybrydowa ma jeden pokój łączący online'owe i (dalsze) stacjonarne części: lokalni i zdalni członkowie widzą to samo Origin, ten sam rytm i te same następne kroki. W cyfrowym modelu połącz→dołącz→pokój pokój jest trwałą powierzchnią, w której obie połowy społeczności żyją między spotkaniami; wydarzenie stacjonarne to konsekwencja dalszego kroku, którą pokój spina przed i po. JoinOrigin nie dostarcza narzędzi wydarzeń ani nie obsadza wydarzeń hybrydowych — platforma daje każdemu Origin — także hybrydowemu — jeden pokój, w którym jego członkowie pozostają w kontakcie.",
     "Ten poradnik obejmuje praktyczne decyzje, które czynią społeczności hybrydowe udanymi — dla nowych i istniejących grup: decyzję, czy hybryda to właściwy model, zbudowanie pokoju, który dzielą obie grupy odbiorców, wybór formatu i narzędzi, które pasują, zaprojektowanie spotkania tak, aby stacjonarni i online'owi członkowie dzielili to samo doświadczenie, zarządzanie przestrzenią, aby żadna strona nie dominowała, oraz utrzymanie trwałego pokoju spinającego społeczność między spotkaniami. Każdy krok pokazuje, gdzie pomaga JoinOrigin.",
   ],
   dataPoints: [
-    'Społeczność hybrydowa to jedna społeczność z dwoma punktami wejścia, a nie dwie grupy odbiorców do obsługi osobno.',
+    'Hybrydowe Origin to jedno Origin z dwoma punktami wejścia, a nie dwie grupy odbiorców do obsługi osobno.',
     'Pokój jest tkanką łączną: jednym wspólnym miejscem, w którym obie grupy odbiorców widzą te same aktualizacje, notatki i następne kroki.',
     'Proste, niezawodne narzędzia — jeden link do rozmowy wideo, jeden wspólny dokument — zmniejszają tarcie, które zabija hybrydowe spotkania.',
-    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować lub zakładać społeczności; nie dostarcza narzędzi wydarzeń ani nie obsadza wydarzeń hybrydowych.',
+    'JoinOrigin to system operacyjny społeczności zaprojektowany, aby pomagać ludziom znajdować lub zakładać Origins; nie dostarcza narzędzi wydarzeń ani nie obsadza wydarzeń hybrydowych.',
   ],
   faq: [
     {
-      question: 'Kiedy społeczność powinna przejść na hybrydę?',
+      question: 'Kiedy Origin powinno przejść na hybrydę?',
       answer:
         'Gdy część Twojej grupy odbiorców niezawodnie nie może uczestniczyć stacjonarnie — z powodu odległości, harmonogramu lub mobilności — a społeczność wciąż chce jednej wspólnej tożsamości. Jeśli wszyscy mogą spotykać się lokalnie, spotkanie stacjonarne jest prostsze i często lepsze.',
     },
@@ -49,13 +49,13 @@ const content: GuideContent = {
         'Zaprojektuj równy udział: przeprowadź hybrydową rundę przedstawień, jawnie przywołuj zdalnych członków, udostępniaj ekran dla wszelkich materiałów wizualnych i używaj wspólnego dokumentu, w którym obie strony mogą pisać. Wyznacz jedną osobę do ciągłego pilnowania strony zdalnej.',
     },
     {
-      question: 'Czy JoinOrigin może mi pomóc prowadzić społeczność hybrydową?',
+      question: 'Czy JoinOrigin może mi pomóc prowadzić hybrydowe Origin?',
       answer:
-        'Tak. JoinOrigin pomaga ludziom znajdować i zakładać społeczności — jeden pokój, w którym lokalni i zdalni członkowie pozostają w kontakcie. JoinOrigin nie dostarcza narzędzi wydarzeń, więc praktyczne hybrydowe praktyki z tego poradnika działają z narzędziami, które już masz.',
+        'Tak. JoinOrigin pomaga ludziom znajdować i zakładać Origins — jeden pokój, w którym lokalni i zdalni członkowie pozostają w kontakcie. JoinOrigin nie dostarcza narzędzi wydarzeń, więc praktyczne hybrydowe praktyki z tego poradnika działają z narzędziami, które już masz.',
     },
   ],
   sections: [
-    'Zdecyduj, czy hybryda to właściwy model. Przechodź na hybrydę, gdy spotkanie stacjonarne ma sens. Jeśli większość członków może spotykać się lokalnie, spotkanie stacjonarne wzmacnia więź — hybryda pozwala budować zaufanie szybciej i lepiej czytać ludzi. JoinOrigin jest zaprojektowany, aby pomagać każdej społeczności znajdować i utrzymywać członków, ale decyzja o formacie należy do Ciebie. Przechodź na hybrydę tylko wtedy, gdy spotkanie stacjonarne ma sens.',
+    'Zdecyduj, czy hybryda to właściwy model. Przechodź na hybrydę, gdy spotkanie stacjonarne ma sens. Jeśli większość członków może spotykać się lokalnie, spotkanie stacjonarne wzmacnia więź — hybryda pozwala budować zaufanie szybciej i lepiej czytać ludzi. JoinOrigin jest zaprojektowany, aby pomagać każdemu Origin znajdować i utrzymywać członków, ale decyzja o formacie należy do Ciebie. Przechodź na hybrydę tylko wtedy, gdy spotkanie stacjonarne ma sens.',
     "Zbuduj pokój łączący obie grupy odbiorców. Zanim cokolwiek innego, upewnij się, że społeczność ma wspólny pokój, w którym zdalni i lokalni członkowie rozmawiają, dzielą się aktualizacjami i widzą te same następne kroki. Pokój sprawia, że hybryda czuje się jak jedna społeczność, a nie dwie. Na JoinOrigin każda grupa ma pokój od publikacji — trwałą powierzchnię spinającą online'owe i stacjonarne części. Skonfiguruj jeden wspólny pokój, do którego mogą dołączyć obie grupy odbiorców.",
     'Wybierz jedno niezawodne narzędzie wideo i jeden wspólny dokument. Utrzymuj minimalny stos: link do rozmowy wideo dla zdalnych członków, dokument do notatek i wspólnych linków oraz jeden wpis w kalendarzu. Złożoność jest wrogiem konsekwentnych hybrydowych spotkań. JoinOrigin nie dostarcza narzędzi wydarzeń — utrzymuj minimalny stos. Platforma to trwały pokój, w którym żyją link i dokument, a nie samo narzędzie wydarzeń.',
     "Zaprojektuj agendę dla dwóch grup odbiorców. Przeprowadź rundę przedstawień obejmującą zdalnych członków po imieniu, utrzymuj materiały wizualne na wspólnym ekranie i zostaw miejsce dla strony online'owej, aby mogła zabrać głos. Hybrydowa agenda jawnie wymienia obie grupy odbiorców. Na JoinOrigin obie grupy odbiorców dzielą jeden pokój społeczności, co czyni „projektowanie dla dwóch grup” naturalnym dopasowaniem. Jawnie wymień obie grupy odbiorców w agendzie.",
@@ -69,7 +69,7 @@ const content: GuideContent = {
       title: 'Zdecyduj, czy hybryda to właściwy model',
       body: 'Przechodź na hybrydę, gdy spotkanie stacjonarne ma sens. Jeśli większość członków może spotykać się lokalnie, spotkanie stacjonarne wzmacnia więź — hybryda pozwala budować zaufanie szybciej i lepiej czytać ludzi.',
       joinOriginNote:
-        'JoinOrigin jest zaprojektowany, aby pomagać każdej społeczności znajdować i utrzymywać członków, ale decyzja o formacie należy do Ciebie. Przechodź na hybrydę tylko wtedy, gdy spotkanie stacjonarne ma sens.',
+        'JoinOrigin jest zaprojektowany, aby pomagać każdemu Origin znajdować i utrzymywać członków, ale decyzja o formacie należy do Ciebie. Przechodź na hybrydę tylko wtedy, gdy spotkanie stacjonarne ma sens.',
     },
     {
       title: 'Zbuduj pokój łączący obie grupy odbiorców',

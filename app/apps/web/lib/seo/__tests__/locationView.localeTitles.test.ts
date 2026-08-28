@@ -39,7 +39,7 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
       'de',
     );
     expect(startup).toBeDefined();
-    expect(buildLocationViewData(startup!, 'de').heading).toBe('Startup-Communities in Berlin');
+    expect(buildLocationViewData(startup!, 'de').heading).toBe('Startup-Origins in Berlin');
 
     const ideas = resolveLocationEntry(
       { country: 'germany', region: 'berlin', city: 'berlin', variant: 'ideas' },
@@ -148,7 +148,7 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     );
     expect(startup).toBeDefined();
     const deStartup = buildLocationViewData(startup!, 'de');
-    expect(deStartup.breadcrumbs.at(-1)?.name).toBe('Startup-Communities in Berlin');
+    expect(deStartup.breadcrumbs.at(-1)?.name).toBe('Startup-Origins in Berlin');
   });
 
   it('de Berlin variant heading localizes from the committed de pageTitles', () => {
@@ -158,8 +158,8 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     );
     expect(deStartup).toBeDefined();
     const data = buildLocationViewData(deStartup!, 'de');
-    expect(data.heading).toBe('Startup-Communities in Berlin');
-    expect(data.lead).toContain('Finde oder gründe Startup-Communities in Berlin');
+    expect(data.heading).toBe('Startup-Origins in Berlin');
+    expect(data.lead).toContain('Finde oder gründe Startup-Origins in Berlin');
   });
 
   it('hub presence-claim entity label resolves seoContent.location.hubEntity (TASK-449)', () => {
@@ -187,11 +187,9 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     // dataset name (e.g. "Vereinigte Staaten") and the directory stays
     // complete.
     const de = buildLocationViewData(hub!, 'de');
-    expect(de.hubDirectory?.some((entry) => entry.name === 'Startup-Communities in Berlin')).toBe(
-      true,
-    );
+    expect(de.hubDirectory?.some((entry) => entry.name === 'Startup-Origins in Berlin')).toBe(true);
     expect(
-      de.hubDirectory?.some((entry) => entry.name === 'Kreativ- & Design-Communities in Berlin'),
+      de.hubDirectory?.some((entry) => entry.name === 'Kreativ- & Design-Origins in Berlin'),
     ).toBe(true);
     expect(de.hubDirectory?.some((entry) => entry.name === 'Origins in Deutschland')).toBe(true);
     expect(de.hubDirectory?.some((entry) => entry.name === 'Origins in Bayern')).toBe(true);
@@ -229,7 +227,7 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     expect(es.some((entry) => entry.name === 'Estados Unidos')).toBe(true); // US es name
     // 3) Variant/ideas keep the localized pageTitles template with the
     //    localized city name — never the bare dataset city name.
-    expect(de.some((entry) => entry.name === 'Community-Meetups & Veranstaltungen in Berlin')).toBe(
+    expect(de.some((entry) => entry.name === 'Origin-Meetups & Veranstaltungen in Berlin')).toBe(
       true,
     );
     expect(de.some((entry) => entry.name === '30 Ideen für Origin-Events in Berlin')).toBe(true);
@@ -489,7 +487,7 @@ describe('lib/seo locationView — Story H i18n completeness (TASK-518)', () => 
     // EN registry titles, never the de translations or the bare dataset name.
     expect(fr.some((entry) => entry.name === 'Startup Origins in Berlin')).toBe(true);
     expect(fr.some((entry) => entry.name === '30 Origin event ideas in Berlin')).toBe(true);
-    expect(fr.some((entry) => entry.name === 'Startup-Communities in Berlin')).toBe(false);
+    expect(fr.some((entry) => entry.name === 'Startup-Origins in Berlin')).toBe(false);
     // Country cards still resolve the localized dataset name when present.
     const germany = fr.find(
       (entry) => entry.kind === 'country' && entry.path === '/fr/location/germany',

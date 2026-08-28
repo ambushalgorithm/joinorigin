@@ -18,23 +18,23 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'de',
   slug: 'keep-an-origin-active',
-  title: 'So hältst du eine Community aktiv & engagiert | JoinOrigin',
+  title: 'So hältst du ein Origin aktiv & engagiert | JoinOrigin',
   description:
-    'Halte deine Community aktiv — ob sie neu ist und ihren Rhythmus findet oder etabliert und in Stille driftet — nutze Raum und Feed als Bindungsfläche, baue Rituale auf, teile die Organisator:innen-Last und schaffe kleine Beitragswege. Praktische Schritte von JoinOrigin.',
+    'Halte dein Origin aktiv — ob es neu ist und seinen Rhythmus findet oder etabliert und in Stille driftet — nutze Raum und Feed als Bindungsfläche, baue Rituale auf, teile die Organisator:innen-Last und schaffe kleine Beitragswege. Praktische Schritte von JoinOrigin.',
   intro: [
-    'Die meisten Communities sterben nicht an einem schlechten Start; sie sterben an Stille — in dem Moment, in dem Menschen sich nicht mehr verbunden fühlen und leise davondriften. Eine Community aktiv zu halten ist daher ein Menschen-verbinden-Problem: Menschen bleiben, wenn sie sich zugehörig fühlen, und sie fühlen sich zugehörig, wenn es einen sichtbaren, organisierten Ort gibt, an dem die Community lebt. Genau das ist JoinOrigin — und dieselben Mechanismen gelten, ob die Community ein paar Wochen alt ist und ihren Rhythmus noch findet oder Jahre alt und in Stille gedriftet.',
-    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Communities zu finden, zu starten und zu organisieren — und in seinem digitalen Modell ist der Raum die Bindungsfläche: ein von der ersteller:in kontrollierter Matrix-Raum, in dem Rituale, Updates und Beiträge sichtbar bleiben und dessen Aktivität in den Feed fließt, der Mitglieder zwischen Treffen verbunden hält. Präsenz-Events bleiben eine nachgelagerte Konsequenz einer geformten Community, nie der Kern — der Raum und sein Feed sind das, was die Community Tag für Tag am Leben hält. JoinOrigin verwaltet keine Communities und besetzt keine Events — die Plattform hält Communities zwischen Treffen verbunden, und das Organisieren ist dein Teil.',
+    'Die meisten Communities sterben nicht an einem schlechten Start; sie sterben an Stille — in dem Moment, in dem Menschen sich nicht mehr verbunden fühlen und leise davondriften. Ein Origin aktiv zu halten ist daher ein Menschen-verbinden-Problem: Menschen bleiben, wenn sie sich zugehörig fühlen, und sie fühlen sich zugehörig, wenn es einen sichtbaren, organisierten Ort gibt, an dem die Community lebt. Genau das ist JoinOrigin — und dieselben Mechanismen gelten, ob die Community ein paar Wochen alt ist und ihren Rhythmus noch findet oder Jahre alt und in Stille gedriftet.',
+    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Origins zu finden, zu starten und zu organisieren — und in seinem digitalen Modell ist der Raum die Bindungsfläche: ein von der ersteller:in kontrollierter Matrix-Raum, in dem Rituale, Updates und Beiträge sichtbar bleiben und dessen Aktivität in den Feed fließt, der Mitglieder zwischen Treffen verbunden hält. Präsenz-Events bleiben eine nachgelagerte Konsequenz einer geformten Community, nie der Kern — der Raum und sein Feed sind das, was die Community Tag für Tag am Leben hält. JoinOrigin verwaltet keine Communities und besetzt keine Events — die Plattform hält Communities zwischen Treffen verbunden, und das Organisieren ist dein Teil.',
     'Diese Anleitung deckt die praktischen Mechanismen einer gesunden, aktiven Community ab — von den ersten Wochen nach dem Start bis zu einer Community, die seit Jahren läuft: Rituale etablieren, die Teilnahme zur Gewohnheit machen, gemeinsame Artefakte im Raum schaffen, die Organisator:innen-Last verteilen, damit keine einzelne Person ausbrennt, kleine Beitragswege öffnen, damit jedes Mitglied Wert beisteuern kann, und die Signale messen, die dir sagen, ob die Community wirklich lebt. Jeder Schritt zeigt, wie JoinOrigin hilft.',
   ],
   dataPoints: [
     'Wiederkehrende Rituale — ein fester Raum-Rhythmus, ein regelmäßiges Format, ein gemeinsames Artefakt — verwandeln Interesse in Gewohnheit.',
     'Raum-Aktivität zwischen Treffen hält Mitglieder verbunden; Stille treibt sie weg.',
     'Kleine Beitragswege (eine angeheftete Notiz, eine wechselnde Moderation, eine Mitglieder-Highlight) geben Mitgliedern Eigentumsgefühl.',
-    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Communities zu finden, zu starten und zu organisieren; es verwaltet keine Communities und besetzt keine Events.',
+    'JoinOrigin ist ein Community-Betriebssystem, das Menschen helfen soll, Origins zu finden, zu starten und zu organisieren; es verwaltet keine Communities und besetzt keine Events.',
   ],
   faq: [
     {
-      question: 'Wie oft sollte sich eine aktive Community treffen?',
+      question: 'Wie oft sollte sich ein aktives Origin treffen?',
       answer:
         'Monatlich ist die nachhaltigste Basislinie für Präsenz-Treffen; der Raum sollte wöchentlich aktiv sein — Check-ins, Updates und kleine Gespräche. Konsistenz zählt mehr als Häufigkeit: Ein zuverlässiger wöchentlicher Raum-Rhythmus schlägt einen sporadischen.',
     },
@@ -49,9 +49,9 @@ const content: GuideContent = {
         'Schaffe Berührungspunkte mit geringem Aufwand im Raum: ein gemeinsames Dokument, ein Mitglieder-Highlight, einen regelmäßigen Check-in-Thread oder ein „Wer arbeitet woran“-Update. Das Ziel ist ein sichtbarer Herzschlag im Raum und in seinem Feed, nicht konstante Benachrichtigungen.',
     },
     {
-      question: 'Kann JoinOrigin mir helfen, meine Community aktiv zu halten?',
+      question: 'Kann JoinOrigin mir helfen, mein Origin aktiv zu halten?',
       answer:
-        'Ja. JoinOrigin hilft Menschen, Communities zu finden, zu starten und zu organisieren — ein Raum und Feed, in dem die Community zwischen Treffen sichtbar bleibt. Die Praktiken dieser Anleitung — Rituale, geteilte Rollen und kleine Beiträge — funktionieren auf der Plattform und mit den Tools, die du bereits hast.',
+        'Ja. JoinOrigin hilft Menschen, Origins zu finden, zu starten und zu organisieren — ein Raum und Feed, in dem die Community zwischen Treffen sichtbar bleibt. Die Praktiken dieser Anleitung — Rituale, geteilte Rollen und kleine Beiträge — funktionieren auf der Plattform und mit den Tools, die du bereits hast.',
     },
   ],
   sections: [

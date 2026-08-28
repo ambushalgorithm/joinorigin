@@ -14,38 +14,38 @@ const content: CityContent = {
   slug: 'berlin',
   title: 'Origins in Berlin | JoinOrigin',
   description:
-    'Finde oder gründe Communities in Berlin – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
+    'Finde oder gründe Origins in Berlin – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
   pageTitles: {
     city: 'Origins in Berlin | JoinOrigin',
     cityDescription:
-      'Finde oder gründe Communities in Berlin – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
+      'Finde oder gründe Origins in Berlin – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
     variants: {
-      startup: 'Startup-Communities in Berlin | JoinOrigin',
-      creative: 'Kreativ- & Design-Communities in Berlin | JoinOrigin',
-      political: 'Politische & bürgerschaftliche Communities in Berlin | JoinOrigin',
-      meetup: 'Community-Meetups & Veranstaltungen in Berlin | JoinOrigin',
-      'small-business': 'Kleinunternehmer-Communities in Berlin | JoinOrigin',
+      startup: 'Startup-Origins in Berlin | JoinOrigin',
+      creative: 'Kreativ- & Design-Origins in Berlin | JoinOrigin',
+      political: 'Politische & bürgerschaftliche Origins in Berlin | JoinOrigin',
+      meetup: 'Origin-Meetups & Veranstaltungen in Berlin | JoinOrigin',
+      'small-business': 'Kleinunternehmer-Origins in Berlin | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Finde oder gründe Startup-Communities in Berlin – Gründer:innen, Builders und frühe Teams in Mitte und Kreuzberg. JoinOrigin-Warteliste.',
+        'Finde oder gründe Startup-Origins in Berlin – Gründer:innen, Builders und frühe Teams in Mitte und Kreuzberg. JoinOrigin-Warteliste.',
       creative:
-        'Finde oder gründe Kreativ- & Design-Communities in Berlin – Studios, Galerien und Kollektive in Neukölln und Friedrichshain. JoinOrigin-Warteliste.',
+        'Finde oder gründe Kreativ- & Design-Origins in Berlin – Studios, Galerien und Kollektive in Neukölln und Friedrichshain. JoinOrigin-Warteliste.',
       political:
-        'Finde oder gründe politische & bürgerschaftliche Communities in Berlin – Mieterinitiativen, Bürgerbeteiligung und Ehrenamt. JoinOrigin-Warteliste.',
+        'Finde oder gründe politische & bürgerschaftliche Origins in Berlin – Mieterinitiativen, Bürgerbeteiligung und Ehrenamt. JoinOrigin-Warteliste.',
       meetup:
-        'Finde oder gründe Community-Meetups & Veranstaltungen in Berlin – Stammtische, Biergärten, Spätis und Kieztreffen. JoinOrigin-Warteliste.',
+        'Finde oder gründe Origin-Meetups & Veranstaltungen in Berlin – Stammtische, Biergärten, Spätis und Kieztreffen. JoinOrigin-Warteliste.',
       'small-business':
-        'Finde oder gründe Kleinunternehmer-Communities in Berlin – Spätis, Läden, Handwerk und Kiez-Netzwerke. JoinOrigin-Warteliste.',
+        'Finde oder gründe Kleinunternehmer-Origins in Berlin – Spätis, Läden, Handwerk und Kiez-Netzwerke. JoinOrigin-Warteliste.',
     },
     ideas: '30 Ideen für Origin-Events in Berlin | JoinOrigin',
     ideasDescription:
-      '30 realistische Ideen für Community-Events in Berlin – Networking, Lernen, Draußen, Beruf, Kreativ & Impact. Für dein nächstes Event.',
+      '30 realistische Ideen für Origin-Events in Berlin – Networking, Lernen, Draußen, Beruf, Kreativ & Impact. Für dein nächstes Event.',
   },
   intro: [
     'Berlin ist eine Stadt, die von Communities lebt. Ihre Geschichte, ihre im Vergleich zu anderen europäischen Hauptstädten erschwinglichen Preise und ihre zwölf Bezirke mit ganz eigenen Identitäten haben eine der aktivsten Treffkulturen des Kontinents hervorgebracht. Tech- und Startup-Menschen treffen sich in Mitte und Kreuzberg, während Neukölln und Friedrichshain eine dichte Mischung aus Kreativen, Macher:innen und Familien beherbergen, die sich oft dieselben Hinterhöfe und Spätis teilen.',
     'Öffentlicher Raum ist großzügig vorhanden – das Tempelhofer Feld, der Mauerpark, der Tiergarten und die Kanäle von Kreuzberg und Neukölln sind Schauplatz für alles von Drachenfesten bis zu spontanen Fußballspielen. Die Stammtisch-Tradition gibt jeder Community ein natürliches Ritual: ein fester Tisch im Biergarten oder im Kiezlokal, an dem Mitglieder ohne Einladung auftauchen. Universitäten wie die Humboldt-Universität, die TU Berlin und die FU Berlin halten einen steten Strom an Studierenden und Forschenden in Bewegung, und die internationale Bevölkerung macht englischsprachige Gruppen neben deutschsprachigen völlig normal.',
-    'Wer in Berlin eine Community sucht oder gründen will, sollte regelmäßig auftauchen und einen Bezirk wählen, der zum Charakter der Gruppe passt.',
+    'Wer in Berlin ein Origin sucht oder gründen will, sollte regelmäßig auftauchen und einen Bezirk wählen, der zum Charakter der Gruppe passt.',
   ],
   dataPoints: [
     'Rund 3,4 Millionen Einwohner:innen; Bundeshauptstadt von Deutschland.',
@@ -169,19 +169,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'Die Berliner Startup-Szene hat sich von einem improvisierten Experiment nach der Wiedervereinigung zu einem der wichtigsten Tech-Ökosysteme Europas entwickelt, mit Stärken in Marktplätzen, Fintech, Climate Tech und Entwickler-Tools. Gründer:innen und Entwickler:innen konzentrieren sich in Mitte und Kreuzberg, wo Coworking-Spaces, Acceleratoren und Universitätsprogramme der TU Berlin und der ESMT einen dichten Kreislauf aus Talent und Kapital erzeugen. Berlins berühmter Pragmatismus prägt die Community: Bei Treffen geht es weniger um Status als ums Liefern, Einstellen und Überleben der nächsten Finanzierungsrunde. Bewährte Formate sind Gründer:innen-Frühstücke, Pitch-Abende und Coworking-Tage der offenen Tür, bei denen frühe Teams ihre ersten Entwickler:innen und Designer:innen finden. Die internationale Szene ist ein echtes Plus – Englisch ist in Meetups üblich, was Gründer:innen hilft, die neu in Deutschland sind. Eine Startup-Community hier zu gründen, funktioniert am besten mit einem engen Fokus und einem festen Rhythmus: Ein monatlicher AI-Builders-Abend oder ein Climate-Tech-Stammtisch baut schneller eine verlässliche Anhängerschaft auf als eine allgemeine Gründer:innen-Gruppe.',
+      'Die Berliner Startup-Szene hat sich von einem improvisierten Experiment nach der Wiedervereinigung zu einem der wichtigsten Tech-Ökosysteme Europas entwickelt, mit Stärken in Marktplätzen, Fintech, Climate Tech und Entwickler-Tools. Gründer:innen und Entwickler:innen konzentrieren sich in Mitte und Kreuzberg, wo Coworking-Spaces, Acceleratoren und Universitätsprogramme der TU Berlin und der ESMT einen dichten Kreislauf aus Talent und Kapital erzeugen. Berlins berühmter Pragmatismus prägt die Community: Bei Treffen geht es weniger um Status als ums Liefern, Einstellen und Überleben der nächsten Finanzierungsrunde. Bewährte Formate sind Gründer:innen-Frühstücke, Pitch-Abende und Coworking-Tage der offenen Tür, bei denen frühe Teams ihre ersten Entwickler:innen und Designer:innen finden. Die internationale Szene ist ein echtes Plus – Englisch ist in Meetups üblich, was Gründer:innen hilft, die neu in Deutschland sind. Ein Startup-Origin hier zu gründen, funktioniert am besten mit einem engen Fokus und einem festen Rhythmus: Ein monatlicher AI-Builders-Abend oder ein Climate-Tech-Stammtisch baut schneller eine verlässliche Anhängerschaft auf als eine allgemeine Gründer:innen-Gruppe.',
     creative:
-      'Die kreativen Communities Berlins sind untrennbar mit der Identität der Stadt verbunden: Kunst-, Musik-, Design- und Mode-Szenen entstanden aus günstigen Räumen, einer Tradition der Selbstorganisation und einem Publikum, das Authentizität über Perfektion stellt. Galerien in Mitte, Studios in Neukölln und Friedrichshain sowie die Techno- und elektronische Musikszene rund um Clubs und Kollektive geben Kreativen echte Orte zum Treffen. Die UdK und die vielen Kunsthochschulen der Stadt speisen einen steten Strom an Absolvent:innen in eine freiberufliche Ökonomie, die auf Zusammenarbeit und Empfehlungen basiert. Übliche Formate sind Tage der offenen Ateliers, Portfolio-Abende, Design-Kritiken und Musikproduktions-Zirkel, die sich Ausrüstung und Feedback teilen. Weil Räume günstiger sind als in London oder Paris, sind Kollektivstudios und Projektflächen verbreitet, und viele Communities entstehen um eine gemeinsame Werkstatt statt um einen Verteiler. Eine kreative Community in Berlin zu gründen ist realistisch: Wähle ein Handwerk, einen Bezirk und einen festen Abend – die Dichte an neugierigen, talentierten Menschen in dieser Stadt findet dich.',
+      'Die kreativen Communities Berlins sind untrennbar mit der Identität der Stadt verbunden: Kunst-, Musik-, Design- und Mode-Szenen entstanden aus günstigen Räumen, einer Tradition der Selbstorganisation und einem Publikum, das Authentizität über Perfektion stellt. Galerien in Mitte, Studios in Neukölln und Friedrichshain sowie die Techno- und elektronische Musikszene rund um Clubs und Kollektive geben Kreativen echte Orte zum Treffen. Die UdK und die vielen Kunsthochschulen der Stadt speisen einen steten Strom an Absolvent:innen in eine freiberufliche Ökonomie, die auf Zusammenarbeit und Empfehlungen basiert. Übliche Formate sind Tage der offenen Ateliers, Portfolio-Abende, Design-Kritiken und Musikproduktions-Zirkel, die sich Ausrüstung und Feedback teilen. Weil Räume günstiger sind als in London oder Paris, sind Kollektivstudios und Projektflächen verbreitet, und viele Communities entstehen um eine gemeinsame Werkstatt statt um einen Verteiler. Ein kreatives Origin in Berlin zu gründen ist realistisch: Wähle ein Handwerk, einen Bezirk und einen festen Abend – die Dichte an neugierigen, talentierten Menschen in dieser Stadt findet dich.',
     political:
       'Berlin hat eine tiefe Tradition politischen und bürgerschaftlichen Engagements – von Mieterbewegungen über Klimablockaden bis zu Nachbarschaftsräten und Freiwilligen-Initiativen, die den öffentlichen Raum gestalten. Die Stadt ist in Bezirke mit gewählten Bezirksverordnetenversammlungen gegliedert, was lokale Politik zugänglich macht: Bewohner:innen können an öffentlichen Sitzungen teilnehmen, Bürgerinitiativen gründen und zu Stadtentwicklungsplänen Stellung nehmen. Wohnen ist das bestimmende Thema – Mieterorganisationen in Neukölln, Kreuzberg und Friedrichshain veranstalten Info-Abende, Mietrechts-Workshops und Solidaritätsnetzwerke, die für Neulinge offen sind. Civic-Tech-Gruppen bauen Werkzeuge für Beteiligung, während unzählige Projekte sich um Parks, Geflüchtetenhilfe, Gemeinschaftsgärten und BücherboXXen kümmern. Die Kultur belohnt Geduld und Direktheit: Zu einem echten Treffen zu kommen zählt mehr als Online-Kommentare. Eine politische Community zu gründen bedeutet, ein konkretes Thema und einen überschaubaren Ort zu wählen und mit bestehenden Initiativen zu kooperieren, statt sie zu duplizieren – die Landschaft hier ist reich genug, dass Zusammenarbeit besser funktioniert als Konkurrenz. Wer sich einbringen möchte, findet in fast jedem Bezirk eine passende Initiative mit offenen Terminen.',
     meetup:
       'Die Meetup-Szene Berlins ist bekannt für ihre Gastfreundschaft, angetrieben von der Stammtisch-Tradition und der Liebe der Stadt zu günstigen, verbindenden Formaten. Biergärten in Kreuzberg, Cafés in Prenzlauer Berg und die weiten Wiesen des Tempelhofer Felds beherbergen das ganze Jahr über Buchclubs, Sprachtandems, Laufgruppen, Spieleabende und Hobby-Zirkel. Der Späti – der Eckladen mit langen Öffnungszeiten – ist mehr als ein Gemischtwarenladen: Er ist der Anker des Kiezes, an dem Veranstaltungsflyer, Aushänge und spontane Pläne kursieren. Gruppen hier sind meist locker in der Struktur und ernst in der Beständigkeit; ein wöchentlicher Stammtisch am selben Tisch baut eine Community auf, die jedes einzelne Event überdauert. Viele internationale Bewohner:innen veranstalten englischsprachige Meetups, sodass Neuzugezogene schnell Anschluss finden, bevor ihr Deutsch besser wird. Wenn du ein Meetup gründen willst, wähle ein wiederkehrendes Format – einen monatlichen Spaziergang, einen wöchentlichen Sprachtisch, einen Spieleabend – und einen Ort, der dich jedes Mal aufnimmt. Die Dichte an neugierigen Menschen in Berlin erledigt den Rest.',
     'small-business':
-      'Die Berliner Kleinunternehmer-Community ist geprägt von der Unabhängigkeitskultur der Stadt: Spätis, Dönerläden, Boutiquen, Craft-Brauereien, Repair-Cafés und Ateliers werden von Menschen geführt, die Autonomie und lokale Treue schätzen. Die Kieze fungieren als natürliche Interessensgemeinschaften – Gewerbetreibende organisieren Straßenfeste, Märkte und gemeinsame Anliegen rund um Miete und Genehmigungen. Die Kammern und Wirtschaftsförderungen der Stadt bieten praktische Workshops zu Lizenzen, Finanzierung und Digitalisierung an, oft auf Deutsch und Englisch. Was diese Gruppen zusammenhält, ist der Ort: Ein Ladencluster auf einer Straße teilt Kund:innen, Laufkundschaft und das Schicksal des öffentlichen Raums davor. Neue Leute vernetzen sich meist über ein Kiez-Gewerbetreffen, einen Maker-Markt oder einen Workshop. Eine Kleinunternehmer-Community in Berlin zu gründen ist gut machbar: Ein monatlicher Runde Tisch in einem Lokal im Kiez, mit wechselnden Themen wie Lohnabrechnung, Vermieter-Verhandlungen und Online-Verkauf, zieht zuverlässig Inhaber:innen an, die selten Gleichgesinnte zum Reden haben. Auch Neulinge ohne eigenes Geschäft sind willkommen, denn viele Treffen suchen gezielt Nachbar:innen mit Ideen für den Kiez.',
+      'Die Berliner Kleinunternehmer-Community ist geprägt von der Unabhängigkeitskultur der Stadt: Spätis, Dönerläden, Boutiquen, Craft-Brauereien, Repair-Cafés und Ateliers werden von Menschen geführt, die Autonomie und lokale Treue schätzen. Die Kieze fungieren als natürliche Interessensgemeinschaften – Gewerbetreibende organisieren Straßenfeste, Märkte und gemeinsame Anliegen rund um Miete und Genehmigungen. Die Kammern und Wirtschaftsförderungen der Stadt bieten praktische Workshops zu Lizenzen, Finanzierung und Digitalisierung an, oft auf Deutsch und Englisch. Was diese Gruppen zusammenhält, ist der Ort: Ein Ladencluster auf einer Straße teilt Kund:innen, Laufkundschaft und das Schicksal des öffentlichen Raums davor. Neue Leute vernetzen sich meist über ein Kiez-Gewerbetreffen, einen Maker-Markt oder einen Workshop. Ein Kleinunternehmer-Origin in Berlin zu gründen ist gut machbar: Ein monatlicher Runde Tisch in einem Lokal im Kiez, mit wechselnden Themen wie Lohnabrechnung, Vermieter-Verhandlungen und Online-Verkauf, zieht zuverlässig Inhaber:innen an, die selten Gleichgesinnte zum Reden haben. Auch Neulinge ohne eigenes Geschäft sind willkommen, denn viele Treffen suchen gezielt Nachbar:innen mit Ideen für den Kiez.',
   },
   ideaPage: {
     intro:
-      'Berlin ist ideal, um neue Ideen für Community-Events auszuprobieren: Der öffentliche Raum ist großzügig, Veranstaltungsorte sind bezahlbar, und die Menschen kommen, wenn etwas echt ist. Die dreißig Ideen unten sind in sechs Kategorien gegliedert – Networking, Lernen, Draußen & Soziales, Beruf & Branche, Kreativ & Machen sowie Impact & Lokal. Jede Idee nennt die Zielgruppe, einen kurzen Pitch und eine Veranstaltungsart, die es in Berlin wirklich gibt – von Biergärten und Spätis über das Tempelhofer Feld bis zu Gemeinschaftsgärten. Manche Ideen funktionieren als einmalige Events; andere sind dafür gemacht, zu wiederkehrenden Communities mit Stammtisch-Rhythmus zu werden. Die Ehrlichkeitsregel ist einfach: Jede vorgeschlagene Veranstaltungsart ist ein realer Ortstyp in dieser Stadt, und jedes Format ist einfach genug, dass es ein Erstveranstalter durchziehen kann. Wähle die Idee, die zu deinen Interessen passt, finde einen Ort, der dich aufnimmt, und überlasse den Rest der Neugierde Berlins.',
+      'Berlin ist ideal, um neue Ideen für Origin-Events auszuprobieren: Der öffentliche Raum ist großzügig, Veranstaltungsorte sind bezahlbar, und die Menschen kommen, wenn etwas echt ist. Die dreißig Ideen unten sind in sechs Kategorien gegliedert – Networking, Lernen, Draußen & Soziales, Beruf & Branche, Kreativ & Machen sowie Impact & Lokal. Jede Idee nennt die Zielgruppe, einen kurzen Pitch und eine Veranstaltungsart, die es in Berlin wirklich gibt – von Biergärten und Spätis über das Tempelhofer Feld bis zu Gemeinschaftsgärten. Manche Ideen funktionieren als einmalige Events; andere sind dafür gemacht, zu wiederkehrenden Origins mit Stammtisch-Rhythmus zu werden. Die Ehrlichkeitsregel ist einfach: Jede vorgeschlagene Veranstaltungsart ist ein realer Ortstyp in dieser Stadt, und jedes Format ist einfach genug, dass es ein Erstveranstalter durchziehen kann. Wähle die Idee, die zu deinen Interessen passt, finde einen Ort, der dich aufnimmt, und überlasse den Rest der Neugierde Berlins.',
     categories: [
       {
         name: 'Networking',
@@ -438,20 +438,20 @@ const content: CityContent = {
       {
         question: 'Können aus diesen Events echte Communities werden?',
         answer:
-          'Ja – wiederkehrende Formate sind der Weg, auf dem die meisten Berliner Communities starten, und die Stammtisch-Tradition liefert dafür ein bewährtes Muster. Die Ratgeber erklären den Weg vom ersten Event zur stabilen Community.',
+          'Ja – wiederkehrende Formate sind der Weg, auf dem die meisten Berliner Origins starten, und die Stammtisch-Tradition liefert dafür ein bewährtes Muster. Die Ratgeber erklären den Weg vom ersten Event zum stabilen Origin.',
       },
     ],
   },
   faq: [
     {
-      question: 'Wie finde ich eine Community in Berlin?',
+      question: 'Wie finde ich ein Origin in Berlin?',
       answer:
-        'Nutze die Unterseiten für Startup-, Kreativ-, politische, Meetup- und Kleinunternehmer-Communities. Sie beschreiben die realen Bezirke, Orte und Formate, an denen Berliner:innen sich treffen. JoinOrigin ist eine Wartelisten-Plattform – trage dich ein, um über den frühen Zugang informiert zu werden.',
+        'Nutze die Unterseiten für Startup-, Kreativ-, politische, Meetup- und Kleinunternehmer-Origins. Sie beschreiben die realen Bezirke, Orte und Formate, an denen Berliner:innen sich treffen. JoinOrigin ist eine Wartelisten-Plattform – trage dich ein, um über den frühen Zugang informiert zu werden.',
     },
     {
-      question: 'Ist es realistisch, in Berlin eine Community zu gründen?',
+      question: 'Ist es realistisch, in Berlin ein Origin zu gründen?',
       answer:
-        'Ja. Berlin hat bezahlbare Orte, großzügigen öffentlichen Raum und eine Kultur des Erscheinens. Die Ratgeber behandeln Community-Gründung, Meetup-Organisation und die ersten zehn Mitglieder.',
+        'Ja. Berlin hat bezahlbare Orte, großzügigen öffentlichen Raum und eine Kultur des Erscheinens. Die Ratgeber behandeln Origin-Gründung, Meetup-Organisation und die ersten zehn Mitglieder.',
     },
     {
       question: 'Sind die Ortsvorschläge auf dieser Seite echt?',
@@ -461,7 +461,7 @@ const content: CityContent = {
     {
       question: 'Hat JoinOrigin ein Büro in Berlin?',
       answer:
-        'Nein. JoinOrigin ist eine Wartelisten-Plattform ohne lokale Büros oder Mitarbeitende vor Ort. Alle Community-Beschreibungen spiegeln die echte Stadtlandschaft wider, und die Plattform soll Berliner:innen helfen, Communities zu finden oder zu gründen.',
+        'Nein. JoinOrigin ist eine Wartelisten-Plattform ohne lokale Büros oder Mitarbeitende vor Ort. Alle Community-Beschreibungen spiegeln die echte Stadtlandschaft wider, und die Plattform soll Berliner:innen helfen, Origins zu finden oder zu gründen.',
     },
   ],
 };

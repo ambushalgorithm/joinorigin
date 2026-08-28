@@ -65,7 +65,7 @@ const content: GuideContent = {
     'Udostępnij koncepcję społecznościom założycieli. Startupy rosną dzięki sieciom założycieli. Udostępnij stronę pomysłu grupom założycieli, społecznościom startupowym, akceleratorom i każdemu, kto zna problem. Dołączenie na JoinOrigin to jedna czynność — kliknięcie Dołącz na publicznej stronie lub wejście przez bezpośredni link zapraszający od członka. Jeden krótki, jasny link do Twojej koncepcji załatwia sprawę.',
     'Zaproś pierwszych wiernych i testerów. Zaproś ludzi, którzy dzielą ambicję: potencjalnych współzałożycieli, ekspertów domenowych i użytkowników gotowych wypróbować surową wersję. JoinOrigin ułatwia odkrywanie — to miejsce, w którym ludzie szukający pomysłu mogą znaleźć Twój i dołączyć przez link. Osobiste zaproszenia wciąż robią najcięższą robotę, a każda dołączona osoba staje się kanałem do własnej sieci.',
     'Prowadź ustrukturyzowane rozmowy w pokoju. Zapytaj dołączone osoby, co je ekscytuje, co je martwi i co zrobiłyby najpierw. Pokój startupu to ciągły wywiad — odpowiedzi kształtują koncepcję. JoinOrigin nie prowadzi tych rozmów; pokój jest Twój do ukształtowania. Platforma daje koncepcji jeden pokój, w którym zainteresowanie zamienia się w wgląd, a twórca jest właścicielem tego pokoju. Prowadź rozmowy bezpośrednio w pokoju.',
-    'Wykorzystaj pokój do utworzenia zespołu próbnego. Gdy pojawią się właściwi ludzie, zaproponuj małą próbę — prototyp, stronę docelową lub sesję roboczą — i obserwuj, jak zespół współpracuje. JoinOrigin daje społecznościom wspólny pokój dla ich pracy i projektów, co jest naturalnym miejscem, w którym może wyłonić się próba. Mały prawdziwy prototyp to najbardziej niezawodny test dopasowania.',
+    'Wykorzystaj pokój do utworzenia zespołu próbnego. Gdy pojawią się właściwi ludzie, zaproponuj małą próbę — prototyp, stronę docelową lub sesję roboczą — i obserwuj, jak zespół współpracuje. JoinOrigin daje Origins wspólny pokój dla ich pracy i projektów, co jest naturalnym miejscem, w którym może wyłonić się próba. Mały prawdziwy prototyp to najbardziej niezawodny test dopasowania.',
     'Zasilaj pokojem aktualności w miarę walidacji. Ciągle publikuj aktualizacje, utrzymuj pokój przy życiu i pozwól, aby rozpęd koncepcji stał się widoczny dla szerszej sieci. Aktualności zamieniają koncepcję w dowód, że ludziom zależy. Na JoinOrigin aktualizacje z pokoju trafiają do aktualności — to pętla wzrostu, w której każdy nowy członek powiększa powierzchnię odkrywania. Daj się odkryć i rozwijaj się.',
   ],
   steps: [
@@ -109,7 +109,7 @@ const content: GuideContent = {
       title: 'Wykorzystaj pokój do utworzenia zespołu próbnego',
       body: 'Gdy pojawią się właściwi ludzie, zaproponuj małą próbę — prototyp, stronę docelową lub sesję roboczą — i obserwuj, jak zespół współpracuje.',
       joinOriginNote:
-        'JoinOrigin daje społecznościom wspólny pokój dla ich pracy i projektów, co jest naturalnym miejscem, w którym może wyłonić się próba. Mały prawdziwy prototyp to najbardziej niezawodny test dopasowania.',
+        'JoinOrigin daje Origins wspólny pokój dla ich pracy i projektów, co jest naturalnym miejscem, w którym może wyłonić się próba. Mały prawdziwy prototyp to najbardziej niezawodny test dopasowania.',
     },
     {
       title: 'Zasilaj pokojem aktualności w miarę walidacji',
