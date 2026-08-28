@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const WEB_PORT = Number(process.env.JOINORIGIN_WEB_PORT ?? 3100);
+const WEB_PORT = Number(process.env.APP_PORT ?? 3100);
 
 export default defineConfig({
   testDir: './tests',
@@ -44,7 +44,7 @@ export default defineConfig({
     command: `pnpm --dir ../../apps/web build && PORT=${WEB_PORT} pnpm --dir ../../apps/web start`,
     url: `http://127.0.0.1:${WEB_PORT}`,
     // TASK-584: never reuse a running server. The orchestrator now sets
-    // JOINORIGIN_WEB_PORT per slot (read above), so each Playwright run must
+    // APP_PORT per slot (read above), so each Playwright run must
     // build + start a fresh prod server on its own slot port — concurrent
     // agents must never attach to a neighbor slot's server (wrong-build flakes).
     reuseExistingServer: false,

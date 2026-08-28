@@ -53,10 +53,10 @@ app/                      # Monorepo root (this directory)
 
 ### Apps
 
-| App           | Stack                                                                  | Notes                                                                                                        |
-| ------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `apps/web`    | Next.js 16 (App Router, Turbopack), React 19, React Native Web, styled-components | Landing page (hero, ticker, waitlist modal) + menu pages rendered with shared tokens/components               |
-| `apps/mobile` | React Native 0.87 (bare, no Expo), React 19, styled-components/native  | JS-side shell: entry point, `App`, babel/metro/jest configs. Native `android/` project generated (RN 0.87, Gradle); `ios/` remains deferred |
+| App           | Stack                                                                             | Notes                                                                                                                                       |
+| ------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apps/web`    | Next.js 16 (App Router, Turbopack), React 19, React Native Web, styled-components | Landing page (hero, ticker, waitlist modal) + menu pages rendered with shared tokens/components                                             |
+| `apps/mobile` | React Native 0.87 (bare, no Expo), React 19, styled-components/native             | JS-side shell: entry point, `App`, babel/metro/jest configs. Native `android/` project generated (RN 0.87, Gradle); `ios/` remains deferred |
 
 ### Shared packages
 
@@ -227,12 +227,12 @@ import { theme } from '@joinorigin/design';
 
 ### Unit tests (Jest)
 
-| Package           | Config                                                          | What it covers                                                              |
-| ----------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `apps/web`        | `next/jest` + jsdom, `react-native` → `react-native-web` mapper | Landing + menu pages, layout, SEO/analytics libs, icons, leads API          |
-| `apps/mobile`     | `react-native` preset + `@testing-library/react-native`         | `App` renders the welcome screen via shared components                      |
-| `packages/ui`     | `react-native` preset + `@testing-library/react-native`         | Component behaviour (labels, press handlers, disabled/loading states)       |
-| `packages/design` | `ts-jest` (node)                                                | Token structure and brand values                                            |
+| Package           | Config                                                          | What it covers                                                        |
+| ----------------- | --------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `apps/web`        | `next/jest` + jsdom, `react-native` → `react-native-web` mapper | Landing + menu pages, layout, SEO/analytics libs, icons, leads API    |
+| `apps/mobile`     | `react-native` preset + `@testing-library/react-native`         | `App` renders the welcome screen via shared components                |
+| `packages/ui`     | `react-native` preset + `@testing-library/react-native`         | Component behaviour (labels, press handlers, disabled/loading states) |
+| `packages/design` | `ts-jest` (node)                                                | Token structure and brand values                                      |
 
 Run all unit tests: `pnpm test` — currently **162 tests / 30 suites** across 4
 packages: (design 6, ui 7, mobile 5, web 144).
@@ -241,7 +241,7 @@ packages: (design 6, ui 7, mobile 5, web 144).
 
 `tests/e2e/tests/*.spec.ts` builds the web app once, then boots the
 Next.js **production** server (`next start`) on a dedicated port (default
-**3100**, override with `JOINORIGIN_WEB_PORT`), opens the homepage,
+**3100**, override with `APP_PORT`), opens the homepage,
 and asserts the landing experience end to end: hero, waitlist modal, leads API,
 menu pages, SEO, a11y, and responsive behaviour. Running against the production
 server (instead of `next dev`) keeps the suite deterministic and avoids the
