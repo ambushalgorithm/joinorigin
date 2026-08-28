@@ -2,6 +2,11 @@ import { test, expect } from '@playwright/test';
 
 import { leadsCsvRow, waitForHydration } from './helpers';
 
+// TASK-584: the prod server runs on the per-slot port set by the orchestrator
+// (JOINORIGIN_WEB_PORT, see playwright.config.ts) — mirror the same env read
+// so referrer assertions stay green when the slot port is not the default.
+const WEB_PORT = Number(process.env.JOINORIGIN_WEB_PORT ?? 3100);
+
 /**
  * JoinOrigin homescreen e2e coverage (Sprint 3).
  *
@@ -99,7 +104,7 @@ test('join CTAs navigate to the signup page and a submission reaches the CSV API
   expect(row).toContain(email.toLowerCase());
   // Browser-supplied passive fields are present (raw IP, resolved locale,
   // user agent, referrer = the signup page URL).
-  expect(row).toContain('http://127.0.0.1:3100/en/signup');
+  expect(row).toContain(`http://127.0.0.1:${WEB_PORT}/en/signup`);
 });
 
 test('the signup form validates bad input with inline field errors', async ({ page }) => {

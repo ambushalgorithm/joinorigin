@@ -43,7 +43,11 @@ export default defineConfig({
     // uses <500 MB (~270 MB measured), so the suite runs without OOM.
     command: `pnpm --dir ../../apps/web build && PORT=${WEB_PORT} pnpm --dir ../../apps/web start`,
     url: `http://127.0.0.1:${WEB_PORT}`,
-    reuseExistingServer: !process.env.CI,
+    // TASK-584: never reuse a running server. The orchestrator now sets
+    // JOINORIGIN_WEB_PORT per slot (read above), so each Playwright run must
+    // build + start a fresh prod server on its own slot port — concurrent
+    // agents must never attach to a neighbor slot's server (wrong-build flakes).
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });

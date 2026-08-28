@@ -1,5 +1,10 @@
 import { test, expect, type Page } from '@playwright/test';
 
+// TASK-584: the prod server runs on the per-slot port set by the orchestrator
+// (JOINORIGIN_WEB_PORT, see playwright.config.ts) — mirror the same env read
+// so browser contexts point at the actual slot server, not a hardcoded port.
+const WEB_PORT = Number(process.env.JOINORIGIN_WEB_PORT ?? 3100);
+
 /**
  * Sprint 19 E2E validation — locale routing correctness + all-routes-prefixed
  * + client locale toggle, NO-COOKIE URL-ONLY contract (TASK-461 + TASK-467 +
@@ -277,7 +282,7 @@ test.describe('Goal 2 — always-prefixed link table (TASK-464)', () => {
     // prefixes its internal links /de/**.
     const context = await browser.newContext({
       locale: 'de-DE',
-      baseURL: 'http://127.0.0.1:3100',
+      baseURL: `http://127.0.0.1:${WEB_PORT}`,
     });
     const page = await context.newPage();
     try {
