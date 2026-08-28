@@ -218,8 +218,8 @@ export function HomeView({ marquee }: HomeViewProps) {
                 <PageContainer>
                   <Reveal>
                     <Section>
-                      <SectionTitle>{t('community.sectionExamples')}</SectionTitle>
-                      <BodyCopy>{t('community.examplesIntro')}</BodyCopy>
+                      <SectionTitle>{t('network.sectionExamples')}</SectionTitle>
+                      <BodyCopy>{t('network.examplesIntro')}</BodyCopy>
                       {/* Story B: the server wrapper passes the geo-aware
                           `ChipMarqueeServer` through this slot. */}
                       {marquee}

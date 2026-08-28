@@ -67,11 +67,8 @@ describe('Footer', () => {
     expect(screen.getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/en/guides');
     expect(screen.getByRole('link', { name: 'Glossary' })).toHaveAttribute('href', '/en/glossary');
 
-    // Community/Docs retained in the Product group.
-    expect(screen.getByRole('link', { name: 'Community' })).toHaveAttribute(
-      'href',
-      '/en/community',
-    );
+    // Network/Docs retained in the Product group.
+    expect(screen.getByRole('link', { name: 'Network' })).toHaveAttribute('href', '/en/network');
     expect(screen.getByRole('link', { name: 'Docs' })).toHaveAttribute('href', '/en/docs');
   });
 

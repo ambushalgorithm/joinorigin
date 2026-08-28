@@ -13,7 +13,7 @@
  *     wrappers have the fixed Home crumb, and representative generated
  *     pages render + export the expected canonical.
  *
- * Story B (TASK-547/TASK-548): the generated home + community wrappers pass
+ * Story B (TASK-547/TASK-548): the generated home + network wrappers pass
  * the server-rendered `ChipMarqueeServer` into the view's `marquee` slot
  * (mirroring the hand-written EN wrappers). That server component reads
  * `next/headers` (geo + locale), so this suite mocks it — its own behavior
@@ -31,7 +31,7 @@ import { screen } from '@testing-library/react';
 import * as DeAbout from '../../app/de/about/page';
 import * as DeFeatures from '../../app/de/features/page';
 import * as EnHome from '../../app/en/page';
-import * as EsCommunity from '../../app/es/community/page';
+import * as EsNetwork from '../../app/es/network/page';
 import ChipMarqueeServer from '../../components/ChipMarqueeServer';
 import {
   fixGuideBreadcrumbs,
@@ -85,7 +85,7 @@ const EXPECTED_LOCALES = [
 const EXPECTED_PAGES = [
   'home',
   'features',
-  'community',
+  'network',
   'docs',
   'about',
   'contact',
@@ -126,7 +126,7 @@ describe('route plan (input table snapshot)', () => {
   it('names wrapper files deterministically (incl. region-variant casing)', () => {
     expect(wrapperFile('en', 'features')).toBe('app/en/features/page.tsx');
     expect(wrapperFile('de', '')).toBe('app/de/page.tsx');
-    expect(wrapperFile('pt-BR', 'community')).toBe('app/pt-BR/community/page.tsx');
+    expect(wrapperFile('pt-BR', 'network')).toBe('app/pt-BR/network/page.tsx');
     expect(locationFile('es', 'city')).toBe('app/es/location/[country]/[region]/[city]/page.tsx');
     expect(locationFile('zh-CN', 'variant')).toBe(
       'app/zh-CN/location/[country]/[region]/[city]/[variant]/page.tsx',
@@ -333,7 +333,7 @@ describe('route smoke tests (real apps/web/app tree)', () => {
     }
   });
 
-  it('every home + community wrapper passes ChipMarqueeServer into the view marquee slot (Story B mirror)', () => {
+  it('every home + network wrapper passes ChipMarqueeServer into the view marquee slot (Story B mirror)', () => {
     for (const locale of EXPECTED_LOCALES) {
       // app/<locale>/page.tsx — HomeView marquee slot (depth 2 → components).
       const home = readFileSync(join(APP_DIR, locale, 'page.tsx'), 'utf8');
@@ -341,13 +341,13 @@ describe('route smoke tests (real apps/web/app tree)', () => {
       expect(home).toContain('<HomeView marquee={<ChipMarqueeServer />} />');
       expect(home).not.toContain('<HomeView />');
 
-      // app/<locale>/community/page.tsx — CommunityView marquee slot (depth 3).
-      const community = readFileSync(join(APP_DIR, locale, 'community', 'page.tsx'), 'utf8');
-      expect(community).toContain(
+      // app/<locale>/network/page.tsx — NetworkView marquee slot (depth 3).
+      const network = readFileSync(join(APP_DIR, locale, 'network', 'page.tsx'), 'utf8');
+      expect(network).toContain(
         "import ChipMarqueeServer from '../../../components/ChipMarqueeServer';",
       );
-      expect(community).toContain('<CommunityView marquee={<ChipMarqueeServer />} />');
-      expect(community).not.toContain('<CommunityView />');
+      expect(network).toContain('<NetworkView marquee={<ChipMarqueeServer />} />');
+      expect(network).not.toContain('<NetworkView />');
     }
   });
 
@@ -365,13 +365,13 @@ describe('route smoke tests (real apps/web/app tree)', () => {
 describe('representative generated pages render + export metadata', () => {
   const DeFeaturesPage = DeFeatures.default;
   const EnHomePage = EnHome.default;
-  const EsCommunityPage = EsCommunity.default;
+  const EsNetworkPage = EsNetwork.default;
   const DeAboutPage = DeAbout.default;
 
   it('metadata canonical points at the locale-prefixed URL', () => {
     expect(DeFeatures.metadata.alternates?.canonical).toBe('http://localhost:3100/de/features');
     expect(EnHome.metadata.alternates?.canonical).toBe('http://localhost:3100/en');
-    expect(EsCommunity.metadata.alternates?.canonical).toBe('http://localhost:3100/es/community');
+    expect(EsNetwork.metadata.alternates?.canonical).toBe('http://localhost:3100/es/network');
   });
 
   it('non-EN static metadata carries per-locale hreflang with x-default → /en/ canonical', () => {
@@ -380,10 +380,10 @@ describe('representative generated pages render + export metadata', () => {
       en: 'http://localhost:3100/en/features',
       'x-default': 'http://localhost:3100/en/features',
     });
-    expect(EsCommunity.metadata.alternates?.languages).toEqual({
-      es: 'http://localhost:3100/es/community',
-      en: 'http://localhost:3100/en/community',
-      'x-default': 'http://localhost:3100/en/community',
+    expect(EsNetwork.metadata.alternates?.languages).toEqual({
+      es: 'http://localhost:3100/es/network',
+      en: 'http://localhost:3100/en/network',
+      'x-default': 'http://localhost:3100/en/network',
     });
   });
 
@@ -401,8 +401,8 @@ describe('representative generated pages render + export metadata', () => {
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
   });
 
-  it('es/community renders the shared view with a single H1', () => {
-    renderWithI18n(<EsCommunityPage />, 'es');
+  it('es/network renders the shared view with a single H1', () => {
+    renderWithI18n(<EsNetworkPage />, 'es');
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
   });
 
@@ -416,7 +416,7 @@ describe('representative generated pages render + export metadata', () => {
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
   });
 
-  it('generated home + community wrappers pass <ChipMarqueeServer /> into the view marquee slot (Story B mirror)', () => {
+  it('generated home + network wrappers pass <ChipMarqueeServer /> into the view marquee slot (Story B mirror)', () => {
     mockChipMarqueeServer.mockClear();
     renderWithI18n(<EnHomePage />, 'en');
     // The wrapper renders <HomeView marquee={<ChipMarqueeServer />} /> — the
@@ -424,7 +424,7 @@ describe('representative generated pages render + export metadata', () => {
     expect(mockChipMarqueeServer).toHaveBeenCalledTimes(1);
 
     mockChipMarqueeServer.mockClear();
-    renderWithI18n(<EsCommunityPage />, 'es');
+    renderWithI18n(<EsNetworkPage />, 'es');
     expect(mockChipMarqueeServer).toHaveBeenCalledTimes(1);
   });
 });

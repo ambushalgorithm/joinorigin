@@ -33,6 +33,22 @@ const GUIDE_SLUG_REDIRECTS = [
   { oldSlug: 'hybrid-communities', newSlug: 'hybrid-origins' },
 ];
 
+// TASK-576 — permanent (301) redirects from the renamed `/community` route
+// to `/network`, for the unprefixed tree and every `/<locale>/community`
+// variant (all 21 locales) so existing URLs + SEO equity transfer.
+const COMMUNITY_TO_NETWORK = [
+  {
+    source: '/community',
+    destination: '/network',
+    permanent: true,
+  },
+  ...GUIDE_LOCALES.map((locale) => ({
+    source: `/${locale}/community`,
+    destination: `/${locale}/network`,
+    permanent: true,
+  })),
+];
+
 const nextConfig = {
   reactStrictMode: true,
   // Standalone output: emits a self-contained `.next/standalone` folder with
@@ -143,18 +159,25 @@ const nextConfig = {
   // guide slugs to their Origin slugs, for the unprefixed tree and every
   // `/ <locale>/guides/...` variant (all 21 locales).
   async redirects() {
-    return GUIDE_SLUG_REDIRECTS.flatMap(({ oldSlug, newSlug }) => [
-      {
-        source: `/guides/${oldSlug}`,
-        destination: `/guides/${newSlug}`,
-        permanent: true,
-      },
-      ...GUIDE_LOCALES.map((locale) => ({
-        source: `/${locale}/guides/${oldSlug}`,
-        destination: `/${locale}/guides/${newSlug}`,
-        permanent: true,
-      })),
-    ]);
+    return [
+      // TASK-576 — `/community` → `/network` (unprefixed + 21 locale
+      // variants), declared before the guide slug redirects below.
+      ...COMMUNITY_TO_NETWORK,
+      // TASK-573 — permanent (301) redirects from the renamed
+      // community-centric guide slugs to their Origin slugs.
+      ...GUIDE_SLUG_REDIRECTS.flatMap(({ oldSlug, newSlug }) => [
+        {
+          source: `/guides/${oldSlug}`,
+          destination: `/guides/${newSlug}`,
+          permanent: true,
+        },
+        ...GUIDE_LOCALES.map((locale) => ({
+          source: `/${locale}/guides/${oldSlug}`,
+          destination: `/${locale}/guides/${newSlug}`,
+          permanent: true,
+        })),
+      ]),
+    ];
   },
 };
 

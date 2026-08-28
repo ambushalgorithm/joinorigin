@@ -55,6 +55,6 @@ describe('not-found boundary', () => {
   it('renders the secondary Explore Origins link', () => {
     renderNotFound();
     const exploreLink = screen.getByRole('link', { name: /Explore Origins/ });
-    expect(exploreLink).toHaveAttribute('href', '/community');
+    expect(exploreLink).toHaveAttribute('href', '/network');
   });
 });

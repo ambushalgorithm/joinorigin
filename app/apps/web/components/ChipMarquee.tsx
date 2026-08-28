@@ -11,7 +11,7 @@ import { CHIP_MARQUEE_DURATION } from './menuTokens';
 /**
  * Infinite example-community chip marquee (spec sprint-10-menu-redesign §4.6).
  *
- * Replaces the static `ChipGrid` on /community with a seamless `LogoMarquee`-
+ * Replaces the static `ChipGrid` on /network with a seamless `LogoMarquee`-
  * style ticker: the 7 example-community chips are repeated 2× in a
  * `width: max-content` track translating `0 → -50%` over 28s, paused on
  * hover, with edge fade masks.
@@ -207,7 +207,7 @@ export function ChipMarquee({ intro, targets, country }: ChipMarqueeProps) {
 
   const chips = EXAMPLE_COMMUNITY_KEYS.map((key) => ({
     key,
-    label: t(`community.examples.${key}`),
+    label: t(`network.examples.${key}`),
   }));
 
   return (

@@ -15,7 +15,7 @@
  *   - LOCALES = SUPPORTED_LOCALES (21: en + 20 translations) from
  *     `@joinorigin/i18n` — single source of truth for the locale matrix.
  *   - STATIC_PAGES = every public non-location page (home, features,
- *     community, docs, about, contact, privacy, terms, glossary, signup).
+ *     network, docs, about, contact, privacy, terms, glossary, signup).
  *   - LOCATION_SEGMENTS = the 5 location page kinds (hub, [country],
  *     [country]/[region], [country]/[region]/[city],
  *     [country]/[region]/[city]/[variant]).
@@ -121,20 +121,20 @@ const STATIC_PAGES: StaticPageSpec[] = [
     ],
   },
   {
-    route: 'community',
-    name: 'Community',
-    viewModule: '../../community/community-view',
-    viewName: 'CommunityView',
-    crumb: 'Community',
-    title: 'Community — Find Your People & Build Together | JoinOrigin',
+    route: 'network',
+    name: 'Network',
+    viewModule: '../../network/network-view',
+    viewName: 'NetworkView',
+    crumb: 'Network',
+    title: 'Network — Find Your People & Build Together | JoinOrigin',
     description:
       "Join Origin's network of 2,400+ builders. Start or join an Origin around any idea — a small business, an AI startup, a book club — and find the people to move it forward.",
     keywords: [
-      'online communities',
-      'join a community',
-      'communities for founders',
-      'community for AI builders',
-      'find your community',
+      'network of builders',
+      'join the network',
+      'network for founders',
+      'network for AI builders',
+      'find your network',
       'social network for builders',
     ],
   },
@@ -381,11 +381,11 @@ function staticWrapperSource(locale: Locale, page: StaticPageSpec): string {
           { name: '${page.crumb}', path: '/${locale}/${page.route}' },
         ])}
       />\n`;
-  // Story B (TASK-547/TASK-548): the home + community wrappers pass the
+  // Story B (TASK-547/TASK-548): the home + network wrappers pass the
   // server-rendered <ChipMarqueeServer /> into the view's `marquee` slot,
   // mirroring the hand-written EN wrappers (`app/page.tsx` and
-  // `app/community/page.tsx`) — the 12 MB geo snapshot stays server-side.
-  const marqueeSlot = page.route === '' || page.route === 'community';
+  // `app/network/page.tsx`) — the 12 MB geo snapshot stays server-side.
+  const marqueeSlot = page.route === '' || page.route === 'network';
   const marqueeImport = marqueeSlot
     ? `import ChipMarqueeServer from '${ups(depth)}components/ChipMarqueeServer';\n`
     : '';

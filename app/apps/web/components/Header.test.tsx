@@ -49,7 +49,7 @@ describe('Header', () => {
     // Explore dropdown (TASK-316) + retained top-level links.
     expect(screen.getByTestId('explore-menu-toggle')).toBeInTheDocument();
     expect(screen.getByText('Explore')).toBeInTheDocument();
-    for (const label of ['Community', 'Guides', 'Locations']) {
+    for (const label of ['Network', 'Guides', 'Locations']) {
       expect(screen.getByText(label)).toBeInTheDocument();
     }
     for (const label of ['Features', 'Docs', 'About']) {
@@ -71,9 +71,9 @@ describe('Header', () => {
     // desktop `<nav>` is `display:none` here; `hidden: true` scopes the role
     // query to the rendered anchors (real visibility is covered by e2e).
     const menu = screen.getByTestId('explore-menu');
-    expect(within(menu).getByRole('link', { name: 'Community', hidden: true })).toHaveAttribute(
+    expect(within(menu).getByRole('link', { name: 'Network', hidden: true })).toHaveAttribute(
       'href',
-      '/en/community',
+      '/en/network',
     );
     expect(within(menu).getByRole('link', { name: 'Guides', hidden: true })).toHaveAttribute(
       'href',
@@ -153,9 +153,9 @@ describe('Header', () => {
 
     // The Explore group label + links come first, then the retained links.
     expect(within(menu).getByText('Explore')).toBeInTheDocument();
-    expect(within(menu).getByRole('link', { name: 'Community' })).toHaveAttribute(
+    expect(within(menu).getByRole('link', { name: 'Network' })).toHaveAttribute(
       'href',
-      '/en/community',
+      '/en/network',
     );
     expect(within(menu).getByRole('link', { name: 'Guides' })).toHaveAttribute(
       'href',
@@ -180,7 +180,7 @@ describe('Header', () => {
       .getAllByRole('link', { hidden: true })
       .map((link) => link.getAttribute('href'));
     for (const href of [
-      '/en/community',
+      '/en/network',
       '/en/guides',
       '/en/location',
       '/en/features',
@@ -200,7 +200,7 @@ describe('Header', () => {
     const hrefs = screen
       .getAllByRole('link', { hidden: true })
       .map((link) => link.getAttribute('href'));
-    for (const href of ['/en/community', '/en/guides', '/en/location', '/en/features']) {
+    for (const href of ['/en/network', '/en/guides', '/en/location', '/en/features']) {
       expect(hrefs).toContain(href);
     }
     expect(hrefs).not.toContain('/guides');
@@ -214,7 +214,7 @@ describe('Header', () => {
     const hrefs = screen
       .getAllByRole('link', { hidden: true })
       .map((link) => link.getAttribute('href'));
-    for (const href of ['/de/community', '/de/guides', '/de/location', '/de/features']) {
+    for (const href of ['/de/network', '/de/guides', '/de/location', '/de/features']) {
       expect(hrefs).toContain(href);
     }
     expect(hrefs).not.toContain('/guides');
@@ -242,7 +242,7 @@ describe('Header', () => {
     const hrefs = within(menu)
       .getAllByRole('link')
       .map((link) => link.getAttribute('href'));
-    expect(hrefs).toContain('/de/community');
+    expect(hrefs).toContain('/de/network');
     expect(hrefs).toContain('/de/guides');
     expect(hrefs).toContain('/de/location');
     expect(hrefs).toContain('/de/features');

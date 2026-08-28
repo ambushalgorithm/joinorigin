@@ -55,7 +55,7 @@ describe('lib/seo ROUTES', () => {
   it('covers the homepage and all menu pages', () => {
     const paths = ROUTES.map((r) => r.path);
     expect(paths).toEqual(
-      expect.arrayContaining(['/', '/about', '/features', '/community', '/contact']),
+      expect.arrayContaining(['/', '/about', '/features', '/network', '/contact']),
     );
   });
 

@@ -52,8 +52,8 @@ export const ROUTES: readonly SiteRoute[] = [
     priority: 0.8,
   },
   {
-    path: '/community',
-    title: 'Community — Find Your People & Build Together | JoinOrigin',
+    path: '/network',
+    title: 'Network — Find Your People & Build Together | JoinOrigin',
     description:
       'Join 2,400+ builders on Origin. Start or join an Origin around any idea — a small business, AI startup, book club, or run club.',
     changeFrequency: 'monthly',
