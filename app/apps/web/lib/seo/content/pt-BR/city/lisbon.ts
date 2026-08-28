@@ -10,35 +10,35 @@ const content: CityContent = {
   kind: 'city',
   locale: 'pt-BR',
   slug: 'lisbon',
-  title: 'Comunidades em Lisboa | JoinOrigin',
+  title: 'Origins em Lisboa | JoinOrigin',
   description:
-    'Encontre ou comece comunidades em Lisboa — grupos de startups, criativos, políticos, encontros e pequenas empresas pela capital portuguesa. Lista de espera da JoinOrigin.',
+    'Encontre ou comece Origins em Lisboa — grupos de startups, criativos, políticos, encontros e pequenas empresas pela capital portuguesa. Lista de espera da JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades em Lisboa | JoinOrigin',
+    city: 'Origins em Lisboa | JoinOrigin',
     cityDescription:
-      'Encontre ou comece comunidades em Lisboa — grupos de startups, criativos, políticos, encontros e pequenas empresas pela capital portuguesa. Lista de espera da JoinOrigin.',
+      'Encontre ou comece Origins em Lisboa — grupos de startups, criativos, políticos, encontros e pequenas empresas pela capital portuguesa. Lista de espera da JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups em Lisboa | JoinOrigin',
-      creative: 'Comunidades criativas em Lisboa | JoinOrigin',
-      political: 'Comunidades políticas e cívicas em Lisboa | JoinOrigin',
-      meetup: 'Encontros e comunidades sociais em Lisboa | JoinOrigin',
-      'small-business': 'Comunidades de pequenas empresas em Lisboa | JoinOrigin',
+      startup: 'Origins de startups em Lisboa | JoinOrigin',
+      creative: 'Origins criativos em Lisboa | JoinOrigin',
+      political: 'Origins políticos e cívicos em Lisboa | JoinOrigin',
+      meetup: 'Encontros e Origins sociais em Lisboa | JoinOrigin',
+      'small-business': 'Origins de pequenas empresas em Lisboa | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encontre ou comece comunidades de startups em Lisboa — fundadores, engenheiros e operadores no Príncipe Real, na LX Factory e na cena tech. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins de startups em Lisboa — fundadores, engenheiros e operadores no Príncipe Real, na LX Factory e na cena tech. Lista de espera da JoinOrigin.',
       creative:
-        'Encontre ou comece comunidades criativas em Lisboa — estúdios, galerias e coletivos pela Marvila, LX Factory e a cidade velha. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins criativos em Lisboa — estúdios, galerias e coletivos pela Marvila, LX Factory e a cidade velha. Lista de espera da JoinOrigin.',
       political:
-        'Encontre ou comece comunidades políticas e cívicas em Lisboa — juntas de freguesia, ativismo de moradia e campanhas locais. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins políticos e cívicos em Lisboa — juntas de freguesia, ativismo de moradia e campanhas locais. Lista de espera da JoinOrigin.',
       meetup:
-        'Encontre ou comece comunidades de encontros em Lisboa — piqueniques em miradouros, noites em tascas e dias de praia. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins de encontros em Lisboa — piqueniques em miradouros, noites em tascas e dias de praia. Lista de espera da JoinOrigin.',
       'small-business':
-        'Encontre ou comece comunidades de pequenas empresas em Lisboa — comerciantes de mercado, donos de pastelarias e lojas de bairro. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins de pequenas empresas em Lisboa — comerciantes de mercado, donos de pastelarias e lojas de bairro. Lista de espera da JoinOrigin.',
     },
-    ideas: '30 ideias de eventos comunitários em Lisboa | JoinOrigin',
+    ideas: '30 ideias de eventos de Origins em Lisboa | JoinOrigin',
     ideasDescription:
-      'Descubra 30 ideias de eventos comunitários em Lisboa — eventos de networking, aprendizado, ao ar livre, profissionais, criativos e de impacto. Lista de espera da JoinOrigin.',
+      'Descubra 30 ideias de eventos de Origins em Lisboa — eventos de networking, aprendizado, ao ar livre, profissionais, criativos e de impacto. Lista de espera da JoinOrigin.',
   },
   intro: [
     'Lisboa é uma cidade de miradouros. Os terraços que olham por cima dos telhados vermelhos, o rio Tejo e as pontes são onde a cidade se reúne para ver o pôr do sol, partilhar um lanche e conversar. Abaixo deles, as colinas de Alfama, Bairro Alto e Graça guardam uma cultura de tasca — pequenos bares e cozinhas de família — que mantém a vida comunitária íntima e calorosa.',
@@ -167,15 +167,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'A cena de startups de Lisboa virou uma das mais comentadas da Europa, impulsionada pelo apelo global da Web Summit, uma onda de fundadores internacionais e uma comunidade local em torno do Príncipe Real, do Cais do Sodré e do bairro criativo da LX Factory. Os pontos fortes da cidade incluem SaaS B2B, marketplaces, tech de turismo e fintech, com uma cena crescente de tech climática em torno do Atlântico. Coworkings e cafés de startups recebem cafés da manhã de fundadores, noites de pitch e demo days, enquanto a NOVA e o ISCTE alimentam recém-formados nas equipes iniciais. O inglês é o padrão na maioria dos grupos internacionais, e a qualidade de vida da cidade — luz, comida e praia — a torna um ímã para trabalhadores remotos e fundadores em série. A comunidade é pequena o suficiente para que reputações viajem rápido e calorosa o suficiente para que apresentações aconteçam facilmente. O ritmo português molda os eventos: relaxado, social e felizmente atrasado. Começar uma comunidade de startups em Lisboa funciona melhor com um vertical estreito e um ritmo regular — uma mesa mensal de SaaS B2B ou uma noite de builders de IA constrói uma base fiel mais rápido do que um grupo generalista.',
+      'A cena de startups de Lisboa virou uma das mais comentadas da Europa, impulsionada pelo apelo global da Web Summit, uma onda de fundadores internacionais e uma comunidade local em torno do Príncipe Real, do Cais do Sodré e do bairro criativo da LX Factory. Os pontos fortes da cidade incluem SaaS B2B, marketplaces, tech de turismo e fintech, com uma cena crescente de tech climática em torno do Atlântico. Coworkings e cafés de startups recebem cafés da manhã de fundadores, noites de pitch e demo days, enquanto a NOVA e o ISCTE alimentam recém-formados nas equipes iniciais. O inglês é o padrão na maioria dos grupos internacionais, e a qualidade de vida da cidade — luz, comida e praia — a torna um ímã para trabalhadores remotos e fundadores em série. A comunidade é pequena o suficiente para que reputações viajem rápido e calorosa o suficiente para que apresentações aconteçam facilmente. O ritmo português molda os eventos: relaxado, social e felizmente atrasado. Começar um Origin de startups em Lisboa funciona melhor com um vertical estreito e um ritmo regular — uma mesa mensal de SaaS B2B ou uma noite de builders de IA constrói uma base fiel mais rápido do que um grupo generalista.',
     creative:
-      'As comunidades criativas de Lisboa estão em expansão: as ruas de azulejos da cidade velha, as casas de fado de Alfama e os espaços de fábricas convertidas da LX Factory e da Marvila dão a artistas, designers e músicos um palco distinto. A Marvila virou a nova fronteira criativa, com estúdios em antigos armazéns, enquanto a LX Factory recebe galerias, escritórios de design e muros de arte de rua sob um mesmo teto industrial. As tradições de ofício da cidade — pintura de azulejo, cerâmica e construção de violas — conectam oficinas antigas com novos fazedores. Formatos incluem fins de semana de estúdio aberto, visitas guiadas a galerias, críticas de design e caminhadas de arte de rua, com pores do sol em miradouros e jantares em tascas como ritual de encerramento natural. Cinemas independentes e livrarias adicionam uma veia literária, e os festivais da cidade — das festas de rua de Santo António ao circuito de verão de música — dão aos criativos um calendário constante. Artistas internacionais e criativos remotos se misturam livremente com fazedores locais, dando à cena um caráter incomumente aberto. Começar uma comunidade criativa em Lisboa é realista: escolha um ofício, um distrito e uma noite regular, e a densidade de pessoas curiosas e habilidosas encontrará você.',
+      'As comunidades criativas de Lisboa estão em expansão: as ruas de azulejos da cidade velha, as casas de fado de Alfama e os espaços de fábricas convertidas da LX Factory e da Marvila dão a artistas, designers e músicos um palco distinto. A Marvila virou a nova fronteira criativa, com estúdios em antigos armazéns, enquanto a LX Factory recebe galerias, escritórios de design e muros de arte de rua sob um mesmo teto industrial. As tradições de ofício da cidade — pintura de azulejo, cerâmica e construção de violas — conectam oficinas antigas com novos fazedores. Formatos incluem fins de semana de estúdio aberto, visitas guiadas a galerias, críticas de design e caminhadas de arte de rua, com pores do sol em miradouros e jantares em tascas como ritual de encerramento natural. Cinemas independentes e livrarias adicionam uma veia literária, e os festivais da cidade — das festas de rua de Santo António ao circuito de verão de música — dão aos criativos um calendário constante. Artistas internacionais e criativos remotos se misturam livremente com fazedores locais, dando à cena um caráter incomumente aberto. Começar um Origin criativo em Lisboa é realista: escolha um ofício, um distrito e uma noite regular, e a densidade de pessoas curiosas e habilidosas encontrará você.',
     political:
-      'A vida cívica de Lisboa passa pelas freguesias — os pequenos conselhos de paróquia que dão a cada bairro uma voz real no planejamento local. Moradia é a questão definidora: a popularidade da cidade entre turistas e trabalhadores remotos pressionou os aluguéis para cima, produzindo movimentos ativos de inquilinos e campanhas por moradia acessível entre as mais visíveis da Europa. Associações de bairro e plataformas cívicas se organizam em torno de espaço público, patrimônio e do ritmo do desenvolvimento, enquanto centros comunitários recebem reuniões, aulas e grupos de voluntários. A transformação da orla da cidade — de rodovias a passeios — mostra o que moradores organizados podem conquistar, e novos debates sobre turismo, alojamento local e áreas verdes continuam essa tradição. A cultura política é consultiva e paciente: os lisboetas esperam ser ouvidos, e grupos bem organizados obtêm resultados. Começar uma comunidade política significa escolher uma questão concreta e uma geografia pequena e depois fazer parceria com associações existentes — o cenário é rico o suficiente para que colaboração vença competição.',
+      'A vida cívica de Lisboa passa pelas freguesias — os pequenos conselhos de paróquia que dão a cada bairro uma voz real no planejamento local. Moradia é a questão definidora: a popularidade da cidade entre turistas e trabalhadores remotos pressionou os aluguéis para cima, produzindo movimentos ativos de inquilinos e campanhas por moradia acessível entre as mais visíveis da Europa. Associações de bairro e plataformas cívicas se organizam em torno de espaço público, patrimônio e do ritmo do desenvolvimento, enquanto centros comunitários recebem reuniões, aulas e grupos de voluntários. A transformação da orla da cidade — de rodovias a passeios — mostra o que moradores organizados podem conquistar, e novos debates sobre turismo, alojamento local e áreas verdes continuam essa tradição. A cultura política é consultiva e paciente: os lisboetas esperam ser ouvidos, e grupos bem organizados obtêm resultados. Começar um Origin político significa escolher uma questão concreta e uma geografia pequena e depois fazer parceria com associações existentes — o cenário é rico o suficiente para que colaboração vença competição.',
     meetup:
       'A cena de encontros de Lisboa é construída no miradouro, na tasca e na praia. Os miradouros — Graça, Senhora do Monte, Santa Catarina — enchem todas as noites com casais, famílias e grupos de amigos vendo o sol cair atrás do rio, e um encontro semanal ao pôr do sol é a comunidade mais fácil de começar na cidade. As tascas e pequenos bares da cidade velha recebem noites de fado, jogos de cartas e jantares longos, enquanto os passeios na orla do Tejo são feitos para grupos de caminhada. As praias de Carcavelos e do outro lado do rio reúnem surfistas, nadadores e piqueniqueiros em fins de semana quentes. Formatos incluem piqueniques em miradouros, percursos de tasca, aventuras de elétrico 28, intercâmbios de idiomas (português–inglês) e aulas ao ar livre no Parque Eduardo VII. A cidade é compacta e caminhável, e o amor português pela conversa significa que estranhos viram frequentadores rapidamente. Começar um encontro em Lisboa significa escolher um formato repetível e um ponto fixo — um pôr do sol semanal ou um dia mensal de praia — e o calor da cidade faz o resto.',
     'small-business':
-      'As comunidades de pequenas empresas de Lisboa são ancoradas pelos mercados, pastelarias e tascas familiares da cidade. O Mercado da Ribeira — agora o famoso Time Out Market — e os mercados municipais pela cidade recebem comunidades de feirantes que compartilham fornecedores, horários e fofocas. A pastelaria, o café-padaria onde os lisboetas começam cada dia com café e um pastel de nata, é ao mesmo tempo um negócio e um polo social, e os donos formam redes estreitas de confiança. Lojas de família na cidade velha e o comércio criativo mais novo da LX Factory compartilham as mesmas questões práticas sobre aluguel, licenças e equipe sazonal. A câmara de comércio oferece oficinas sobre digitalização e exportação, enquanto os festivais da cidade dão aos comerciantes um calendário compartilhado. O que une esses grupos é lugar e rotina: um mercado coberto ou uma rua de pastelarias é uma comunidade natural com participação coletiva na manhã do bairro. Começar uma comunidade de pequenas empresas é muito viável: um café da manhã mensal de comerciantes em um mercado coberto, com temas rotativos como aluguel, licenças e turismo, atrai de forma confiável donos que raramente têm pares com quem conversar.',
+      'As comunidades de pequenas empresas de Lisboa são ancoradas pelos mercados, pastelarias e tascas familiares da cidade. O Mercado da Ribeira — agora o famoso Time Out Market — e os mercados municipais pela cidade recebem comunidades de feirantes que compartilham fornecedores, horários e fofocas. A pastelaria, o café-padaria onde os lisboetas começam cada dia com café e um pastel de nata, é ao mesmo tempo um negócio e um polo social, e os donos formam redes estreitas de confiança. Lojas de família na cidade velha e o comércio criativo mais novo da LX Factory compartilham as mesmas questões práticas sobre aluguel, licenças e equipe sazonal. A câmara de comércio oferece oficinas sobre digitalização e exportação, enquanto os festivais da cidade dão aos comerciantes um calendário compartilhado. O que une esses grupos é lugar e rotina: um mercado coberto ou uma rua de pastelarias é uma comunidade natural com participação coletiva na manhã do bairro. Começar um Origin de pequenas empresas é muito viável: um café da manhã mensal de comerciantes em um mercado coberto, com temas rotativos como aluguel, licenças e turismo, atrai de forma confiável donos que raramente têm pares com quem conversar.',
   },
   ideaPage: {
     intro:
@@ -442,14 +442,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: 'Como encontro uma comunidade em Lisboa?',
+      question: 'Como encontro um Origin em Lisboa?',
       answer:
-        'Use as páginas de tipo de grupo para comunidades de startups, criativas, políticas, de encontros e de pequenas empresas. Cada uma descreve os bairros, locais e formatos reais onde os lisboetas se reúnem. A JoinOrigin está no ar — crie seu perfil e encontre ou comece sua comunidade hoje.',
+        'Use as páginas de tipo de grupo para Origins de startups, criativos, políticos, de encontros e de pequenas empresas. Cada uma descreve os bairros, locais e formatos reais onde os lisboetas se reúnem. A JoinOrigin está no ar — crie seu perfil e encontre ou comece seu Origin hoje.',
     },
     {
-      question: 'É realista começar uma comunidade em Lisboa?',
+      question: 'É realista começar um Origin em Lisboa?',
       answer:
-        'Sim. Lisboa tem miradouros, praias e tascas como locais gratuitos, além de uma cultura famosamente acolhedora. Os guias cobrem como começar uma comunidade, organizar um encontro e conseguir seus primeiros dez membros.',
+        'Sim. Lisboa tem miradouros, praias e tascas como locais gratuitos, além de uma cultura famosamente acolhedora. Os guias cobrem como começar um Origin, organizar um encontro e conseguir seus primeiros dez membros.',
     },
     {
       question: 'As sugestões de locais nesta página são reais?',
@@ -459,7 +459,7 @@ const content: CityContent = {
     {
       question: 'A JoinOrigin tem um escritório em Lisboa?',
       answer:
-        'Não. A JoinOrigin não tem escritórios nem equipe locais. Todas as descrições de comunidade refletem o cenário real da cidade, e a plataforma ajuda os lisboetas a encontrar ou começar comunidades.',
+        'Não. A JoinOrigin não tem escritórios nem equipe locais. Todas as descrições de comunidade refletem o cenário real da cidade, e a plataforma ajuda os lisboetas a encontrar ou começar Origins.',
     },
   ],
 };

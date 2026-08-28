@@ -11,9 +11,9 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'pt-BR',
   slug: 'rio-de-janeiro',
-  title: 'Comunidades no Rio de Janeiro | JoinOrigin',
+  title: 'Origins no Rio de Janeiro | JoinOrigin',
   description:
-    'Encontre ou comece comunidades no Rio de Janeiro — grupos de startups, criativos, políticos, encontros e pequenas empresas em todo o estado. Entre na lista de espera da JoinOrigin.',
+    'Encontre ou comece Origins no Rio de Janeiro — grupos de startups, criativos, políticos, encontros e pequenas empresas em todo o estado. Entre na lista de espera da JoinOrigin.',
   intro:
     'O Rio de Janeiro é um estado de contrastes marcantes, e a sua vida comunitária reflete essa diversidade. A capital, a cidade do Rio de Janeiro, é uma das mais famosas do mundo — a cultura de praia de Copacabana e Ipanema, as escolas de samba da Zona Norte, a herança de samba e bossa nova e uma cena criativa em música, cinema e design com alcance global. Ao redor da capital, o estado oferece outro tipo de vida comunitária: cidades serranas como Petrópolis e Teresópolis, o corredor litorâneo de Niterói a Búzios, a cidade industrial de Volta Redonda e as cidades universitárias do interior. Os cariocas, como são conhecidos os habitantes da capital, são famosos pela calidez e abertura, e a beleza natural do estado molda como os grupos se reúnem: rodas de vôlei de praia, clubes de trilha na montanha, comunidades de surf e grupos de festivais ao ar livre são comuns. A cidade também tem uma cena crescente de startups e criativos, fortes comunidades universitárias em torno da UFRJ e da PUC-Rio e profundas tradições de organização cívica nos bairros e favelas. Para quem organiza ou participa de uma comunidade no estado do Rio de Janeiro, a recompensa é uma paisagem onde a conexão social acontece naturalmente — mas onde horário, transporte e respeito ao ritmo local importam.',
   dataPoints: [
@@ -36,7 +36,7 @@ const content: RegionContent = {
     {
       question: 'A JoinOrigin opera no Rio de Janeiro?',
       answer:
-        'Sim. A JoinOrigin não tem escritórios locais. As páginas do Rio de Janeiro estão disponíveis em português, e o produto ajuda as pessoas a encontrar ou começar comunidades em todo o estado.',
+        'Sim. A JoinOrigin não tem escritórios locais. As páginas do Rio de Janeiro estão disponíveis em português, e o produto ajuda as pessoas a encontrar ou começar Origins em todo o estado.',
     },
   ],
 };

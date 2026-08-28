@@ -13,40 +13,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'es',
   slug: 'buenos-aires',
-  title: 'Comunidades en Buenos Aires | JoinOrigin',
+  title: 'Origins en Buenos Aires | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Buenos Aires — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Buenos Aires — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades en Buenos Aires | JoinOrigin',
+    city: 'Origins en Buenos Aires | JoinOrigin',
     cityDescription:
-      'Encuentra o crea comunidades en Buenos Aires — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+      'Encuentra o crea Origins en Buenos Aires — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups en Buenos Aires | JoinOrigin',
-      creative: 'Comunidades creativas y de diseño en Buenos Aires | JoinOrigin',
-      political: 'Comunidades políticas y cívicas en Buenos Aires | JoinOrigin',
+      startup: 'Origins de startups en Buenos Aires | JoinOrigin',
+      creative: 'Origins creativos y de diseño en Buenos Aires | JoinOrigin',
+      political: 'Origins políticos y cívicos en Buenos Aires | JoinOrigin',
       meetup: 'Encuentros y eventos comunitarios en Buenos Aires | JoinOrigin',
-      'small-business': 'Comunidades de pequeñas empresas en Buenos Aires | JoinOrigin',
+      'small-business': 'Origins de pequeñas empresas en Buenos Aires | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encuentra o crea comunidades de startups en Buenos Aires — fundadores, constructores y equipos tempranos en Palermo y Villa Crespo. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de startups en Buenos Aires — fundadores, constructores y equipos tempranos en Palermo y Villa Crespo. Lista de espera de JoinOrigin.',
       creative:
-        'Encuentra o crea comunidades creativas y de diseño en Buenos Aires — estudios, galerías y milongas en San Telmo, Palermo Soho y La Boca. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins creativos y de diseño en Buenos Aires — estudios, galerías y milongas en San Telmo, Palermo Soho y La Boca. Lista de espera de JoinOrigin.',
       political:
-        'Encuentra o crea comunidades políticas y cívicas en Buenos Aires — inquilinos, asambleas barriales y redes de ayuda mutua. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins políticos y cívicos en Buenos Aires — inquilinos, asambleas barriales y redes de ayuda mutua. Lista de espera de JoinOrigin.',
       meetup:
         'Encuentra o crea encuentros y eventos comunitarios en Buenos Aires — caminatas por ferias, rondas de mate y sociales de milonga. Lista de espera de JoinOrigin.',
       'small-business':
-        'Encuentra o crea comunidades de pequeñas empresas en Buenos Aires — boutiques de Palermo Soho, anticuarios de San Telmo y feriantes. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de pequeñas empresas en Buenos Aires — boutiques de Palermo Soho, anticuarios de San Telmo y feriantes. Lista de espera de JoinOrigin.',
     },
-    ideas: '30 ideas de eventos comunitarios en Buenos Aires | JoinOrigin',
+    ideas: '30 ideas de eventos de Origins en Buenos Aires | JoinOrigin',
     ideasDescription:
       '30 ideas realistas para eventos comunitarios en Buenos Aires — networking, aprendizaje, sociales y exteriores, profesionales, creativos e impacto. Para tu próximo evento.',
   },
   intro: [
     'Buenos Aires es la capital de Argentina y una ciudad de unos 2,9 millones de habitantes dentro de sus límites, con más de trece millones en el Gran Buenos Aires. Es una ciudad de amplios bulevares, arquitectura de estilo europeo y una vida social famosamente intensa: la cultura del café, las parrillas, los salones de tango y los estadios de fútbol dan forma a cómo los porteños — como se llama a sus habitantes — se reúnen y conectan.',
     'La ciudad es la capital de las startups y de la creatividad en América Latina: empresas como MercadoLibre nacieron aquí, y la escena de Palermo, Villa Crespo y el Microcentro mezcla fundadores, diseñadores e ingenieros de toda la región. La UBA — una de las universidades públicas más grandes y con más historia del mundo —, la UTN y la Universidad Di Tella alimentan un flujo constante de estudiantes e investigadores hacia las comunidades locales. Los anclajes públicos incluyen los Bosques de Palermo, el mercado de San Telmo, Puerto Madero y las plazas que anclan cada barrio.',
-    'Los porteños son famosos por trasnochar, tomar mate y construir amistades profundas: la vida comunitaria funciona con calidez y boca a boca. La economía ha pasado por ciclos duros, lo que ha producido una cultura de ingenio y apoyo mutuo que aparece en todo, desde redes de trueque hasta eventos gratuitos. Para encontrar o crear una comunidad, Buenos Aires recompensa la autenticidad, un buen lugar y un grupo que alimente el hambre de conversación de la ciudad.',
+    'Los porteños son famosos por trasnochar, tomar mate y construir amistades profundas: la vida comunitaria funciona con calidez y boca a boca. La economía ha pasado por ciclos duros, lo que ha producido una cultura de ingenio y apoyo mutuo que aparece en todo, desde redes de trueque hasta eventos gratuitos. Para encontrar o crear un Origin, Buenos Aires recompensa la autenticidad, un buen lugar y un grupo que alimente el hambre de conversación de la ciudad.',
   ],
   dataPoints: [
     'Unos 2,9 millones de habitantes en la ciudad; más de 13 millones en el Gran Buenos Aires.',
@@ -170,15 +170,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'La escena de startups de Buenos Aires es la más madura de América Latina, construida sobre un fondo profundo de talento en ingeniería, una tradición legendaria de resiliencia emprendedora y un mercado regional que comienza en el Río de la Plata. Palermo y Villa Crespo concentran la mayor densidad de espacios de coworking y startups respaldadas por capital de riesgo, el Microcentro ancla la capa corporativa y universidades como la UBA y Di Tella alimentan año tras año a fundadores e ingenieros. Lo que hace distintiva a la escena es su ambición regional: los fundadores argentinos construyeron empresas como MercadoLibre que sirven a todo el continente, y la ciudad sigue siendo la plataforma de lanzamiento de muchas startups regionales. Los ciclos duros de la economía han producido una cultura de ingenio creativo: los fundadores aprenden a arrancar con recursos mínimos, hacer trueque y construir en condiciones difíciles — lo que hace a la comunidad inusualmente práctica. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear una comunidad de startups aquí: elige una vertical, ancla a un barrio y respeta la realidad económica: un evento semanal constante en un coworking de Palermo construirá seguidores leales.',
+      'La escena de startups de Buenos Aires es la más madura de América Latina, construida sobre un fondo profundo de talento en ingeniería, una tradición legendaria de resiliencia emprendedora y un mercado regional que comienza en el Río de la Plata. Palermo y Villa Crespo concentran la mayor densidad de espacios de coworking y startups respaldadas por capital de riesgo, el Microcentro ancla la capa corporativa y universidades como la UBA y Di Tella alimentan año tras año a fundadores e ingenieros. Lo que hace distintiva a la escena es su ambición regional: los fundadores argentinos construyeron empresas como MercadoLibre que sirven a todo el continente, y la ciudad sigue siendo la plataforma de lanzamiento de muchas startups regionales. Los ciclos duros de la economía han producido una cultura de ingenio creativo: los fundadores aprenden a arrancar con recursos mínimos, hacer trueque y construir en condiciones difíciles — lo que hace a la comunidad inusualmente práctica. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear un Origin de startups aquí: elige una vertical, ancla a un barrio y respeta la realidad económica: un evento semanal constante en un coworking de Palermo construirá seguidores leales.',
     creative:
-      'Las comunidades creativas de Buenos Aires cargan una de las herencias culturales más ricas de América Latina: el tango, la literatura, el diseño, el cine y el teatro viven y respiran en esta ciudad. San Telmo conserva la tradición bohemia — sus mercados de antigüedades y milongas atraen tanto a locales como a visitantes — mientras que Palermo Soho es el corazón del diseño y la moda, y Caminito, en La Boca, mantiene viva la tradición artística colorida y de clase trabajadora. La ciudad es famosa por sus librerías y su cultura de café: los escritores se reúnen en los mismos cafés desde hace un siglo, y la escena literaria de la ciudad es de clase mundial. El teatro está en todas partes — la escena de teatro independiente del Microcentro es de las más intensas del mundo — y el tango, tanto tradicional como contemporáneo, es una forma de arte viva con milongas cada noche. Crear una comunidad creativa en Buenos Aires significa elegir una disciplina y un barrio, y luego usar la profunda infraestructura cultural de la ciudad y su audiencia genuinamente apasionada para construir algo con alma real.',
+      'Las comunidades creativas de Buenos Aires cargan una de las herencias culturales más ricas de América Latina: el tango, la literatura, el diseño, el cine y el teatro viven y respiran en esta ciudad. San Telmo conserva la tradición bohemia — sus mercados de antigüedades y milongas atraen tanto a locales como a visitantes — mientras que Palermo Soho es el corazón del diseño y la moda, y Caminito, en La Boca, mantiene viva la tradición artística colorida y de clase trabajadora. La ciudad es famosa por sus librerías y su cultura de café: los escritores se reúnen en los mismos cafés desde hace un siglo, y la escena literaria de la ciudad es de clase mundial. El teatro está en todas partes — la escena de teatro independiente del Microcentro es de las más intensas del mundo — y el tango, tanto tradicional como contemporáneo, es una forma de arte viva con milongas cada noche. Crear un Origin creativo en Buenos Aires significa elegir una disciplina y un barrio, y luego usar la profunda infraestructura cultural de la ciudad y su audiencia genuinamente apasionada para construir algo con alma real.',
     political:
-      'Las comunidades políticas y cívicas de Buenos Aires están moldeadas por el papel de la ciudad como capital nacional y por una historia económica que ha convertido la solidaridad en una habilidad de supervivencia. La vivienda es un tema definitorio: las presiones de los alquileres y el desplazamiento organizan sindicatos de inquilinos y asambleas barriales en toda la ciudad. Los ciclos económicos más amplios han producido una rica cultura de ayuda mutua — comedores comunitarios, cooperativas de trabajadores y redes de solidaridad que intervienen cuando las instituciones fallan — y estas redes son una parte real y respetada de la vida cívica. La ciudad está dividida en comunas, lo que da a los vecinos foros locales para las decisiones sobre uso del suelo, transporte y espacio público. Las comunidades de civic tech construyen herramientas para datos abiertos y participación pública, y los grupos ambientalistas impulsan un transporte más limpio y más espacios verdes. La cultura política recompensa la persistencia, la calidez y las relaciones genuinas. Crear una comunidad cívica en Buenos Aires suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con el denso paisaje existente de organizaciones.',
+      'Las comunidades políticas y cívicas de Buenos Aires están moldeadas por el papel de la ciudad como capital nacional y por una historia económica que ha convertido la solidaridad en una habilidad de supervivencia. La vivienda es un tema definitorio: las presiones de los alquileres y el desplazamiento organizan sindicatos de inquilinos y asambleas barriales en toda la ciudad. Los ciclos económicos más amplios han producido una rica cultura de ayuda mutua — comedores comunitarios, cooperativas de trabajadores y redes de solidaridad que intervienen cuando las instituciones fallan — y estas redes son una parte real y respetada de la vida cívica. La ciudad está dividida en comunas, lo que da a los vecinos foros locales para las decisiones sobre uso del suelo, transporte y espacio público. Las comunidades de civic tech construyen herramientas para datos abiertos y participación pública, y los grupos ambientalistas impulsan un transporte más limpio y más espacios verdes. La cultura política recompensa la persistencia, la calidez y las relaciones genuinas. Crear un Origin cívico en Buenos Aires suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con el denso paisaje existente de organizaciones.',
     meetup:
       'La cultura de encuentros de Buenos Aires se alimenta de la famosa energía social de la ciudad: los porteños trasnochan, toman mate y convierten cualquier ocasión en una reunión. Caminatas dominicales por el mercado de San Telmo, rondas de mate en los Bosques de Palermo, sociales de tango en milongas de barrio y lecturas en librerías que se derraman hacia los cafés: la ciudad funciona con estos ritmos. El subte y los colectivos hacen práctico reunirse en toda la ciudad, y la enorme cultura de café significa que siempre hay un lugar que acogerá a un grupo. Como Buenos Aires es un imán para viajeros, expatriados y trabajadores remotos, los encuentros amigables para recién llegados son comunes y muy bienvenidos. Los formatos con poder de permanencia son simples y repetibles: una caminata dominical por el mercado, una ronda de mate semanal, una noche de trivia fija. Consejo honesto para crear un encuentro aquí: elige un barrio, un lugar accesible en subte y un formato que abrace el estilo tardío, cálido y conversador de la ciudad: los porteños aparecerán por un grupo que se sienta real.',
     'small-business':
-      'Las comunidades de pequeñas empresas de Buenos Aires son el corazón de las calles de la ciudad: la boutique de Palermo Soho, el anticuario de San Telmo, el artesano de La Boca, la parrilla de barrio y el feriante comparten preguntas prácticas sobre alquiler, permisos, personal y la economía impredecible. Las ferias de la ciudad son comunidades en sí mismas, con vendedores que se coordinan en torno a suministros, permisos y clientes habituales, y corredores comerciales como Palermo Soho y las calles del mercado de San Telmo concentran grupos de tiendas con un interés compartido en el tránsito peatonal. Las asociaciones comerciales y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital, y los ciclos económicos del país han producido una cultura profunda de ingenio: los dueños están acostumbrados a adaptarse rápido. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de feriantes. Crear una comunidad de pequeñas empresas aquí es realista: una mesa redonda mensual en un café de barrio, con temas rotativos como alquiler, seguros y precios en tiempos difíciles, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
+      'Las comunidades de pequeñas empresas de Buenos Aires son el corazón de las calles de la ciudad: la boutique de Palermo Soho, el anticuario de San Telmo, el artesano de La Boca, la parrilla de barrio y el feriante comparten preguntas prácticas sobre alquiler, permisos, personal y la economía impredecible. Las ferias de la ciudad son comunidades en sí mismas, con vendedores que se coordinan en torno a suministros, permisos y clientes habituales, y corredores comerciales como Palermo Soho y las calles del mercado de San Telmo concentran grupos de tiendas con un interés compartido en el tránsito peatonal. Las asociaciones comerciales y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital, y los ciclos económicos del país han producido una cultura profunda de ingenio: los dueños están acostumbrados a adaptarse rápido. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de feriantes. Crear un Origin de pequeñas empresas aquí es realista: una mesa redonda mensual en un café de barrio, con temas rotativos como alquiler, seguros y precios en tiempos difíciles, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
   },
   ideaPage: {
     intro:
@@ -442,14 +442,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: '¿Cómo encuentro una comunidad en Buenos Aires?',
+      question: '¿Cómo encuentro un Origin en Buenos Aires?',
       answer:
-        'Empieza por las páginas de tipos de grupo: comunidades de startups, creativas, políticas, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los porteños. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu comunidad hoy mismo.',
+        'Empieza por las páginas de tipos de grupo: Origins de startups, creativos, políticos, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los porteños. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu Origin hoy mismo.',
     },
     {
-      question: '¿Es realista crear una comunidad en Buenos Aires?',
+      question: '¿Es realista crear un Origin en Buenos Aires?',
       answer:
-        'Sí. La ciudad tiene lugares públicos gratuitos, una cultura social cálida y una rica vida de cafés y cultura. Las guías cubren cómo crear una comunidad, organizar un encuentro y conseguir tus primeros diez miembros.',
+        'Sí. La ciudad tiene lugares públicos gratuitos, una cultura social cálida y una rica vida de cafés y cultura. Las guías cubren cómo crear un Origin, organizar un encuentro y conseguir tus primeros diez miembros.',
     },
     {
       question: '¿Las sugerencias de lugares de esta página son reales?',
@@ -459,7 +459,7 @@ const content: CityContent = {
     {
       question: '¿JoinOrigin tiene una oficina en Buenos Aires?',
       answer:
-        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los porteños a encontrar o crear comunidades.',
+        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los porteños a encontrar o crear Origins.',
     },
   ],
 };

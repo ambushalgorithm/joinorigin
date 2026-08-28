@@ -12,9 +12,9 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'es',
   slug: 'argentina',
-  title: 'Comunidades en Argentina | JoinOrigin',
+  title: 'Origins en Argentina | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Argentina — desde grupos de startups en Buenos Aires hasta redes provinciales de creadores, cultura y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Argentina — desde grupos de startups en Buenos Aires hasta redes provinciales de creadores, cultura y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
   intro:
     'Argentina tiene una de las tradiciones comunitarias más fuertes de América Latina, moldeada por una cultura que trata la reunión como un hábito cotidiano. El asado, el mate y el barrio son anclas sociales: compartir la carne un domingo, pasar un termo de mate en ronda y detenerse en la plaza o el club del barrio son parte ordinaria de la vida. Buenos Aires concentra la escena profesional más densa del país — startups, estudios creativos, universidades como la UBA y Di Tella, y una tradición editorial y teatral de renombre — mientras que capitales provinciales como Córdoba, Rosario, Mendoza y Salta mantienen sus propias redes vivas en torno a universidades, bodegas e industria regional. El país también tiene una profunda tradición cooperativa y de ayuda mutua, desde empresas recuperadas hasta asambleas vecinales, lo que hace que los grupos cívicos y solidarios sean comunes y respetados. Como la economía ha pasado por ciclos duros, las comunidades aquí tienden a ser prácticas y resilientes, organizadas en torno al apoyo concreto tanto como a los intereses compartidos. Ya sea que llegues al país o que vivas aquí desde siempre, encontrar un grupo — o empezar uno con un primer asado o encuentro sencillo — es un camino muy transitado.',
   dataPoints: [
@@ -25,7 +25,7 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: '¿Cómo encuentro comunidades en Argentina?',
+      question: '¿Cómo encuentro Origins en Argentina?',
       answer:
         'Usa el centro de /location para elegir una ciudad y luego explora las páginas por tipo de grupo: startups, creativos, políticos, encuentros y pequeñas empresas. Los clubes locales, los carteles universitarios y las asociaciones vecinales también son buenos puntos de partida para grupos presenciales.',
     },
@@ -37,7 +37,7 @@ const content: CountryContent = {
     {
       question: '¿JoinOrigin opera en Argentina?',
       answer:
-        'Sí. JoinOrigin no tiene oficinas locales. Las páginas de Buenos Aires están disponibles en español y el producto ayuda a las personas a encontrar o crear comunidades en cualquier lugar de Argentina.',
+        'Sí. JoinOrigin no tiene oficinas locales. Las páginas de Buenos Aires están disponibles en español y el producto ayuda a las personas a encontrar o crear Origins en cualquier lugar de Argentina.',
     },
   ],
 };

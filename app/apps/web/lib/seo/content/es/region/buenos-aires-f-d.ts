@@ -13,9 +13,9 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'es',
   slug: 'buenos-aires-f-d',
-  title: 'Comunidades en Buenos Aires | JoinOrigin',
+  title: 'Origins en Buenos Aires | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Buenos Aires — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital federal. Únete a la lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Buenos Aires — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en la capital federal. Únete a la lista de espera de JoinOrigin.',
   intro:
     'Buenos Aires es el distrito federal autónomo de Argentina y el centro claro de la vida comunitaria del país. La ciudad está organizada en barrios con personalidades distintas — Palermo y Villa Crespo para el diseño, las startups y los cafés; San Telmo para la tradición bohemia y los mercados de antigüedades; La Boca para su escena artística obrera y colorida; Recoleta para las librerías y las instituciones culturales; y el Microcentro para la vida corporativa y empresarial. Los porteños son famosamente sociables: rondas de mate en los Bosques de Palermo, milongas de tango por toda la ciudad, paseos dominicales por el mercado de San Telmo y una cultura de café donde escritores y fundadores se reúnen desde hace un siglo. La ciudad concentra la escena profesional más densa del país — el ecosistema de startups anclado en Palermo y Villa Crespo, un teatro independiente de clase mundial, una industria editorial de renombre y universidades como la UBA y Di Tella que alimentan a todas las comunidades. El subte y los colectivos hacen práctico reunirse en toda la ciudad, y la enorme red de cafés garantiza que siempre haya un lugar para hospedar a un grupo. Para quien organiza o se une a una comunidad aquí, Buenos Aires premia elegir un barrio y un formato que abrace el estilo tardío, cálido y conversador de la ciudad.',
   dataPoints: [
@@ -39,7 +39,7 @@ const content: RegionContent = {
     {
       question: '¿JoinOrigin opera en Buenos Aires?',
       answer:
-        'Sí. JoinOrigin no tiene oficinas locales. Las páginas de Buenos Aires están disponibles en español y el producto ayuda a las personas a encontrar o crear comunidades en la capital federal y en todo el país.',
+        'Sí. JoinOrigin no tiene oficinas locales. Las páginas de Buenos Aires están disponibles en español y el producto ayuda a las personas a encontrar o crear Origins en la capital federal y en todo el país.',
     },
   ],
 };

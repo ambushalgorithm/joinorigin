@@ -15,19 +15,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'fr',
   slug: 'hybrid-origins',
-  title: 'Communautés hybrides : comment animer le présentiel et l’en ligne ensemble | JoinOrigin',
+  title: 'Origins hybrides : comment animer le présentiel et l’en ligne ensemble | JoinOrigin',
   description:
-    'Animez une communauté hybride où le salon connecte les membres en présentiel et en ligne — que vous démarriez de zéro ou rendiez hybride une communauté existante, choisissez les bons outils, concevez une participation égale et gardez les deux publics engagés. De JoinOrigin.',
+    'Animez un Origin hybride où le salon connecte les membres en présentiel et en ligne — que vous démarriez de zéro ou rendiez hybride un Origin existant, choisissez les bons outils, concevez une participation égale et gardez les deux publics engagés. De JoinOrigin.',
   intro: [
     'Une communauté hybride réunit les gens dans deux endroits à la fois — physiquement dans un lieu et virtuellement à travers un écran — et le vrai défi porte encore sur les personnes : s’assurer que les deux publics se sentent membres d’une seule communauté connectée, et non de deux communautés séparées. JoinOrigin est construit exactement avec cet objectif de mise en relation, et le modèle fonctionne aussi bien pour une communauté qui existe déjà que pour une qui démarre tout juste — un groupe établi en présentiel peut ajouter une moitié en ligne, et une communauté en ligne peut commencer à se réunir localement.',
-    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver, rejoindre et créer des communautés — donc un groupe hybride a un seul salon qui connecte les parties en ligne et (en aval) en présentiel : les membres locaux et distants voient la même communauté, le même rythme et les mêmes prochaines étapes. Dans le modèle numérique connecter→rejoindre→salon, le salon est la surface persistante où les deux moitiés de la communauté vivent entre les rassemblements ; l’événement en présentiel est une conséquence en aval que le salon tient ensemble avant et après. JoinOrigin ne fournit pas d’outils d’événements et n’organise pas d’événements hybrides — la plateforme donne à toute communauté — hybride comprise — un seul salon où ses membres restent connectés.',
+    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver, rejoindre et créer des Origins — donc un groupe hybride a un seul salon qui connecte les parties en ligne et (en aval) en présentiel : les membres locaux et distants voient la même communauté, le même rythme et les mêmes prochaines étapes. Dans le modèle numérique connecter→rejoindre→salon, le salon est la surface persistante où les deux moitiés de la communauté vivent entre les rassemblements ; l’événement en présentiel est une conséquence en aval que le salon tient ensemble avant et après. JoinOrigin ne fournit pas d’outils d’événements et n’organise pas d’événements hybrides — la plateforme donne à toute communauté — hybride comprise — un seul salon où ses membres restent connectés.',
     'Ce guide couvre les décisions pratiques qui font réussir les communautés hybrides — pour les nouveaux groupes comme pour les groupes existants : décider si l’hybride est le bon modèle, construire le salon que les deux publics partagent, choisir un format et des outils adaptés, concevoir le rassemblement pour que les membres en présentiel et en ligne vivent la même expérience, gérer l’espace pour qu’aucun côté ne domine, et garder un salon persistant qui tient la communauté ensemble entre les rassemblements. Chaque étape montre où JoinOrigin aide.',
   ],
   dataPoints: [
     'Une communauté hybride est une communauté avec deux points d’entrée, pas deux publics à servir séparément.',
     'Le salon est le tissu conjonctif : un endroit partagé où les deux publics voient les mêmes mises à jour, notes et prochaines étapes.',
     'Des outils simples et fiables — un lien vidéo, un document partagé — réduisent le frottement qui tue les rassemblements hybrides.',
-    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver ou créer des communautés ; il ne fournit pas d’outils d’événements et n’organise pas d’événements hybrides.',
+    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver ou créer des Origins ; il ne fournit pas d’outils d’événements et n’organise pas d’événements hybrides.',
   ],
   faq: [
     {
@@ -48,7 +48,7 @@ const content: GuideContent = {
     {
       question: 'JoinOrigin peut-il m’aider à animer une communauté hybride ?',
       answer:
-        'Oui. JoinOrigin aide les personnes à trouver et à créer des communautés — un salon où les membres locaux et distants restent connectés. JoinOrigin ne fournit pas d’outillage d’événements, donc les pratiques hybrides pratiques de ce guide fonctionnent avec les outils que vous possédez déjà.',
+        'Oui. JoinOrigin aide les personnes à trouver et à créer des Origins — un salon où les membres locaux et distants restent connectés. JoinOrigin ne fournit pas d’outillage d’événements, donc les pratiques hybrides pratiques de ce guide fonctionnent avec les outils que vous possédez déjà.',
     },
   ],
   sections: [

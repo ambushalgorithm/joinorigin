@@ -17,19 +17,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'es',
   slug: 'keep-an-origin-active',
-  title: 'Cómo mantener activa y comprometida una comunidad | JoinOrigin',
+  title: 'Cómo mantener activo y comprometido un Origin | JoinOrigin',
   description:
-    'Mantén activa tu comunidad — ya sea que sea nueva y esté encontrando su ritmo o consolidada y a la deriva — usa la sala y su feed como superficie de retención, construye rituales, comparte la carga del organizador y crea pequeños caminos de contribución. Pasos prácticos de JoinOrigin.',
+    'Mantén activo tu Origin — ya sea que sea nuevo y esté encontrando su ritmo o consolidado y a la deriva — usa la sala y su feed como superficie de retención, construye rituales, comparte la carga del organizador y crea pequeños caminos de contribución. Pasos prácticos de JoinOrigin.',
   intro: [
     'La mayoría de las comunidades no muere por un mal lanzamiento; muere por el silencio: el momento en que las personas dejan de sentirse conectadas y se van en silencio. Mantener activa una comunidad es, por tanto, un problema de conectar personas: las personas se quedan cuando sienten que pertenecen, y sienten que pertenecen cuando hay un lugar visible y organizado donde la comunidad vive. Eso es exactamente lo que es JoinOrigin — y las mismas mecánicas se aplican tanto si la comunidad tiene unas semanas y sigue encontrando su ritmo como si tiene años y se está deslizando hacia el silencio.',
-    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, crear y organizar comunidades — y en su modelo digital la sala es la superficie de retención: una sala Matrix controlada por el creador donde los rituales, las novedades y las contribuciones permanecen visibles, y cuya actividad fluye hacia el feed que mantiene conectados a los miembros entre reuniones. Los eventos presenciales siguen siendo una consecuencia posterior de una comunidad formada, nunca el núcleo: la sala y su feed son lo que mantiene viva a la comunidad día a día. JoinOrigin no gestiona comunidades ni organiza eventos: la plataforma mantiene conectadas a las comunidades entre reuniones, y la organización es tuya.',
+    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, crear y organizar Origins — y en su modelo digital la sala es la superficie de retención: una sala Matrix controlada por el creador donde los rituales, las novedades y las contribuciones permanecen visibles, y cuya actividad fluye hacia el feed que mantiene conectados a los miembros entre reuniones. Los eventos presenciales siguen siendo una consecuencia posterior de una comunidad formada, nunca el núcleo: la sala y su feed son lo que mantiene viva a la comunidad día a día. JoinOrigin no gestiona comunidades ni organiza eventos: la plataforma mantiene conectadas a las comunidades entre reuniones, y la organización es tuya.',
     'Esta guía cubre las mecánicas prácticas de una comunidad sana y activa — desde las primeras semanas tras el lanzamiento hasta una comunidad que lleva años funcionando: establecer rituales que conviertan la participación en hábito, crear artefactos compartidos en la sala, distribuir la carga del organizador para que ninguna persona se agote, abrir pequeños caminos de contribución para que cada miembro pueda aportar valor y medir las señales que te dicen si la comunidad está realmente viva. Cada paso se corresponde con cómo ayuda JoinOrigin.',
   ],
   dataPoints: [
     'Los rituales recurrentes — un ritmo fijo de sala, un formato regular, un artefacto compartido — convierten el interés en hábito.',
     'La actividad de la sala entre reuniones es lo que mantiene a los miembros conectados; el silencio es lo que los aleja.',
     'Los pequeños caminos de contribución (una nota fijada, un anfitrión rotativo, un foco de miembro) hacen que los miembros sientan propiedad.',
-    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, crear y organizar comunidades; no gestiona comunidades ni organiza eventos.',
+    'JoinOrigin es un sistema operativo comunitario diseñado para ayudar a las personas a encontrar, crear y organizar Origins; no gestiona comunidades ni organiza eventos.',
   ],
   faq: [
     {
@@ -48,9 +48,9 @@ const content: GuideContent = {
         'Crea puntos de contacto de bajo esfuerzo en la sala: un documento compartido, un foco de miembro, un hilo de control regular o una novedad de «quién trabaja en qué». El objetivo es un latido visible en la sala y su feed, no notificaciones constantes.',
     },
     {
-      question: '¿Puede JoinOrigin ayudarme a mantener activa mi comunidad?',
+      question: '¿Puede JoinOrigin ayudarme a mantener activo mi Origin?',
       answer:
-        'Sí. JoinOrigin ayuda a las personas a encontrar, crear y organizar comunidades: una sala y un feed donde la comunidad permanece visible entre reuniones. Las prácticas de esta guía — rituales, roles compartidos y pequeñas contribuciones — funcionan en la plataforma y con las herramientas que ya tienes.',
+        'Sí. JoinOrigin ayuda a las personas a encontrar, crear y organizar Origins: una sala y un feed donde la comunidad permanece visible entre reuniones. Las prácticas de esta guía — rituales, roles compartidos y pequeñas contribuciones — funcionan en la plataforma y con las herramientas que ya tienes.',
     },
   ],
   sections: [

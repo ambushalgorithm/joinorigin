@@ -11,7 +11,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'pt-BR',
   slug: 'lisbon',
-  title: 'Comunidades em Lisboa | JoinOrigin',
+  title: 'Origins em Lisboa | JoinOrigin',
   description:
     'Encontre ou crie comunidades na região de Lisboa — das cenas de startups da capital às associações locais do distrito. Lista de espera da JoinOrigin.',
   intro:
@@ -36,7 +36,7 @@ const content: RegionContent = {
     {
       question: 'A JoinOrigin opera na região de Lisboa?',
       answer:
-        'Sim. A JoinOrigin não tem escritórios locais. A página da região de Lisboa está traduzida para o português, e a plataforma ajuda as pessoas a encontrar ou criar comunidades em qualquer lugar da região.',
+        'Sim. A JoinOrigin não tem escritórios locais. A página da região de Lisboa está traduzida para o português, e a plataforma ajuda as pessoas a encontrar ou criar Origins em qualquer lugar da região.',
     },
   ],
 };

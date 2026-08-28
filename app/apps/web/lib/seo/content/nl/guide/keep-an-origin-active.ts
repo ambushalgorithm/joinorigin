@@ -1,7 +1,7 @@
 import type { GuideContent } from '../../types';
 
 /**
- * « Hoe houd je een community actief » — tijdloze L1-handleiding
+ * « Hoe houd je een Origin actief » — tijdloze L1-handleiding
  * (design §6.1, TASK-326).
  *
  * Nederlandse vertaling van de EN-content, herijkt op het digitale
@@ -17,19 +17,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'nl',
   slug: 'keep-an-origin-active',
-  title: 'Hoe houd je een community actief en betrokken | JoinOrigin',
+  title: 'Hoe houd je een Origin actief en betrokken | JoinOrigin',
   description:
-    'Houd je community actief — of die nu nieuw is en zijn ritme vindt of gevestigd en aan het wegdrijven is — gebruik de kamer en de feed als behoud-oppervlak, bouw rituelen, deel de organisatorische last en creëer kleine bijdragemogelijkheden. Praktische stappen van JoinOrigin.',
+    'Houd je Origin actief — of die nu nieuw is en zijn ritme vindt of gevestigd en aan het wegdrijven is — gebruik de kamer en de feed als behoud-oppervlak, bouw rituelen, deel de organisatorische last en creëer kleine bijdragemogelijkheden. Praktische stappen van JoinOrigin.',
   intro: [
     'De meeste community’s sterven niet door een slechte lancering; ze sterven door stilte — het moment waarop mensen zich niet meer verbonden voelen en stilletjes wegdrijven. Een community actief houden is daarom een mensen-verbinden-probleem: mensen blijven wanneer ze het gevoel hebben dat ze erbij horen, en ze horen erbij wanneer er een zichtbare, georganiseerde plek is waar de community leeft. Dat is precies wat JoinOrigin is — en dezelfde mechanismen gelden of de community nu een paar weken oud is en nog zijn ritme zoekt of jaren oud en in stilte aan het wegdrijven is.',
-    'JoinOrigin is een community-besturingssysteem dat mensen helpt community’s te vinden, te starten en te organiseren — en in het digitale model is de kamer het behoud-oppervlak: een door de maker beheerde Matrix-kamer waar rituelen, updates en bijdragen zichtbaar blijven, en waarvan de activiteit de feed in stroomt die leden tussen bijeenkomsten verbonden houdt. Fysieke evenementen blijven een gevolg van een gevormde community, nooit de kern — de kamer en de feed zijn wat de community dagelijks levend houdt. JoinOrigin beheert geen community’s en bemant geen evenementen — het platform houdt community’s tussen bijeenkomsten verbonden, en het organiseren is aan jou.',
+    'JoinOrigin is een community-besturingssysteem dat mensen helpt Origins te vinden, te starten en te organiseren — en in het digitale model is de kamer het behoud-oppervlak: een door de maker beheerde Matrix-kamer waar rituelen, updates en bijdragen zichtbaar blijven, en waarvan de activiteit de feed in stroomt die leden tussen bijeenkomsten verbonden houdt. Fysieke evenementen blijven een gevolg van een gevormde community, nooit de kern — de kamer en de feed zijn wat de community dagelijks levend houdt. JoinOrigin beheert geen community’s en bemant geen evenementen — het platform houdt community’s tussen bijeenkomsten verbonden, en het organiseren is aan jou.',
     'Deze handleiding behandelt de praktische mechanismen van een gezonde, actieve community — van de eerste weken na de lancering tot een community die al jaren draait: rituelen opzetten die van deelname een gewoonte maken, gedeelde artefacten in de kamer creëren, de organisatorische last verdelen zodat niemand opbrandt, kleine bijdragemogelijkheden openen zodat elk lid waarde kan toevoegen en de signalen meten die vertellen of de community echt leeft. Elke stap sluit aan bij hoe JoinOrigin helpt.',
   ],
   dataPoints: [
     'Terugkerende rituelen — een vast kamer-ritme, een regelmatig format, een gedeeld artefact — zetten interesse om in gewoonte.',
     'Kamertactiviteit tussen bijeenkomsten is wat leden verbonden houdt; stilte is wat hen wegjaagt.',
     'Kleine bijdragemogelijkheden (een vastgezette notitie, een roulerende host, een ledenspotlight) geven leden eigenaarschap.',
-    'JoinOrigin is een community-besturingssysteem dat mensen helpt community’s te vinden, te starten en te organiseren; het beheert geen community’s en bemant geen evenementen.',
+    'JoinOrigin is een community-besturingssysteem dat mensen helpt Origins te vinden, te starten en te organiseren; het beheert geen community’s en bemant geen evenementen.',
   ],
   faq: [
     {
@@ -48,9 +48,9 @@ const content: GuideContent = {
         'Creëer laagdrempelige contactpunten in de kamer: een gedeeld document, een ledenspotlight, een regelmatige check-in-thread of een update “wie werkt waaraan”. Het doel is een zichtbare hartslag in de kamer en de feed, geen constante meldingen.',
     },
     {
-      question: 'Kan JoinOrigin mij helpen mijn community actief te houden?',
+      question: 'Kan JoinOrigin mij helpen mijn Origin actief te houden?',
       answer:
-        'Ja. JoinOrigin helpt mensen community’s te vinden, te starten en te organiseren — één kamer en feed waar de community tussen bijeenkomsten zichtbaar blijft. De praktijken in deze handleiding — rituelen, gedeelde rollen en kleine bijdragen — werken op het platform en met de tools die je al hebt.',
+        'Ja. JoinOrigin helpt mensen Origins te vinden, te starten en te organiseren — één kamer en feed waar de community tussen bijeenkomsten zichtbaar blijft. De praktijken in deze handleiding — rituelen, gedeelde rollen en kleine bijdragen — werken op het platform en met de tools die je al hebt.',
     },
   ],
   sections: [

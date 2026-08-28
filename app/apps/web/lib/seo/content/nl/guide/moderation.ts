@@ -1,7 +1,7 @@
 import type { GuideContent } from '../../types';
 
 /**
- * « Community-moderatie » — tijdloze L1-handleiding (design §6.1, TASK-326).
+ * « Origin-moderatie » — tijdloze L1-handleiding (design §6.1, TASK-326).
  *
  * Nederlandse vertaling van de EN-content, herijkt op het digitale
  * verbind→sluit-aan→kamer-model: makercontrole IS Matrix-kamereigendom —
@@ -17,19 +17,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'nl',
   slug: 'moderation',
-  title: 'Community-moderatie: hoe houd je groepen gezond en gastvrij | JoinOrigin',
+  title: 'Origin-moderatie: hoe houd je groepen gezond en gastvrij | JoinOrigin',
   description:
     'Modereer een community met duidelijke regels, vroeg ingrijpen en de-escalatie — of je nu een gloednieuwe groep opzet of de cultuur van een gevestigde repareert, makercontrole is Matrix-kamereigendom, met rollen die in Element worden gehandhaafd. Praktische stappen van JoinOrigin.',
   intro: [
     'Elke community die groeit krijgt uiteindelijk te maken met een moment dat de cultuur op de proef stelt — een verhitte ruzie, een spammer, een lid dat anderen ongemakkelijk maakt of een misverstand dat escaleert. Moderatie is de praktijk van het beschermen van de ruimte zodat de community gastvrij kan blijven, en die wordt alleen nodig omdat community’s bestaan uit mensen die met elkaar verbinden. Dat verbinden is het kernprobleem waar JoinOrigin bij helpt — en de praktijken gelden net zo goed voor een gevestigde community die haar cultuur repareert als voor een nieuwe groep die verwachtingen stelt voordat het eerste lid arriveert.',
-    'JoinOrigin is een community-besturingssysteem dat mensen helpt community’s te vinden, te starten en te organiseren — en in het digitale model leeft een community in een door de maker beheerde kamer. Makercontrole is standaard Matrix-kamereigendom: de maker kan leden uitnodigen en verwijderen, rollen toewijzen, kamerinstellingen bewerken, berichten vastpinnen en de kamer archiveren — allemaal natieve handhaving binnen Element, de standaardchatclient, zonder aangepast machtigingssysteem. Dat eigenaarschap is de ruggengraat van moderatie op JoinOrigin: de maker bepaalt wie erbij hoort, wat de regels zijn en wat er gebeurt wanneer een regel wordt overtreden. JoinOrigin modereert geen externe community’s en levert geen moderatiepersoneel. Het platform is ontworpen rond gezonde community-structuur, en de praktijken in deze handleiding zijn de menselijke praktijken die elke organisator nodig heeft.',
-    'Deze handleiding zet een praktisch moderatiesysteem uiteen — of je community nu gloednieuw is of jaren geschiedenis heeft om op te ruimen: geschreven community-regels die kort en specifiek zijn, een duidelijk handhavingstraject met waarschuwingen vóór verwijdering, technieken om gespannen situaties te de-escaleren en eerlijk advies over wanneer je leden betrekt en wanneer je alleen handelt. Elke stap laat zien waar JoinOrigin helpt.',
+    'JoinOrigin is een community-besturingssysteem dat mensen helpt Origins te vinden, te starten en te organiseren — en in het digitale model leeft een community in een door de maker beheerde kamer. Makercontrole is standaard Matrix-kamereigendom: de maker kan leden uitnodigen en verwijderen, rollen toewijzen, kamerinstellingen bewerken, berichten vastpinnen en de kamer archiveren — allemaal natieve handhaving binnen Element, de standaardchatclient, zonder aangepast machtigingssysteem. Dat eigenaarschap is de ruggengraat van moderatie op JoinOrigin: de maker bepaalt wie erbij hoort, wat de regels zijn en wat er gebeurt wanneer een regel wordt overtreden. JoinOrigin modereert geen externe community’s en levert geen moderatiepersoneel. Het platform is ontworpen rond gezonde community-structuur, en de praktijken in deze handleiding zijn de menselijke praktijken die elke organisator nodig heeft.',
+    'Deze handleiding zet een praktisch moderatiesysteem uiteen — of je Origin nu gloednieuw is of jaren geschiedenis heeft om op te ruimen: geschreven community-regels die kort en specifiek zijn, een duidelijk handhavingstraject met waarschuwingen vóór verwijdering, technieken om gespannen situaties te de-escaleren en eerlijk advies over wanneer je leden betrekt en wanneer je alleen handelt. Elke stap laat zien waar JoinOrigin helpt.',
   ],
   dataPoints: [
     'Duidelijke, geschreven community-regels verminderen conflicten door verwachtingen te stellen voordat incidenten gebeuren.',
     'Makercontrole op JoinOrigin is Matrix-kamereigendom: uitnodigen/verwijderen, rollen, instellingen, vastpinnen, archiveren.',
     'Een gefaseerd handhavingstraject — eerst waarschuwen, dan beperken, dan verwijderen — is eerlijker en beter te verdedigen dan directe bans.',
-    'JoinOrigin is een community-besturingssysteem dat mensen helpt community’s te vinden, te starten en te organiseren; het modereert geen externe community’s en levert geen moderatiepersoneel.',
+    'JoinOrigin is een community-besturingssysteem dat mensen helpt Origins te vinden, te starten en te organiseren; het modereert geen externe community’s en levert geen moderatiepersoneel.',
   ],
   faq: [
     {
@@ -48,7 +48,7 @@ const content: GuideContent = {
         'Nadat duidelijke waarschuwingen niet hebben gewerkt, of direct bij gedrag dat leden in gevaar brengt — intimidatie, bedreigingen of doxxing. De test is of de persoon de ruimte actief onveilig maakt voor anderen. Op JoinOrigin is verwijderen het verwijderen van een lid uit de kamer door de kamereigenaar.',
     },
     {
-      question: 'Kan JoinOrigin mij helpen mijn community te modereren?',
+      question: 'Kan JoinOrigin mij helpen mijn Origin te modereren?',
       answer:
         'Ja. JoinOrigin is een community-besturingssysteem waar makercontrole Matrix-kamereigendom is — uitnodigen/verwijderen, rollen, instellingen, vastpinnen en archiveren, gehandhaafd in Element. JoinOrigin modereert geen community’s, dus de praktijken in deze handleiding — duidelijke regels, gefaseerde handhaving, kalme de-escalatie — zijn aan jou om toe te passen.',
     },

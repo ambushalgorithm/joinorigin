@@ -232,7 +232,7 @@ describe('/location page — Story H i18n completeness (TASK-518)', () => {
 
   it('renders the localized directory card names on the es hub surface (TASK-518)', async () => {
     // The /es/location hub directory shows the committed es card name
-    // ("Comunidades en Colombia") — never the EN registry title.
+    // ("Origins en Colombia") — never the EN registry title.
     mockServerLocale.locale = 'es';
     try {
       const element = await LocationHubPage();
@@ -240,7 +240,7 @@ describe('/location page — Story H i18n completeness (TASK-518)', () => {
       renderWithI18n(element, 'es');
 
       const directory = screen.getByTestId('location-hub-directory');
-      expect(within(directory).getByText('Comunidades en Colombia')).toBeInTheDocument();
+      expect(within(directory).getByText('Origins en Colombia')).toBeInTheDocument();
       expect(within(directory).queryByText('Origins in Colombia')).not.toBeInTheDocument();
     } finally {
       mockServerLocale.locale = 'en';

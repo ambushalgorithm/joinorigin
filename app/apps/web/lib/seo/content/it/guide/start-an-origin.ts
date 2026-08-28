@@ -1,7 +1,7 @@
 import type { GuideContent } from '../../types';
 
 /**
- * "Come avviare una community" — guida L1 sempre attuale (design §6.1,
+ * "Come avviare un Origin" — guida L1 sempre attuale (design §6.1,
  * TASK-326), traduzione italiana (it).
  *
  * Ricentrata sul modello digitale connetti→unisciti→stanza: pubblica il
@@ -17,11 +17,11 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'it',
   slug: 'start-an-origin',
-  title: 'Come avviare una community: una guida passo dopo passo | JoinOrigin',
+  title: 'Come creare un Origin: una guida passo dopo passo | JoinOrigin',
   description:
-    "Impara come avviare una community — o dare a una esistente un'unica casa digitale — pubblica un gruppo, apri la sua stanza e porta i membri tramite un link di invito. Passi pratici da JoinOrigin.",
+    "Impara come avviare un Origin — o dare a una esistente un'unica casa digitale — pubblica un gruppo, apri la sua stanza e porta i membri tramite un link di invito. Passi pratici da JoinOrigin.",
   intro: [
-    "La parte più difficile dell'avviare una community raramente è la sede, l'agenda o il budget — è trovare le prime persone che condividono il tuo interesse e dare loro un unico posto chiaro per connettersi. È esattamente il problema che JoinOrigin risolve.",
+    "La parte più difficile dell'avviare un Origin raramente è la sede, l'agenda o il budget — è trovare le prime persone che condividono il tuo interesse e dare loro un unico posto chiaro per connettersi. È esattamente il problema che JoinOrigin risolve.",
     "JoinOrigin è un sistema operativo di comunità costruito attorno al ciclo digitale: pubblichi un gruppo, la sua stanza viene creata automaticamente e i membri entrano tramite un link. La stanza è dove la community vive davvero — una stanza Matrix controllata dal creatore dove i membri parlano, condividono aggiornamenti e pianificano insieme dal primo giorno, invece di disperdersi tra fogli di calcolo, messaggi sparsi e moduli di iscrizione. Gli eventi in presenza esistono solo come conseguenza a valle: una volta che un gruppo si forma e la sua stanza è viva, i membri possono scegliere di incontrarsi di persona — e JoinOrigin non gestisce eventi locali. L'intero scopo della piattaforma è connettere persone che altrimenti non si incontrerebbero mai, motivo per cui ogni passo di questa guida corrisponde a qualcosa con cui JoinOrigin aiuta.",
     "L'approccio funziona per qualsiasi tipo di community: un circolo di fondatori, un club del libro, un gruppo di corsa locale, una rete di piccole imprese o una community professionale online — e funziona sia che tu stia partendo da zero sia che stia formalizzando un gruppo che si incontra già informalmente. Il principio centrale è semplice — le persone si uniscono per una promessa chiara e restano perché l'esperienza mantiene affidabilmente quella promessa. Non ti serve un grande budget, una sede o un pubblico esistente per iniziare; ti servono uno scopo chiaro, un primo passo realistico e la disciplina di ripeterlo.",
   ],
@@ -29,11 +29,11 @@ const content: GuideContent = {
     'La maggior parte delle community di successo inizia con un pubblico ristretto e specifico, non "tutti gli interessati".',
     'Pubblicare un gruppo crea la sua stanza all\'istante — non c\'è mai un passaggio "crea la chat dopo".',
     "Un link di invito è l'invito più semplice: un link, un clic e un nuovo membro è nella stanza.",
-    'JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare o avviare community — non gestisce eventi locali né dichiara personale locale.',
+    'JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare o avviare Origins — non gestisce eventi locali né dichiara personale locale.',
   ],
   faq: [
     {
-      question: 'Quanto tempo serve per avviare una community?',
+      question: 'Quanto tempo serve per avviare un Origin?',
       answer:
         "Puoi pubblicare un gruppo e aprire la sua stanza entro poche settimane se mantieni l'ambito piccolo: uno scopo, un link di invito e un flusso costante di inviti personali. La community stessa richiede alcuni mesi di partecipazione costante nella stanza prima di sentirsi consolidata.",
     },
@@ -48,7 +48,7 @@ const content: GuideContent = {
         'Cercare di servire tutti. Una community con uno scopo vago attira pochi membri impegnati. Definisci un pubblico specifico e un risultato chiaro, mettilo sulla pagina del gruppo e lascia che la community si evolva da lì.',
     },
     {
-      question: 'Come può JoinOrigin aiutarmi ad avviare una community?',
+      question: 'Come può JoinOrigin aiutarmi ad avviare un Origin?',
       answer:
         'Pubblicare un gruppo su JoinOrigin crea automaticamente la sua stanza e i membri entrano tramite un link — una casa digitale organizzata per lo scopo, le persone e la conversazione di una community. JoinOrigin non gestisce eventi locali, quindi i passi pratici di questa guida funzionano sulla piattaforma e con gli strumenti che già possiedi.',
     },
@@ -61,7 +61,7 @@ const content: GuideContent = {
     "Scegli un formato e una cadenza (una scelta a valle). Una volta che il gruppo si sta formando, scegli un formato ricorrente — una discussione mensile, una sessione di lavoro settimanale, un intervento o una passeggiata sociale. Il ricorrente batte l'una tantum perché le abitudini trasformano gli estranei in membri. Questa è una scelta a valle: il gruppo può incontrarsi di persona più tardi, ma la stanza è già la casa della community. Su JoinOrigin gli organizzatori possono descrivere il loro formato una volta e i membri possono vedere cosa aspettarsi prima di unirsi — il che riduce l'esitazione che ferma i principianti. Scegli il tuo formato e dichiaralo in ogni invito.",
     "Organizza un ottimo primo incontro. Se i membri scelgono di incontrarsi di persona — arriva presto, saluta ogni persona, fai un breve giro di presentazioni e chiudi con una data successiva chiara. L'obiettivo del primo incontro non è la dimensione; è che tutti se ne vadano volendo tornare. JoinOrigin non fornisce personale né gestisce gli incontri — l'esperienza è tua da progettare. La piattaforma aiuta la community a formarsi attorno ad essa: una stanza condivisa dove vivono data, riepilogo e passi successivi.",
     "Raccogli feedback e itera. Dopo le prime settimane, chiedi ai membri cosa vogliono di più o di meno — nella stanza e agli incontri. Adatta formato, orario o sede in base alle loro risposte, non a ciò che avevi immaginato. JoinOrigin conserva la memoria condivisa di una community in un unico posto — note, decisioni e ciò che i membri hanno chiesto — così l'iterazione è visibile invece di andare persa. Chiedi direttamente ai membri nella stanza dopo ogni incontro.",
-    "Pubblica un ritmo costante e cresci lentamente. Mantieni lo stesso giorno e formato per diversi mesi prima di espandere. La crescita si accumula attraverso le segnalazioni quando ogni membro può descrivere cos'è la community in una frase e condividere il suo link di invito. JoinOrigin aiuta la tua community a restare trovabile e connessa mentre cresce — un unico posto dove ritmo, promessa, stanza e persone sono visibili. Fatti scoprire e cresci.",
+    "Pubblica un ritmo costante e cresci lentamente. Mantieni lo stesso giorno e formato per diversi mesi prima di espandere. La crescita si accumula attraverso le segnalazioni quando ogni membro può descrivere cos'è la community in una frase e condividere il suo link di invito. JoinOrigin aiuta il tuo Origin a restare trovabile e connesso mentre cresce — un unico posto dove ritmo, promessa, stanza e persone sono visibili. Fatti scoprire e cresci.",
   ],
   steps: [
     {
@@ -110,7 +110,7 @@ const content: GuideContent = {
       title: 'Pubblica un ritmo costante e cresci lentamente',
       body: "Mantieni lo stesso giorno e formato per diversi mesi prima di espandere. La crescita si accumula attraverso le segnalazioni quando ogni membro può descrivere cos'è la community in una frase e condividere il suo link di invito.",
       joinOriginNote:
-        'JoinOrigin aiuta la tua community a restare trovabile e connessa mentre cresce — un unico posto dove ritmo, promessa, stanza e persone sono visibili. Fatti scoprire e cresci.',
+        'JoinOrigin aiuta il tuo Origin a restare trovabile e connesso mentre cresce — un unico posto dove ritmo, promessa, stanza e persone sono visibili. Fatti scoprire e cresci.',
     },
   ],
 };

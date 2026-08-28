@@ -23,14 +23,14 @@ const content: GuideContent = {
     'Organize um encontro depois que seu grupo se formar — tenha ele sido fundado no mês passado ou se reunindo há anos — escolha um formato, reserve um espaço, monte uma pauta, divulgue e conduza a noite. Uma lista de verificação prática da JoinOrigin.',
   intro: [
     'Um encontro é um evento presencial recorrente em que pessoas se reúnem em torno de um interesse compartilhado — e na JoinOrigin é um próximo passo natural depois de se comunicar na sala. O caminho digital vem primeiro: as pessoas encontram e participam de um grupo por um link, e a sala do grupo vira o lugar onde os membros conversam, planejam e permanecem conectados entre os encontros. O encontro presencial é o próximo passo dessa comunidade formada — tenha o grupo sido fundado no mês passado ou se reunindo informalmente há anos, a sala dá a ele um lar organizado do qual um encontro pode crescer.',
-    'A JoinOrigin é um sistema operacional de comunidades desenhado para ajudar as pessoas a encontrar comunidades para participar e começar as próprias — então um encontro tem um lar onde membros interessados podem descobrir o grupo, entrar na sala dele e coordenar a reunião em vez de depender da lista de contatos de uma pessoa. A JoinOrigin não reserva espaços nem opera eventos — o propósito inteiro da plataforma é conectar pessoas que compartilham um interesse, e a reunião em si é sua para conduzir.',
+    'A JoinOrigin é um sistema operacional de comunidades desenhado para ajudar as pessoas a encontrar Origins para participar e começar os próprios — então um encontro tem um lar onde membros interessados podem descobrir o grupo, entrar na sala dele e coordenar a reunião em vez de depender da lista de contatos de uma pessoa. A JoinOrigin não reserva espaços nem opera eventos — o propósito inteiro da plataforma é conectar pessoas que compartilham um interesse, e a reunião em si é sua para conduzir.',
     'Este guia cobre o ciclo de vida completo de um encontro depois que o grupo existe — para um grupo recém-formado e para um que se reúne há anos: escolher um formato que se encaixe no seu público, encontrar e reservar um espaço sem estourar o orçamento, montar uma pauta com início e fim claros, divulgar o evento onde seu público realmente procura e conduzir a noite para que os participantes saiam querendo o próximo. Cada passo inclui uma nota sobre como a JoinOrigin ajuda — e o primeiro passo é sobre o grupo digital, porque sem um grupo e a sala dele não há comunidade para se encontrar.',
   ],
   dataPoints: [
     'Um encontro simples precisa apenas de três coisas: um formato, um espaço e um canal de divulgação.',
     'Encontros noturnos em dias de semana e sessões de manhã de fim de semana são os formatos recorrentes mais comuns.',
     'A maioria dos espaços — bibliotecas, cafés, coworkings — oferece lugares gratuitos ou de baixo custo para eventos comunitários.',
-    'A JoinOrigin é um sistema operacional de comunidades desenhado para ajudar as pessoas a encontrar ou começar comunidades; ela não reserva espaços nem opera eventos.',
+    'A JoinOrigin é um sistema operacional de comunidades desenhado para ajudar as pessoas a encontrar ou começar Origins; ela não reserva espaços nem opera eventos.',
   ],
   faq: [
     {
@@ -51,7 +51,7 @@ const content: GuideContent = {
     {
       question: 'A JoinOrigin pode me ajudar a organizar encontros?',
       answer:
-        'Sim. A JoinOrigin ajuda as pessoas a encontrar e começar comunidades — um lar digital organizado onde a sala de um grupo é onde os membros coordenam e onde um encontro pode ser descoberto. A JoinOrigin não organiza eventos em si, então os passos práticos deste guia são seus para conduzir.',
+        'Sim. A JoinOrigin ajuda as pessoas a encontrar e começar Origins — um lar digital organizado onde a sala de um grupo é onde os membros coordenam e onde um encontro pode ser descoberto. A JoinOrigin não organiza eventos em si, então os passos práticos deste guia são seus para conduzir.',
     },
   ],
   sections: [

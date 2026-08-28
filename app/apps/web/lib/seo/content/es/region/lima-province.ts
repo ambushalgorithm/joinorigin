@@ -13,9 +13,9 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'es',
   slug: 'lima-province',
-  title: 'Comunidades en Lima | JoinOrigin',
+  title: 'Origins en Lima | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Lima — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en toda la provincia. Únete a la lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Lima — grupos de startups, creativos, políticos, encuentros y pequeñas empresas en toda la provincia. Únete a la lista de espera de JoinOrigin.',
   intro:
     'La Provincia de Lima es la provincia constitucional del Perú que contiene la capital, Lima, en la costa del Pacífico. Como sede del gobierno nacional y el mayor centro urbano del país — el área metropolitana alberga a unos diez millones de personas — Lima concentra la mayor parte de la vida profesional, cultural e institucional del Perú. La provincia es un conjunto de distritos distintos, desde el centro histórico y el Barranco y Miraflores bohemios en la costa, hasta los conos norte y sur que albergan a las comunidades trabajadoras y migrantes de la ciudad. Lima es una capital culinaria global, con cevicherías y restaurantes de alta cocina que anclan una fuerte comunidad gastronómica, y tiene una escena de startups en crecimiento en fintech, comercio electrónico e industrias creativas, apoyada por universidades como la PUCP, la UNMSM y la Universidad del Pacífico. La ciudad también conserva tradiciones profundas de asociación regional y migrante, con clubes y organizaciones que mantienen vivas las culturas de la sierra y la selva en la capital. Para quien organiza o se une a una comunidad en la Provincia de Lima, la recompensa es una ciudad de escala, calidez y oportunidad — donde el éxito depende de elegir un distrito y un formato que se ajusten al ritmo local.',
   dataPoints: [
@@ -38,7 +38,7 @@ const content: RegionContent = {
     {
       question: '¿JoinOrigin opera en Lima?',
       answer:
-        'Sí. JoinOrigin no tiene oficinas locales. Las páginas de Lima están disponibles en español y el producto ayuda a las personas a encontrar o crear comunidades en la provincia y en todo el país.',
+        'Sí. JoinOrigin no tiene oficinas locales. Las páginas de Lima están disponibles en español y el producto ayuda a las personas a encontrar o crear Origins en la provincia y en todo el país.',
     },
   ],
 };

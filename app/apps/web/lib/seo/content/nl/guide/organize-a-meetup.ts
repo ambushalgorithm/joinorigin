@@ -22,14 +22,14 @@ const content: GuideContent = {
     'Organiseer een meetup zodra je groep is gevormd — of die nu vorige maand is opgericht of al jaren bijeenkomt — kies een format, boek een locatie, bouw een agenda, promoot hem en run de avond. Een praktische checklist van JoinOrigin.',
   intro: [
     'Een meetup is een terugkerend fysiek evenement waar mensen rond een gedeelde interesse samenkomen — en op JoinOrigin is het een natuurlijke volgende stap na het communiceren in de kamer. Het digitale traject komt eerst: mensen vinden en voegen zich via een link bij een groep, en de kamer van de groep wordt de plek waar leden praten, plannen en tussen bijeenkomsten verbonden blijven. De fysieke meetup is de volgende stap van die gevormde community — of de groep nu vorige maand is opgericht of al jaren informeel bijeenkomt, de kamer geeft haar één georganiseerd thuis waaruit een meetup kan groeien.',
-    'JoinOrigin is een community-besturingssysteem dat mensen helpt community’s te vinden om aan deel te nemen en zelf te starten — dus een meetup heeft een thuis waar geïnteresseerde leden de groep kunnen ontdekken, bij de kamer kunnen aansluiten en de bijeenkomst kunnen coördineren in plaats van afhankelijk te zijn van de contactlijst van één persoon. JoinOrigin boekt geen locaties en bemant geen evenementen — het hele doel van het platform is mensen verbinden die een interesse delen, en de bijeenkomst zelf is aan jou om te runnen.',
+    'JoinOrigin is een community-besturingssysteem dat mensen helpt Origins te vinden om aan deel te nemen en zelf te starten — dus een meetup heeft een thuis waar geïnteresseerde leden de groep kunnen ontdekken, bij de kamer kunnen aansluiten en de bijeenkomst kunnen coördineren in plaats van afhankelijk te zijn van de contactlijst van één persoon. JoinOrigin boekt geen locaties en bemant geen evenementen — het hele doel van het platform is mensen verbinden die een interesse delen, en de bijeenkomst zelf is aan jou om te runnen.',
     'Deze handleiding behandelt de volledige levenscyclus van een meetup nadat de groep bestaat — voor een nieuw gevormde groep en voor een die al jaren bijeenkomt: een format kiezen dat bij je publiek past, een locatie vinden en boeken zonder het budget te breken, een agenda bouwen met een duidelijk begin en einde, het evenement promoten waar je publiek daadwerkelijk kijkt en de avond runnen zodat bezoekers de volgende willen. Elke stap bevat een notitie over hoe JoinOrigin helpt — en de eerste stap gaat over de digitale groep, want zonder groep en kamer is er geen community om te ontmoeten.',
   ],
   dataPoints: [
     'Een simpele meetup heeft maar drie dingen nodig: een format, een locatie en een promotiekanaal.',
     'Avond-meetups op doordeweekse dagen en zaterdagochtendsessies zijn de meest voorkomende terugkerende formats.',
     'De meeste locaties — bibliotheken, cafés, coworking-ruimtes — bieden gratis of goedkope ruimte voor community-evenementen.',
-    'JoinOrigin is een community-besturingssysteem dat mensen helpt community’s te vinden of te starten; het boekt geen locaties en bemant geen evenementen.',
+    'JoinOrigin is een community-besturingssysteem dat mensen helpt Origins te vinden of te starten; het boekt geen locaties en bemant geen evenementen.',
   ],
   faq: [
     {
@@ -50,7 +50,7 @@ const content: GuideContent = {
     {
       question: 'Kan JoinOrigin mij helpen meetups te organiseren?',
       answer:
-        'Ja. JoinOrigin helpt mensen community’s te vinden en te starten — één georganiseerd digitaal thuis waar de kamer van een groep de plek is waar leden coördineren en waar een meetup kan worden ontdekt. JoinOrigin organiseert zelf geen evenementen, dus de praktische stappen in deze handleiding zijn aan jou om te runnen.',
+        'Ja. JoinOrigin helpt mensen Origins te vinden en te starten — één georganiseerd digitaal thuis waar de kamer van een groep de plek is waar leden coördineren en waar een meetup kan worden ontdekt. JoinOrigin organiseert zelf geen evenementen, dus de praktische stappen in deze handleiding zijn aan jou om te runnen.',
     },
   ],
   sections: [

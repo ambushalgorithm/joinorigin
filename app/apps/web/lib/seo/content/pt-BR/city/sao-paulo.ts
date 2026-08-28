@@ -9,40 +9,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'pt-BR',
   slug: 'sao-paulo',
-  title: 'Comunidades em São Paulo | JoinOrigin',
+  title: 'Origins em São Paulo | JoinOrigin',
   description:
-    'Encontre ou comece comunidades em São Paulo — grupos de startups, criativos, políticos, encontros e pequenas empresas. Lista de espera da JoinOrigin.',
+    'Encontre ou comece Origins em São Paulo — grupos de startups, criativos, políticos, encontros e pequenas empresas. Lista de espera da JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades em São Paulo | JoinOrigin',
+    city: 'Origins em São Paulo | JoinOrigin',
     cityDescription:
-      'Encontre ou comece comunidades em São Paulo — grupos de startups, criativos, políticos, encontros e pequenas empresas. Lista de espera da JoinOrigin.',
+      'Encontre ou comece Origins em São Paulo — grupos de startups, criativos, políticos, encontros e pequenas empresas. Lista de espera da JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups em São Paulo | JoinOrigin',
-      creative: 'Comunidades criativas em São Paulo | JoinOrigin',
-      political: 'Comunidades políticas e cívicas em São Paulo | JoinOrigin',
-      meetup: 'Encontros e comunidades sociais em São Paulo | JoinOrigin',
-      'small-business': 'Comunidades de pequenas empresas em São Paulo | JoinOrigin',
+      startup: 'Origins de startups em São Paulo | JoinOrigin',
+      creative: 'Origins criativos em São Paulo | JoinOrigin',
+      political: 'Origins políticos e cívicos em São Paulo | JoinOrigin',
+      meetup: 'Encontros e Origins sociais em São Paulo | JoinOrigin',
+      'small-business': 'Origins de pequenas empresas em São Paulo | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encontre ou comece comunidades de startups em São Paulo — fundadores, engenheiros e operadores em Pinheiros, Vila Madalena e no corredor da Faria Lima. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins de startups em São Paulo — fundadores, engenheiros e operadores em Pinheiros, Vila Madalena e no corredor da Faria Lima. Lista de espera da JoinOrigin.',
       creative:
-        'Encontre ou comece comunidades criativas em São Paulo — estúdios, galerias e coletivos em Vila Madalena, Pinheiros e no Centro. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins criativos em São Paulo — estúdios, galerias e coletivos em Vila Madalena, Pinheiros e no Centro. Lista de espera da JoinOrigin.',
       political:
-        'Encontre ou comece comunidades políticas e cívicas em São Paulo — moradia, transporte e participação cidadã. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins políticos e cívicos em São Paulo — moradia, transporte e participação cidadã. Lista de espera da JoinOrigin.',
       meetup:
-        'Encontre ou comece comunidades de encontros em São Paulo — piqueniques no Ibirapuera, cafés e caminhadas. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins de encontros em São Paulo — piqueniques no Ibirapuera, cafés e caminhadas. Lista de espera da JoinOrigin.',
       'small-business':
-        'Encontre ou comece comunidades de pequenas empresas em São Paulo — lojistas, feirantes e empreendedores locais. Lista de espera da JoinOrigin.',
+        'Encontre ou comece Origins de pequenas empresas em São Paulo — lojistas, feirantes e empreendedores locais. Lista de espera da JoinOrigin.',
     },
-    ideas: '30 ideias de eventos comunitários em São Paulo | JoinOrigin',
+    ideas: '30 ideias de eventos de Origins em São Paulo | JoinOrigin',
     ideasDescription:
-      'Descubra 30 ideias de eventos comunitários em São Paulo — eventos de networking, aprendizado, ao ar livre, profissionais, criativos e de impacto. Lista de espera da JoinOrigin.',
+      'Descubra 30 ideias de eventos de Origins em São Paulo — eventos de networking, aprendizado, ao ar livre, profissionais, criativos e de impacto. Lista de espera da JoinOrigin.',
   },
   intro: [
     'São Paulo é a maior cidade do Brasil e das Américas — cerca de 12,4 milhões de pessoas dentro dos limites da cidade e mais de vinte milhões na região metropolitana — e é o coração financeiro e corporativo da América Latina. Diferente das cidades de praia, São Paulo é uma cidade de trabalho, ambição e cultura: arranha-céus ao longo da Avenida Paulista e do corredor da Faria Lima, uma gastronomia de classe mundial e bairros como Pinheiros, Vila Madalena, Itaim Bibi e Jardins, cada um com uma vida comunitária própria.',
     'A cidade é a capital brasileira de startups, com uma onda fintech — empresas como o Nubank nasceram aqui — e uma economia criativa profunda em design, moda, cinema e música. USP, PUC-SP, FGV e outras universidades alimentam fluxos constantes de estudantes e pesquisadores na cena. O Parque Ibirapuera é o grande âncora público, o Mercado Municipal e as feiras de rua ancoram as comunidades gastronômicas, e o Beco do Batman, na Vila Madalena, é uma galeria de arte de rua a céu aberto famosa no mundo.',
-    'São Paulo é densa, úmida e rápida, e o trânsito é lendário — o que molda a vida comunitária: grupos se ancoram em bairros e linhas de metrô, e um bom local vale a viagem. Para encontrar ou começar uma comunidade, São Paulo recompensa escolher um bairro, um formato claro e um local com acesso ao metrô, e depois construir um ritmo que combine com a energia implacável da cidade.',
+    'São Paulo é densa, úmida e rápida, e o trânsito é lendário — o que molda a vida comunitária: grupos se ancoram em bairros e linhas de metrô, e um bom local vale a viagem. Para encontrar ou começar um Origin, São Paulo recompensa escolher um bairro, um formato claro e um local com acesso ao metrô, e depois construir um ritmo que combine com a energia implacável da cidade.',
   ],
   dataPoints: [
     'Cerca de 12,4 milhões de moradores; a maior cidade das Américas.',
@@ -166,15 +166,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'A cena de startups de São Paulo é a maior da América Latina e um dos mercados emergentes mais dinâmicos do mundo, construída sobre um enorme mercado doméstico e uma onda fintech que remodelou a banca brasileira. Pinheiros e Vila Madalena concentram a maior densidade de coworkings e startups com capital de risco, o corredor da Faria Lima ancora a camada corporativa e financeira, e universidades como USP e FGV alimentam fundadores e talentos ano após ano. O que torna a cena distinta é a escala e o foco no consumidor: startups brasileiras constroem para um mercado de mais de duzentos milhões de pessoas, e fintech, marketplaces e logística são especialmente fortes. A cidade também é um ímã para fundadores internacionais e trabalhadores remotos, então uma camada crescente da cena roda em inglês ou bilíngue. Formatos estabelecidos incluem cafés da manhã de fundadores, noites de demo e painéis do setor, muitos gratuitos e abertos. Conselho honesto para começar uma comunidade de startups em São Paulo: escolha um vertical, ancore-se a um bairro e respeite o trânsito — um evento semanal consistente em um coworking de Pinheiros construirá uma base fiel.',
+      'A cena de startups de São Paulo é a maior da América Latina e um dos mercados emergentes mais dinâmicos do mundo, construída sobre um enorme mercado doméstico e uma onda fintech que remodelou a banca brasileira. Pinheiros e Vila Madalena concentram a maior densidade de coworkings e startups com capital de risco, o corredor da Faria Lima ancora a camada corporativa e financeira, e universidades como USP e FGV alimentam fundadores e talentos ano após ano. O que torna a cena distinta é a escala e o foco no consumidor: startups brasileiras constroem para um mercado de mais de duzentos milhões de pessoas, e fintech, marketplaces e logística são especialmente fortes. A cidade também é um ímã para fundadores internacionais e trabalhadores remotos, então uma camada crescente da cena roda em inglês ou bilíngue. Formatos estabelecidos incluem cafés da manhã de fundadores, noites de demo e painéis do setor, muitos gratuitos e abertos. Conselho honesto para começar um Origin de startups em São Paulo: escolha um vertical, ancore-se a um bairro e respeite o trânsito — um evento semanal consistente em um coworking de Pinheiros construirá uma base fiel.',
     creative:
-      'As comunidades criativas de São Paulo são tão vastas e ousadas quanto a própria cidade: uma cena de design de classe mundial, uma indústria da moda que veste o país, uma cultura de cinema e música que alimenta todo o Brasil e uma arte de rua que transformou bairros inteiros em galerias a céu aberto. A Vila Madalena é o coração criativo — o Beco do Batman é um marco global da arte de rua — enquanto Pinheiros abriga estúdios de design e galerias, e os centros culturais e teatros do Centro mantêm as artes cênicas da cidade vivas. A cultura de restaurantes e cafés da cidade está entre as melhores do mundo, dando aos criativos lugares naturais para se encontrar, e a USP e as instituições de artes do estado alimentam novos talentos a cada ano. Como São Paulo é uma cidade de trabalho, suas comunidades criativas tendem a ser sérias, profissionais e ambiciosas — as pessoas aparecem para aprender, se conectar e construir carreiras. Começar uma comunidade criativa aqui significa escolher uma disciplina e um bairro e depois usar o enorme público da cidade para construir algo com alcance real.',
+      'As comunidades criativas de São Paulo são tão vastas e ousadas quanto a própria cidade: uma cena de design de classe mundial, uma indústria da moda que veste o país, uma cultura de cinema e música que alimenta todo o Brasil e uma arte de rua que transformou bairros inteiros em galerias a céu aberto. A Vila Madalena é o coração criativo — o Beco do Batman é um marco global da arte de rua — enquanto Pinheiros abriga estúdios de design e galerias, e os centros culturais e teatros do Centro mantêm as artes cênicas da cidade vivas. A cultura de restaurantes e cafés da cidade está entre as melhores do mundo, dando aos criativos lugares naturais para se encontrar, e a USP e as instituições de artes do estado alimentam novos talentos a cada ano. Como São Paulo é uma cidade de trabalho, suas comunidades criativas tendem a ser sérias, profissionais e ambiciosas — as pessoas aparecem para aprender, se conectar e construir carreiras. Começar um Origin criativo aqui significa escolher uma disciplina e um bairro e depois usar o enorme público da cidade para construir algo com alcance real.',
     political:
-      'As comunidades políticas e cívicas de São Paulo operam na escala de uma megacidade: política municipal, transporte, moradia e meio ambiente dominam a pauta, e cada um dos 32 distritos da cidade tem suas próprias tradições de organização. Moradia é uma questão definidora — uma das cidades mais desiguais das Américas, com movimentos de moradia poderosos e sindicatos de inquilinos organizados pelo centro e pela periferia. Transporte e mobilidade são igualmente centrais: a comunidade ciclística da cidade pressionou por ciclovias, e ativistas de transporte lutam por melhor serviço de metrô e ônibus. Áreas verdes e qualidade do ar movem redes de voluntários que plantam árvores, limpam parques e pressionam por política ambiental. Comunidades de tech cívica constroem ferramentas para dados abertos e participação pública, e redes de ajuda mútua atravessam os bairros. A cultura política recompensa persistência e conhecimento local. Começar uma comunidade cívica em São Paulo geralmente significa escolher uma questão concreta e uma geografia pequena e depois fazer parceria com o denso cenário de organizadores existente.',
+      'As comunidades políticas e cívicas de São Paulo operam na escala de uma megacidade: política municipal, transporte, moradia e meio ambiente dominam a pauta, e cada um dos 32 distritos da cidade tem suas próprias tradições de organização. Moradia é uma questão definidora — uma das cidades mais desiguais das Américas, com movimentos de moradia poderosos e sindicatos de inquilinos organizados pelo centro e pela periferia. Transporte e mobilidade são igualmente centrais: a comunidade ciclística da cidade pressionou por ciclovias, e ativistas de transporte lutam por melhor serviço de metrô e ônibus. Áreas verdes e qualidade do ar movem redes de voluntários que plantam árvores, limpam parques e pressionam por política ambiental. Comunidades de tech cívica constroem ferramentas para dados abertos e participação pública, e redes de ajuda mútua atravessam os bairros. A cultura política recompensa persistência e conhecimento local. Começar um Origin cívico em São Paulo geralmente significa escolher uma questão concreta e uma geografia pequena e depois fazer parceria com o denso cenário de organizadores existente.',
     meetup:
       'A cultura de encontros de São Paulo roda em café, parques e uma população genuinamente sociável: corridas de domingo pelo Parque Ibirapuera, encontros em cafés na Vila Madalena, caminhadas pelas feiras de rua de bairro e o lendário fechamento de fim de semana da Avenida Paulista, onde a cidade sai para caminhar, pedalar e se reunir. O metrô torna prático se reunir pela cidade, embora o trânsito molde o calendário — os locais planejam em torno dos horários de pico e do rush da noite. A enorme população internacional da cidade sustenta intercâmbios de idiomas e encontros para recém-chegados, e a cultura gastronômica transforma caminhadas por mercados e tours de degustação em um gênero próprio. Formatos com poder de permanência são simples e repetíveis: uma sessão de domingo no parque, uma caminhada mensal pela feira, uma noite fixa de trivia. Conselho honesto para começar um encontro em São Paulo: escolha um bairro, um local acessível por metrô e um formato que receba recém-chegados — a cidade está cheia de pessoas curiosas e energéticas procurando o grupo que pareça um lar.',
     'small-business':
-      'As comunidades de pequenas empresas de São Paulo são o motor das ruas da cidade: a padaria, o boteco, o feirante, a boutique de Pinheiros e o lojista da Rua 25 de Março compartilham todas as questões práticas sobre aluguel, licenças, equipe e o ritmo da cidade. As feiras — os mercados de rua que montam em todo bairro — são comunidades em si, com feirantes coordenando insumos, licenças e clientes regulares. Corredores comerciais como a Rua Oscar Freire, nos Jardins, e as lojas da Vila Madalena reúnem clusters com interesse compartilhado em movimento de pedestres e espaço público. Associações comerciais e centros de pequenas empresas da cidade oferecem oficinas sobre licenciamento, crédito e venda digital, e a famosa energia empreendedora da cidade mantém novos negócios abrindo diariamente. Novos participantes normalmente se conectam participando de uma reunião de corredor, fazendo uma oficina municipal ou entrando em um coletivo de feirantes. Começar uma comunidade de pequenas empresas aqui é realista: uma mesa redonda mensal em um café ou padaria de bairro, com temas rotativos como aluguel, seguro e pagamentos digitais, atrai de forma confiável donos que raramente têm pares com quem conversar.',
+      'As comunidades de pequenas empresas de São Paulo são o motor das ruas da cidade: a padaria, o boteco, o feirante, a boutique de Pinheiros e o lojista da Rua 25 de Março compartilham todas as questões práticas sobre aluguel, licenças, equipe e o ritmo da cidade. As feiras — os mercados de rua que montam em todo bairro — são comunidades em si, com feirantes coordenando insumos, licenças e clientes regulares. Corredores comerciais como a Rua Oscar Freire, nos Jardins, e as lojas da Vila Madalena reúnem clusters com interesse compartilhado em movimento de pedestres e espaço público. Associações comerciais e centros de pequenas empresas da cidade oferecem oficinas sobre licenciamento, crédito e venda digital, e a famosa energia empreendedora da cidade mantém novos negócios abrindo diariamente. Novos participantes normalmente se conectam participando de uma reunião de corredor, fazendo uma oficina municipal ou entrando em um coletivo de feirantes. Começar um Origin de pequenas empresas aqui é realista: uma mesa redonda mensal em um café ou padaria de bairro, com temas rotativos como aluguel, seguro e pagamentos digitais, atrai de forma confiável donos que raramente têm pares com quem conversar.',
   },
   ideaPage: {
     intro:
@@ -439,14 +439,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: 'Como encontro uma comunidade em São Paulo?',
+      question: 'Como encontro um Origin em São Paulo?',
       answer:
-        'Comece pelas páginas de tipo de grupo: comunidades de startups, criativas, políticas, de encontros e de pequenas empresas. Cada uma descreve os bairros, locais e formatos reais onde os paulistanos se reúnem. A JoinOrigin está no ar — crie seu perfil e encontre ou comece sua comunidade hoje.',
+        'Comece pelas páginas de tipo de grupo: Origins de startups, criativos, políticos, de encontros e de pequenas empresas. Cada uma descreve os bairros, locais e formatos reais onde os paulistanos se reúnem. A JoinOrigin está no ar — crie seu perfil e encontre ou comece seu Origin hoje.',
     },
     {
-      question: 'É realista começar uma comunidade em São Paulo?',
+      question: 'É realista começar um Origin em São Paulo?',
       answer:
-        'Sim. A cidade tem locais públicos gratuitos, uma população vasta e energética e uma cultura rica de encontro. Os guias cobrem como começar uma comunidade, organizar um encontro e conseguir seus primeiros dez membros.',
+        'Sim. A cidade tem locais públicos gratuitos, uma população vasta e energética e uma cultura rica de encontro. Os guias cobrem como começar um Origin, organizar um encontro e conseguir seus primeiros dez membros.',
     },
     {
       question: 'As sugestões de locais nesta página são reais?',
@@ -456,7 +456,7 @@ const content: CityContent = {
     {
       question: 'A JoinOrigin tem um escritório em São Paulo?',
       answer:
-        'Não. A JoinOrigin não tem escritórios nem equipe locais. Todas as descrições de comunidade refletem o cenário real da cidade, e a plataforma ajuda os paulistanos a encontrar ou começar comunidades.',
+        'Não. A JoinOrigin não tem escritórios nem equipe locais. Todas as descrições de comunidade refletem o cenário real da cidade, e a plataforma ajuda os paulistanos a encontrar ou começar Origins.',
     },
   ],
 };

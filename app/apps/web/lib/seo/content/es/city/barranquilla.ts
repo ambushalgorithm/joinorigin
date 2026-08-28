@@ -13,40 +13,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'es',
   slug: 'barranquilla',
-  title: 'Comunidades en Barranquilla | JoinOrigin',
+  title: 'Origins en Barranquilla | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Barranquilla — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Barranquilla — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades en Barranquilla | JoinOrigin',
+    city: 'Origins en Barranquilla | JoinOrigin',
     cityDescription:
-      'Encuentra o crea comunidades en Barranquilla — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+      'Encuentra o crea Origins en Barranquilla — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups en Barranquilla | JoinOrigin',
-      creative: 'Comunidades creativas y de diseño en Barranquilla | JoinOrigin',
-      political: 'Comunidades políticas y cívicas en Barranquilla | JoinOrigin',
+      startup: 'Origins de startups en Barranquilla | JoinOrigin',
+      creative: 'Origins creativos y de diseño en Barranquilla | JoinOrigin',
+      political: 'Origins políticos y cívicos en Barranquilla | JoinOrigin',
       meetup: 'Encuentros y eventos comunitarios en Barranquilla | JoinOrigin',
-      'small-business': 'Comunidades de pequeñas empresas en Barranquilla | JoinOrigin',
+      'small-business': 'Origins de pequeñas empresas en Barranquilla | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encuentra o crea comunidades de startups en Barranquilla — fundadores, constructores y equipos tempranos en Riomar y El Prado. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de startups en Barranquilla — fundadores, constructores y equipos tempranos en Riomar y El Prado. Lista de espera de JoinOrigin.',
       creative:
-        'Encuentra o crea comunidades creativas y de diseño en Barranquilla — artes del carnaval, música y estudios en Barrio Abajo y el Centro Histórico. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins creativos y de diseño en Barranquilla — artes del carnaval, música y estudios en Barrio Abajo y el Centro Histórico. Lista de espera de JoinOrigin.',
       political:
-        'Encuentra o crea comunidades políticas y cívicas en Barranquilla — río, manglares, vivienda y participación. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins políticos y cívicos en Barranquilla — río, manglares, vivienda y participación. Lista de espera de JoinOrigin.',
       meetup:
         'Encuentra o crea encuentros y eventos comunitarios en Barranquilla — paseos por el Gran Malecón, rutas de arepas y sociales de carnaval. Lista de espera de JoinOrigin.',
       'small-business':
-        'Encuentra o crea comunidades de pequeñas empresas en Barranquilla — areperías, boutiques de Riomar y cafés de El Prado. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de pequeñas empresas en Barranquilla — areperías, boutiques de Riomar y cafés de El Prado. Lista de espera de JoinOrigin.',
     },
-    ideas: '30 ideas de eventos comunitarios en Barranquilla | JoinOrigin',
+    ideas: '30 ideas de eventos de Origins en Barranquilla | JoinOrigin',
     ideasDescription:
       '30 ideas realistas para eventos comunitarios en Barranquilla — networking, aprendizaje, sociales y exteriores, profesionales, creativos e impacto. Para tu próximo evento.',
   },
   intro: [
     'Barranquilla es la capital del Atlántico y una ciudad de unos 1,2 millones de habitantes — con alrededor de dos millones en su área metropolitana — situada en la orilla occidental del delta del río Magdalena, donde Colombia se encuentra con el mar Caribe. Es la gran ciudad portuaria e industrial del país, y también la capital del carnaval de Colombia: el Carnaval de Barranquilla, Patrimonio Cultural Inmaterial de la UNESCO, es el segundo carnaval más grande del mundo, y su música, sus disfraces y sus fiestas callejeras definen la identidad de la ciudad.',
     'La ciudad es conocida por su apodo, La Arenosa, y por la calidez de su cultura costeña: el ritmo caribeño de la cumbia, el vallenato y el porro; el olor de las arepas de huevo y el bollo de los vendedores callejeros; y una hospitalidad que hace sentir bienvenidos a los recién llegados muy rápido. El puerto y el río son la columna vertebral económica — la logística, la manufactura y el comercio anclan la economía local — mientras que Uninorte, la Universidad del Atlántico y otras universidades alimentan una capa creciente de profesionales, ingenieros y emprendedores. El Gran Malecón, el paseo junto al río, se ha convertido en la gran sala de estar pública de la ciudad, llena de familias, corredores y ciclistas por las noches.',
-    'El calor tropical moldea la vida diaria: la ciudad se despierta temprano en la mañana y después del atardecer, y los lugares con aire acondicionado importan por la tarde. Para encontrar o crear una comunidad, Barranquilla recompensa un enfoque cálido y festivo: un grupo que mezcle música, comida y conversación genuina encajará perfectamente con el espíritu carnavalero de la ciudad.',
+    'El calor tropical moldea la vida diaria: la ciudad se despierta temprano en la mañana y después del atardecer, y los lugares con aire acondicionado importan por la tarde. Para encontrar o crear un Origin, Barranquilla recompensa un enfoque cálido y festivo: un grupo que mezcle música, comida y conversación genuina encajará perfectamente con el espíritu carnavalero de la ciudad.',
   ],
   dataPoints: [
     'Unos 1,2 millones de habitantes; alrededor de 2 millones en el área metropolitana.',
@@ -170,15 +170,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'La escena de startups de Barranquilla es más pequeña que la de Bogotá o Medellín, pero distintiva, construida sobre las fortalezas de la ciudad en logística, operaciones portuarias y la economía creativa de la costa caribeña. Riomar y El Prado concentran espacios de coworking y una capa creciente de equipos respaldados por capital de riesgo, mientras que el puerto y el río Magdalena anclan un clúster natural de logística tech: las startups de transporte marítimo, comercio y cadena de suministro encuentran aquí terreno fértil. Universidades como Uninorte y la Universidad del Atlántico alimentan el ecosistema con ingenieros, graduados de negocios y diseñadores, y la posición de la ciudad como puerta de entrada al Caribe le da una perspectiva internacional. Lo que hace distintiva a la escena es la cultura costeña: cálida, social y orientada a las relaciones, lo que hace que construir comunidad se sienta natural. La ciudad también está invirtiendo en su infraestructura de innovación, con centros de eventos y espacios de coworking que atraen trabajadores remotos y visitantes internacionales. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear una comunidad de startups en Barranquilla: elige una vertical, ancla en Riomar o El Prado y trae la energía del carnaval: un evento semanal constante con música y calidez construirá seguidores leales.',
+      'La escena de startups de Barranquilla es más pequeña que la de Bogotá o Medellín, pero distintiva, construida sobre las fortalezas de la ciudad en logística, operaciones portuarias y la economía creativa de la costa caribeña. Riomar y El Prado concentran espacios de coworking y una capa creciente de equipos respaldados por capital de riesgo, mientras que el puerto y el río Magdalena anclan un clúster natural de logística tech: las startups de transporte marítimo, comercio y cadena de suministro encuentran aquí terreno fértil. Universidades como Uninorte y la Universidad del Atlántico alimentan el ecosistema con ingenieros, graduados de negocios y diseñadores, y la posición de la ciudad como puerta de entrada al Caribe le da una perspectiva internacional. Lo que hace distintiva a la escena es la cultura costeña: cálida, social y orientada a las relaciones, lo que hace que construir comunidad se sienta natural. La ciudad también está invirtiendo en su infraestructura de innovación, con centros de eventos y espacios de coworking que atraen trabajadores remotos y visitantes internacionales. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear un Origin de startups en Barranquilla: elige una vertical, ancla en Riomar o El Prado y trae la energía del carnaval: un evento semanal constante con música y calidez construirá seguidores leales.',
     creative:
-      'Las comunidades creativas de Barranquilla son inseparables del carnaval: durante meses cada año, los creadores de disfraces, músicos, bailarines y artistas callejeros de la ciudad preparan el Carnaval de Barranquilla, y ese motor creativo funciona todo el año en talleres, centros culturales y los barrios de Barrio Abajo y el Centro Histórico. La cultura musical de la ciudad — cumbia, vallenato, porro y los sonidos caribeños modernos que crecieron de ellos — da a los creativos una banda sonora constante y un ritmo social natural. El Gran Malecón se ha convertido en un escenario para conciertos y eventos culturales, y los museos y galerías de la ciudad mantienen vivas las artes visuales. Uninorte y las instituciones artísticas de la región aportan nuevo talento cada año. Como la cultura del carnaval se construye sobre la creatividad colectiva — la comparsa de disfraces de un barrio, el grupo de baile de una familia — la pertenencia comunitaria está tejida en el propio proceso artístico. Crear una comunidad creativa en Barranquilla significa elegir una disciplina y un barrio, y luego usar la extraordinaria energía festiva de la ciudad para construir algo con alma real.',
+      'Las comunidades creativas de Barranquilla son inseparables del carnaval: durante meses cada año, los creadores de disfraces, músicos, bailarines y artistas callejeros de la ciudad preparan el Carnaval de Barranquilla, y ese motor creativo funciona todo el año en talleres, centros culturales y los barrios de Barrio Abajo y el Centro Histórico. La cultura musical de la ciudad — cumbia, vallenato, porro y los sonidos caribeños modernos que crecieron de ellos — da a los creativos una banda sonora constante y un ritmo social natural. El Gran Malecón se ha convertido en un escenario para conciertos y eventos culturales, y los museos y galerías de la ciudad mantienen vivas las artes visuales. Uninorte y las instituciones artísticas de la región aportan nuevo talento cada año. Como la cultura del carnaval se construye sobre la creatividad colectiva — la comparsa de disfraces de un barrio, el grupo de baile de una familia — la pertenencia comunitaria está tejida en el propio proceso artístico. Crear un Origin creativo en Barranquilla significa elegir una disciplina y un barrio, y luego usar la extraordinaria energía festiva de la ciudad para construir algo con alma real.',
     political:
-      'Las comunidades políticas y cívicas de Barranquilla están moldeadas por el rápido crecimiento de la ciudad, su geografía fluvial y costera y una fuerte tradición de organización de barrio. La ciudad ha invertido mucho en espacio público — el Gran Malecón y la ribera revitalizada son resultados de una política pública deliberada — y los residentes están orgullosos de esa transformación. La vivienda, los servicios públicos y la resiliencia climática son temas definitorios: la ciudad está en el delta, y las inundaciones, la subida del nivel del mar y la gestión del agua son preocupaciones reales que organizan tanto a funcionarios como a comunidades. La salud del río Magdalena — su contaminación, sus manglares, su papel en la identidad de la ciudad — impulsa la defensa ambiental y las limpiezas voluntarias. Las asociaciones de vecinos siguen siendo poderosas, y el gobierno municipal mantiene canales abiertos de participación ciudadana. La cultura política recompensa la calidez, la persistencia y los lazos comunitarios genuinos. Crear una comunidad cívica en Barranquilla suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con la fuerte red existente de organizaciones de barrio.',
+      'Las comunidades políticas y cívicas de Barranquilla están moldeadas por el rápido crecimiento de la ciudad, su geografía fluvial y costera y una fuerte tradición de organización de barrio. La ciudad ha invertido mucho en espacio público — el Gran Malecón y la ribera revitalizada son resultados de una política pública deliberada — y los residentes están orgullosos de esa transformación. La vivienda, los servicios públicos y la resiliencia climática son temas definitorios: la ciudad está en el delta, y las inundaciones, la subida del nivel del mar y la gestión del agua son preocupaciones reales que organizan tanto a funcionarios como a comunidades. La salud del río Magdalena — su contaminación, sus manglares, su papel en la identidad de la ciudad — impulsa la defensa ambiental y las limpiezas voluntarias. Las asociaciones de vecinos siguen siendo poderosas, y el gobierno municipal mantiene canales abiertos de participación ciudadana. La cultura política recompensa la calidez, la persistencia y los lazos comunitarios genuinos. Crear un Origin cívico en Barranquilla suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con la fuerte red existente de organizaciones de barrio.',
     meetup:
       'La cultura de encuentros de Barranquilla está definida por el calor y el carnaval: la ciudad se despierta temprano en la mañana y después del atardecer, y el Gran Malecón — el paseo junto al río — es la gran sala de estar pública donde familias, corredores, ciclistas y músicos se reúnen por las noches. Las rutas de comida callejera por las areperías y los puestos de bollo de los barrios, los sociales de salsa y cumbia y las reuniones de café en Riomar y El Prado anclan la vida social de la ciudad. La hospitalidad costeña hace que los recién llegados se sientan bienvenidos de inmediato, y la temporada de carnaval añade un ritmo de desfiles, música y fiestas de disfraces que convierte a toda la ciudad en una celebración. El clima tropical significa que los formatos al aire libre funcionan mejor en las horas más frescas, y los lugares con aire acondicionado son el refugio de la tarde. Los formatos con poder de permanencia son simples y repetibles: una caminata al atardecer por el Malecón, una ruta mensual de comida callejera, una noche de música fija. Consejo honesto para crear un encuentro en Barranquilla: elige un formato de horas frescas, anclalo al Malecón o a un rincón cultural de barrio y deja que la calidez de la ciudad haga el trabajo de crecimiento.',
     'small-business':
-      'Las comunidades de pequeñas empresas de Barranquilla se construyen sobre el comercio y la cultura alimentaria de la ciudad: la arepería, el vendedor de bollo, la boutique de Riomar, el café de El Prado y el puesto de mercado comparten preguntas prácticas sobre alquiler, permisos, personal y el ritmo de la ciudad portuaria. Los mercados y ferias de la ciudad dan a los vendedores comunidades naturales, y los corredores comerciales de Riomar, El Prado y el Centro concentran grupos de tiendas con un interés compartido en el tránsito peatonal. El puerto y el río anclan una cultura empresarial práctica y orientada al comercio, y el carnaval crea una economía estacional de disfraces, comida y eventos en torno a la cual planifican las pequeñas empresas. Las asociaciones comerciales y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de feriantes. Crear una comunidad de pequeñas empresas aquí es realista: una mesa redonda mensual en un café de barrio, con temas rotativos como alquiler, seguros y planificación de la temporada de carnaval, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
+      'Las comunidades de pequeñas empresas de Barranquilla se construyen sobre el comercio y la cultura alimentaria de la ciudad: la arepería, el vendedor de bollo, la boutique de Riomar, el café de El Prado y el puesto de mercado comparten preguntas prácticas sobre alquiler, permisos, personal y el ritmo de la ciudad portuaria. Los mercados y ferias de la ciudad dan a los vendedores comunidades naturales, y los corredores comerciales de Riomar, El Prado y el Centro concentran grupos de tiendas con un interés compartido en el tránsito peatonal. El puerto y el río anclan una cultura empresarial práctica y orientada al comercio, y el carnaval crea una economía estacional de disfraces, comida y eventos en torno a la cual planifican las pequeñas empresas. Las asociaciones comerciales y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de feriantes. Crear un Origin de pequeñas empresas aquí es realista: una mesa redonda mensual en un café de barrio, con temas rotativos como alquiler, seguros y planificación de la temporada de carnaval, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
   },
   ideaPage: {
     intro:
@@ -442,14 +442,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: '¿Cómo encuentro una comunidad en Barranquilla?',
+      question: '¿Cómo encuentro un Origin en Barranquilla?',
       answer:
-        'Empieza por las páginas de tipos de grupo: comunidades de startups, creativas, políticas, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los residentes. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu comunidad hoy mismo.',
+        'Empieza por las páginas de tipos de grupo: Origins de startups, creativos, políticos, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los residentes. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu Origin hoy mismo.',
     },
     {
-      question: '¿Es realista crear una comunidad en Barranquilla?',
+      question: '¿Es realista crear un Origin en Barranquilla?',
       answer:
-        'Sí. La ciudad tiene lugares públicos gratuitos, una cultura costeña cálida y una vida social festiva. Las guías cubren cómo crear una comunidad, organizar un encuentro y conseguir tus primeros diez miembros.',
+        'Sí. La ciudad tiene lugares públicos gratuitos, una cultura costeña cálida y una vida social festiva. Las guías cubren cómo crear un Origin, organizar un encuentro y conseguir tus primeros diez miembros.',
     },
     {
       question: '¿Las sugerencias de lugares de esta página son reales?',
@@ -459,7 +459,7 @@ const content: CityContent = {
     {
       question: '¿JoinOrigin tiene una oficina en Barranquilla?',
       answer:
-        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los residentes a encontrar o crear comunidades.',
+        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los residentes a encontrar o crear Origins.',
     },
   ],
 };

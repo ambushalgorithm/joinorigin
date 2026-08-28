@@ -13,40 +13,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'es',
   slug: 'medellin',
-  title: 'Comunidades en Medellín | JoinOrigin',
+  title: 'Origins en Medellín | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Medellín — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Medellín — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades en Medellín | JoinOrigin',
+    city: 'Origins en Medellín | JoinOrigin',
     cityDescription:
-      'Encuentra o crea comunidades en Medellín — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+      'Encuentra o crea Origins en Medellín — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups en Medellín | JoinOrigin',
-      creative: 'Comunidades creativas y de diseño en Medellín | JoinOrigin',
-      political: 'Comunidades políticas y cívicas en Medellín | JoinOrigin',
+      startup: 'Origins de startups en Medellín | JoinOrigin',
+      creative: 'Origins creativos y de diseño en Medellín | JoinOrigin',
+      political: 'Origins políticos y cívicos en Medellín | JoinOrigin',
       meetup: 'Encuentros y eventos comunitarios en Medellín | JoinOrigin',
-      'small-business': 'Comunidades de pequeñas empresas en Medellín | JoinOrigin',
+      'small-business': 'Origins de pequeñas empresas en Medellín | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encuentra o crea comunidades de startups en Medellín — fundadores, constructores y equipos tempranos en El Poblado y Ciudad del Río. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de startups en Medellín — fundadores, constructores y equipos tempranos en El Poblado y Ciudad del Río. Lista de espera de JoinOrigin.',
       creative:
-        'Encuentra o crea comunidades creativas y de diseño en Medellín — arte callejero, estudios y galerías en Ciudad del Río y Comuna 13. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins creativos y de diseño en Medellín — arte callejero, estudios y galerías en Ciudad del Río y Comuna 13. Lista de espera de JoinOrigin.',
       political:
-        'Encuentra o crea comunidades políticas y cívicas en Medellín — asambleas de barrio, vivienda y participación en las comunas. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins políticos y cívicos en Medellín — asambleas de barrio, vivienda y participación en las comunas. Lista de espera de JoinOrigin.',
       meetup:
         'Encuentra o crea encuentros y eventos comunitarios en Medellín — picnics en el Jardín Botánico, aventuras en Metrocable y noches de salsa. Lista de espera de JoinOrigin.',
       'small-business':
-        'Encuentra o crea comunidades de pequeñas empresas en Medellín — cafés, areperías y boutiques de El Poblado y Laureles. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de pequeñas empresas en Medellín — cafés, areperías y boutiques de El Poblado y Laureles. Lista de espera de JoinOrigin.',
     },
-    ideas: '30 ideas de eventos comunitarios en Medellín | JoinOrigin',
+    ideas: '30 ideas de eventos de Origins en Medellín | JoinOrigin',
     ideasDescription:
       '30 ideas realistas para eventos comunitarios en Medellín — networking, aprendizaje, sociales y exteriores, profesionales, creativos e impacto. Para tu próximo evento.',
   },
   intro: [
     'Medellín es la capital de Antioquia y una ciudad de unos 2 millones de habitantes — con casi cuatro millones en el Valle de Aburrá — situada en un estrecho valle andino que le da el clima templado y florido que le valió el sobrenombre de Ciudad de la Eterna Primavera. La transformación de la ciudad desde la violencia de los años 80 y 90 hasta convertirse en un modelo global de innovación urbana es una de las historias urbanas más famosas de nuestro tiempo, y da forma a cómo la ciudad se ve a sí misma y a cómo se organizan sus comunidades.',
     'Esa transformación se construyó sobre infraestructura real: el Metro y los cables del Metrocable que conectan las comunas de las laderas con el fondo del valle, las escaleras eléctricas al aire libre de la Comuna 13, los parques biblioteca y la red de bicicletas. El Poblado y Laureles concentran los cafés, los espacios de coworking y las startups; Ciudad del Río ancla el distrito creativo y de innovación; y las comunas albergan una poderosa cultura de organización comunitaria, arte callejero y hip-hop. La Universidad de Antioquia, la EAFIT y otras universidades alimentan un flujo constante de estudiantes e investigadores hacia la escena.',
-    'Medellín está orgullosa de su identidad paisa — la cultura amable, trabajadora y emprendedora de la región — y de sus flores: la Feria de las Flores es la celebración más grande de la ciudad. Para encontrar o crear una comunidad, Medellín recompensa presentarse con compromiso genuino, construir confianza con las organizaciones existentes y elegir un barrio: las comunidades de la ciudad son fuertes y acogen a las personas que respetan esa fortaleza.',
+    'Medellín está orgullosa de su identidad paisa — la cultura amable, trabajadora y emprendedora de la región — y de sus flores: la Feria de las Flores es la celebración más grande de la ciudad. Para encontrar o crear un Origin, Medellín recompensa presentarse con compromiso genuino, construir confianza con las organizaciones existentes y elegir un barrio: las comunidades de la ciudad son fuertes y acogen a las personas que respetan esa fortaleza.',
   ],
   dataPoints: [
     'Unos 2 millones de habitantes; casi 4 millones en el Valle de Aburrá.',
@@ -170,15 +170,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'La escena de startups de Medellín es una de las más inspiradoras de América Latina, construida sobre una inversión pública deliberada en innovación: Ruta N, el centro de innovación de la ciudad, ha convertido el emprendimiento en una prioridad cívica, y la ciudad es ahora un hub genuino para startups de fintech, tecnología creativa e impacto social. El Poblado concentra espacios de coworking y equipos respaldados por capital de riesgo, Ciudad del Río ancla el distrito de innovación y universidades como la EAFIT y la Universidad de Antioquia alimentan año tras año a fundadores e ingenieros. Lo que hace distintiva a la escena es su historia de origen: una ciudad que se transformó mediante la colaboración público-privada ahora exporta ese modelo, y sus startups suelen llevar una misión social. El clima templado y los costos más bajos hacen de Medellín un imán para fundadores internacionales y trabajadores remotos, lo que añade una capa creciente de hablantes de inglés a la comunidad. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y muestras de innovación en Ruta N, muchos de ellos gratuitos y abiertos. Consejo honesto para crear una comunidad de startups en Medellín: elige una vertical, ancla en El Poblado o Ciudad del Río y abraza el espíritu colaborativo de la ciudad: un evento semanal constante construirá seguidores leales.',
+      'La escena de startups de Medellín es una de las más inspiradoras de América Latina, construida sobre una inversión pública deliberada en innovación: Ruta N, el centro de innovación de la ciudad, ha convertido el emprendimiento en una prioridad cívica, y la ciudad es ahora un hub genuino para startups de fintech, tecnología creativa e impacto social. El Poblado concentra espacios de coworking y equipos respaldados por capital de riesgo, Ciudad del Río ancla el distrito de innovación y universidades como la EAFIT y la Universidad de Antioquia alimentan año tras año a fundadores e ingenieros. Lo que hace distintiva a la escena es su historia de origen: una ciudad que se transformó mediante la colaboración público-privada ahora exporta ese modelo, y sus startups suelen llevar una misión social. El clima templado y los costos más bajos hacen de Medellín un imán para fundadores internacionales y trabajadores remotos, lo que añade una capa creciente de hablantes de inglés a la comunidad. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y muestras de innovación en Ruta N, muchos de ellos gratuitos y abiertos. Consejo honesto para crear un Origin de startups en Medellín: elige una vertical, ancla en El Poblado o Ciudad del Río y abraza el espíritu colaborativo de la ciudad: un evento semanal constante construirá seguidores leales.',
     creative:
-      'Las comunidades creativas de Medellín son inseparables de la transformación de la ciudad: el arte callejero de la Comuna 13 cuenta la historia de una comunidad que convirtió sus paredes en lienzos y su historia en arte, y los recorridos de grafiti del barrio son ahora mundialmente famosos. Ciudad del Río ancla el distrito creativo contemporáneo, con estudios de diseño, galerías y espacios de innovación en edificios industriales reconvertidos, mientras que el Museo de Antioquia y la Plaza Botero llevan arte de clase mundial al centro de la ciudad. El Jardín Botánico acoge conciertos y eventos, y las escenas de salsa y música de la ciudad dan a los creativos un ritmo social natural: cada barrio tiene su propia escuela de baile y cada fin de semana hay música en vivo en algún lugar del valle. La Feria de las Flores anual celebra la cultura floral de la región con desfiles, exposiciones y muestras de silleteros que son una industria creativa en sí misma. Crear una comunidad creativa en Medellín significa elegir una disciplina y un barrio, y luego usar la poderosa historia de transformación de la ciudad y su cultura orgullosa y expresiva para construir algo con significado real.',
+      'Las comunidades creativas de Medellín son inseparables de la transformación de la ciudad: el arte callejero de la Comuna 13 cuenta la historia de una comunidad que convirtió sus paredes en lienzos y su historia en arte, y los recorridos de grafiti del barrio son ahora mundialmente famosos. Ciudad del Río ancla el distrito creativo contemporáneo, con estudios de diseño, galerías y espacios de innovación en edificios industriales reconvertidos, mientras que el Museo de Antioquia y la Plaza Botero llevan arte de clase mundial al centro de la ciudad. El Jardín Botánico acoge conciertos y eventos, y las escenas de salsa y música de la ciudad dan a los creativos un ritmo social natural: cada barrio tiene su propia escuela de baile y cada fin de semana hay música en vivo en algún lugar del valle. La Feria de las Flores anual celebra la cultura floral de la región con desfiles, exposiciones y muestras de silleteros que son una industria creativa en sí misma. Crear un Origin creativo en Medellín significa elegir una disciplina y un barrio, y luego usar la poderosa historia de transformación de la ciudad y su cultura orgullosa y expresiva para construir algo con significado real.',
     political:
-      'Las comunidades políticas y cívicas de Medellín están moldeadas por la extraordinaria transformación de la ciudad y por la fortaleza de sus organizaciones de barrio, especialmente en las comunas. Las famosas innovaciones urbanas de la ciudad — el Metrocable, las escaleras eléctricas al aire libre, los parques biblioteca — fueron en sí mismas el resultado de la organización comunitaria y la participación pública, y ese legado vive en activas asambleas de barrio y asociaciones comunitarias. La vivienda, el espacio público y los programas juveniles son temas definitorios, y la historia de construcción de paz de la ciudad hace que la reconciliación y la memoria sean partes respetadas de la vida cívica. El gobierno municipal mantiene canales abiertos de participación ciudadana, y las comunidades de civic tech construyen herramientas para la transparencia y el compromiso. La cultura política recompensa la confianza, la constancia y el compromiso genuino: los organizadores que acuden a las reuniones de barrio durante años son quienes mueven las cosas. Crear una comunidad cívica en Medellín suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con la fuerte red existente de organizaciones comunitarias.',
+      'Las comunidades políticas y cívicas de Medellín están moldeadas por la extraordinaria transformación de la ciudad y por la fortaleza de sus organizaciones de barrio, especialmente en las comunas. Las famosas innovaciones urbanas de la ciudad — el Metrocable, las escaleras eléctricas al aire libre, los parques biblioteca — fueron en sí mismas el resultado de la organización comunitaria y la participación pública, y ese legado vive en activas asambleas de barrio y asociaciones comunitarias. La vivienda, el espacio público y los programas juveniles son temas definitorios, y la historia de construcción de paz de la ciudad hace que la reconciliación y la memoria sean partes respetadas de la vida cívica. El gobierno municipal mantiene canales abiertos de participación ciudadana, y las comunidades de civic tech construyen herramientas para la transparencia y el compromiso. La cultura política recompensa la confianza, la constancia y el compromiso genuino: los organizadores que acuden a las reuniones de barrio durante años son quienes mueven las cosas. Crear un Origin cívico en Medellín suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con la fuerte red existente de organizaciones comunitarias.',
     meetup:
       'La cultura de encuentros de Medellín se impulsa con el clima de eterna primavera y el querido Metro de la ciudad: el Jardín Botánico acoge picnics y caminatas, el Parque Arví ofrece senderos de bosque a los que se llega en Metrocable, y los cafés de El Poblado y Laureles anclan la vida social de la ciudad. La historia de transformación de la ciudad la ha convertido en un imán para visitantes, trabajadores remotos y estudiantes internacionales, por lo que los encuentros amigables para recién llegados son comunes y muy bienvenidos. Los miradores y las rutas de arte de la Comuna 13 atraen tanto a locales como a visitantes, y los clubes de salsa de la ciudad mantienen viva la escena del baile. Como el Metro hace fácil cruzar el valle, un grupo puede anclarse en un barrio y aun así atraer miembros de toda la ciudad. Los formatos con poder de permanencia son simples y repetibles: un picnic dominical en el parque, una aventura mensual en Metrocable, una noche de trivia fija. Consejo honesto para crear un encuentro en Medellín: elige un barrio, un lugar accesible en Metro y un formato que celebre la calidez de la ciudad: los paisas aparecerán por un grupo que se sienta real.',
     'small-business':
-      'Las comunidades de pequeñas empresas de Medellín se construyen sobre la cultura emprendedora paisa de la ciudad — el apodo de la región para su gente trabajadora y emprendedora — y sobre las calles de El Poblado, Laureles y el centro: el café, la arepería, la boutique, la florería y el vendedor de mercado comparten preguntas prácticas sobre alquiler, permisos, personal y el flujo de clientes. Los mercados y ferias de la ciudad dan a los vendedores comunidades naturales, y los corredores comerciales concentran grupos de tiendas con un interés compartido en el tránsito peatonal. Los auges del turismo y la innovación han traído nuevos clientes y nueva competencia, y los centros de pequeñas empresas de la ciudad más las asociaciones comerciales ofrecen talleres sobre licencias, préstamos y venta digital. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de feriantes. Crear una comunidad de pequeñas empresas aquí es realista: una mesa redonda mensual en un café de barrio, con temas rotativos como alquiler, seguros y atención a clientes internacionales, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
+      'Las comunidades de pequeñas empresas de Medellín se construyen sobre la cultura emprendedora paisa de la ciudad — el apodo de la región para su gente trabajadora y emprendedora — y sobre las calles de El Poblado, Laureles y el centro: el café, la arepería, la boutique, la florería y el vendedor de mercado comparten preguntas prácticas sobre alquiler, permisos, personal y el flujo de clientes. Los mercados y ferias de la ciudad dan a los vendedores comunidades naturales, y los corredores comerciales concentran grupos de tiendas con un interés compartido en el tránsito peatonal. Los auges del turismo y la innovación han traído nuevos clientes y nueva competencia, y los centros de pequeñas empresas de la ciudad más las asociaciones comerciales ofrecen talleres sobre licencias, préstamos y venta digital. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de feriantes. Crear un Origin de pequeñas empresas aquí es realista: una mesa redonda mensual en un café de barrio, con temas rotativos como alquiler, seguros y atención a clientes internacionales, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
   },
   ideaPage: {
     intro:
@@ -443,14 +443,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: '¿Cómo encuentro una comunidad en Medellín?',
+      question: '¿Cómo encuentro un Origin en Medellín?',
       answer:
-        'Empieza por las páginas de tipos de grupo: comunidades de startups, creativas, políticas, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los residentes. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu comunidad hoy mismo.',
+        'Empieza por las páginas de tipos de grupo: Origins de startups, creativos, políticos, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los residentes. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu Origin hoy mismo.',
     },
     {
-      question: '¿Es realista crear una comunidad en Medellín?',
+      question: '¿Es realista crear un Origin en Medellín?',
       answer:
-        'Sí. La ciudad tiene lugares públicos gratuitos, un clima templado todo el año y una fuerte cultura de organización comunitaria. Las guías cubren cómo crear una comunidad, organizar un encuentro y conseguir tus primeros diez miembros.',
+        'Sí. La ciudad tiene lugares públicos gratuitos, un clima templado todo el año y una fuerte cultura de organización comunitaria. Las guías cubren cómo crear un Origin, organizar un encuentro y conseguir tus primeros diez miembros.',
     },
     {
       question: '¿Las sugerencias de lugares de esta página son reales?',
@@ -460,7 +460,7 @@ const content: CityContent = {
     {
       question: '¿JoinOrigin tiene una oficina en Medellín?',
       answer:
-        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los residentes a encontrar o crear comunidades.',
+        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los residentes a encontrar o crear Origins.',
     },
   ],
 };

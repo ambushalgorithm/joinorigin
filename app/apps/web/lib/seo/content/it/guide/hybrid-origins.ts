@@ -18,19 +18,19 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'it',
   slug: 'hybrid-origins',
-  title: 'Community ibride: come gestire insieme in presenza e online | JoinOrigin',
+  title: 'Origin ibridi: come gestire insieme in presenza e online | JoinOrigin',
   description:
-    'Gestisci una community ibrida dove la stanza collega i membri in presenza e online — che tu stia iniziando da zero o rendendo ibrida una community esistente, scegli gli strumenti giusti, progetta una partecipazione paritaria e mantieni coinvolti entrambi i pubblici. Da JoinOrigin.',
+    'Gestisci una community ibrida dove la stanza collega i membri in presenza e online — che tu stia iniziando da zero o rendendo ibrido un Origin esistente, scegli gli strumenti giusti, progetta una partecipazione paritaria e mantieni coinvolti entrambi i pubblici. Da JoinOrigin.',
   intro: [
     "Una community ibrida riunisce le persone in due luoghi contemporaneamente — fisicamente in una sede e virtualmente attraverso uno schermo — e la vera sfida è di nuovo sulle persone: assicurarsi che entrambi i pubblici sentano di appartenere a un'unica community connessa, non a due separate. JoinOrigin è costruito proprio con quell'obiettivo di connessione tra persone, e il modello funziona tanto per una community che esiste già quanto per una che sta iniziando — un gruppo in presenza consolidato può aggiungere una metà online, e una community online può iniziare a riunirsi localmente.",
-    "JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare, unirsi e avviare community — quindi un gruppo ibrido ha un'unica stanza che collega le parti online e (a valle) in presenza: i membri locali e remoti vedono la stessa community, lo stesso ritmo e gli stessi passi successivi. Nel modello digitale connetti→unisciti→stanza, la stanza è la superficie persistente dove vivono entrambe le metà della community tra un incontro e l'altro; l'evento in presenza è una conseguenza a valle che la stanza tiene insieme prima e dopo. JoinOrigin non fornisce strumenti per eventi né gestisce eventi ibridi — la piattaforma dà a qualsiasi community — ibrida inclusa — un'unica stanza dove i suoi membri restano connessi.",
+    "JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare, unirsi e avviare Origins — quindi un gruppo ibrido ha un'unica stanza che collega le parti online e (a valle) in presenza: i membri locali e remoti vedono la stessa community, lo stesso ritmo e gli stessi passi successivi. Nel modello digitale connetti→unisciti→stanza, la stanza è la superficie persistente dove vivono entrambe le metà della community tra un incontro e l'altro; l'evento in presenza è una conseguenza a valle che la stanza tiene insieme prima e dopo. JoinOrigin non fornisce strumenti per eventi né gestisce eventi ibridi — la piattaforma dà a qualsiasi community — ibrida inclusa — un'unica stanza dove i suoi membri restano connessi.",
     "Questa guida copre le decisioni pratiche che fanno riuscire le community ibride — per gruppi nuovi ed esistenti allo stesso modo: decidere se l'ibrido è il modello giusto, costruire la stanza che entrambi i pubblici condividono, scegliere un formato e strumenti adatti, progettare l'incontro così i membri in presenza e online vivono la stessa esperienza, gestire lo spazio così nessuna parte domina e mantenere una stanza persistente che tiene unita la community tra gli incontri. Ogni passo mostra dove JoinOrigin aiuta.",
   ],
   dataPoints: [
     'Una community ibrida è una community con due punti di ingresso, non due pubblici da servire separatamente.',
     'La stanza è il tessuto connettivo: un unico luogo condiviso dove entrambi i pubblici vedono gli stessi aggiornamenti, note e passi successivi.',
     "Strumenti semplici e affidabili — un link video, un documento condiviso — riducono l'attrito che uccide gli incontri ibridi.",
-    'JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare o avviare community; non fornisce strumenti per eventi né gestisce eventi ibridi.',
+    'JoinOrigin è un sistema operativo di comunità progettato per aiutare le persone a trovare o avviare Origins; non fornisce strumenti per eventi né gestisce eventi ibridi.',
   ],
   faq: [
     {
@@ -49,9 +49,9 @@ const content: GuideContent = {
         'Progetta per una partecipazione paritaria: fai un giro di presentazioni ibrido, chiama esplicitamente i membri remoti, condividi lo schermo per i contenuti visivi e usa un documento condiviso dove entrambe le parti possono scrivere. Assegna una persona a monitorare continuamente il lato remoto.',
     },
     {
-      question: 'JoinOrigin può aiutarmi a gestire una community ibrida?',
+      question: 'JoinOrigin può aiutarmi a gestire un Origin ibrido?',
       answer:
-        "Sì. JoinOrigin aiuta le persone a trovare e avviare community — un'unica stanza dove i membri locali e remoti restano connessi. JoinOrigin non fornisce strumenti per eventi, quindi le pratiche ibride concrete di questa guida funzionano con gli strumenti che già possiedi.",
+        "Sì. JoinOrigin aiuta le persone a trovare e avviare Origins — un'unica stanza dove i membri locali e remoti restano connessi. JoinOrigin non fornisce strumenti per eventi, quindi le pratiche ibride concrete di questa guida funzionano con gli strumenti che già possiedi.",
     },
   ],
   sections: [

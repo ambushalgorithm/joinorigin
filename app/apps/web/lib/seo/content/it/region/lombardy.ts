@@ -11,9 +11,9 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'it',
   slug: 'lombardy',
-  title: 'Comunità in Lombardia | JoinOrigin',
+  title: 'Origins in Lombardia | JoinOrigin',
   description:
-    'Trova o crea comunità in Lombardia — dalle scene startup e di design di Milano alle associazioni della regione. Lista d’attesa di JoinOrigin.',
+    'Trova o crea Origins in Lombardia — dalle scene startup e di design di Milano alle associazioni della regione. Lista d’attesa di JoinOrigin.',
   intro:
     'La Lombardia è la potenza economica dell’Italia, una regione settentrionale che genera una grande fetta della produzione nazionale e ospita le comunità professionali più dense del Paese. Milano, il capoluogo regionale e centro finanziario italiano, è il punto di riferimento della scena: design, moda, finanza e un ecosistema startup in crescita si concentrano intorno a spazi di coworking, università e al celebre distretto del design della città. Oltre Milano, le città e i paesi della regione — Bergamo, Brescia, Como e Monza, tra gli altri — mantengono comunità vivaci tutte loro, legate alle industrie locali, alle università e alla forte tradizione italiana di associazioni e circoli. I laghi e le montagne della regione rendono particolarmente attive le comunità all’aperto e sportive, dai club ciclistici intorno al Lago di Como ai gruppi di escursionismo nelle Alpi. I collegamenti di trasporto — l’alta velocità e una fitta rete regionale — tengono insieme la Lombardia, così una comunità ancorata a Milano può attrarre membri da tutta la regione. La tradizione dell’aperitivo rende facile l’incontro informale, e la ricchezza della regione sostiene una grande varietà di luoghi culturali, dai teatri d’opera agli spazi d’arte contemporanea. Che tu cerchi un meetup di design, un gruppo startup, un club sportivo o una rete di piccole imprese, la Lombardia offre un paesaggio denso e dinamico.',
   dataPoints: [
@@ -36,7 +36,7 @@ const content: RegionContent = {
     {
       question: 'JoinOrigin opera in Lombardia?',
       answer:
-        'Sì. JoinOrigin non ha uffici locali. La pagina della regione Lombardia è tradotta in italiano, e la piattaforma aiuta le persone a trovare o creare comunità in qualsiasi parte della regione.',
+        'Sì. JoinOrigin non ha uffici locali. La pagina della regione Lombardia è tradotta in italiano, e la piattaforma aiuta le persone a trovare o creare Origins in qualsiasi parte della regione.',
     },
   ],
 };

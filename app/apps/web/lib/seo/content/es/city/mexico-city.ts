@@ -13,40 +13,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'es',
   slug: 'mexico-city',
-  title: 'Comunidades en Ciudad de México | JoinOrigin',
+  title: 'Origins en Ciudad de México | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Ciudad de México — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Ciudad de México — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades en Ciudad de México | JoinOrigin',
+    city: 'Origins en Ciudad de México | JoinOrigin',
     cityDescription:
-      'Encuentra o crea comunidades en Ciudad de México — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+      'Encuentra o crea Origins en Ciudad de México — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups en Ciudad de México | JoinOrigin',
-      creative: 'Comunidades creativas y de diseño en Ciudad de México | JoinOrigin',
-      political: 'Comunidades políticas y cívicas en Ciudad de México | JoinOrigin',
+      startup: 'Origins de startups en Ciudad de México | JoinOrigin',
+      creative: 'Origins creativos y de diseño en Ciudad de México | JoinOrigin',
+      political: 'Origins políticos y cívicos en Ciudad de México | JoinOrigin',
       meetup: 'Encuentros y eventos comunitarios en Ciudad de México | JoinOrigin',
-      'small-business': 'Comunidades de pequeñas empresas en Ciudad de México | JoinOrigin',
+      'small-business': 'Origins de pequeñas empresas en Ciudad de México | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encuentra o crea comunidades de startups en Ciudad de México — fundadores, constructores y equipos tempranos en Roma y Condesa. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de startups en Ciudad de México — fundadores, constructores y equipos tempranos en Roma y Condesa. Lista de espera de JoinOrigin.',
       creative:
-        'Encuentra o crea comunidades creativas y de diseño en Ciudad de México — galerías, estudios y murales en Roma, Coyoacán y el Centro Histórico. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins creativos y de diseño en Ciudad de México — galerías, estudios y murales en Roma, Coyoacán y el Centro Histórico. Lista de espera de JoinOrigin.',
       political:
-        'Encuentra o crea comunidades políticas y cívicas en Ciudad de México — vivienda, movilidad y participación en las alcaldías. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins políticos y cívicos en Ciudad de México — vivienda, movilidad y participación en las alcaldías. Lista de espera de JoinOrigin.',
       meetup:
         'Encuentra o crea encuentros y eventos comunitarios en Ciudad de México — picnics en Chapultepec, paseos en trajinera y cafés de Roma. Lista de espera de JoinOrigin.',
       'small-business':
-        'Encuentra o crea comunidades de pequeñas empresas en Ciudad de México — taquerías, fondas, mercados y boutiques. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de pequeñas empresas en Ciudad de México — taquerías, fondas, mercados y boutiques. Lista de espera de JoinOrigin.',
     },
-    ideas: '30 ideas de eventos comunitarios en Ciudad de México | JoinOrigin',
+    ideas: '30 ideas de eventos de Origins en Ciudad de México | JoinOrigin',
     ideasDescription:
       '30 ideas realistas para eventos comunitarios en Ciudad de México — networking, aprendizaje, sociales y exteriores, profesionales, creativos e impacto. Para tu próximo evento.',
   },
   intro: [
     'La Ciudad de México es la capital de México y una de las ciudades más grandes del mundo: unos 12,3 millones de personas dentro de los límites de la ciudad y más de veinte millones en toda la zona metropolitana — situada a 2.240 metros sobre el nivel del mar en un valle alto rodeado de volcanes. La ciudad está organizada en alcaldías y barrios con personalidades distintas: Roma y Condesa para los cafés y el trabajo creativo, Polanco para los negocios y la gastronomía fina, Coyoacán para la historia y los artistas, y el Centro Histórico para las capas profundas del pasado.',
     'La ciudad es una potencia de cultura, comida y creatividad: más museos que la mayoría de las ciudades, una escena de comida callejera entre las mejores del mundo y un ecosistema de tecnología y startups en crecimiento anclado en las fintech y las industrias creativas. La UNAM — una de las universidades más grandes de la Tierra —, el ITAM, el Politécnico Nacional y los campus del Tec de Monterrey alimentan un flujo constante de estudiantes e investigadores hacia las comunidades locales. El Metro, el Metrobús y el sistema de bicicletas compartidas Ecobici hacen práctico reunirse en toda la ciudad, y los anclajes públicos como el Bosque de Chapultepec, el Zócalo y los canales de Xochimilco dan a los grupos lugares gratuitos e icónicos para encontrarse.',
-    'La ciudad recompensa al organizador seguro: es densa, animada y llena de personas que aparecen — pero el tráfico, la altitud y la temporada de lluvias moldean el calendario. Para encontrar o crear una comunidad, la Ciudad de México recompensa elegir un barrio, un idioma claro (español, inglés o ambos) y un lugar con buen acceso de transporte público.',
+    'La ciudad recompensa al organizador seguro: es densa, animada y llena de personas que aparecen — pero el tráfico, la altitud y la temporada de lluvias moldean el calendario. Para encontrar o crear un Origin, la Ciudad de México recompensa elegir un barrio, un idioma claro (español, inglés o ambos) y un lugar con buen acceso de transporte público.',
   ],
   dataPoints: [
     'Unos 12,3 millones de habitantes en la ciudad; más de 20 millones en la zona metropolitana.',
@@ -170,15 +170,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'La escena de startups de la Ciudad de México es la más grande de América Latina, construida sobre un vasto mercado interno, una fuerte ola fintech y una economía creativa que está remodelando la ciudad. Roma y Condesa concentran la mayor densidad de espacios de coworking y startups respaldadas por capital de riesgo, Polanco ancla la capa corporativa y financiera, y las universidades de la ciudad — UNAM, ITAM, Politécnico Nacional, Tec de Monterrey — alimentan año tras año a fundadores y talento. Lo que hace distintiva a la escena es su escala y su enfoque en el consumidor: las startups mexicanas construyen para un mercado de más de cien millones de personas, y las categorías de fintech, e-commerce y medios son especialmente fuertes. La ciudad es también un imán para fundadores internacionales y trabajadores remotos, por lo que una capa creciente de la escena funciona en inglés o de forma bilingüe. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear una comunidad de startups en la Ciudad de México: elige una vertical, ancla a un barrio y respeta el tráfico: un evento semanal constante en un coworking de Roma construirá seguidores leales.',
+      'La escena de startups de la Ciudad de México es la más grande de América Latina, construida sobre un vasto mercado interno, una fuerte ola fintech y una economía creativa que está remodelando la ciudad. Roma y Condesa concentran la mayor densidad de espacios de coworking y startups respaldadas por capital de riesgo, Polanco ancla la capa corporativa y financiera, y las universidades de la ciudad — UNAM, ITAM, Politécnico Nacional, Tec de Monterrey — alimentan año tras año a fundadores y talento. Lo que hace distintiva a la escena es su escala y su enfoque en el consumidor: las startups mexicanas construyen para un mercado de más de cien millones de personas, y las categorías de fintech, e-commerce y medios son especialmente fuertes. La ciudad es también un imán para fundadores internacionales y trabajadores remotos, por lo que una capa creciente de la escena funciona en inglés o de forma bilingüe. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear un Origin de startups en la Ciudad de México: elige una vertical, ancla a un barrio y respeta el tráfico: un evento semanal constante en un coworking de Roma construirá seguidores leales.',
     creative:
-      'Las comunidades creativas de la Ciudad de México están entre las más ricas del mundo, apoyadas en una tradición muralista que dio forma al arte público del continente y una escena contemporánea que abarca diseño, cine, música y moda. Roma y Condesa concentran galerías, estudios y oficinas de diseño, Coyoacán lleva el legado artístico de Frida Kahlo y el espíritu bohemio del siglo XX, y el Centro Histórico superpone arquitectura colonial con espacios culturales contemporáneos. Los museos de la ciudad — entre los más numerosos de cualquier ciudad del mundo — dan a los creativos exposición constante al arte, y los programas culturales de la UNAM alimentan nuevas generaciones de artistas. El arte callejero está en todas partes, desde murales monumentales hasta obras efímeras que aparecen de la noche a la mañana, y los mercados, plazas y pulquerías de la ciudad dan a los creadores escenarios naturales para mostrar y vender. Crear una comunidad creativa en la Ciudad de México significa elegir una disciplina y un barrio, y luego usar la enorme audiencia de la ciudad y su profunda infraestructura cultural para construir algo con alcance real.',
+      'Las comunidades creativas de la Ciudad de México están entre las más ricas del mundo, apoyadas en una tradición muralista que dio forma al arte público del continente y una escena contemporánea que abarca diseño, cine, música y moda. Roma y Condesa concentran galerías, estudios y oficinas de diseño, Coyoacán lleva el legado artístico de Frida Kahlo y el espíritu bohemio del siglo XX, y el Centro Histórico superpone arquitectura colonial con espacios culturales contemporáneos. Los museos de la ciudad — entre los más numerosos de cualquier ciudad del mundo — dan a los creativos exposición constante al arte, y los programas culturales de la UNAM alimentan nuevas generaciones de artistas. El arte callejero está en todas partes, desde murales monumentales hasta obras efímeras que aparecen de la noche a la mañana, y los mercados, plazas y pulquerías de la ciudad dan a los creadores escenarios naturales para mostrar y vender. Crear un Origin creativo en la Ciudad de México significa elegir una disciplina y un barrio, y luego usar la enorme audiencia de la ciudad y su profunda infraestructura cultural para construir algo con alcance real.',
     political:
-      'Las comunidades políticas y cívicas de la Ciudad de México están moldeadas por el papel de la ciudad como capital nacional y por la energía de una megalópolis que enfrenta retos de vivienda, movilidad y clima. La ciudad está dividida en alcaldías con líderes electos, lo que mantiene accesible la política local: los vecinos pueden asistir a las sesiones de la alcaldía y dar forma a las decisiones sobre uso del suelo, transporte y espacio público. La asequibilidad de la vivienda es un tema creciente, con sindicatos de inquilinos y grupos contra el desplazamiento que se organizan en barrios en gentrificación como Roma y Condesa. La movilidad es un tema definitorio: la comunidad ciclista de la ciudad ha impulsado el sistema Ecobici y los carriles protegidos, y los defensores del transporte luchan por un mejor servicio de Metro y autobuses. Las comunidades de civic tech construyen herramientas para datos abiertos y participación pública, y las redes de voluntarios se organizan en torno a la calidad del aire, la plantación de árboles y la ayuda mutua. La cultura política recompensa la persistencia y el conocimiento del barrio. Crear una comunidad cívica en la Ciudad de México suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con el denso paisaje existente de organizadores.',
+      'Las comunidades políticas y cívicas de la Ciudad de México están moldeadas por el papel de la ciudad como capital nacional y por la energía de una megalópolis que enfrenta retos de vivienda, movilidad y clima. La ciudad está dividida en alcaldías con líderes electos, lo que mantiene accesible la política local: los vecinos pueden asistir a las sesiones de la alcaldía y dar forma a las decisiones sobre uso del suelo, transporte y espacio público. La asequibilidad de la vivienda es un tema creciente, con sindicatos de inquilinos y grupos contra el desplazamiento que se organizan en barrios en gentrificación como Roma y Condesa. La movilidad es un tema definitorio: la comunidad ciclista de la ciudad ha impulsado el sistema Ecobici y los carriles protegidos, y los defensores del transporte luchan por un mejor servicio de Metro y autobuses. Las comunidades de civic tech construyen herramientas para datos abiertos y participación pública, y las redes de voluntarios se organizan en torno a la calidad del aire, la plantación de árboles y la ayuda mutua. La cultura política recompensa la persistencia y el conocimiento del barrio. Crear un Origin cívico en la Ciudad de México suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con el denso paisaje existente de organizadores.',
     meetup:
       'La cultura de encuentros de la Ciudad de México es tan vasta y variada como la propia ciudad: picnics dominicales en el Bosque de Chapultepec, sociales de café en Roma y Condesa, caminatas de comida callejera por el Centro Histórico, paseos en trajinera en Xochimilco e intercambios de idiomas que emparejan a hispanohablantes con la creciente población internacional de la ciudad. El Metro y el Metrobús hacen práctico reunirse en toda la ciudad, aunque el tráfico moldea el calendario: los locales planifican en torno a las horas pico y el tráfico vespertino. El clima de la ciudad es famosamente templado, con una temporada de lluvias que va de finales de primavera a principios de otoño, por lo que los formatos al aire libre prosperan la mayor parte del año. Los formatos con poder de permanencia son simples y repetibles: una sesión dominical en el parque, una caminata mensual de comida, una noche de trivia fija. Consejo honesto para crear un encuentro en la Ciudad de México: elige un barrio, un lugar accesible en Metro y un formato que acoja a los recién llegados: la ciudad está llena de personas curiosas y sociables que buscan el grupo que se sienta como en casa.',
     'small-business':
-      'Las comunidades de pequeñas empresas de la Ciudad de México son el corazón de sus calles: la taquería, la fonda, el vendedor de mercado, la boutique de Roma y la tienda de artesanías de Coyoacán comparten preguntas prácticas sobre renta, permisos, personal y el flujo del tránsito peatonal. Los mercados de la ciudad — sus mercados públicos — son comunidades en sí mismos, con vendedores que se coordinan en torno a suministros, seguridad y eventos. Los corredores comerciales como la Avenida Álvaro Obregón en Roma y la Avenida Ámsterdam en Condesa concentran grupos de tiendas con un interés compartido en el tránsito peatonal y el espacio público. La cámara de comercio y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital, y la cultura de comida callejera de la ciudad da a los pequeños operadores una barrera de entrada famosamente baja. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de vendedores de mercado. Crear una comunidad de pequeñas empresas aquí es realista: una mesa redonda mensual en un café o fonda de barrio, con temas rotativos como renta, seguros y pagos digitales, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
+      'Las comunidades de pequeñas empresas de la Ciudad de México son el corazón de sus calles: la taquería, la fonda, el vendedor de mercado, la boutique de Roma y la tienda de artesanías de Coyoacán comparten preguntas prácticas sobre renta, permisos, personal y el flujo del tránsito peatonal. Los mercados de la ciudad — sus mercados públicos — son comunidades en sí mismos, con vendedores que se coordinan en torno a suministros, seguridad y eventos. Los corredores comerciales como la Avenida Álvaro Obregón en Roma y la Avenida Ámsterdam en Condesa concentran grupos de tiendas con un interés compartido en el tránsito peatonal y el espacio público. La cámara de comercio y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital, y la cultura de comida callejera de la ciudad da a los pequeños operadores una barrera de entrada famosamente baja. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de vendedores de mercado. Crear un Origin de pequeñas empresas aquí es realista: una mesa redonda mensual en un café o fonda de barrio, con temas rotativos como renta, seguros y pagos digitales, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
   },
   ideaPage: {
     intro:
@@ -442,14 +442,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: '¿Cómo encuentro una comunidad en la Ciudad de México?',
+      question: '¿Cómo encuentro un Origin en la Ciudad de México?',
       answer:
-        'Empieza por las páginas de tipos de grupo: comunidades de startups, creativas, políticas, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los residentes. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu comunidad hoy mismo.',
+        'Empieza por las páginas de tipos de grupo: Origins de startups, creativos, políticos, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los residentes. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu Origin hoy mismo.',
     },
     {
-      question: '¿Es realista crear una comunidad en la Ciudad de México?',
+      question: '¿Es realista crear un Origin en la Ciudad de México?',
       answer:
-        'Sí. La ciudad tiene lugares públicos gratuitos, una población vasta y curiosa y una rica cultura de reunión. Las guías cubren cómo crear una comunidad, organizar un encuentro y conseguir tus primeros diez miembros.',
+        'Sí. La ciudad tiene lugares públicos gratuitos, una población vasta y curiosa y una rica cultura de reunión. Las guías cubren cómo crear un Origin, organizar un encuentro y conseguir tus primeros diez miembros.',
     },
     {
       question: '¿Las sugerencias de lugares de esta página son reales?',
@@ -459,7 +459,7 @@ const content: CityContent = {
     {
       question: '¿JoinOrigin tiene una oficina en la Ciudad de México?',
       answer:
-        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los residentes a encontrar o crear comunidades.',
+        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los residentes a encontrar o crear Origins.',
     },
   ],
 };

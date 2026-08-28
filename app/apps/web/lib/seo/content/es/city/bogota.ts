@@ -13,40 +13,40 @@ const content: CityContent = {
   kind: 'city',
   locale: 'es',
   slug: 'bogota',
-  title: 'Comunidades en Bogotá | JoinOrigin',
+  title: 'Origins en Bogotá | JoinOrigin',
   description:
-    'Encuentra o crea comunidades en Bogotá — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+    'Encuentra o crea Origins en Bogotá — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
   pageTitles: {
-    city: 'Comunidades en Bogotá | JoinOrigin',
+    city: 'Origins en Bogotá | JoinOrigin',
     cityDescription:
-      'Encuentra o crea comunidades en Bogotá — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
+      'Encuentra o crea Origins en Bogotá — grupos de startups, creativos, políticos, encuentros y pequeñas empresas. Únete a la lista de espera de JoinOrigin.',
     variants: {
-      startup: 'Comunidades de startups en Bogotá | JoinOrigin',
-      creative: 'Comunidades creativas y de diseño en Bogotá | JoinOrigin',
-      political: 'Comunidades políticas y cívicas en Bogotá | JoinOrigin',
+      startup: 'Origins de startups en Bogotá | JoinOrigin',
+      creative: 'Origins creativos y de diseño en Bogotá | JoinOrigin',
+      political: 'Origins políticos y cívicos en Bogotá | JoinOrigin',
       meetup: 'Encuentros y eventos comunitarios en Bogotá | JoinOrigin',
-      'small-business': 'Comunidades de pequeñas empresas en Bogotá | JoinOrigin',
+      'small-business': 'Origins de pequeñas empresas en Bogotá | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        'Encuentra o crea comunidades de startups en Bogotá — fundadores, constructores y equipos tempranos en Chapinero y Zona G. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de startups en Bogotá — fundadores, constructores y equipos tempranos en Chapinero y Zona G. Lista de espera de JoinOrigin.',
       creative:
-        'Encuentra o crea comunidades creativas y de diseño en Bogotá — estudios, galerías y arte callejero en La Candelaria, Chapinero y Teusaquillo. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins creativos y de diseño en Bogotá — estudios, galerías y arte callejero en La Candelaria, Chapinero y Teusaquillo. Lista de espera de JoinOrigin.',
       political:
-        'Encuentra o crea comunidades políticas y cívicas en Bogotá — vivienda, movilidad, paz y memoria. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins políticos y cívicos en Bogotá — vivienda, movilidad, paz y memoria. Lista de espera de JoinOrigin.',
       meetup:
         'Encuentra o crea encuentros y eventos comunitarios en Bogotá — paseos en ciclovía, picnics en el parque y sociales de café. Lista de espera de JoinOrigin.',
       'small-business':
-        'Encuentra o crea comunidades de pequeñas empresas en Bogotá — panaderías, cafés, artesanos de Usaquén y boutiques de Chapinero. Lista de espera de JoinOrigin.',
+        'Encuentra o crea Origins de pequeñas empresas en Bogotá — panaderías, cafés, artesanos de Usaquén y boutiques de Chapinero. Lista de espera de JoinOrigin.',
     },
-    ideas: '30 ideas de eventos comunitarios en Bogotá | JoinOrigin',
+    ideas: '30 ideas de eventos de Origins en Bogotá | JoinOrigin',
     ideasDescription:
       '30 ideas realistas para eventos comunitarios en Bogotá — networking, aprendizaje, sociales y exteriores, profesionales, creativos e impacto. Para tu próximo evento.',
   },
   intro: [
     'Bogotá es la capital de Colombia y una ciudad de unos 7,7 millones de habitantes — con más de diez millones en el área metropolitana — situada a 2.640 metros sobre el nivel del mar en una altiplanicie andina. La altitud moldea la vida diaria: el aire es fino, el sol es fuerte y la lluvia llega en ráfagas agudas por la tarde, por lo que los locales planifican las reuniones en torno al clima y al famosamente eficiente sistema de buses TransMilenio de la ciudad.',
     'Bogotá es la capital económica y de startups de Colombia: empresas como Rappi nacieron aquí, y la escena de Chapinero, la Zona G y el centro de la ciudad mezcla fundadores, ingenieros y diseñadores de todo el país. La ciudad es también una potencia cultural: el Museo del Oro, el Museo Botero, el grafiti de La Candelaria y la ciclovía dominical, cuando cien kilómetros de calles se cierran a los autos para ciclistas y caminantes. La Universidad de los Andes, la Javeriana y la Universidad Nacional alimentan flujos constantes de estudiantes e investigadores hacia las comunidades locales.',
-    'La ciudad se ha transformado en las últimas décadas y sus habitantes están orgullosos de esa historia: los carriles de bicicleta, las bibliotecas públicas y los programas comunitarios son partes reales de la vida diaria. Para encontrar o crear una comunidad, Bogotá recompensa presentarse con constancia, elegir un barrio y construir un grupo que coincida con la energía de la ciudad y su estilo social cálido y directo.',
+    'La ciudad se ha transformado en las últimas décadas y sus habitantes están orgullosos de esa historia: los carriles de bicicleta, las bibliotecas públicas y los programas comunitarios son partes reales de la vida diaria. Para encontrar o crear un Origin, Bogotá recompensa presentarse con constancia, elegir un barrio y construir un grupo que coincida con la energía de la ciudad y su estilo social cálido y directo.',
   ],
   dataPoints: [
     'Unos 7,7 millones de habitantes; más de 10 millones en el área metropolitana.',
@@ -170,15 +170,15 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      'La escena de startups de Bogotá es la más grande de Colombia y una de las más dinámicas de América Latina, construida sobre un mercado de consumo en crecimiento y una ola de empresas de fintech, logística y marketplaces — incluida Rappi, que nació aquí. Chapinero y la Zona G concentran la mayor densidad de espacios de coworking y startups respaldadas por capital de riesgo, el centro ancla la capa corporativa y universidades como Los Andes y la Javeriana alimentan año tras año a fundadores e ingenieros. Lo que hace distintiva a la escena es su resiliencia y su ambición regional: las startups colombianas piensan en todo el continente desde temprano, y la mejora de la infraestructura y la clase media creciente de la ciudad respaldan a las empresas orientadas al consumo. La ciudad es también un imán para el talento de toda Colombia, lo que la convierte en un auténtico hub nacional. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear una comunidad de startups en Bogotá: elige una vertical, ancla a un barrio y planifica en torno al tráfico y la lluvia: un evento semanal constante en un coworking de Chapinero construirá seguidores leales.',
+      'La escena de startups de Bogotá es la más grande de Colombia y una de las más dinámicas de América Latina, construida sobre un mercado de consumo en crecimiento y una ola de empresas de fintech, logística y marketplaces — incluida Rappi, que nació aquí. Chapinero y la Zona G concentran la mayor densidad de espacios de coworking y startups respaldadas por capital de riesgo, el centro ancla la capa corporativa y universidades como Los Andes y la Javeriana alimentan año tras año a fundadores e ingenieros. Lo que hace distintiva a la escena es su resiliencia y su ambición regional: las startups colombianas piensan en todo el continente desde temprano, y la mejora de la infraestructura y la clase media creciente de la ciudad respaldan a las empresas orientadas al consumo. La ciudad es también un imán para el talento de toda Colombia, lo que la convierte en un auténtico hub nacional. Los formatos consolidados incluyen desayunos de fundadores, noches de demo y paneles de la industria, muchos de ellos gratuitos y abiertos. Consejo honesto para crear un Origin de startups en Bogotá: elige una vertical, ancla a un barrio y planifica en torno al tráfico y la lluvia: un evento semanal constante en un coworking de Chapinero construirá seguidores leales.',
     creative:
-      'Las comunidades creativas de Bogotá se impulsan con la extraordinaria cultura de arte público de la ciudad: las paredes de La Candelaria son un lienzo para algunos de los mejores artistas callejeros del mundo, y la escena de grafiti de la ciudad ha logrado reconocimiento internacional. El centro histórico alberga galerías, museos y centros culturales — el Museo del Oro y el Museo Botero anclan una escena artística seria — mientras que Chapinero y Teusaquillo acogen estudios, oficinas de diseño y teatros independientes. El mercado de artesanos y las plazas de Usaquén mantienen vivas las artesanías tradicionales, y las escenas de salsa y música de la ciudad dan a los creativos un ritmo social natural. La ciclovía dominical convierte la ciudad en un escenario, y festivales como el Festival Iberoamericano de Teatro atraen artistas de todas partes. Universidades como Los Andes y la Nacional aportan nuevo talento cada año. Crear una comunidad creativa en Bogotá significa elegir una disciplina y un barrio, y luego usar la profunda infraestructura cultural de la ciudad y su audiencia orgullosa y expresiva para construir algo con impacto real.',
+      'Las comunidades creativas de Bogotá se impulsan con la extraordinaria cultura de arte público de la ciudad: las paredes de La Candelaria son un lienzo para algunos de los mejores artistas callejeros del mundo, y la escena de grafiti de la ciudad ha logrado reconocimiento internacional. El centro histórico alberga galerías, museos y centros culturales — el Museo del Oro y el Museo Botero anclan una escena artística seria — mientras que Chapinero y Teusaquillo acogen estudios, oficinas de diseño y teatros independientes. El mercado de artesanos y las plazas de Usaquén mantienen vivas las artesanías tradicionales, y las escenas de salsa y música de la ciudad dan a los creativos un ritmo social natural. La ciclovía dominical convierte la ciudad en un escenario, y festivales como el Festival Iberoamericano de Teatro atraen artistas de todas partes. Universidades como Los Andes y la Nacional aportan nuevo talento cada año. Crear un Origin creativo en Bogotá significa elegir una disciplina y un barrio, y luego usar la profunda infraestructura cultural de la ciudad y su audiencia orgullosa y expresiva para construir algo con impacto real.',
     political:
-      'Las comunidades políticas y cívicas de Bogotá están moldeadas por la historia reciente de Colombia y por la propia transformación de la ciudad: la construcción de paz, la memoria, la vivienda y la movilidad son los temas que animan la organización local. La ciudad tiene una fuerte tradición de participación ciudadana — desde los famosos movimientos ciudadanos de los años 90 hasta las asambleas barriales de hoy — y el gobierno distrital ha invertido mucho en bibliotecas públicas, parques e infraestructura de bicicletas, lo que da a los organizadores activos reales con los que trabajar. La asequibilidad de la vivienda y el desplazamiento organizan grupos de inquilinos y fideicomisos de tierra comunitarios, mientras que los defensores del transporte y la movilidad impulsan la extensión del TransMilenio y la red de bicicletas. Las universidades de la ciudad dan a la vida cívica una energía intelectual, y las comunidades de civic tech construyen herramientas para datos abiertos y participación. La cultura política recompensa la persistencia, la construcción de confianza y un compromiso genuino con la comunidad. Crear una comunidad cívica en Bogotá suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con el rico paisaje existente de organizaciones.',
+      'Las comunidades políticas y cívicas de Bogotá están moldeadas por la historia reciente de Colombia y por la propia transformación de la ciudad: la construcción de paz, la memoria, la vivienda y la movilidad son los temas que animan la organización local. La ciudad tiene una fuerte tradición de participación ciudadana — desde los famosos movimientos ciudadanos de los años 90 hasta las asambleas barriales de hoy — y el gobierno distrital ha invertido mucho en bibliotecas públicas, parques e infraestructura de bicicletas, lo que da a los organizadores activos reales con los que trabajar. La asequibilidad de la vivienda y el desplazamiento organizan grupos de inquilinos y fideicomisos de tierra comunitarios, mientras que los defensores del transporte y la movilidad impulsan la extensión del TransMilenio y la red de bicicletas. Las universidades de la ciudad dan a la vida cívica una energía intelectual, y las comunidades de civic tech construyen herramientas para datos abiertos y participación. La cultura política recompensa la persistencia, la construcción de confianza y un compromiso genuino con la comunidad. Crear un Origin cívico en Bogotá suele significar elegir un tema concreto y una geografía pequeña, y luego aliarse con el rico paisaje existente de organizaciones.',
     meetup:
       'La cultura de encuentros de Bogotá se construye en torno a la ciclovía dominical — cuando cien kilómetros de calles se cierran a los autos y la ciudad se llena de ciclistas, corredores y caminantes — y en torno a los parques, plazas y mercados que anclan la vida diaria. El parque Simón Bolívar acoge picnics y carreras, la plaza de Usaquén se llena de un mercado de artesanos los fines de semana, y los cafés y patios de La Candelaria albergan las reuniones más encantadoras de la ciudad. El TransMilenio hace práctico viajar por toda la ciudad, y la población joven y enérgica de la ciudad significa que siempre hay demanda de nuevos grupos. El clima de Bogotá — mañanas soleadas, tardes lluviosas — da forma al calendario: los formatos de mañana y noche funcionan mejor, y un buen plan para la lluvia mantiene leales a los grupos. Los formatos con poder de permanencia son simples y repetibles: un paseo dominical, una caminata mensual por el mercado, una noche de trivia fija. Consejo honesto para crear un encuentro aquí: elige un barrio, un lugar accesible en TransMilenio y un plan para la lluvia, y la energía cálida y sociable de la ciudad hará el trabajo de crecimiento.',
     'small-business':
-      'Las comunidades de pequeñas empresas de Bogotá son la textura de las calles de la ciudad: la panadería, el café, el artesano de Usaquén, la boutique de Chapinero y el tendero de La Candelaria comparten preguntas prácticas sobre alquiler, permisos, personal y el flujo de clientes. Los mercados de artesanos y las plazas de barrio dan a los vendedores comunidades naturales, y los corredores comerciales de Chapinero, la Zona G y Usaquén concentran grupos de tiendas con un interés compartido en el tránsito peatonal. Las asociaciones comerciales y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital, y la creciente cultura turística y gastronómica de la ciudad mantiene la apertura de nuevos negocios — desde tostadores de café de especialidad hasta cervecerías artesanales que han convertido a Bogotá en un destino para visitantes amantes de la comida. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de mercado de artesanos. Crear una comunidad de pequeñas empresas aquí es realista: una mesa redonda mensual en un café de barrio, con temas rotativos como alquiler, seguros y pagos digitales, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
+      'Las comunidades de pequeñas empresas de Bogotá son la textura de las calles de la ciudad: la panadería, el café, el artesano de Usaquén, la boutique de Chapinero y el tendero de La Candelaria comparten preguntas prácticas sobre alquiler, permisos, personal y el flujo de clientes. Los mercados de artesanos y las plazas de barrio dan a los vendedores comunidades naturales, y los corredores comerciales de Chapinero, la Zona G y Usaquén concentran grupos de tiendas con un interés compartido en el tránsito peatonal. Las asociaciones comerciales y los centros de pequeñas empresas de la ciudad ofrecen talleres sobre licencias, préstamos y venta digital, y la creciente cultura turística y gastronómica de la ciudad mantiene la apertura de nuevos negocios — desde tostadores de café de especialidad hasta cervecerías artesanales que han convertido a Bogotá en un destino para visitantes amantes de la comida. Los recién llegados suelen conectarse asistiendo a una reunión de corredor, tomando un taller de la ciudad o uniéndose a un colectivo de mercado de artesanos. Crear un Origin de pequeñas empresas aquí es realista: una mesa redonda mensual en un café de barrio, con temas rotativos como alquiler, seguros y pagos digitales, atrae de forma fiable a dueños que rara vez tienen pares con quienes hablar.',
   },
   ideaPage: {
     intro:
@@ -442,14 +442,14 @@ const content: CityContent = {
   },
   faq: [
     {
-      question: '¿Cómo encuentro una comunidad en Bogotá?',
+      question: '¿Cómo encuentro un Origin en Bogotá?',
       answer:
-        'Empieza por las páginas de tipos de grupo: comunidades de startups, creativas, políticas, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los residentes. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu comunidad hoy mismo.',
+        'Empieza por las páginas de tipos de grupo: Origins de startups, creativos, políticos, de encuentros y de pequeñas empresas. Cada una describe los barrios, lugares y formatos reales donde se reúnen los residentes. JoinOrigin está en marcha: crea tu perfil y encuentra o crea tu Origin hoy mismo.',
     },
     {
-      question: '¿Es realista crear una comunidad en Bogotá?',
+      question: '¿Es realista crear un Origin en Bogotá?',
       answer:
-        'Sí. La ciudad tiene lugares públicos gratuitos, una población joven y enérgica y una fuerte cultura cívica. Las guías cubren cómo crear una comunidad, organizar un encuentro y conseguir tus primeros diez miembros.',
+        'Sí. La ciudad tiene lugares públicos gratuitos, una población joven y enérgica y una fuerte cultura cívica. Las guías cubren cómo crear un Origin, organizar un encuentro y conseguir tus primeros diez miembros.',
     },
     {
       question: '¿Las sugerencias de lugares de esta página son reales?',
@@ -459,7 +459,7 @@ const content: CityContent = {
     {
       question: '¿JoinOrigin tiene una oficina en Bogotá?',
       answer:
-        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los residentes a encontrar o crear comunidades.',
+        'No. JoinOrigin no tiene oficinas ni personal locales. Todas las descripciones de comunidades reflejan el paisaje real de la ciudad, y la plataforma ayuda a los residentes a encontrar o crear Origins.',
     },
   ],
 };

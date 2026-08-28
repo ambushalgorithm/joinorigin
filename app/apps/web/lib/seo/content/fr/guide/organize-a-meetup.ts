@@ -21,14 +21,14 @@ const content: GuideContent = {
     'Organisez un meetup une fois votre groupe formé — qu’il ait été fondé le mois dernier ou qu’il se réunisse depuis des années — choisissez un format, réservez un lieu, construisez un ordre du jour, faites-en la promotion et animez la soirée. Une liste de contrôle pratique de JoinOrigin.',
   intro: [
     'Un meetup est un événement récurrent en présentiel où les gens se rassemblent autour d’un intérêt partagé — et sur JoinOrigin, c’est une étape naturelle après avoir communiqué dans le salon. Le chemin numérique vient d’abord : les gens trouvent et rejoignent un groupe via un lien, et le salon du groupe devient l’endroit où les membres discutent, planifient et restent connectés entre les rassemblements. Le meetup en présentiel est l’étape suivante de cette communauté formée — que le groupe ait été fondé le mois dernier ou se réunisse informellement depuis des années, le salon lui donne un foyer organisé d’où un meetup peut naître.',
-    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver des communautés à rejoindre et à créer les leurs — donc un meetup a un foyer où les membres intéressés peuvent découvrir le groupe, rejoindre son salon et coordonner le rassemblement au lieu de dépendre de la liste de contacts d’une seule personne. JoinOrigin ne réserve pas de lieux et n’organise pas d’événements — l’objectif entier de la plateforme est de connecter des personnes qui partagent un intérêt, et le rassemblement lui-même vous appartient.',
+    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver des Origins à rejoindre et à créer les leurs — donc un meetup a un foyer où les membres intéressés peuvent découvrir le groupe, rejoindre son salon et coordonner le rassemblement au lieu de dépendre de la liste de contacts d’une seule personne. JoinOrigin ne réserve pas de lieux et n’organise pas d’événements — l’objectif entier de la plateforme est de connecter des personnes qui partagent un intérêt, et le rassemblement lui-même vous appartient.',
     'Ce guide couvre le cycle de vie complet d’un meetup une fois le groupe existant — pour un groupe nouvellement formé comme pour un groupe qui se réunit depuis des années : choisir un format adapté à votre public, trouver et réserver un lieu sans exploser le budget, construire un ordre du jour avec un début et une fin clairs, promouvoir l’événement là où votre public regarde réellement, et animer la soirée pour que les participants aient envie de la suivante. Chaque étape inclut une note sur la façon dont JoinOrigin aide — et la première étape concerne le groupe numérique, car sans groupe et sans salon, il n’y a pas de communauté à réunir.',
   ],
   dataPoints: [
     'Un meetup simple n’a besoin que de trois choses : un format, un lieu et un canal de promotion.',
     'Les meetups du soir en semaine et les séances du week-end matin sont les formats récurrents les plus courants.',
     'La plupart des lieux — bibliothèques, cafés, espaces de coworking — offrent des espaces gratuits ou à faible coût pour les événements communautaires.',
-    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver ou créer des communautés ; il ne réserve pas de lieux et n’organise pas d’événements.',
+    'JoinOrigin est un système d’exploitation communautaire conçu pour aider les personnes à trouver ou créer des Origins ; il ne réserve pas de lieux et n’organise pas d’événements.',
   ],
   faq: [
     {
@@ -49,7 +49,7 @@ const content: GuideContent = {
     {
       question: 'JoinOrigin peut-il m’aider à organiser des meetups ?',
       answer:
-        'Oui. JoinOrigin aide les personnes à trouver et à créer des communautés — un foyer numérique organisé où le salon d’un groupe est l’endroit où les membres se coordonnent et où un meetup peut être découvert. JoinOrigin n’organise pas les événements lui-même, donc les étapes pratiques de ce guide vous appartiennent.',
+        'Oui. JoinOrigin aide les personnes à trouver et à créer des Origins — un foyer numérique organisé où le salon d’un groupe est l’endroit où les membres se coordonnent et où un meetup peut être découvert. JoinOrigin n’organise pas les événements lui-même, donc les étapes pratiques de ce guide vous appartiennent.',
     },
   ],
   sections: [
