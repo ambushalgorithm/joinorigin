@@ -11,7 +11,7 @@ const content: CityContent = {
   locale: 'de',
   slug: 'munich',
   pageTitles: {
-    city: 'Communities in München | JoinOrigin',
+    city: 'Origins in München | JoinOrigin',
     cityDescription:
       'Finde oder gründe Communities in München – Startup, Kreativ, politisch, Meetup und Kleinunternehmen in der bayerischen Landeshauptstadt. JoinOrigin-Warteliste.',
     variants: {
@@ -33,7 +33,7 @@ const content: CityContent = {
       'small-business':
         'Finde oder gründe Kleinunternehmer-Communities in München – Händler am Viktualienmarkt, Handwerksbetriebe und Nachbarschafts-Läden. JoinOrigin-Warteliste.',
     },
-    ideas: '30 Ideen für Community-Events in München | JoinOrigin',
+    ideas: '30 Ideen für Origin-Events in München | JoinOrigin',
     ideasDescription:
       'Entdecke 30 Ideen für Community-Events in München – Networking, Lernen, Draußen, Beruf, Kreativ & Impact. JoinOrigin-Warteliste.',
   },

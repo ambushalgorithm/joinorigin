@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'india',
-  title: 'Communities in India | JoinOrigin',
+  title: 'Origins in India | JoinOrigin',
   description:
     'Find or start communities in India — startup hubs in Bengaluru, Delhi, Mumbai, and Hyderabad, plus creative, civic, and small business networks. JoinOrigin helps you get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in India?',
+      question: 'How do I find Origins in India?',
       answer:
-        'Start at the /location hub and choose a city such as Bengaluru or Delhi, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Professional groups also post regularly on LinkedIn and messaging platforms.',
+        'Start at the /location hub and choose a city such as Bengaluru or Delhi, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Professional groups also post regularly on LinkedIn and messaging platforms.',
     },
     {
       question: 'Which Indian cities have the most active startup communities?',

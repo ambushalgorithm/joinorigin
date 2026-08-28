@@ -10,7 +10,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'british-columbia',
-  title: 'Communities in British Columbia | JoinOrigin',
+  title: 'Origins in British Columbia | JoinOrigin',
   description:
     'Find or start communities in British Columbia — startup, creative, political, meetup, and small business groups across the province. Join Origin and get discovered.',
   intro:

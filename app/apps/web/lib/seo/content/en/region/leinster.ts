@@ -12,7 +12,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'leinster',
-  title: 'Communities in Leinster | JoinOrigin',
+  title: 'Origins in Leinster | JoinOrigin',
   description:
     'Find or start communities in Leinster — from Dublin’s startup scenes to local clubs and associations across the province. Join Origin and get discovered.',
   intro:

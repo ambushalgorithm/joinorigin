@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'peru',
-  title: 'Communities in Peru | JoinOrigin',
+  title: 'Origins in Peru | JoinOrigin',
   description:
     'Find or start communities in Peru — from Lima startup groups to creative and small business networks across the coast, highlands, and jungle. Join Origin and get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Peru?',
+      question: 'How do I find Origins in Peru?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local universities, regional associations, markets, and cultural centers are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local universities, regional associations, markets, and cultural centers are also good starting points for offline groups.',
     },
     {
       question: "How do Peru's regions shape community life?",

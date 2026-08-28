@@ -11,7 +11,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'catalonia',
-  title: 'Communities in Catalonia | JoinOrigin',
+  title: 'Origins in Catalonia | JoinOrigin',
   description:
     'Find or start communities in Catalonia — from Barcelona’s startup and creative scenes to towns across the region. Join Origin and get discovered.',
   intro:

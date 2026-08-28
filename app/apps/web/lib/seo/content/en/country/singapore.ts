@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'singapore',
-  title: 'Communities in Singapore | JoinOrigin',
+  title: 'Origins in Singapore | JoinOrigin',
   description:
     'Find or start communities in Singapore — startup meetups, creative collectives, and neighbourhood groups in a compact city-state. JoinOrigin helps you get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Singapore?',
+      question: 'How do I find Origins in Singapore?',
       answer:
-        'Start at the /location hub and choose the Singapore page, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Event platforms and community club listings also cover most gatherings.',
+        'Start at the /location hub and choose the Singapore page, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Event platforms and community club listings also cover most gatherings.',
     },
     {
       question: "What are Residents' Committees and can I join one?",

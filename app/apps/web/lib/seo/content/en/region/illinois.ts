@@ -11,7 +11,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'illinois',
-  title: 'Communities in Illinois | JoinOrigin',
+  title: 'Origins in Illinois | JoinOrigin',
   description:
     'Find or start communities in Illinois — from Chicago’s startup and arts scenes to university and small-town networks across the state. Join Origin and get discovered.',
   intro:

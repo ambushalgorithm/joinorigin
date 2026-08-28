@@ -57,9 +57,7 @@ async function renderHubPage() {
 
 describe('/location hub page', () => {
   it('exports registry-derived metadata with canonical at /en/location + robots', () => {
-    expect(metadata.title).toBe(
-      'Communities by City — Find or Start a Community Near You | JoinOrigin',
-    );
+    expect(metadata.title).toBe('Origins by City — Find or Start an Origin Near You | JoinOrigin');
     expect(metadata.alternates?.canonical).toBe('http://localhost:3100/en/location');
     expect(metadata.robots).toEqual({ index: true, follow: true });
     expect(metadata.openGraph?.url).toBe('http://localhost:3100/en/location');
@@ -121,7 +119,7 @@ describe('/location hub page', () => {
     // Full indexable set rendered initially (registry-driven).
     const directory = screen.getByTestId('location-hub-directory');
     expect(within(directory).getByText('Origins in Berlin')).toBeInTheDocument();
-    expect(within(directory).getByText('Communities in the United States')).toBeInTheDocument();
+    expect(within(directory).getByText('Origins in the United States')).toBeInTheDocument();
   });
 
   it('filters the directory by keyword, case-insensitively, after the debounce (TASK-317)', async () => {
@@ -135,9 +133,7 @@ describe('/location hub page', () => {
     await waitFor(() => {
       const directory = screen.getByTestId('location-hub-directory');
       expect(within(directory).getByText('Origins in Berlin')).toBeInTheDocument();
-      expect(
-        within(directory).queryByText('Communities in the United States'),
-      ).not.toBeInTheDocument();
+      expect(within(directory).queryByText('Origins in the United States')).not.toBeInTheDocument();
     });
 
     // Case-insensitive: uppercase query matches lowercase entries.
@@ -266,7 +262,7 @@ describe('/location hub page', () => {
       ),
     ).toBeInTheDocument();
 
-    // ExploreLinks row — Locations/Guides/Community accent links on the EN
+    // ExploreLinks row — Locations/Guides/Network accent links on the EN
     // all-routes-prefixed surface (TASK-466/469).
     const explore = within(screen.getByTestId('location-inventory-explore'));
     expect(explore.getByRole('link', { name: 'Locations' })).toHaveAttribute(
@@ -274,10 +270,7 @@ describe('/location hub page', () => {
       '/en/location',
     );
     expect(explore.getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/en/guides');
-    expect(explore.getByRole('link', { name: 'Community' })).toHaveAttribute(
-      'href',
-      '/en/community',
-    );
+    expect(explore.getByRole('link', { name: 'Network' })).toHaveAttribute('href', '/en/network');
   });
 });
 

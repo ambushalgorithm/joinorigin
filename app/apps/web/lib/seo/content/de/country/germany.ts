@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'de',
   slug: 'germany',
-  title: 'Communities in Deutschland | JoinOrigin',
+  title: 'Origins in Deutschland | JoinOrigin',
   description:
     'Finde oder gründe Communities in Deutschland – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
   intro:

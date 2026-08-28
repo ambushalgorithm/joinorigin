@@ -10,7 +10,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'atlantico',
-  title: 'Communities in Atlántico | JoinOrigin',
+  title: 'Origins in Atlántico | JoinOrigin',
   description:
     'Find or start communities in Atlántico — startup, creative, political, meetup, and small business groups on Colombia’s Caribbean coast. Join Origin and get discovered.',
   intro:

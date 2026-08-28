@@ -12,7 +12,7 @@ const content: CountryContent = {
   locale: 'en',
   slug: 'morocco',
   intro:
-    'Morocco is a North African country of roughly 36 million people, where Arabic, Amazigh (Berber), and French mix in daily life and shape a layered, multilingual community culture. Rabat is the capital, while Casablanca is the economic engine and largest city, and Fes, Marrakesh, and Tangier carry deep histories as centers of craft, trade, and hospitality. Community life runs through the café — the daily ritual of coffee, tea, and conversation that anchors neighborhoods from the medina to the modern boulevards — alongside the souks, mosques, and hammams that have organized social life for centuries. The country’s startup scene has grown steadily, centered on Casablanca’s Technopark and a spreading network of coworking hubs and accelerators, and universities including Hassan II University and Université Mohammed VI supply a young, educated workforce. Darija, the Moroccan Arabic dialect, and French mix freely in professional life, which makes the country’s groups naturally bilingual. For anyone looking to find or start a community, Morocco rewards choosing a district, respecting the café rhythm, and committing to a regular event — the country’s culture of hospitality makes newcomers welcome quickly.',
+    'Morocco is a North African country of roughly 36 million people, where Arabic, Amazigh (Berber), and French mix in daily life and shape a layered, multilingual community culture. Rabat is the capital, while Casablanca is the economic engine and largest city, and Fes, Marrakesh, and Tangier carry deep histories as centers of craft, trade, and hospitality. Community life runs through the café — the daily ritual of coffee, tea, and conversation that anchors neighborhoods from the medina to the modern boulevards — alongside the souks, mosques, and hammams that have organized social life for centuries. The country’s startup scene has grown steadily, centered on Casablanca’s Technopark and a spreading network of coworking hubs and accelerators, and universities including Hassan II University and Université Mohammed VI supply a young, educated workforce. Darija, the Moroccan Arabic dialect, and French mix freely in professional life, which makes the country’s groups naturally bilingual. For anyone looking to find or start an Origin, Morocco rewards choosing a district, respecting the café rhythm, and committing to a regular event — the country’s culture of hospitality makes newcomers welcome quickly.',
   dataPoints: [
     'Population of roughly 36 million in North Africa.',
     'Capital is Rabat; Casablanca is the economic capital and largest city.',
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Morocco?',
+      question: 'How do I find Origins in Morocco?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Neighborhood cafés, cultural centers, and coworking hubs are also strong starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Neighborhood cafés, cultural centers, and coworking hubs are also strong starting points for offline groups.',
     },
     {
       question: 'Which languages do communities in Morocco use?',

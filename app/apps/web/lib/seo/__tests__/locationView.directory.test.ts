@@ -100,7 +100,7 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
     const regionNames = deIp
       .filter((entry) => entry.section === 'regions')
       .map((entry) => entry.name);
-    expect(regionNames[0]).toBe('Communities in Bavaria');
+    expect(regionNames[0]).toBe('Origins in Bavaria');
     expect(regionNames[1]).toBe('Origins in Berlin, Germany');
     // Community types + event ideas rank via their city's country.
     const types = deIp
@@ -115,7 +115,7 @@ describe('lib/seo locationView — TASK-480 flagship list + 5-section directory'
     const cityNames = deLocale
       .filter((entry) => entry.section === 'cities')
       .map((entry) => entry.name);
-    expect(cityNames[0]).toBe('Communities in Berlin');
+    expect(cityNames[0]).toBe('Origins in Berlin');
     expect(cityNames[1]).toBe('Origins in Munich, Bavaria');
   });
 
@@ -291,7 +291,7 @@ describe('lib/seo locationView — TASK-482 flagship/start-local + browse-locati
     const directory = hubDirectoryEntries('de', 'DE');
     assertSectionOrder(directory, localeCountryCodes('de'), 'DE');
     const cities = directory.filter((entry) => entry.section === 'cities');
-    expect(cities[0].name).toBe('Communities in Berlin');
+    expect(cities[0].name).toBe('Origins in Berlin');
     expect(cities[0].countryIso2).toBe('DE');
   });
 
@@ -456,7 +456,7 @@ describe('lib/seo locationView — TASK-484 complete content-rich inventory + se
     // EN card title ("Origins in Colombia" would NOT match "colombia"
     // on name alone — it matches via the searchText country name).
     const country = matches.find((entry) => entry.section === 'countries');
-    expect(country?.name).toBe('Communities in Colombia');
+    expect(country?.name).toBe('Origins in Colombia');
     // All 3 Colombian content-rich cities resolve through the country name.
     const cities = matches.filter((entry) => entry.section === 'cities').map((entry) => entry.name);
     expect(cities).toContain('Origins in Bogota, Bogota D.C.');
@@ -473,7 +473,7 @@ describe('lib/seo locationView — TASK-484 complete content-rich inventory + se
     const directory = hubDirectoryEntries('en');
     const matches = filterByKeyword(directory, 'italy', (entry) => entry.searchText);
     const country = matches.find((entry) => entry.section === 'countries');
-    expect(country?.name).toBe('Communities in Italy');
+    expect(country?.name).toBe('Origins in Italy');
     const cities = matches.filter((entry) => entry.section === 'cities').map((entry) => entry.name);
     expect(cities).toEqual(['Origins in Milan, Lombardy']);
     // Milan's 5 community types + ideas page resolve through the country name.

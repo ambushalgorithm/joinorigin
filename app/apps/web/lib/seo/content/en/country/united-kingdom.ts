@@ -10,7 +10,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'united-kingdom',
-  title: 'Communities in the United Kingdom | JoinOrigin',
+  title: 'Origins in the United Kingdom | JoinOrigin',
   description:
     'Find or start communities in the United Kingdom — from startup scenes in London to clubs, societies, and small business networks nationwide. Join Origin and get discovered.',
   intro:
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in the United Kingdom?',
+      question: 'How do I find Origins in the United Kingdom?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local clubs, libraries, and community centers are also strong starting points.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local clubs, libraries, and community centers are also strong starting points.',
     },
     {
       question: 'Can I start a community in a UK city?',

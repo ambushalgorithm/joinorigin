@@ -10,7 +10,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'france',
-  title: 'Communities in France | JoinOrigin',
+  title: 'Origins in France | JoinOrigin',
   description:
     'Find or start communities in France — from startup scenes in Paris to associations, cafés, and small business networks across the country. Join Origin and get discovered.',
   intro:
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in France?',
+      question: 'How do I find Origins in France?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local associations and maisons de quartier are also excellent offline starting points.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local associations and maisons de quartier are also excellent offline starting points.',
     },
     {
       question: 'What is an association loi 1901 and do I need one?',

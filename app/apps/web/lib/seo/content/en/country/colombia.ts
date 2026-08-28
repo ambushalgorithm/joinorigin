@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'colombia',
-  title: 'Communities in Colombia | JoinOrigin',
+  title: 'Origins in Colombia | JoinOrigin',
   description:
     'Find or start communities in Colombia — from Bogotá startup groups to Medellín innovation scenes and small business networks nationwide. Join Origin and get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Colombia?',
+      question: 'How do I find Origins in Colombia?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local universities, cultural centers, and neighborhood associations are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local universities, cultural centers, and neighborhood associations are also good starting points for offline groups.',
     },
     {
       question: 'What makes Colombian community culture distinctive?',

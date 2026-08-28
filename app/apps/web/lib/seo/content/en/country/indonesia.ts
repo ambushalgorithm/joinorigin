@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'indonesia',
-  title: 'Communities in Indonesia | JoinOrigin',
+  title: 'Origins in Indonesia | JoinOrigin',
   description:
     'Find or start communities in Indonesia — from the startup ecosystem in Jakarta to creative and small business networks across the archipelago. JoinOrigin helps you get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Indonesia?',
+      question: 'How do I find Origins in Indonesia?',
       answer:
-        'Start at the /location hub and choose the Jakarta page, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Many groups also coordinate through messaging apps and social media.',
+        'Start at the /location hub and choose the Jakarta page, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Many groups also coordinate through messaging apps and social media.',
     },
     {
       question: 'What does gotong royong mean for community life?',

@@ -12,11 +12,11 @@ const content: CityContent = {
   kind: 'city',
   locale: 'hi',
   slug: 'bengaluru',
-  title: 'Communities in Bengaluru | JoinOrigin',
+  title: 'Origins in Bengaluru | JoinOrigin',
   description:
     'बेंगलुरु में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
   pageTitles: {
-    city: 'Communities in Bengaluru | JoinOrigin',
+    city: 'Origins in Bengaluru | JoinOrigin',
     cityDescription:
       'बेंगलुरु में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
     variants: {
@@ -38,7 +38,7 @@ const content: CityContent = {
       'small-business':
         'बेंगलुरु में छोटे व्यवसाय समुदाय खोजें या शुरू करें — कमर्शियल स्ट्रीट, इंदिरानगर और जयनगर के व्यापारी। JoinOrigin से जुड़ें।',
     },
-    ideas: 'बेंगलुरु में 30 सामुदायिक कार्यक्रम विचार | JoinOrigin',
+    ideas: 'बेंगलुरु में 30 Origin कार्यक्रम विचार | JoinOrigin',
     ideasDescription:
       'बेंगलुरु में 30 सामुदायिक कार्यक्रम विचार — नेटवर्किंग, सीखने, सामाजिक और बाहरी, पेशेवर, क्रिएटिव और प्रभाव इवेंट।',
   },

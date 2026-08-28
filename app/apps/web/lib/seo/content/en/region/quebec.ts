@@ -10,7 +10,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'quebec',
-  title: 'Communities in Quebec | JoinOrigin',
+  title: 'Origins in Quebec | JoinOrigin',
   description:
     'Find or start communities in Quebec — startup, creative, political, meetup, and small business groups across the province. Join Origin and get discovered.',
   intro:

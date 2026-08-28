@@ -12,7 +12,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'madrid',
-  title: 'Communities in Madrid | JoinOrigin',
+  title: 'Origins in Madrid | JoinOrigin',
   description:
     'Find or start communities in the Community of Madrid — from the capital’s startup and creative scenes to towns across the region. Join Origin and get discovered.',
   intro:

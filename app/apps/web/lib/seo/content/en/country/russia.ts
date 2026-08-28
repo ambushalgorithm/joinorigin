@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Russia?',
+      question: 'How do I find Origins in Russia?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Libraries, clubs, and university boards are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Libraries, clubs, and university boards are also good starting points for offline groups.',
     },
     {
       question: 'What kinds of communities are most active?',

@@ -10,7 +10,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'rio-de-janeiro',
-  title: 'Communities in Rio de Janeiro | JoinOrigin',
+  title: 'Origins in Rio de Janeiro | JoinOrigin',
   description:
     'Find or start communities in Rio de Janeiro — startup, creative, political, meetup, and small business groups across the state. Join Origin and get discovered.',
   intro:

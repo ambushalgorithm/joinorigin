@@ -10,7 +10,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'spain',
-  title: 'Communities in Spain | JoinOrigin',
+  title: 'Origins in Spain | JoinOrigin',
   description:
     'Find or start communities in Spain — from startup scenes in Madrid and Barcelona to neighborhood associations and small business networks. Join Origin and get discovered.',
   intro:
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Spain?',
+      question: 'How do I find Origins in Spain?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local asociaciones de vecinos and cultural associations are also strong starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local asociaciones de vecinos and cultural associations are also strong starting points for offline groups.',
     },
     {
       question: 'Can I start a community in a Spanish city?',

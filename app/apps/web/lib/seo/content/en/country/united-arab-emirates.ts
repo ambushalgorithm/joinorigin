@@ -12,7 +12,7 @@ const content: CountryContent = {
   locale: 'en',
   slug: 'united-arab-emirates',
   intro:
-    'The United Arab Emirates is a federation of seven emirates along the Arabian Gulf — Abu Dhabi, Dubai, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah, and Fujairah — with Abu Dhabi as the federal capital and Dubai as the region’s most international city. Around nine and a half million people live in the country, and the large majority are expatriates from South Asia, Europe, Africa, the Middle East, and beyond, which makes community life here remarkably open: nearly everyone is new and looking to connect. Arabic is the official language while English serves as the working language of business, and the weekend runs Friday–Saturday. The economy is organized around free zones and global industries — DIFC for finance, DMCC for commodities, and Internet City and Media City for technology and media — each of which creates natural meeting places for professionals. Cultural anchors like Alserkal Avenue in Dubai and the Louvre Abu Dhabi on Saadiyat Island give the creative scene real venues, while malls, parks, beaches, and the long tradition of majlis hospitality host family and social life across all seven emirates. For anyone looking to find or start a community, the UAE rewards choosing an emirate and a district, then committing to a regular rhythm that the country’s dense, international population will amplify.',
+    'The United Arab Emirates is a federation of seven emirates along the Arabian Gulf — Abu Dhabi, Dubai, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah, and Fujairah — with Abu Dhabi as the federal capital and Dubai as the region’s most international city. Around nine and a half million people live in the country, and the large majority are expatriates from South Asia, Europe, Africa, the Middle East, and beyond, which makes community life here remarkably open: nearly everyone is new and looking to connect. Arabic is the official language while English serves as the working language of business, and the weekend runs Friday–Saturday. The economy is organized around free zones and global industries — DIFC for finance, DMCC for commodities, and Internet City and Media City for technology and media — each of which creates natural meeting places for professionals. Cultural anchors like Alserkal Avenue in Dubai and the Louvre Abu Dhabi on Saadiyat Island give the creative scene real venues, while malls, parks, beaches, and the long tradition of majlis hospitality host family and social life across all seven emirates. For anyone looking to find or start an Origin, the UAE rewards choosing an emirate and a district, then committing to a regular rhythm that the country’s dense, international population will amplify.',
   dataPoints: [
     'Federation of seven emirates with Abu Dhabi as the federal capital.',
     'Population of roughly nine and a half million; a large majority are expatriates.',
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in the United Arab Emirates?',
+      question: 'How do I find Origins in the United Arab Emirates?',
       answer:
-        'Use the /location hub to pick an emirate or city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. District cafés, free-zone event floors, and community centers are also reliable starting points for offline groups.',
+        'Use the /location hub to pick an emirate or city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. District cafés, free-zone event floors, and community centers are also reliable starting points for offline groups.',
     },
     {
       question: 'Do I need to speak Arabic to join a community?',

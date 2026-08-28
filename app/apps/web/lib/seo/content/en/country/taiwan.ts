@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'taiwan',
-  title: 'Communities in Taiwan | JoinOrigin',
+  title: 'Origins in Taiwan | JoinOrigin',
   description:
     'Find or start communities in Taiwan — from the startup and creative scenes in Taipei to maker, civic, and small business networks across the island. JoinOrigin helps you get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Taiwan?',
+      question: 'How do I find Origins in Taiwan?',
       answer:
-        'Start at the /location hub and choose the Taipei page, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local event platforms and university networks also list gatherings.',
+        'Start at the /location hub and choose the Taipei page, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local event platforms and university networks also list gatherings.',
     },
     {
       question: 'What is the night-market culture and how does it relate to community?',

@@ -20,9 +20,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Germany?',
+      question: 'How do I find Origins in Germany?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local Vereine and event platforms are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local Vereine and event platforms are also good starting points for offline groups.',
     },
     {
       question: 'What is a Stammtisch and how do I join one?',

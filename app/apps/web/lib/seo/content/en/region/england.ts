@@ -11,7 +11,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'england',
-  title: 'Communities in England | JoinOrigin',
+  title: 'Origins in England | JoinOrigin',
   description:
     'Find or start communities in England — from London’s startup scenes to clubs, societies, and small business networks across the country. Join Origin and get discovered.',
   intro:

@@ -22,9 +22,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Turkey?',
+      question: 'How do I find Origins in Turkey?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Tea houses, university clubs, and local foundations are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Tea houses, university clubs, and local foundations are also good starting points for offline groups.',
     },
     {
       question: 'What is the esnaf tradition and how does it shape communities?',

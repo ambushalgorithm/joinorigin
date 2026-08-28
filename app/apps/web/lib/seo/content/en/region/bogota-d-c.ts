@@ -12,7 +12,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'bogota-d-c',
-  title: 'Communities in Bogotá | JoinOrigin',
+  title: 'Origins in Bogotá | JoinOrigin',
   description:
     'Find or start communities in Bogotá — startup, creative, political, meetup, and small business groups across the capital district. Join Origin and get discovered.',
   intro:

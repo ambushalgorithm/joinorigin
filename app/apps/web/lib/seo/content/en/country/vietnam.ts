@@ -12,7 +12,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'vietnam',
-  title: 'Communities in Vietnam | JoinOrigin',
+  title: 'Origins in Vietnam | JoinOrigin',
   description:
     'Find or start communities in Vietnam — from the startup and creative scenes in Ho Chi Minh City to civic and small business networks nationwide. JoinOrigin helps you get discovered.',
   intro:
@@ -25,9 +25,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Vietnam?',
+      question: 'How do I find Origins in Vietnam?',
       answer:
-        'Start at the /location hub and choose the Ho Chi Minh City page, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Many groups also coordinate through messaging apps and social media.',
+        'Start at the /location hub and choose the Ho Chi Minh City page, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Many groups also coordinate through messaging apps and social media.',
     },
     {
       question: 'What is tình làng nghĩa xóm?',

@@ -13,7 +13,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'mexico-city',
-  title: 'Communities in Mexico City | JoinOrigin',
+  title: 'Origins in Mexico City | JoinOrigin',
   description:
     'Find or start communities in Mexico City — startup, creative, political, meetup, and small business groups across the capital. Join Origin and get discovered.',
   intro:

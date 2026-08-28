@@ -10,7 +10,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'ireland',
-  title: 'Communities in Ireland | JoinOrigin',
+  title: 'Origins in Ireland | JoinOrigin',
   description:
     'Find or start communities in Ireland — from startup scenes in Dublin to local clubs, sports, and small business networks across the country. Join Origin and get discovered.',
   intro:
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Ireland?',
+      question: 'How do I find Origins in Ireland?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local sports clubs, community centers, and the pub are also natural starting points.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local sports clubs, community centers, and the pub are also natural starting points.',
     },
     {
       question: 'Can I start a community in an Irish town?',

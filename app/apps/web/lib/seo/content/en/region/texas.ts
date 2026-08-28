@@ -12,7 +12,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'texas',
-  title: 'Communities in Texas | JoinOrigin',
+  title: 'Origins in Texas | JoinOrigin',
   description:
     'Find or start communities in Texas — from Austin’s tech and live-music scenes to business, university, and local networks across the state. Join Origin and get discovered.',
   intro:

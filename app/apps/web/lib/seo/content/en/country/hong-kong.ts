@@ -12,7 +12,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'hong-kong',
-  title: 'Communities in Hong Kong | JoinOrigin',
+  title: 'Origins in Hong Kong | JoinOrigin',
   description:
     'Find or start communities in Hong Kong — startup meetups, creative collectives, and neighbourhood groups across the island, Kowloon, and the New Territories. JoinOrigin helps you get discovered.',
   intro:
@@ -25,9 +25,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Hong Kong?',
+      question: 'How do I find Origins in Hong Kong?',
       answer:
-        'Start at the /location hub and choose the city page, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Professional networks also run regular events on the island and in Kowloon.',
+        'Start at the /location hub and choose the city page, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Professional networks also run regular events on the island and in Kowloon.',
     },
     {
       question: 'Do I need to speak Cantonese to join a community?',

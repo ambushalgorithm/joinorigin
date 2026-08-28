@@ -12,7 +12,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'lima-province',
-  title: 'Communities in Lima | JoinOrigin',
+  title: 'Origins in Lima | JoinOrigin',
   description:
     'Find or start communities in Lima — startup, creative, political, meetup, and small business groups across the province. Join Origin and get discovered.',
   intro:

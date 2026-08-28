@@ -13,7 +13,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'de',
   slug: 'berlin',
-  title: 'Communities in Berlin | JoinOrigin',
+  title: 'Origins in Berlin | JoinOrigin',
   description:
     'Finde oder gründe Communities in Berlin – als Stadtstaat mit zwölf Bezirken, von Tech in Mitte bis Kreativ in Neukölln. Jetzt auf die JoinOrigin-Warteliste.',
   intro:

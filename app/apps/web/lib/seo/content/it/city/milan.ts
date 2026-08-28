@@ -11,11 +11,11 @@ const content: CityContent = {
   kind: 'city',
   locale: 'it',
   slug: 'milan',
-  title: 'Community a Milano | JoinOrigin',
+  title: 'Origins a Milano | JoinOrigin',
   description:
     "Trova o avvia community a Milano — gruppi di startup, creativi, politici, meetup e piccole imprese nella capitale lombarda. Lista d'attesa di JoinOrigin.",
   pageTitles: {
-    city: 'Community a Milano | JoinOrigin',
+    city: 'Origins a Milano | JoinOrigin',
     cityDescription:
       "Trova o avvia community a Milano — gruppi di startup, creativi, politici, meetup e piccole imprese nella capitale lombarda. Lista d'attesa di JoinOrigin.",
     variants: {
@@ -37,7 +37,7 @@ const content: CityContent = {
       'small-business':
         "Trova o avvia community di piccole imprese a Milano — commercianti di mercato, atelier e reti di negozi di famiglia. Lista d'attesa di JoinOrigin.",
     },
-    ideas: '30 idee per eventi di community a Milano | JoinOrigin',
+    ideas: '30 idee per eventi Origin a Milano | JoinOrigin',
     ideasDescription:
       "Scopri 30 idee per eventi di community a Milano — eventi di networking, apprendimento, all'aperto, professionali, creativi e di impatto. Lista d'attesa di JoinOrigin.",
   },

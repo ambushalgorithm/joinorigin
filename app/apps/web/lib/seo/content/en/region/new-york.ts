@@ -20,7 +20,7 @@ const content: RegionContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities across New York State?',
+      question: 'How do I find Origins across New York State?',
       answer:
         'The city pages for New York City and the regional hub describe the main scenes. Outside the metro, check local libraries, chambers of commerce, and university event boards for meetups near you.',
     },

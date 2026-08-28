@@ -14,7 +14,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'de',
   slug: 'bavaria',
-  title: 'Communities in Bayern | JoinOrigin',
+  title: 'Origins in Bayern | JoinOrigin',
   description:
     'Finde oder gründe Communities in Bayern – von München über Nürnberg und Augsburg bis in die Alpen. Vereine, Stammtische, Startup-Meetups. Jetzt auf die JoinOrigin-Warteliste.',
   intro:

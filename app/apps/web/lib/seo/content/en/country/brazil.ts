@@ -12,7 +12,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'brazil',
-  title: 'Communities in Brazil | JoinOrigin',
+  title: 'Origins in Brazil | JoinOrigin',
   description:
     'Find or start communities in Brazil — from São Paulo startup groups to Rio creative and cultural scenes and small business networks nationwide. Join Origin and get discovered.',
   intro:
@@ -25,9 +25,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Brazil?',
+      question: 'How do I find Origins in Brazil?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local universities, academies, churches, and neighborhood associations are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local universities, academies, churches, and neighborhood associations are also good starting points for offline groups.',
     },
     {
       question: 'How do regional differences affect communities in Brazil?',

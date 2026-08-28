@@ -13,7 +13,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'buenos-aires-f-d',
-  title: 'Communities in Buenos Aires | JoinOrigin',
+  title: 'Origins in Buenos Aires | JoinOrigin',
   description:
     'Find or start communities in Buenos Aires — startup, creative, political, meetup, and small business groups across the federal capital. Join Origin and get discovered.',
   intro:

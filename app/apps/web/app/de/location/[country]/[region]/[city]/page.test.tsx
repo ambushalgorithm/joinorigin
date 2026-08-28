@@ -59,7 +59,7 @@ describe('/de/location/[country]/[region]/[city] route', () => {
 
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent('Communities in Berlin');
+    expect(headings[0]).toHaveTextContent('Origins in Berlin');
 
     // German body copy from the per-locale content file (not locale JSONs).
     expect(screen.getByText(/Berlin ist eine Stadt, die von Communities lebt/)).toBeInTheDocument();
@@ -67,7 +67,7 @@ describe('/de/location/[country]/[region]/[city] route', () => {
     // German variant links (pageTitles from the de content file).
     const groupLinks = screen.getByTestId('location-group-type-links');
     expect(within(groupLinks).getByText('Startup-Origins')).toBeInTheDocument();
-    expect(within(groupLinks).getByText('30 Ideen für Community-Events')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('30 Ideen für Origin-Events')).toBeInTheDocument();
 
     // FAQ block rendered from the de FAQ.
     expect(screen.getByTestId('location-faq')).toBeInTheDocument();

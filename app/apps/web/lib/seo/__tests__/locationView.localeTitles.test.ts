@@ -47,7 +47,7 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     );
     expect(ideas).toBeDefined();
     expect(buildLocationViewData(ideas!, 'de').heading).toBe(
-      '30 Ideen für Community-Events in Berlin',
+      '30 Ideen für Origin-Events in Berlin',
     );
   });
 
@@ -101,7 +101,7 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     const germany = resolveLocationEntry({ country: 'germany' });
     expect(germany).toBeDefined();
     const deGermany = buildLocationViewData(germany!, 'de');
-    expect(deGermany.heading).toBe('Communities in Deutschland');
+    expect(deGermany.heading).toBe('Origins in Deutschland');
     expect(deGermany.breadcrumbs.at(-1)?.name).toBe('Deutschland');
     expect(deGermany.breadcrumbs.at(-1)?.nameLocalized?.de).toBe('Deutschland');
     expect(deGermany.breadcrumbs.at(-1)?.nameLocalized?.es).toBe('Alemania');
@@ -110,7 +110,7 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     const bavaria = resolveLocationEntry({ country: 'germany', region: 'bavaria' });
     expect(bavaria).toBeDefined();
     const deBavaria = buildLocationViewData(bavaria!, 'de');
-    expect(deBavaria.heading).toBe('Communities in Bayern');
+    expect(deBavaria.heading).toBe('Origins in Bayern');
     expect(deBavaria.breadcrumbs.map((crumb) => crumb.name)).toEqual([
       'Startseite',
       'Origins nach Stadt',
@@ -178,9 +178,9 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     // EN directory — complete set, registry names.
     const en = buildLocationViewData(hub!);
     expect(en.hubDirectory?.some((entry) => entry.name === 'Origins in Berlin')).toBe(true);
-    expect(
-      en.hubDirectory?.some((entry) => entry.name === 'Communities in the United States'),
-    ).toBe(true);
+    expect(en.hubDirectory?.some((entry) => entry.name === 'Origins in the United States')).toBe(
+      true,
+    );
     // de surface — committed per-locale titles resolve (TASK-515): Germany +
     // its regions/cities/variants/ideas from the committed de content, while
     // uncommitted country/region/city cards fall back to the localized
@@ -193,10 +193,8 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     expect(
       de.hubDirectory?.some((entry) => entry.name === 'Kreativ- & Design-Communities in Berlin'),
     ).toBe(true);
-    expect(de.hubDirectory?.some((entry) => entry.name === 'Communities in Deutschland')).toBe(
-      true,
-    );
-    expect(de.hubDirectory?.some((entry) => entry.name === 'Communities in Bayern')).toBe(true);
+    expect(de.hubDirectory?.some((entry) => entry.name === 'Origins in Deutschland')).toBe(true);
+    expect(de.hubDirectory?.some((entry) => entry.name === 'Origins in Bayern')).toBe(true);
     expect(de.hubDirectory?.some((entry) => entry.name === 'Vereinigte Staaten')).toBe(true);
     expect(de.hubDirectory?.length).toBe(en.hubDirectory?.length);
     // es surface now has committed content for 8 cities (Sprint 20) — those
@@ -221,8 +219,8 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     // 1) Committed per-locale page title wins on its own locale surface —
     //    country + region content is enumerated into the locale map even
     //    though `locationPageEntries(locale)` only emits city/variant/ideas.
-    expect(de.some((entry) => entry.name === 'Communities in Deutschland')).toBe(true);
-    expect(de.some((entry) => entry.name === 'Communities in Bayern')).toBe(true);
+    expect(de.some((entry) => entry.name === 'Origins in Deutschland')).toBe(true);
+    expect(de.some((entry) => entry.name === 'Origins in Bayern')).toBe(true);
     expect(es.some((entry) => entry.name === 'Comunidades en Colombia')).toBe(true);
     expect(es.some((entry) => entry.name === 'Comunidades en Antioquia')).toBe(true);
     // 2) No committed title → localized dataset name for country/region/city.
@@ -234,20 +232,20 @@ describe('lib/seo locationView — locale-aware titles (TASK-449)', () => {
     expect(de.some((entry) => entry.name === 'Community-Meetups & Veranstaltungen in Berlin')).toBe(
       true,
     );
-    expect(de.some((entry) => entry.name === '30 Ideen für Community-Events in Berlin')).toBe(true);
+    expect(de.some((entry) => entry.name === '30 Ideen für Origin-Events in Berlin')).toBe(true);
     // 4) EN surface stays on registry titles (committed EN titles win).
     const en = hubDirectoryEntries('en');
     expect(en.some((entry) => entry.name === 'Origins in Germany')).toBe(true);
-    expect(en.some((entry) => entry.name === 'Communities in the United States')).toBe(true);
-    expect(en.some((entry) => entry.name === 'Communities in Bavaria')).toBe(true);
+    expect(en.some((entry) => entry.name === 'Origins in the United States')).toBe(true);
+    expect(en.some((entry) => entry.name === 'Origins in Bavaria')).toBe(true);
     expect(en.some((entry) => entry.name === '30 Origin event ideas in Berlin')).toBe(true);
     // searchText is unchanged by the display-name localization — it still
     // carries the EN title + the dataset country/region names (TASK-484).
-    const deGermany = de.find((entry) => entry.name === 'Communities in Deutschland');
+    const deGermany = de.find((entry) => entry.name === 'Origins in Deutschland');
     expect(deGermany?.searchText).toContain('Origins in Germany'); // EN name
     expect(deGermany?.searchText).toContain('Deutschland'); // de dataset country name
     const esColombia = es.find((entry) => entry.name === 'Comunidades en Colombia');
-    expect(esColombia?.searchText).toContain('Communities in Colombia'); // EN name
+    expect(esColombia?.searchText).toContain('Origins in Colombia'); // EN name
     expect(esColombia?.searchText).toContain('Colombia'); // es dataset country name
   });
 
@@ -386,12 +384,12 @@ describe('lib/seo locationView — Story H i18n completeness (TASK-518)', () => 
     expect(colombia).toBeDefined();
     const de = buildLocationViewData(colombia!, 'de');
     expect(de.heading).toBe('Kolumbien');
-    expect(de.heading).not.toBe('Communities in Colombia');
+    expect(de.heading).not.toBe('Origins in Colombia');
     expect(de.headingLocalized?.de).toBe('Kolumbien');
     // The committed es title still wins on its own surface; EN canonical
     // keeps the authored registry heading.
     expect(buildLocationViewData(colombia!, 'es').heading).toBe('Comunidades en Colombia');
-    expect(buildLocationViewData(colombia!).heading).toBe('Communities in Colombia');
+    expect(buildLocationViewData(colombia!).heading).toBe('Origins in Colombia');
   });
 
   it('H1 for a city resolves committed content → localized dataset name (ho-chi-minh-city)', () => {
@@ -469,20 +467,20 @@ describe('lib/seo locationView — Story H i18n completeness (TASK-518)', () => 
     );
     expect(card).toBeDefined();
     expect(card?.name).toBe('Comunidades en Colombia');
-    expect(card?.name).not.toBe('Communities in Colombia');
+    expect(card?.name).not.toBe('Origins in Colombia');
   });
 
   it('de directory localizes the Bavaria region card + dataset names for uncommitted entries', () => {
     const de = hubDirectoryEntries('de');
     // Bavaria has committed de content → its committed title wins.
-    expect(de.some((entry) => entry.name === 'Communities in Bayern')).toBe(true);
+    expect(de.some((entry) => entry.name === 'Origins in Bayern')).toBe(true);
     // Colombia has no committed de content → the de dataset name, not EN.
     const colombia = de.find(
       (entry) => entry.kind === 'country' && entry.path === '/de/location/colombia',
     );
     expect(colombia).toBeDefined();
     expect(colombia?.name).toBe('Kolumbien');
-    expect(colombia?.name).not.toBe('Communities in Colombia');
+    expect(colombia?.name).not.toBe('Origins in Colombia');
   });
 
   it('a locale without committed content falls back to EN registry titles (fr)', () => {

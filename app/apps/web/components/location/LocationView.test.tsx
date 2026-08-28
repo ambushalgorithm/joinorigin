@@ -175,7 +175,7 @@ describe('LocationView non-hub H1 + breadcrumb localization (TASK-516)', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByRole('heading', { level: 1, name: 'Communities in Berlin' }),
+        screen.getByRole('heading', { level: 1, name: 'Origins in Berlin' }),
       ).toBeInTheDocument();
     });
     const deCrumbs = screen.getByTestId('location-breadcrumbs');
@@ -334,7 +334,7 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
     await waitFor(() => {
       expect(screen.getByTestId('location-hub-directory-countries')).toBeInTheDocument();
     });
-    expect(screen.getByRole('link', { name: 'Communities in Colombia' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Origins in Colombia' })).toBeInTheDocument();
     // Cities scoped to Colombia resolve through the country name too.
     expect(
       screen.getByRole('link', { name: 'Origins in Bogota, Bogota D.C.' }),
@@ -431,7 +431,7 @@ describe('LocationView country mesh (TASK-490)', () => {
     renderWithI18n(<LocationView data={data} />, 'en');
 
     const faq = screen.getByTestId('location-faq');
-    expect(within(faq).getByText('How do I find communities in Colombia?')).toBeInTheDocument();
+    expect(within(faq).getByText('How do I find Origins in Colombia?')).toBeInTheDocument();
     expect(
       within(faq).getByText('What makes Colombian community culture distinctive?'),
     ).toBeInTheDocument();

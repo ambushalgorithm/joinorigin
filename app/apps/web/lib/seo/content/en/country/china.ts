@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'china',
-  title: 'Communities in China | JoinOrigin',
+  title: 'Origins in China | JoinOrigin',
   description:
     'Find or start communities in China — from the startup scene in Shanghai to maker and creative groups across the megacities. JoinOrigin helps you get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in China?',
+      question: 'How do I find Origins in China?',
       answer:
-        'Start at the /location hub and choose a city such as Shanghai, then browse the group-type pages for startup, creative, political, meetup, and small business communities. Most groups also run WeChat channels where organisers post events.',
+        'Start at the /location hub and choose a city such as Shanghai, then browse the group-type pages for startup, creative, political, meetup, and small business Origins. Most groups also run WeChat channels where organisers post events.',
     },
     {
       question: 'Where do professional meetups usually happen?',

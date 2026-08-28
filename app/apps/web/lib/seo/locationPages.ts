@@ -259,8 +259,8 @@ function hubEntry(locale: Locale): LocationPageEntry {
     kind: 'hub',
     params: {},
     path: `/${locale}${LOCATION_HUB_PATH}`,
-    title: 'Communities by City — Find or Start a Community Near You | JoinOrigin',
-    description: `Explore communities by city around the world — startup, creative, political, meetup, and small business groups. ${waitlistPhraseFor(locale)}`,
+    title: 'Origins by City — Find or Start an Origin Near You | JoinOrigin',
+    description: `Explore Origins by city around the world — startup, creative, political, meetup, and small business groups. ${waitlistPhraseFor(locale)}`,
     tier: 1,
     locale,
   });

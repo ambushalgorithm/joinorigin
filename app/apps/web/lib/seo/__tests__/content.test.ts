@@ -274,7 +274,7 @@ describe('lib/seo content — quality contract (G1/G2/G5)', () => {
 
   it('the German Berlin file covers the full 7-page surface with German titles', () => {
     const de = getCityContent('berlin', 'de');
-    expect(de?.pageTitles?.city).toContain('Communities in Berlin');
+    expect(de?.pageTitles?.city).toContain('Origins in Berlin');
     for (const type of GROUP_TYPES) {
       expect(de?.pageTitles?.variants?.[type.key] ?? '').toContain('Berlin');
       expect(de?.pageTitles?.variantDescriptions?.[type.key] ?? '').toContain('Berlin');
