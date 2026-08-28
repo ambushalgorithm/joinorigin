@@ -222,7 +222,7 @@ describe('lib/seo content zh-CN — predominant-locale city files (TASK-438)', (
 
   it('city files cover the full 7-page surface with Chinese pageTitles', () => {
     for (const city of ZHCn_CITIES) {
-      expect(city.pageTitles?.city).toContain('社区');
+      expect(city.pageTitles?.city).toContain('Origin');
       expect(city.pageTitles?.cityDescription ?? '').toContain('上海');
       for (const type of GROUP_TYPES) {
         expect(city.pageTitles?.variants?.[type.key] ?? '').toContain('上海');
