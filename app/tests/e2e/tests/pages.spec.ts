@@ -31,7 +31,7 @@ export const MENU_PAGES = [
     h1: 'Where every idea, startup, and project finds the people and resources to move it forward — Origin.',
   },
   { path: '/en/features', h1: 'Everything an Origin needs, in one calm workspace' },
-  { path: '/en/community', h1: 'Where people find each other' },
+  { path: '/en/network', h1: 'Where people find each other' },
   { path: '/en/docs', h1: 'JoinOrigin docs' },
   { path: '/en/about', h1: 'The most valuable asset is your network' },
   { path: '/en/contact', h1: 'Talk to us' },
@@ -47,9 +47,10 @@ export const HEADER_NAV = [
   { label: 'About', href: '/en/about' },
 ] as const;
 
-/** Explore submenu labels → href (TASK-316; 92cd1f4 moved Community in, Glossary out). */
+/** Explore submenu labels → href (TASK-316; 92cd1f4 moved Network in,
+ *  Glossary out; TASK-576 renamed Community → Network). */
 export const EXPLORE_NAV = [
-  { label: 'Community', href: '/en/community' },
+  { label: 'Network', href: '/en/network' },
   { label: 'Guides', href: '/en/guides' },
   { label: 'Locations', href: '/en/location' },
 ] as const;
@@ -60,7 +61,7 @@ export const FOOTER_NAV = [
   { label: 'Guides', href: '/en/guides' },
   { label: 'Glossary', href: '/en/glossary' },
   { label: 'Features', href: '/en/features' },
-  { label: 'Community', href: '/en/community' },
+  { label: 'Network', href: '/en/network' },
   { label: 'Docs', href: '/en/docs' },
   { label: 'About', href: '/en/about' },
   { label: 'Contact', href: '/en/contact' },
@@ -170,13 +171,13 @@ test.describe('navigation reaches every menu page', () => {
     }
 
     // Retained nav links still present next to the Explore dropdown
-    // (92cd1f4 moved Community into the Explore submenu).
+    // (92cd1f4 moved Network into the Explore submenu).
     await expect(header.getByRole('link', { name: 'Features' })).toBeVisible();
     await expect(header.getByRole('link', { name: 'Docs' })).toBeVisible();
     await expect(header.getByRole('link', { name: 'About' })).toBeVisible();
-    // Community is reachable from the Explore submenu (already visited above).
+    // Network is reachable from the Explore submenu (already visited above).
     await expect(
-      header.getByTestId('explore-menu').getByRole('link', { name: 'Community' }),
+      header.getByTestId('explore-menu').getByRole('link', { name: 'Network' }),
     ).toBeVisible();
   });
 

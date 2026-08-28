@@ -79,11 +79,12 @@ const SUPPORTED_LOCALES = [
   'fa',
 ] as const;
 
-/** Public static page paths (home + the 8 menu pages + hubs). */
+/** Public static page paths (home + the 8 menu pages + hubs). Sprint 24
+ *  Wave-4 (TASK-576): /community → /network. */
 const STATIC_PATHS = [
   '',
   '/features',
-  '/community',
+  '/network',
   '/docs',
   '/about',
   '/contact',

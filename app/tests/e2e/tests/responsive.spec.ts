@@ -337,9 +337,10 @@ test.describe('mobile nav (≤768px)', () => {
     const menu = page.getByTestId('mobile-menu');
     await expect(menu).toBeVisible();
     // Explore group (TASK-316) + retained top-level links (92cd1f4 moved
-    // Community into Explore, dropped Glossary from the header).
+    // Network into Explore, dropped Glossary from the header; TASK-576
+    // renamed Community → Network).
     await expect(menu.getByText('Explore')).toBeVisible();
-    await expect(menu.getByText('Community')).toBeVisible();
+    await expect(menu.getByText('Network')).toBeVisible();
     await expect(menu.getByText('Guides')).toBeVisible();
     await expect(menu.getByText('Locations')).toBeVisible();
     await expect(menu.getByText('Features')).toBeVisible();
@@ -349,7 +350,7 @@ test.describe('mobile nav (≤768px)', () => {
     await expect(menu.getByTestId('mobile-get-started-button')).toBeVisible();
 
     // Close via link click.
-    await menu.getByText('Community').click();
+    await menu.getByText('Network').click();
     await expect(menu).toBeHidden();
 
     // Reopen, close via ESC.

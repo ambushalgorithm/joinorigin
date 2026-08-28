@@ -186,7 +186,7 @@ test('Story B — home Example Origins chips are links to the mapped group-type 
     .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
   expect(trackHrefs).toEqual([...NEW_YORK_EN_TARGETS, ...NEW_YORK_EN_TARGETS]);
 
-  // The sr-only list reads each community once as a link to its own target.
+  // The sr-only list reads each Origin once as a link to its own target.
   const srHrefs = await marquee
     .locator('ul a')
     .evaluateAll((links) => links.map((link) => link.getAttribute('href')));

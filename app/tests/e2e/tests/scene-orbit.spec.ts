@@ -39,7 +39,7 @@ import { waitForHydration } from './helpers';
 
 export const ORBIT_PAGES = [
   '/features',
-  '/community',
+  '/network',
   '/docs',
   '/about',
   '/does-not-exist-404',

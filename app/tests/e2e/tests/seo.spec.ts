@@ -44,11 +44,12 @@ test.describe.configure({ mode: 'serial' });
 /** Absolute page paths under test — the EN canonical /en/** surfaces (8
  *  HTML pages, discovery §4; /pricing removed). The unprefixed `/**`
  *  counterparts 307-redirect to these surfaces (TASK-464/466). Sprint 24
- *  (TASK-555/557): the indexable /en/signup surface is added. */
+ *  (TASK-555/557): the indexable /en/signup surface is added; Wave-4
+ *  (TASK-576): /en/community → /en/network. */
 const PATHS = [
   '/en',
   '/en/features',
-  '/en/community',
+  '/en/network',
   '/en/docs',
   '/en/about',
   '/en/contact',
@@ -61,7 +62,7 @@ const PATHS = [
 const EXPECTED_TITLES: Record<string, string> = {
   '/en': 'Origin — Social Collaboration Network & Community OS',
   '/en/features': 'Features — Origins, Chat, Projects & Opportunities | JoinOrigin',
-  '/en/community': 'Community — Find Your People & Build Together | JoinOrigin',
+  '/en/network': 'Network — Find Your People & Build Together | JoinOrigin',
   '/en/docs': 'Docs — Concepts, Roadmap & Architecture | JoinOrigin',
   '/en/about': 'About — The Operating System for Human Collaboration | JoinOrigin',
   '/en/contact': 'Contact — Talk to the JoinOrigin Team | JoinOrigin',
@@ -118,7 +119,7 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
 
       // meta description present + non-empty + contains the brand OR the
       // anchor category keyword (discovery §5 descriptions are unique per
-      // page and some omit the literal brand, e.g. /community). Sprint 8
+      // page and some omit the literal brand, e.g. /network). Sprint 8
       // copy makes "Origin" the product brand ("Origin" / "Origin's").
       const description = page.locator('meta[name="description"]');
       await expect(description).toHaveCount(1);
@@ -210,11 +211,11 @@ test.describe('per-page metadata + Open Graph + Twitter + canonical', () => {
     // Sprint 24 Wave-2 (TASK-568) known deviation: the PM-approved reframe
     // deck (sprint-24-origin-reframe-copy.md §9.3) proposes three descriptions
     // that exceed the discovery §6 160-char rule and were applied verbatim by
-    // fe-origin-copy (TASK-567) — /features (169), /community (170), /signup
+    // fe-origin-copy (TASK-567) — /features (169), /network (170), /signup
     // (168). Tracked in app/docs/design/sprint-24-origin-validation.md; all
     // OTHER paths must still respect the rule (any new over-length
     // description fails).
-    const APPROVED_OVERLENGTH = new Set(['/en/features', '/en/community', '/en/signup']);
+    const APPROVED_OVERLENGTH = new Set(['/en/features', '/en/network', '/en/signup']);
     const APPROVED_MAX = 170;
     for (const path of PATHS) {
       await page.goto(path);
@@ -574,10 +575,8 @@ test.describe('JSON-LD structured data (arch §3.6, discovery §7)', () => {
     }
   });
 
-  test('FAQPage JSON-LD on pages with a visible FAQ (features/community/docs)', async ({
-    page,
-  }) => {
-    for (const path of ['/features', '/community', '/docs']) {
+  test('FAQPage JSON-LD on pages with a visible FAQ (features/network/docs)', async ({ page }) => {
+    for (const path of ['/features', '/network', '/docs']) {
       await page.goto(path);
       const types = await ldTypes(page);
       expect(types, `FAQPage on ${path}`).toContain('FAQPage');

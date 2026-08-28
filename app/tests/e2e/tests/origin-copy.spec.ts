@@ -109,7 +109,7 @@ test.describe('CTA band — approved headline (TASK-568)', () => {
   test('menu pages render "Start an Origin. Find the people and resources to move it forward."', async ({
     page,
   }) => {
-    for (const path of ['/en/features', '/en/community']) {
+    for (const path of ['/en/features', '/en/network']) {
       await page.goto(path);
       const band = page.getByTestId('cta-band');
       await expect(band).toBeVisible();
@@ -148,9 +148,9 @@ test.describe('/features — Origins card + Origin Foundation roadmap (TASK-568)
   });
 });
 
-test.describe('/community — reframed copy (TASK-568)', () => {
+test.describe('/network — reframed copy (TASK-568, route renamed TASK-576)', () => {
   test('hero lead, values, and join copy use Origin-first copy', async ({ page }) => {
-    await page.goto('/en/community');
+    await page.goto('/en/network');
     const mainText = (await page.locator('main').textContent()) ?? '';
     // Hero lead — Origin is where people gather around goals.
     expect(mainText).toContain('Origin is where people gather around goals');

@@ -780,9 +780,9 @@ test.describe('Browse-locations complete inventory (TASK-485/TASK-487)', () => {
       'href',
       '/en/guides',
     );
-    await expect(explore.getByRole('link', { name: 'Community' })).toHaveAttribute(
+    await expect(explore.getByRole('link', { name: 'Network' })).toHaveAttribute(
       'href',
-      '/en/community',
+      '/en/network',
     );
 
     // The banner sits below the hero / above the Browse-locations directory
@@ -1008,9 +1008,9 @@ test.describe('Story D: country mesh + unified guides + translated hub intro (TA
       'href',
       '/en/guides',
     );
-    await expect(explore.getByRole('link', { name: 'Community' })).toHaveAttribute(
+    await expect(explore.getByRole('link', { name: 'Network' })).toHaveAttribute(
       'href',
-      '/en/community',
+      '/en/network',
     );
   });
 });
@@ -1398,7 +1398,10 @@ test.describe('Story G: content-rich country/region prose + predominant-locale c
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/de/location/germany');
     await expect(page.locator('html')).toHaveAttribute('lang', 'de');
-    await expect(page.locator('h1')).toContainText('Communities in Deutschland');
+    // Wave-4 (TASK-577): the de country page title/H1 was reframed to the
+    // Origin model — "Origins in Deutschland" (previously "Communities in
+    // Deutschland").
+    await expect(page.locator('h1')).toContainText('Origins in Deutschland');
 
     // The German-authored intro (G2: ≥150 words) — TASK-507 translated the
     // flagship Germany country page.

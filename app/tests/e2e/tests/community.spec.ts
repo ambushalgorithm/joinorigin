@@ -1,12 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 /**
- * JoinOrigin /community e2e coverage (Sprint 23, Stories A–C validation).
+ * JoinOrigin /network e2e coverage (Sprint 23 Stories A–C validation;
+ * Sprint 24 Wave-4 TASK-576 renamed /community → /network).
  *
- * Story B (TASK-545/546/547): the "Example communities" marquee chips on
- * /community (and home) are REAL links — every chip links to its OWN
+ * Story B (TASK-545/546/547): the "Example Origins" marquee chips on
+ * /network (and home) are REAL links — every chip links to its OWN
  * group-type variant page (`/${locale}/location/<country>/<region>/<city>/
- * <variant>`) of the closest-largest content-rich community to the visitor,
+ * <variant>`) of the closest-largest content-rich Origin to the visitor,
  * resolved server-side by `ChipMarqueeServer` (geo + active locale) and
  * rendered per-chip by the client `ChipMarquee`.
  *
@@ -43,12 +44,12 @@ const BERLIN_DE_TARGETS = [
   '/de/location/germany/berlin/berlin/ideas',
 ];
 
-test.describe('example-communities marquee (Story B)', () => {
-  test('chips on /en/community are links to the mapped group-type variant pages', async ({
+test.describe('example-origins marquee (Story B)', () => {
+  test('chips on /en/network are links to the mapped group-type variant pages', async ({
     page,
   }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.goto('/en/community');
+    await page.goto('/en/network');
 
     const marquee = page.getByTestId('chip-marquee');
     await expect(marquee).toBeVisible();
@@ -60,7 +61,7 @@ test.describe('example-communities marquee (Story B)', () => {
       .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
     expect(trackHrefs).toEqual([...NEW_YORK_EN_TARGETS, ...NEW_YORK_EN_TARGETS]);
 
-    // The sr-only list reads each community once as a link to its own target.
+    // The sr-only list reads each Origin once as a link to its own target.
     const srHrefs = await marquee
       .locator('ul a')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
