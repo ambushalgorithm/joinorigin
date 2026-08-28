@@ -12,7 +12,7 @@ import { formatCount, useCountUp } from './useCountUp';
  * Count-up gradient stat (spec sprint-10-menu-redesign §4.5).
  *
  * Parses the leading integer from the LOCALIZED value string
- * (`community.joinStatValue` = `"2,400+"` → target `2400`, suffix `"+"`),
+ * (`network.joinStatValue` = `"2,400+"` → target `2400`, suffix `"+"`),
  * animates `0 → target` with `useCountUp` (easeOutCubic, 2s, 0.3s delay),
  * formats the running count with the active locale's thousands separator
  * (`formatCount`), and re-appends the non-numeric suffix from the source.

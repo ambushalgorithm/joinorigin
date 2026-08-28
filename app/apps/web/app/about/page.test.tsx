@@ -51,9 +51,9 @@ describe('about page', () => {
     const featuresLinks = screen.getAllByRole('link', { name: 'Features' });
     expect(featuresLinks.length).toBeGreaterThan(0);
     expect(featuresLinks[0]).toHaveAttribute('href', '/en/features');
-    expect(screen.getAllByRole('link', { name: 'Community' })[0]).toHaveAttribute(
+    expect(screen.getAllByRole('link', { name: 'Network' })[0]).toHaveAttribute(
       'href',
-      '/en/community',
+      '/en/network',
     );
     expect(screen.getAllByRole('link', { name: 'Docs' })[0]).toHaveAttribute('href', '/en/docs');
     expect(screen.getAllByRole('link', { name: 'About' })[0]).toHaveAttribute('href', '/en/about');
@@ -109,7 +109,7 @@ describe('about view — locale-aware internal links (TASK-460)', () => {
     mockPathname = '/about';
     renderAboutForLocale('en');
     expect(linkByHref('/en/docs')).toBeDefined();
-    expect(linkByHref('/en/community')).toBeDefined();
+    expect(linkByHref('/en/network')).toBeDefined();
     expect(linkByHref('/en/contact')).toBeDefined();
   });
 
@@ -117,7 +117,7 @@ describe('about view — locale-aware internal links (TASK-460)', () => {
     mockPathname = '/en/about';
     renderAboutForLocale('en');
     expect(linkByHref('/en/docs')).toBeDefined();
-    expect(linkByHref('/en/community')).toBeDefined();
+    expect(linkByHref('/en/network')).toBeDefined();
     expect(linkByHref('/en/contact')).toBeDefined();
   });
 
@@ -125,7 +125,7 @@ describe('about view — locale-aware internal links (TASK-460)', () => {
     mockPathname = '/de/about';
     renderAboutForLocale('de');
     expect(linkByHref('/de/docs')).toBeDefined();
-    expect(linkByHref('/de/community')).toBeDefined();
+    expect(linkByHref('/de/network')).toBeDefined();
     expect(linkByHref('/de/contact')).toBeDefined();
   });
 
@@ -133,7 +133,7 @@ describe('about view — locale-aware internal links (TASK-460)', () => {
     mockPathname = '/about';
     renderAboutForLocale('de');
     expect(linkByHref('/de/docs')).toBeDefined();
-    expect(linkByHref('/de/community')).toBeDefined();
+    expect(linkByHref('/de/network')).toBeDefined();
     expect(linkByHref('/de/contact')).toBeDefined();
   });
 });

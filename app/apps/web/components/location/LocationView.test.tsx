@@ -260,7 +260,7 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
     const total = data.hubDirectory?.length ?? 0;
     renderWithI18n(<LocationView data={data} />, 'en');
 
-    // SectionTitle heading (mirrors the /community "Join the network" band).
+    // SectionTitle heading (mirrors the /network "Join the network" band).
     expect(screen.getByRole('heading', { level: 2, name: 'Join the network' })).toBeInTheDocument();
 
     // CountUpStat with the total count + localized label.
@@ -275,17 +275,14 @@ describe('LocationView Browse-locations inventory UI (TASK-485)', () => {
       ),
     ).toBeInTheDocument();
 
-    // ExploreLinks row — Locations/Guides/Community accent links.
+    // ExploreLinks row — Locations/Guides/Network accent links.
     const explore = within(screen.getByTestId('location-inventory-explore'));
     expect(explore.getByRole('link', { name: 'Locations' })).toHaveAttribute(
       'href',
       '/en/location',
     );
     expect(explore.getByRole('link', { name: 'Guides' })).toHaveAttribute('href', '/en/guides');
-    expect(explore.getByRole('link', { name: 'Community' })).toHaveAttribute(
-      'href',
-      '/en/community',
-    );
+    expect(explore.getByRole('link', { name: 'Network' })).toHaveAttribute('href', '/en/network');
   });
 
   it('SSR/static HTML renders the inventory banner count as the FINAL total — no 0 (G-5)', () => {

@@ -315,8 +315,8 @@ export function MenuHero({
                 ) : null}
                 {meta?.stat ? (
                   <CountUpStat
-                    valueText={t('community.joinStatValue')}
-                    label={t('community.joinStatLabel')}
+                    valueText={t('network.joinStatValue')}
+                    label={t('network.joinStatLabel')}
                   />
                 ) : null}
               </Actions>

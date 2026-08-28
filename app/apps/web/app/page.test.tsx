@@ -52,7 +52,7 @@ describe('home page', () => {
     expect(screen.getAllByText('JoinOrigin').length).toBeGreaterThan(0);
     // Nav labels appear in both the header nav and the grouped footer links.
     expect(screen.getAllByText('Features').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Community').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Network').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Docs').length).toBeGreaterThan(0);
     expect(screen.getAllByText('About').length).toBeGreaterThan(0);
     expect(screen.getByText('Log In')).toBeInTheDocument();

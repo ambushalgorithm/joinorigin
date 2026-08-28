@@ -242,7 +242,7 @@ const StepList = styled.ol`
 `;
 
 /** Explore cross-links row for the inventory banner band (TASK-491) —
- *  mirrors the /community "Join the network" band: Locations/Guides/
+ *  mirrors the /network "Join the network" band: Locations/Guides/
  *  Community accent links below the stat + explainer. */
 const ExploreLinks = styled.div`
   display: flex;
@@ -621,7 +621,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
           Communities" stat below the hero / above the Browse-locations
           directory — the total content-rich inventory. The value is computed
           from the directory data (not hardcoded) and localized via
-          formatCount. The band mirrors the /community "Join the network"
+          formatCount. The band mirrors the /network "Join the network"
           section: SectionTitle heading + CountUpStat + BodyCopy explainer +
           ExploreLinks row (Locations/Guides/Community) — all in a glass
           community-accent SectionBand. */}
@@ -642,9 +642,7 @@ export function LocationView({ data }: { data: LocationViewData }) {
                     {t('common.nav.locations')}
                   </AccentLink>
                   <AccentLink href={localizePath('/guides')}>{t('common.nav.guides')}</AccentLink>
-                  <AccentLink href={localizePath('/community')}>
-                    {t('common.nav.community')}
-                  </AccentLink>
+                  <AccentLink href={localizePath('/network')}>{t('common.nav.network')}</AccentLink>
                 </ExploreLinks>
               </Section>
             </Reveal>

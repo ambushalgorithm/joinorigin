@@ -256,7 +256,7 @@ export default function NotFound() {
           <Copy>{t('notFound.copy')}</Copy>
           <Actions>
             <HomeLink href="/">{t('notFound.backHome')}</HomeLink>
-            <ExploreLink href="/community">{t('notFound.exploreCommunities')}</ExploreLink>
+            <ExploreLink href="/network">{t('notFound.exploreCommunities')}</ExploreLink>
           </Actions>
         </Content>
       </PageRoot>

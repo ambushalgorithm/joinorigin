@@ -35,7 +35,7 @@ export async function ChipMarqueeServer() {
     getServerDictionary(),
     getServerCountry(),
   ]);
-  const intro = getT(dictionary)('community.examplesIntro');
+  const intro = getT(dictionary)('network.examplesIntro');
   const targets = exampleCommunityChipTargets(locale, country);
   let targetPaths: ChipTargets | null = null;
   if (targets) {

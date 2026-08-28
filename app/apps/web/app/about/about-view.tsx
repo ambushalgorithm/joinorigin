@@ -74,8 +74,8 @@ export function AboutView() {
               <SectionTitle>{t('about.sectionMission')}</SectionTitle>
               <BodyCopy>{t('about.missionParagraph1')}</BodyCopy>
               <CountUpStat
-                valueText={t('community.joinStatValue')}
-                label={t('community.joinStatLabel')}
+                valueText={t('network.joinStatValue')}
+                label={t('network.joinStatLabel')}
               />
               <BodyCopy>{t('about.missionParagraph2')}</BodyCopy>
             </Section>
@@ -135,8 +135,8 @@ export function AboutView() {
                 </ListItem>
                 <ListItem>
                   <Trans
-                    i18nKey="about.readingCommunity"
-                    components={[<AccentLink key="community" href={localizePath('/community')} />]}
+                    i18nKey="about.readingNetwork"
+                    components={[<AccentLink key="network" href={localizePath('/network')} />]}
                   />
                 </ListItem>
                 <ListItem>

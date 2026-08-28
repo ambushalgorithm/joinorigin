@@ -42,9 +42,9 @@ const NAV_LINKS = [
   { key: 'common.nav.about', href: '/about' },
 ];
 
-/** Explore submenu links (TASK-316): Locations / Guides / Glossary. */
+/** Explore submenu links (TASK-316): Network / Guides / Locations. */
 const EXPLORE_LINKS = [
-  { key: 'common.nav.community', href: '/community' },
+  { key: 'common.nav.network', href: '/network' },
   { key: 'common.nav.guides', href: '/guides' },
   { key: 'common.nav.locations', href: '/location' },
 ];

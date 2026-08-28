@@ -77,7 +77,7 @@ export const LLMS_ENTRIES: readonly LlmsEntry[] = [
         path: '/en/about',
         description: 'Mission and principles — the operating system for human collaboration.',
       },
-      { path: '/en/community', description: 'Values and the 2,400+ member network.' },
+      { path: '/en/network', description: 'Values and the 2,400+ member network.' },
     ],
   },
   {

@@ -35,7 +35,7 @@ const FOOTER_GROUPS = [
     titleKey: 'footer.groupProduct',
     links: [
       { labelKey: 'common.nav.features', href: '/features' },
-      { labelKey: 'common.nav.community', href: '/community' },
+      { labelKey: 'common.nav.network', href: '/network' },
       { labelKey: 'common.nav.docs', href: '/docs' },
     ],
   },
