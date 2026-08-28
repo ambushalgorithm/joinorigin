@@ -10,7 +10,7 @@
     "joinWaitlist": "Word ontdekt",
     "nav": {
       "features": "Functies",
-      "community": "Community",
+      "network": "Netwerk",
       "docs": "Docs",
       "about": "Over ons",
       "contact": "Contact",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "Het netwerk",
       "title": "Waar mensen elkaar vinden",
@@ -434,7 +434,7 @@
     "founderBody": "Elke functie op Origin wordt afgemeten aan die vraag. Helpt het mensen niet om elkaar te ontdekken, community's te vormen of samen projecten te starten, dan hoort het niet thuis in de werkruimte.",
     "sectionReading": "Verder lezen",
     "readingDocs": "Lees de <1>docs</1> voor de kernobjecten, roadmap en architectuur.",
-    "readingCommunity": "Bekijk de <1>community</1>-pagina voor de waarden en voorbeeld-community's binnen het netwerk.",
+    "readingNetwork": "Bekijk de <1>netwerk</1>-pagina voor de waarden en voorbeeld-Origins binnen het netwerk.",
     "readingContact": "Heb je een vraag? <1>Neem contact op met het team</1> — we reageren binnen 2 werkdagen.",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "Origins in nabijgelegen steden",
       "guidesTitle": "Handleidingen voor het starten van een Origin",
       "stepByStepGuide": "Stap-voor-stap handleiding",
-      "ideasLink": "30 ideeën voor gemeenschapsevenementen",
+      "ideasLink": "30 ideeën voor Origin-evenementen",
       "faqHeading": "Veelgestelde vragen",
       "translatePage": "Deze pagina vertalen",
       "variantVenuesTitle": "Waar {{type}} samenkomen",

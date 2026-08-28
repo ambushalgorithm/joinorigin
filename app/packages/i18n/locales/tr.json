@@ -10,7 +10,7 @@
     "joinWaitlist": "Keşfedilin",
     "nav": {
       "features": "Özellikler",
-      "community": "Topluluk",
+      "network": "Ağ",
       "docs": "Dokümanlar",
       "about": "Hakkımızda",
       "contact": "İletişim",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "Ağ",
       "title": "İnsanların birbirini bulduğu yer",
@@ -434,7 +434,7 @@
     "founderBody": "Origin'deki her özellik bu soruya göre değerlendirilir. İnsanların birbirini keşfetmesine, topluluklar kurmasına ya da birlikte projelere başlamasına yardımcı olmuyorsa, çalışma alanında yeri yoktur.",
     "sectionReading": "Daha derin okuma",
     "readingDocs": "Temel nesneler, yol haritası ve mimari için <1>dokümanları</1> okuyun.",
-    "readingCommunity": "Ağ içindeki değerler ve örnek topluluklar için <1>topluluk</1> sayfasına göz atın.",
+    "readingNetwork": "Ağ içindeki değerler ve örnek Origins için <1>ağ</1> sayfasına göz atın.",
     "readingContact": "Bir sorunuz mu var? <1>Ekiple iletişime geçin</1> — 2 iş günü içinde yanıt veriyoruz.",
     "faq": {
       "q1": {
@@ -583,10 +583,10 @@
       "nearbyCities": "Yakın şehirlerdeki Origins",
       "guidesTitle": "Origin başlatma rehberleri",
       "stepByStepGuide": "Adım adım rehber",
-      "ideasLink": "30 topluluk etkinliği fikri",
+      "ideasLink": "30 Origin etkinliği fikri",
       "faqHeading": "Sıkça sorulan sorular",
       "translatePage": "Bu sayfayı çevir",
-      "variantVenuesTitle": "{{type}} topluluklarının buluştuğu yer",
+      "variantVenuesTitle": "{{type}} Origin'larının buluştuğu yer",
       "variantFormatsTitle": "Tipik formatlar",
       "variantHowToTitle": "Nasıl başlanır",
       "browseLocations": "Konumlara göz atın",

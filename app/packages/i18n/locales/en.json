@@ -10,7 +10,7 @@
     "joinWaitlist": "Get Discovered",
     "nav": {
       "features": "Features",
-      "community": "Community",
+      "network": "Network",
       "docs": "Docs",
       "about": "About",
       "contact": "Contact",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "The network",
       "title": "Where people find each other",
@@ -434,7 +434,7 @@
     "founderBody": "Every feature on Origin is measured against that question. If it does not help people discover each other, form communities, or start projects together, it does not belong in the workspace.",
     "sectionReading": "Deeper reading",
     "readingDocs": "Read the <1>docs</1> for the core objects, roadmap, and architecture.",
-    "readingCommunity": "See the <1>community</1> page for the values and example communities inside the network.",
+    "readingNetwork": "See the <1>network</1> page for the values and example Origins inside the network.",
     "readingContact": "Have a question? <1>Contact the team</1> — we reply within 2 business days.",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "Origins in nearby cities",
       "guidesTitle": "Guides for starting an Origin",
       "stepByStepGuide": "Step-by-step guide",
-      "ideasLink": "30 community event ideas",
+      "ideasLink": "30 Origin event ideas",
       "faqHeading": "Frequently asked questions",
       "translatePage": "Translate this page",
       "variantVenuesTitle": "Where {{type}} gather",

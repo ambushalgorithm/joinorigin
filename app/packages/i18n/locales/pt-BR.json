@@ -10,7 +10,7 @@
     "joinWaitlist": "Seja descoberto",
     "nav": {
       "features": "Recursos",
-      "community": "Comunidade",
+      "network": "Rede",
       "docs": "Documentação",
       "about": "Sobre",
       "contact": "Contato",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "A rede",
       "title": "Onde as pessoas se encontram",
@@ -434,7 +434,7 @@
     "founderBody": "Cada recurso do Origin é avaliado por essa pergunta. Se não ajuda as pessoas a se descobrirem, formarem comunidades ou iniciarem projetos juntas, não pertence ao espaço de trabalho.",
     "sectionReading": "Leitura aprofundada",
     "readingDocs": "Leia a <1>documentação</1> para conhecer os objetos principais, o roadmap e a arquitetura.",
-    "readingCommunity": "Veja a página de <1>comunidade</1> para conhecer os valores e exemplos de comunidades dentro da rede.",
+    "readingNetwork": "Veja a página de <1>rede</1> para conhecer os valores e exemplos de Origins dentro da rede.",
     "readingContact": "Tem alguma pergunta? <1>Fale com a equipe</1> — respondemos em até 2 dias úteis.",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "Origins em cidades próximas",
       "guidesTitle": "Guias para criar um Origin",
       "stepByStepGuide": "Guia passo a passo",
-      "ideasLink": "30 ideias de eventos comunitários",
+      "ideasLink": "30 ideias de eventos de Origin",
       "faqHeading": "Perguntas frequentes",
       "translatePage": "Traduzir esta página",
       "variantVenuesTitle": "Onde {{type}} se reúnem",

@@ -10,7 +10,7 @@
     "joinWaitlist": "Werde entdeckt",
     "nav": {
       "features": "Funktionen",
-      "community": "Community",
+      "network": "Netzwerk",
       "docs": "Dokumentation",
       "about": "Über uns",
       "contact": "Kontakt",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "Das Netzwerk",
       "title": "Wo Menschen sich gegenseitig finden",
@@ -434,7 +434,7 @@
     "founderBody": "Jede Funktion auf Origin wird an dieser Frage gemessen. Wenn sie Menschen nicht hilft, einander zu entdecken, Communities zu bilden oder gemeinsam Projekte zu starten, gehört sie nicht in den Workspace.",
     "sectionReading": "Weiterführendes",
     "readingDocs": "Lies die <1>Dokumentation</1> zu den Kernobjekten, der Roadmap und der Architektur.",
-    "readingCommunity": "Sieh dir die Seite <1>Community</1> für die Werte und Beispiel-Communities im Netzwerk an.",
+    "readingNetwork": "Sieh dir die Seite <1>Netzwerk</1> für die Werte und Beispiel-Origins im Netzwerk an.",
     "readingContact": "Du hast eine Frage? <1>Kontaktiere das Team</1> — wir antworten innerhalb von 2 Werktagen.",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "Origins in nahegelegenen Städten",
       "guidesTitle": "Anleitungen zum Start eines Origin",
       "stepByStepGuide": "Schritt-für-Schritt-Anleitung",
-      "ideasLink": "30 Ideen für Community-Events",
+      "ideasLink": "30 Ideen für Origin-Events",
       "faqHeading": "Häufig gestellte Fragen",
       "translatePage": "Diese Seite übersetzen",
       "variantVenuesTitle": "Wo sich {{type}} treffen",
@@ -613,7 +613,7 @@
         "regions": "Regionen",
         "cities": "Städte",
         "communityTypes": "Origin-Typen",
-        "eventIdeas": "Community-Event-Ideen"
+        "eventIdeas": "Origin-Event-Ideen"
       },
       "guideCardTitles": {
         "start-a-community": "Starte ein Origin",

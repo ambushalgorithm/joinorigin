@@ -10,7 +10,7 @@
     "joinWaitlist": "Mulai Ditemukan",
     "nav": {
       "features": "Fitur",
-      "community": "Komunitas",
+      "network": "Jaringan",
       "docs": "Dokumen",
       "about": "Tentang",
       "contact": "Kontak",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "Jaringan",
       "title": "Tempat orang saling menemukan",
@@ -434,7 +434,7 @@
     "founderBody": "Setiap fitur di Origin diukur dengan pertanyaan itu. Jika tidak membantu orang saling menemukan, membentuk komunitas, atau memulai proyek bersama, fitur tersebut tidak layak ada di ruang kerja.",
     "sectionReading": "Bacaan lebih lanjut",
     "readingDocs": "Baca <1>dokumen</1> untuk objek inti, peta jalan, dan arsitektur.",
-    "readingCommunity": "Lihat halaman <1>komunitas</1> untuk nilai-nilai dan contoh komunitas di dalam jaringan.",
+    "readingNetwork": "Lihat halaman <1>jaringan</1> untuk nilai-nilai dan contoh Origins di dalam jaringan.",
     "readingContact": "Punya pertanyaan? <1>Hubungi tim</1> — kami membalas dalam 2 hari kerja.",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "Origins di kota sekitar",
       "guidesTitle": "Panduan memulai Origin",
       "stepByStepGuide": "Panduan langkah demi langkah",
-      "ideasLink": "30 ide acara komunitas",
+      "ideasLink": "30 ide acara Origin",
       "faqHeading": "Pertanyaan yang sering diajukan",
       "translatePage": "Terjemahkan halaman ini",
       "variantVenuesTitle": "Tempat {{type}} berkumpul",

@@ -10,7 +10,7 @@
     "joinWaitlist": "발견되기",
     "nav": {
       "features": "기능",
-      "community": "커뮤니티",
+      "network": "네트워크",
       "docs": "문서",
       "about": "소개",
       "contact": "문의",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "네트워크",
       "title": "사람들이 서로를 찾는 곳",
@@ -434,7 +434,7 @@
     "founderBody": "Origin의 모든 기능은 그 질문을 기준으로 평가됩니다. 사람들이 서로를 발견하고, 커뮤니티를 만들고, 함께 프로젝트를 시작하는 데 도움이 되지 않는다면, 그 기능은 워크스페이스에 있을 자격이 없습니다.",
     "sectionReading": "더 깊이 읽기",
     "readingDocs": "핵심 오브젝트, 로드맵, 아키텍처는 <1>문서</1>에서 확인하세요.",
-    "readingCommunity": "네트워크 안의 가치와 커뮤니티 예시는 <1>커뮤니티</1> 페이지에서 확인하세요.",
+    "readingNetwork": "네트워크 안의 가치와 Origin 예시는 <1>네트워크</1> 페이지에서 확인하세요.",
     "readingContact": "궁금한 점이 있으신가요? <1>팀에 문의하세요</1> — 영업일 기준 2일 이내에 답변드립니다.",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "인근 도시의 Origin",
       "guidesTitle": "Origin 시작 가이드",
       "stepByStepGuide": "단계별 가이드",
-      "ideasLink": "커뮤니티 이벤트 아이디어 30가지",
+      "ideasLink": "Origin 이벤트 아이디어 30가지",
       "faqHeading": "자주 묻는 질문",
       "translatePage": "이 페이지 번역하기",
       "variantVenuesTitle": "{{type}}이 모이는 곳",

@@ -10,7 +10,7 @@
     "joinWaitlist": "見つけてもらおう",
     "nav": {
       "features": "機能",
-      "community": "コミュニティ",
+      "network": "ネットワーク",
       "docs": "ドキュメント",
       "about": "概要",
       "contact": "お問い合わせ",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "ネットワーク",
       "title": "人々がお互いを見つける場所",
@@ -434,7 +434,7 @@
     "founderBody": "Originのすべての機能は、その問いに対して測られます。人々がお互いを発見し、コミュニティを形成し、一緒にプロジェクトを始めるのに役立たなければ、それはワークスペースに属しません。",
     "sectionReading": "さらに深く読む",
     "readingDocs": "コアオブジェクト、ロードマップ、アーキテクチャについては、<1>ドキュメント</1>をご覧ください。",
-    "readingCommunity": "ネットワーク内の価値観とコミュニティの例については、<1>コミュニティ</1>ページをご覧ください。",
+    "readingNetwork": "ネットワーク内の価値観と Origin の例については、<1>ネットワーク</1>ページをご覧ください。",
     "readingContact": "ご質問がありますか？<1>チームに連絡</1>してください — 2営業日以内にお返事します。",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "近隣都市のOrigin",
       "guidesTitle": "Originを始めるためのガイド",
       "stepByStepGuide": "ステップバイステップガイド",
-      "ideasLink": "コミュニティイベントのアイデア30選",
+      "ideasLink": "Originイベントのアイデア30選",
       "faqHeading": "よくある質問",
       "translatePage": "このページを翻訳",
       "variantVenuesTitle": "{{type}}が集まる場所",
