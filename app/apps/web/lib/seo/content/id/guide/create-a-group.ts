@@ -7,7 +7,7 @@ import type { GuideContent } from '../../types';
  * Ditulis berdasarkan alur layar produk §2 inti: terbitkan grup → halaman
  * publik grup → Bergabung via tautan → ruang dibuat otomatis SAAT
  * DITERBITKAN → kreator mengendalikan ruang → pertumbuhan lewat
- * linimasa/undangan. Grup adalah komunitas: halaman publik menyatakan
+ * linimasa/undangan. Grup adalah Origin: halaman publik menyatakan
  * janji, ruang adalah tempat anggota terhubung, dan anggota bergabung
  * melalui tautan. Platform sudah berjalan: membuat grup menerbitkan
  * halamannya dan membuka ruangnya sekarang. "Ruang" merujuk pada ruang
@@ -21,21 +21,21 @@ const content: GuideContent = {
   description:
     'Buat grup di JoinOrigin — terbitkan halaman grup, buka ruangnya secara otomatis, dan undang anggota melalui tautan bergabung. Langkah praktis dari JoinOrigin.',
   intro: [
-    'Setiap komunitas — baik yang benar-benar baru maupun yang sudah bertemu informal selama berbulan-bulan — berjalan pada dua gerakan yang sama: memutuskan untuk siapa komunitas itu, dan memberi orang-orang itu satu tempat yang jelas untuk terhubung. Grup tanpa rumah tidak pernah terbentuk dengan benar; ketertarikan tersebar di pesan, spreadsheet, dan percakapan sekali jalan, dan tidak ada yang melekat. Halaman grup dan ruangnya adalah rumah itu, dan membuat keduanya dengan baik adalah pembeda antara komunitas sungguhan dan sekadar daftar nama.',
-    'Alur JoinOrigin bekerja seperti ini: Anda menerbitkan grup, halaman publiknya muncul, dan ruangnya dibuat otomatis pada saat diterbitkan. Orang menemukan grup melalui Jelajahi atau mengikuti tautan bergabung, bergabung cukup dengan satu klik, dan mereka masuk ke ruang — ruang Matrix yang dikendalikan kreator tempat komunitas benar-benar hidup. Kreator memiliki ruang sejak detik nol dan mengendalikan siapa yang bergabung dan bagaimana grup bekerja.',
+    'Setiap Origin — baik yang benar-benar baru maupun yang sudah bertemu informal selama berbulan-bulan — berjalan pada dua gerakan yang sama: memutuskan untuk siapa Origin itu, dan memberi orang-orang itu satu tempat yang jelas untuk terhubung. Grup tanpa rumah tidak pernah terbentuk dengan benar; ketertarikan tersebar di pesan, spreadsheet, dan percakapan sekali jalan, dan tidak ada yang melekat. Halaman grup dan ruangnya adalah rumah itu, dan membuat keduanya dengan baik adalah pembeda antara Origin sungguhan dan sekadar daftar nama.',
+    'Alur JoinOrigin bekerja seperti ini: Anda menerbitkan grup, halaman publiknya muncul, dan ruangnya dibuat otomatis pada saat diterbitkan. Orang menemukan grup melalui Jelajahi atau mengikuti tautan bergabung, bergabung cukup dengan satu klik, dan mereka masuk ke ruang — ruang Matrix yang dikendalikan kreator tempat Origin benar-benar hidup. Kreator memiliki ruang sejak detik nol dan mengendalikan siapa yang bergabung dan bagaimana grup bekerja.',
     'Panduan ini mencakup seluruh jalur — baik grupnya baru maupun sudah ada di atas kertas: memilih audiens dan tujuan, menulis halaman grup yang bisa ditemukan orang, menerbitkan grup dan membuka ruangnya, menetapkan ekspektasi sebagai kreator, membagikan tautan bergabung, mengundang anggota pertama, memulai percakapan pertama, dan menjaga ruang tetap aktif sehingga grup terus tumbuh.',
   ],
   dataPoints: [
     'Grup yang paling jelas dimulai dengan satu audiens dan satu janji — kekhususan adalah fitur pertumbuhan.',
-    'Di JoinOrigin, menerbitkan grup otomatis membuat ruangnya — komunitas memiliki tempat untuk terhubung sejak detik nol.',
+    'Di JoinOrigin, menerbitkan grup otomatis membuat ruangnya — Origin memiliki tempat untuk terhubung sejak detik nol.',
     'Tautan bergabung adalah undangan paling sederhana: satu tautan, satu klik, dan anggota baru sudah berada di ruang.',
     'JoinOrigin adalah OS komunitas yang membantu orang menemukan, bergabung dengan, dan memulai grup — terbitkan grup Anda dan ruangnya langsung terbuka.',
   ],
   faq: [
     {
-      question: 'Apa perbedaan antara grup dan komunitas?',
+      question: 'Apa perbedaan antara grup dan Origin?',
       answer:
-        'Di JoinOrigin keduanya adalah objek yang sama. Grup (atau komunitas) adalah objek yang diterbitkan dan bisa diikuti dengan halaman publik dan ruang. Halaman grup menyatakan janji; ruang adalah tempat anggota terhubung. Komunitas mendapatkan Matrix Space yang menampung ruang-ruang grup, dan ruang utama adalah tempat grup itu hidup.',
+        'Di JoinOrigin keduanya adalah objek yang sama. Grup (atau Origin) adalah objek yang diterbitkan dan bisa diikuti dengan halaman publik dan ruang. Halaman grup menyatakan janji; ruang adalah tempat anggota terhubung. Origins mendapatkan Matrix Space yang menampung ruang-ruang grup, dan ruang utama adalah tempat grup itu hidup.',
     },
     {
       question: 'Kapan ruang grup dibuat?',

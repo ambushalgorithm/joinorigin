@@ -6,7 +6,7 @@ import type { GuideContent } from '../../types';
  * Ürün ekran akışı §2 temel döngüsüne göre yazılmıştır: bir grup yayınla →
  * grubun herkese açık sayfası → Bağlantıyla katıl → oda YAYINLAMA ANINDA
  * otomatik oluşturulur → oluşturan kişi odayı kontrol eder → akış/davetle
- * büyüme. Bir grup bir topluluktur: herkese açık sayfa vaadi belirtir,
+ * büyüme. Bir grup bir Origin’dir: herkese açık sayfa vaadi belirtir,
  * oda üyelerin bağlandığı yerdir ve üyeler bir bağlantıyla katılır.
  * Platform canlıdır: bir grup oluşturmak sayfasını yayınlar ve odasını
  * hemen açar. "Oda" Matrix odasına bağlıdır (§6.3). İfade, yazılan
@@ -20,7 +20,7 @@ const content: GuideContent = {
   description:
     'JoinOrigin üzerinde bir grup oluşturun — bir grup sayfası yayınlayın, odasını otomatik açın ve üyeleri bir katılım bağlantısıyla davet edin. JoinOrigin’den pratik adımlar.',
   intro: [
-    'Her topluluk — ister yepyeni olsun ister aylardır resmi olmayan şekilde toplanıyor olsun — aynı iki hamle üzerinde çalışır: kimin için olduğuna karar vermek ve o insanlara bağlanmak için tek net bir yer vermek. Yuvası olmayan bir grup asla düzgün bir şekilde oluşmaz; ilgi mesajlara, tablolara ve tek seferlik sohbetlere dağılır ve hiçbir şey kalıcı olmaz. Grup sayfası ve odası o yuvadır ve onları iyi oluşturmak, gerçek bir topluluk ile bir isim listesi arasındaki farktır.',
+    'Her Origin — ister yepyeni olsun ister aylardır resmi olmayan şekilde toplanıyor olsun — aynı iki hamle üzerinde çalışır: kimin için olduğuna karar vermek ve o insanlara bağlanmak için tek net bir yer vermek. Yuvası olmayan bir grup asla düzgün bir şekilde oluşmaz; ilgi mesajlara, tablolara ve tek seferlik sohbetlere dağılır ve hiçbir şey kalıcı olmaz. Grup sayfası ve odası o yuvadır ve onları iyi oluşturmak, gerçek bir Origin ile bir isim listesi arasındaki farktır.',
     'JoinOrigin döngüsü şöyle çalışır: bir grup yayınlarsınız, herkese açık sayfası belirir ve odası yayınlama anında otomatik oluşturulur. İnsanlar grubu Keşfet aracılığıyla bulur ya da bir katılım bağlantısını takip eder, katılmak tek tıklamadır ve odaya inerler — topluluğun gerçekten yaşadığı, oluşturan kişinin kontrolündeki bir Matrix odası. Oluşturan kişi odaya sıfırıncı saniyeden itibaren sahiptir ve kimin katılacağını ve grubun nasıl çalışacağını kontrol eder.',
     'Bu rehber yolun tamamını kapsar — grup yeni olsun ya da kâğıt üzerinde zaten var olsun: hedef kitleyi ve amacı seçmek, insanların bulabileceği bir grup sayfası yazmak, grubu yayınlayıp odasını açmak, oluşturan kişi olarak beklentileri belirlemek, katılım bağlantısını paylaşmak, ilk üyeleri davet etmek, ilk sohbetleri başlatmak ve grubun büyümeye devam etmesi için odayı aktif tutmak.',
   ],
@@ -32,9 +32,9 @@ const content: GuideContent = {
   ],
   faq: [
     {
-      question: 'Grup ile topluluk arasındaki fark nedir?',
+      question: 'Grup ile Origin arasındaki fark nedir?',
       answer:
-        'JoinOrigin’de bunlar aynı nesnedir. Bir grup (ya da topluluk), herkese açık bir sayfası ve bir odası olan, yayınlanmış ve katılınabilir bir nesnedir. Grup sayfası vaadi belirtir; oda üyelerin bağlandığı yerdir. Topluluklar, grubun odalarını tutan bir Matrix Alanı alır ve ana oda grubun yaşadığı yerdir.',
+        'JoinOrigin’de bunlar aynı nesnedir. Bir grup (ya da Origin), herkese açık bir sayfası ve bir odası olan, yayınlanmış ve katılınabilir bir nesnedir. Grup sayfası vaadi belirtir; oda üyelerin bağlandığı yerdir. Origins, grubun odalarını tutan bir Matrix Alanı alır ve ana oda grubun yaşadığı yerdir.',
     },
     {
       question: 'Grup odası ne zaman oluşturulur?',

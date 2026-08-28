@@ -19,7 +19,7 @@ const content: GuideContent = {
   description:
     'Tạo một dự án trên JoinOrigin — dù đó là một ý tưởng hoàn toàn mới hay công việc đã đang tiến hành — công bố một trang dự án chung, mở phòng của nó tự động, và biến cuộc trò chuyện của một nhóm thành công việc được hoàn thành. Các bước thực tế từ JoinOrigin.',
   intro: [
-    'Một nhóm chỉ biết trò chuyện rồi sẽ trì trệ. Sự khác biệt giữa một cộng đồng cảm thấy sống động và một cộng đồng lụi tàn là công việc chung — một dự án có tên, có mục tiêu, và có một nơi tiến độ hiện hữu. Biến một cuộc trò chuyện thành một dự án cũng là một vấn đề kết nối con người: bạn cần đúng người, đúng cam kết, và một nơi rõ ràng để cùng làm việc. Điều tương tự cũng đúng khi dự án đã tồn tại — nằm rải rác trong các tệp, tin nhắn, và danh sách việc cần làm của một người — nó vẫn cần một mái nhà hiện hữu và đúng người xung quanh.',
+    'Một nhóm chỉ biết trò chuyện rồi sẽ trì trệ. Sự khác biệt giữa một Origin cảm thấy sống động và một Origin lụi tàn là công việc chung — một dự án có tên, có mục tiêu, và có một nơi tiến độ hiện hữu. Biến một cuộc trò chuyện thành một dự án cũng là một vấn đề kết nối con người: bạn cần đúng người, đúng cam kết, và một nơi rõ ràng để cùng làm việc. Điều tương tự cũng đúng khi dự án đã tồn tại — nằm rải rác trong các tệp, tin nhắn, và danh sách việc cần làm của một người — nó vẫn cần một mái nhà hiện hữu và đúng người xung quanh.',
     'Luồng JoinOrigin xử lý bước chuyển đó: một nhóm đã hình thành công bố một dự án, và trang dự án xuất hiện công khai với phòng của nó được tự động tạo tại thời điểm công bố. Thành viên tham gia phòng dự án qua một liên kết, người sáng lập kiểm soát nó với tư cách chủ phòng, và cập nhật từ phòng chảy vào bảng tin để cả mạng lưới thấy công việc. Phòng dự án mở ngay khi bạn công bố — không có bước thiết lập nào ở giữa.',
     'Hướng dẫn này đi từ tia sáng đầu tiên đến một nhịp làm việc — dù dự án hoàn toàn mới hay đã đang tiến hành: bắt đầu từ một nhóm hiện hữu và phòng của nó, xác định phạm vi thực sự có thể hoàn thành, viết trang dự án, công bố nó và mở phòng, mời đội ngũ làm việc, thống nhất vai trò và một cột mốc đầu tiên, đưa công việc thực tế vào phòng, và chia sẻ tiến độ để xây dựng đà.',
   ],
@@ -57,21 +57,21 @@ const content: GuideContent = {
     },
   ],
   sections: [
-    'Bắt đầu từ một nhóm hiện hữu và phòng của nó. Một dự án lớn lên từ một nhóm đã có niềm tin và đà. Nhìn vào các cuộc trò chuyện trong phòng của nhóm và tìm nhu cầu lặp lại — điều các thành viên cứ nói "chúng ta nên làm." JoinOrigin giữ một cộng đồng sống trong một phòng do người sáng lập kiểm soát, và dự án là lớp tiếp theo trên phòng đó. Nêu tên nhu cầu lặp lại trong nhóm và kiểm tra xem có ai muốn hành động về nó.',
+    'Bắt đầu từ một nhóm hiện hữu và phòng của nó. Một dự án lớn lên từ một nhóm đã có niềm tin và đà. Nhìn vào các cuộc trò chuyện trong phòng của nhóm và tìm nhu cầu lặp lại — điều các thành viên cứ nói "chúng ta nên làm." JoinOrigin giữ một Origin sống trong một phòng do người sáng lập kiểm soát, và dự án là lớp tiếp theo trên phòng đó. Nêu tên nhu cầu lặp lại trong nhóm và kiểm tra xem có ai muốn hành động về nó.',
     'Xác định một phạm vi thực sự có thể hoàn thành. Viết xuống dự án sẽ tạo ra gì, cho ai, và trong khung thời gian nào. Giữ phiên bản đầu tiên đủ nhỏ để nhóm có thể hoàn thành. JoinOrigin được thiết kế quanh các dự án có trang công khai — một phạm vi rõ ràng là điều làm trang dễ đọc và phòng tập trung. Một câu nói rõ điều gì được hoàn thành và khi nào là đủ để bắt đầu.',
     'Viết trang dự án. Trang nên nêu mục tiêu của dự án, vấn đề nó giải quyết, ai đang làm việc trên nó, và nó cần gì. Hãy thành thật về giai đoạn — một bản nháp sớm là ổn. Công bố một dự án trên JoinOrigin tự động tạo trang và phòng của nó, với người sáng lập kiểm soát phòng từ đầu. Công bố mô tả dự án ở một nơi nhóm có thể trỏ mọi người đến.',
     'Công bố dự án và mở phòng của nó. Công bố là điều làm dự án trở nên thực tế: một trang công khai cộng một phòng nơi công việc sống. Trên JoinOrigin, phòng được tự động tạo ở cùng thời điểm — không có bước thiết lập riêng, và người sáng lập sở hữu nó. Trên JoinOrigin trang, phòng, và đội ngũ làm việc là một lần công bố. Tạo trang và phòng bằng những công cụ nhóm của bạn đang dùng nếu bạn thích.',
     'Mời đội ngũ làm việc vào phòng. Mời những người thực sự sẽ làm công việc — một đội nhỏ, cam kết tốt hơn một khán giả lớn. Chia sẻ liên kết tham gia và nhờ mỗi người xác nhận thời gian của họ. Tham gia trên JoinOrigin là một hành động duy nhất — nhấp Tham gia trên trang dự án hoặc theo một liên kết mời trực tiếp từ một thành viên. Một liên kết rõ ràng đến phòng dự án là đủ.',
     'Thống nhất vai trò và một cột mốc đầu tiên. Nêu rõ ai sở hữu điều gì, nhóm kiểm tra bao lâu một lần, và cột mốc đầu tiên mọi người đang hướng tới. Viết nó xuống nơi cả đội có thể thấy. JoinOrigin không gán vai trò cho bạn — quyền kiểm soát của người sáng lập nghĩa là bạn quyết định. Nền tảng giữ vai trò và cột mốc hiện hữu trong phòng dự án. Một kế hoạch ngắn viết trong phòng là đủ.',
     'Đưa công việc thực tế vào phòng. Thay "chúng ta nên" bằng "đây là bản nháp," "đây là quyết định," và "đây là nhiệm vụ tiếp theo." Giữ tiến độ ở một nơi hiện hữu để mọi người có thể theo dõi. JoinOrigin giữ phòng của một dự án chứa công việc — quyết định, tệp, và cập nhật — thay vì rải rác chúng qua các tin nhắn riêng tư. Giữ các sản phẩm làm việc trong phòng chung từ tuần đầu tiên.',
-    'Chia sẻ tiến độ để xây dựng đà. Đăng cập nhật khi dự án tiến lên, ăn mừng cột mốc khi nó đạt được, và mời nhóm rộng hơn tham gia hoặc theo dõi. Tiến độ trong bảng tin biến một dự án thành bằng chứng cộng đồng tạo ra kết quả. Cập nhật phòng chảy vào bảng tin trên JoinOrigin — vòng lặp tăng trưởng nơi mỗi thành viên mới mở rộng bề mặt khám phá. Được khám phá và phát triển.',
+    'Chia sẻ tiến độ để xây dựng đà. Đăng cập nhật khi dự án tiến lên, ăn mừng cột mốc khi nó đạt được, và mời nhóm rộng hơn tham gia hoặc theo dõi. Tiến độ trong bảng tin biến một dự án thành bằng chứng Origin tạo ra kết quả. Cập nhật phòng chảy vào bảng tin trên JoinOrigin — vòng lặp tăng trưởng nơi mỗi thành viên mới mở rộng bề mặt khám phá. Được khám phá và phát triển.',
   ],
   steps: [
     {
       title: 'Bắt đầu từ một nhóm hiện hữu và phòng của nó',
       body: 'Một dự án lớn lên từ một nhóm đã có niềm tin và đà. Nhìn vào các cuộc trò chuyện trong phòng của nhóm và tìm nhu cầu lặp lại — điều các thành viên cứ nói "chúng ta nên làm."',
       joinOriginNote:
-        'JoinOrigin giữ một cộng đồng sống trong một phòng do người sáng lập kiểm soát, và dự án là lớp tiếp theo trên phòng đó. Nêu tên nhu cầu lặp lại trong nhóm và kiểm tra xem có ai muốn hành động về nó.',
+        'JoinOrigin giữ một Origin sống trong một phòng do người sáng lập kiểm soát, và dự án là lớp tiếp theo trên phòng đó. Nêu tên nhu cầu lặp lại trong nhóm và kiểm tra xem có ai muốn hành động về nó.',
     },
     {
       title: 'Xác định một phạm vi thực sự có thể hoàn thành',
@@ -111,7 +111,7 @@ const content: GuideContent = {
     },
     {
       title: 'Chia sẻ tiến độ để xây dựng đà',
-      body: 'Đăng cập nhật khi dự án tiến lên, ăn mừng cột mốc khi nó đạt được, và mời nhóm rộng hơn tham gia hoặc theo dõi. Tiến độ trong bảng tin biến một dự án thành bằng chứng cộng đồng tạo ra kết quả.',
+      body: 'Đăng cập nhật khi dự án tiến lên, ăn mừng cột mốc khi nó đạt được, và mời nhóm rộng hơn tham gia hoặc theo dõi. Tiến độ trong bảng tin biến một dự án thành bằng chứng Origin tạo ra kết quả.',
       joinOriginNote:
         'Cập nhật phòng chảy vào bảng tin trên JoinOrigin — vòng lặp tăng trưởng nơi mỗi thành viên mới mở rộng bề mặt khám phá. Được khám phá và phát triển.',
     },

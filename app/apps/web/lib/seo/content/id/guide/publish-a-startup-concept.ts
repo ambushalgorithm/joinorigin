@@ -64,7 +64,7 @@ const content: GuideContent = {
     'Bagikan konsep dengan komunitas pendiri. Startup tumbuh melalui jaringan pendiri. Bagikan halaman ide dengan grup pendiri, komunitas startup, akselerator, dan siapa pun yang mengenal masalahnya. Bergabung di JoinOrigin adalah satu tindakan — mengklik Bergabung di halaman publik atau mengikuti tautan undangan langsung dari anggota. Satu tautan pendek dan jelas ke konsep Anda sudah cukup.',
     'Undang pendukung dan penguji awal. Undang orang yang berbagi ambisinya: calon co-founder, pakar domain, dan pengguna yang bersedia mencoba versi kasar. JoinOrigin mempermudah penemuan — tempat orang yang mencari ide dapat menemukan ide Anda dan bergabung melalui tautan. Undangan personal tetap menjadi penggerak utama, dan setiap orang yang bergabung menjadi saluran ke jaringan mereka sendiri.',
     'Jalankan percakapan terstruktur di ruang. Tanyakan kepada yang bergabung apa yang membuat mereka antusias, apa yang mengkhawatirkan mereka, dan apa yang akan mereka lakukan lebih dulu. Ruang startup adalah wawancara berkelanjutan — jawabannya membentuk konsep. JoinOrigin tidak menjalankan percakapan ini; ruang itu milik Anda untuk dibentuk. Platform memberi konsep satu ruang tempat ketertarikan menjadi wawasan, dan kreator memiliki ruang itu. Jalankan percakapan langsung di ruang.',
-    'Gunakan ruang untuk membentuk tim uji coba. Ketika orang yang tepat muncul, usulkan uji coba kecil — prototipe, halaman arahan, atau sesi kerja — dan lihat bagaimana tim bekerja sama. JoinOrigin memberi komunitas ruang bersama untuk pekerjaan dan proyek mereka, yang merupakan tempat alami bagi uji coba untuk muncul. Prototipe kecil yang nyata adalah uji kecocokan yang paling andal.',
+    'Gunakan ruang untuk membentuk tim uji coba. Ketika orang yang tepat muncul, usulkan uji coba kecil — prototipe, halaman arahan, atau sesi kerja — dan lihat bagaimana tim bekerja sama. JoinOrigin memberi Origins ruang bersama untuk pekerjaan dan proyek mereka, yang merupakan tempat alami bagi uji coba untuk muncul. Prototipe kecil yang nyata adalah uji kecocokan yang paling andal.',
     'Alirkan ruang ke linimasa saat Anda memvalidasi. Terus unggah pembaruan, jaga ruang tetap hidup, dan biarkan momentum konsep menjadi terlihat oleh jaringan yang lebih luas. Linimasa mengubah konsep menjadi bukti bahwa orang peduli. Di JoinOrigin pembaruan ruang mengalir ke linimasa — lingkaran pertumbuhan tempat setiap anggota baru memperluas permukaan penemuan. Mulailah ditemukan dan bertumbuh.',
   ],
   steps: [
@@ -108,7 +108,7 @@ const content: GuideContent = {
       title: 'Gunakan ruang untuk membentuk tim uji coba',
       body: 'Ketika orang yang tepat muncul, usulkan uji coba kecil — prototipe, halaman arahan, atau sesi kerja — dan lihat bagaimana tim bekerja sama.',
       joinOriginNote:
-        'JoinOrigin memberi komunitas ruang bersama untuk pekerjaan dan proyek mereka, yang merupakan tempat alami bagi uji coba untuk muncul. Prototipe kecil yang nyata adalah uji kecocokan yang paling andal.',
+        'JoinOrigin memberi Origins ruang bersama untuk pekerjaan dan proyek mereka, yang merupakan tempat alami bagi uji coba untuk muncul. Prototipe kecil yang nyata adalah uji kecocokan yang paling andal.',
     },
     {
       title: 'Alirkan ruang ke linimasa saat Anda memvalidasi',

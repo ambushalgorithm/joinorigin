@@ -9,9 +9,9 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'tr',
   slug: 'istanbul',
-  title: "İstanbul Bölgesi'ndeki topluluklar | JoinOrigin",
+  title: "İstanbul Bölgesi'ndeki Origins | JoinOrigin",
   description:
-    'İstanbul bölgesinde topluluklar bulun veya başlatın — bölge genelinde buluşmalar, gruplar ve etkinlikler. JoinOrigin bekleme listesi.',
+    'İstanbul bölgesinde Origins bulun veya başlatın — bölge genelinde buluşmalar, gruplar ve etkinlikler. JoinOrigin bekleme listesi.',
   intro:
     'İstanbul ili, iki kıtaya yayılan tek ve kesintisiz bir metropol bölgesidir ve topluluk hayatının neredeyse tamamı bu kentsel dokunun içinde gerçekleşir. Boğaz, Avrupa ve Asya yakalarını ayırır; onu geçen vapurlar gündelik bir sosyal ritüeldir — insanlar buluşmalarını vapur seferlerine göre planlar ve bir topluluk bir yakada köklenirken diğer yakadan da üye çekebilir. İlin ilçeleri birbirinden farklı kimlikler taşır: Asya yakasındaki Kadıköy ve Moda yaratıcı ve teknoloji sahnelerine, Avrupa yakasındaki Karaköy ve Beyoğlu galeri, tasarım stüdyosu ve girişim ofislerine ev sahipliği yapar; tarihi yarımada, Beşiktaş ve kuzeydeki yeni ilçeler ise üniversiteleri, iş kulelerini ve aile mahallelerini barındırır. Boğaziçi, İstanbul Üniversitesi ve İTÜ gibi üniversiteler sürekli bir öğrenci akışı sağlar; gelişen e-ticaret, fintech ve oyun sektörü ise şehri bölgesel bir girişim başkenti yapmıştır. Çay kültürü ve esnaf geleneği — kişisel güven üzerine işleyen çarşılar ve mahalle dükkânları — sokak düzeyinde gündelik hayatı birbirine bağlı tutar. Topluluk kurucuları için İstanbul; yoğunluk, çeşitlilik ve denizin karşısına gidip gelen bir şehrin kendine özgü ritmini sunar.',
   dataPoints: [
@@ -36,7 +36,7 @@ const content: RegionContent = {
     {
       question: "JoinOrigin'in İstanbul ilinde bir varlığı var mı?",
       answer:
-        "Evet. JoinOrigin'in yerel ofisleri yoktur. İstanbul sayfaları Türkçe olarak sunulmaktadır ve ürün, insanların ilin her yerinde topluluk bulmasına veya başlatmasına yardımcı olur.",
+        "Evet. JoinOrigin'in yerel ofisleri yoktur. İstanbul sayfaları Türkçe olarak sunulmaktadır ve ürün, insanların ilin her yerinde Origins bulmasına veya başlatmasına yardımcı olur.",
     },
   ],
 };

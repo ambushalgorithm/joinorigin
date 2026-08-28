@@ -21,9 +21,9 @@ const content: GuideContent = {
   description:
     'Selenggarakan meetup setelah grup Anda terbentuk — baik didirikan bulan lalu maupun sudah bertemu bertahun-tahun — pilih format, pesan venue, susun agenda, promosikan, dan jalankan acaranya. Daftar periksa praktis dari JoinOrigin.',
   intro: [
-    'Meetup adalah acara tatap muka berulang tempat orang berkumpul di sekitar minat bersama — dan di JoinOrigin ini adalah langkah alami berikutnya setelah berkomunikasi di ruang. Jalur digital didahulukan: orang menemukan dan bergabung dengan grup melalui tautan, dan ruang grup menjadi tempat anggota berbicara, merencanakan, dan tetap terhubung di antara pertemuan. Meetup tatap muka adalah langkah berikutnya dari komunitas yang terbentuk itu — baik grup didirikan bulan lalu maupun telah bertemu informal selama bertahun-tahun, ruang memberinya satu rumah terorganisir dari mana meetup bisa tumbuh.',
+    'Meetup adalah acara tatap muka berulang tempat orang berkumpul di sekitar minat bersama — dan di JoinOrigin ini adalah langkah alami berikutnya setelah berkomunikasi di ruang. Jalur digital didahulukan: orang menemukan dan bergabung dengan grup melalui tautan, dan ruang grup menjadi tempat anggota berbicara, merencanakan, dan tetap terhubung di antara pertemuan. Meetup tatap muka adalah langkah berikutnya dari Origin yang terbentuk itu — baik grup didirikan bulan lalu maupun telah bertemu informal selama bertahun-tahun, ruang memberinya satu rumah terorganisir dari mana meetup bisa tumbuh.',
     'JoinOrigin adalah OS komunitas yang dirancang untuk membantu orang menemukan komunitas untuk diikuti dan memulai komunitas mereka sendiri — sehingga meetup punya rumah tempat anggota tertarik dapat menemukan grup, bergabung dengan ruangnya, dan mengoordinasikan pertemuan alih-alih bergantung pada daftar kontak satu orang. JoinOrigin tidak memesan venue atau menyelenggarakan acara — tujuan seluruh platform adalah menghubungkan orang yang berbagi minat, dan pertemuan itu sendiri adalah milik Anda untuk dijalankan.',
-    'Panduan ini mencakup seluruh siklus hidup meetup setelah grup ada — untuk grup yang baru terbentuk dan yang telah berkumpul bertahun-tahun: memilih format yang sesuai dengan audiens Anda, menemukan dan memesan venue tanpa menguras anggaran, menyusun agenda dengan awal dan akhir yang jelas, mempromosikan acara di tempat audiens Anda benar-benar mencari, dan menjalankan malamnya sehingga peserta pulang ingin yang berikutnya. Setiap langkah menyertakan catatan tentang cara JoinOrigin membantu — dan langkah pertama tentang grup digital, karena tanpa grup dan ruangnya tidak ada komunitas untuk bertemu.',
+    'Panduan ini mencakup seluruh siklus hidup meetup setelah grup ada — untuk grup yang baru terbentuk dan yang telah berkumpul bertahun-tahun: memilih format yang sesuai dengan audiens Anda, menemukan dan memesan venue tanpa menguras anggaran, menyusun agenda dengan awal dan akhir yang jelas, mempromosikan acara di tempat audiens Anda benar-benar mencari, dan menjalankan malamnya sehingga peserta pulang ingin yang berikutnya. Setiap langkah menyertakan catatan tentang cara JoinOrigin membantu — dan langkah pertama tentang grup digital, karena tanpa grup dan ruangnya tidak ada Origin untuk bertemu.',
   ],
   dataPoints: [
     'Meetup sederhana hanya butuh tiga hal: format, venue, dan saluran promosi.',
@@ -50,18 +50,18 @@ const content: GuideContent = {
     {
       question: 'Bisakah JoinOrigin membantu saya menyelenggarakan meetup?',
       answer:
-        'Ya. JoinOrigin membantu orang menemukan dan memulai komunitas — satu rumah digital terorganisir tempat ruang grup menjadi tempat anggota berkoordinasi dan tempat meetup bisa ditemukan. JoinOrigin tidak menyelenggarakan acara sendiri, jadi langkah-langkah praktis dalam panduan ini adalah milik Anda untuk dijalankan.',
+        'Ya. JoinOrigin membantu orang menemukan dan memulai Origins — satu rumah digital terorganisir tempat ruang grup menjadi tempat anggota berkoordinasi dan tempat meetup bisa ditemukan. JoinOrigin tidak menyelenggarakan acara sendiri, jadi langkah-langkah praktis dalam panduan ini adalah milik Anda untuk dijalankan.',
     },
   ],
   sections: [
     'Bentuk grup dan buka ruangnya lebih dulu. Meetup adalah yang dilakukan grup setelah terbentuk — jadi mulailah dengan inti digital: terbitkan grup, biarkan ruangnya dibuat otomatis, dan undang anggota melalui tautan. Menerbitkan grup di JoinOrigin otomatis membuat ruangnya, ruang yang dikendalikan kreator tempat anggota merencanakan dan tetap terhubung. Siapkan grup dan ruangnya di alat yang sudah Anda gunakan sebelum merencanakan satu acara pun jika Anda lebih suka.',
-    'Pilih format yang sesuai dengan audiens Anda. Putuskan antara pembicaraan, lokakarya, lingkaran diskusi, acara sosial, atau sesi kerja. Sesuaikan format dengan apa yang diinginkan audiens — pembelajaran, koneksi, atau kemajuan pada pekerjaan bersama. Di JoinOrigin anggota bisa melihat format komunitas sebelum bergabung — yang menarik orang yang tepat dan menetapkan ekspektasi. Pilih format yang benar-benar akan dihadiri audiens Anda.',
-    'Pilih tanggal dan frekuensi. Malam hari kerja dan pagi akhir pekan paling cocok untuk kebanyakan audiens. Pilih slot berulang — bulanan adalah standar — dan lindungi seperti janji agar orang bisa membangun kebiasaan. JoinOrigin membuat ritme komunitas terlihat di satu tempat, sehingga anggota tahu tanggal berikutnya tanpa mencarinya. Lindungi slot berulang Anda seperti janji.',
+    'Pilih format yang sesuai dengan audiens Anda. Putuskan antara pembicaraan, lokakarya, lingkaran diskusi, acara sosial, atau sesi kerja. Sesuaikan format dengan apa yang diinginkan audiens — pembelajaran, koneksi, atau kemajuan pada pekerjaan bersama. Di JoinOrigin anggota bisa melihat format Origin sebelum bergabung — yang menarik orang yang tepat dan menetapkan ekspektasi. Pilih format yang benar-benar akan dihadiri audiens Anda.',
+    'Pilih tanggal dan frekuensi. Malam hari kerja dan pagi akhir pekan paling cocok untuk kebanyakan audiens. Pilih slot berulang — bulanan adalah standar — dan lindungi seperti janji agar orang bisa membangun kebiasaan. JoinOrigin membuat ritme Origin terlihat di satu tempat, sehingga anggota tahu tanggal berikutnya tanpa mencarinya. Lindungi slot berulang Anda seperti janji.',
     'Pesan venue lebih awal. Perpustakaan, kafe, ruang coworking, pusat komunitas, dan taman menyelenggarakan acara komunitas dengan biaya rendah atau gratis. Konfirmasikan kapasitas, jam buka, dan persyaratan pemesanan apa pun secara tertulis. JoinOrigin tidak memesan venue atau mengoordinasikan ruang fisik — fokus desainnya adalah menghubungkan orang di ruang digital. Konfirmasikan kapasitas dan jam buka langsung dengan venue secara tertulis.',
     'Susun agenda yang ringan. Jaga tetap sederhana: sambutan dan perkenalan, aktivitas utama, diskusi terbuka, penutup dan tanggal berikutnya. Perkirakan total 60–90 menit dan terbitkan agenda bersama daftar acara dan di ruang. JoinOrigin adalah OS komunitas tempat artefak bersama seperti agenda dan catatan hidup berdampingan dengan komunitas. Agenda yang diterbitkan sederhana sudah cukup.',
-    'Promosikan di tempat audiens Anda sudah berada. Bagikan acara di grup khusus, buletin lokal, papan komunitas, dan saluran sosial yang relevan — dan arahkan semua orang ke tautan bergabung grup sehingga peserta menjadi anggota, bukan tamu semalam. JoinOrigin adalah tempat orang yang mencari komunitas menemukannya dan bergabung melalui tautan. Promosikan di grup khusus dan buletin tempat audiens Anda sudah berkumpul, dan bagikan tautan bergabung kepada setiap peserta.',
-    'Jalankan malamnya dengan ritme yang jelas. Buka tepat waktu, sapa yang terlambat, jaga aktivitas utama tetap di jalur, dan tutup dengan mengumumkan tanggal berikutnya. Selesaikan tepat waktu — itu adalah sinyal rasa hormat terkuat. JoinOrigin tidak menyediakan staf acara — pengalaman itu milik Anda. Platform menjaga kisah komunitas dalam satu ruang terorganisir — janji, ritme, dan orang-orangnya. Selesai tepat waktu adalah sinyal rasa hormat terkuat.',
-    'Tindak lanjuti dalam 24 jam di ruang. Ucapkan terima kasih kepada peserta, bagikan tautan atau catatan apa pun, dan undang umpan balik di tempat seluruh grup bisa melihatnya. Tindak lanjut adalah yang mengubah satu acara menjadi komunitas berulang. JoinOrigin memberi komunitas ruang persisten tempat ringkasan, tanggal berikutnya, dan umpan balik hidup — mengubah satu acara menjadi komunitas berulang. Mulailah ditemukan dan pertahankan momentumnya.',
+    'Promosikan di tempat audiens Anda sudah berada. Bagikan acara di grup khusus, buletin lokal, papan komunitas, dan saluran sosial yang relevan — dan arahkan semua orang ke tautan bergabung grup sehingga peserta menjadi anggota, bukan tamu semalam. JoinOrigin adalah tempat orang yang mencari Origin menemukannya dan bergabung melalui tautan. Promosikan di grup khusus dan buletin tempat audiens Anda sudah berkumpul, dan bagikan tautan bergabung kepada setiap peserta.',
+    'Jalankan malamnya dengan ritme yang jelas. Buka tepat waktu, sapa yang terlambat, jaga aktivitas utama tetap di jalur, dan tutup dengan mengumumkan tanggal berikutnya. Selesaikan tepat waktu — itu adalah sinyal rasa hormat terkuat. JoinOrigin tidak menyediakan staf acara — pengalaman itu milik Anda. Platform menjaga kisah Origin dalam satu ruang terorganisir — janji, ritme, dan orang-orangnya. Selesai tepat waktu adalah sinyal rasa hormat terkuat.',
+    'Tindak lanjuti dalam 24 jam di ruang. Ucapkan terima kasih kepada peserta, bagikan tautan atau catatan apa pun, dan undang umpan balik di tempat seluruh grup bisa melihatnya. Tindak lanjut adalah yang mengubah satu acara menjadi Origin berulang. JoinOrigin memberi Origin ruang persisten tempat ringkasan, tanggal berikutnya, dan umpan balik hidup — mengubah satu acara menjadi Origin berulang. Mulailah ditemukan dan pertahankan momentumnya.',
   ],
   steps: [
     {
@@ -74,13 +74,13 @@ const content: GuideContent = {
       title: 'Pilih format yang sesuai dengan audiens Anda',
       body: 'Putuskan antara pembicaraan, lokakarya, lingkaran diskusi, acara sosial, atau sesi kerja. Sesuaikan format dengan apa yang diinginkan audiens — pembelajaran, koneksi, atau kemajuan pada pekerjaan bersama.',
       joinOriginNote:
-        'Di JoinOrigin anggota bisa melihat format komunitas sebelum bergabung — yang menarik orang yang tepat dan menetapkan ekspektasi. Pilih format yang benar-benar akan dihadiri audiens Anda.',
+        'Di JoinOrigin anggota bisa melihat format Origin sebelum bergabung — yang menarik orang yang tepat dan menetapkan ekspektasi. Pilih format yang benar-benar akan dihadiri audiens Anda.',
     },
     {
       title: 'Pilih tanggal dan frekuensi',
       body: 'Malam hari kerja dan pagi akhir pekan paling cocok untuk kebanyakan audiens. Pilih slot berulang — bulanan adalah standar — dan lindungi seperti janji agar orang bisa membangun kebiasaan.',
       joinOriginNote:
-        'JoinOrigin membuat ritme komunitas terlihat di satu tempat, sehingga anggota tahu tanggal berikutnya tanpa mencarinya. Lindungi slot berulang Anda seperti janji.',
+        'JoinOrigin membuat ritme Origin terlihat di satu tempat, sehingga anggota tahu tanggal berikutnya tanpa mencarinya. Lindungi slot berulang Anda seperti janji.',
     },
     {
       title: 'Pesan venue lebih awal',
@@ -98,19 +98,19 @@ const content: GuideContent = {
       title: 'Promosikan di tempat audiens Anda sudah berada',
       body: 'Bagikan acara di grup khusus, buletin lokal, papan komunitas, dan saluran sosial yang relevan — dan arahkan semua orang ke tautan bergabung grup sehingga peserta menjadi anggota, bukan tamu semalam.',
       joinOriginNote:
-        'JoinOrigin adalah tempat orang yang mencari komunitas menemukannya dan bergabung melalui tautan. Promosikan di grup khusus dan buletin tempat audiens Anda sudah berkumpul, dan bagikan tautan bergabung kepada setiap peserta.',
+        'JoinOrigin adalah tempat orang yang mencari Origin menemukannya dan bergabung melalui tautan. Promosikan di grup khusus dan buletin tempat audiens Anda sudah berkumpul, dan bagikan tautan bergabung kepada setiap peserta.',
     },
     {
       title: 'Jalankan malamnya dengan ritme yang jelas',
       body: 'Buka tepat waktu, sapa yang terlambat, jaga aktivitas utama tetap di jalur, dan tutup dengan mengumumkan tanggal berikutnya. Selesaikan tepat waktu — itu adalah sinyal rasa hormat terkuat.',
       joinOriginNote:
-        'JoinOrigin tidak menyediakan staf acara — pengalaman itu milik Anda. Platform menjaga kisah komunitas dalam satu ruang terorganisir — janji, ritme, dan orang-orangnya. Selesai tepat waktu adalah sinyal rasa hormat terkuat.',
+        'JoinOrigin tidak menyediakan staf acara — pengalaman itu milik Anda. Platform menjaga kisah Origin dalam satu ruang terorganisir — janji, ritme, dan orang-orangnya. Selesai tepat waktu adalah sinyal rasa hormat terkuat.',
     },
     {
       title: 'Tindak lanjuti dalam 24 jam di ruang',
-      body: 'Ucapkan terima kasih kepada peserta, bagikan tautan atau catatan apa pun, dan undang umpan balik di tempat seluruh grup bisa melihatnya. Tindak lanjut adalah yang mengubah satu acara menjadi komunitas berulang.',
+      body: 'Ucapkan terima kasih kepada peserta, bagikan tautan atau catatan apa pun, dan undang umpan balik di tempat seluruh grup bisa melihatnya. Tindak lanjut adalah yang mengubah satu acara menjadi Origin berulang.',
       joinOriginNote:
-        'JoinOrigin memberi komunitas ruang persisten tempat ringkasan, tanggal berikutnya, dan umpan balik hidup — mengubah satu acara menjadi komunitas berulang. Mulailah ditemukan dan pertahankan momentumnya.',
+        'JoinOrigin memberi Origin ruang persisten tempat ringkasan, tanggal berikutnya, dan umpan balik hidup — mengubah satu acara menjadi Origin berulang. Mulailah ditemukan dan pertahankan momentumnya.',
     },
   ],
 };

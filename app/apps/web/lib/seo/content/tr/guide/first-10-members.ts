@@ -16,13 +16,13 @@ const content: GuideContent = {
   kind: 'guide',
   locale: 'tr',
   slug: 'first-10-members',
-  title: 'Yeni ya da Büyüyen Bir Topluluk İçin İlk 10 Üyenizi Nasıl Edinirsiniz | JoinOrigin',
+  title: 'Yeni ya da Büyüyen Bir Origin İçin İlk 10 Üyenizi Nasıl Edinirsiniz | JoinOrigin',
   description:
-    'Büyük bir bütçe olmadan ilk 10 üyenizi edinin — ister yeni bir topluluk başlatıyor ister mevcut bir topluluğu yeniden canlandırıyor olun — kişisel ağınızdan başlayın, davet bağlantılarını paylaşın ve odayı insanların katılmak isteyeceği yer haline getirin. JoinOrigin’den pratik adımlar.',
+    'Büyük bir bütçe olmadan ilk 10 üyenizi edinin — ister yeni bir Origin başlatıyor ister mevcut bir Origin’i yeniden canlandırıyor olun — kişisel ağınızdan başlayın, davet bağlantılarını paylaşın ve odayı insanların katılmak isteyeceği yer haline getirin. JoinOrigin’den pratik adımlar.',
   intro: [
-    'İlk on üye edinmesi en zor ve en önemli olanlardır, çünkü bir topluluğun kültürünü, yabancıları çekecek bir itibarı olmadan önce tanımlarlar — ve mevcut bir topluluk durduğunda ya da yeniden başladığında da aynı derecede değerlidirler, çünkü bağlı bir çekirdek, sessiz bir grubu canlı bir gruba dönüştüren şeydir. O ilk-on sorunu temelde bir insanları bağlama sorunudur ve JoinOrigin’in çözdüğü çekirdek sorundur.',
+    'İlk on üye edinmesi en zor ve en önemli olanlardır, çünkü bir Origin’in kültürünü, yabancıları çekecek bir itibarı olmadan önce tanımlarlar — ve mevcut bir Origin durduğunda ya da yeniden başladığında da aynı derecede değerlidirler, çünkü bağlı bir çekirdek, sessiz bir grubu canlı bir gruba dönüştüren şeydir. O ilk-on sorunu temelde bir insanları bağlama sorunudur ve JoinOrigin’in çözdüğü çekirdek sorundur.',
     'JoinOrigin, dijital bağlan→katıl→oda döngüsü etrafında kurulmuş bir topluluk işletim sistemidir: bir grup yayınlarsınız, odası otomatik oluşturulur ve üyeler bir bağlantıyla katılır. Oda katılım yüzeyidir — Katıl’a tıklayan ya da bir davet bağlantısını takip eden her kişi, topluluğun yaşadığı ve yeni üyelerin kendilerini anında bağlı hissettiği tek yer olan grubun odasına iner. JoinOrigin üye toplamaz ya da etkinlik düzenlemez — o kısım sizindir. Platform keşfi ve katılmayı önemli ölçüde kolaylaştırır; erken büyüme yine de kişisel erişimden gelir: bir bağlantıyla doğrudan davet ettiğiniz insanlar, getirdikleri kişiler ve oda canlı hissettiği için kalanlar.',
-    'Bu rehber, ilk-on-üye sorununu somut adımlara böler — ister yeni bir topluluk başlatıyor ister mevcut bir topluluğu canlandırıyor olun: zaten tanıdığınız insanlardan başlamak, grubunuzu katılacak bir odası olacak şekilde yayınlamak, bağlantılarla kişisel olarak davet etmek, katılımcıları tanıtımcılara dönüştüren bir ilk buluşma yürütmek ve her üyenin bir sonrakini getirmesini sağlayan basit bir tavsiye alışkanlığı kurmak — ve her adım JoinOrigin’in nerede yardımcı olduğunu gösterir.',
+    'Bu rehber, ilk-on-üye sorununu somut adımlara böler — ister yeni bir Origin başlatıyor ister mevcut bir Origin’i canlandırıyor olun: zaten tanıdığınız insanlardan başlamak, grubunuzu katılacak bir odası olacak şekilde yayınlamak, bağlantılarla kişisel olarak davet etmek, katılımcıları tanıtımcılara dönüştüren bir ilk buluşma yürütmek ve her üyenin bir sonrakini getirmesini sağlayan basit bir tavsiye alışkanlığı kurmak — ve her adım JoinOrigin’in nerede yardımcı olduğunu gösterir.',
   ],
   dataPoints: [
     'Kişisel davetler, herkese açık gönderilerden ya da ücretli reklamlardan çok daha yüksek oranda dönüşüm sağlar.',
@@ -49,14 +49,14 @@ const content: GuideContent = {
     {
       question: 'JoinOrigin üye bulmama yardımcı olabilir mi?',
       answer:
-        'Evet. JoinOrigin, insanların toplulukları keşfetmesine ve başlatmasına yardımcı olur — bir grup arayan insanların sizinkini bulup odasına bir bağlantıyla katılabileceği bir yer. Bu rehberdeki adımlar — kişisel davetler ve harika bir ilk buluşma — ilk üyelerinizi bulmanın en güvenilir yollarıdır.',
+        'Evet. JoinOrigin, insanların Origins keşfetmesine ve başlatmasına yardımcı olur — bir grup arayan insanların sizinkini bulup odasına bir bağlantıyla katılabileceği bir yer. Bu rehberdeki adımlar — kişisel davetler ve harika bir ilk buluşma — ilk üyelerinizi bulmanın en güvenilir yollarıdır.',
     },
   ],
   sections: [
     'Zaten tanıdığınız elli kişiyi listeleyin. Topluluğun amacına uyan herkesi yazın: arkadaşlar, meslektaşlar, sınıf arkadaşları, eski iş arkadaşları, komşular ve çevrimiçi tanıdıklar. İstediğiniz on kişinin yaklaşık beş katı isme ihtiyacınız var. JoinOrigin topluluğunuza görünür bir yuva ve insanların bulabileceği bir oda verir — ancak ilk isimler yine de tanıdığınız insanlardan gelir. Elli kişiyi listeleyin ve her birine kişisel bir tanıştırma gibi davranın.',
-    'Grubunuzu yayınlayın ve odasını açın. İşaret edemediğiniz bir topluluk henüz yoktur — ve yuvası sohbetlere ve listelere dağılmış olan bir topluluğu büyütmek de neredeyse o kadar zordur. Grubu net bir misyonla yayınlayın ve odasının otomatik oluşturulmasına izin verin, böylece üyelerin ineceği gerçek bir yer olur. JoinOrigin’de bir grubu yayınlamak odasını otomatik oluşturur — oda katılım yüzeyidir ve oluşturan kişi ona baştan itibaren sahiptir. İsterseniz birini davet etmeden önce grubunuzu ve odasını hâlihazırda kullandığınız araçlarda kurun.',
+    'Grubunuzu yayınlayın ve odasını açın. İşaret edemediğiniz bir Origin henüz yoktur — ve yuvası sohbetlere ve listelere dağılmış olan bir Origin’i büyütmek de neredeyse o kadar zordur. Grubu net bir misyonla yayınlayın ve odasının otomatik oluşturulmasına izin verin, böylece üyelerin ineceği gerçek bir yer olur. JoinOrigin’de bir grubu yayınlamak odasını otomatik oluşturur — oda katılım yüzeyidir ve oluşturan kişi ona baştan itibaren sahiptir. İsterseniz birini davet etmeden önce grubunuzu ve odasını hâlihazırda kullandığınız araçlarda kurun.',
     'Spesifik bir istek ve bir bağlantıyla kişisel olarak davet edin. Topluluğu, ilk tarihi ya da ilk sohbeti ve neden keyif alacaklarını düşündüğünüzü belirten kısa bir mesaj gönderin — ve katılım bağlantısını ekleyin. Kişisel mesajlar genel gönderileri yener ve spesifik bir tarih belirsiz bir vaadi yener. JoinOrigin, insanlar sizi bulduğunda katılmanın sürtünmesini kaldırır — tek bağlantı, tek tıklama, odaya. Spesifik bir tarih ve bağlantı içeren kısa bir kişisel mesaj, herhangi bir herkese açık gönderiden daha iyi dönüşüm sağlar.',
-    'Her davet edilenden bir kişi getirmesini isteyin. Bunu isteğin normal bir parçası yapın: “Bunu sevebilecek bir arkadaşını getir.” Tavsiye davetleri, küçük ağların gerçek topluluklara dönüşme yoludur. JoinOrigin üyelere topluluk için tek bir paylaşılabilir yuva verir — böylece tavsiye sohbetleri gerçek bir bağlantıya ve gerçek bir odaya işaret eder. “Arkadaşını getir”i isteğin parçası yapın ve onlara paylaşacakları bağlantıyı verin.',
+    'Her davet edilenden bir kişi getirmesini isteyin. Bunu isteğin normal bir parçası yapın: “Bunu sevebilecek bir arkadaşını getir.” Tavsiye davetleri, küçük ağların gerçek Origins dönüşme yoludur. JoinOrigin üyelere Origin için tek bir paylaşılabilir yuva verir — böylece tavsiye sohbetleri gerçek bir bağlantıya ve gerçek bir odaya işaret eder. “Arkadaşını getir”i isteğin parçası yapın ve onlara paylaşacakları bağlantıyı verin.',
     'Gerçekten iyi tek bir ilk buluşma yürütün. Enerjinizi katılımcı sayısına değil deneyime harcayın: sıcak bir karşılama, net bir format ve tanımlanmış bir bitiş zamanı. İlk buluşmadan keyif alan insanlar sonraki on kişiyi getirir. JoinOrigin etkinlik düzenlemez — deneyim sizindir. Platform, topluluğun etrafında oluşmasına yardımcı olur: üyelerin sonradan işaret edip bağlantıyı sürdürebileceği tek bir oda.',
     'Her katılımcıyı odaya davet edin. Buluşmanın sonunda katılım bağlantısını paylaşın ve kalmak isteyen herkesi ekleyin. Oda, topluluğun buluşmalar arasında yaşadığı yerdir — odaya katılan bir üye, geri dönme olasılığı yüksek olan üyedir. JoinOrigin, topluluğunuzun üyeliğini ve iletişimini bir kayıt formu yerine tek bir düzenli odada tutar. Odaya giden basit bir bağlantı, takibi mümkün kılar.',
     '24 saat içinde bir sonraki tarihle takip edin. Her katılımcıya teşekkür edin, tek paragraflık bir özet paylaşın ve bir sonraki buluşmayı — herkesin görebileceği odada — doğrulayın. Takip, tek seferlik bir katılımcının üyeye dönüştüğü yerdir. JoinOrigin’de bir takibin doğal bir yuvası vardır — özetin ve sonraki tarihin yaşadığı tek bir yer. 24 saat içinde gönderilen kişisel bir teşekkür, bir katılımcıyı üyeye dönüştüren şeydir.',
@@ -71,7 +71,7 @@ const content: GuideContent = {
     },
     {
       title: 'Grubunuzu yayınlayın ve odasını açın',
-      body: 'İşaret edemediğiniz bir topluluk henüz yoktur — ve yuvası sohbetlere ve listelere dağılmış olan bir topluluğu büyütmek de neredeyse o kadar zordur. Grubu net bir misyonla yayınlayın ve odasının otomatik oluşturulmasına izin verin, böylece üyelerin ineceği gerçek bir yer olur.',
+      body: 'İşaret edemediğiniz bir Origin henüz yoktur — ve yuvası sohbetlere ve listelere dağılmış olan bir Origin’i büyütmek de neredeyse o kadar zordur. Grubu net bir misyonla yayınlayın ve odasının otomatik oluşturulmasına izin verin, böylece üyelerin ineceği gerçek bir yer olur.',
       joinOriginNote:
         'JoinOrigin’de bir grubu yayınlamak odasını otomatik oluşturur — oda katılım yüzeyidir ve oluşturan kişi ona baştan itibaren sahiptir. İsterseniz birini davet etmeden önce grubunuzu ve odasını hâlihazırda kullandığınız araçlarda kurun.',
     },
@@ -83,9 +83,9 @@ const content: GuideContent = {
     },
     {
       title: 'Her davet edilenden bir kişi getirmesini isteyin',
-      body: 'Bunu isteğin normal bir parçası yapın: “Bunu sevebilecek bir arkadaşını getir.” Tavsiye davetleri, küçük ağların gerçek topluluklara dönüşme yoludur.',
+      body: 'Bunu isteğin normal bir parçası yapın: “Bunu sevebilecek bir arkadaşını getir.” Tavsiye davetleri, küçük ağların gerçek Origins dönüşme yoludur.',
       joinOriginNote:
-        'JoinOrigin üyelere topluluk için tek bir paylaşılabilir yuva verir — böylece tavsiye sohbetleri gerçek bir bağlantıya ve gerçek bir odaya işaret eder. “Arkadaşını getir”i isteğin parçası yapın ve onlara paylaşacakları bağlantıyı verin.',
+        'JoinOrigin üyelere Origin için tek bir paylaşılabilir yuva verir — böylece tavsiye sohbetleri gerçek bir bağlantıya ve gerçek bir odaya işaret eder. “Arkadaşını getir”i isteğin parçası yapın ve onlara paylaşacakları bağlantıyı verin.',
     },
     {
       title: 'Gerçekten iyi tek bir ilk buluşma yürütün',

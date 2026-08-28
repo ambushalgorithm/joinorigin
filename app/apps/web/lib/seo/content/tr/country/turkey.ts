@@ -9,9 +9,9 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'tr',
   slug: 'turkey',
-  title: "Türkiye'deki topluluklar | JoinOrigin",
+  title: "Türkiye'deki Origins | JoinOrigin",
   description:
-    "Türkiye'de topluluklar bulun veya başlatın — girişim sahnelerinden küçük işletme ağlarına. JoinOrigin bekleme listesi.",
+    "Türkiye'de Origins bulun veya başlatın — girişim sahnelerinden küçük işletme ağlarına. JoinOrigin bekleme listesi.",
   intro:
     "Türkiye'nin topluluk hayatı misafirperverlik ve mahalle üzerine kuruludur: esnaf, çay ocakları ve aile ağları gündelik yaşamı birbirine bağlı tutar. Çay ritüeli toplumsal tutkal gibidir: her dükkânda, ofiste ve toplantıda çay ikram edilir ve bir çay daveti, yabancıların müdavime dönüştüğü andır. Şehirlerde bu gelenek modern bir sahneyle buluşur: İstanbul, Ankara ve İzmir'deki üniversite kampüsleri yoğun öğrenci topluluklarına ev sahipliği yapar; gelişen e-ticaret, fintech ve oyun sektörü İstanbul'u bölgesel bir girişim başkenti hâline getirmiştir; çarşıların ve mahalle dükkânlarının esnaf kültürü ise küçük işletme topluluklarını güçlü tutar. Bölgesel festivaller, yardım ağları ve aile buluşmaları ülkeyi bölgeleri boyunca bir arada tutarken, gönüllü gruplar ve vakıflar sosyal yardım ve afet müdahalesinde aktiftir. Üniversiteler, kütüphaneler ve belediye kültür merkezleri, yeni gelenlerin kendilerine bir yer bulmasını kolaylaştıran açık buluşma alanları sunar. Çay ritüelini benimseyen, birkaç kelime Türkçe öğrenen ve düzenli olarak görünen yeni gelenler kapıların ardına kadar açıldığını görecektir — misafirperverlik burada bir klişe değil, topluluk hayatının işletim sistemidir.",
   dataPoints: [
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: "Türkiye'de toplulukları nasıl bulurum?",
+      question: "Türkiye'de Origins nasıl bulurum?",
       answer:
-        '/location merkezini kullanın, bir şehir seçin ve ardından grup türü sayfalarını inceleyin — girişim, yaratıcı, siyasi, buluşma ve küçük işletme toplulukları. Çay ocakları, üniversite kulüpleri ve yerel vakıflar da çevrimdışı gruplar için iyi başlangıç noktalarıdır.',
+        '/location merkezini kullanın, bir şehir seçin ve ardından grup türü sayfalarını inceleyin — girişim, yaratıcı, siyasi, buluşma ve küçük işletme Origins. Çay ocakları, üniversite kulüpleri ve yerel vakıflar da çevrimdışı gruplar için iyi başlangıç noktalarıdır.',
     },
     {
       question: 'Esnaf geleneği nedir ve toplulukları nasıl şekillendirir?',
@@ -36,7 +36,7 @@ const content: CountryContent = {
     {
       question: "JoinOrigin Türkiye'de faaliyet gösteriyor mu?",
       answer:
-        "Evet. JoinOrigin'in yerel ofisleri yoktur. İstanbul sayfaları Türkçe olarak sunulmaktadır ve ürün, insanların Türkiye'nin her yerinde topluluk bulmasına veya başlatmasına yardımcı olur.",
+        "Evet. JoinOrigin'in yerel ofisleri yoktur. İstanbul sayfaları Türkçe olarak sunulmaktadır ve ürün, insanların Türkiye'nin her yerinde Origins bulmasına veya başlatmasına yardımcı olur.",
     },
   ],
 };

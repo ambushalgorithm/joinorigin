@@ -10,31 +10,31 @@ const content: CityContent = {
   locale: 'tr',
   slug: 'istanbul',
   pageTitles: {
-    city: "İstanbul'daki Topluluklar | JoinOrigin",
+    city: "İstanbul'daki Origins | JoinOrigin",
     cityDescription:
-      "İstanbul'da topluluklar bulun veya başlatın — Türkiye'nin en büyük şehrinde girişim, yaratıcı, siyasi, buluşma ve küçük işletme grupları. JoinOrigin bekleme listesi.",
+      "İstanbul'da Origins bulun veya başlatın — Türkiye'nin en büyük şehrinde girişim, yaratıcı, siyasi, buluşma ve küçük işletme grupları. JoinOrigin bekleme listesi.",
     variants: {
-      startup: "İstanbul'daki girişim toplulukları | JoinOrigin",
-      creative: "İstanbul'daki yaratıcı topluluklar | JoinOrigin",
-      political: "İstanbul'daki siyasi ve sivil topluluklar | JoinOrigin",
-      meetup: "İstanbul'daki buluşma ve sosyal topluluklar | JoinOrigin",
-      'small-business': "İstanbul'daki küçük işletme toplulukları | JoinOrigin",
+      startup: "İstanbul'daki girişim Origins | JoinOrigin",
+      creative: "İstanbul'daki yaratıcı Origins | JoinOrigin",
+      political: "İstanbul'daki siyasi ve sivil Origins | JoinOrigin",
+      meetup: "İstanbul'daki buluşma ve sosyal Origins | JoinOrigin",
+      'small-business': "İstanbul'daki küçük işletme Origins | JoinOrigin",
     },
     variantDescriptions: {
       startup:
-        "İstanbul'da girişim toplulukları bulun veya başlatın — Kadıköy, Beşiktaş ve e-ticaret sahnesi çevresindeki kurucular, mühendisler ve operatörler. JoinOrigin bekleme listesi.",
+        "İstanbul'da girişim Origins bulun veya başlatın — Kadıköy, Beşiktaş ve e-ticaret sahnesi çevresindeki kurucular, mühendisler ve operatörler. JoinOrigin bekleme listesi.",
       creative:
-        "İstanbul'da yaratıcı topluluklar bulun veya başlatın — Karaköy, Kadıköy ve Beyoğlu genelinde stüdyolar, galeriler ve kolektifler. JoinOrigin bekleme listesi.",
+        "İstanbul'da yaratıcı Origins bulun veya başlatın — Karaköy, Kadıköy ve Beyoğlu genelinde stüdyolar, galeriler ve kolektifler. JoinOrigin bekleme listesi.",
       political:
-        "İstanbul'da siyasi ve sivil topluluklar bulun veya başlatın — mahalle dayanışma ağları, konut aktivizmi ve yerel kampanyalar. JoinOrigin bekleme listesi.",
+        "İstanbul'da siyasi ve sivil Origins bulun veya başlatın — mahalle dayanışma ağları, konut aktivizmi ve yerel kampanyalar. JoinOrigin bekleme listesi.",
       meetup:
-        "İstanbul'da buluşma ve sosyal topluluklar bulun veya başlatın — çay bahçeleri, Boğaz vapurları, sahil yürüyüşleri ve tavla akşamları. JoinOrigin bekleme listesi.",
+        "İstanbul'da buluşma ve sosyal Origins bulun veya başlatın — çay bahçeleri, Boğaz vapurları, sahil yürüyüşleri ve tavla akşamları. JoinOrigin bekleme listesi.",
       'small-business':
-        "İstanbul'da küçük işletme toplulukları bulun veya başlatın — çarşı esnafı, esnaf ağları ve aile işletmeleri. JoinOrigin bekleme listesi.",
+        "İstanbul'da küçük işletme Origins bulun veya başlatın — çarşı esnafı, esnaf ağları ve aile işletmeleri. JoinOrigin bekleme listesi.",
     },
-    ideas: "İstanbul'da 30 topluluk etkinliği fikri | JoinOrigin",
+    ideas: "İstanbul'da 30 Origin etkinliği fikri | JoinOrigin",
     ideasDescription:
-      "İstanbul'da 30 topluluk etkinliği fikri keşfedin — ağ kurma, öğrenme, açık hava, profesyonel, yaratıcı ve etki etkinlikleri. JoinOrigin bekleme listesi.",
+      "İstanbul'da 30 Origin etkinliği fikri keşfedin — ağ kurma, öğrenme, açık hava, profesyonel, yaratıcı ve etki etkinlikleri. JoinOrigin bekleme listesi.",
   },
   intro: [
     "İstanbul, dünyada iki kıtaya yayılan tek büyük şehirdir ve toplulukları daha da fazlasına yayılır: Boğaz'ı geçen vapurlar, Avrupa yakasındaki iş bölgelerini Asya yakasındaki kafelere ve mahalle hayatına bağlar; bu da vapur yolculuğunu günlük bir sosyal ritüele dönüştürür. Çay kayganlaştırıcıdır — çay bahçeleri, çaycılar ve her dükkân ve ofiste ikram edilen bardaklar sohbetleri akışta tutar.",
@@ -163,19 +163,19 @@ const content: CityContent = {
   },
   variantIntros: {
     startup:
-      "İstanbul'un girişim sahnesi bölgenin en büyüğüdür; genç bir nüfus, derin bir mühendislik yetenek havuzu ve e-ticaret ile yemek teslimatında yerli devler tarafından beslenir. Asya yakasındaki Kadıköy, yoğun bir ortak çalışma alanı ve girişim kafesi kümesine ev sahipliği yaparken, Avrupa yakasındaki Beşiktaş ve Maslak oyun stüdyolarını, fintech'i ve kurumsal inovasyonu sabitler. Boğaziçi ve İTÜ gibi üniversiteler erken ekiplere istikrarlı bir mezun akışı besler ve şehrin Avrupa ile Asya arasındaki konumu onu sınır ötesi genişleme için doğal bir merkez yapar. Formatlar arasında kurucu kahvaltıları, pitch geceleri, demo günleri ve ülkenin en gururlu sektörünü sergileyen oyun geceleri yer alır. Topluluk genç, enerjik ve giderek daha fazla İngilizce konuşur; ancak yerel gruplarda varsayılan dil Türkçe kalır. İstanbul'un ritmi sosyal ve geçtir — toplantılar genellikle çay ya da akşam yemeği üzerinden devam eder. Burada bir girişim topluluğu başlatmak en iyi dar bir dikey ve düzenli bir ritimle çalışır — aylık bir e-ticaret sofrası ya da bir oyun kurucuları gecesi, genelci bir gruptan daha hızlı sadık bir takipçi kitlesi oluşturur.",
+      "İstanbul'un girişim sahnesi bölgenin en büyüğüdür; genç bir nüfus, derin bir mühendislik yetenek havuzu ve e-ticaret ile yemek teslimatında yerli devler tarafından beslenir. Asya yakasındaki Kadıköy, yoğun bir ortak çalışma alanı ve girişim kafesi kümesine ev sahipliği yaparken, Avrupa yakasındaki Beşiktaş ve Maslak oyun stüdyolarını, fintech'i ve kurumsal inovasyonu sabitler. Boğaziçi ve İTÜ gibi üniversiteler erken ekiplere istikrarlı bir mezun akışı besler ve şehrin Avrupa ile Asya arasındaki konumu onu sınır ötesi genişleme için doğal bir merkez yapar. Formatlar arasında kurucu kahvaltıları, pitch geceleri, demo günleri ve ülkenin en gururlu sektörünü sergileyen oyun geceleri yer alır. Topluluk genç, enerjik ve giderek daha fazla İngilizce konuşur; ancak yerel gruplarda varsayılan dil Türkçe kalır. İstanbul'un ritmi sosyal ve geçtir — toplantılar genellikle çay ya da akşam yemeği üzerinden devam eder. Burada bir girişim Origin başlatmak en iyi dar bir dikey ve düzenli bir ritimle çalışır — aylık bir e-ticaret sofrası ya da bir oyun kurucuları gecesi, genelci bir gruptan daha hızlı sadık bir takipçi kitlesi oluşturur.",
     creative:
-      "İstanbul'un yaratıcı toplulukları iki kıtayı ve bir düzine geleneği köprüler: Karaköy'ün dönüştürülmüş depoları galerilere ve tasarım stüdyolarına ev sahipliği yapar, Kadıköy'ün sokakları şehrin en canlı muraflarını taşır ve Beyoğlu, bir yüzyıldır sanatçılara ilham veren bir semtin bohem enerjisini korur. Şehrin zanaat gelenekleri — seramik, çini, hat ve halı dokumacılığı — eski atölyeleri çağdaş üreticilerle buluşturur. Sanat okulları ve şehrin film ile müzik sahneleri, görsel sanat, müzik ve sinemayla tanınan bir topluluğa istikrarlı bir yetenek akışı besler. Formatlar arasında Kadıköy'de açık stüdyo hafta sonları, Karaköy galeri yürüyüşleri, tasarım eleştirileri ve müzik prodüksiyon çevreleri yer alır; çay bahçeleri her etkinlikten sonra doğal buluşma noktasını sağlar. İstanbul Film Festivali ve Bienal gibi etkinlikler, şehrin dört bir yanındaki izleyicileri ve sanatçıları aynı haftalarda bir araya getirir. Sahne yoğun ve bağlantılıdır — iyi bir proje bir hafta içinde Moda'daki bir stüdyodan Karaköy'deki bir galeriye yolculuk edebilir. İstanbul'da yaratıcı bir topluluk başlatmak gerçekçidir: bir zanaat, bir semt ve düzenli bir akşam seçin; meraklı, yetenekli insanların yoğunluğu sizi bulur.",
+      "İstanbul'un yaratıcı toplulukları iki kıtayı ve bir düzine geleneği köprüler: Karaköy'ün dönüştürülmüş depoları galerilere ve tasarım stüdyolarına ev sahipliği yapar, Kadıköy'ün sokakları şehrin en canlı muraflarını taşır ve Beyoğlu, bir yüzyıldır sanatçılara ilham veren bir semtin bohem enerjisini korur. Şehrin zanaat gelenekleri — seramik, çini, hat ve halı dokumacılığı — eski atölyeleri çağdaş üreticilerle buluşturur. Sanat okulları ve şehrin film ile müzik sahneleri, görsel sanat, müzik ve sinemayla tanınan bir topluluğa istikrarlı bir yetenek akışı besler. Formatlar arasında Kadıköy'de açık stüdyo hafta sonları, Karaköy galeri yürüyüşleri, tasarım eleştirileri ve müzik prodüksiyon çevreleri yer alır; çay bahçeleri her etkinlikten sonra doğal buluşma noktasını sağlar. İstanbul Film Festivali ve Bienal gibi etkinlikler, şehrin dört bir yanındaki izleyicileri ve sanatçıları aynı haftalarda bir araya getirir. Sahne yoğun ve bağlantılıdır — iyi bir proje bir hafta içinde Moda'daki bir stüdyodan Karaköy'deki bir galeriye yolculuk edebilir. İstanbul'da yaratıcı bir Origin başlatmak gerçekçidir: bir zanaat, bir semt ve düzenli bir akşam seçin; meraklı, yetenekli insanların yoğunluğu sizi bulur.",
     political:
-      "İstanbul'un sivil yaşamı, güçlü bir komşuluk kültürü ve konut, kamusal alan ile afet hazırlığı etrafında örgütlenmiş hareketler tarafından sabitlenir. Şehrin coğrafyası planlamayı sürekli bir kamusal soru haline getirir: Boğaz köprüleri, metro genişlemesi ve eski mahallelerin yeniden geliştirilmesi, gerçek topluluk istişarelerinde tartışılır. Konut belirleyici bir konudur; kiracı dernekleri ve mahalle ağları yerinden edilmeye ve artan kiralara karşı örgütlenir. Toplum mutfakları, gündüz merkezleri ve gönüllü ağları günlük ihtiyaçlara yanıt verirken, şehrin deprem deneyimi yeni gelenleri ağırlayan ilk yardım ve bina güvenliği atölyeleri dahil ciddi hazırlık eğitimleri üretmiştir. İlçe belediyeleri, mahalle muhtarlıkları ve sivil toplum kuruluşları, şehrin yönetiminde sıradan sakinlerin de söz sahibi olduğu bir dizi katılım kanalı sunar. Siyasi kültür doğrudanlığa ve dayanışmaya değer verir: İstanbul sakinleri önce komşularına yardım eder, politikayı sonra tartışır. Siyasi bir topluluk başlatmak, somut bir konu ve küçük bir coğrafya seçmek, ardından mahallenizde zaten var olan dayanışma ağıyla ortaklık kurmak demektir — manzara, iş birliğinin rekabeti yendiği kadar zengindir.",
+      "İstanbul'un sivil yaşamı, güçlü bir komşuluk kültürü ve konut, kamusal alan ile afet hazırlığı etrafında örgütlenmiş hareketler tarafından sabitlenir. Şehrin coğrafyası planlamayı sürekli bir kamusal soru haline getirir: Boğaz köprüleri, metro genişlemesi ve eski mahallelerin yeniden geliştirilmesi, gerçek topluluk istişarelerinde tartışılır. Konut belirleyici bir konudur; kiracı dernekleri ve mahalle ağları yerinden edilmeye ve artan kiralara karşı örgütlenir. Toplum mutfakları, gündüz merkezleri ve gönüllü ağları günlük ihtiyaçlara yanıt verirken, şehrin deprem deneyimi yeni gelenleri ağırlayan ilk yardım ve bina güvenliği atölyeleri dahil ciddi hazırlık eğitimleri üretmiştir. İlçe belediyeleri, mahalle muhtarlıkları ve sivil toplum kuruluşları, şehrin yönetiminde sıradan sakinlerin de söz sahibi olduğu bir dizi katılım kanalı sunar. Siyasi kültür doğrudanlığa ve dayanışmaya değer verir: İstanbul sakinleri önce komşularına yardım eder, politikayı sonra tartışır. Siyasi bir Origin başlatmak, somut bir konu ve küçük bir coğrafya seçmek, ardından mahallenizde zaten var olan dayanışma ağıyla ortaklık kurmak demektir — manzara, iş birliğinin rekabeti yendiği kadar zengindir.",
     meetup:
       "İstanbul'un buluşma sahnesi çay, su ve sohbet üzerine yürür. Çay bahçesi, şehrin gerçek kamusal salonudur — ağaçların altında çay bardakları, tavla tahtaları ve uzun sohbetler. Boğaz vapurları yüzen bir sosyal katman ekler: yolcular ve gruplar manzara için tekneleri kullanır ve bir vapur buluşması, tanışmak için benzersiz bir İstanbul yoludur. Moda, Beşiktaş ve Üsküdar'ın sahil yürüyüşleri koşu gruplarına, gezinenlere ve balıkçılara ev sahipliği yaparken, Emirgan ve Yıldız parkları piknikler ve aile buluşmalarıyla dolar. Kahvehane ve çay bahçelerindeki tavla akşamları eski bir geleneği canlı tutar ve dil değişimleri (Türkçe–İngilizce) şehrin dört bir yanında yürür. Hafta sonları sahillerde balıkçılar, amatör müzisyenler ve yürüyüş grupları yan yana görülür; her mevsimin kendine özgü bir açık hava ritüeli vardır. Ritim geç ve cömerttir — saat dokuzda başlayan bir buluşma tamamen normaldir. İstanbul'da bir buluşma başlatmak, tekrarlanabilir bir format ve sabit bir nokta seçmek demektir — haftalık bir çay bahçesi buluşması ya da aylık bir vapur gezisi — ve şehrin misafirperverliği gerisini halleder.",
     'small-business':
-      "İstanbul'un küçük işletme toplulukları çarşı ve esnaf üzerinde yürür — yüzyıllardır mahalle ticaretini sabitleyen esnaf. Kapalıçarşı ve Mısır Çarşısı en ünlüleridir, ancak her mahallenin tezgâh sahiplerinin kuşaklar boyunca birbirini tanıdığı kendi pazar meydanı vardır. Esnaf kültürü güven üzerine kuruludur: dükkâncılar teslimat, müşteri ve izinlerle ruhsatların bitmek bilmeyen evrak işlerinde birbirlerine yardım eder. Kadıköy pazarı ve Avrupa yakasının gıda salonları, tedarikçileri ve pop-up alanları paylaşan genç girişimcilerden oluşan modern bir katman ekler. Ticaret odaları ve ticaret birlikleri dijitalleşme ve ihracat üzerine atölyeler sunarken, şehrin festivalleri esnafa ortak bir takvim verir. Sabahın erken saatlerinde başlayan esnaf çayları, günün ilk haberlerinin ve siparişlerin paylaşıldığı gayriresmi toplantı noktalarıdır. Bu grupları bağlayan şey yer ve alışkanlıktır: bir çarşı ya da dükkân koridoru, sokağın karakterinde ortak payı olan doğal bir topluluktur. Küçük bir işletme topluluğu başlatmak çok ulaşılabilirdir: bir pazar salonunda aylık bir esnaf çayı, izinler, kira ve çevrimiçi satış gibi dönüşümlü konularla, nadiren konuşacak akranı olan sahipleri güvenilir şekilde çeker.",
+      "İstanbul'un küçük işletme toplulukları çarşı ve esnaf üzerinde yürür — yüzyıllardır mahalle ticaretini sabitleyen esnaf. Kapalıçarşı ve Mısır Çarşısı en ünlüleridir, ancak her mahallenin tezgâh sahiplerinin kuşaklar boyunca birbirini tanıdığı kendi pazar meydanı vardır. Esnaf kültürü güven üzerine kuruludur: dükkâncılar teslimat, müşteri ve izinlerle ruhsatların bitmek bilmeyen evrak işlerinde birbirlerine yardım eder. Kadıköy pazarı ve Avrupa yakasının gıda salonları, tedarikçileri ve pop-up alanları paylaşan genç girişimcilerden oluşan modern bir katman ekler. Ticaret odaları ve ticaret birlikleri dijitalleşme ve ihracat üzerine atölyeler sunarken, şehrin festivalleri esnafa ortak bir takvim verir. Sabahın erken saatlerinde başlayan esnaf çayları, günün ilk haberlerinin ve siparişlerin paylaşıldığı gayriresmi toplantı noktalarıdır. Bu grupları bağlayan şey yer ve alışkanlıktır: bir çarşı ya da dükkân koridoru, sokağın karakterinde ortak payı olan doğal bir topluluktur. Küçük bir işletme Origin başlatmak çok ulaşılabilirdir: bir pazar salonunda aylık bir esnaf çayı, izinler, kira ve çevrimiçi satış gibi dönüşümlü konularla, nadiren konuşacak akranı olan sahipleri güvenilir şekilde çeker.",
   },
   ideaPage: {
     intro:
-      "İstanbul, yeni topluluk etkinliği fikirlerini test etmek için ideal bir şehirdir: çay bahçeleri ve sahil kafeleri her yerdedir, vapurlar her buluşmayı bir maceraya dönüştürür ve Türk misafirperverliği sıcak bir karşılama garanti eder. Aşağıdaki otuz fikir altı kategoride gruplandırılmıştır — ağ kurma, öğrenme, sosyal ve açık hava, profesyonel ve sektörel, yaratıcı ve üretici ile etki ve yerel. Her biri kimin için olduğunu, kısa bir sunumu ve İstanbul'da gerçekten var olan bir mekan türünü içerir — çay bahçelerinden ve vapur iskelelerinden çarşılara ve mahalle mutfaklarına. Bazı fikirler tek seferlik etkinlikler olarak çalışır; diğerleri haftalık bir ritimle tekrarlanan topluluklara dönüşecek şekilde tasarlanmıştır. Dürüstlük kuralı basittir: her mekan önerisi bu şehirde gerçek bir yer türüdür ve her format ilk kez organizatör olan birinin yürütebileceği kadar basittir. İlgi alanlarınıza uyan fikri seçin, sizi ağırlayacak bir mekan bulun ve İstanbul'un misafirperverliğinin gerisini halletmesine izin verin.",
+      "İstanbul, yeni topluluk etkinliği fikirlerini test etmek için ideal bir şehirdir: çay bahçeleri ve sahil kafeleri her yerdedir, vapurlar her buluşmayı bir maceraya dönüştürür ve Türk misafirperverliği sıcak bir karşılama garanti eder. Aşağıdaki otuz fikir altı kategoride gruplandırılmıştır — ağ kurma, öğrenme, sosyal ve açık hava, profesyonel ve sektörel, yaratıcı ve üretici ile etki ve yerel. Her biri kimin için olduğunu, kısa bir sunumu ve İstanbul'da gerçekten var olan bir mekan türünü içerir — çay bahçelerinden ve vapur iskelelerinden çarşılara ve mahalle mutfaklarına. Bazı fikirler tek seferlik etkinlikler olarak çalışır; diğerleri haftalık bir ritimle tekrarlanan Origins dönüşecek şekilde tasarlanmıştır. Dürüstlük kuralı basittir: her mekan önerisi bu şehirde gerçek bir yer türüdür ve her format ilk kez organizatör olan birinin yürütebileceği kadar basittir. İlgi alanlarınıza uyan fikri seçin, sizi ağırlayacak bir mekan bulun ve İstanbul'un misafirperverliğinin gerisini halletmesine izin verin.",
     categories: [
       {
         name: 'Ağ kurma',
@@ -428,7 +428,7 @@ const content: CityContent = {
           "Hayır. İstanbul'daki birçok grup özellikle teknoloji ve yaratıcı sahnelerde İngilizce ya da iki dilli yürür. Biraz Türkçe — ve bolca çay — komşuların ve esnafın kapılarını açar.",
       },
       {
-        question: 'Bu etkinlikler gerçek topluluklara dönüşebilir mi?',
+        question: 'Bu etkinlikler gerçek Origins dönüşebilir mi?',
         answer:
           'Evet — tekrarlanan formatlar çoğu İstanbul topluluğunun nasıl başladığıdır ve şehrin misafirperverliği size kanıtlanmış bir model verir. Nasıl yapılır rehberleri ilk etkinlikten istikrarlı bir topluluğa kadar adım adım anlatır.',
       },
@@ -438,12 +438,12 @@ const content: CityContent = {
     {
       question: "İstanbul'da bir topluluğu nasıl bulurum?",
       answer:
-        'Girişim, yaratıcı, siyasi, buluşma ve küçük işletme toplulukları için grup türü sayfalarını kullanın. Her biri İstanbul sakinlerinin toplandığı gerçek semtleri, mekanları ve formatları anlatır. JoinOrigin canlıdır — profilinizi oluşturun ve topluluğunuzu bugün bulun ya da başlatın.',
+        'Girişim, yaratıcı, siyasi, buluşma ve küçük işletme Origins için grup türü sayfalarını kullanın. Her biri İstanbul sakinlerinin toplandığı gerçek semtleri, mekanları ve formatları anlatır. JoinOrigin canlıdır — profilinizi oluşturun ve Origin’inizi bugün bulun ya da başlatın.',
     },
     {
-      question: "İstanbul'da bir topluluk başlatmak gerçekçi mi?",
+      question: "İstanbul'da bir Origin başlatmak gerçekçi mi?",
       answer:
-        "Evet. İstanbul'da ücretsiz mekan olarak çay bahçeleri, vapurlar ve sahil yürüyüş yolları, ayrıca ünlü derecede misafirperver bir kültür vardır. Rehberler bir topluluk başlatmayı, bir buluşma düzenlemeyi ve ilk on üyenizi almayı kapsar.",
+        "Evet. İstanbul'da ücretsiz mekan olarak çay bahçeleri, vapurlar ve sahil yürüyüş yolları, ayrıca ünlü derecede misafirperver bir kültür vardır. Rehberler bir Origin başlatmayı, bir buluşma düzenlemeyi ve ilk on üyenizi almayı kapsar.",
     },
     {
       question: 'Bu sayfadaki mekan önerileri gerçek mi?',
@@ -453,7 +453,7 @@ const content: CityContent = {
     {
       question: "JoinOrigin'in İstanbul'da bir ofisi var mı?",
       answer:
-        "Hayır. JoinOrigin'in yerel ofisleri ya da personeli yoktur. Tüm topluluk açıklamaları gerçek şehir manzarasını yansıtır ve platform, İstanbul sakinlerinin toplulukları bulmasına ya da başlatmasına yardımcı olur.",
+        "Hayır. JoinOrigin'in yerel ofisleri ya da personeli yoktur. Tüm Origin açıklamaları gerçek şehir manzarasını yansıtır ve platform, İstanbul sakinlerinin Origins bulmasına ya da başlatmasına yardımcı olur.",
     },
   ],
 };

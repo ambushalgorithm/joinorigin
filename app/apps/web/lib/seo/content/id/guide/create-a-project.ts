@@ -19,7 +19,7 @@ const content: GuideContent = {
   description:
     'Buat proyek di JoinOrigin — baik itu ide yang benar-benar baru maupun pekerjaan yang sudah berjalan — terbitkan halaman proyek bersama, buka ruangnya secara otomatis, dan ubah percakapan grup menjadi pekerjaan yang benar-benar terwujud. Langkah praktis dari JoinOrigin.',
   intro: [
-    'Grup yang hanya berbicara pada akhirnya mandek. Perbedaan antara komunitas yang terasa hidup dan yang memudar adalah pekerjaan bersama — proyek dengan nama, tujuan, dan tempat di mana kemajuan terlihat. Mengubah percakapan menjadi proyek juga merupakan masalah menghubungkan orang: Anda butuh orang yang tepat, komitmen yang tepat, dan satu tempat yang jelas untuk bekerja bersama. Hal yang sama berlaku ketika proyeknya sudah ada — tersebar di berkas, pesan, dan daftar tugas satu orang — proyek itu tetap butuh rumah yang terlihat dan orang yang tepat di sekitarnya.',
+    'Grup yang hanya berbicara pada akhirnya mandek. Perbedaan antara Origin yang terasa hidup dan yang memudar adalah pekerjaan bersama — proyek dengan nama, tujuan, dan tempat di mana kemajuan terlihat. Mengubah percakapan menjadi proyek juga merupakan masalah menghubungkan orang: Anda butuh orang yang tepat, komitmen yang tepat, dan satu tempat yang jelas untuk bekerja bersama. Hal yang sama berlaku ketika proyeknya sudah ada — tersebar di berkas, pesan, dan daftar tugas satu orang — proyek itu tetap butuh rumah yang terlihat dan orang yang tepat di sekitarnya.',
     'Alur JoinOrigin menangani perpindahan itu: kelompok yang terbentuk menerbitkan proyek, dan halaman proyek muncul secara publik dengan ruangnya dibuat otomatis pada saat diterbitkan. Anggota bergabung ke ruang proyek melalui tautan, kreator mengendalikannya sebagai pemilik ruang, dan pembaruan dari ruang mengalir ke linimasa sehingga seluruh jaringan dapat melihat pekerjaannya. Ruang proyek terbuka saat Anda menerbitkan — tanpa langkah penyiapan di antaranya.',
     'Panduan ini menelusuri dari percikan pertama hingga ritme kerja yang berjalan — baik proyeknya benar-benar baru maupun sudah berjalan: mulai dari grup yang sudah ada dan ruangnya, menentukan cakupan yang benar-benar bisa diwujudkan, menulis halaman proyek, menerbitkannya dan membuka ruang, mengundang tim kerja, menyepakati peran dan tonggak pertama, memindahkan pekerjaan nyata ke ruang, dan berbagi kemajuan untuk membangun momentum.',
   ],
@@ -57,21 +57,21 @@ const content: GuideContent = {
     },
   ],
   sections: [
-    'Mulai dari grup yang sudah ada dan ruangnya. Proyek tumbuh dari grup yang sudah memiliki kepercayaan dan momentum. Perhatikan percakapan di ruang grup dan temukan kebutuhan yang berulang — hal yang terus dikatakan anggota "kita harus melakukannya". JoinOrigin menjaga komunitas tetap hidup dalam ruang yang dikendalikan kreator, dan proyek adalah lapisan berikutnya di atas ruang itu. Sebutkan kebutuhan yang berulang di grup dan uji apakah ada yang mau menindaklanjutinya.',
+    'Mulai dari grup yang sudah ada dan ruangnya. Proyek tumbuh dari grup yang sudah memiliki kepercayaan dan momentum. Perhatikan percakapan di ruang grup dan temukan kebutuhan yang berulang — hal yang terus dikatakan anggota "kita harus melakukannya". JoinOrigin menjaga Origin tetap hidup dalam ruang yang dikendalikan kreator, dan proyek adalah lapisan berikutnya di atas ruang itu. Sebutkan kebutuhan yang berulang di grup dan uji apakah ada yang mau menindaklanjutinya.',
     'Tentukan cakupan yang benar-benar bisa diwujudkan. Tuliskan apa yang akan dihasilkan proyek, untuk siapa, dan dalam jangka waktu apa. Jaga versi pertama cukup kecil sehingga grup bisa menyelesaikannya. JoinOrigin dirancang di sekitar proyek dengan halaman publik — cakupan yang jelas membuat halaman mudah dibaca dan ruang tetap fokus. Satu kalimat yang menyatakan apa yang terwujud dan kapan sudah cukup untuk memulai.',
     'Tulis halaman proyek. Halaman harus menyatakan tujuan proyek, masalah yang dipecahkannya, siapa yang mengerjakannya, dan apa kebutuhannya. Jujurlah tentang tahapnya — draf awal tidak masalah. Menerbitkan proyek di JoinOrigin otomatis membuat halaman dan ruangnya, dengan kreator mengendalikan ruang sejak awal. Terbitkan deskripsi proyek di tempat yang bisa ditunjuk oleh grup.',
     'Terbitkan proyek dan buka ruangnya. Menerbitkan adalah hal yang membuat proyek menjadi nyata: halaman publik plus ruang tempat pekerjaan hidup. Di JoinOrigin, ruang dibuat otomatis pada saat yang sama — tidak ada langkah penyiapan terpisah, dan kreator memilikinya. Di JoinOrigin halaman, ruang, dan tim kerja adalah satu penerbitan. Buat halaman dan ruang di alat yang sudah digunakan grup Anda jika Anda lebih suka.',
     'Undang tim kerja ke dalam ruang. Undang orang yang benar-benar akan mengerjakan pekerjaan — tim kecil yang berkomitmen lebih baik daripada audiens besar. Bagikan tautan bergabung dan minta setiap orang mengonfirmasi waktu mereka. Bergabung di JoinOrigin adalah satu tindakan — mengklik Bergabung di halaman proyek atau mengikuti tautan undangan langsung dari anggota. Satu tautan yang jelas ke ruang proyek sudah cukup.',
     'Sepakati peran dan tonggak pertama. Sebutkan siapa memiliki apa, seberapa sering grup mengecek perkembangan, dan tonggak pertama yang dituju semua orang. Tuliskan di tempat yang bisa dilihat seluruh tim. JoinOrigin tidak menetapkan peran untuk Anda — kendali kreator berarti Anda yang memutuskan. Platform menjaga peran dan tonggak tetap terlihat di ruang proyek. Rencana tertulis singkat di ruang sudah cukup.',
     'Pindahkan pekerjaan nyata ke dalam ruang. Ganti "kita harus" dengan "ini drafnya", "ini keputusannya", dan "ini tugas berikutnya". Jaga kemajuan di satu tempat yang terlihat sehingga semua orang bisa mengikuti. JoinOrigin menjaga ruang proyek tetap menampung pekerjaan — keputusan, berkas, dan pembaruan — alih-alih menyebarkannya di pesan pribadi. Simpan artefak kerja di ruang bersama sejak minggu pertama.',
-    'Bagikan kemajuan untuk membangun momentum. Unggah pembaruan saat proyek berjalan, rayakan tonggak saat tercapai, dan undang grup yang lebih luas untuk bergabung atau mengikuti. Kemajuan di linimasa mengubah proyek menjadi bukti bahwa komunitas benar-benar menghasilkan. Pembaruan ruang mengalir ke linimasa di JoinOrigin — lingkaran pertumbuhan tempat setiap anggota baru memperluas permukaan penemuan. Mulailah ditemukan dan bertumbuh.',
+    'Bagikan kemajuan untuk membangun momentum. Unggah pembaruan saat proyek berjalan, rayakan tonggak saat tercapai, dan undang grup yang lebih luas untuk bergabung atau mengikuti. Kemajuan di linimasa mengubah proyek menjadi bukti bahwa Origin benar-benar menghasilkan. Pembaruan ruang mengalir ke linimasa di JoinOrigin — lingkaran pertumbuhan tempat setiap anggota baru memperluas permukaan penemuan. Mulailah ditemukan dan bertumbuh.',
   ],
   steps: [
     {
       title: 'Mulai dari grup yang sudah ada dan ruangnya',
       body: 'Proyek tumbuh dari grup yang sudah memiliki kepercayaan dan momentum. Perhatikan percakapan di ruang grup dan temukan kebutuhan yang berulang — hal yang terus dikatakan anggota "kita harus melakukannya".',
       joinOriginNote:
-        'JoinOrigin menjaga komunitas tetap hidup dalam ruang yang dikendalikan kreator, dan proyek adalah lapisan berikutnya di atas ruang itu. Sebutkan kebutuhan yang berulang di grup dan uji apakah ada yang mau menindaklanjutinya.',
+        'JoinOrigin menjaga Origin tetap hidup dalam ruang yang dikendalikan kreator, dan proyek adalah lapisan berikutnya di atas ruang itu. Sebutkan kebutuhan yang berulang di grup dan uji apakah ada yang mau menindaklanjutinya.',
     },
     {
       title: 'Tentukan cakupan yang benar-benar bisa diwujudkan',
@@ -111,7 +111,7 @@ const content: GuideContent = {
     },
     {
       title: 'Bagikan kemajuan untuk membangun momentum',
-      body: 'Unggah pembaruan saat proyek berjalan, rayakan tonggak saat tercapai, dan undang grup yang lebih luas untuk bergabung atau mengikuti. Kemajuan di linimasa mengubah proyek menjadi bukti bahwa komunitas benar-benar menghasilkan.',
+      body: 'Unggah pembaruan saat proyek berjalan, rayakan tonggak saat tercapai, dan undang grup yang lebih luas untuk bergabung atau mengikuti. Kemajuan di linimasa mengubah proyek menjadi bukti bahwa Origin benar-benar menghasilkan.',
       joinOriginNote:
         'Pembaruan ruang mengalir ke linimasa di JoinOrigin — lingkaran pertumbuhan tempat setiap anggota baru memperluas permukaan penemuan. Mulailah ditemukan dan bertumbuh.',
     },
