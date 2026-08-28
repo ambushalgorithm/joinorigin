@@ -12,11 +12,11 @@ const content: CityContent = {
   kind: 'city',
   locale: 'hi',
   slug: 'chennai',
-  title: 'Communities in Chennai | JoinOrigin',
+  title: 'Origins in Chennai | JoinOrigin',
   description:
     'चेन्नई में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
   pageTitles: {
-    city: 'Communities in Chennai | JoinOrigin',
+    city: 'Origins in Chennai | JoinOrigin',
     cityDescription:
       'चेन्नई में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
     variants: {
@@ -38,7 +38,7 @@ const content: CityContent = {
       'small-business':
         'चेन्नई में छोटे व्यवसाय समुदाय खोजें या शुरू करें — टी नगर, जॉर्जटाउन और बेसेंट नगर के व्यापारी। JoinOrigin से जुड़ें।',
     },
-    ideas: 'चेन्नई में 30 सामुदायिक कार्यक्रम विचार | JoinOrigin',
+    ideas: 'चेन्नई में 30 Origin कार्यक्रम विचार | JoinOrigin',
     ideasDescription:
       'चेन्नई में 30 सामुदायिक कार्यक्रम विचार — नेटवर्किंग, सीखने, सामाजिक और बाहरी, पेशेवर, क्रिएटिव और प्रभाव इवेंट।',
   },

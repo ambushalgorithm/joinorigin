@@ -10,7 +10,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'portugal',
-  title: 'Communities in Portugal | JoinOrigin',
+  title: 'Origins in Portugal | JoinOrigin',
   description:
     'Find or start communities in Portugal — from startup scenes in Lisbon to local associations, food culture, and small business networks. Join Origin and get discovered.',
   intro:
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Portugal?',
+      question: 'How do I find Origins in Portugal?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local associações and cafés are also strong starting points.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local associações and cafés are also strong starting points.',
     },
     {
       question: 'Can I start a community in a Portuguese city?',

@@ -11,7 +11,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'ile-de-france',
-  title: 'Communities in Ile-de-France | JoinOrigin',
+  title: 'Origins in Ile-de-France | JoinOrigin',
   description:
     'Find or start communities in Ile-de-France — from Paris’s startup and creative scenes to the surrounding departments. Join Origin and get discovered.',
   intro:

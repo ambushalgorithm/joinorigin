@@ -13,7 +13,7 @@ const content: CountryContent = {
   locale: 'en',
   slug: 'kenya',
   intro:
-    'Kenya is an East African country of roughly 51 million people, where a young, multilingual population meets a strong tradition of self-organized mutual aid. English and Swahili are the official languages, and community life runs through visible, practical institutions: chamas — the rotating savings groups that have long organized families, coworkers, and neighbors — are a national habit of trust and discipline that any new community can build on. Nairobi, the capital, is the economic and tech heart, home to the mobile-money culture that M-Pesa created and the hubs of the Silicon Savannah, while Mombasa anchors the coast and cities like Kisumu, Nakuru, and Eldoret carry strong regional scenes. The country’s universities, including the University of Nairobi, Strathmore University, and JKUAT, feed a steady stream of graduates into every sector, and community organizing is deeply embedded in civic life, from neighborhood associations to the harambee tradition of pulling resources together for a shared goal. For anyone looking to find or start a community, Kenya rewards specificity, consistency, and meeting people where they already are — a regular meeting at a familiar place grows quickly in a culture that already knows how to show up for each other.',
+    'Kenya is an East African country of roughly 51 million people, where a young, multilingual population meets a strong tradition of self-organized mutual aid. English and Swahili are the official languages, and community life runs through visible, practical institutions: chamas — the rotating savings groups that have long organized families, coworkers, and neighbors — are a national habit of trust and discipline that any new community can build on. Nairobi, the capital, is the economic and tech heart, home to the mobile-money culture that M-Pesa created and the hubs of the Silicon Savannah, while Mombasa anchors the coast and cities like Kisumu, Nakuru, and Eldoret carry strong regional scenes. The country’s universities, including the University of Nairobi, Strathmore University, and JKUAT, feed a steady stream of graduates into every sector, and community organizing is deeply embedded in civic life, from neighborhood associations to the harambee tradition of pulling resources together for a shared goal. For anyone looking to find or start an Origin, Kenya rewards specificity, consistency, and meeting people where they already are — a regular meeting at a familiar place grows quickly in a culture that already knows how to show up for each other.',
   dataPoints: [
     'Population of roughly 51 million in East Africa.',
     'Capital is Nairobi; Mombasa anchors the coast.',
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Kenya?',
+      question: 'How do I find Origins in Kenya?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Chamas, churches, sports clubs, and coworking spaces are also reliable starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Chamas, churches, sports clubs, and coworking spaces are also reliable starting points for offline groups.',
     },
     {
       question: 'What is a chama and how do communities relate to it?',

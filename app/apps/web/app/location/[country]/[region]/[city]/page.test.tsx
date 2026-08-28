@@ -150,9 +150,9 @@ describe('/location/[country]/[region]/[city] route', () => {
     // Explore community types — un-gated for Tier-2 content cities.
     const groupLinks = screen.getByTestId('location-group-type-links');
     expect(within(groupLinks).getByText('Startup Origins')).toBeInTheDocument();
-    expect(within(groupLinks).getByText('30 community event ideas')).toBeInTheDocument();
+    expect(within(groupLinks).getByText('30 Origin event ideas')).toBeInTheDocument();
 
-    // Communities in nearby cities — same-region siblings render too.
+    // Origins in nearby cities — same-region siblings render too.
     const siblingGrid = screen.getByTestId('location-sibling-cities');
     expect(within(siblingGrid).getAllByRole('link').length).toBeGreaterThan(0);
   });

@@ -11,7 +11,7 @@ const content: CityContent = {
   locale: 'nl',
   slug: 'amsterdam',
   pageTitles: {
-    city: 'Community’s in Amsterdam | JoinOrigin',
+    city: 'Origins in Amsterdam | JoinOrigin',
     cityDescription:
       'Vind of start community’s in Amsterdam — startup-, creatieve, politieke, meetup- en kleine-bedrijfsgroepen in de Nederlandse hoofdstad. Wachtlijst van JoinOrigin.',
     variants: {
@@ -33,7 +33,7 @@ const content: CityContent = {
       'small-business':
         'Vind of start kleine-bedrijven-community’s in Amsterdam — winkels in de Jordaan, marktkooplieden van de Albert Cuyp en buurtnetwerken. Wachtlijst van JoinOrigin.',
     },
-    ideas: '30 ideeën voor community-evenementen in Amsterdam | JoinOrigin',
+    ideas: '30 ideeën voor Origin-evenementen in Amsterdam | JoinOrigin',
     ideasDescription:
       'Ontdek 30 ideeën voor community-evenementen in Amsterdam — netwerk-, leer-, outdoor-, professionele, creatieve en impactevenementen. Wachtlijst van JoinOrigin.',
   },

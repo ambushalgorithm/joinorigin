@@ -12,11 +12,11 @@ const content: CityContent = {
   kind: 'city',
   locale: 'hi',
   slug: 'pune',
-  title: 'Communities in Pune | JoinOrigin',
+  title: 'Origins in Pune | JoinOrigin',
   description:
     'पुणे में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
   pageTitles: {
-    city: 'Communities in Pune | JoinOrigin',
+    city: 'Origins in Pune | JoinOrigin',
     cityDescription:
       'पुणे में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
     variants: {
@@ -38,7 +38,7 @@ const content: CityContent = {
       'small-business':
         'पुणे में छोटे व्यवसाय समुदाय खोजें या शुरू करें — तुलसीबाग, कोरेगांव पार्क और पिंपरी-चिंचवड़ के व्यापारी। JoinOrigin से जुड़ें।',
     },
-    ideas: 'पुणे में 30 सामुदायिक कार्यक्रम विचार | JoinOrigin',
+    ideas: 'पुणे में 30 Origin कार्यक्रम विचार | JoinOrigin',
     ideasDescription:
       'पुणे में 30 सामुदायिक कार्यक्रम विचार — नेटवर्किंग, सीखने, सामाजिक और बाहरी, पेशेवर, क्रिएटिव और प्रभाव इवेंट।',
   },

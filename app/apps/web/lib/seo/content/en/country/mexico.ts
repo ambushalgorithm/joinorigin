@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'mexico',
-  title: 'Communities in Mexico | JoinOrigin',
+  title: 'Origins in Mexico | JoinOrigin',
   description:
     'Find or start communities in Mexico — from Mexico City startup groups to creative scenes and small business networks nationwide. Join Origin and get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Mexico?',
+      question: 'How do I find Origins in Mexico?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local markets, parishes, cultural centers, and university groups are also good starting points for offline communities.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local markets, parishes, cultural centers, and university groups are also good starting points for offline communities.',
     },
     {
       question: 'How does regional identity shape Mexican communities?',

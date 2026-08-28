@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'united-states',
-  title: 'Communities in the United States | JoinOrigin',
+  title: 'Origins in the United States | JoinOrigin',
   description:
     'Find or start communities in the United States — from startup scenes in New York to small business networks across the country. Join Origin and get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities near me in the United States?',
+      question: 'How do I find Origins near me in the United States?',
       answer:
-        'Start at the /location hub, choose your state and city, then browse the group-type pages — startup, creative, political, meetup, and small business communities. JoinOrigin makes discovery easy — create your profile and start finding or building communities today.',
+        'Start at the /location hub, choose your state and city, then browse the group-type pages — startup, creative, political, meetup, and small business Origins. JoinOrigin makes discovery easy — create your profile and start finding or building communities today.',
     },
     {
       question: 'Can I start a community in any U.S. city?',

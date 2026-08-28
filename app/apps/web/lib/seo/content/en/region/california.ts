@@ -12,7 +12,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'california',
-  title: 'Communities in California | JoinOrigin',
+  title: 'Origins in California | JoinOrigin',
   description:
     'Find or start communities in California — from San Francisco’s startup scene to Los Angeles’ creative and entertainment networks. Join Origin and get discovered.',
   intro:

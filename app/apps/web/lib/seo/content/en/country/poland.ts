@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Poland?',
+      question: 'How do I find Origins in Poland?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Foundations, cultural centres, and local event platforms are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Foundations, cultural centres, and local event platforms are also good starting points for offline groups.',
     },
     {
       question: 'What is participatory budgeting in Polish cities?',

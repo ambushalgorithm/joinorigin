@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'argentina',
-  title: 'Communities in Argentina | JoinOrigin',
+  title: 'Origins in Argentina | JoinOrigin',
   description:
     'Find or start communities in Argentina — from Buenos Aires startup groups to provincial maker, cultural, and small business networks. Join Origin and get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Argentina?',
+      question: 'How do I find Origins in Argentina?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local clubs, university event boards, and neighborhood associations are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local clubs, university event boards, and neighborhood associations are also good starting points for offline groups.',
     },
     {
       question: 'What role do asado and mate play in Argentine communities?',

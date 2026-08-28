@@ -12,7 +12,7 @@ const content: CountryContent = {
   locale: 'en',
   slug: 'nigeria',
   intro:
-    'Nigeria is the most populous country in Africa, with roughly 196 million people, and one of the most dynamic community landscapes on the continent. English is the official language and the lingua franca of professional life, while Hausa, Yoruba, and Igbo — among hundreds of other languages — anchor vibrant regional cultures. Abuja is the federal capital, while Lagos is the commercial and cultural engine: a megacity of more than fifteen million people where finance, Nollywood, Afrobeats, and a fast-growing tech scene meet. The country’s associational culture runs deep — from the age-grade societies and market associations of traditional life to the churches, mosques, alumni networks, and professional bodies that organize daily life in every city. Universities including the University of Lagos, the University of Ibadan, and Obafemi Awolowo University feed a huge pool of students and graduates into every sector, and the startup ecosystem, centered on Yaba in Lagos, has made Nigeria one of Africa’s leading innovation hubs. For anyone looking to find or start a community, Nigeria rewards boldness, consistency, and hyper-local focus — a group built around one neighborhood or one industry can thrive in a country where people already gather constantly.',
+    'Nigeria is the most populous country in Africa, with roughly 196 million people, and one of the most dynamic community landscapes on the continent. English is the official language and the lingua franca of professional life, while Hausa, Yoruba, and Igbo — among hundreds of other languages — anchor vibrant regional cultures. Abuja is the federal capital, while Lagos is the commercial and cultural engine: a megacity of more than fifteen million people where finance, Nollywood, Afrobeats, and a fast-growing tech scene meet. The country’s associational culture runs deep — from the age-grade societies and market associations of traditional life to the churches, mosques, alumni networks, and professional bodies that organize daily life in every city. Universities including the University of Lagos, the University of Ibadan, and Obafemi Awolowo University feed a huge pool of students and graduates into every sector, and the startup ecosystem, centered on Yaba in Lagos, has made Nigeria one of Africa’s leading innovation hubs. For anyone looking to find or start an Origin, Nigeria rewards boldness, consistency, and hyper-local focus — a group built around one neighborhood or one industry can thrive in a country where people already gather constantly.',
   dataPoints: [
     'Population of roughly 196 million; the most populous country in Africa.',
     'Capital is Abuja; Lagos is the commercial and cultural engine.',
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Nigeria?',
+      question: 'How do I find Origins in Nigeria?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Churches, mosques, alumni networks, and coworking hubs are also strong starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Churches, mosques, alumni networks, and coworking hubs are also strong starting points for offline groups.',
     },
     {
       question: 'Is it realistic to start a community in Nigeria?',

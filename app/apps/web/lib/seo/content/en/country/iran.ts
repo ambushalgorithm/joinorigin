@@ -12,7 +12,7 @@ const content: CountryContent = {
   locale: 'en',
   slug: 'iran',
   intro:
-    'Iran is a country of roughly 82 million people in West Asia, where a deep Persian cultural tradition meets one of the most resilient tech ecosystems in the Middle East. Persian (Farsi) is the national language, and the culture of hospitality and gathering — from the traditional house gatherings of the Nowruz season to the coffeehouses and parks of the capital — makes community life both familiar and warm. Tehran, the capital and largest city, concentrates universities, startups, and cultural institutions, while cities like Isfahan, Shiraz, and Mashhad carry their own distinct scenes rooted in history, art, and religion. Iranian universities, including the University of Tehran, Sharif University of Technology, and Amirkabir University, produce a large pool of engineers and graduates, and the domestic startup ecosystem — home to companies like Digikala and Snapp — has grown into one of the most active in the region. The weekend runs Thursday–Friday, which shapes when groups meet, and social life often happens in private spaces and parks as much as in public venues. For anyone looking to find or start a community, Iran rewards building trust through repeated gatherings and choosing a district or university circle where people already know each other.',
+    'Iran is a country of roughly 82 million people in West Asia, where a deep Persian cultural tradition meets one of the most resilient tech ecosystems in the Middle East. Persian (Farsi) is the national language, and the culture of hospitality and gathering — from the traditional house gatherings of the Nowruz season to the coffeehouses and parks of the capital — makes community life both familiar and warm. Tehran, the capital and largest city, concentrates universities, startups, and cultural institutions, while cities like Isfahan, Shiraz, and Mashhad carry their own distinct scenes rooted in history, art, and religion. Iranian universities, including the University of Tehran, Sharif University of Technology, and Amirkabir University, produce a large pool of engineers and graduates, and the domestic startup ecosystem — home to companies like Digikala and Snapp — has grown into one of the most active in the region. The weekend runs Thursday–Friday, which shapes when groups meet, and social life often happens in private spaces and parks as much as in public venues. For anyone looking to find or start an Origin, Iran rewards building trust through repeated gatherings and choosing a district or university circle where people already know each other.',
   dataPoints: [
     'Population of roughly 82 million in West Asia.',
     'Capital is Tehran; Isfahan, Shiraz, and Mashhad anchor distinct regional scenes.',
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Iran?',
+      question: 'How do I find Origins in Iran?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. University circles, parks, and coffeehouses are also strong starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. University circles, parks, and coffeehouses are also strong starting points for offline groups.',
     },
     {
       question: 'Do communities in Iran mostly meet online or in person?',

@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Ukraine?',
+      question: 'How do I find Origins in Ukraine?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Volunteer hubs and local cafés are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Volunteer hubs and local cafés are also good starting points for offline groups.',
     },
     {
       question: 'Is it realistic to start a community in Ukraine right now?',

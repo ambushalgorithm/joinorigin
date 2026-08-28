@@ -12,7 +12,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'south-korea',
-  title: 'Communities in South Korea | JoinOrigin',
+  title: 'Origins in South Korea | JoinOrigin',
   description:
     'Find or start communities in South Korea — from the startup and creative scenes in Seoul to business and civic networks nationwide. JoinOrigin helps you get discovered.',
   intro:
@@ -25,9 +25,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in South Korea?',
+      question: 'How do I find Origins in South Korea?',
       answer:
-        'Start at the /location hub and choose the Seoul page, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Many groups also coordinate through messaging apps and online communities.',
+        'Start at the /location hub and choose the Seoul page, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Many groups also coordinate through messaging apps and online communities.',
     },
     {
       question: 'Where do professional meetups usually take place?',

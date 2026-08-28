@@ -12,7 +12,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'the-netherlands',
-  title: 'Communities in The Netherlands | JoinOrigin',
+  title: 'Origins in The Netherlands | JoinOrigin',
   description:
     'Find or start communities in The Netherlands — from startup scenes in Amsterdam to local verenigingen, cycling clubs, and small business networks. Join Origin and get discovered.',
   intro:
@@ -25,9 +25,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in The Netherlands?',
+      question: 'How do I find Origins in The Netherlands?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local verenigingen and buurthuizen (community centers) are also strong starting points.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local verenigingen and buurthuizen (community centers) are also strong starting points.',
     },
     {
       question: 'Can I start a community in a Dutch city?',

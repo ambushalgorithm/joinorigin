@@ -12,7 +12,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'lisbon',
-  title: 'Communities in Lisbon | JoinOrigin',
+  title: 'Origins in Lisbon | JoinOrigin',
   description:
     'Find or start communities in the Lisbon region — from the capital’s startup scenes to local associations across the district. Join Origin and get discovered.',
   intro:

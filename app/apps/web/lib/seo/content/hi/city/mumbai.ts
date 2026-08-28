@@ -13,11 +13,11 @@ const content: CityContent = {
   kind: 'city',
   locale: 'hi',
   slug: 'mumbai',
-  title: 'Communities in Mumbai | JoinOrigin',
+  title: 'Origins in Mumbai | JoinOrigin',
   description:
     'मुंबई में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
   pageTitles: {
-    city: 'Communities in Mumbai | JoinOrigin',
+    city: 'Origins in Mumbai | JoinOrigin',
     cityDescription:
       'मुंबई में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
     variants: {
@@ -39,7 +39,7 @@ const content: CityContent = {
       'small-business':
         'मुंबई में छोटे व्यवसाय समुदाय खोजें या शुरू करें — बाज़ार, दुकानदार संघ और उद्यमी नाश्ते। JoinOrigin से जुड़ें।',
     },
-    ideas: 'मुंबई में 30 सामुदायिक कार्यक्रम विचार | JoinOrigin',
+    ideas: 'मुंबई में 30 Origin कार्यक्रम विचार | JoinOrigin',
     ideasDescription:
       'मुंबई में 30 सामुदायिक कार्यक्रम विचार — नेटवर्किंग, सीखने, सामाजिक और बाहरी, पेशेवर, क्रिएटिव और प्रभाव इवेंट।',
   },

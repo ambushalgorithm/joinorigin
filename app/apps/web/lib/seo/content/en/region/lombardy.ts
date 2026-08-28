@@ -11,7 +11,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'lombardy',
-  title: 'Communities in Lombardy | JoinOrigin',
+  title: 'Origins in Lombardy | JoinOrigin',
   description:
     'Find or start communities in Lombardy — from Milan’s startup and design scenes to associations across the region. Join Origin and get discovered.',
   intro:

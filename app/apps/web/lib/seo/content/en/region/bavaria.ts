@@ -11,7 +11,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'bavaria',
-  title: 'Communities in Bavaria | JoinOrigin',
+  title: 'Origins in Bavaria | JoinOrigin',
   description:
     'Find or start communities in Bavaria — from Munich’s tech and startup scenes to Vereine, beer gardens, and alpine clubs across the state. Join Origin and get discovered.',
   intro:

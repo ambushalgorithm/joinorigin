@@ -11,7 +11,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'ontario',
-  title: 'Communities in Ontario | JoinOrigin',
+  title: 'Origins in Ontario | JoinOrigin',
   description:
     'Find or start communities in Ontario — startup, creative, political, meetup, and small business groups across the province. Join Origin and get discovered.',
   intro:

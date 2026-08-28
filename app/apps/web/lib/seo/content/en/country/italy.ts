@@ -10,7 +10,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'italy',
-  title: 'Communities in Italy | JoinOrigin',
+  title: 'Origins in Italy | JoinOrigin',
   description:
     'Find or start communities in Italy — from startup scenes in Milan to local associations, food culture, and small business networks. Join Origin and get discovered.',
   intro:
@@ -23,9 +23,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Italy?',
+      question: 'How do I find Origins in Italy?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local circoli, parish groups, and cultural associations are also strong starting points.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local circoli, parish groups, and cultural associations are also strong starting points.',
     },
     {
       question: 'Can I start a community in an Italian city?',

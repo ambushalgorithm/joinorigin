@@ -12,11 +12,11 @@ const content: CityContent = {
   kind: 'city',
   locale: 'de',
   slug: 'berlin',
-  title: 'Communities in Berlin | JoinOrigin',
+  title: 'Origins in Berlin | JoinOrigin',
   description:
     'Finde oder gründe Communities in Berlin – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
   pageTitles: {
-    city: 'Communities in Berlin | JoinOrigin',
+    city: 'Origins in Berlin | JoinOrigin',
     cityDescription:
       'Finde oder gründe Communities in Berlin – Startup, Kreativ, politisch, Meetups und Kleinunternehmen. Jetzt auf die JoinOrigin-Warteliste.',
     variants: {
@@ -38,7 +38,7 @@ const content: CityContent = {
       'small-business':
         'Finde oder gründe Kleinunternehmer-Communities in Berlin – Spätis, Läden, Handwerk und Kiez-Netzwerke. JoinOrigin-Warteliste.',
     },
-    ideas: '30 Ideen für Community-Events in Berlin | JoinOrigin',
+    ideas: '30 Ideen für Origin-Events in Berlin | JoinOrigin',
     ideasDescription:
       '30 realistische Ideen für Community-Events in Berlin – Networking, Lernen, Draußen, Beruf, Kreativ & Impact. Für dein nächstes Event.',
   },

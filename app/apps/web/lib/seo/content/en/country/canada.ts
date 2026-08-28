@@ -12,7 +12,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'canada',
-  title: 'Communities in Canada | JoinOrigin',
+  title: 'Origins in Canada | JoinOrigin',
   description:
     'Find or start communities in Canada — from Toronto startup groups to Vancouver creative scenes and small business networks nationwide. Join Origin and get discovered.',
   intro:
@@ -25,9 +25,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Canada?',
+      question: 'How do I find Origins in Canada?',
       answer:
-        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local community centres, libraries, and immigrant-serving organizations are also good starting points for offline groups.',
+        'Use the /location hub to pick a city, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local community centres, libraries, and immigrant-serving organizations are also good starting points for offline groups.',
     },
     {
       question: 'How does the Canadian climate affect community gatherings?',

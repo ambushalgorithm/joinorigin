@@ -10,7 +10,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'antioquia',
-  title: 'Communities in Antioquia | JoinOrigin',
+  title: 'Origins in Antioquia | JoinOrigin',
   description:
     'Find or start communities in Antioquia — startup, creative, political, meetup, and small business groups across the department. Join Origin and get discovered.',
   intro:

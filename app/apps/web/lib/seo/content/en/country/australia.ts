@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'australia',
-  title: 'Communities in Australia | JoinOrigin',
+  title: 'Origins in Australia | JoinOrigin',
   description:
     'Find or start communities in Australia — startup scenes, creative collectives, and local meetups from Sydney to the smaller capitals. JoinOrigin helps you get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Australia?',
+      question: 'How do I find Origins in Australia?',
       answer:
-        'Start at the /location hub and choose a city such as Sydney, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local event platforms and neighbourhood Facebook groups also list most gatherings.',
+        'Start at the /location hub and choose a city such as Sydney, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local event platforms and neighbourhood Facebook groups also list most gatherings.',
     },
     {
       question: 'What are the most common ways Australians gather?',

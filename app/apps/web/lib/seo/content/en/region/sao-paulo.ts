@@ -10,7 +10,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'sao-paulo',
-  title: 'Communities in São Paulo | JoinOrigin',
+  title: 'Origins in São Paulo | JoinOrigin',
   description:
     'Find or start communities in São Paulo — startup, creative, political, meetup, and small business groups across the state. Join Origin and get discovered.',
   intro:

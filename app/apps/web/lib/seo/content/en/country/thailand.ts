@@ -12,7 +12,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'thailand',
-  title: 'Communities in Thailand | JoinOrigin',
+  title: 'Origins in Thailand | JoinOrigin',
   description:
     'Find or start communities in Thailand — from the startup and creative scenes in Bangkok to civic and small business networks nationwide. JoinOrigin helps you get discovered.',
   intro:
@@ -25,9 +25,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Thailand?',
+      question: 'How do I find Origins in Thailand?',
       answer:
-        'Start at the /location hub and choose the Bangkok page, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Many groups also coordinate through messaging apps and social media.',
+        'Start at the /location hub and choose the Bangkok page, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Many groups also coordinate through messaging apps and social media.',
     },
     {
       question: 'What role do temples and festivals play in community life?',

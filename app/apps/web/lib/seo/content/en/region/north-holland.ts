@@ -11,7 +11,7 @@ const content: RegionContent = {
   kind: 'region',
   locale: 'en',
   slug: 'north-holland',
-  title: 'Communities in North Holland | JoinOrigin',
+  title: 'Origins in North Holland | JoinOrigin',
   description:
     'Find or start communities in North Holland — from Amsterdam’s startup scenes to verenigingen and local groups across the province. Join Origin and get discovered.',
   intro:

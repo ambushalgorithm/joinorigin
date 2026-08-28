@@ -75,7 +75,7 @@ describe('/location page — Story E country/region/city render (TASK-497)', () 
 
     // Authored FAQ renders (Story G authored every content-rich country).
     const faq = screen.getByTestId('location-faq');
-    expect(within(faq).getByText('How do I find communities in Colombia?')).toBeInTheDocument();
+    expect(within(faq).getByText('How do I find Origins in Colombia?')).toBeInTheDocument();
     expect(
       within(faq).getByText('What makes Colombian community culture distinctive?'),
     ).toBeInTheDocument();
@@ -178,7 +178,7 @@ describe('/location page — Story H i18n completeness (TASK-518)', () => {
     expect(within(breadcrumbs).getByText('Origins nach Stadt')).toBeInTheDocument();
     expect(within(breadcrumbs).getByText('Vereinigte Arabische Emirate')).toBeInTheDocument();
     expect(
-      within(breadcrumbs).queryByText('Communities in United Arab Emirates'),
+      within(breadcrumbs).queryByText('Origins in United Arab Emirates'),
     ).not.toBeInTheDocument();
   });
 
@@ -192,7 +192,7 @@ describe('/location page — Story H i18n completeness (TASK-518)', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: 'Kolumbien' })).toBeInTheDocument();
     expect(
-      screen.queryByRole('heading', { level: 1, name: 'Communities in Colombia' }),
+      screen.queryByRole('heading', { level: 1, name: 'Origins in Colombia' }),
     ).not.toBeInTheDocument();
     const breadcrumbs = screen.getByTestId('location-breadcrumbs');
     expect(within(breadcrumbs).getByText('Kolumbien')).toBeInTheDocument();
@@ -241,7 +241,7 @@ describe('/location page — Story H i18n completeness (TASK-518)', () => {
 
       const directory = screen.getByTestId('location-hub-directory');
       expect(within(directory).getByText('Comunidades en Colombia')).toBeInTheDocument();
-      expect(within(directory).queryByText('Communities in Colombia')).not.toBeInTheDocument();
+      expect(within(directory).queryByText('Origins in Colombia')).not.toBeInTheDocument();
     } finally {
       mockServerLocale.locale = 'en';
     }

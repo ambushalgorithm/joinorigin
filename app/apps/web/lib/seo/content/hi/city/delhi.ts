@@ -12,11 +12,11 @@ const content: CityContent = {
   kind: 'city',
   locale: 'hi',
   slug: 'delhi',
-  title: 'Communities in Delhi | JoinOrigin',
+  title: 'Origins in Delhi | JoinOrigin',
   description:
     'दिल्ली में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
   pageTitles: {
-    city: 'Communities in Delhi | JoinOrigin',
+    city: 'Origins in Delhi | JoinOrigin',
     cityDescription:
       'दिल्ली में समुदाय खोजें या शुरू करें — स्टार्टअप, क्रिएटिव, राजनीतिक, मीटअप और छोटे व्यवसाय समूह। आज ही JoinOrigin से जुड़ें।',
     variants: {
@@ -38,7 +38,7 @@ const content: CityContent = {
       'small-business':
         'दिल्ली में छोटे व्यवसाय समुदाय खोजें या शुरू करें — चाँदनी चौक, करोल बाग और शाहपुर जाट के व्यापारी। JoinOrigin से जुड़ें।',
     },
-    ideas: 'दिल्ली में 30 सामुदायिक कार्यक्रम विचार | JoinOrigin',
+    ideas: 'दिल्ली में 30 Origin कार्यक्रम विचार | JoinOrigin',
     ideasDescription:
       'दिल्ली में 30 सामुदायिक कार्यक्रम विचार — नेटवर्किंग, सीखने, सामाजिक और बाहरी, पेशेवर, क्रिएटिव और प्रभाव इवेंट।',
   },

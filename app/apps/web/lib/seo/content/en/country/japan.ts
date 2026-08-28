@@ -11,7 +11,7 @@ const content: CountryContent = {
   kind: 'country',
   locale: 'en',
   slug: 'japan',
-  title: 'Communities in Japan | JoinOrigin',
+  title: 'Origins in Japan | JoinOrigin',
   description:
     'Find or start communities in Japan — startup and creative scenes in Tokyo and Osaka, plus neighbourhood associations and hobby circles. JoinOrigin helps you get discovered.',
   intro:
@@ -24,9 +24,9 @@ const content: CountryContent = {
   ],
   faq: [
     {
-      question: 'How do I find communities in Japan?',
+      question: 'How do I find Origins in Japan?',
       answer:
-        'Start at the /location hub and choose a city such as Tokyo or Osaka, then explore the group-type pages for startup, creative, political, meetup, and small business communities. Local event platforms and university bulletin boards also list gatherings.',
+        'Start at the /location hub and choose a city such as Tokyo or Osaka, then explore the group-type pages for startup, creative, political, meetup, and small business Origins. Local event platforms and university bulletin boards also list gatherings.',
     },
     {
       question: 'What are chōnaikai and how do I get involved?',
