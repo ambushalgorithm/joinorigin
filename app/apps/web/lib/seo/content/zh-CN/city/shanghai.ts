@@ -9,38 +9,39 @@ const content: CityContent = {
   kind: 'city',
   locale: 'zh-CN',
   slug: 'shanghai',
-  title: '上海的社区 | JoinOrigin',
-  description: '在上海找到或创建社区——创业、创意、政治、聚会和小企业团体。JoinOrigin 等待名单。',
+  title: '上海的 Origin | JoinOrigin',
+  description: '在上海找到或创建 Origin——创业、创意、政治、聚会和小企业团体。JoinOrigin 等待名单。',
   pageTitles: {
-    city: '上海的社区 | JoinOrigin',
+    city: '上海的 Origin | JoinOrigin',
     cityDescription:
-      '在上海找到或创建社区——创业、创意、政治、聚会和小企业团体。JoinOrigin 等待名单。',
+      '在上海找到或创建 Origin——创业、创意、政治、聚会和小企业团体。JoinOrigin 等待名单。',
     variants: {
-      startup: '上海的创业社区 | JoinOrigin',
-      creative: '上海的创意社区 | JoinOrigin',
-      political: '上海的政治与公民社区 | JoinOrigin',
-      meetup: '上海的聚会与社交社区 | JoinOrigin',
-      'small-business': '上海的小企业社区 | JoinOrigin',
+      startup: '上海的创业 Origin | JoinOrigin',
+      creative: '上海的创意 Origin | JoinOrigin',
+      political: '上海的政治与公民 Origin | JoinOrigin',
+      meetup: '上海的聚会与社交 Origin | JoinOrigin',
+      'small-business': '上海的小企业 Origin | JoinOrigin',
     },
     variantDescriptions: {
       startup:
-        '在上海找到或创建创业社区——张江、杨浦和陆家嘴的创始人、工程师和运营者。JoinOrigin 等待名单。',
+        '在上海找到或创建创业 Origin——张江、杨浦和陆家嘴的创始人、工程师和运营者。JoinOrigin 等待名单。',
       creative:
-        '在上海找到或创建创意社区——西岸、M50、田子坊和法租界的工作室、画廊和设计品牌。JoinOrigin 等待名单。',
+        '在上海找到或创建创意 Origin——西岸、M50、田子坊和法租界的工作室、画廊和设计品牌。JoinOrigin 等待名单。',
       political:
-        '在上海找到或创建政治与公民社区——社区花园、历史街巷和绿色空间。JoinOrigin 等待名单。',
-      meetup: '在上海找到或创建聚会社区——外滩漫步、法租界咖啡馆和复兴公园。JoinOrigin 等待名单。',
+        '在上海找到或创建政治与公民 Origin——社区花园、历史街巷和绿色空间。JoinOrigin 等待名单。',
+      meetup:
+        '在上海找到或创建聚会 Origin——外滩漫步、法租界咖啡馆和复兴公园。JoinOrigin 等待名单。',
       'small-business':
-        '在上海找到或创建小企业社区——老城厢的市场、静安和徐汇的店主圈。JoinOrigin 等待名单。',
+        '在上海找到或创建小企业 Origin——老城厢的市场、静安和徐汇的店主圈。JoinOrigin 等待名单。',
     },
-    ideas: '上海的30个社区活动创意 | JoinOrigin',
+    ideas: '上海的30个 Origin 活动创意 | JoinOrigin',
     ideasDescription:
-      '发现上海的30个社区活动创意——社交、学习、户外、职业、创意与影响力活动。JoinOrigin 等待名单。',
+      '发现上海的30个 Origin 活动创意——社交、学习、户外、职业、创意与影响力活动。JoinOrigin 等待名单。',
   },
   intro: [
     '上海 是 中国 的 商业 之都，一座 高楼 与 绿荫 小巷 并存 的 城市，商业、时尚 与 社区 生活 都 运转 得 飞快。城市 的 各 个 城区 有 鲜明 的 个性——浦东 的 高楼 属于 金融 与 科技，法租界 和 徐汇 属于 咖啡馆 与 创意 文化，静安 属于 购物 与 夜生活，而 黄浦江 畔 的 老 街区 承载 着 历史 与 传统。',
     '机构 支撑 着 上海 的 社区 生活：复旦 大学、上海 交通 大学 和 一 批 其他 高校 提供 源源不断 的 学生 和 研究 人员，而 城市 作为 全球 商业 中心 的 地位 吸引 着 来自 世界 各地 的 创业 者、设计 师 和 专业 人士。地铁——世界 最 大 的 地铁 系统 之 一——让 城市 的 穿行 变 得 容易，外滩、滨江 公园 和 城市 里 的 众多 绿地 为 团体 提供 免费 的 户外 场地。',
-    '对 于 找到 或 创建 社区，上海 奖赏 那些 懂 城市 节奏 的 人：形式 要 快，平台 迭代 得 快，一 场 组织 良好、目的 明确 的 活动 可靠 地 吸引 人群。法租界 的 咖啡 文化 为 更 小、更 私密 的 团体 提供 了 天然 的 家。',
+    '对 于 找到 或 创建 Origin，上海 奖赏 那些 懂 城市 节奏 的 人：形式 要 快，平台 迭代 得 快，一 场 组织 良好、目的 明确 的 活动 可靠 地 吸引 人群。法租界 的 咖啡 文化 为 更 小、更 私密 的 团体 提供 了 天然 的 家。',
   ],
   dataPoints: [
     '约 2490 万 常住 人口；中国 的 商业 之都。',
@@ -405,7 +406,7 @@ const content: CityContent = {
       {
         question: '怎么从这些创意中选一个？',
         answer:
-          '把 类 别 对 应 到 你 的 兴 趣 和 你 能 触 达 的 受 众。在 上 海，带 固 定 场 地、靠 近 地 铁 的 固 定 形 式——外 滩 漫 步、咖 啡 馆 圈、每 月 早 餐——建 立 社 区 最 快。',
+          '把 类 别 对 应 到 你 的 兴 趣 和 你 能 触 达 的 受 众。在 上 海，带 固 定 场 地、靠 近 地 铁 的 固 定 形 式——外 滩 漫 步、咖 啡 馆 圈、每 月 早 餐——建 立 Origin 最 快。',
       },
       {
         question: '组织活动需要会说普通话吗？',
@@ -413,22 +414,22 @@ const content: CityContent = {
           '不 需 要。许 多 上 海 团 体 用 双 语 或 英 语 运 转，国 际 社 区 也 很 大。双 语 公 告 通 常 能 让 你 的 触 达 翻 倍。',
       },
       {
-        question: '这些活动能变成真正的社区吗？',
+        question: '这些活动能变成真正的 Origin 吗？',
         answer:
-          '能——固 定 形 式 就 是 大 多 数 上 海 社 区 的 起 点，城 市 的 速 度 会 维 持 它 们。操 作 指 南 会 带 你 从 第 一 场 活 动 走 到 一 个 稳 定 的 社 区。',
+          '能——固 定 形 式 就 是 大 多 数 上 海 Origin 的 起 点，城 市 的 速 度 会 维 持 它 们。操 作 指 南 会 带 你 从 第 一 场 活 动 走 到 一 个 稳 定 的 Origin。',
       },
     ],
   },
   faq: [
     {
-      question: '怎么在上海找到社区？',
+      question: '怎么在上海找到 Origin？',
       answer:
-        '使 用 创 业、创 意、政 治、聚 会 和 小 企 业 社 区 的 团 体 类 型 页 面。每 个 页 面 都 描 述 上 海 人 聚 集 的 真 实 城 区、场 地 和 形 式。JoinOrigin 已 上 线——创 建 你 的 个 人 主 页，今 天 就 找 到 或 创 建 你 的 社 区。',
+        '使 用 创 业、创 意、政 治、聚 会 和 小 企 业 Origin 的 团 体 类 型 页 面。每 个 页 面 都 描 述 上 海 人 聚 集 的 真 实 城 区、场 地 和 形 式。JoinOrigin 已 上 线——创 建 你 的 个 人 主 页，今 天 就 找 到 或 创 建 你 的 Origin。',
     },
     {
-      question: '在上海创建社区现实吗？',
+      question: '在上海创建 Origin 现实吗？',
       answer:
-        '现 实。上 海 有 庞 大 的 人 口、快 节 奏 的 文 化 和 热 情 的 国 际 场 景。指 南 覆 盖 创 建 社 区、组 织 聚 会 和 获 得 前 十 名 成 员。',
+        '现 实。上 海 有 庞 大 的 人 口、快 节 奏 的 文 化 和 热 情 的 国 际 场 景。指 南 覆 盖 创 建 Origin、组 织 聚 会 和 获 得 前 十 名 成 员。',
     },
     {
       question: '这个页面上的场地建议是真的吗？',
@@ -438,7 +439,7 @@ const content: CityContent = {
     {
       question: 'JoinOrigin 在上海有办公室吗？',
       answer:
-        '没 有。JoinOrigin 没 有 本 地 办 公 室 或 员 工。所 有 社 区 描 述 反 映 真 实 的 城 市 景 观，平 台 帮 助 上 海 人 找 到 或 创 建 社 区。',
+        '没 有。JoinOrigin 没 有 本 地 办 公 室 或 员 工。所 有 Origin 描 述 反 映 真 实 的 城 市 景 观，平 台 帮 助 上 海 人 找 到 或 创 建 Origin。',
     },
   ],
 };
