@@ -316,6 +316,60 @@ describe('wave 3 origin reframe — location + guides chrome (TASK-569)', () => 
   });
 });
 
+describe('wave 4 network namespace rename (TASK-575)', () => {
+  it('nav label is Network (community.nav.network replaces common.nav.community)', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('common.nav.network')).toBe('Network');
+    expect(t('common.nav.community')).toBe('common.nav.community');
+  });
+
+  it('community.* namespace is renamed to network.* with unchanged values', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('network.hero.eyebrow')).toBe('The network');
+    expect(t('network.hero.title')).toBe('Where people find each other');
+    expect(t('network.sectionValues')).toBe('How we run the network');
+    expect(t('network.values.peopleFirst.body')).toContain('Members are people');
+    expect(t('network.sectionExamples')).toBe('Example Origins');
+    expect(t('network.examplesIntro')).toContain('Origins growing inside JoinOrigin');
+    expect(t('network.examples.startupFounders')).toBe('Startup Founders');
+    expect(t('network.sectionJoin')).toBe('Join the network');
+    expect(t('network.joinCopy')).toContain('Start an Origin, get discovered');
+    expect(t('network.joinStatValue')).toBe('2,400+');
+    expect(t('network.joinStatLabel')).toBe('Members building together');
+    expect(t('network.faq.q1.question')).toBe('What Origins can I join?');
+    expect(t('community.hero.title')).toBe('community.hero.title');
+  });
+
+  it('about.readingNetwork points at the network page (replaces readingCommunity)', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('about.readingNetwork')).toBe(
+      'See the <1>network</1> page for the values and example Origins inside the network.',
+    );
+    expect(t('about.readingCommunity')).toBe('about.readingCommunity');
+  });
+
+  it('location ideasLink is Origin-flavored (30 Origin event ideas)', () => {
+    const t = getT(getDictionary('en'));
+    expect(t('seoContent.location.ideasLink')).toBe('30 Origin event ideas');
+  });
+
+  it('every locale mirrors the network rename key-for-key', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const t = getT(getDictionary(locale));
+      expect(t('common.nav.network').length).toBeGreaterThan(0);
+      expect(t('network.hero.title').length).toBeGreaterThan(0);
+      expect(t('network.sectionValues').length).toBeGreaterThan(0);
+      expect(t('network.joinCopy').length).toBeGreaterThan(0);
+      expect(t('network.faq.q1.question').length).toBeGreaterThan(0);
+      expect(t('about.readingNetwork').length).toBeGreaterThan(0);
+      expect(t('seoContent.location.ideasLink')).toContain('Origin');
+      expect(t('common.nav.community')).toBe('common.nav.community');
+      expect(t('community.hero.title')).toBe('community.hero.title');
+      expect(t('about.readingCommunity')).toBe('about.readingCommunity');
+    }
+  });
+});
+
 describe('lookup — dot-path access', () => {
   it('returns nested values', () => {
     const dict = getDictionary('en') as Dictionary;

@@ -10,7 +10,7 @@
     "joinWaitlist": "讓自己被發現",
     "nav": {
       "features": "功能",
-      "community": "社群",
+      "network": "網路",
       "docs": "文件",
       "about": "關於",
       "contact": "聯絡",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "這個網路",
       "title": "人們找到彼此的地方",
@@ -434,7 +434,7 @@
     "founderBody": "Origin 上的每個功能都用這個問題來衡量。如果它不能幫助人們發現彼此、組成社群或一起展開專案，它就不屬於這個工作空間。",
     "sectionReading": "深入閱讀",
     "readingDocs": "閱讀<1>文件</1>以了解核心物件、路線圖與架構。",
-    "readingCommunity": "前往<1>社群</1>頁面了解網路內的價值觀與範例社群。",
+    "readingNetwork": "前往<1>網路</1>頁面了解網路內的價值觀與範例 Origin。",
     "readingContact": "有問題嗎？<1>聯絡團隊</1>——我們會在 2 個工作天內回覆。",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "鄰近城市的 Origin",
       "guidesTitle": "建立 Origin 指南",
       "stepByStepGuide": "逐步指南",
-      "ideasLink": "30個社群活動點子",
+      "ideasLink": "30個 Origin 活動點子",
       "faqHeading": "常見問題",
       "translatePage": "翻譯此頁面",
       "variantVenuesTitle": "{{type}}聚集的地方",

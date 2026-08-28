@@ -10,7 +10,7 @@
     "joinWaitlist": "让自己被发现",
     "nav": {
       "features": "功能特性",
-      "community": "社区",
+      "network": "网络",
       "docs": "文档",
       "about": "关于我们",
       "contact": "联系我们",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "网络",
       "title": "人们在这里找到彼此",
@@ -434,7 +434,7 @@
     "founderBody": "Origin 上的每个功能都用这个问题来度量。如果它不能帮助人们发现彼此、结成社区或一起启动项目，它就不属于这个工作空间。",
     "sectionReading": "延伸阅读",
     "readingDocs": "阅读<1>文档</1>，了解核心对象、路线图和架构。",
-    "readingCommunity": "查看<1>社区</1>页面，了解网络内的价值观和社区示例。",
+    "readingNetwork": "查看<1>网络</1>页面，了解网络内的价值观和 Origin 示例。",
     "readingContact": "有疑问？<1>联系团队</1> —— 我们会在 2 个工作日内回复。",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "附近城市的 Origin",
       "guidesTitle": "创建 Origin 指南",
       "stepByStepGuide": "分步指南",
-      "ideasLink": "30个社区活动创意",
+      "ideasLink": "30个 Origin 活动创意",
       "faqHeading": "常见问题",
       "translatePage": "翻译此页面",
       "variantVenuesTitle": "{{type}}聚集的地方",

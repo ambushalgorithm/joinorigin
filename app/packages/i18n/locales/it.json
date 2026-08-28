@@ -10,7 +10,7 @@
     "joinWaitlist": "Fatti scoprire",
     "nav": {
       "features": "Funzionalità",
-      "community": "Community",
+      "network": "Rete",
       "docs": "Documentazione",
       "about": "Chi siamo",
       "contact": "Contatti",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "La rete",
       "title": "Dove le persone si trovano tra loro",
@@ -434,7 +434,7 @@
     "founderBody": "Ogni funzionalità su Origin viene valutata con questa domanda. Se non aiuta le persone a scoprirsi, a formare community o ad avviare progetti insieme, non ha posto nello spazio di lavoro.",
     "sectionReading": "Approfondimenti",
     "readingDocs": "Leggi la <1>documentazione</1> per gli oggetti principali, la roadmap e l'architettura.",
-    "readingCommunity": "Consulta la pagina <1>Community</1> per i valori e gli esempi di community all'interno della rete.",
+    "readingNetwork": "Consulta la pagina <1>Rete</1> per i valori e gli esempi di Origins all'interno della rete.",
     "readingContact": "Hai una domanda? <1>Contatta il team</1> — rispondiamo entro 2 giorni lavorativi.",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "Origins nelle città vicine",
       "guidesTitle": "Guide per creare un Origin",
       "stepByStepGuide": "Guida passo passo",
-      "ideasLink": "30 idee per eventi di comunità",
+      "ideasLink": "30 idee per eventi Origin",
       "faqHeading": "Domande frequenti",
       "translatePage": "Traduci questa pagina",
       "variantVenuesTitle": "Dove si riuniscono {{type}}",

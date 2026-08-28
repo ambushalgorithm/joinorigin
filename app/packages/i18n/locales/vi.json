@@ -10,7 +10,7 @@
     "joinWaitlist": "Được khám phá",
     "nav": {
       "features": "Tính năng",
-      "community": "Cộng đồng",
+      "network": "Mạng lưới",
       "docs": "Tài liệu",
       "about": "Giới thiệu",
       "contact": "Liên hệ",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "Mạng lưới",
       "title": "Nơi mọi người tìm thấy nhau",
@@ -434,7 +434,7 @@
     "founderBody": "Mọi tính năng trên Origin đều được đo lường bằng câu hỏi đó. Nếu nó không giúp mọi người khám phá nhau, hình thành cộng đồng hay cùng nhau bắt đầu dự án, thì nó không thuộc về không gian làm việc này.",
     "sectionReading": "Đọc sâu hơn",
     "readingDocs": "Đọc <1>tài liệu</1> để biết về các đối tượng cốt lõi, lộ trình và kiến trúc.",
-    "readingCommunity": "Xem trang <1>cộng đồng</1> để biết các giá trị và ví dụ về cộng đồng bên trong mạng lưới.",
+    "readingNetwork": "Xem trang <1>mạng lưới</1> để biết các giá trị và ví dụ về Origins bên trong mạng lưới.",
     "readingContact": "Có câu hỏi? <1>Liên hệ với nhóm của chúng tôi</1> — chúng tôi phản hồi trong vòng 2 ngày làm việc.",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "Origins ở các thành phố lân cận",
       "guidesTitle": "Hướng dẫn bắt đầu một Origin",
       "stepByStepGuide": "Hướng dẫn từng bước",
-      "ideasLink": "30 ý tưởng sự kiện cộng đồng",
+      "ideasLink": "30 ý tưởng sự kiện Origin",
       "faqHeading": "Câu hỏi thường gặp",
       "translatePage": "Dịch trang này",
       "variantVenuesTitle": "Nơi {{type}} tụ họp",

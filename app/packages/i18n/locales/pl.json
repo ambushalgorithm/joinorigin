@@ -10,7 +10,7 @@
     "joinWaitlist": "Daj się odkryć",
     "nav": {
       "features": "Funkcje",
-      "community": "Społeczność",
+      "network": "Sieć",
       "docs": "Dokumentacja",
       "about": "O nas",
       "contact": "Kontakt",
@@ -275,7 +275,7 @@
       }
     }
   },
-  "community": {
+  "network": {
     "hero": {
       "eyebrow": "Sieć",
       "title": "Miejsce, w którym ludzie się odnajdują",
@@ -434,7 +434,7 @@
     "founderBody": "Każda funkcja na Origin jest mierzona tym pytaniem. Jeśli nie pomaga ludziom odkrywać się nawzajem, tworzyć społeczności ani rozpoczynać wspólnych projektów, nie ma jej miejsca w przestrzeni roboczej.",
     "sectionReading": "Pogłębiona lektura",
     "readingDocs": "Przeczytaj <1>dokumentację</1>, aby poznać kluczowe obiekty, mapę drogową i architekturę.",
-    "readingCommunity": "Zobacz stronę <1>społeczności</1>, aby poznać wartości i przykładowe społeczności w sieci.",
+    "readingNetwork": "Zobacz stronę <1>sieci</1>, aby poznać wartości i przykładowe Origins w sieci.",
     "readingContact": "Masz pytanie? <1>Skontaktuj się z zespołem</1> — odpowiadamy w ciągu 2 dni roboczych.",
     "faq": {
       "q1": {
@@ -583,7 +583,7 @@
       "nearbyCities": "Origins w pobliskich miastach",
       "guidesTitle": "Przewodniki zakładania Origin",
       "stepByStepGuide": "Przewodnik krok po kroku",
-      "ideasLink": "30 pomysłów na wydarzenia społecznościowe",
+      "ideasLink": "30 pomysłów na wydarzenia Origin",
       "faqHeading": "Często zadawane pytania",
       "translatePage": "Przetłumacz tę stronę",
       "variantVenuesTitle": "Gdzie spotykają się {{type}}",
